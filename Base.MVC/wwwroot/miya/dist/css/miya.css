@@ -1,0 +1,126 @@
+.box > .overlay,
+.overlay-wrapper > .overlay,
+.box > .loading-img,
+.overlay-wrapper > .loading-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.box .overlay,
+.overlay-wrapper .overlay {
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 3px;
+}
+
+    .box .overlay > .fa,
+    .overlay-wrapper .overlay > .fa {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -15px;
+        margin-top: -15px;
+        color: #000;
+        font-size: 30px;
+    }
+
+    .box .overlay.dark,
+    .overlay-wrapper .overlay.dark {
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+.bd-callout {
+    padding: 0 .60rem 0 .60rem;
+    margin-top: .60rem;
+    margin-bottom: .60rem;
+    border: 1px solid #eee;
+    border-left-width: .25rem;
+    border-radius: .25rem;
+}
+
+.bd-callout-warning {
+    border-left-color: #f0ad4e;
+}
+
+
+/* Paste this css to your style sheet file or under head tag */
+/* This only works with JavaScript, 
+if it's not present, don't show loader */
+.no-js #loader {
+    display: none;
+}
+
+.js #loader {
+    display: block;
+    position: absolute;
+    left: 100px;
+    top: 0;
+}
+
+.se-pre-con {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url(../img/loader-128x/Preloader_3.gif) center no-repeat #fff;
+    /*background: url(../img/loader-128x/test1.gif) center no-repeat #222d32;*/
+}
+
+/**
+    @author Mustafa Zeynel Daðlý
+    @since 30/03/2018
+*/
+.breadcrumb-miya {
+    margin-bottom: 0px;
+}
+
+/**
+    @author Mustafa Zeynel Daðlý
+    @since 30/03/2018
+*/
+.blockquote-miya {
+    padding: 10px 10px 10px 15px;
+    margin: 0 0 0px 6px;
+    font-size: 17.5px;
+    border-left: 4px solid #eee;
+}
+
+/**
+    @author Mustafa Zeynel Daðlý
+    @since 30/03/2018
+*/
+.box-info-miya {
+    margin-bottom: 10px;
+}
+
+/**
+    @author Mustafa Zeynel Daðlý
+    @since 30/03/2018
+*/
+.content-header-breadcrumb-miya {
+    position: relative;
+    padding: 0px 0px 0 0px;
+}
+
+/**
+    @author Mustafa Zeynel Daðlý
+    @since 30/03/2018
+*/
+.btn-small-miya {
+    padding: 1px 6px;
+    font-size: 12px;
+    line-height: 1.5
+}
+
+/**
+    @author Mustafa Zeynel Daðlý
+    @since 30/03/2018
+*/
+.alert-info-miya {
+    padding: 8px 3jdk5px 8px 8px;
+}
