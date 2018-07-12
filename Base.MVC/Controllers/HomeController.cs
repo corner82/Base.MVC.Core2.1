@@ -27,6 +27,8 @@ namespace Base.MVC.Controllers
         [SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpGet]
+        [HttpPost]
         public async Task<string> Index()
         {
             // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.

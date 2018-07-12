@@ -177,6 +177,7 @@ namespace Base.MVC
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseStaticFiles();
+            app.UseHttpsRedirection();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -273,6 +274,8 @@ namespace Base.MVC
                      name: "default",
                      template: "{culture?}/{controller=home}/{action=index}/{id?}");
                  });*/
+
+           
 
         }
     }
