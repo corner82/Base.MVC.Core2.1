@@ -32,6 +32,7 @@ namespace Base.MVC.Controllers
         public async Task<string> Index()
         {
             // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
+
             var headers = new Dictionary<string, string>();
             var tokenGenerated = HttpContext.Session.GetHmacToken();
             headers.Add("X-Hmac", tokenGenerated);

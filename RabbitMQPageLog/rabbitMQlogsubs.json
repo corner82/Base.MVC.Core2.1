@@ -30,7 +30,7 @@
   },
 
   "Serilog": {
-    "LogFile": "C:\\Users\\M. Zeynel Dağlı\\Documents\\visual studio 2017\\Projects\\Base.SIS\\RabbitLogSubs\\Logs\\RabbitMQPageAccessLog.log",
+    "LogFile": "C:\\Users\\M. Zeynel Dağlı\\Documents\\visual studio 2017\\Projects\\Base.SIS\\RabbitMQPageLog\\Logs\\RabbitMQPageAccessLog.log",
     "MinimumLevel": "Verbose"
   }
 }
