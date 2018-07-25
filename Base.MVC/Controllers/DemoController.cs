@@ -44,5 +44,10 @@ namespace Base.MVC.Controllers
             var userNmae2 = user2.Email;*/
             return View();
         }
+
+        public async Task<IActionResult> Dvx()
+        {
+            return View();
+        }
     }
 }
