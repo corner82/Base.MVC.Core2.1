@@ -3,17 +3,30 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer Localizer
 @inject IHttpContextAccessor HttpContextAccessor
+@inject RequestCultureFinder CultureProvider
+@inject RequestUriCultureFinder UriCultureProvider
 @using System
 @using System.Text
 @using Base.Core.Entities.Session
 @using Base.Core.Extensions.Session
 @using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Localization;
+@using Base.Core.Culture.RequestCulture;
 @{
 
     @*ViewData["Title"] = Localizer["Login Page"];*@
-    var currentUser = Context.Session.Get<SessionUserModel>("CurrentUser");
-    ViewData["Title"] = Localizer["Miya Sales Program Dashboard"];
-    ViewData["UserName"] = currentUser.Email;
+var currentUser = Context.Session.Get<SessionUserModel>("CurrentUser");
+ViewData["Title"] = Localizer["Miya Sales Program Dashboard"];
+ViewData["UserName"] = currentUser.Email;
+
+// Retrieves the requested culture
+//var rqf = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>();
+// Culture contains the information of the requested culture
+/*var culture = rqf.RequestCulture.Culture;
+ViewData["Culture"] = culture;*/
+
+ViewData["ShortCultureInfo"] = CultureProvider.GetRequestCultureInfo();
+ViewData["ReplacedCultureUri"] = UriCultureProvider.ReplaceCultureCode();
 
 }
 
@@ -45,6 +58,9 @@
     <![endif]-->
 </head>
 <body class="skin-blue sidebar-mini">
+    <input id="langCode" type="hidden" value="@ViewBag.ShortCultureInfo" />
+    <input id="requestUriRegulated" type="hidden" value="@ViewBag.ReplacedCultureUri" />
+
     <div class="se-pre-con"></div>
     <div class="wrapper">
         <!-- Header nav bar-->
@@ -87,6 +103,11 @@
     <script src="~/adm/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <!-- Slimscroll -->
     <script src="~/adm/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+
+    <!-- jquery-lang-js-master ekleniyor-->
+    <script src="~/adm/plugins/jquery-lang-js-master/js/js.cookie.js" type="text/javascript"></script>
+    <script src="~/adm/plugins/jquery-lang-js-master/js/jquery-lang.js" type="text/javascript"></script>
+    <!-- jquery-lang-js-master ekleniyor son -->
 
     @RenderSection("javascriptsPageSpecs", required: false)
 </body>

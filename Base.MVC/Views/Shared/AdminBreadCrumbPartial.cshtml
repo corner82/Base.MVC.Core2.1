@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@*@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet*@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHttpContextAccessor HttpContextAccessor
+@using System
+@using System.Text
+@using Base.Core.Entities.Session
+@using Base.Core.Extensions.Session
+@using Microsoft.AspNetCore.Http
+@{
+
+    @*ViewData["Title"] = Localizer["Login Page"];*@
+    var currentUser = Context.Session.Get<SessionUserModel>("CurrentUser");
+    ViewData["Title"] = Localizer["Miya Sales Program Dashboard"];
+    ViewData["UserName"] = currentUser.Email;
+
+}
+
+<input id="langCode" type="hidden" value="<?php echo $this->langCode; ?>"></input>
+<?php // partial.phtml ?>
+<ol class="breadcrumb" id="admin_breadcrumb">
+    <!--<li><a href="#"><i class="fa fa-dashboard"></i><?php echo $this->translate('Home') ?></a></li>
+    <li><a href="#"><i class="fa fa-sitemap"></i> Rol ve Yetki İşlemleri</a></li>
+    <li class="active">Yetki İşl.</li>-->
+</ol>

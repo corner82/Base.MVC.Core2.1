@@ -25,4 +25,10 @@
     <ProjectReference Include="..\Base.Core\Base.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Shared\AdminBreadCrumbPartial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
 </Project>

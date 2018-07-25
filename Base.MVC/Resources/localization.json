@@ -215,7 +215,8 @@
       "fr-FR": "Bonjour To Do List",
       "en-US": "To Do List",
       "es-MX": "Lista de quehaceres",
-      "tr-TR": "Yapılacaklar"
+      "tr-TR": "Yapılacaklar",
+      "ru-RU": "Yapılacaklar"
     }
   },
   {
@@ -224,7 +225,8 @@
       "fr-FR": "Bonjour Status",
       "en-US": "Status",
       "es-MX": "Estado",
-      "tr-TR": "Durum"
+      "tr-TR": "Durum",
+      "ru-RU": "Durum"
     }
   },
   {
@@ -233,7 +235,8 @@
       "fr-FR": "Bonjour Type message",
       "en-US": "Type message",
       "es-MX": "Escriba mensaje",
-      "tr-TR": "Mesaj yaz"
+      "tr-TR": "Mesaj yaz",
+      "ru-RU": "Mesaj yaz"
     }
   },
   {
@@ -242,7 +245,8 @@
       "fr-FR": "Bonjour open",
       "en-US": "Open",
       "es-MX": "Abierto",
-      "tr-TR": "Aç"
+      "tr-TR": "Aç",
+      "ru-RU": "Aç"
     }
   },
   {
@@ -251,7 +255,8 @@
       "fr-FR": "Bonjour Profile",
       "en-US": "Profile",
       "es-MX": "Perfil",
-      "tr-TR": "Profilim"
+      "tr-TR": "Profilim",
+      "ru-RU": "Profilim"
     }
   },
   {
@@ -260,7 +265,8 @@
       "fr-FR": "Bonjour Departman",
       "en-US": "Departman",
       "es-MX": "Departamental",
-      "tr-TR": "Departman"
+      "tr-TR": "Departman",
+      "ru-RU": "Departman"
     }
   },
   {
@@ -269,7 +275,8 @@
       "fr-FR": "{0} messages bonjour",
       "en-US": "{0} messages",
       "es-MX": "{0} mensajes",
-      "tr-TR": "{0} mesaj"
+      "tr-TR": "{0} mesaj",
+      "ru-RU": "{0} mesaj"
     }
   },
   {
@@ -278,7 +285,8 @@
       "fr-FR": "{0} messages notifications",
       "en-US": "{0} notifications",
       "es-MX": "{0} notificaciones",
-      "tr-TR": "{0} hatırlatma"
+      "tr-TR": "{0} hatırlatma",
+      "ru-RU": "{0} hatırlatma"
     }
   },
   {
@@ -287,7 +295,8 @@
       "fr-FR": "{0} bonjour tasks",
       "en-US": "{0} tasks",
       "es-MX": "{0} tarea",
-      "tr-TR": "{0} görev"
+      "tr-TR": "{0} görev",
+      "ru-RU": "{0} görev"
     }
   },
   {
@@ -296,7 +305,8 @@
       "fr-FR": "Bonjour View all",
       "en-US": "View all",
       "es-MX": "Ver todo",
-      "tr-TR": "Tamamını gör"
+      "tr-TR": "Tamamını gör",
+      "ru-RU": "Tamamını gör"
     }
   },
   {
@@ -305,7 +315,8 @@
       "fr-FR": "Bonjour Last login time",
       "en-US": "Last login time",
       "es-MX": "Último inicio de sesión Hora",
-      "tr-TR": "Sisteme son giriş tarihi"
+      "tr-TR": "Sisteme son giriş tarihi",
+      "ru-RU": "Sisteme son giriş tarihi"
     }
   },
   {
@@ -314,7 +325,8 @@
       "fr-FR": "Bonjour Followed issues",
       "en-US": "Followed issues",
       "es-MX": "Problemas seguidos",
-      "tr-TR": "Takipteki işler"
+      "tr-TR": "Takipteki işler",
+      "ru-RU": "Takipteki işler"
     }
   },
   {
@@ -323,7 +335,8 @@
       "fr-FR": "Bonjour More Info",
       "en-US": "More Info",
       "es-MX": "Más información",
-      "tr-TR": "Detaylı Bilgi"
+      "tr-TR": "Detaylı Bilgi",
+      "ru-RU": "Detaylı Bilgi"
     }
   },
   {
@@ -332,7 +345,8 @@
       "fr-FR": "Bonjour sign in",
       "en-US": "Sign in to start your session",
       "es-MX": "Registrarse",
-      "tr-TR": "Sisteme giriş yapın"
+      "tr-TR": "Sisteme giriş yapın",
+      "ru-RU": "Sisteme giriş yapın"
     }
   },
   {
@@ -341,7 +355,8 @@
       "fr-FR": "Bonjour Subject",
       "en-US": "Subject",
       "es-MX": "Tema",
-      "tr-TR": "Konu"
+      "tr-TR": "Konu",
+      "ru-RU": "Konu"
     }
   },
   {
@@ -350,7 +365,8 @@
       "fr-FR": "Bonjour Send",
       "en-US": "Send",
       "es-MX": "Enviar",
-      "tr-TR": "Gönder"
+      "tr-TR": "Gönder",
+      "ru-RU": "Gönder"
     }
   },
   {
@@ -359,7 +375,8 @@
       "fr-FR": "Bonjour email",
       "en-US": "Email",
       "es-MX": "Correo electrónico",
-      "tr-TR": "Eposta"
+      "tr-TR": "Eposta",
+      "ru-RU": "Eposta"
     }
   },
   {
@@ -368,7 +385,8 @@
       "fr-FR": "Bonjour password",
       "en-US": "Password",
       "es-MX": "Contraseña",
-      "tr-TR": "Şifre"
+      "tr-TR": "Şifre",
+      "ru-RU": "Şifre"
     }
   },
   {
@@ -377,7 +395,8 @@
       "fr-FR": "Bonjour remember me",
       "en-US": "Remember Me",
       "es-MX": "Recuérdame",
-      "tr-TR": "Beni Hatırla"
+      "tr-TR": "Beni Hatırla",
+      "ru-RU": "Beni Hatırla"
     }
   },
   {
@@ -386,7 +405,8 @@
       "fr-FR": "Bonjour sign in",
       "en-US": "Sign In",
       "es-MX": "Registrarse",
-      "tr-TR": "Giriş Yap"
+      "tr-TR": "Giriş Yap",
+      "ru-RU": "Giriş Yap"
     }
   },
   {
@@ -395,7 +415,8 @@
       "fr-FR": "Bonjour register",
       "en-US": "Register a new membership",
       "es-MX": "Registro",
-      "tr-TR": "Kayıt Ol"
+      "tr-TR": "Kayıt Ol",
+      "ru-RU": "Kayıt Ol"
     }
   },
   {
@@ -404,7 +425,8 @@
       "fr-FR": "Bonjour sign in facebook",
       "en-US": "Sign in using Facebook",
       "es-MX": "Inicie sesión con Facebook",
-      "tr-TR": "Facebook hesabı ile kayıt ol"
+      "tr-TR": "Facebook hesabı ile kayıt ol",
+      "ru-RU": "Facebook hesabı ile kayıt ol"
     }
   },
   {
@@ -413,7 +435,8 @@
       "fr-FR": "Bonjour sign in google",
       "en-US": "Sign in using Google+",
       "es-MX": "Inicia sesión con Google+",
-      "tr-TR": "Google+ hesabı ile kayıt ol"
+      "tr-TR": "Google+ hesabı ile kayıt ol",
+      "ru-RU": "Google+ hesabı ile kayıt ol"
     }
   },
   {
@@ -422,7 +445,8 @@
       "fr-FR": "Bonjour forgot password",
       "en-US": "I forgot my password",
       "es-MX": "Se te olvidó tu contraseña",
-      "tr-TR": "Şifremi unuttum"
+      "tr-TR": "Şifremi unuttum",
+      "ru-RU": "Şifremi unuttum"
     }
   },
   {
@@ -431,7 +455,8 @@
       "fr-FR": "Bonjour -OR-",
       "en-US": "- OR -",
       "es-MX": "-O-",
-      "tr-TR": "Veya"
+      "tr-TR": "Veya",
+      "ru-RU": "Veya"
     }
   },
   {
@@ -440,25 +465,28 @@
       "fr-FR": "Bonjour email filed is required",
       "en-US": "Email field is required",
       "es-MX": "Por favor ingrese su contraseña",
-      "tr-TR": "Eposta alanı doldurulması zorunludur"
+      "tr-TR": "Eposta alanı doldurulması zorunludur",
+      "ru-RU": "Eposta alanı doldurulması zorunludur"
     }
   },
-  {
+  /*{
     "Key": "BoxLengthRequired",
     "LocalizedValue": {
       "fr-FR": "Bonjour email filed is required",
       "en-US": "Email field is required",
       "es-MX": "Por favor ingrese su contraseña",
-      "tr-TR": "Eposta alanı doldurulması zorunludur"
+      "tr-TR": "Eposta alanı doldurulması zorunludur",
+      "ru-RU": "Eposta alanı doldurulması zorunludur"
     }
-  },
+  },*/
   {
     "Key": "User Name field is required",
     "LocalizedValue": {
       "fr-FR": "Bonjour User Name field is required",
       "en-US": "User Name field is required",
       "es-MX": "El campo Nombre de usuario es obligatorio",
-      "tr-TR": "Kullanıcı adı alanı doldurulması zorunludur"
+      "tr-TR": "Kullanıcı adı alanı doldurulması zorunludur",
+      "ru-RU": "Kullanıcı adı alanı doldurulması zorunludur"
     }
   },
   {
@@ -467,7 +495,8 @@
       "fr-FR": "Bonjour Register a new membership",
       "en-US": "Register a new membership",
       "es-MX": "Registra una nueva membresía",
-      "tr-TR": "Yeni kayıt oluşturun"
+      "tr-TR": "Yeni kayıt oluşturun",
+      "ru-RU": "Yeni kayıt oluşturun"
     }
   },
 
@@ -477,7 +506,8 @@
       "fr-FR": "Bonjour Please type your password",
       "en-US": "Please type your password",
       "es-MX": "El campo Correo electrónico es obligatorio",
-      "tr-TR": "Lütfen şifrenizi belirleyiniz"
+      "tr-TR": "Lütfen şifrenizi belirleyiniz",
+      "ru-RU": "Lütfen şifrenizi belirleyiniz"
     }
   },
   {
@@ -486,7 +516,8 @@
       "fr-FR": "Bonjour Miya/Man Sales Program",
       "en-US": "Miya/Man Sales Program Dashboard",
       "es-MX": "Miya/Man Programa de ventas",
-      "tr-TR": "Miya/ Man Satış Ana Sayfa"
+      "tr-TR": "Miya/ Man Satış Ana Sayfa",
+      "ru-RU": "Miya/ Man Satış Ana Sayfa"
     }
   }
 

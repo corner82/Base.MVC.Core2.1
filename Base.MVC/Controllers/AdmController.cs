@@ -11,7 +11,8 @@ using Base.Filters.Session;
 using Base.Filters.Log.RabbitMQ;
 using Base.Filters.Ajax;
 using Base.Filters.Session.Ajax;
-
+using Microsoft.AspNetCore.Localization;
+using Base.Core.Culture.RequestCulture;
 
 namespace Base.MVC.Controllers
 {
@@ -20,15 +21,19 @@ namespace Base.MVC.Controllers
     public class AdmController : Controller
     {
         private readonly IDistributedCache _distributedCache;
-        public AdmController(IDistributedCache distributedCache)
+        private readonly RequestCultureFinder _requestCultureFinder;
+        public AdmController(IDistributedCache distributedCache,
+                            RequestCultureFinder requestCultureFinder)
         {
             _distributedCache = distributedCache;
+            _requestCultureFinder = requestCultureFinder;
         }
 
 
         [SessionTimeOut]
         //[ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        //[Route("en-US/Adm/Dsh")]
         public async Task<IActionResult> Dsh()
 
         {
@@ -41,6 +46,9 @@ namespace Base.MVC.Controllers
 
             var user2 = JsonConvert.DeserializeObject<SessionUserModel>(await _distributedCache.GetStringAsync(user.ConcurrencyStamp));
             var userNmae2 = user2.Email;
+
+            //ViewData["Message"] = _requestCultureFinder.GetRequestCultureInfo();
+
             return View();
         }
 

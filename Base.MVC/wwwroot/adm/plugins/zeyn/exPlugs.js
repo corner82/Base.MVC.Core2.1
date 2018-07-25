@@ -359,14 +359,14 @@
             window.lang = new Lang();
 
             //lang.dynamic('tr', '../plugins/jquery-lang-js-master/js/langpack/tr.json');
-            window.lang.dynamic('th', '/plugins/jquery-lang-js-master/js/langpack/th.json');
-            window.lang.dynamic('tr', '/plugins/jquery-lang-js-master/js/langpack/tr.json');
-            window.lang.dynamic('ar', '/plugins/jquery-lang-js-master/js/langpack/ar.json');
-            window.lang.dynamic('zh', '/plugins/jquery-lang-js-master/js/langpack/zh.json');
-            window.lang.dynamic('fa', '/plugins/jquery-lang-js-master/js/langpack/fa.json');
-            window.lang.dynamic('ru', '/plugins/jquery-lang-js-master/js/langpack/ru.json');
-            window.lang.dynamic('de', '/plugins/jquery-lang-js-master/js/langpack/de.json');
-            window.lang.dynamic('af', '/plugins/jquery-lang-js-master/js/langpack/af.json');
+            window.lang.dynamic('th', '/adm/plugins/jquery-lang-js-master/js/langpack/th.json');
+            window.lang.dynamic('tr', '/adm/plugins/jquery-lang-js-master/js/langpack/tr.json');
+            window.lang.dynamic('ar', '/adm/plugins/jquery-lang-js-master/js/langpack/ar.json');
+            window.lang.dynamic('zh', '/adm/plugins/jquery-lang-js-master/js/langpack/zh.json');
+            window.lang.dynamic('fa', '/adm/plugins/jquery-lang-js-master/js/langpack/fa.json');
+            window.lang.dynamic('ru', '/adm/plugins/jquery-lang-js-master/js/langpack/ru.json');
+            window.lang.dynamic('de', '/adm/plugins/jquery-lang-js-master/js/langpack/de.json');
+            window.lang.dynamic('af', '/adm/plugins/jquery-lang-js-master/js/langpack/af.json');
             window.lang.init({
                 defaultLang: 'en'
             });

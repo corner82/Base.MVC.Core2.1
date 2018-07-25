@@ -24,6 +24,7 @@ using Base.Core.Entities.Identity;
 using Base.Filters.Session.Ajax;
 using Base.Filters.Auth.Hmac;
 using Base.Filters.Log.RabbitMQ;
+using Base.Core.Culture.RequestCulture;
 
 namespace Base.MVC
 {
@@ -168,6 +169,11 @@ namespace Base.MVC
             // aþaðýdaki alanlar 10/07/2018 tarihinde yrumlandý, ilgili dosyalar aranýyor
             //services.AddTransient<ExceptionHandlingLogPublisher, ExceptionHandlingLogPublisher>();
             //services.AddSingleton<ExceptionHandlingLogModel, ExceptionHandlingLogModel>();
+
+            // request culture request uri culture finder services
+            services.AddSingleton<RequestCultureFinder, RequestCultureFinder>(); 
+            services.AddSingleton<RequestUriCultureFinder, RequestUriCultureFinder>();
+
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
