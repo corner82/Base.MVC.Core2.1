@@ -129,7 +129,6 @@ $(function () {
             dataType: "date"
         }, {
             dataField: "SaleAmount",
-                format: "currency"
                 
          }],
 
