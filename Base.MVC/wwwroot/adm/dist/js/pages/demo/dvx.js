@@ -42,6 +42,9 @@ $(function () {
 
     DevExpress.localization.locale("de");
 
+
+
+
     $("#gridContainer").dxDataGrid({
 
         showColumnLines: true,
