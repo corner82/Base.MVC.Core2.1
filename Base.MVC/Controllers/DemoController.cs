@@ -49,5 +49,20 @@ namespace Base.MVC.Controllers
         {
             return View();
         }
+
+        public async Task<IActionResult> Cfg()
+
+        {
+
+            var user = HttpContext.Session.Get<SessionUserModel>("CurrentUser");
+            var ff = JsonConvert.SerializeObject(user);
+            _distributedCache.SetString("userTestObj", JsonConvert.SerializeObject(user));
+            SessionUserModel model = JsonConvert.DeserializeObject<SessionUserModel>(_distributedCache.GetString("userTestObj"));
+            var userName = model.Email;
+
+            var user2 = JsonConvert.DeserializeObject<SessionUserModel>(await _distributedCache.GetStringAsync(user.ConcurrencyStamp));
+            var userNmae2 = user2.Email;
+            return View();
+        }
     }
 }

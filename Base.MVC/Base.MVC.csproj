@@ -26,6 +26,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\Demo\Cfg.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Demo\Dvx.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
