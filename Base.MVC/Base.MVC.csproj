@@ -32,6 +32,9 @@
     <Content Update="Views\Demo\Dvx.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Shared\AdminLanguageMenuPartial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Shared\AdminBreadCrumbPartial.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

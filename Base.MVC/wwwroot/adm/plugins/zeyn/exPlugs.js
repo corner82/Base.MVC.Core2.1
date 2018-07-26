@@ -694,7 +694,8 @@
 
             // sistem yabacı dilleri yükleniyor
             $.ajax({
-                url: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
+                //url: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
+                url: 'https://manservices.man.com.tr/SlimProxyBoot.php',
                 async: true,
                 data: {
                     url: 'fillComboBox_syslanguage',
