@@ -43,9 +43,9 @@ $(function () {
     DevExpress.localization.locale("de");
 
 
-    alert('test');
-    alert('gullu');
-    alert("x");
+    alert('xxxxx');
+    alert('yyyyy');
+    alert("zzzzz");
 
     $("#gridContainer").dxDataGrid({
 
