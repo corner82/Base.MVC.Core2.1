@@ -40,6 +40,8 @@ $(function () {
         }
     });
 
+    DevExpress.localization.locale("de");
+
     $("#gridContainer").dxDataGrid({
 
         showColumnLines: true,
@@ -127,8 +129,13 @@ $(function () {
             dataType: "date"
         }, {
             dataField: "SaleAmount",
-            format: "currency"
-        }],
+                format: "currency"
+                
+         }],
+
+        customizeColumns: function (columns) {
+            columns[5].format = { type: "currency", currency: "EUR" };
+        },
 
         summary: {
             totalItems: [{
