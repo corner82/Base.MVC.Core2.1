@@ -266,5 +266,6 @@ $(function () {
             $(gridContainer_tab).dxDataGrid("updateDimensions");
         }
     });
+
 });
 
