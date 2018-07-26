@@ -44,7 +44,7 @@ $(function () {
 
 
     alert('test');
-    alert('gule');
+    alert('gullu');
     alert("x");
 
     $("#gridContainer").dxDataGrid({
