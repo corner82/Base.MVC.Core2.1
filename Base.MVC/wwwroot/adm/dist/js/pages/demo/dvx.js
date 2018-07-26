@@ -149,5 +149,114 @@ $(function () {
         }
 
     });
+
+
+    $("#gridContainer_tab").dxDataGrid({
+
+        showColumnLines: true,
+
+        showRowLines: true,
+
+        rowAlternationEnabled: true,
+
+        showBorders: true,
+
+        dataSource: orders,
+
+        columnHidingEnabled: true,
+
+        editing: {
+            //mode: "batch"
+            mode: "row",
+            //allowAdding: true,
+            allowUpdating: true,
+            allowDeleting: true,
+            useIcons: true
+        },
+
+        "export": {
+            enabled: true,
+            fileName: "Orders"
+        },
+
+        grouping: {
+            contextMenuEnabled: true,
+            expandMode: "rowClick"
+        },
+
+        groupPanel: {
+            emptyPanelText: "Use the context menu of header columns to group data",
+            visible: true
+        },
+
+        pager: {
+            allowedPageSizes: [5, 8, 15, 30],
+            showInfo: true,
+            showNavigationButtons: true,
+            showPageSizeSelector: true,
+            visible: true
+        },
+
+        paging: {
+            pageSize: 8
+        },
+
+        filterRow: {
+            visible: true,
+            applyFilter: "auto"
+        },
+
+        searchPanel: {
+            visible: true,
+            width: 240,
+            placeholder: "Search..."
+        },
+
+        headerFilter: {
+            visible: true
+        },
+
+        columnChooser: {
+            enabled: true,
+            mode: "select"
+        },
+
+        columns: [{
+            allowGrouping: false,
+            dataField: "OrderNumber",
+            caption: "Invoice Number",
+            width: 130
+        }, {
+            caption: "City",
+            dataField: "StoreCity"
+        }, {
+            caption: "State",
+            dataField: "StoreState"
+        },
+            "Employee", {
+            dataField: "OrderDate",
+            dataType: "date"
+        }, {
+            dataField: "SaleAmount",
+            format: "currency"
+
+        }],
+
+        customizeColumns: function (columns) {
+            columns[5].format = { type: "currency", currency: "EUR" };
+        },
+
+        summary: {
+            totalItems: [{
+                column: "OrderNumber",
+                summaryType: "count"
+            }, {
+                column: "SaleAmount",
+                summaryType: "sum",
+                valueFormat: "currency"
+            }]
+        }
+
+    });
 });
 
