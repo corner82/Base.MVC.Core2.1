@@ -43,12 +43,7 @@ $(function () {
     DevExpress.localization.locale("de");
 
 
-    alert('xxxxx');
-    alert('yyyyy');
-    alert("zzzzz");
-    alert('test zeynel');
-    alert('gullu zeynel');
-    alert("x");
+    
 
     $("#gridContainer").dxDataGrid({
 
