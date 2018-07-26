@@ -42,7 +42,8 @@ $(function () {
 
     DevExpress.localization.locale("de");
 
-    alert("x");
+
+    alert("gul");
 
     $("#gridContainer").dxDataGrid({
 
