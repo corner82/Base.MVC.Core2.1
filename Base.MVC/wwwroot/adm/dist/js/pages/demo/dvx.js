@@ -128,7 +128,7 @@ $(function () {
             dataField: "OrderDate",
             dataType: "date"
         }, {
-            dataField: "SaleAmount",
+            dataField: "SaleAmount", 
                 
          }],
 
