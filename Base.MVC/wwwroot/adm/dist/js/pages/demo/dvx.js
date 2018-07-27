@@ -40,7 +40,7 @@ $(function () {
         }
     });
 
-    DevExpress.localization.locale("de");
+    DevExpress.localization.locale("en");
 
 
 
