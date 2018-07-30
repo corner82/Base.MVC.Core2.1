@@ -341,17 +341,17 @@
             var self = this;
             if ($("#langCode").length > 0) {
                 if ($("#langCode").val() != null && $("#langCode").val() != '') {
-                    //alert('lang code bulundu2');
+                    alert('lang code bulundu2');
                     self.options.langDefault = $("#langCode").val();
                 }
 
             } else if (Cookies && Cookies.length > 0) {
                 if (Cookies.get('langCookie') != null && Cookies.get('langCookie') != '') {
-                    //alert('lang code bulundu1');
+                    alert('lang code bulundu1');
                     self.options.langDefault = Cookies.get('langCookie');
                 }
             } else {
-                //alert('lang code bulundu3');
+                alert('lang code bulundu3');
                 self.options.langDefault = 'tr';
             }
 
@@ -367,6 +367,7 @@
             window.lang.dynamic('ru', '/adm/plugins/jquery-lang-js-master/js/langpack/ru.json');
             window.lang.dynamic('de', '/adm/plugins/jquery-lang-js-master/js/langpack/de.json');
             window.lang.dynamic('af', '/adm/plugins/jquery-lang-js-master/js/langpack/af.json');
+            window.lang.dynamic('es', '/adm/plugins/jquery-lang-js-master/js/langpack/es.json');
             window.lang.init({
                 defaultLang: 'en'
             });
@@ -375,7 +376,7 @@
                      //alert(window.lang.translate('Brand Sales Units'));
                      window.lang.change(self.options.langDefault);
                  }, 4000);*/
-            //alert(self.options.langDefault);
+            alert(self.options.langDefault);
             window.lang.change(self.options.langDefault);
         },
 
