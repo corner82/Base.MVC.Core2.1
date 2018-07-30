@@ -5,6 +5,7 @@
     <ApplicationIcon />
     <OutputType>WinExe</OutputType>
     <StartupObject />
+    <TypeScriptToolsVersion>2.8</TypeScriptToolsVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -45,6 +46,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\adm\plugins\font-awesome-5.1.1\" />
+    <Folder Include="wwwroot\adm\plugins\ionicons-4.2.0\" />
   </ItemGroup>
 
 </Project>
