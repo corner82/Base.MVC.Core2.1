@@ -26,10 +26,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Views\Demo\Cfg.cshtml">
+    <Content Update="Views\Customer\Customer.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Views\Demo\Customer.cshtml">
+    <Content Update="Views\Demo\Cfg.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Demo\Dvx.cshtml">

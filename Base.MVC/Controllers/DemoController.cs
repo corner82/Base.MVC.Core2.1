@@ -50,10 +50,6 @@ namespace Base.MVC.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Customer()
-        {
-            return View();
-        }
 
         public async Task<IActionResult> Cfg()
 
