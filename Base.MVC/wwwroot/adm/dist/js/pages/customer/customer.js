@@ -1,16 +1,27 @@
-﻿/*
- * Author: Abdullah A Almsaeed
- * Date: 4 Jan 2014
- * Description:
- *      This is a demo file used only for the main dashboard (index.html)
- **/
-"use strict";
+﻿$(document).ready(function () {
 
-$(document).ready(function () {
+    "use strict";
+
+    /*
+    * jquery lang master created dynamically
+    */
+    $("#langCode").jsLangMaster();
+
 
     var sm = $(window).successMessage();
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
+    var wcm = $(window).warningComplexMessage({
+        denyButtonLabel: 'Vazgeç',
+        actionButtonLabel: 'İşleme devam et'
+    });
+
+
+    /*
+    * Customer Info insert form validation engine attached to work
+    * @since 02/08/2016
+    */
+    $('#customerInfoForm').validationEngine();
  
 
     /* Geçici data */
@@ -18,18 +29,23 @@ $(document).ready(function () {
 
     var cbdata = [
         {
-            text: "South Africa",
+            text: "Seçiniz...",
             value: 1,
             selected: true
         },
         {
-            text: "Turkey",
+            text: "South Africa",
             value: 2,
             selected: false
         },
         {
-            text: "Germany",
+            text: "Turkey",
             value: 3,
+            selected: false
+        },
+        {
+            text: "Germany",
+            value: 4,
             selected: false
         }
     ];
@@ -647,7 +663,9 @@ $(document).ready(function () {
             var data = selectedItems.selectedRowsData[0];
             if (data) {
 
-                alert("gridContainer_customer - onSelectionChanged :" + data);
+                fillCustomerInfoForm(data);
+
+                //alert("gridContainer_customer - onSelectionChanged :" + data);
                 //$(".employeeNotes").text(data.Notes);
                 //$(".employeePhoto").attr("src", data.Picture);
             }
@@ -1150,4 +1168,191 @@ $(document).ready(function () {
     });
 
 
+    /**
+    * insert CustomerInfo Wrapper
+    * @returns {Boolean}
+    * @since 02/08/2018
+    */
+
+    window.insertCustomerInfoWrapper = function (e) {
+        e.preventDefault();
+        
+        if ($("#customerInfoForm").validationEngine('validate')) {
+
+            insertCustomerInfo();
+        }
+        return false;
+    }
+
+    /**
+    * insert CustomerInfo
+    * @returns {undefined}
+    * @since 02/08/2018
+    */
+
+    window.insertCustomerInfo = function () {
+
+        var loaderInsertBlock = $("#loading-image-cstInfo").loadImager();
+        loaderInsertBlock.loadImager('appendImage');
+
+        var cst_name = $('#txt-cst-name').val();
+
+        var ddData_country = $('#dropdownCountry').data('ddslick')
+        var country_id = ddData_country.selectedData.value;
+
+        var ddData_city = $('#dropdownCity').data('ddslick')
+        var city_id = ddData_city.selectedData.value;
+
+        var aj = $(window).ajaxCall({
+            proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
+            data: {
+                url: 'pkInsert_sysCustomerInfo',
+                name: cst_name,
+                country_id: country_id,
+                city_id: city_id,
+                pk: $("#pk").val()
+            }
+        })
+        aj.ajaxCall({
+            onError: function (event, textStatus, errorThrown) {
+                dm.dangerMessage('resetOnShown');
+                dm.dangerMessage('show', 'Müşteri Ekleme İşlemi Başarısız...',
+                    'Müşteri Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
+                console.error('"pkInsert_sysCustomerInfo" servis hatası->' + textStatus);
+                loaderInsertBlock.loadImager('removeLoadImage');
+            },
+            onSuccess: function (event, data) {
+                console.log(data);
+                var data = data;
+                sm.successMessage({
+                    onShown: function (event, data) {
+                        $('#customerInfoForm')[0].reset();
+
+                        loaderInsertBlock.loadImager('removeLoadImage');
+
+                        var loaderInsertBlock = $("#loading-image-cstInfoGrid").loadImager();
+                        loaderInsertBlock.loadImager('appendImage');
+
+                        $('#gridContainer_customer').refresh();   //test edilecek!
+
+                        loaderInsertBlock.loadImager('removeLoadImage');
+
+                        /*
+                         * devex grid refresh yapılacak
+                         * 
+                         * 
+                        $('#gridContainer_customer').datagrid({
+                            queryParams: {
+                                pk: $('#pk').val(),
+                                subject: 'datagrid',
+                                url: 'pkFillPrivilegesList_sysAclPrivilege',
+                                sort: 'id',
+                                order: 'desc',
+                            },
+                        });
+                        $('#tt_grid_dynamic').datagrid('enableFilter');
+                        $('#tt_grid_dynamic').datagrid('reload');
+                        */
+                    }
+                });
+                sm.successMessage('show', 'Müşteri Kayıt İşlemi Başarılı...',
+                    'Müşteri kayıt işlemini gerçekleştirdiniz... ',
+                    data);
+                loaderInsertBlock.loadImager('removeLoadImage');
+
+            },
+            onErrorDataNull: function (event, data) {
+                dm.dangerMessage('resetOnShown');
+                dm.dangerMessage('show', 'Müşteri Kayıt İşlemi Başarısız...',
+                    'Müşteri kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
+                console.error('"pkInsert_sysCustomerInfo" servis datası boştur!!');
+                loaderInsertBlock.loadImager('removeLoadImage');
+            },
+            onErrorMessage: function (event, data) {
+                dm.dangerMessage('resetOnShown');
+                dm.dangerMessage('show', 'Müşteri Kayıt İşlemi Başarısız...',
+                    'Müşteri kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
+                console.error('"pkInsert_sysCustomerInfo" servis datası boştur!!');
+                loaderInsertBlock.loadImager('removeLoadImage');
+            },
+            onError23503: function (event, data) {
+                dm.dangerMessage('Error23503');
+                loaderInsertBlock.loadImager('removeLoadImage');
+            },
+            onError23505: function (event, data) {
+                dm.dangerMessage({
+                    onShown: function (event, data) {
+                        $('#customerInfoForm')[0].reset();
+                        loaderInsertBlock.loadImager('removeLoadImage');
+                    }
+                });
+                dm.dangerMessage('show', 'ACL Yetki Kayıt İşlemi Başarısız...',
+                    'Aynı isim ile Müşteri  kaydı yapılmıştır, yeni bir Müşteri kaydı deneyiniz... ');
+                loaderInsertBlock.loadImager('removeLoadImage');
+            }
+        })
+        aj.ajaxCall('call');
+    }
+
+
+    /**
+    * reset button function for Customer Info insert form
+    * @returns null
+    * @since 14/07/2016
+    */
+    window.resetCustomerInfoForm = function () {
+
+        var loaderInsertBlock = $("#loading-image-cstInfo").loadImager();
+        loaderInsertBlock.loadImager('appendImage');
+
+        $('#customerInfoForm').validationEngine('hide');
+
+        $('#dropdownCountry').ddslick('select', { index: 0 });
+        $('#dropdownCity').ddslick('select', { index: 0 });
+        $('#dropdownSector').ddslick('select', { index: 0 });
+        $('#dropdownSegment').ddslick('select', { index: 0 });
+        $('#dropdownReliabilityRate').ddslick('select', { index: 0 });
+        $('#dropdownCustomerGroup').ddslick('select', { index: 0 });
+        $('#dropdownTotalVehicles').ddslick('select', { index: 0 });
+        $('#dropdownTotalEmployees').ddslick('select', { index: 0 });
+        $('#dropdownAnnuelRevenue').ddslick('select', { index: 0 });
+        
+        loaderInsertBlock.loadImager('removeLoadImage');
+
+        return false;
+    }
+
+
+    window.fillCustomerInfoForm = function (data) {
+        //örnektir...
+        var loaderInsertBlock = $("#loading-image-cstInfo").loadImager();
+        loaderInsertBlock.loadImager('appendImage');
+
+        document.getElementById("txt-cst-name").value = data.Employee;
+        document.getElementById("txt-cst-email").value = data.Employee;
+        document.getElementById("txt-cst-website").value = data.Employee;
+        document.getElementById("txt-cst-phone").value = data.Employee;
+        document.getElementById("txt-cst-vatnumber").value = data.Employee;
+        document.getElementById("txt-cst-regnumber").value = data.Employee;
+
+        document.getElementById("registration-datepicker").value = Date();
+        
+        $('#dropdownCountry').ddslick('select', { index: 1 });
+        $('#dropdownCity').ddslick('select', { index: 2 });
+        $('#dropdownSector').ddslick('select', { index: 1 });
+        $('#dropdownSegment').ddslick('select', { index: 2 });
+        $('#dropdownReliabilityRate').ddslick('select', { index: 1 });
+        $('#dropdownCustomerGroup').ddslick('select', { index: 2 });
+        $('#dropdownTotalVehicles').ddslick('select', { index: 1 });
+        $('#dropdownTotalEmployees').ddslick('select', { index: 2 });
+        $('#dropdownAnnuelRevenue').ddslick('select', { index: 2 });
+        
+        //document.getElementById("dropdownCity").SelectedIndex = 2; //data.cityId;
+        //document.getElementById("dropdownSector").value = data.sectorId;
+        //document.getElementById("dropdownSegment").value = data.segmentId;
+        
+        loaderInsertBlock.loadImager('removeLoadImage');
+        return false;
+    }
 });
+
