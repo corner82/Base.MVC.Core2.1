@@ -31,22 +31,26 @@
         {
             text: "Seçiniz...",
             value: 1,
-            selected: true
+            selected: true,
+            index: 0
         },
         {
             text: "South Africa",
             value: 2,
-            selected: false
+            selected: false,
+            index: 1
         },
         {
             text: "Turkey",
             value: 3,
-            selected: false
+            selected: false,
+            index: 2
         },
         {
             text: "Germany",
             value: 4,
-            selected: false
+            selected: false,
+            index: 3
         }
     ];
 
@@ -1306,7 +1310,7 @@
         loaderInsertBlock.loadImager('appendImage');
 
         $('#customerInfoForm').validationEngine('hide');
-
+        
         $('#dropdownCountry').ddslick('select', { index: 0 });
         $('#dropdownCity').ddslick('select', { index: 0 });
         $('#dropdownSector').ddslick('select', { index: 0 });
