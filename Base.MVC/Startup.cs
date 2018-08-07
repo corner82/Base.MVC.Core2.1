@@ -70,7 +70,7 @@ namespace Base.MVC
             //services.AddLocalization();
 
 
-            //Identity dccontext ayarlarý(postgreSQL için ayarlanýyor)
+            //Identity dccontext ayarlarý(postgreSQL için ayarlanýyor veya sql server için )
             services.AddDbContext<CustomIdentityDbContext>(options =>
                             //options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))
                             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")

@@ -1,21 +1,38 @@
 ﻿using Base.Core.Entities.Log;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using RabbitMQPageLog.Data;
 using Serilog;
 using Serilog.Events;
 using System;
 using System.IO;
 using System.Text;
+using Microsoft.AspNetCore;
+using RabbitMQPageLog.Models;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 
 namespace RabbitMQPageLog
 {
     class Program
     {
-        static void Main(string[] args)
+
+        /*private PageAccessLogContext _db { get; set; }
+        private App _app { get; set; }
+        public Program(PageAccessLogContext context,
+                       App app)
+        {
+            _db = context;
+            _app = app;
+        }*/
+
+        static void Main2(string[] args)
         {
             // Create service collection
             var serviceCollection = new ServiceCollection();
@@ -31,6 +48,62 @@ namespace RabbitMQPageLog
             /*Console.WriteLine(" Press [enter] to exit.");
             Console.ReadLine();*/
         }
+        public static void Main(string[] args)
+        {
+
+            /*var host = new HostBuilder()
+            .Build();
+
+            await host.RunAsync();*/
+            //BuildWebHost(args).Run();
+            var host = BuildWebHost(args);
+            using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                try
+                {
+                    /*var dbContext = scope.ServiceProvider.GetService<PageAccessLogContext>();
+                    var app = scope.ServiceProvider.GetService<App>();
+                    app.Run();*/
+                    var db = services.GetRequiredService<PageAccessLogContext>();
+                    db.Database.Migrate();
+                    //SeeData is a class in my Models folder
+                    //PageAccessLog.Initialize(services);
+                }
+                catch (Exception ex)
+                {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "An error occurred seeding the DB.");
+                }
+            }
+            host.Run();
+
+            //new ExecutionEngine(App).Run();
+            //var t = new Test();
+            //new ExecutionEngine(_db).Run();
+        }
+
+        public static IWebHost BuildWebHost(string[] args) =>
+           WebHost.CreateDefaultBuilder(args)
+               .UseContentRoot(Directory.GetCurrentDirectory())
+               .ConfigureAppConfiguration((builderContext, config) =>
+               {
+                   Microsoft.AspNetCore.Hosting.IHostingEnvironment env = builderContext.HostingEnvironment;
+
+                   config.AddJsonFile("rabbitMQlogsubs.json", optional: false, reloadOnChange: true)
+                         .AddJsonFile($"rabbitMQlogsubs.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
+                   config.SetBasePath(env.ContentRootPath);
+                   config.AddEnvironmentVariables();
+               })
+               .UseEnvironment("Development")
+               //.UseIISIntegration()
+               .UseDefaultServiceProvider((context, options) =>
+               {
+                   options.ValidateScopes = context.HostingEnvironment.IsDevelopment();
+               })
+               .UseStartup<Startup>()
+               .Build();
+
 
         private static void ConfigureServices(IServiceCollection serviceCollection)
         {
@@ -55,6 +128,14 @@ namespace RabbitMQPageLog
             .WriteTo.RollingFile(configuration["Serilog:LogFile"])
             .CreateLogger();
 
+            serviceCollection.AddDbContext<PageAccessLogContext>(options =>
+                            //options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))
+                            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")
+                            //, b => b.MigrationsAssembly("Miya.Core.Entities.Identity")
+
+                            )
+            );
+
             // Add access to generic IConfigurationRoot
             serviceCollection.AddSingleton(configuration);
 
@@ -65,15 +146,38 @@ namespace RabbitMQPageLog
     }
 
 
+
+    public class Test
+    {
+        private readonly ServiceProvider _services;
+
+        public Test(ServiceProvider services)
+        {
+            _services = services;
+        }
+
+        public void Run()
+        {
+            var a =_services.GetRequiredService<App>();
+            a.Run();
+            //_services.BuildServiceProvider
+        }
+    }
+
+
     public class App
     {
         private readonly ILogger<App> _logger;
         private readonly IConfigurationRoot _config;
+        private readonly DbContext _pageAccessLog;
 
-        public App(ILogger<App> logger, IConfigurationRoot config)
+        public App(ILogger<App> logger, 
+                    IConfigurationRoot config,
+                    DbContext pageAccessLog)
         {
             _logger = logger;
             _config = config;
+            _pageAccessLog = pageAccessLog;
         }
 
         public void PageEntryLogger(IConnection connection, IModel channel)
@@ -184,6 +288,7 @@ namespace RabbitMQPageLog
 
         public void Run()
         {
+            Console.WriteLine("test deneme run method()");
             // Let's test log levels:
             _logger.LogTrace("LogTrace");
             _logger.LogDebug("LogDebug");
@@ -218,6 +323,19 @@ namespace RabbitMQPageLog
             {
                 //throw new RabbitMQSubscribeException(ex);
             }
+
+            var pageAccesslogs = new PageAccessLog[]
+            {
+            new PageAccessLog{Action="Carson",Controller="Alexander",AccessDate=DateTime.Parse("2005-09-01")},
+            new PageAccessLog{Action="Meredith",Controller="Alonso",AccessDate=DateTime.Parse("2002-09-01")},
+            
+            
+            };
+            foreach (PageAccessLog s in pageAccesslogs)
+            {
+                //_pageAccessLog.PageAccessLog.Add(s);
+            }
+
 
         }
 
