@@ -56,7 +56,7 @@
 
     var cbdata = [
         {
-            text: "Seçiniz...",
+            text: "Select...",
             value: 1,
             selected: true
         },
@@ -1132,6 +1132,57 @@
          logList.prepend(newItem);
      }
 
+
+    var data_priority = [{
+        "ID": 1,
+        "Name": "High"
+    }, {
+        "ID": 2,
+        "Name": "Normal"
+    }, {
+        "ID": 3,
+        "Name": "Low"
+    }];
+
+    var data_role = [{
+        "ID": 1,
+        "Name": "CEO"
+    }, {
+        "ID": 2,
+        "Name": "Owner"
+    }, {
+        "ID": 3,
+        "Name": "Salesman"
+    }, {
+        "ID": 4,
+        "Name": "Others"
+    }];
+
+    var data_title = [{
+        "ID": 1,
+        "Name": "Mr."
+    }, {
+        "ID": 2,
+        "Name": "Mrs."
+     }];
+
+    var data_brand = [{
+        "ID": 1,
+        "Name": "MAN"
+    }, {
+        "ID": 2,
+        "Name": "MERCEDES"
+    }, {
+        "ID": 3,
+        "Name": "IVECO"
+    }, {
+        "ID": 4,
+        "Name": "BMC"
+    }, {
+        "ID": 5,
+        "Name": "FORD"
+    }];
+
     //Contact Person dxDataGrid
 
     $("#gridContainer_contactperson").dxDataGrid({
@@ -1205,7 +1256,7 @@
         columns: [{
             allowGrouping: false,
             caption: "First Name",
-            dataField: "City",      
+            dataField: "StoreState",      
             validationRules: [{ type: "required" }],
             width: 130
         }, {
@@ -1222,46 +1273,120 @@
             caption: "E-mail",
             dataField: "StoreState",
             validationRules: [{ type: "required" }, { type: "email" }]
-        },{
+        }, {
             caption: "Birthday",
             dataField: "OrderDate",
             dataType: "date",
             validationRules: [{ type: "date" }]
         }, {
-            dataField: "SaleAmount",
-            format: "currency"
+            dataField: "PriorityID",
+            caption: "Priority",
+            width: 125,
+            lookup: {
+                dataSource: data_priority,
+                displayExpr: "Name",
+                valueExpr: "ID"
+            }
+        }, {
+            dataField: "RoleID",
+            caption: "Role",
+            width: 125,
+            lookup: {
+                dataSource: data_role,
+                displayExpr: "Name",
+                valueExpr: "ID"
+            }
+        }, {
+            caption: "Last Contact Date",
+            dataField: "LastContactDate",
+            dataType: "date",
+            validationRules: [{ type: "date" }]
+        }, {
+            caption: "Reference",
+            dataField: "Reference"
+        }, {
+            dataField: "TitleID",
+            caption: "Title",
+            width: 125,
+            lookup: {
+                dataSource: data_title,
+                displayExpr: "Name",
+                valueExpr: "ID"
+            }
+        }, {
+            dataField: "CompetitorSatisfactionID",
+            caption: "Competitor Satisfaction",
+            width: 125,
+            lookup: {
+                dataSource: data_priority,
+                displayExpr: "Name",
+                valueExpr: "ID"
+            }
+        }, {
+            dataField: "MANSatisfactionID",
+            caption: "MAN Satisfaction",
+            width: 125,
+            lookup: {
+                dataSource: data_priority,
+                displayExpr: "Name",
+                valueExpr: "ID"
+            }
+        }, {
+            dataField: "BrandLoyaltyID",
+            caption: "Brand Loyalty",
+            width: 125,
+            lookup: {
+                dataSource: data_priority,
+                displayExpr: "Name",
+                valueExpr: "ID"
+            }
+        }, {
+            dataField: "LastBrandID",
+            caption: "Last Brand",
+            width: 125,
+            lookup: {
+                dataSource: data_brand,
+                displayExpr: "Name",
+                valueExpr: "ID"
+            }
+        }, {
+            caption: "Hobies",
+            dataField: "Hobies"
+        }, {
+            caption: "Club",
+            dataField: "Club"
         }],
 
         onEditingStart: function (e) {
-            alert("EditingStart - gridContainer_contactperson");
+            //alert("EditingStart - gridContainer_contactperson");
             logEvent("EditingStart");
         },
         onInitNewRow: function (e) {
-            alert("InitNewRow - gridContainer_contactperson");
+            //alert("InitNewRow - gridContainer_contactperson");
             logEvent("InitNewRow");
         },
         onRowInserting: function (e) {
-            alert("RowInserting - gridContainer_contactperson");
+            //alert("RowInserting - gridContainer_contactperson");
             logEvent("RowInserting");
         },
         onRowInserted: function (e) {
-            alert("RowInserted - gridContainer_contactperson");
+            //alert("RowInserted - gridContainer_contactperson");
             logEvent("RowInserted");
         },
         onRowUpdating: function (e) {
-            alert("RowUpdating - gridContainer_contactperson");
+            //alert("RowUpdating - gridContainer_contactperson");
             logEvent("RowUpdating");
         },
         onRowUpdated: function (e) {
-            alert("RowUpdated - gridContainer_contactperson");
+            //alert("RowUpdated - gridContainer_contactperson");
             logEvent("RowUpdated");
         },
         onRowRemoving: function (e) {
-            alert("RowRemoving - gridContainer_contactperson");
+            //alert("RowRemoving - gridContainer_contactperson");
             logEvent("RowRemoving");
         },
         onRowRemoved: function (e) {
-            alert("RowRemoved - gridContainer_contactperson");
+            //alert("RowRemoved - gridContainer_contactperson");
             logEvent("RowRemoved");
         }
 
