@@ -399,6 +399,207 @@
                                     </form>
                                 </div><!-- /.tab-pane -->
                                 <div class="tab-pane" id="tab_4">
+                                    <!-- Customer contact person form -->
+                                    <form id='customerContactPersonForm' method="get">
+                                        <div class="row" id="loading-image-cstcp">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>First Name :</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="First Name" name="txt-cp-firstname" id="txt-cp-firstname">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Last Name :</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Last Name" name="txt-cp-lastname" id="txt-cp-lastname">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>GSM :</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="GSM" name="txt-cp-gsm" id="txt-cp-gsm">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Phone :</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Phone" name="txt-cp-phone" id="txt-cp-phone">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>E-mail :</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="E-mail" name="txt-cp-email" id="txt-cp-email">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>Birth Date:</label>
+                                                    <div class="input-group date">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control pull-right" name="cp-birthdate-datepicker" id="cp-birthdate-datepicker">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Reference :</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Reference" name="txt-cp-reference" id="txt-cp-reference">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Hobies :</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Hobies" name="txt-cp-hobies" id="txt-cp-hobies">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Club :</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Club" name="txt-cp-club" id="txt-cp-club">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- /.col -->
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Priority</label>
+                                                    <div class="">
+                                                        <div id="loading-image-priority" class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownPriority" class="form-control"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Title</label>
+                                                    <div class="">
+                                                        <div id="loading-image-title" class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownTitle" class="form-control"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Role</label>
+                                                    <div class="">
+                                                        <div id="loading-image-role" class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownRole" class="form-control"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Product Interest</label>
+                                                    <div class="">
+                                                        <div id="loading-image-productinterest" class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownProductInterest" class="form-control"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Competitor Satisfaction</label>
+                                                    <div class="">
+                                                        <div id="loading-image-compsatisfaction" class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownCompSatisfaction" class="form-control"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>MAN Satisfaction</label>
+                                                    <div class="">
+                                                        <div id="loading-image-mansatisfaction" class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownMANSatisfaction" class="form-control"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Brand Loyalty</label>
+                                                    <div class="">
+                                                        <div id="loading-image-brandloyalty" class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownBrandLoyalty" class="form-control"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Last Brand</label>
+                                                    <div class="">
+                                                        <div id="loading-image-brand" class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownBrand" class="form-control"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- /.col -->
+                                        </div>
+                                        <div class="box-footer clearfix no-border">
+                                            <table class="table text-center">
+                                                <tbody>
+                                                    <tr>
+                                                        <td width="75%">
+                                                            &nbsp;
+                                                        </td>
+                                                        <td>
+                                                            <button type="reset" class="btn btn-block btn-primary btn-lg" id="btn-cstcp-clear" onclick="resetContactPersonForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                                        </td>
+                                                        <td>
+                                                            <button type="submit" class="btn btn-block btn-primary btn-lg" id="btn-cstcp-save" onclick="return insertContactPersonWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </form>
                                     <!-- Devex datagrid -->
                                     <div id="gridContainer_contactperson"></div>
                                 </div><!-- /.tab-pane -->

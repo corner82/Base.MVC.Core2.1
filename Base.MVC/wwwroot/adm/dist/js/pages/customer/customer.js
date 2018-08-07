@@ -48,8 +48,7 @@
     */
     $('#customerInfoForm').validationEngine();
     $('#customerPurchaseForm').validationEngine();
-
-
+    $('#customerContactPersonForm').validationEngine();
 
     /* Geçici data */
     //Dropdown plugin data
@@ -76,6 +75,7 @@
             selected: false
         }
     ];
+
 
     $("#loading-image-country").loadImager();
     $("#loading-image-country").loadImager('appendImage');  
@@ -752,6 +752,611 @@
     })
     ajaxACLResources_numberofvehiclestopurchase.ajaxCallWidget('call');
 
+    //ContactPerson
+
+    var data_priority = [{
+        "value": 0,
+        "text": "Select...",
+        selected: true
+    },{
+        "value": 1,
+        "text": "High",
+        selected: false
+    }, {
+        "value": 2,
+        "text": "Normal",
+        selected: false
+    }, {
+        "value": 3,
+        "text": "Low",
+        selected: false
+
+    }];
+
+    var data_role = [{
+        "value": 0,
+        "text": "Select.. .",
+        selected: true
+    },{
+        "value": 1,
+        "text": "CEO"
+    }, {
+        "value": 2,
+        "text": "Owner"
+    }, {
+        "value": 3,
+        "text": "Salesman"
+    }, {
+        "value": 4,
+        "text": "Others"
+    }];
+
+    var data_title = [{
+        "value": 0,
+        "text": "Select...",
+        selected: true
+    }, {
+        "value": 1,
+        "text": "Mr."
+    }, {
+        "value": 2,
+        "text": "Mrs."
+    }];
+
+    var data_brand = [{
+        "value": 0,
+        "text": "Select...",
+        selected: true
+    }, {
+        "value": 1,
+        "text": "MAN"
+    }, {
+        "value": 2,
+        "text": "MERCEDES"
+    }, {
+        "value": 3,
+        "text": "IVECO"
+    }, {
+        "value": 4,
+        "text": "BMC"
+    }, {
+        "value": 5,
+        "text": "FORD"
+    }];
+
+    var data_product = [{
+        "value": 0,
+        "text": "Select...",
+        selected: true
+    }, {
+        "value": 1,
+        "text": "T00001"
+    }, {
+        "value": 2,
+        "text": "T00002"
+    }, {
+        "value": 3,
+        "text": "T00003"
+    }];
+    //ContactPerson dropdown fill
+
+    $("#loading-image-priority").loadImager();
+    $("#loading-image-priority").loadImager('appendImage');
+
+    var ajaxACLResources_priority = $('#loading-image-priority').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+
+    });
+
+    ajaxACLResources_priority.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-priority').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#dropdownPriority').ddslick({
+                //height: 150,
+                data: data_priority,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            $("#loading-image-priority").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-priority').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', 'priority not show...', 'priority not show...');
+        },
+    })
+    ajaxACLResources_priority.ajaxCallWidget('call');
+
+
+    $("#loading-image-title").loadImager();
+    $("#loading-image-title").loadImager('appendImage');
+
+    var ajaxACLResources_title = $('#loading-image-title').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+
+    });
+
+    ajaxACLResources_title.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-title').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#dropdownTitle').ddslick({
+                //height: 150,
+                data: data_title,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            $("#loading-image-title").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-title').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', 'title not show...', 'title not show...');
+        },
+    })
+    ajaxACLResources_title.ajaxCallWidget('call');
+
+
+    $("#loading-image-role").loadImager();
+    $("#loading-image-role").loadImager('appendImage');
+
+    var ajaxACLResources_role = $('#loading-image-role').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+
+    });
+
+    ajaxACLResources_role.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-role').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#dropdownRole').ddslick({
+                //height: 150,
+                data: data_role,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            $("#loading-image-role").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-role').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', 'role not show...', 'role not show...');
+        },
+    })
+    ajaxACLResources_role.ajaxCallWidget('call');
+
+
+    /**
+ * Product Interest dropdown prepared
+ * @type @call;$@call;ajaxCallWidget
+ * @since 30/05/2018
+ */
+    var ajaxACLResources_productinterest = $('#loading-image-productinterest').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        },
+        async: false
+    });
+
+    ajaxACLResources_productinterest.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-productinterest').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', 'servis Bulunamamıştır...',
+                'Servis  bulunamamıştır...');
+        },
+        onSuccess: function (event, data) {
+
+            $('#dropdownProductInterest').ddslick({
+                //height: 150,
+                data: data_product,
+                width: '100%',
+                multiSelect: true,
+                height: 200,
+                selectText: "Select your preferred social network",
+                searchText: window.lang.translate('Search'),
+                //showSelectedHTML : false,
+                defaultSelectedIndex: 3,
+                search: true,
+                tagBox: 'tag-container',
+                //multiSelectTagID : 'deneme',
+                //imagePosition:"right",
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+/*
+                        if (controller == true) {
+                            console.log(selectedData.selectedData.text);
+                            var data = '[{"text":"' + selectedData.selectedData.text + '","value":' + selectedData.selectedData.value + '}]';
+                            console.log(data);
+                            var testArr = ['text', 'value'];
+                            var tagValues = $('#test-cabin').tagCabin('getAllTagsValues', 'data-value');
+                            console.log(tagValues);
+                            if (tagValues.length > 0) {
+                                if (jQuery.inArray(selectedData.selectedData.value, tagValues) < 0) {
+                                    $('#test-cabin').tagCabin('addTags', data, testArr);
+                                } else {
+                                    //alert('tag bulunmuştur');
+                                }
+                            } else if (tagValues.length == 0) {
+                                $('#test-cabin').tagCabin('addTags', data, testArr);
+                            }
+                        }
+                        controller = true;
+  */                    
+                    }
+                }
+            });
+
+            $("#loading-image-role").loadImager('removeLoadImage');
+            /*
+            var data2 = data_product;
+            //var data = $.parseJSON(data_product);
+
+            var tagBuilderDealers = $('#test-cabin').tagCabin({
+                tagCopy: false,
+                tagDeletable: true,
+                tagDeletableAll: false,
+                tagBox: $('.tag-container').find('ul'),
+                //dataMapper: {attributes : Array('role_id', 'resource_id', 'privilege_id')}
+                dataMapper: Array('role_id', 'resource_id', 'privilege_id')
+            });
+
+            tagBuilderDealers.tagCabin({
+                onTagRemoved: function (event, data) {
+                    var self = $(this);
+                    var elementData = data.element;
+                    elementData.remove();
+                    //window.deleteSoruKonu(elementData);
+                }
+
+            });
+            var testArr = ['text', 'value'];
+            tagBuilderDealers.tagCabin('addTags', data2, testArr);
+            */
+            /*data.splice(0, 1,
+                                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                            );*/
+            /*
+            var controller = false;
+            $('#loading-image-productinterest').loadImager('removeLoadImage');
+            $('#dropdownProductInterest').ddslick({
+                height: 200,
+                data: data2,
+                width: '98%',
+                selectText: "Select your preferred social network",
+                //searchText : window.lang.translate('Search'),
+                searchText: '',
+                //showSelectedHTML : false,
+                defaultSelectedIndex: 3,
+                search: true,
+                //multiSelect : true,
+                multiSelect: true,
+                //tagBox : 'tag-container',
+                //multiSelectTagID : 'deneme',
+                //imagePosition:"right",
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+                        if (controller == true) {
+                            //console.log(selectedData.selectedData.text);
+                            var data = '[{"text":"' + selectedData.selectedData.text + '","value":' + selectedData.selectedData.value + '}]';
+                            //console.log(data);
+                            var testArr = ['text', 'value'];
+                            var tagValues = $('#test-cabin').tagCabin('getAllTagsValues', 'data-value');
+                            console.log(tagValues);
+                            if (tagValues.length > 0) {
+                                if (jQuery.inArray(selectedData.selectedData.value, tagValues) < 0) {
+                                    $('#test-cabin').tagCabin('addTags', data, testArr);
+                                } else {
+                                    //alert('tag bulunmuştur');
+                                }
+                            } else if (tagValues.length == 0) {
+                                $('#test-cabin').tagCabin('addTags', data, testArr);
+                            }
+                        }
+                        controller = true;
+                    }
+                }
+            
+            });*/
+        },
+        onErrorDataNull: function (event, data) {
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-productinterest').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', 'Bayi Bulunamamıştır...',
+                'Bayi  bulunamamıştır...');
+        },
+    })
+    ajaxACLResources_productinterest.ajaxCallWidget('call');
+
+
+
+    $("#loading-image-compsatisfaction").loadImager();
+    $("#loading-image-compsatisfaction").loadImager('appendImage');
+
+    var ajaxACLResources_compsatisfaction = $('#loading-image-compsatisfaction').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+
+    });
+
+    ajaxACLResources_compsatisfaction.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-compsatisfaction').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#dropdownCompSatisfaction').ddslick({
+                //height: 150,
+                data: data_priority,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            $("#loading-image-compsatisfaction").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-compsatisfaction').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', 'compsatisfaction not show...', 'compsatisfaction not show...');
+        },
+    })
+    ajaxACLResources_compsatisfaction.ajaxCallWidget('call');
+
+
+    $("#loading-image-mansatisfaction").loadImager();
+    $("#loading-image-mansatisfaction").loadImager('appendImage');
+
+    var ajaxACLResources_mansatisfaction = $('#loading-image-mansatisfaction').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+
+    });
+
+    ajaxACLResources_mansatisfaction.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-mansatisfaction').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#dropdownMANSatisfaction').ddslick({
+                //height: 150,
+                data: data_priority,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            $("#loading-image-mansatisfaction").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-mansatisfaction').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', 'mansatisfaction not show...', 'mansatisfaction not show...');
+        },
+    })
+    ajaxACLResources_mansatisfaction.ajaxCallWidget('call');
+
+    $("#loading-image-brandloyalty").loadImager();
+    $("#loading-image-brandloyalty").loadImager('appendImage');
+
+    var ajaxACLResources_brandloyalty = $('#loading-image-brandloyalty').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+
+    });
+
+    ajaxACLResources_brandloyalty.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-brandloyalty').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#dropdownBrandLoyalty').ddslick({
+                //height: 150,
+                data: data_priority,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            $("#loading-image-brandloyalty").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-brandloyalty').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', 'brandloyalty not show...', 'brandloyalty not show...');
+        },
+    })
+    ajaxACLResources_brandloyalty.ajaxCallWidget('call');
+
+
+    $("#loading-image-brand").loadImager();
+    $("#loading-image-brand").loadImager('appendImage');
+
+    var ajaxACLResources_brand = $('#loading-image-brand').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+
+    });
+
+    ajaxACLResources_brand.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-brand').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#dropdownBrand').ddslick({
+                //height: 150,
+                data: data_priority,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            $("#loading-image-brand").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-brand').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', 'brand not show...', 'brandloyalty not show...');
+        },
+    })
+    ajaxACLResources_brand.ajaxCallWidget('call');
+
 
     /* devexgrid */
     var orders = new DevExpress.data.CustomStore({
@@ -810,7 +1415,7 @@
             //mode: "batch"
             mode: "row",
             //allowAdding: true,
-            allowUpdating: true,
+            //allowUpdating: true,
             allowDeleting: true,
             useIcons: true
         },
@@ -1133,56 +1738,6 @@
      }
 
 
-    var data_priority = [{
-        "ID": 1,
-        "Name": "High"
-    }, {
-        "ID": 2,
-        "Name": "Normal"
-    }, {
-        "ID": 3,
-        "Name": "Low"
-    }];
-
-    var data_role = [{
-        "ID": 1,
-        "Name": "CEO"
-    }, {
-        "ID": 2,
-        "Name": "Owner"
-    }, {
-        "ID": 3,
-        "Name": "Salesman"
-    }, {
-        "ID": 4,
-        "Name": "Others"
-    }];
-
-    var data_title = [{
-        "ID": 1,
-        "Name": "Mr."
-    }, {
-        "ID": 2,
-        "Name": "Mrs."
-     }];
-
-    var data_brand = [{
-        "ID": 1,
-        "Name": "MAN"
-    }, {
-        "ID": 2,
-        "Name": "MERCEDES"
-    }, {
-        "ID": 3,
-        "Name": "IVECO"
-    }, {
-        "ID": 4,
-        "Name": "BMC"
-    }, {
-        "ID": 5,
-        "Name": "FORD"
-    }];
-
     //Contact Person dxDataGrid
 
     $("#gridContainer_contactperson").dxDataGrid({
@@ -1191,17 +1746,23 @@
 
         showRowLines: true,
 
-        rowAlternationEnabled: true,
-
         showBorders: true,
 
         dataSource: orders,
 
         columnHidingEnabled: true,
+
+        selection: {
+            mode: "single"
+        },
+
+        hoverStateEnabled: true,
+
         editing: {
-            mode: "form",
-            allowUpdating: true,
-            allowUpdating: true,
+            //mode: "batch"
+            mode: "row",
+            //allowAdding: true,
+            //allowUpdating: true,
             allowDeleting: true,
             useIcons: true
         },
@@ -1252,17 +1813,16 @@
             enabled: true,
             mode: "select"
         },
-
         columns: [{
-            allowGrouping: false,
+            //allowGrouping: false,
             caption: "First Name",
             dataField: "StoreState",      
-            validationRules: [{ type: "required" }],
+            //validationRules: [{ type: "required" }],
             width: 130
         }, {
             caption: "Last Name",
             dataField: "StoreCity",
-            validationRules: [{ type: "required" }]
+            //validationRules: [{ type: "required" }]
         }, {
             caption: "GSM",
             dataField: "OrderNumber"    
@@ -1272,12 +1832,12 @@
         }, {
             caption: "E-mail",
             dataField: "StoreState",
-            validationRules: [{ type: "required" }, { type: "email" }]
+            //validationRules: [{ type: "required" }, { type: "email" }]
         }, {
-            caption: "Birthday",
+            caption: "Birth Date",
             dataField: "OrderDate",
             dataType: "date",
-            validationRules: [{ type: "date" }]
+            //validationRules: [{ type: "date" }]
         }, {
             dataField: "PriorityID",
             caption: "Priority",
@@ -1357,30 +1917,6 @@
             dataField: "Club"
         }],
 
-        onEditingStart: function (e) {
-            //alert("EditingStart - gridContainer_contactperson");
-            logEvent("EditingStart");
-        },
-        onInitNewRow: function (e) {
-            //alert("InitNewRow - gridContainer_contactperson");
-            logEvent("InitNewRow");
-        },
-        onRowInserting: function (e) {
-            //alert("RowInserting - gridContainer_contactperson");
-            logEvent("RowInserting");
-        },
-        onRowInserted: function (e) {
-            //alert("RowInserted - gridContainer_contactperson");
-            logEvent("RowInserted");
-        },
-        onRowUpdating: function (e) {
-            //alert("RowUpdating - gridContainer_contactperson");
-            logEvent("RowUpdating");
-        },
-        onRowUpdated: function (e) {
-            //alert("RowUpdated - gridContainer_contactperson");
-            logEvent("RowUpdated");
-        },
         onRowRemoving: function (e) {
             //alert("RowRemoving - gridContainer_contactperson");
             logEvent("RowRemoving");
@@ -1388,8 +1924,19 @@
         onRowRemoved: function (e) {
             //alert("RowRemoved - gridContainer_contactperson");
             logEvent("RowRemoved");
-        }
+        },
+        
+        onSelectionChanged: function (selectedItems) {
+            var data = selectedItems.selectedRowsData[0];
+            if (data) {
 
+                fillCustomerContactPersonForm(data);
+
+                //alert("gridContainer_customer - onSelectionChanged :" + data);
+                //$(".employeeNotes").text(data.Notes);
+                //$(".employeePhoto").attr("src", data.Picture);
+            }
+        }
     });
 
 
@@ -1545,6 +2092,11 @@
         format: 'yyyy/mm/dd'
     });
 
+    $('#cp-birthdate-datepicker').datepicker({
+        //autoclose: true,
+        locale: 'en',
+        format: 'yyyy/mm/dd'
+    });
 
 
     /**
@@ -1905,5 +2457,178 @@
         return false;
     }
 
+
+    /**
+ * insert CustomerContactPerson
+ * @returns {undefined}
+ * @since 07/08/2018
+ */
+
+    window.insertCustomerPurchase = function () {
+
+        var loaderInsertBlock = $("#loading-image-cstcp").loadImager();
+        loaderInsertBlock.loadImager('appendImage');
+
+        //Customer_id alınacak
+        var cst_id = 1;
+        /*
+        var cst_lastpurchase = $('#lastpurchase-datepicker').val();
+        var cst_purchaselastupdate = $('#txt-cst-purchaselastupdate').val();
+
+        var ddData_lastPurchaseBrand = $('#dropdownLastPurchaseBrand').data('ddslick')
+        var lastPurchaseBrand_id = ddData_lastPurchaseBrand.selectedData.value;
+
+        var ddData_purchaseDecision = $('#dropdownPurchaseDecision').data('ddslick')
+        var purchaseDecision_id = ddData_purchaseDecision.selectedData.value;
+
+        var ddData_dateofPurchasePlan = $('#dropdownDateofPurchasePlan').data('ddslick')
+        var dateofPurchasePlan_id = ddData_dateofPurchasePlan.selectedData.value;
+
+        var ddData_numberofVehiclestoP = $('#dropdownNumberofVehiclestoP').data('ddslick')
+        var numberofVehiclestoP_id = ddData_numberofVehiclestoP.selectedData.value;
+        */
+
+        var aj = $(window).ajaxCall({
+            proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
+            data: {
+                url: 'pkInsert_sysCustomerPurchase',
+                cst_id: cst_id,
+                //cst_lastpurchase: cst_lastpurchase,
+                //cst_purchaselastupdate: cst_purchaselastupdate,
+                //lastPurchaseBrand_id: lastPurchaseBrand_id,
+                //purchaseDecision_id: purchaseDecision_id,
+                //dateofPurchasePlan_id: dateofPurchasePlan_id,
+                //numberofVehiclestoP_id: numberofVehiclestoP_id,
+                pk: $("#pk").val()
+            }
+        })
+        aj.ajaxCall({
+            onError: function (event, textStatus, errorThrown) {
+                dm.dangerMessage('resetOnShown');
+                dm.dangerMessage('show', 'Müşteri Kontak Kişi Ekleme İşlemi Başarısız...',
+                    'Müşteri Kontak Kişi Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
+                console.error('"pkInsert_sysCustomerInfo" servis hatası->' + textStatus);
+                loaderInsertBlock.loadImager('removeLoadImage');
+            },
+            onSuccess: function (event, data) {
+                console.log(data);
+                var data = data;
+                sm.successMessage({
+                    onShown: function (event, data) {
+                        $('#customerContactPersonForm')[0].reset();
+
+                        loaderInsertBlock.loadImager('removeLoadImage');
+
+                    }
+                });
+                sm.successMessage('show', 'Müşteri Kontak Kişi Kayıt İşlemi Başarılı...',
+                    'Müşteri Kontak Kişi kayıt işlemini gerçekleştirdiniz... ',
+                    data);
+                loaderInsertBlock.loadImager('removeLoadImage');
+
+            },
+            onErrorDataNull: function (event, data) {
+                dm.dangerMessage('resetOnShown');
+                dm.dangerMessage('show', 'Müşteri Kontak Kişi Kayıt İşlemi Başarısız...',
+                    'Müşteri Kontak Kişi kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
+                console.error('"pkInsert_sysCustomerContactPerson" servis datası boştur!!');
+                loaderInsertBlock.loadImager('removeLoadImage');
+            },
+            onErrorMessage: function (event, data) {
+                dm.dangerMessage('resetOnShown');
+                dm.dangerMessage('show', 'Müşteri Kontak Kişi Kayıt İşlemi Başarısız...',
+                    'Müşteri Kontak Kişi kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
+                console.error('"pkInsert_sysCustomerContactPerson" servis datası boştur!!');
+                loaderInsertBlock.loadImager('removeLoadImage');
+            },
+            onError23503: function (event, data) {
+                dm.dangerMessage('Error23503');
+                loaderInsertBlock.loadImager('removeLoadImage');
+            },
+            onError23505: function (event, data) {
+                dm.dangerMessage({
+                    onShown: function (event, data) {
+                        $('#customerContactPersonForm')[0].reset();
+                        loaderInsertBlock.loadImager('removeLoadImage');
+                    }
+                });
+                dm.dangerMessage('show', 'Kayıt İşlemi Başarısız...',
+                    'Aynı isim ile Müşteri Kontak Kişi kaydı yapılmıştır, yeni bir Müşteri Kontak Kişi kaydı deneyiniz... ');
+                loaderInsertBlock.loadImager('removeLoadImage');
+            }
+        })
+        aj.ajaxCall('call');
+    }
+
+    //Contact Person
+    window.resetContactPersonForm = function () {
+
+        var loaderInsertBlock = $("#loading-image-cstcp").loadImager();
+        loaderInsertBlock.loadImager('appendImage');
+
+        $('#customerContactPersonForm').validationEngine('hide');
+
+        $('#dropdownLastPriority').ddslick('select', { index: String(0) });
+       // $('#dropdownPurchaseDecision').ddslick('select', { index: String(0) });
+       // $('#dropdownDateofPurchasePlan').ddslick('select', { index: String(0) });
+       // $('#dropdownNumberofVehiclestoP').ddslick('select', { index: String(0) });
+
+        loaderInsertBlock.loadImager('removeLoadImage');
+
+        return false;
+    }
+
+
+/**
+* insert CustomerContactPerson Wrapper
+* @returns {Boolean}
+* @since 02/08/2018
+*/
+
+    window.insertCustomerContactPersonWrapper = function (e) {
+        e.preventDefault();
+
+        if ($("#customerContactPersonForm").validationEngine('validate')) {
+
+            insertCustomerContactPerson();
+        }
+        return false;
+    }
+
+    //Contact Person Form
+    window.fillCustomerContactPersonForm = function (data) {
+        
+        var loaderInsertBlock = $("#loading-image-cstcp").loadImager();
+        loaderInsertBlock.loadImager('appendImage');
+
+        document.getElementById("txt-cp-firstname").value = data.Employee;
+        document.getElementById("txt-cp-lastname").value = data.Employee;
+
+        $('#dropdownPriority').ddslick('select', { index: 2 });
+
+/*
+        document.getElementById("txt-cp-email").value = data.Employee;
+        document.getElementById("txt-cst-website").value = data.Employee;
+        document.getElementById("txt-cst-phone").value = data.Employee;
+        document.getElementById("txt-cst-vatnumber").value = data.Employee;
+        document.getElementById("txt-cst-regnumber").value = data.Employee;
+
+        document.getElementById("registration-datepicker").value = Date();
+
+        $('#dropdownCountry').ddslick('select', { index: 3 });
+        $('#dropdownCity').ddslick('select', { index: 2 });
+        $('#dropdownSector').ddslick('select', { index: 3 });
+        $('#dropdownSegment').ddslick('select', { index: 2 });
+        $('#dropdownReliabilityRate').ddslick('select', { index: 3 });
+        $('#dropdownCustomerGroup').ddslick('select', { index: 2 });
+        $('#dropdownTotalVehicles').ddslick('select', { index: 3 });
+        $('#dropdownTotalEmployees').ddslick('select', { index: 2 });
+        $('#dropdownAnnuelRevenue').ddslick('select', { index: 2 });
+*/
+        loaderInsertBlock.loadImager('removeLoadImage');
+        
+
+        return false;
+    }
 });
 
