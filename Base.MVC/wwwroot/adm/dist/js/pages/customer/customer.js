@@ -17,13 +17,39 @@
     });
 
 
+    window.tab_active = function () {
+        //Update & View Mode
+        //tablar açılacak
+
+        $("a[data-toggle='tab'").prop('disabled', false);
+        $("a[data-toggle='tab'").each(function () {
+            $(this).attr('href', $(this).prop('data-href')); // restore original href
+        });
+        $("a[data-toggle='tab'").removeClass('disabled-link');
+    }
+
+    window.tab_disable = function () {
+        //yeni kayda açık
+        //tablar kapatılacak
+
+        $("a[data-toggle='tab'").prop('disabled', true);
+        $("a[data-toggle='tab'").each(function () {
+            $(this).prop('data-href', $(this).attr('href')); // hold you original href
+            $(this).attr('href', '#'); // clear href
+        });
+        $("a[data-toggle='tab'").addClass('disabled-link');
+
+    }
+
+    window.tab_disable();
     /*
     * Customer Info insert form validation engine attached to work
     * @since 02/08/2016
     */
     $('#customerInfoForm').validationEngine();
     $('#customerPurchaseForm').validationEngine();
- 
+
+
 
     /* Geçici data */
     //Dropdown plugin data
@@ -1349,8 +1375,10 @@
         }
     });
 
+
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         var target = $(e.target).attr("href") // activated tab
+      
         if (target == "#tab_1") {
             
            
@@ -1391,6 +1419,7 @@
         locale: 'en',
         format: 'yyyy/mm/dd'
     });
+
 
 
     /**
@@ -1543,6 +1572,9 @@
         $('#dropdownAnnuelRevenue').ddslick('select', { index: String(0) });
         
         loaderInsertBlock.loadImager('removeLoadImage');
+    
+        //yeni kayda açık, tablar kapatılıyor
+        window.tab_disable();
 
         return false;
     }
@@ -1577,6 +1609,24 @@
         //document.getElementById("dropdownSegment").value = data.segmentId;
         
         loaderInsertBlock.loadImager('removeLoadImage');
+        window.tab_active();
+
+        /*
+        $("a[data-toggle='tab'").prop('disabled', false);
+        $("a[data-toggle='tab'").each(function () {
+            $(this).attr('href', $(this).prop('data-href')); // restore original href
+        });
+        $("a[data-toggle='tab'").removeClass('disabled-link');
+        */
+        //validated($('[data-toggle]').eq(1));
+        //validated($('[data-toggle]').eq(2));
+        //validated($('[data-toggle]').eq(3));
+        //validated($('[data-toggle]').eq(4));
+
+        //validated($('#tab_2').eq(1));
+        //$('#tab_2').unbind('click').removeClass('text-muted').addClass('green');
+        //$('#tab_3').unbind('click').removeClass('text-muted').addClass('green');
+
         return false;
     }
 

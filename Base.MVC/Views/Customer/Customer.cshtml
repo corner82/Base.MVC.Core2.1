@@ -23,6 +23,8 @@
 
     <!-- validationEngine -->
     <link rel="stylesheet" href="~/adm/plugins/validationEngine/validationEngine.jquery.css" type="text/css" />
+
+    <link rel="stylesheet" href="~/adm/dist/css/AdminLTE.css" type="text/css" />
 }
 
 <!-- Content Wrapper. Contains page content -->
@@ -64,10 +66,10 @@
                         <div class="nav-tabs-custom">
                             <ul class="nav nav-tabs pull-right">
                                 <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true">Customer</a></li>
-                                <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">Contact Address</a></li>
-                                <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false">Purchase Plan</a></li>
-                                <li class=""><a href="#tab_4" data-toggle="tab" aria-expanded="false">Contact Person</a></li>
-                                <li class=""><a href="#tab_5" data-toggle="tab" aria-expanded="false">Customer Activity</a></li>
+                                <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false" class="disable" disabled="">Contact Address</a></li>
+                                <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false" class="disable" disabled="">Purchase Plan</a></li>
+                                <li class=""><a href="#tab_4" data-toggle="tab" aria-expanded="false" class="disable" disabled="">Contact Person</a></li>
+                                <li class=""><a href="#tab_5" data-toggle="tab" aria-expanded="false" class="disable" disabled="">Customer Activity</a></li>
 
                                 <li class="pull-left header"><i class="fa fa-th"></i></li>
                             </ul>
@@ -256,7 +258,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+
                                             </div>
 
                                             <!-- /.col -->
@@ -296,13 +298,12 @@
                                         <!-- /.col -->
                                     </div>
                                 </div><!-- /.tab-pane -->
-
                                 <!-- Yatırım Planları -->
                                 <div class="tab-pane" id="tab_3">
                                     <form id='customerPurchaseForm' method="get">
                                         <div class="row" id="loading-image-cstPurchase">
                                             <div class="col-md-6">
-                                                
+
                                                 <div class="form-group">
                                                     <label>Last purchase date:</label>
                                                     <div class="input-group date">
@@ -311,7 +312,7 @@
                                                         </div>
                                                         <input type="text" class="form-control pull-right" name="lastpurchase-datepicker" id="lastpurchase-datepicker">
                                                     </div>
-                                                   
+
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Last purchased brand</label>
@@ -324,7 +325,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="form-group">
                                                     <label>Purchase decision</label>
                                                     <div class="">
