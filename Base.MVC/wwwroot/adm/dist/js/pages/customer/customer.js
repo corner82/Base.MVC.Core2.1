@@ -1023,130 +1023,36 @@
         onSuccess: function (event, data) {
 
             $('#dropdownProductInterest').ddslick({
-                //height: 150,
-                data: data_product,
-                width: '100%',
-                multiSelect: true,
+
                 height: 200,
+                data: data_product,
+                width:'100%',
                 selectText: "Select your preferred social network",
                 searchText: window.lang.translate('Search'),
                 //showSelectedHTML : false,
                 defaultSelectedIndex: 3,
-                search: true,
-                tagBox: 'tag-container',
+                search : true,
+                multiSelect : true,
+                tagBox : 'tag-container',
                 //multiSelectTagID : 'deneme',
                 //imagePosition:"right",
-
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
 
-/*
-                        if (controller == true) {
-                            console.log(selectedData.selectedData.text);
-                            var data = '[{"text":"' + selectedData.selectedData.text + '","value":' + selectedData.selectedData.value + '}]';
-                            console.log(data);
-                            var testArr = ['text', 'value'];
-                            var tagValues = $('#test-cabin').tagCabin('getAllTagsValues', 'data-value');
-                            console.log(tagValues);
-                            if (tagValues.length > 0) {
-                                if (jQuery.inArray(selectedData.selectedData.value, tagValues) < 0) {
-                                    $('#test-cabin').tagCabin('addTags', data, testArr);
-                                } else {
-                                    //alert('tag bulunmuştur');
-                                }
-                            } else if (tagValues.length == 0) {
-                                $('#test-cabin').tagCabin('addTags', data, testArr);
-                            }
-                        }
-                        controller = true;
-  */                    
                     }
-                }
+                }   
             });
-
-            $("#loading-image-role").loadImager('removeLoadImage');
-            /*
-            var data2 = data_product;
-            //var data = $.parseJSON(data_product);
-
-            var tagBuilderDealers = $('#test-cabin').tagCabin({
-                tagCopy: false,
-                tagDeletable: true,
-                tagDeletableAll: false,
-                tagBox: $('.tag-container').find('ul'),
-                //dataMapper: {attributes : Array('role_id', 'resource_id', 'privilege_id')}
-                dataMapper: Array('role_id', 'resource_id', 'privilege_id')
-            });
-
-            tagBuilderDealers.tagCabin({
-                onTagRemoved: function (event, data) {
-                    var self = $(this);
-                    var elementData = data.element;
-                    elementData.remove();
-                    //window.deleteSoruKonu(elementData);
-                }
-
-            });
-            var testArr = ['text', 'value'];
-            tagBuilderDealers.tagCabin('addTags', data2, testArr);
-            */
-            /*data.splice(0, 1,
-                                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-                            );*/
-            /*
-            var controller = false;
-            $('#loading-image-productinterest').loadImager('removeLoadImage');
-            $('#dropdownProductInterest').ddslick({
-                height: 200,
-                data: data2,
-                width: '98%',
-                selectText: "Select your preferred social network",
-                //searchText : window.lang.translate('Search'),
-                searchText: '',
-                //showSelectedHTML : false,
-                defaultSelectedIndex: 3,
-                search: true,
-                //multiSelect : true,
-                multiSelect: true,
-                //tagBox : 'tag-container',
-                //multiSelectTagID : 'deneme',
-                //imagePosition:"right",
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-                        if (controller == true) {
-                            //console.log(selectedData.selectedData.text);
-                            var data = '[{"text":"' + selectedData.selectedData.text + '","value":' + selectedData.selectedData.value + '}]';
-                            //console.log(data);
-                            var testArr = ['text', 'value'];
-                            var tagValues = $('#test-cabin').tagCabin('getAllTagsValues', 'data-value');
-                            console.log(tagValues);
-                            if (tagValues.length > 0) {
-                                if (jQuery.inArray(selectedData.selectedData.value, tagValues) < 0) {
-                                    $('#test-cabin').tagCabin('addTags', data, testArr);
-                                } else {
-                                    //alert('tag bulunmuştur');
-                                }
-                            } else if (tagValues.length == 0) {
-                                $('#test-cabin').tagCabin('addTags', data, testArr);
-                            }
-                        }
-                        controller = true;
-                    }
-                }
-            
-            });*/
         },
-        onErrorDataNull: function (event, data) {
+            onErrorDataNull : function (event, data) {
             dm.dangerMessage({
                 onShown: function () {
-                    $('#loading-image-productinterest').loadImager('removeLoadImage');
+                $('#loading-image-productinterest').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', 'Bayi Bulunamamıştır...',
-                'Bayi  bulunamamıştır...');
+            dm.dangerMessage('show', 'Rol Bulunamamıştır...',
+            'Rol  bulunamamıştır...');
         },
-    })
+    }) 
     ajaxACLResources_productinterest.ajaxCallWidget('call');
 
 
