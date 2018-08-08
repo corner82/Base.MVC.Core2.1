@@ -210,7 +210,7 @@
     $("#loading-image-city").loadImager('appendImage');  
 
     var ajaxACLResources_city = $('#ajaxACL-city').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/x',
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -225,7 +225,7 @@
                     $('#loading-image-city').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Servis bulunamamıştır...'), 'Servis  bulunamamıştır...');
+            dm.dangerMessage('show', window.lang.translate('Activity'), 'Servis  bulunamamıştır...');
         },
         onSuccess: function (event, data) {
             //var data = $.parseJSON(cbdata);
@@ -276,7 +276,7 @@
                     $('#loading-image-reliabilityrate').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
+            dm.dangerMessage('show', 'Servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
         },
         onSuccess: function (event, data) {
             //var data = $.parseJSON(cbdata);
@@ -1838,7 +1838,7 @@
             caption: "GSM",
             dataField: "OrderNumber"    
         }, {
-            caption: "Phone",
+            caption: window.lang.translate("Phone"),
             dataField: "OrderNumber"
         }, {
             caption: "E-mail",
@@ -2098,8 +2098,8 @@
     * @since 02/08/2018
     */
 
-    var insertCustomerInfoWrapper = function (e) {
-        e.preventDefault();
+    window.insertCustomerInfoWrapper = function (e) {
+        //e.preventDefault();
         
         if ($("#customerInfoForm").validationEngine('validate')) {
 
@@ -2114,7 +2114,7 @@
     * @since 02/08/2018
     */
 
-    var insertCustomerInfo = function () {
+    window.insertCustomerInfo = function () {
 
         $("#loading-image-cstInfo").loadImager('removeLoadImage');
         $("#loading-image-cstInfo").loadImager('appendImage');
@@ -2128,13 +2128,14 @@
         var city_id = ddData_city.selectedData.value;
 
         var aj = $(window).ajaxCall({
-            proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
+            proxy: 'https://jsonplaceholder.typicode.com/todos/',
             data: {
-                url: 'pkInsert_sysCustomerInfo',
-                name: cst_name,
-                country_id: country_id,
-                city_id: city_id,
-                pk: $("#pk").val()
+                url:'1'
+                //url: 'pkInsert_sysCustomerInfo',
+                //name: cst_name,
+                //country_id: country_id,
+                //city_id: city_id,
+                //pk: $("#pk").val()
             }
         })
         aj.ajaxCall({
@@ -2224,7 +2225,7 @@
     * @returns null
     * @since 14/07/2016
     */
-    var resetCustomerInfoForm = function () {
+    window.resetCustomerInfoForm = function () {
         $("#loading-image-cstInfo").loadImager('removeLoadImage');
         $("#loading-image-cstInfo").loadImager('appendImage');
 
@@ -2249,7 +2250,7 @@
     }
 
 
-    var fillCustomerInfoForm = function (data) {
+    window.fillCustomerInfoForm = function (data) {
         $("#loading-image-cstInfo").loadImager('removeLoadImage');
         $("#loading-image-cstInfo").loadImager('appendImage');
 
@@ -2284,7 +2285,7 @@
 
 
 
-    var insertCustomerPurchaseWrapper = function (e) {
+    window.insertCustomerPurchaseWrapper = function (e) {
         e.preventDefault();
 
         if ($("#customerPurchaseForm").validationEngine('validate')) {
@@ -2299,7 +2300,7 @@
  * @since 06/08/2018
  */
 
-    var insertCustomerPurchase = function () {
+    window.insertCustomerPurchase = function () {
 
         $("#loading-image-cstPurchase").loadImager('removeLoadImage');
         $("#loading-image-cstPurchase").loadImager('appendImage');
@@ -2394,7 +2395,7 @@
         aj.ajaxCall('call');
     }
 
-    var resetCustomerPurchaseForm = function () {
+    window.resetCustomerPurchaseForm = function () {
         $("#loading-image-cstPurchase").loadImager('removeLoadImage');
         $("#loading-image-cstPurchase").loadImager('appendImage');
 
@@ -2410,7 +2411,7 @@
         return false;
     }
 
-    var fillCustomerPuchaseForm = function (data) {
+    window.fillCustomerPuchaseForm = function (data) {
         $("#loading-image-cstPurchase").loadImager('removeLoadImage');
         $("#loading-image-cstPurchase").loadImager('appendImage');
 
@@ -2437,7 +2438,7 @@
  * @since 07/08/2018
  */
 
-    var insertCustomerContactPerson = function () {
+    window.insertCustomerContactPerson = function () {
         $("#loading-image-cstcp").loadImager('removeLoadImage');
         $("#loading-image-cstcp").loadImager('appendImage');
 
@@ -2533,7 +2534,7 @@
     }
 
     //Contact Person
-    var resetContactPersonForm = function () {
+    window.resetContactPersonForm = function () {
         $("#loading-image-cstcp").loadImager('removeLoadImage');
         $("#loading-image-cstcp").loadImager('appendImage');
 
@@ -2556,7 +2557,7 @@
 * @since 02/08/2018
 */
 
-    var insertCustomerContactPersonWrapper = function (e) {
+    window.insertCustomerContactPersonWrapper = function (e) {
         e.preventDefault();
 
         if ($("#customerContactPersonForm").validationEngine('validate')) {
@@ -2567,7 +2568,7 @@
     }
 
     //Contact Person Form
-    var fillCustomerContactPersonForm = function (data) {
+    window.fillCustomerContactPersonForm = function (data) {
         
         $("#loading-image-cstcp").loadImager('removeLoadImage');
         $("#loading-image-cstcp").loadImager('appendImage');
