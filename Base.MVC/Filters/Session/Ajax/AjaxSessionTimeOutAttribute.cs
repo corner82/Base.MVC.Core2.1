@@ -23,8 +23,10 @@ namespace Base.Filters.Session.Ajax
                 //throw new ArgumentNullException();
                 //context.Result = new BadRequestObjectResult(context.ModelState);
                 context.Result = new StatusCodeResult(403);
+            } else
+            {
+                context.HttpContext.Session.Set<SessionUserModel>("CurrentUser", user);
             }
-            context.HttpContext.Session.Set<SessionUserModel>("CurrentUser", user);
             base.OnActionExecuting(context);
         }
     }
