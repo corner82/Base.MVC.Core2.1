@@ -89,9 +89,14 @@
     });
 
 
+    /*
+    * datepicker format
+    * @author Gül Özdemir
+    * @since 06/08/2016
+    */
     var tab_active = function () {
         //Update & View Mode
-        //tablar açılacak
+        //enabled tabs
 
         $("a[data-toggle='tab'").prop('disabled', false);
         $("a[data-toggle='tab'").each(function () {
@@ -101,7 +106,7 @@
     }
 
     var tab_disable = function () {
-        //yeni kayda açık
+        //Add new record
         //tablar kapatılacak
 
         $("a[data-toggle='tab'").prop('disabled', true);

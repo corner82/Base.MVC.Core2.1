@@ -28,7 +28,7 @@ ViewData["Culture"] = culture;*/
 ViewData["ShortCultureInfo"] = CultureProvider.GetRequestCultureInfo();
 ViewData["ReplacedCultureUri"] = UriCultureProvider.ReplaceCultureCode();
 
-ViewData["myPath"] = "~/adm/plugins/validationEngine/jquery.validationEngine-" + ViewData["ShortCultureInfo"] + ".js";
+ViewData["defaultValidationEnginePath"] = "/adm/plugins/validationEngine/jquery.validationEngine-" + ViewData["ShortCultureInfo"] + ".js";
 }
 
 <!DOCTYPE html>
@@ -108,9 +108,8 @@ ViewData["myPath"] = "~/adm/plugins/validationEngine/jquery.validationEngine-" +
         $.widget.bridge('uibutton', $.ui.button);
     </script>
 
-
-    <script src="@ViewBag.myPath" type="text/javascript"></script>
-
+    <!-- jquery validation engine -->
+    <script src="@ViewBag.defaultValidationEnginePath" type="text/javascript"></script>
     <script src="~/adm/plugins/validationEngine/jquery.validationEngine.js" type="text/javascript"></script>
 
     <!-- Bootstrap 3.3.2 JS -->
