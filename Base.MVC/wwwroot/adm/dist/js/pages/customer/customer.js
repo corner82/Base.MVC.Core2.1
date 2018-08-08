@@ -2,12 +2,6 @@
 
     "use strict";
 
-    /*
-    * jquery lang master created dynamically
-    */
-    $("#langCode").jsLangMaster();
-
-
     var sm = $(window).successMessage();
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
@@ -17,7 +11,83 @@
     });
 
 
-    window.tab_active = function () {
+    /*
+    * Customer Info Tab LoadImager
+    * @author Gül Özdemir
+    * @since 02/08/2016
+    */
+    //to customer info form
+    $("#loading-image-cstInfo").loadImager();
+    //to customer info grid loading-image
+    $("#loading-image-cstInfoGrid").loadImager();
+
+    $("#loading-image-country").loadImager();
+    $("#loading-image-city").loadImager();
+    $("#loading-image-reliabilityrate").loadImager();
+    $("#loading-image-sector").loadImager();
+    $("#loading-image-segment").loadImager();
+    $("#loading-image-customergroup").loadImager();
+    $("#loading-image-totalvehicles").loadImager();
+    $("#loading-image-totalemployees").loadImager();
+    $("#loading-image-annuelrevenue").loadImager();
+
+    /*
+    * Customer Purchase Plan Tab LoadImager
+    * @author Gül Özdemir
+    * @since 02/08/2016
+    */
+    //to Customer Purchase Plan Form
+    $("#loading-image-cstPurchase").loadImager();
+
+    $("#loading-image-lastpurchasedbrand").loadImager();
+    $("#loading-image-purchasedecision").loadImager();
+    $("#loading-image-dateofpurchaseplan").loadImager();
+    $("#loading-image-numberofvehiclestopurchase").loadImager();
+
+    /*
+    * Customer Contact Person Tab LoadImager
+    * @author Gül Özdemir
+    * @since 02/08/2016
+    */
+    //to contact person form
+    $("#loading-image-cstcp").loadImager();
+
+    $("#loading-image-priority").loadImager();
+    $("#loading-image-title").loadImager();
+    $("#loading-image-role").loadImager();
+    $("#loading-image-productinterest").loadImager();
+    $("#loading-image-compsatisfaction").loadImager();
+    $("#loading-image-mansatisfaction").loadImager();
+    $("#loading-image-brandloyalty").loadImager();
+    $("#loading-image-brand").loadImager();
+
+   
+
+    /*
+    * datepicker format
+    * @author Gül Özdemir
+    * @since 02/08/2016
+    */
+    $('#registration-datepicker').datepicker({
+        //autoclose: true,
+        locale: 'en',
+        format: 'yyyy/mm/dd'
+    });
+
+    $('#lastpurchase-datepicker').datepicker({
+        //autoclose: true,
+        locale: 'en',
+        format: 'yyyy/mm/dd'
+    });
+
+    $('#cp-birthdate-datepicker').datepicker({
+        //autoclose: true,
+        locale: 'en',
+        format: 'yyyy/mm/dd'
+    });
+
+
+    var tab_active = function () {
         //Update & View Mode
         //tablar açılacak
 
@@ -28,7 +98,7 @@
         $("a[data-toggle='tab'").removeClass('disabled-link');
     }
 
-    window.tab_disable = function () {
+    var tab_disable = function () {
         //yeni kayda açık
         //tablar kapatılacak
 
@@ -41,7 +111,7 @@
 
     }
 
-    window.tab_disable();
+    tab_disable();
     /*
     * Customer Info insert form validation engine attached to work
     * @since 02/08/2016
@@ -76,8 +146,7 @@
         }
     ];
 
-
-    $("#loading-image-country").loadImager();
+    $('#loading-image-country').loadImager('removeLoadImage');
     $("#loading-image-country").loadImager('appendImage');  
 
     var ajaxACLResources_country = $('#loading-image-country').ajaxCallWidget({
@@ -128,7 +197,8 @@
     })
     ajaxACLResources_country.ajaxCallWidget('call');
 
-    $("#loading-image-city").loadImager();
+
+    $('#loading-image-city').loadImager('removeLoadImage');
     $("#loading-image-city").loadImager('appendImage');  
 
     var ajaxACLResources_city = $('#loading-image-city').ajaxCallWidget({
@@ -179,8 +249,7 @@
     })
     ajaxACLResources_city.ajaxCallWidget('call');
 
-
-    $("#loading-image-reliabilityrate").loadImager();
+    $('#loading-image-reliabilityrate').loadImager('removeLoadImage');
     $("#loading-image-reliabilityrate").loadImager('appendImage');
 
     var ajaxACLResources_reliabilityRate = $('#loading-image-reliabilityrate').ajaxCallWidget({
@@ -231,9 +300,7 @@
     })
     ajaxACLResources_reliabilityRate.ajaxCallWidget('call');
 
-
-
-    $("#loading-image-sector").loadImager();
+    $('#loading-image-sector').loadImager('removeLoadImage');
     $("#loading-image-sector").loadImager('appendImage');
 
     var ajaxACLResources_sector = $('#loading-image-sector').ajaxCallWidget({
@@ -284,8 +351,7 @@
     })
     ajaxACLResources_sector.ajaxCallWidget('call');
 
-
-    $("#loading-image-segment").loadImager();
+    $('#loading-image-segment').loadImager('removeLoadImage');
     $("#loading-image-segment").loadImager('appendImage');
 
     var ajaxACLResources_segment = $('#loading-image-segment').ajaxCallWidget({
@@ -336,7 +402,7 @@
     })
     ajaxACLResources_segment.ajaxCallWidget('call');
 
-    $("#loading-image-customergroup").loadImager();
+    $('#loading-image-customergroup').loadImager('removeLoadImage');
     $("#loading-image-customergroup").loadImager('appendImage');
 
     var ajaxACLResources_customergroup = $('#loading-image-customergroup').ajaxCallWidget({
@@ -387,7 +453,7 @@
     })
     ajaxACLResources_customergroup.ajaxCallWidget('call');
 
-    $("#loading-image-totalvehicles").loadImager();
+    $('#loading-image-totalvehicles').loadImager('removeLoadImage');
     $("#loading-image-totalvehicles").loadImager('appendImage');
 
     var ajaxACLResources_totalvehicles = $('#loading-image-totalvehicles').ajaxCallWidget({
@@ -438,8 +504,7 @@
     })
     ajaxACLResources_totalvehicles.ajaxCallWidget('call');
 
-
-    $("#loading-image-totalemployees").loadImager();
+    $('#loading-image-totalemployees').loadImager('removeLoadImage');
     $("#loading-image-totalemployees").loadImager('appendImage');
 
     var ajaxACLResources_totalemployees = $('#loading-image-totalemployees').ajaxCallWidget({
@@ -490,8 +555,7 @@
     })
     ajaxACLResources_totalemployees.ajaxCallWidget('call');
 
-
-    $("#loading-image-annuelrevenue").loadImager();
+    $('#loading-image-annuelrevenue').loadImager('removeLoadImage');
     $("#loading-image-annuelrevenue").loadImager('appendImage');
 
     var ajaxACLResources_annuelrevenue = $('#loading-image-annuelrevenue').ajaxCallWidget({
@@ -544,8 +608,7 @@
 
     /* Purchase Plans loading services */
 
-
-    $("#loading-image-lastpurchasedbrand").loadImager();
+    $('#loading-image-lastpurchasedbrand').loadImager('removeLoadImage');
     $("#loading-image-lastpurchasedbrand").loadImager('appendImage');
 
     var ajaxACLResources_lastpurchasedbrand = $('#loading-image-lastpurchasedbrand').ajaxCallWidget({
@@ -596,8 +659,7 @@
     })
     ajaxACLResources_lastpurchasedbrand.ajaxCallWidget('call');
 
-
-    $("#loading-image-purchasedecision").loadImager();
+    $('#loading-image-purchasedecision').loadImager('removeLoadImage');
     $("#loading-image-purchasedecision").loadImager('appendImage');
 
     var ajaxACLResources_purchasedecision = $('#loading-image-purchasedecision').ajaxCallWidget({
@@ -648,8 +710,7 @@
     })
     ajaxACLResources_purchasedecision.ajaxCallWidget('call');
 
-
-    $("#loading-image-dateofpurchaseplan").loadImager();
+    $('#loading-image-dateofpurchaseplan').loadImager('removeLoadImage');
     $("#loading-image-dateofpurchaseplan").loadImager('appendImage');
 
     var ajaxACLResources_dateofpurchaseplan = $('#loading-image-dateofpurchaseplan').ajaxCallWidget({
@@ -700,8 +761,7 @@
     })
     ajaxACLResources_dateofpurchaseplan.ajaxCallWidget('call');
 
-
-    $("#loading-image-numberofvehiclestopurchase").loadImager();
+    $('#loading-image-numberofvehiclestopurchase').loadImager('removeLoadImage');
     $("#loading-image-numberofvehiclestopurchase").loadImager('appendImage');
 
     var ajaxACLResources_numberofvehiclestopurchase = $('#loading-image-numberofvehiclestopurchase').ajaxCallWidget({
@@ -838,9 +898,81 @@
         "value": 3,
         "text": "T00003"
     }];
-    //ContactPerson dropdown fill
 
-    $("#loading-image-priority").loadImager();
+    var data_country = [{
+        "value": 0,
+        "text": "Select...",
+        selected: true
+    }, {
+        "value": 1,
+        "text": "South Africa",
+        selected: false
+    }, {
+        "value": 2,
+        "text": "Turkey",
+        selected: false
+    }, {
+        "value": 3,
+        "text": "Germany",
+        selected: false
+    }];
+
+    var data_state = [{
+        "value": 0,
+        "text": "Select...",
+        "countryID": 0,
+        selected: true
+    }, {
+        "value": 1,
+        "text": "1- State1",
+        "countryID": 1,
+        selected: false
+    }, {
+        "value": 2,
+        "text": "1- State2",
+        "countryID": 1,
+        selected: false
+    }, {
+        "value": 3,
+        "text": "2- State1",
+        "countryID": 2,
+        selected: false
+    }, {
+        "value": 4,
+        "text": "2- State2",
+        "countryID": 2,
+        selected: false
+    }];
+
+    var data_city = [{
+        "value": 0,
+        "text": "Select...",
+        "stateID": 0,
+         selected: true
+    }, {
+        "value": 1,
+        "text": "Pretoria",
+        "stateID": 1,
+        selected: false
+    }, {
+        "value": 2,
+        "text": "Bloemfontein",
+        "stateID": 1,
+        selected: false
+    }, {
+        "value": 3,
+        "text": "CapeTown",
+        "stateID": 1,
+        selected: false
+    }, {
+        "value": 4,
+        "text": "Johannesburg",
+        "stateID": 2,
+        selected: false
+    }];
+
+//Contact Person 
+    $('#loading-image-priority').loadImager('removeLoadImage');
     $("#loading-image-priority").loadImager('appendImage');
 
     var ajaxACLResources_priority = $('#loading-image-priority').ajaxCallWidget({
@@ -849,7 +981,6 @@
             url: '1'
             //pk: $("#pk").val()
         }
-
     });
 
     ajaxACLResources_priority.ajaxCallWidget({
@@ -891,8 +1022,7 @@
     })
     ajaxACLResources_priority.ajaxCallWidget('call');
 
-
-    $("#loading-image-title").loadImager();
+    $('#loading-image-title').loadImager('removeLoadImage');
     $("#loading-image-title").loadImager('appendImage');
 
     var ajaxACLResources_title = $('#loading-image-title').ajaxCallWidget({
@@ -943,8 +1073,7 @@
     })
     ajaxACLResources_title.ajaxCallWidget('call');
 
-
-    $("#loading-image-role").loadImager();
+    $('#loading-image-role').loadImager('removeLoadImage');
     $("#loading-image-role").loadImager('appendImage');
 
     var ajaxACLResources_role = $('#loading-image-role').ajaxCallWidget({
@@ -1001,6 +1130,9 @@
  * @type @call;$@call;ajaxCallWidget
  * @since 30/05/2018
  */
+    $('#loading-image-productinterest').loadImager('removeLoadImage');
+    $("#loading-image-productinterest").loadImager('appendImage');
+
     var ajaxACLResources_productinterest = $('#loading-image-productinterest').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
         data: {
@@ -1040,8 +1172,10 @@
                     if (selectedData.selectedData.value > 0) {
 
                     }
-                }   
+                }  
+                
             });
+            $('#loading-image-productinterest').loadImager('removeLoadImage');
         },
             onErrorDataNull : function (event, data) {
             dm.dangerMessage({
@@ -1057,7 +1191,7 @@
 
 
 
-    $("#loading-image-compsatisfaction").loadImager();
+    $('#loading-image-compsatisfaction').loadImager('removeLoadImage');
     $("#loading-image-compsatisfaction").loadImager('appendImage');
 
     var ajaxACLResources_compsatisfaction = $('#loading-image-compsatisfaction').ajaxCallWidget({
@@ -1108,8 +1242,7 @@
     })
     ajaxACLResources_compsatisfaction.ajaxCallWidget('call');
 
-
-    $("#loading-image-mansatisfaction").loadImager();
+    $('#loading-image-mansatisfaction').loadImager('removeLoadImage');
     $("#loading-image-mansatisfaction").loadImager('appendImage');
 
     var ajaxACLResources_mansatisfaction = $('#loading-image-mansatisfaction').ajaxCallWidget({
@@ -1160,7 +1293,7 @@
     })
     ajaxACLResources_mansatisfaction.ajaxCallWidget('call');
 
-    $("#loading-image-brandloyalty").loadImager();
+    $('#loading-image-brandloyalty').loadImager('removeLoadImage');
     $("#loading-image-brandloyalty").loadImager('appendImage');
 
     var ajaxACLResources_brandloyalty = $('#loading-image-brandloyalty').ajaxCallWidget({
@@ -1211,8 +1344,7 @@
     })
     ajaxACLResources_brandloyalty.ajaxCallWidget('call');
 
-
-    $("#loading-image-brand").loadImager();
+    $('#loading-image-brand').loadImager('removeLoadImage');
     $("#loading-image-brand").loadImager('appendImage');
 
     var ajaxACLResources_brand = $('#loading-image-brand').ajaxCallWidget({
@@ -1437,7 +1569,7 @@
         columnHidingEnabled: true,
         editing: {
             mode: "form",
-            allowUpdating: true,
+            allowAdding: true,
             allowUpdating: true,
             allowDeleting: true,
             useIcons: true
@@ -1445,17 +1577,7 @@
 
         "export": {
             enabled: true,
-            fileName: "Orders"
-        },
-
-        grouping: {
-            contextMenuEnabled: true,
-            expandMode: "rowClick"
-        },
-
-        groupPanel: {
-            emptyPanelText: "Use the context menu of header columns to group data",
-            visible: true
+            fileName: "CustomerAddress"
         },
 
         pager: {
@@ -1470,21 +1592,6 @@
             pageSize: 8
         },
 
-        filterRow: {
-            visible: true,
-            applyFilter: "auto"
-        },
-
-        searchPanel: {
-            visible: true,
-            width: 240,
-            placeholder: "Search..."
-        },
-
-        headerFilter: {
-            visible: true
-        },
-
         columnChooser: {
             enabled: true,
             mode: "select"
@@ -1496,8 +1603,14 @@
             caption: "Invoice Number",
             width: 130
         }, {
+            dataField: "CityID",
             caption: "City",
-            dataField: "StoreCity"
+            width: 125,
+            lookup: {
+                    dataSource: data_city,
+                    displayExpr: "text",
+                    valueExpr: "value"
+            }
         }, {
             caption: "State",
             dataField: "StoreState"
@@ -1510,21 +1623,6 @@
             format: "currency"
 
         }],
-
-        customizeColumns: function (columns) {
-            columns[5].format = { type: "currency", currency: "EUR" };
-        },
-
-        summary: {
-            totalItems: [{
-                column: "OrderNumber",
-                summaryType: "count"
-            }, {
-                column: "SaleAmount",
-                summaryType: "sum",
-                valueFormat: "currency"
-            }]
-        }
 
     });
 
@@ -1986,24 +2084,6 @@
     });
 
 
-    $('#registration-datepicker').datepicker({
-        //autoclose: true,
-        locale: 'en',
-        format : 'yyyy/mm/dd'
-    });
-
-    $('#lastpurchase-datepicker').datepicker({
-        //autoclose: true,
-        locale: 'en',
-        format: 'yyyy/mm/dd'
-    });
-
-    $('#cp-birthdate-datepicker').datepicker({
-        //autoclose: true,
-        locale: 'en',
-        format: 'yyyy/mm/dd'
-    });
-
 
     /**
     * insert CustomerInfo Wrapper
@@ -2011,7 +2091,7 @@
     * @since 02/08/2018
     */
 
-    window.insertCustomerInfoWrapper = function (e) {
+    var insertCustomerInfoWrapper = function (e) {
         e.preventDefault();
         
         if ($("#customerInfoForm").validationEngine('validate')) {
@@ -2027,10 +2107,10 @@
     * @since 02/08/2018
     */
 
-    window.insertCustomerInfo = function () {
+    var insertCustomerInfo = function () {
 
-        var loaderInsertBlock = $("#loading-image-cstInfo").loadImager();
-        loaderInsertBlock.loadImager('appendImage');
+        $("#loading-image-cstInfo").loadImager('removeLoadImage');
+        $("#loading-image-cstInfo").loadImager('appendImage');
 
         var cst_name = $('#txt-cst-name').val();
 
@@ -2056,7 +2136,7 @@
                 dm.dangerMessage('show', 'Müşteri Ekleme İşlemi Başarısız...',
                     'Müşteri Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
                 console.error('"pkInsert_sysCustomerInfo" servis hatası->' + textStatus);
-                loaderInsertBlock.loadImager('removeLoadImage');
+                $("#loading-image-cstInfo").loadImager('removeLoadImage');
             },
             onSuccess: function (event, data) {
                 console.log(data);
@@ -2065,14 +2145,14 @@
                     onShown: function (event, data) {
                         $('#customerInfoForm')[0].reset();
 
-                        loaderInsertBlock.loadImager('removeLoadImage');
+                        $("#loading-image-cstInfo").loadImager('removeLoadImage');
 
-                        var loaderInsertBlock = $("#loading-image-cstInfoGrid").loadImager();
-                        loaderInsertBlock.loadImager('appendImage');
+                        $("#loading-image-cstInfoGrid").loadImager('removeLoadImage');
+                        $("#loading-image-cstInfoGrid").loadImager('appendImage');
 
                         $('#gridContainer_customer').refresh();   //test edilecek!
 
-                        loaderInsertBlock.loadImager('removeLoadImage');
+                        $("#loading-image-cstInfoGrid").loadImager('removeLoadImage');
 
                         /*
                          * devex grid refresh yapılacak
@@ -2095,7 +2175,7 @@
                 sm.successMessage('show', 'Müşteri Kayıt İşlemi Başarılı...',
                     'Müşteri kayıt işlemini gerçekleştirdiniz... ',
                     data);
-                loaderInsertBlock.loadImager('removeLoadImage');
+                $("#loading-image-cstInfo").loadImager('removeLoadImage');
 
             },
             onErrorDataNull: function (event, data) {
@@ -2103,29 +2183,29 @@
                 dm.dangerMessage('show', 'Müşteri Kayıt İşlemi Başarısız...',
                     'Müşteri kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysCustomerInfo" servis datası boştur!!');
-                loaderInsertBlock.loadImager('removeLoadImage');
+                $("#loading-image-cstInfo").loadImager('removeLoadImage');
             },
             onErrorMessage: function (event, data) {
                 dm.dangerMessage('resetOnShown');
                 dm.dangerMessage('show', 'Müşteri Kayıt İşlemi Başarısız...',
                     'Müşteri kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysCustomerInfo" servis datası boştur!!');
-                loaderInsertBlock.loadImager('removeLoadImage');
+                $("#loading-image-cstInfo").loadImager('removeLoadImage');
             },
             onError23503: function (event, data) {
                 dm.dangerMessage('Error23503');
-                loaderInsertBlock.loadImager('removeLoadImage');
+                $("#loading-image-cstInfo").loadImager('removeLoadImage');
             },
             onError23505: function (event, data) {
                 dm.dangerMessage({
                     onShown: function (event, data) {
                         $('#customerInfoForm')[0].reset();
-                        loaderInsertBlock.loadImager('removeLoadImage');
+                        $("#loading-image-cstInfo").loadImager('removeLoadImage');
                     }
                 });
                 dm.dangerMessage('show', 'ACL Yetki Kayıt İşlemi Başarısız...',
                     'Aynı isim ile Müşteri  kaydı yapılmıştır, yeni bir Müşteri kaydı deneyiniz... ');
-                loaderInsertBlock.loadImager('removeLoadImage');
+                $("#loading-image-cstInfo").loadImager('removeLoadImage');
             }
         })
         aj.ajaxCall('call');
@@ -2137,10 +2217,9 @@
     * @returns null
     * @since 14/07/2016
     */
-    window.resetCustomerInfoForm = function () {
-
-        var loaderInsertBlock = $("#loading-image-cstInfo").loadImager();
-        loaderInsertBlock.loadImager('appendImage');
+    var resetCustomerInfoForm = function () {
+        $("#loading-image-cstInfo").loadImager('removeLoadImage');
+        $("#loading-image-cstInfo").loadImager('appendImage');
 
         $('#customerInfoForm').validationEngine('hide');
         
@@ -2154,19 +2233,18 @@
         $('#dropdownTotalEmployees').ddslick('select', { index: String(0) });
         $('#dropdownAnnuelRevenue').ddslick('select', { index: String(0) });
         
-        loaderInsertBlock.loadImager('removeLoadImage');
+        $("#loading-image-cstInfo").loadImager('removeLoadImage');
     
         //yeni kayda açık, tablar kapatılıyor
-        window.tab_disable();
+        tab_disable();
 
         return false;
     }
 
 
-    window.fillCustomerInfoForm = function (data) {
-        //örnektir...
-        var loaderInsertBlock = $("#loading-image-cstInfo").loadImager();
-        loaderInsertBlock.loadImager('appendImage');
+    var fillCustomerInfoForm = function (data) {
+        $("#loading-image-cstInfo").loadImager('removeLoadImage');
+        $("#loading-image-cstInfo").loadImager('appendImage');
 
         document.getElementById("txt-cst-name").value = data.Employee;
         document.getElementById("txt-cst-email").value = data.Employee;
@@ -2191,31 +2269,15 @@
         //document.getElementById("dropdownSector").value = data.sectorId;
         //document.getElementById("dropdownSegment").value = data.segmentId;
         
-        loaderInsertBlock.loadImager('removeLoadImage');
-        window.tab_active();
-
-        /*
-        $("a[data-toggle='tab'").prop('disabled', false);
-        $("a[data-toggle='tab'").each(function () {
-            $(this).attr('href', $(this).prop('data-href')); // restore original href
-        });
-        $("a[data-toggle='tab'").removeClass('disabled-link');
-        */
-        //validated($('[data-toggle]').eq(1));
-        //validated($('[data-toggle]').eq(2));
-        //validated($('[data-toggle]').eq(3));
-        //validated($('[data-toggle]').eq(4));
-
-        //validated($('#tab_2').eq(1));
-        //$('#tab_2').unbind('click').removeClass('text-muted').addClass('green');
-        //$('#tab_3').unbind('click').removeClass('text-muted').addClass('green');
+        $("#loading-image-cstInfo").loadImager('removeLoadImage');
+        tab_active();
 
         return false;
     }
 
 
 
-    window.insertCustomerPurchaseWrapper = function (e) {
+    var insertCustomerPurchaseWrapper = function (e) {
         e.preventDefault();
 
         if ($("#customerPurchaseForm").validationEngine('validate')) {
@@ -2230,10 +2292,10 @@
  * @since 06/08/2018
  */
 
-    window.insertCustomerPurchase = function () {
+    var insertCustomerPurchase = function () {
 
-        var loaderInsertBlock = $("#loading-image-cstPurchase").loadImager();
-        loaderInsertBlock.loadImager('appendImage');
+        $("#loading-image-cstPurchase").loadImager('removeLoadImage');
+        $("#loading-image-cstPurchase").loadImager('appendImage');
 
         //Customer_id alınacak
         var cst_id = 1;
@@ -2273,7 +2335,7 @@
                 dm.dangerMessage('show', 'Müşteri Yatırım Planı Ekleme İşlemi Başarısız...',
                     'Müşteri Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
                 console.error('"pkInsert_sysCustomerInfo" servis hatası->' + textStatus);
-                loaderInsertBlock.loadImager('removeLoadImage');
+                $("#loading-image-cstPurchase").loadImager('removeLoadImage');
             },
             onSuccess: function (event, data) {
                 console.log(data);
@@ -2282,14 +2344,14 @@
                     onShown: function (event, data) {
                         $('#customerPurchaseForm')[0].reset();
 
-                        loaderInsertBlock.loadImager('removeLoadImage');
+                        $("#loading-image-cstPurchase").loadImager('removeLoadImage');
                         
                     }
                 });
                 sm.successMessage('show', 'Müşteri Yatırım Planı Kayıt İşlemi Başarılı...',
                     'Müşteri kayıt işlemini gerçekleştirdiniz... ',
                     data);
-                loaderInsertBlock.loadImager('removeLoadImage');
+                $("#loading-image-cstPurchase").loadImager('removeLoadImage');
 
             },
             onErrorDataNull: function (event, data) {
@@ -2297,38 +2359,37 @@
                 dm.dangerMessage('show', 'Müşteri Yatırım Planı Kayıt İşlemi Başarısız...',
                     'Müşteri Yatırım Planı kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysCustomerPurchase" servis datası boştur!!');
-                loaderInsertBlock.loadImager('removeLoadImage');
+                $("#loading-image-cstPurchase").loadImager('removeLoadImage');
             },
             onErrorMessage: function (event, data) {
                 dm.dangerMessage('resetOnShown');
                 dm.dangerMessage('show', 'Müşteri Yatırım Planı Kayıt İşlemi Başarısız...',
                     'Müşteri Yatırım Planı kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysCustomerPurchase" servis datası boştur!!');
-                loaderInsertBlock.loadImager('removeLoadImage');
+                $("#loading-image-cstPurchase").loadImager('removeLoadImage');
             },
             onError23503: function (event, data) {
                 dm.dangerMessage('Error23503');
-                loaderInsertBlock.loadImager('removeLoadImage');
+                $("#loading-image-cstPurchase").loadImager('removeLoadImage');
             },
             onError23505: function (event, data) {
                 dm.dangerMessage({
                     onShown: function (event, data) {
                         $('#customerPurchaseForm')[0].reset();
-                        loaderInsertBlock.loadImager('removeLoadImage');
+                        $("#loading-image-cstPurchase").loadImager('removeLoadImage');
                     }
                 });
                 dm.dangerMessage('show', 'Kayıt İşlemi Başarısız...',
                     'Aynı isim ile Müşteri  kaydı yapılmıştır, yeni bir Müşteri kaydı deneyiniz... ');
-                loaderInsertBlock.loadImager('removeLoadImage');
+                $("#loading-image-cstPurchase").loadImager('removeLoadImage');
             }
         })
         aj.ajaxCall('call');
     }
 
-    window.resetCustomerPurchaseForm = function () {
-
-        var loaderInsertBlock = $("#loading-image-cstPurchase").loadImager();
-        loaderInsertBlock.loadImager('appendImage');
+    var resetCustomerPurchaseForm = function () {
+        $("#loading-image-cstPurchase").loadImager('removeLoadImage');
+        $("#loading-image-cstPurchase").loadImager('appendImage');
 
         $('#customerPurchaseForm').validationEngine('hide');
 
@@ -2337,15 +2398,14 @@
         $('#dropdownDateofPurchasePlan').ddslick('select', { index: String(0) });
         $('#dropdownNumberofVehiclestoP').ddslick('select', { index: String(0) });
   
-        loaderInsertBlock.loadImager('removeLoadImage');
+        $("#loading-image-cstPurchase").loadImager('removeLoadImage');
 
         return false;
     }
 
-    window.fillCustomerPuchaseForm = function (data) {
-        //örnektir...
-        var loaderInsertBlock = $("#loading-image-cstPurchase").loadImager();
-        loaderInsertBlock.loadImager('appendImage');
+    var fillCustomerPuchaseForm = function (data) {
+        $("#loading-image-cstPurchase").loadImager('removeLoadImage');
+        $("#loading-image-cstPurchase").loadImager('appendImage');
 
         document.getElementById("lastpurchase-datepicker").value = Date();
         document.getElementById("txt-cst-purchaselastupdate").value = Date();
@@ -2359,7 +2419,7 @@
         //document.getElementById("dropdownSector").value = data.sectorId;
         //document.getElementById("dropdownSegment").value = data.segmentId;
 
-        loaderInsertBlock.loadImager('removeLoadImage');
+        $("#loading-image-cstPurchase").loadImager('removeLoadImage');
         return false;
     }
 
@@ -2370,10 +2430,9 @@
  * @since 07/08/2018
  */
 
-    window.insertCustomerPurchase = function () {
-
-        var loaderInsertBlock = $("#loading-image-cstcp").loadImager();
-        loaderInsertBlock.loadImager('appendImage');
+    var insertCustomerContactPerson = function () {
+        $("#loading-image-cstcp").loadImager('removeLoadImage');
+        $("#loading-image-cstcp").loadImager('appendImage');
 
         //Customer_id alınacak
         var cst_id = 1;
@@ -2414,7 +2473,7 @@
                 dm.dangerMessage('show', 'Müşteri Kontak Kişi Ekleme İşlemi Başarısız...',
                     'Müşteri Kontak Kişi Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
                 console.error('"pkInsert_sysCustomerInfo" servis hatası->' + textStatus);
-                loaderInsertBlock.loadImager('removeLoadImage');
+                $("#loading-image-cstcp").loadImager('removeLoadImage');
             },
             onSuccess: function (event, data) {
                 console.log(data);
@@ -2423,14 +2482,14 @@
                     onShown: function (event, data) {
                         $('#customerContactPersonForm')[0].reset();
 
-                        loaderInsertBlock.loadImager('removeLoadImage');
+                        $("#loading-image-cstcp").loadImager('removeLoadImage');
 
                     }
                 });
                 sm.successMessage('show', 'Müşteri Kontak Kişi Kayıt İşlemi Başarılı...',
                     'Müşteri Kontak Kişi kayıt işlemini gerçekleştirdiniz... ',
                     data);
-                loaderInsertBlock.loadImager('removeLoadImage');
+                $("#loading-image-cstcp").loadImager('removeLoadImage');
 
             },
             onErrorDataNull: function (event, data) {
@@ -2438,39 +2497,38 @@
                 dm.dangerMessage('show', 'Müşteri Kontak Kişi Kayıt İşlemi Başarısız...',
                     'Müşteri Kontak Kişi kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysCustomerContactPerson" servis datası boştur!!');
-                loaderInsertBlock.loadImager('removeLoadImage');
+                $("#loading-image-cstcp").loadImager('removeLoadImage');
             },
             onErrorMessage: function (event, data) {
                 dm.dangerMessage('resetOnShown');
                 dm.dangerMessage('show', 'Müşteri Kontak Kişi Kayıt İşlemi Başarısız...',
                     'Müşteri Kontak Kişi kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysCustomerContactPerson" servis datası boştur!!');
-                loaderInsertBlock.loadImager('removeLoadImage');
+                $("#loading-image-cstcp").loadImager('removeLoadImage');
             },
             onError23503: function (event, data) {
                 dm.dangerMessage('Error23503');
-                loaderInsertBlock.loadImager('removeLoadImage');
+                $("#loading-image-cstcp").loadImager('removeLoadImage');
             },
             onError23505: function (event, data) {
                 dm.dangerMessage({
                     onShown: function (event, data) {
                         $('#customerContactPersonForm')[0].reset();
-                        loaderInsertBlock.loadImager('removeLoadImage');
+                        $("#loading-image-cstcp").loadImager('removeLoadImage');
                     }
                 });
                 dm.dangerMessage('show', 'Kayıt İşlemi Başarısız...',
                     'Aynı isim ile Müşteri Kontak Kişi kaydı yapılmıştır, yeni bir Müşteri Kontak Kişi kaydı deneyiniz... ');
-                loaderInsertBlock.loadImager('removeLoadImage');
+                $("#loading-image-cstcp").loadImager('removeLoadImage');
             }
         })
         aj.ajaxCall('call');
     }
 
     //Contact Person
-    window.resetContactPersonForm = function () {
-
-        var loaderInsertBlock = $("#loading-image-cstcp").loadImager();
-        loaderInsertBlock.loadImager('appendImage');
+    var resetContactPersonForm = function () {
+        $("#loading-image-cstcp").loadImager('removeLoadImage');
+        $("#loading-image-cstcp").loadImager('appendImage');
 
         $('#customerContactPersonForm').validationEngine('hide');
 
@@ -2479,7 +2537,7 @@
        // $('#dropdownDateofPurchasePlan').ddslick('select', { index: String(0) });
        // $('#dropdownNumberofVehiclestoP').ddslick('select', { index: String(0) });
 
-        loaderInsertBlock.loadImager('removeLoadImage');
+        $("#loading-image-cstcp").loadImager('removeLoadImage');
 
         return false;
     }
@@ -2491,7 +2549,7 @@
 * @since 02/08/2018
 */
 
-    window.insertCustomerContactPersonWrapper = function (e) {
+    var insertCustomerContactPersonWrapper = function (e) {
         e.preventDefault();
 
         if ($("#customerContactPersonForm").validationEngine('validate')) {
@@ -2502,10 +2560,10 @@
     }
 
     //Contact Person Form
-    window.fillCustomerContactPersonForm = function (data) {
+    var fillCustomerContactPersonForm = function (data) {
         
-        var loaderInsertBlock = $("#loading-image-cstcp").loadImager();
-        loaderInsertBlock.loadImager('appendImage');
+        $("#loading-image-cstcp").loadImager('removeLoadImage');
+        $("#loading-image-cstcp").loadImager('appendImage');
 
         document.getElementById("txt-cp-firstname").value = data.Employee;
         document.getElementById("txt-cp-lastname").value = data.Employee;
@@ -2531,7 +2589,7 @@
         $('#dropdownTotalEmployees').ddslick('select', { index: 2 });
         $('#dropdownAnnuelRevenue').ddslick('select', { index: 2 });
 */
-        loaderInsertBlock.loadImager('removeLoadImage');
+        $("#loading-image-cstcp").loadImager('removeLoadImage');
         
 
         return false;
