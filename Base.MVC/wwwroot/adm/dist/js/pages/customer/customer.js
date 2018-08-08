@@ -62,6 +62,8 @@
     $("#loading-image-brand").loadImager();
 
    
+    var langCode = $("#langCode").val();
+    //alert(langCode);
 
     /*
     * datepicker format
@@ -70,19 +72,19 @@
     */
     $('#registration-datepicker').datepicker({
         //autoclose: true,
-        locale: 'en',
+        locale: langCode,
         format: 'yyyy/mm/dd'
     });
 
     $('#lastpurchase-datepicker').datepicker({
         //autoclose: true,
-        locale: 'en',
+        locale: langCode,
         format: 'yyyy/mm/dd'
     });
 
     $('#cp-birthdate-datepicker').datepicker({
         //autoclose: true,
-        locale: 'en',
+        locale: langCode,
         format: 'yyyy/mm/dd'
     });
 
@@ -149,7 +151,7 @@
     $('#loading-image-country').loadImager('removeLoadImage');
     $("#loading-image-country").loadImager('appendImage');  
 
-    var ajaxACLResources_country = $('#loading-image-country').ajaxCallWidget({
+    var ajaxACLResources_country = $('#ajaxACL-country').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
         data: {
             url: '1'
@@ -201,13 +203,12 @@
     $('#loading-image-city').loadImager('removeLoadImage');
     $("#loading-image-city").loadImager('appendImage');  
 
-    var ajaxACLResources_city = $('#loading-image-city').ajaxCallWidget({
+    var ajaxACLResources_city = $('#ajaxACL-city').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
         data: {
             url: '1'
             //pk: $("#pk").val()
         }
-
     });
 
     ajaxACLResources_city.ajaxCallWidget({
@@ -252,7 +253,7 @@
     $('#loading-image-reliabilityrate').loadImager('removeLoadImage');
     $("#loading-image-reliabilityrate").loadImager('appendImage');
 
-    var ajaxACLResources_reliabilityRate = $('#loading-image-reliabilityrate').ajaxCallWidget({
+    var ajaxACLResources_reliabilityRate = $('#ajaxACL-reliabilityrate').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
         data: {
             url: '1'
@@ -303,7 +304,7 @@
     $('#loading-image-sector').loadImager('removeLoadImage');
     $("#loading-image-sector").loadImager('appendImage');
 
-    var ajaxACLResources_sector = $('#loading-image-sector').ajaxCallWidget({
+    var ajaxACLResources_sector = $('#ajaxACL-sector').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
         data: {
             url: '1'
@@ -354,7 +355,7 @@
     $('#loading-image-segment').loadImager('removeLoadImage');
     $("#loading-image-segment").loadImager('appendImage');
 
-    var ajaxACLResources_segment = $('#loading-image-segment').ajaxCallWidget({
+    var ajaxACLResources_segment = $('#ajaxACL-segment').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
         data: {
             url: '1'
@@ -405,7 +406,7 @@
     $('#loading-image-customergroup').loadImager('removeLoadImage');
     $("#loading-image-customergroup").loadImager('appendImage');
 
-    var ajaxACLResources_customergroup = $('#loading-image-customergroup').ajaxCallWidget({
+    var ajaxACLResources_customergroup = $('#ajaxACL-customergroup').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
         data: {
             url: '1'
@@ -456,7 +457,7 @@
     $('#loading-image-totalvehicles').loadImager('removeLoadImage');
     $("#loading-image-totalvehicles").loadImager('appendImage');
 
-    var ajaxACLResources_totalvehicles = $('#loading-image-totalvehicles').ajaxCallWidget({
+    var ajaxACLResources_totalvehicles = $('#ajaxACL-totalvehicles').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
         data: {
             url: '1'
@@ -507,7 +508,7 @@
     $('#loading-image-totalemployees').loadImager('removeLoadImage');
     $("#loading-image-totalemployees").loadImager('appendImage');
 
-    var ajaxACLResources_totalemployees = $('#loading-image-totalemployees').ajaxCallWidget({
+    var ajaxACLResources_totalemployees = $('#ajaxACL-totalemployees').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
         data: {
             url: '1'
@@ -558,7 +559,7 @@
     $('#loading-image-annuelrevenue').loadImager('removeLoadImage');
     $("#loading-image-annuelrevenue").loadImager('appendImage');
 
-    var ajaxACLResources_annuelrevenue = $('#loading-image-annuelrevenue').ajaxCallWidget({
+    var ajaxACLResources_annuelrevenue = $('#ajaxACL-annuelrevenue').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
         data: {
             url: '1'
@@ -611,7 +612,7 @@
     $('#loading-image-lastpurchasedbrand').loadImager('removeLoadImage');
     $("#loading-image-lastpurchasedbrand").loadImager('appendImage');
 
-    var ajaxACLResources_lastpurchasedbrand = $('#loading-image-lastpurchasedbrand').ajaxCallWidget({
+    var ajaxACLResources_lastpurchasedbrand = $('#ajaxACL-lastpurchasedbrand').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
         data: {
             url: '1'
@@ -662,7 +663,7 @@
     $('#loading-image-purchasedecision').loadImager('removeLoadImage');
     $("#loading-image-purchasedecision").loadImager('appendImage');
 
-    var ajaxACLResources_purchasedecision = $('#loading-image-purchasedecision').ajaxCallWidget({
+    var ajaxACLResources_purchasedecision = $('#ajaxACL-purchasedecision').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
         data: {
             url: '1'
@@ -713,7 +714,7 @@
     $('#loading-image-dateofpurchaseplan').loadImager('removeLoadImage');
     $("#loading-image-dateofpurchaseplan").loadImager('appendImage');
 
-    var ajaxACLResources_dateofpurchaseplan = $('#loading-image-dateofpurchaseplan').ajaxCallWidget({
+    var ajaxACLResources_dateofpurchaseplan = $('#ajaxACL-dateofpurchaseplan').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
         data: {
             url: '1'
@@ -764,7 +765,7 @@
     $('#loading-image-numberofvehiclestopurchase').loadImager('removeLoadImage');
     $("#loading-image-numberofvehiclestopurchase").loadImager('appendImage');
 
-    var ajaxACLResources_numberofvehiclestopurchase = $('#loading-image-numberofvehiclestopurchase').ajaxCallWidget({
+    var ajaxACLResources_numberofvehiclestopurchase = $('#ajaxACL-numberofvehiclestopurchase').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
         data: {
             url: '1'
@@ -975,7 +976,7 @@
     $('#loading-image-priority').loadImager('removeLoadImage');
     $("#loading-image-priority").loadImager('appendImage');
 
-    var ajaxACLResources_priority = $('#loading-image-priority').ajaxCallWidget({
+    var ajaxACLResources_priority = $('#ajaxACL-priority').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
         data: {
             url: '1'
@@ -1025,7 +1026,7 @@
     $('#loading-image-title').loadImager('removeLoadImage');
     $("#loading-image-title").loadImager('appendImage');
 
-    var ajaxACLResources_title = $('#loading-image-title').ajaxCallWidget({
+    var ajaxACLResources_title = $('#ajaxACL-title').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
         data: {
             url: '1'
@@ -1076,7 +1077,7 @@
     $('#loading-image-role').loadImager('removeLoadImage');
     $("#loading-image-role").loadImager('appendImage');
 
-    var ajaxACLResources_role = $('#loading-image-role').ajaxCallWidget({
+    var ajaxACLResources_role = $('#ajaxACL-role').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
         data: {
             url: '1'
@@ -1133,7 +1134,7 @@
     $('#loading-image-productinterest').loadImager('removeLoadImage');
     $("#loading-image-productinterest").loadImager('appendImage');
 
-    var ajaxACLResources_productinterest = $('#loading-image-productinterest').ajaxCallWidget({
+    var ajaxACLResources_productinterest = $('#ajaxACL-productinterest').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
         data: {
             url: '1'
@@ -1194,7 +1195,7 @@
     $('#loading-image-compsatisfaction').loadImager('removeLoadImage');
     $("#loading-image-compsatisfaction").loadImager('appendImage');
 
-    var ajaxACLResources_compsatisfaction = $('#loading-image-compsatisfaction').ajaxCallWidget({
+    var ajaxACLResources_compsatisfaction = $('#ajaxACL-compsatisfaction').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
         data: {
             url: '1'
@@ -1245,7 +1246,7 @@
     $('#loading-image-mansatisfaction').loadImager('removeLoadImage');
     $("#loading-image-mansatisfaction").loadImager('appendImage');
 
-    var ajaxACLResources_mansatisfaction = $('#loading-image-mansatisfaction').ajaxCallWidget({
+    var ajaxACLResources_mansatisfaction = $('#ajaxACL-mansatisfaction').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
         data: {
             url: '1'
@@ -1296,7 +1297,7 @@
     $('#loading-image-brandloyalty').loadImager('removeLoadImage');
     $("#loading-image-brandloyalty").loadImager('appendImage');
 
-    var ajaxACLResources_brandloyalty = $('#loading-image-brandloyalty').ajaxCallWidget({
+    var ajaxACLResources_brandloyalty = $('#ajaxACL-brandloyalty').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
         data: {
             url: '1'
@@ -1347,7 +1348,7 @@
     $('#loading-image-brand').loadImager('removeLoadImage');
     $("#loading-image-brand").loadImager('appendImage');
 
-    var ajaxACLResources_brand = $('#loading-image-brand').ajaxCallWidget({
+    var ajaxACLResources_brand = $('#ajaxACL-brand').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
         data: {
             url: '1'

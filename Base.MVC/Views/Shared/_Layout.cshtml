@@ -28,6 +28,7 @@ ViewData["Culture"] = culture;*/
 ViewData["ShortCultureInfo"] = CultureProvider.GetRequestCultureInfo();
 ViewData["ReplacedCultureUri"] = UriCultureProvider.ReplaceCultureCode();
 
+ViewData["myPath"] = "~/adm/plugins/validationEngine/jquery.validationEngine-" + ViewData["ShortCultureInfo"] + ".js";
 }
 
 <!DOCTYPE html>
@@ -108,9 +109,8 @@ ViewData["ReplacedCultureUri"] = UriCultureProvider.ReplaceCultureCode();
     </script>
 
 
-    <!-- Form validation js -->
-    <!--  @ViewBag.ShortCultureInfo ile dil değişkeni alınarak uygun validationEngine dil dosyası çağırılacak -->
-    <script src="~/adm/plugins/validationEngine/jquery.validationEngine-en.js" type="text/javascript"></script>
+    <script src="@ViewBag.myPath" type="text/javascript"></script>
+
     <script src="~/adm/plugins/validationEngine/jquery.validationEngine.js" type="text/javascript"></script>
 
     <!-- Bootstrap 3.3.2 JS -->
