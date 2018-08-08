@@ -15,72 +15,119 @@
         denyButtonLabel: 'Vazgeç',
         actionButtonLabel: 'İşleme devam et'
     });
-// disable all tabs
-$('[data-toggle=tab]').click(function () {
-    return false;
-}
-).addClass("text-muted");
 
-var validated = function (tab) {
-    tab.unbind('click').removeClass('text-muted').addClass('green');
-}
 
-//validate inputs on click of button
-$('.btn-ok').click(function () {
+    window.tab_active = function () {
+        //Update & View Mode
+        //tablar açılacak
 
-    var allValid = true;
-    // get each input in this tab pane and validate
-    $(this).parents('.tab-pane').find('.form-control').each(function (i, e) {
+        $("a[data-toggle='tab'").prop('disabled', false);
+        $("a[data-toggle='tab'").each(function () {
+            $(this).attr('href', $(this).prop('data-href')); // restore original href
+        });
+        $("a[data-toggle='tab'").removeClass('disabled-link');
+    }
 
-        // some condition(s) to validate each input
-        var len = $(e).val().length;
-        if (len > 0) {
-            // validation passed
-            allValid = true;
-        } else {
-            // validation failed
-            allValid = false;
+    window.tab_disable = function () {
+        //yeni kayda açık
+        //tablar kapatılacak
+
+        $("a[data-toggle='tab'").prop('disabled', true);
+        $("a[data-toggle='tab'").each(function () {
+            $(this).prop('data-href', $(this).attr('href')); // hold you original href
+            $(this).attr('href', '#'); // clear href
+        });
+        $("a[data-toggle='tab'").addClass('disabled-link');
+
+    }
+
+    window.tab_disable();
+    /*
+    * Customer Info insert form validation engine attached to work
+    * @since 02/08/2016
+    */
+    $('#customerInfoForm').validationEngine();
+    $('#customerPurchaseForm').validationEngine();
+    $('#customerContactPersonForm').validationEngine();
+
+    /* Geçici data */
+    //Dropdown plugin data
+
+    var cbdata = [
+        {
+            text: "Select...",
+            value: 1,
+            selected: true
+        },
+        {
+            text: "South Africa",
+            value: 2,
+            selected: false
+        },
+        {
+            text: "Turkey",
+            value: 3,
+            selected: false
+        },
+        {
+            text: "Germany",
+            value: 4,
+            selected: false
+        }
+    ];
+
+
+    $("#loading-image-country").loadImager();
+    $("#loading-image-country").loadImager('appendImage');
+
+    var ajaxACLResources_country = $('#loading-image-country').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
         }
 
     });
 
-    if (allValid) {
-        var tabIndex = $(this).parents('.tab-pane').index();
-        validated($('[data-toggle]').eq(tabIndex + 1));
-    }
+    ajaxACLResources_country.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
 
-});
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-country').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
 
-// always validate first tab
-validated($('[data-toggle]').eq(0));
+            $('#dropdownCountry').ddslick({
+                //height: 150,
+                data: cbdata,
+                width: '100%',
 
-// form submit
-$("#myForm").submit(function (event) {
-    console.log("Handler for .submit() called..");
-    console.log($(this).serialize());
-    event.preventDefault();
-});
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
 
-if (AnyCondition) //your condition
-{
-    $("a[data-toggle='tab'").prop('disabled', true);
-    $("a[data-toggle='tab'").each(function () {
-        $(this).prop('data-href', $(this).attr('href')); // hold you original href
-        $(this).attr('href', '#'); // clear href
-    });
-    $("a[data-toggle='tab'").addClass('disabled-link');
-}
-else {
-    $("a[data-toggle='tab'").prop('disabled', false);
-    $("a[data-toggle='tab'").each(function () {
-        $(this).attr('href', $(this).prop('data-href')); // restore original href
-    });
-    $("a[data-toggle='tab'").removeClass('disabled-link');
-}
-// if you want to show extra messages that the tab is disabled for a reason
-$("a[data-toggle='tab'").click(function () {
-    alert('Tab is disabled for a reason');
-});
+                    }
+                }
+            });
+
+            $("#loading-image-country").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-country').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', 'Ülke Bulunamamıştır...', 'Ülke  bulunamamıştır...');
+        },
+    })
+    ajaxACLResources_country.ajaxCallWidget('call');
+
 
     var data_priority = [{
         "value": 0,

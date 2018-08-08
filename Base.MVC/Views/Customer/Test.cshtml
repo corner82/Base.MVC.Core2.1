@@ -25,6 +25,9 @@
     <link rel="stylesheet" href="~/adm/plugins/validationEngine/validationEngine.jquery.css" type="text/css" />
 
     <link rel="stylesheet" href="~/adm/dist/css/AdminLTE.css" type="text/css" />
+    <!-- tagCabin css -->
+    <link href="~/adm/plugins/zeyn/tag-cabin/tag-cabin.css" rel="stylesheet" type="text/css" />
+
 }
 
 <!-- Content Wrapper. Contains page content -->
@@ -49,64 +52,73 @@
 
         <!-- Main row -->
         <div class="row">
-            <div class="container" id="myWizard">
-                <div class="navbar">
-                    <div class="navbar-inner">
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a href="#step1" data-toggle="tabs">Step 1</a></li>
-                            <li><a href="#step2" data-toggle="tabs" class="disable" disabled="">Step 2</a></li>
-                            <li><a href="#step3" data-toggle="tabs">Step 3</a></li>
-                            <li><a href="#step4" data-toggle="tabs">Step 4</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <form class="tab-content" method="post" id="myForm">
-                    <div class="tab-pane active" id="step1">
-                        <p>Here is the content for the first step...</p>
-                        <input class="form-control" id="input1" name="input1" required="">
-                        <button class="btn btn-default btn-ok" type="button">OK</button>
-                    </div>
-                    <div class="tab-pane" id="step2">
-                        <p>Here is the content for step 2...</p>
-                        <input class="form-control" id="input2" name="input2" required="">
-                        <button class="btn btn-default btn-ok" type="button">OK</button>
-                    </div>
-                    <div class="tab-pane" id="step3">
-                        <p>Here is the content for step 3...</p>
-                        <input class="form-control" id="input3" name="input3" required="">
-                        <input class="form-control" id="input4" name="input4" required="">
-                        <button class="btn btn-default btn-ok" type="button">OK</button>
-                    </div>
-                    <div class="tab-pane" id="step4">
-                        <p>This is the last step. You're done.</p>
-                        <button class="btn btn-default btn-submit" type="submit">Submit</button>
-                    </div>
-                </form>
 
-                <div class="form-group">
-                    <label>Product Interest</label>
-                    <div class="">
-                        <div id="loading-image-productinterest" class="input-group">
-                            <div class="input-group-addon">
-                                <i class="fa fa-copyright"></i>
-                            </div>
-                            <div id="dropdownProductInterest" class="form-control"></div>
-                        </div>
-                    </div>
-                </div>
+            <div class="form-group">
+                <label>Country:</label>
 
-                <div class="form-group">
-                    <label>MAN Satisfaction</label>
-                    <div class="">
-                        <div id="loading-image-mansatisfaction" class="input-group">
-                            <div class="input-group-addon">
-                                <i class="fa fa-copyright"></i>
-                            </div>
-                            <div id="dropdownMANSatisfaction" class="form-control"></div>
+                <div class="">
+                    <div id="loading-image-country" class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa fa-copyright"></i>
                         </div>
+                        <div id="dropdownCountry" class="form-control"></div>
                     </div>
                 </div>
             </div>
+
+
+            <div class="form-group">
+                <label>MAN Satisfaction</label>
+                <div class="">
+                    <div id="loading-image-mansatisfaction" class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa fa-copyright"></i>
+                        </div>
+                        <div id="dropdownMANSatisfaction" class="form-control"></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="box ">
+                <div class="box-header with-border">
+                    <h3 class="box-title" lang="en">Services</h3>
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" id="servisDashboardHesapla"><i class="fa fa-refresh"></i></button>
+                        <button id="test-collapse" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div><!-- /.box-header -->
+                <div class="box-body" style="display: block;">
+
+
+                    <div class="form-group">
+                        <label>Product Interest</label>
+                        <div class="">
+                            <div id="loading-image-productinterest" class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-copyright"></i>
+                                </div>
+                                <div id="dropdownProductInterest" class="form-control"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div id="loading-image-roles" class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-hand-o-right"></i>
+                            </div>
+                            <div style="margin-bottom: -10px;width:96%" class="tag-container">
+                                <ul id="test-cabin" class="tag-box"></ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div><!-- ./box-body -->
+                <div class="box-footer" style="display: block;">
+
+                </div><!-- /.box-footer -->
+            </div><!-- /.box -->
         </div><!-- /.row (main row) -->
 
 
@@ -141,6 +153,7 @@
 
     <!--  ddslick -->
     <script src="~/adm/plugins/bootstrap-select-ddslick/js/ddslick.js"></script>
+    <script src="~/adm/plugins/zeyn/tag-cabin/tag-cabin.js"></script>
 
     <!-- jquery-lang-js-master ekleniyor-->
     <!--
