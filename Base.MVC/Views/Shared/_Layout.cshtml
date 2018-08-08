@@ -29,6 +29,9 @@ ViewData["ShortCultureInfo"] = CultureProvider.GetRequestCultureInfo();
 ViewData["ReplacedCultureUri"] = UriCultureProvider.ReplaceCultureCode();
 
 ViewData["defaultValidationEnginePath"] = "/adm/plugins/validationEngine/jquery.validationEngine-" + ViewData["ShortCultureInfo"] + ".js";
+
+ViewData["defaultDevExLangPath"] = "/adm/plugins/devextreme/js/localization/dx.messages." + ViewData["ShortCultureInfo"] + ".js";
+
 }
 
 <!DOCTYPE html>

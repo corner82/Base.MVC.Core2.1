@@ -239,7 +239,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Total number of employees:</label>
-                                                    <div class="" id="ajaxACL-totalemployees" >
+                                                    <div class="" id="ajaxACL-totalemployees">
                                                         <div id="loading-image-totalemployees" class="input-group">
                                                             <div class="input-group-addon">
                                                                 <i class="fa fa-copyright"></i>
@@ -329,7 +329,7 @@
 
                                                 <div class="form-group">
                                                     <label>Purchase decision</label>
-                                                    <div class="" id="ajaxACL-purchasedecision" >
+                                                    <div class="" id="ajaxACL-purchasedecision">
                                                         <div id="loading-image-purchasedecision" class="input-group">
                                                             <div class="input-group-addon">
                                                                 <i class="fa fa-copyright"></i>
@@ -689,16 +689,8 @@
     <script src="~/adm/plugins/devextreme/js/dx.all.js"></script>
     <script src="https://unpkg.com/devextreme-intl/dist/devextreme-intl.min.js"></script>
 
-    <script src="~/adm/plugins/devextreme/js/localization/dx.messages.en.js"></script>
-    <script src="~/adm/plugins/devextreme/js/localization/dx.messages.tr.js"></script>
-    <script src="~/adm/plugins/devextreme/js/localization/dx.messages.de.js"></script>
-    <script src="~/adm/plugins/devextreme/js/localization/dx.messages.af.js"></script> <!-- düzenlenecek-->
-    <script src="~/adm/plugins/devextreme/js/localization/dx.messages.fr.js"></script>
-    <script src="~/adm/plugins/devextreme/js/localization/dx.messages.ru.js"></script>
-    <script src="~/adm/plugins/devextreme/js/localization/dx.messages.zh.js"></script>
-    <script src="~/adm/plugins/devextreme/js/localization/dx.messages.es.js"></script> <!-- düzenlenecek-->
-    <script src="~/adm/plugins/devextreme/js/localization/dx.messages.ar.js"></script> <!-- düzenlenecek-->
-    <script src="~/adm/plugins/devextreme/js/localization/dx.messages.fa.js"></script> <!-- düzenlenecek-->
+    <!--devexpress datagrid lang call js variable _Layout ViewData callback ViewBag -->
+    <script src="@ViewBag.defaultDevExLangPath"></script>
 
     <script src="~/adm/dist/js/pages/customer/customer.js" type="text/javascript"></script>
 

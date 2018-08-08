@@ -1434,7 +1434,7 @@
         }
     });
 
-    DevExpress.localization.locale("en");
+    DevExpress.localization.locale(langCode);
 
 
     $("#gridContainer_customer").dxDataGrid({
