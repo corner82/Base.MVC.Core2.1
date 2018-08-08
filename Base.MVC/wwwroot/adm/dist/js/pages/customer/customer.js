@@ -225,7 +225,7 @@
                     $('#loading-image-city').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', 'Servis bulunamamıştır...', 'Servis  bulunamamıştır...');
+            dm.dangerMessage('show', window.lang.translate('Servis bulunamamıştır...'), 'Servis  bulunamamıştır...');
         },
         onSuccess: function (event, data) {
             //var data = $.parseJSON(cbdata);
