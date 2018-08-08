@@ -129,10 +129,11 @@
 
     /* Geçici data */
     //Dropdown plugin data
+    var cbdata_country = [{}];
 
     var cbdata = [
         {
-            text: "Select...",
+            text:'Search...',
             value: 1,
             selected: true
         },
@@ -173,7 +174,7 @@
                     $('#loading-image-country').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
+            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
         },
         onSuccess: function (event, data) {
             //var data = $.parseJSON(cbdata);
@@ -199,7 +200,7 @@
                     $('#loading-image-country').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', 'Ülke Bulunamamıştır...', 'Ülke  bulunamamıştır...');
+            dm.dangerMessage('show', window.lang.translate('Ülke bulunamamıştır...'), window.lang.translate('Ülke  bulunamamıştır...'));
         },
     })
     ajaxACLResources_country.ajaxCallWidget('call');
@@ -209,7 +210,7 @@
     $("#loading-image-city").loadImager('appendImage');  
 
     var ajaxACLResources_city = $('#ajaxACL-city').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        proxy: 'https://jsonplaceholder.typicode.com/todos/x',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -224,7 +225,7 @@
                     $('#loading-image-city').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
+            dm.dangerMessage('show', window.lang.translate('Servis bulunamamıştır...'), 'Servis  bulunamamıştır...');
         },
         onSuccess: function (event, data) {
             //var data = $.parseJSON(cbdata);
@@ -250,7 +251,7 @@
                     $('#loading-image-city').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', 'Rol Bulunamamıştır...', 'Rol  bulunamamıştır...');
+            dm.dangerMessage('show', window.lang.translate('Rol bulunamamıştır...'), 'Rol  bulunamamıştır...');
         },
     })
     ajaxACLResources_city.ajaxCallWidget('call');
@@ -1166,7 +1167,7 @@
                 data: data_product,
                 width:'100%',
                 selectText: "Select your preferred social network",
-                searchText: window.lang.translate('Search'),
+                searchText: window.lang.translate('Search') + "...",
                 //showSelectedHTML : false,
                 defaultSelectedIndex: 3,
                 search : true,
@@ -1499,7 +1500,7 @@
         searchPanel: {
             visible: true,
             width: 240,
-            placeholder: "Search..."
+            placeholder: window.lang.translate('Search') + "...",
         },
 
         headerFilter: {
@@ -1688,7 +1689,7 @@
         searchPanel: {
             visible: true,
             width: 240,
-            placeholder: "Search..."
+            placeholder: window.lang.translate('Search') + "...",
         },
 
         headerFilter: {
@@ -1812,7 +1813,7 @@
         searchPanel: {
             visible: true,
             width: 240,
-            placeholder: "Search..."
+            placeholder: window.lang.translate('Search') + "...",
         },
 
         headerFilter: {
@@ -1975,7 +1976,7 @@
 
         "export": {
             enabled: true,
-            fileName: "Orders"
+            fileName: window.lang.translate('Activity'),
         },
 
         grouping: {
@@ -2008,7 +2009,7 @@
         searchPanel: {
             visible: true,
             width: 240,
-            placeholder: "Search..."
+            placeholder: window.lang.translate('Search') + "...",
         },
 
         headerFilter: {
