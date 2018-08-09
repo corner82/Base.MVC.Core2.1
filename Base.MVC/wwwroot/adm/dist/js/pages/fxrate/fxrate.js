@@ -1,12 +1,73 @@
-/*
- * Author: Abdullah A Almsaeed
- * Date: 4 Jan 2014
- * Description:
- *      This is a demo file used only for the main dashboard (index.html)
- **/
-"use strict";
+$(document).ready(function () {
 
-$(function () {
+    "use strict";
+
+    var sm = $(window).successMessage();
+    var dm = $(window).dangerMessage();
+    var wm = $(window).warningMessage();
+    var wcm = $(window).warningComplexMessage({
+        denyButtonLabel: 'Vazgeç',
+        actionButtonLabel: 'Ýþleme devam et'
+    });
+
+    var langCode = $("#langCode").val();
+    //alert(langCode);
+
+    /*
+    * datepicker format
+    * @author Ceydacan Seyrek
+    * @since 08/08/2018
+    */
+    $('#end-datepicker').datepicker({
+        //autoclose: true,
+        locale: langCode,
+        format: 'yyyy/mm/dd'
+    });
+
+    $('#start-datepicker').datepicker({
+        //autoclose: true,
+        locale: langCode,
+        format: 'yyyy/mm/dd'
+    });
+
+    /*
+    * datepicker format
+    * @author Ceydacan Seyrek
+    * @since 08/08/2018
+    */
+
+    var tab_active = function () {
+        //Update & View Mode
+        //enabled tabs
+
+        $("a[data-toggle='tab'").prop('disabled', false);
+        $("a[data-toggle='tab'").each(function () {
+            $(this).attr('href', $(this).prop('data-href')); // restore original href
+        });
+        $("a[data-toggle='tab'").removeClass('disabled-link');
+    }
+
+    var tab_disable = function () {
+        //Add new record
+        //tablar kapatýlacak
+
+        $("a[data-toggle='tab'").prop('disabled', true);
+        $("a[data-toggle='tab'").each(function () {
+            $(this).prop('data-href', $(this).attr('href')); // hold you original href
+            $(this).attr('href', '#'); // clear href
+        });
+        $("a[data-toggle='tab'").addClass('disabled-link');
+
+    }
+
+    tab_disable();
+    /*
+    * Fx Rate Info insert form validation engine attached to work
+    * @author Ceydacan Seyrek
+    * @since 08/08/2018
+    */
+    $('#fxrateInfoForm').validationEngine();
+   
 
     /* devexgrid */
     var orders = new DevExpress.data.CustomStore({
@@ -43,24 +104,29 @@ $(function () {
     DevExpress.localization.locale("en");
 
 
-
-    $("#gridContainer_customer").dxDataGrid({
+    $("#gridContainer_fxrate").dxDataGrid({
 
         showColumnLines: true,
 
         showRowLines: true,
-
-        rowAlternationEnabled: true,
 
         showBorders: true,
 
         dataSource: orders,
 
         columnHidingEnabled: true,
+
+        selection: {
+            mode: "single"
+        },
+
+        hoverStateEnabled: true,
+
         editing: {
-            mode: "form",
-            allowUpdating: true,
-            allowUpdating: true,
+            //mode: "batch"
+            mode: "row",
+            //allowAdding: true,
+            //allowUpdating: true,
             allowDeleting: true,
             useIcons: true
         },
@@ -81,7 +147,7 @@ $(function () {
         },
 
         pager: {
-            allowedPageSizes: [5, 10, 15, 30],
+            allowedPageSizes: [5, 8, 15, 30],
             showInfo: true,
             showNavigationButtons: true,
             showPageSizeSelector: true,
@@ -89,7 +155,7 @@ $(function () {
         },
 
         paging: {
-            pageSize: 10
+            pageSize: 8
         },
 
         filterRow: {
@@ -127,10 +193,8 @@ $(function () {
             "Employee", {
             dataField: "OrderDate",
             dataType: "date"
-            //format: "yyyy/mm/dd"
         }, {
             dataField: "SaleAmount",
-            format: "currency"
 
         }],
 
@@ -147,41 +211,171 @@ $(function () {
                 summaryType: "sum",
                 valueFormat: "currency"
             }]
+        },
+
+        onSelectionChanged: function (selectedItems) {
+            var data = selectedItems.selectedRowsData[0];
+            if (data) {
+
+                fillCustomerInfoForm(data);
+            }
         }
 
     });
 
-    $('#start-datepicker').datepicker({
-        //autoclose: true,
-        locale: 'en',
-        format: 'yyyy/mm/dd'
-    });
-    $('#end-datepicker').datepicker({
-        //autoclose: true,
-        locale: 'en',
-        format: 'yyyy/mm/dd'
-    });
 
-    $('#Fxrate_Save').click(function () {
-        if (confirm("Save Button!")) {
+    function logEvent(eventName) {
+        var logList = $("#events ul"),
+            newItem = $("<li>", { text: eventName });
 
+        logList.prepend(newItem);
+    }
+
+
+    /**
+    * insert FxrateInfo Wrapper
+    * @returns {Boolean}
+    * @since 02/08/2018
+    */
+
+    var insertFxrateInfoWrapper = function (e) {
+        e.preventDefault();
+
+        if ($("#fxrateInfoForm").validationEngine('validate')) {
+
+            insertFxrateInfo();
         }
-    });
+        return false;
+    }
 
-    $('#Fxrate_Update').click(function () {
-        if (confirm("Update Button!")) {
+    /**
+    * insert FxrateInfo
+    * @returns {undefined}
+    * @since 02/08/2018
+    */
 
-        }
-    });
+    var insertFxrateInfo = function () {
 
-    $('#Fxrate_Clear').click(function () {
+        $("#loading-image-cstInfo").loadImager('removeLoadImage');
+        $("#loading-image-cstInfo").loadImager('appendImage');
 
-        if (confirm("Clear Form Button!")) {
-            $('#start-datepicker').val(''),
-            $('#end-datepicker').val(''),
-            $('#rate').val('')
-        }
-    });
+        var cst_name = $('#txt-cst-name').val();
+
+        var ddData_country = $('#dropdownCountry').data('ddslick')
+        var country_id = ddData_country.selectedData.value;
+
+        var ddData_city = $('#dropdownCity').data('ddslick')
+        var city_id = ddData_city.selectedData.value;
+
+        var aj = $(window).ajaxCall({
+            proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
+            data: {
+                url: 'pkInsert_sysCustomerInfo',
+                name: cst_name,
+                country_id: country_id,
+                city_id: city_id,
+                pk: $("#pk").val()
+            }
+        })
+        aj.ajaxCall({
+            onError: function (event, textStatus, errorThrown) {
+                dm.dangerMessage('resetOnShown');
+                dm.dangerMessage('show', 'Müþteri Ekleme Ýþlemi Baþarýsýz...',
+                    'Müþteri Ekleme Ýþlemi Baþarýsýz..., sistem yöneticisi ile temasa geçiniz... ')
+                console.error('"pkInsert_sysCustomerInfo" servis hatasý->' + textStatus);
+                $("#loading-image-cstInfo").loadImager('removeLoadImage');
+            },
+            onSuccess: function (event, data) {
+                console.log(data);
+                var data = data;
+                sm.successMessage({
+                    onShown: function (event, data) {
+                        $('#fxrateInfoForm')[0].reset();
+
+                        $("#loading-image-cstInfo").loadImager('removeLoadImage');
+
+                        $("#loading-image-fxrtInfoGrid").loadImager('removeLoadImage');
+                        $("#loading-image-fxrtInfoGrid").loadImager('appendImage');
+
+                        $('#gridContainer_fxrate').refresh();   //test edilecek!
+
+                        $("#loading-image-fxrtInfoGrid").loadImager('removeLoadImage');
+
+                    }
+                });
+                sm.successMessage('show', 'Müþteri Kayýt Ýþlemi Baþarýlý...',
+                    'Müþteri kayýt iþlemini gerçekleþtirdiniz... ',
+                    data);
+                $("#loading-image-cstInfo").loadImager('removeLoadImage');
+
+            },
+            onErrorDataNull: function (event, data) {
+                dm.dangerMessage('resetOnShown');
+                dm.dangerMessage('show', 'Müþteri Kayýt Ýþlemi Baþarýsýz...',
+                    'Müþteri kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
+                console.error('"pkInsert_sysCustomerInfo" servis datasý boþtur!!');
+                $("#loading-image-cstInfo").loadImager('removeLoadImage');
+            },
+            onErrorMessage: function (event, data) {
+                dm.dangerMessage('resetOnShown');
+                dm.dangerMessage('show', 'Müþteri Kayýt Ýþlemi Baþarýsýz...',
+                    'Müþteri kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
+                console.error('"pkInsert_sysCustomerInfo" servis datasý boþtur!!');
+                $("#loading-image-cstInfo").loadImager('removeLoadImage');
+            },
+            onError23503: function (event, data) {
+                dm.dangerMessage('Error23503');
+                $("#loading-image-cstInfo").loadImager('removeLoadImage');
+            },
+            onError23505: function (event, data) {
+                dm.dangerMessage({
+                    onShown: function (event, data) {
+                        $('#fxrateInfoForm')[0].reset();
+                        $("#loading-image-cstInfo").loadImager('removeLoadImage');
+                    }
+                });
+                dm.dangerMessage('show', 'ACL Yetki Kayýt Ýþlemi Baþarýsýz...',
+                    'Ayný isim ile Müþteri  kaydý yapýlmýþtýr, yeni bir Müþteri kaydý deneyiniz... ');
+                $("#loading-image-cstInfo").loadImager('removeLoadImage');
+            }
+        })
+        aj.ajaxCall('call');
+    }
+
+
+    /**
+    * reset button function for Customer Info insert form
+    * @returns null
+    * @since 14/07/2016
+    */
+    var resetCustomerInfoForm = function () {
+        $("#loading-image-cstInfo").loadImager('removeLoadImage');
+        $("#loading-image-cstInfo").loadImager('appendImage');
+
+        $('#fxrateInfoForm').validationEngine('hide');
+
+        $("#loading-image-cstInfo").loadImager('removeLoadImage');
+
+        //yeni kayda açýk, tablar kapatýlýyor
+        tab_disable();
+
+        return false;
+    }
+
+    //seçilen satýra göre form doldurma
+    var fillCustomerInfoForm = function (data) {
+        $("#loading-image-cstInfo").loadImager('removeLoadImage');
+        $("#loading-image-cstInfo").loadImager('appendImage');
+
+        document.getElementById("start-datepicker").value = data.OrderDate;
+        document.getElementById("end-datepicker").value = data.OrderDate;
+        document.getElementById("rate").value = data.SaleAmount;
+
+        $("#loading-image-cstInfo").loadImager('removeLoadImage');
+        tab_active();
+
+        return false;
+    }
 
 });
 
