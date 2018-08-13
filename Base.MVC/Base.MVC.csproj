@@ -48,10 +48,13 @@
     <Content Update="Views\Demo\Cfg.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Demo\TabTest.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Demo\Dvx.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-	<Content Update="Views\FxRate\FxRate.cshtml">
+	<Content Update="Views\Sys\FxRate.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Shared\AdminLanguageMenuPartial.cshtml">
@@ -63,6 +66,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Views\FxRate\" />
     <Folder Include="wwwroot\adm\plugins\font-awesome-5.1.1\" />
   </ItemGroup>
 
