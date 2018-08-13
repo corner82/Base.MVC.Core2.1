@@ -2432,7 +2432,7 @@
     }
 
 
-/**
+    /**
  * insert CustomerContactPerson
  * @returns {undefined}
  * @since 07/08/2018

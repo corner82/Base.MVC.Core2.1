@@ -1167,7 +1167,7 @@
                 data: data_product,
                 width:'100%',
                 selectText: "Select your preferred social network",
-                searchText: window.lang.translate('Search') + "...",
+                //searchText: window.lang.translate('Search') + "...",
                 //showSelectedHTML : false,
                 defaultSelectedIndex: 3,
                 search : true,
@@ -1500,6 +1500,7 @@
         searchPanel: {
             visible: true,
             width: 240,
+            //placeholder: window.lang.translate('Search') + "...",
             placeholder: window.lang.translate('Search') + "...",
         },
 
@@ -2432,7 +2433,7 @@
     }
 
 
-/**
+    /**
  * insert CustomerContactPerson
  * @returns {undefined}
  * @since 07/08/2018

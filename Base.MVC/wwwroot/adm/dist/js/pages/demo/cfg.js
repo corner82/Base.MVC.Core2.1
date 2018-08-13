@@ -1,12 +1,4 @@
-/*
- * Author: Abdullah A Almsaeed
- * Date: 4 Jan 2014
- * Description:
- *      This is a demo file used only for the main dashboard (index.html)
- **/
-"use strict";
-
-$(function () {
+$(document).ready(function () {
 
   //Make the dashboard widgets sortable Using jquery UI
   $(".connectedSortable").sortable({
@@ -125,11 +117,250 @@ $(function () {
 
 
 
-  //Fix for charts under tabs
+  //Fix for charts under tabs    
   $('.box ul.nav a').on('shown.bs.tab', function (e) {
     area.redraw();
     donut.redraw();
-  });
+    });
+
+    activateTabByOrder = function () {
+        if ($('#attached_deals_tab li.active').next('li').find('a:first').hasClass('disabled')) {
+            alert('next tab deactive ');
+        } else {
+            $('#attached_deals_tab li.active').removeClass("active").find('a:first').attr("aria-expanded", "false").parent("li").next('li').addClass("active").find("a:first").attr("aria-expanded", "true");
+            $('#attached_deals_tab li.active').removeClass("active").find('a:first').tab('show');
+        }
+
+    }
+
+    activateNextTab = function () {
+        if ($('#attached_deals_tab li.active').next('li').find('a:first').hasClass('disabled')) {
+            alert('next tab deactive ');
+        } else {
+            $('#attached_deals_tab li.active').removeClass("active").find('a:first').attr("aria-expanded", "false").parent("li").next('li').addClass("active").find("a:first").attr("aria-expanded", "true");
+            $('#attached_deals_tab li.active').removeClass("active").find('a:first').tab('show');
+        }
+       
+    }
+
+    activatePrevTab = function () {
+        if ($('#attached_deals_tab li.active').prev('li').find('a:first').hasClass('disabled')) {
+            alert('next tab active already ');
+            
+        } else {
+            $('#attached_deals_tab li.active').removeClass("active").find('a:first').attr("aria-expanded", "false").parent("li").prev('li').addClass("active").find("a:first").attr("aria-expanded", "true");
+            $('#attached_deals_tab li.active').removeClass("active").find('a:first').tab('show');
+        }
+    }
+
+    $('#attached_deals_tab a').click(function (e) {
+        //alert('click tag');
+        if ($(this).hasClass("disabled")) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            return false;
+
+        }
+    });
+
+    disableActiveTabs = function () {
+        $('#attached_deals_tab  li').not('.active').find("a:first").addClass('disabled');
+        $('#attached_deals_tab  li').not('.active').find("a:first").removeAttr('data-toggle');
+    }
+
+    enableableNotActiveTabs = function () {
+        /*if ($('#attached_deals_tab  li.dropdown-toggle').not('.active')) {
+            alert("test1");
+            $('#attached_deals_tab  li.dropdown-toggle').not('.active').find("a.disabled").removeClass('disabled').attr("data-toggle", "dropdown");
+        } else {
+            alert("test2");
+            $('#attached_deals_tab  li').not('.active').find("a.disabled").removeClass('disabled').attr("data-toggle", "tab");
+        }*/
+        $('#attached_deals_tab li').not('.active').find("a.dropdown-toggle.disabled").removeClass('disabled').attr("data-toggle", "dropdown");
+        $('#attached_deals_tab li').not('.active').find("a.disabled").removeClass('disabled').attr("data-toggle", "tab");
+        //$('#attached_deals_tab  li').not('.active').find("a:first").removeAttr('data-toggle');
+    }
+
+
+    //tab 1_1 sonraki ytab butonu
+    $('#tab_next_1').click(function (e) {
+        alert("tab next 1_1");
+        activateNextTab();
+       
+       /* $('#attached_deals_tab li.active').removeClass("active").find('a:first').attr("aria-expanded", "false").parent("li").next('li').addClass("active").find("a:first").attr("aria-expanded", "true");
+        $('#attached_deals_tab li.active').removeClass("active").find('a:first').tab('show');*/
+    });
+
+    //tab 1_1 aktif yap butonu
+    $('#tab_active_1').click(function () {
+        alert("tab active 1_1");
+        enableableNotActiveTabs();
+    });
+
+    //tab 1_1 pasif yap butonu
+    $('#tab_passive_1').click(function () {
+        alert("tab passive 1_1");
+        disableActiveTabs();
+    });
+
+    //tab 2_1 sonraki ytab butonu
+    $('#tab_next_2').click(function (e) {
+        alert("tab next 2_2");
+        activateNextTab();
+
+        /* $('#attached_deals_tab li.active').removeClass("active").find('a:first').attr("aria-expanded", "false").parent("li").next('li').addClass("active").find("a:first").attr("aria-expanded", "true");
+         $('#attached_deals_tab li.active').removeClass("active").find('a:first').tab('show');*/
+    });
+
+    //tab 2_1 önceki tab butonu
+    $('#tab_before_2').click(function (e) {
+        alert("tab before 2_2");
+        activatePrevTab();
+
+        /* $('#attached_deals_tab li.active').removeClass("active").find('a:first').attr("aria-expanded", "false").parent("li").next('li').addClass("active").find("a:first").attr("aria-expanded", "true");
+         $('#attached_deals_tab li.active').removeClass("active").find('a:first').tab('show');*/
+    });
+    
+
+    /* devexgrid */
+    var orders = new DevExpress.data.CustomStore({
+        load: function (loadOptions) {
+            var deferred = $.Deferred(),
+                args = {};
+
+            if (loadOptions.sort) {
+                args.orderby = loadOptions.sort[0].selector;
+                if (loadOptions.sort[0].desc)
+                    args.orderby += " desc";
+            }
+
+            args.skip = loadOptions.skip || 0;
+            args.take = loadOptions.take || 12;
+
+            $.ajax({
+                url: "https://js.devexpress.com/Demos/WidgetsGallery/data/orderItems",
+                dataType: "json",
+                data: args,
+                success: function (result) {
+                    deferred.resolve(result.items, { totalCount: result.totalCount });
+                },
+                error: function () {
+                    deferred.reject("Data Loading Error");
+                },
+                timeout: 5000
+            });
+
+            return deferred.promise();
+        }
+    });
+    DevExpress.localization.locale("en");
+    $("#gridContainer").dxDataGrid({
+
+        showColumnLines: true,
+
+        showRowLines: true,
+
+        rowAlternationEnabled: true,
+
+        showBorders: true,
+
+        dataSource: orders,
+
+        columnHidingEnabled: true,
+
+        editing: {
+            //mode: "batch"
+            mode: "row",
+            //allowAdding: true,
+            allowUpdating: true,
+            allowDeleting: true,
+            useIcons: true
+        },
+
+        "export": {
+            enabled: true,
+            fileName: "Orders"
+        },
+
+        grouping: {
+            contextMenuEnabled: true,
+            expandMode: "rowClick"
+        },
+
+        groupPanel: {
+            emptyPanelText: "Use the context menu of header columns to group data",
+            visible: true
+        },
+
+        pager: {
+            allowedPageSizes: [5, 8, 15, 30],
+            showInfo: true,
+            showNavigationButtons: true,
+            showPageSizeSelector: true,
+            visible: true
+        },
+
+        paging: {
+            pageSize: 8
+        },
+
+        filterRow: {
+            visible: true,
+            applyFilter: "auto"
+        },
+
+        searchPanel: {
+            visible: true,
+            width: 240,
+            placeholder: "Search..."
+        },
+
+        headerFilter: {
+            visible: true
+        },
+
+        columnChooser: {
+            enabled: true,
+            mode: "select"
+        },
+
+        columns: [{
+            allowGrouping: false,
+            dataField: "OrderNumber",
+            caption: "Invoice Number",
+            width: 130
+        }, {
+            caption: "City",
+            dataField: "StoreCity"
+        }, {
+            caption: "State",
+            dataField: "StoreState"
+        },
+            "Employee", {
+            dataField: "OrderDate",
+            dataType: "date"
+        }, {
+            dataField: "SaleAmount",
+
+        }],
+
+        customizeColumns: function (columns) {
+            columns[5].format = { type: "currency", currency: "EUR" };
+        },
+
+        summary: {
+            totalItems: [{
+                column: "OrderNumber",
+                summaryType: "count"
+            }, {
+                column: "SaleAmount",
+                summaryType: "sum",
+                valueFormat: "currency"
+            }]
+        }
+
+    });
 
 
  
