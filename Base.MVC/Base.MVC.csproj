@@ -27,6 +27,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\Sys\WarrantyMil.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Sys\State.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

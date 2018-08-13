@@ -1,5 +1,5 @@
-/*
-* Warranty Type Form
+ï»¿/*
+* warranty mileage Form
 * @author Ceydacan Seyrek
 * @since 13/08/2016
 */
@@ -11,21 +11,21 @@ $(document).ready(function () {
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
     var wcm = $(window).warningComplexMessage({
-        denyButtonLabel: 'Vazgeç',
-        actionButtonLabel: 'Ýþleme devam et'
+        denyButtonLabel: 'VazgeÃ§',
+        actionButtonLabel: 'Ä°ÅŸleme devam et'
     });
 
 
     /*
-    * Warranty Type LoadImager
+    * warranty mileage LoadImager
     * @author Ceydacan Seyrek
     * @since 13/08/2016
     */
-    //to Warranty Type form
-    $("#loading-image-wrType").loadImager();
-    //to Warranty Type form grid loading-image
-    $("#loading-image-wrTypeGrid").loadImager();
-
+    //to warranty mileage form
+    $("#loading-image-wrMil").loadImager();
+    //to warranty mileage form grid loading-image
+    $("#loading-image-wrMilGrid").loadImager();
+   
     var langCode = $("#langCode").val();
     //alert(langCode);
 
@@ -64,7 +64,7 @@ $(document).ready(function () {
     DevExpress.localization.locale(langCode);
 
 
-    $("#gridContainer_wrType").dxDataGrid({
+    $("#gridContainer_wrMil").dxDataGrid({
 
         showColumnLines: true,
 
@@ -139,55 +139,55 @@ $(document).ready(function () {
         },
 
         columns: [{
-            caption: "Warranty Type",
-            dataField: "StoreCity"
+            caption: "Warranty Mileage",
+            dataField: "SaleAmount"
         }],
 
         onSelectionChanged: function (selectedItems) {
             var data = selectedItems.selectedRowsData[0];
             if (data) {
-                fillwrTypeForm(data);
+                fillwrMilForm(data);
             }
         }
 
     });
-
+    
     function logEvent(eventName) {
-        var logList = $("#events ul"),
-            newItem = $("<li>", { text: eventName });
+         var logList = $("#events ul"),
+             newItem = $("<li>", { text: eventName });
 
-        logList.prepend(newItem);
-    }
+         logList.prepend(newItem);
+     }
 
 
     /**
- * insert Warranty Type
+ * insertWarranty Mileage
  * @author Ceydacan Seyrek
  * @since 13/08/2018
  */
 
-    window.insertwrTypel = function () {
-        $("#loading-image-wrType").loadImager('removeLoadImage');
-        $("#loading-image-wrType").loadImager('appendImage');
+    window.insertwrMil = function () {
+        $("#loading-image-wrMil").loadImager('removeLoadImage');
+        $("#loading-image-wrMil").loadImager('appendImage');
 
-        var cst_purchaselastupdate = $('#txt-wrType-name').val();
+        var cst_purchaselastupdate = $('#txt-country-name').val();
 
         var aj = $(window).ajaxCall({
             proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
             data: {
                 url: 'pkInsert_syswrmil',
-
-                name: warrantyType_name,
+                
+                name: warrantyMileage_name,
                 pk: $("#pk").val()
             }
         })
         aj.ajaxCall({
             onError: function (event, textStatus, errorThrown) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Garanti Type Ekleme Ýþlemi Baþarýsýz...',
-                    'Garanti Type Ekleme Ýþlemi Baþarýsýz..., sistem yöneticisi ile temasa geçiniz... ')
-                console.error('"pkInsert_sysCustomerInfo" servis hatasý->' + textStatus);
-                $("#loading-image-wrType").loadImager('removeLoadImage');
+                dm.dangerMessage('show', 'garanti km Ekleme Ä°ÅŸlemi BaÅŸarÄ±sÄ±z...',
+                    'garanti km Ekleme Ä°ÅŸlemi BaÅŸarÄ±sÄ±z..., sistem yÃ¶neticisi ile temasa geÃ§iniz... ')
+                console.error('"pkInsert_sysCustomerInfo" servis hatasÄ±->' + textStatus);
+                $("#loading-image-wrMil").loadImager('removeLoadImage');
             },
             onSuccess: function (event, data) {
                 console.log(data);
@@ -196,29 +196,29 @@ $(document).ready(function () {
                     onShown: function (event, data) {
                         $('#wrMilForm')[0].reset();
 
-                        $("#loading-image-wrType").loadImager('removeLoadImage');
+                        $("#loading-image-wrMil").loadImager('removeLoadImage');
 
                     }
                 });
-                sm.successMessage('show', 'Garanti Type Kayýt Ýþlemi Baþarýlý...',
-                    'Garanti Type kayýt iþlemini gerçekleþtirdiniz... ',
+                sm.successMessage('show', 'warranty mileage KayÄ±t Ä°ÅŸlemi BaÅŸarÄ±lÄ±...',
+                    'warranty mileage kayÄ±t iÅŸlemini gerÃ§ekleÅŸtirdiniz... ',
                     data);
-                $("#loading-image-wrType").loadImager('removeLoadImage');
+                $("#loading-image-wrMil").loadImager('removeLoadImage');
 
             },
             onErrorDataNull: function (event, data) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Müþteri Kontak Kiþi Kayýt Ýþlemi Baþarýsýz...',
-                    'Müþteri Kontak Kiþi kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysCustomerContactPerson" servis datasý boþtur!!');
-                $("#loading-image-wrType").loadImager('removeLoadImage');
+                dm.dangerMessage('show', 'MÃ¼ÅŸteri Kontak KiÅŸi KayÄ±t Ä°ÅŸlemi BaÅŸarÄ±sÄ±z...',
+                    'MÃ¼ÅŸteri Kontak KiÅŸi kayÄ±t iÅŸlemi baÅŸarÄ±sÄ±z, sistem yÃ¶neticisi ile temasa geÃ§iniz... ');
+                console.error('"pkInsert_sysCustomerContactPerson" servis datasÄ± boÅŸtur!!');
+                $("#loading-image-wrMil").loadImager('removeLoadImage');
             },
             onErrorMessage: function (event, data) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Müþteri Kontak Kiþi Kayýt Ýþlemi Baþarýsýz...',
-                    'Müþteri Kontak Kiþi kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysCustomerContactPerson" servis datasý boþtur!!');
-                $("#loading-image-wrType").loadImager('removeLoadImage');
+                dm.dangerMessage('show', 'MÃ¼ÅŸteri Kontak KiÅŸi KayÄ±t Ä°ÅŸlemi BaÅŸarÄ±sÄ±z...',
+                    'MÃ¼ÅŸteri Kontak KiÅŸi kayÄ±t iÅŸlemi baÅŸarÄ±sÄ±z, sistem yÃ¶neticisi ile temasa geÃ§iniz... ');
+                console.error('"pkInsert_sysCustomerContactPerson" servis datasÄ± boÅŸtur!!');
+                $("#loading-image-wrMil").loadImager('removeLoadImage');
             },
             onError23503: function (event, data) {
                 dm.dangerMessage('Error23503');
@@ -228,64 +228,64 @@ $(document).ready(function () {
                 dm.dangerMessage({
                     onShown: function (event, data) {
                         $('#customerContactPersonForm')[0].reset();
-                        $("#loading-image-wrType").loadImager('removeLoadImage');
+                        $("#loading-image-wrMil").loadImager('removeLoadImage');
                     }
                 });
-                dm.dangerMessage('show', 'Kayýt Ýþlemi Baþarýsýz...',
-                    'Ayný isim ile Ülke Kiþi kaydý yapýlmýþtýr, yeni birÜlke kaydý deneyiniz... ');
-                $("#loading-image-wrType").loadImager('removeLoadImage');
+                dm.dangerMessage('show', 'KayÄ±t Ä°ÅŸlemi BaÅŸarÄ±sÄ±z...',
+                    'AynÄ± isim ile Ãœlke KiÅŸi kaydÄ± yapÄ±lmÄ±ÅŸtÄ±r, yeni birÃœlke kaydÄ± deneyiniz... ');
+                $("#loading-image-wrMil").loadImager('removeLoadImage');
             }
         })
         aj.ajaxCall('call');
     }
-    /**
-    * reset warranty Type Form
-    * @author Ceydacan Seyrek
-    * @since 13/08/2018
-    */
+ /**
+ * reset warranty mileage Form
+ * @author Ceydacan Seyrek
+ * @since 13/08/2018
+ */
 
-    window.resetwrTypeForm = function () {
-        $("#loading-image-wrType").loadImager('removeLoadImage');
-        $("#loading-image-wrType").loadImager('appendImage');
+    window.resetwrMilForm = function () {
+        $("#loading-image-wrMil").loadImager('removeLoadImage');
+        $("#loading-image-wrMil").loadImager('appendImage');
 
-        $('#wrTypeForm').validationEngine('hide');
-
-        $("#loading-image-wrType").loadImager('removeLoadImage');
+        $('#wrMilForm').validationEngine('hide');
+        
+        $("#loading-image-wrMil").loadImager('removeLoadImage');
 
         return false;
     }
 
 
     /**
-    * insert Warranty Type Wrapper
+    * insert Warranty Mileage Wrapper
     * @author Ceydacan Seyrek
     * @since 13/08/2018
     */
 
-    window.insertwrTypeWrapper = function (e) {
+    window.insertwrMilWrapper = function (e) {
         e.preventDefault();
 
-        if ($("#wrTypeForm").validationEngine('validate')) {
+        if ($("#wrMilForm").validationEngine('validate')) {
 
-            insertwrType();
+            insertwrMil();
         }
         return false;
     }
 
 
     /**
-    * Fill Warranty Type form
+    * Fill Warranty Mileage form
     * @author Ceydacan Seyrek
     * @since 13/08/2018
     */
 
-    window.fillwrTypeForm = function (data) {
-        $("#loading-image-wrType").loadImager('removeLoadImage');
-        $("#loading-image-wrType").loadImager('appendImage');
+    window.fillwrMilForm = function (data) {
+        $("#loading-image-wrMil").loadImager('removeLoadImage');
+        $("#loading-image-wrMil").loadImager('appendImage');
 
-        document.getElementById("txt-wrType-name").value = data.StoreCity;
-
-        $("#loading-image-wrType").loadImager('removeLoadImage');
+        document.getElementById("txt-wrMil-name").value = data.SaleAmount;
+    
+        $("#loading-image-wrMil").loadImager('removeLoadImage');
 
         return false;
     }
