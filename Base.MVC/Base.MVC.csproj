@@ -30,6 +30,9 @@
     <Content Update="Views\Sys\City.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Sys\WarrantyType.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Sys\Test.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -57,7 +60,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\FxRate\" />
     <Folder Include="wwwroot\adm\plugins\font-awesome-5.1.1\" />
   </ItemGroup>
 
