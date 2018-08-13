@@ -29,6 +29,10 @@ $(document).ready(function () {
     var langCode = $("#langCode").val();
     //alert(langCode);
 
+
+    $('#countryForm').validationEngine();
+
+
     /* devexgrid */
     var orders = new DevExpress.data.CustomStore({
         load: function (loadOptions) {
