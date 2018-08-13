@@ -14,11 +14,11 @@ using Newtonsoft.Json;
 
 namespace Base.MVC.Controllers
 {
-    public class FxrateController : Controller
+    public class SysController : Controller
     {
 
         private readonly IDistributedCache _distributedCache;
-        public FxrateController(IDistributedCache distributedCache)
+        public SysController(IDistributedCache distributedCache)
         {
             _distributedCache = distributedCache;
         }
@@ -31,10 +31,29 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
 
-        public async Task<IActionResult> FxRate()
+        public async Task<IActionResult> Country()
         {
             return View();
         }
 
+        public async Task<IActionResult> State()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> City()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Test()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> FxRate()
+        {
+            return View();
+        }
     }
 }
