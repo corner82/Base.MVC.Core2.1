@@ -166,8 +166,8 @@ $(document).ready(function () {
         editing: {
             //mode: "batch"
             mode: "form",
-            allowAdding: true,
-            allowUpdating: true,
+            //allowAdding: true,
+            //allowUpdating: true,
             allowDeleting: true,
             useIcons: true
         },
