@@ -39,6 +39,9 @@
     <Content Update="Views\Sys\City.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Sys\WarrantyName.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Sys\WarrantyType.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
