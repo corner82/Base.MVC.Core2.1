@@ -70,6 +70,11 @@ namespace Base.MVC.Controllers
         {
             return View();
         }
+        //Contact Person Role
+        public async Task<IActionResult> CPRole()
+        {
+            return View();
+        }
 
         public async Task<IActionResult> Test()
         {
