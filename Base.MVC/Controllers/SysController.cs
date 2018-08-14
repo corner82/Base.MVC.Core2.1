@@ -46,6 +46,11 @@ namespace Base.MVC.Controllers
             return View();
         }
 
+        public async Task<IActionResult> CustomerGrp()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> Test()
         {
             return View();
