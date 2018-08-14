@@ -51,6 +51,16 @@ namespace Base.MVC.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Segment()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Sector()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> Test()
         {
             return View();
@@ -67,6 +77,11 @@ namespace Base.MVC.Controllers
         }
 
         public async Task<IActionResult> WarrantyMil()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> WarrantyName()
         {
             return View();
         }
