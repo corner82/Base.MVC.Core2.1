@@ -27,6 +27,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\Sys\VehicleModel.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Sys\VehicleKitType.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Sys\CPRole.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

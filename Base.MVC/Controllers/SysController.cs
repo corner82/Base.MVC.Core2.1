@@ -76,6 +76,16 @@ namespace Base.MVC.Controllers
             return View();
         }
 
+        public async Task<IActionResult> VehicleKitType()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> VehicleModel()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> Test()
         {
             return View();
