@@ -61,6 +61,11 @@ namespace Base.MVC.Controllers
             return View();
         }
 
+        public async Task<IActionResult> ReliabilityRate()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> Test()
         {
             return View();
