@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\adm\dist\js\pages\NewFolder\**" />
+    <Content Remove="wwwroot\adm\dist\js\pages\NewFolder\**" />
+    <EmbeddedResource Remove="wwwroot\adm\dist\js\pages\NewFolder\**" />
+    <None Remove="wwwroot\adm\dist\js\pages\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.1.1" />
 	<PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.1.1" />
@@ -100,6 +107,9 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Shared\AdminBreadCrumbPartial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Warranty\WarrantyIdent.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
   </ItemGroup>
