@@ -123,103 +123,62 @@ $(document).ready(function () {
     donut.redraw();
     });
 
-    activateTabByOrder = function () {
-        if ($('#attached_deals_tab li.active').next('li').find('a:first').hasClass('disabled')) {
-            alert('next tab deactive ');
+    var tabOrganizer = $("#attached_deals_tab").organizeTabs({ tabID: "attached_deals_tab" });
+
+    activateTabByOrder = function (order) {
+        if ($('#attached_deals_tab li:eq('+parseInt(order)+')').find('a:first').hasClass('disabled')) {
+            alert('next tab active order ');
         } else {
-            $('#attached_deals_tab li.active').removeClass("active").find('a:first').attr("aria-expanded", "false").parent("li").next('li').addClass("active").find("a:first").attr("aria-expanded", "true");
-            $('#attached_deals_tab li.active').removeClass("active").find('a:first').tab('show');
+            alert('next tab active order 2 ');
+            $('#attached_deals_tab li:eq('+parseInt(order)+')').removeClass("active").find('a:first').attr("aria-expanded", "false").parent("li").next('li').addClass("active").find("a:first").attr("aria-expanded", "true");
+            $('#attached_deals_tab li:eq('+parseInt(order)+')').removeClass("active").find('a:first').tab('show');
         }
 
     }
-
-    activateNextTab = function () {
-        if ($('#attached_deals_tab li.active').next('li').find('a:first').hasClass('disabled')) {
-            alert('next tab deactive ');
-        } else {
-            $('#attached_deals_tab li.active').removeClass("active").find('a:first').attr("aria-expanded", "false").parent("li").next('li').addClass("active").find("a:first").attr("aria-expanded", "true");
-            $('#attached_deals_tab li.active').removeClass("active").find('a:first').tab('show');
-        }
-       
-    }
-
-    activatePrevTab = function () {
-        if ($('#attached_deals_tab li.active').prev('li').find('a:first').hasClass('disabled')) {
-            alert('next tab active already ');
-            
-        } else {
-            $('#attached_deals_tab li.active').removeClass("active").find('a:first').attr("aria-expanded", "false").parent("li").prev('li').addClass("active").find("a:first").attr("aria-expanded", "true");
-            $('#attached_deals_tab li.active').removeClass("active").find('a:first').tab('show');
-        }
-    }
-
-    $('#attached_deals_tab a').click(function (e) {
-        //alert('click tag');
-        if ($(this).hasClass("disabled")) {
-            e.preventDefault();
-            e.stopPropagation();
-            e.stopImmediatePropagation();
-            return false;
-
-        }
-    });
-
-    disableActiveTabs = function () {
-        $('#attached_deals_tab  li').not('.active').find("a:first").addClass('disabled');
-        $('#attached_deals_tab  li').not('.active').find("a:first").removeAttr('data-toggle');
-    }
-
-    enableableNotActiveTabs = function () {
-        /*if ($('#attached_deals_tab  li.dropdown-toggle').not('.active')) {
-            alert("test1");
-            $('#attached_deals_tab  li.dropdown-toggle').not('.active').find("a.disabled").removeClass('disabled').attr("data-toggle", "dropdown");
-        } else {
-            alert("test2");
-            $('#attached_deals_tab  li').not('.active').find("a.disabled").removeClass('disabled').attr("data-toggle", "tab");
-        }*/
-        $('#attached_deals_tab li').not('.active').find("a.dropdown-toggle.disabled").removeClass('disabled').attr("data-toggle", "dropdown");
-        $('#attached_deals_tab li').not('.active').find("a.disabled").removeClass('disabled').attr("data-toggle", "tab");
-        //$('#attached_deals_tab  li').not('.active').find("a:first").removeAttr('data-toggle');
-    }
-
 
     //tab 1_1 sonraki ytab butonu
     $('#tab_next_1').click(function (e) {
-        alert("tab next 1_1");
-        activateNextTab();
-       
-       /* $('#attached_deals_tab li.active').removeClass("active").find('a:first').attr("aria-expanded", "false").parent("li").next('li').addClass("active").find("a:first").attr("aria-expanded", "true");
-        $('#attached_deals_tab li.active').removeClass("active").find('a:first').tab('show');*/
+        $("#attached_deals_tab").organizeTabs('activateNextTab');
     });
 
     //tab 1_1 aktif yap butonu
     $('#tab_active_1').click(function () {
-        alert("tab active 1_1");
-        enableableNotActiveTabs();
+        $("#attached_deals_tab").organizeTabs('enableAllTabs');
+    });
+
+    //tab 1_1 order by aktif yap butonu
+    $('#tab_active_order_1').click(function () {
+        $("#attached_deals_tab").organizeTabs('activateTabByOrder', '2');
+    });
+    
+    //tab 1_1 order by enable  yap butonu
+    $('#tab_enable_order_1').click(function () {
+        $("#attached_deals_tab").organizeTabs('enableTabByOrder', '1');
     });
 
     //tab 1_1 pasif yap butonu
     $('#tab_passive_1').click(function () {
-        alert("tab passive 1_1");
-        disableActiveTabs();
+        $("#attached_deals_tab").organizeTabs('disableAllTabs');
     });
 
     //tab 2_1 sonraki ytab butonu
     $('#tab_next_2').click(function (e) {
-        alert("tab next 2_2");
-        activateNextTab();
-
-        /* $('#attached_deals_tab li.active').removeClass("active").find('a:first').attr("aria-expanded", "false").parent("li").next('li').addClass("active").find("a:first").attr("aria-expanded", "true");
-         $('#attached_deals_tab li.active').removeClass("active").find('a:first').tab('show');*/
+        $("#attached_deals_tab").organizeTabs('activateNextTab');
     });
 
     //tab 2_1 önceki tab butonu
     $('#tab_before_2').click(function (e) {
-        alert("tab before 2_2");
-        activatePrevTab();
+        $("#attached_deals_tab").organizeTabs('activatePrevTab');
+    });
 
-        /* $('#attached_deals_tab li.active').removeClass("active").find('a:first').attr("aria-expanded", "false").parent("li").next('li').addClass("active").find("a:first").attr("aria-expanded", "true");
-         $('#attached_deals_tab li.active').removeClass("active").find('a:first').tab('show');*/
+    //tab 2_1 aktif yap butonu
+    $('#tab_active_2').click(function () {
+        $("#attached_deals_tab").organizeTabs('enableAllTabs');
+    });
+
+    //tab 2_1 pasif yap butonu
+    $('#tab_passive_2').click(function () {
+        $("#attached_deals_tab").organizeTabs('disableAllTabsButOne');
     });
     
 

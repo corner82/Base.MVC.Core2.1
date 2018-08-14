@@ -34,285 +34,6 @@
         background: 'yellow'
     };
 
-    $.fn.headerSetterAfterSales = function (data, options) {
-        var data = data;
-        var opts = $.extend({}, $.fn.headerSetterAfterSales.defaults, options);
-        return this.each(function () {
-            $this = $(this);
-            if (typeof data != 'undefined') {
-                $this.find('div:first h3:first-child').html(data.A);
-                //$.number( 5020.2364 )
-                //$this.find('p:first').html(data.ACIKLAMA);
-            }
-        });
-    };
-    $.fn.headerSetterAfterSalesStocks = function (data, options) {
-        var data = data;
-        var opts = $.extend({}, $.fn.headerSetterAfterSales.defaults, options);
-        return this.each(function () {
-            $this = $(this);
-            //console.log('explug değer-->'+data.A);
-            if (typeof data != 'undefined') {
-                $this.find('div:first h3:first-child').html($.number(data.A) + ' &#x20BA');
-                //$.number( 5020.2364 )
-                //$this.find('p:first').html(data.ACIKLAMA);
-            }
-        });
-    };
-
-    $.fn.headerSetterAfterSalesStocksNew = function (data, options) {
-        var data = data;
-        var opts = $.extend({}, $.fn.headerSetterAfterSales.defaults, options);
-        return this.each(function () {
-            $this = $(this);
-            console.log('explug değer-->' + data.A);
-            if (typeof data != 'undefined') {
-                $this.find('div:first h3:first-child').html($.number(data.A) + ' &#x20BA');
-                //$.number( 5020.2364 )
-                //$this.find('p:first').html(data.ACIKLAMA);
-            }
-        });
-    };
-
-    $.fn.headerSetterAfterSalesYedekParcaDashboard = function (data, options) {
-        var data = data;
-        var opts = $.extend({}, $.fn.headerSetterAfterSales.defaults, options);
-        return this.each(function () {
-            $this = $(this);
-            if (typeof data != 'undefined') {
-                $this.find('div:first h3:first-child').html(data + ' &#x20BA');
-                //$.number( 5020.2364 )
-                //$this.find('p:first').html(data.ACIKLAMA);
-            }
-        });
-    };
-
-    $.fn.headerSetterAfterSalesDowntime = function (data, options) {
-        var data = data;
-        var opts = $.extend({}, $.fn.headerSetterAfterSales.defaults, options);
-        return this.each(function () {
-            $this = $(this);
-            if (typeof data != 'undefined') {
-                $this.find('div:first h3:first-child').html(data);
-                //$.number( 5020.2364 )
-                //$this.find('p:first').html(data.ACIKLAMA);
-            }
-        });
-    };
-
-    $.fn.headerSetter.defaults = {
-        class: 'test',
-        background: 'yellow'
-    };
-
-    $.fn.headerSetterAfterSalesInvoices = function (data, options) {
-        var opts = $.extend({}, $.fn.headerSetterAfterSalesInvoices.defaults, options);
-        var data = data;
-        return this.each(function () {
-            $this = $(this);
-            if (typeof data != 'undefined') {
-                $this.find('h3:first').remove();
-                $this.find('span:first ').html(data.A + ' ' + window.lang.translate('piece'));
-                //$this.find('span:last').html(data.ACIKLAMA);
-            }
-        });
-    };
-    $.fn.headerSetterAfterSalesInvoices.defaults = {
-        class: 'test',
-        background: 'yellow'
-    };
-
-    $.fn.headerSetterAfterSalesInvoicesNew = function (data, options) {
-        var opts = $.extend({}, $.fn.headerSetterAfterSalesInvoices.defaults, options);
-        var data = data;
-        return this.each(function () {
-            $this = $(this);
-            if (typeof data != 'undefined') {
-                $this.find('h3:first').remove();
-                if (data.A == null) data.A = 0;
-                $this.find('span:first ').html(data.A + ' &#x20BA');
-                //$this.find('span:last').html(data.ACIKLAMA);
-            }
-        });
-    };
-
-    $.fn.headerSetterAfterSalesCiro = function (data, options) {
-        var opts = $.extend({}, $.fn.headerSetterAfterSalesCiro.defaults, options);
-        var data = data;
-        return this.each(function () {
-            $this = $(this);
-            if (typeof data != 'undefined') {
-                $this.find('h3:first').remove();
-                $this.find('span:first ').html($.fn.numFormatter(data.A));
-                $this.find('span:first ').html(data.A);
-                //$this.find('span:nth-child(2)').html(data.ACIKLAMA);
-            }
-        });
-    };
-    $.fn.headerSetterAfterSalesCiro.defaults = {
-        class: 'test',
-        background: 'yellow'
-    };
-
-    $.fn.headerSetterAfterSalesMusteriCompare = function (todayData, yesterdayData, options) {
-        var today = parseInt(todayData);
-        var yesterday = parseInt(yesterdayData);
-        var yuzde;
-        $this = $(this);
-        var opts = $.extend({}, $.fn.headerSetterAfterSalesMusteriCompare.defaults, options);
-        //console.log(opts);
-
-        if (today != null && yesterday != null) {
-            if (today > yesterday) {
-                //alert('bugün datası daha büyük');
-                yuzde = $.fn.yuzdeHesaplaGreater(today, yesterday);
-                //console.log(yuzde);
-                $this.find('div:first').css("width", yuzde + "%");
-                if (yuzde == 0) {
-                    $this.next().html(window.lang.translate('Too high compared to the previous day'));
-                } else {
-                    $this.next().html(window.lang.translate('More than the previous day') + '  ' + yuzde + '%');
-                }
-            } else if (yesterday > today) {
-                //alert('dün datası daha büyük');
-                yuzde = $.fn.yuzdeHesaplaLittle(today, yesterday);
-                //console.log(yuzde);
-                $this.find('div:first').css("width", yuzde + "%");
-                if (yuzde == 0) {
-                    $this.next().html(window.lang.translate('Too low compared to the previous day'));
-                } else {
-                    $this.next().html(window.lang.translate('Lower the previous day') + '  ' + yuzde + '%');
-                }
-            } else if (yesterday = today) {
-                //alert('dün datası == bugün datası');
-                $this.find('div:first').css("width", "0%");
-                $this.next().html(window.lang.translate('Equal to previous day'));
-            }
-        }
-    };
-    $.fn.headerSetterAfterSalesMusteriCompare.defaults = {
-        compare: 'today_little',
-    };
-
-    $.fn.headerSetterAfterSalesCiroCompare = function (todayData, yesterdayData, options) {
-        var today = parseInt(todayData);
-        var yesterday = parseInt(yesterdayData);
-        var yuzde;
-        $this = $(this);
-        var opts = $.extend({}, $.fn.headerSetterAfterSalesCiroCompare.defaults, options);
-        //console.log(opts);
-
-        if (today != null && yesterday != null) {
-            if (today > yesterday) {
-                //alert('bugün datası daha büyük');
-                yuzde = $.fn.yuzdeHesaplaGreater(today, yesterday);
-                //console.log(yuzde);
-                $this.find('div:first').css("width", yuzde + "%");
-                if (yuzde == 0) {
-                    $this.next().html(window.lang.translate('Too high compared to the previous day'));
-                } else {
-                    $this.next().html(window.lang.translate('More than the previous day') + '  ' + yuzde + '%');
-                }
-            } else if (yesterday > today) {
-                //alert('dün datası daha büyük');
-                yuzde = $.fn.yuzdeHesaplaLittle(today, yesterday);
-                //console.log(yuzde);
-                $this.find('div:first').css("width", yuzde + "%");
-                if (yuzde == 0) {
-                    $this.next().html(window.lang.translate('Too low compared to the previous day'));
-                } else {
-                    $this.next().html(window.lang.translate('Lower the previous day') + '  ' + yuzde + '%');
-                }
-            } else if (yesterday = today) {
-                //alert('dün datası == bugün datası');
-                $this.find('div:first').css("width", "0%");
-                $this.next().html(window.lang.translate('Equal to previous day'));
-            }
-        }
-
-    };
-    $.fn.headerSetterAfterSalesCiroCompare.defaults = {
-        compare: 'today_little',
-    };
-
-    $.fn.yuzdeHesaplaGreater = function (todayData, yesterdayData, opts) {
-        var today = parseInt(todayData);
-        var yesterday = parseInt(yesterdayData);
-
-        if (today > 0 && yesterday > 0) {
-            var yuzde = Math.floor((yesterday / today) * 100);
-            //console.log(yuzde);
-            if (yuzde < 100) {
-                return 100 - yuzde;
-            } else {
-                return 0;
-            }
-        } else {
-            return 0;
-        }
-    };
-
-    $.fn.yuzdeHesaplaLittle = function (todayData, yesterdayData) {
-        var today = parseInt(todayData);
-        var yesterday = parseInt(yesterdayData);
-
-        if (today > 0 && yesterday > 0) {
-            //alert('yuzdeHesaplaLittle');
-            var yuzde = Math.floor((today / yesterday) * 100);
-            //var yuzde2 = Math.floor(today/(yesterday*100));
-            //console.log(yuzde);
-            if (yuzde < 100) {
-                return 100 - yuzde;
-            } else {
-                return 0;
-            }
-            //console.log(yuzde2);
-        } else {
-            return 0;
-        }
-
-    };
-
-    $.fn.yuzdeHesaplaGreaterBayiFaturalar = function (todayData, yesterdayData, opts) {
-        var today = parseInt(todayData);
-        var yesterday = parseInt(yesterdayData);
-
-        if (today > 0 && yesterday > 0) {
-            var yuzde = Math.floor((yesterday / today) * 100);
-            //console.log(yuzde);
-            if (yuzde < 100) {
-                //return 100-yuzde;
-                return yuzde;
-            } else {
-                return 0;
-            }
-        } else {
-            return 0;
-        }
-    };
-
-    $.fn.yuzdeHesaplaLittleBayiFaturalar = function (todayData, yesterdayData) {
-        var today = parseInt(todayData);
-        var yesterday = parseInt(yesterdayData);
-
-        if (today > 0 && yesterday > 0) {
-            //alert('yuzdeHesaplaLittle');
-            var yuzde = Math.floor((today / yesterday) * 100);
-            //var yuzde2 = Math.floor(today/(yesterday*100));
-            //console.log(yuzde);
-            if (yuzde < 100) {
-                //return 100-yuzde;
-                return yuzde;
-            } else {
-                return yuzde - 100;
-            }
-            //console.log(yuzde2);
-        } else {
-            return 0;
-        }
-
-    };
-
 }(jQuery));
 
 
@@ -2442,6 +2163,148 @@
                 $('#' + self.options.containerId + '').append(breadcrumb);
             }
         }
+
+    });
+
+    /**
+     * navigate, active, passive bootstrap 3 tabs
+     * @author Mustafa Zeynel Dağlı
+     * @since 13/08/2018
+     */
+    $.widget("sanalfabrika.organizeTabs", {
+        /**
+         * Default options.
+         * @returns {null}
+         */
+        options: {
+            tabID : "domTabID",
+
+        },
+        /**
+         * private constructor method for jquery widget
+         * @returns {null}
+         */
+        _create: function () {
+            var self = this;
+            $('#'+self.options.tabID+' a').click(function (e) {
+                //alert('click tag');
+                if ($(this).hasClass("disabled")) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+                    return false;
+
+                }
+            }); 
+        },
+
+        /**
+         * activate next tab without tab active/passive control
+         * @author Mustafa Zeynel Dağlı
+         * @since 14/08/2018
+         */
+        activateNextTab: function () {
+            var self = this;
+            $('#' + self.options.tabID + ' li.active').removeClass("active").find('a:first').attr("aria-expanded", "false").parent("li").next('li').addClass("active").find("a:first").attr("aria-expanded", "true");
+            $('#' + self.options.tabID + ' li.active').removeClass("active").find('a:first').tab('show');
+            /*if ($('#' + self.options.tabID + ' li.active').next('li').find('a:first').hasClass('disabled')) {
+                console.log('tab to be activated has been disabled before');
+            } else {
+                $('#'+self.options.tabID+' li.active').removeClass("active").find('a:first').attr("aria-expanded", "false").parent("li").next('li').addClass("active").find("a:first").attr("aria-expanded", "true");
+                $('#'+self.options.tabID+' li.active').removeClass("active").find('a:first').tab('show');
+            }*/
+        },
+
+        /**
+         * activate prev tab without tab active/passive control
+         * @author Mustafa Zeynel Dağlı
+         * @since 14/08/2018
+         */
+        activatePrevTab: function () {
+            var self = this;           
+            $('#' + self.options.tabID + ' li.active').removeClass("active").find('a:first').attr("aria-expanded", "false").parent("li").prev('li').addClass("active").find("a:first").attr("aria-expanded", "true");
+            $('#' + self.options.tabID + ' li.active').removeClass("active").find('a:first').tab('show');
+            /*if ($('#' + self.options.tabID + ' li.active').prev('li').find('a:first').hasClass('disabled')) {
+                console.log('tab to be activated has been disabled before');
+            } else {
+                $('#' + self.options.tabID + ' li.active').removeClass("active").find('a:first').attr("aria-expanded", "false").parent("li").prev('li').addClass("active").find("a:first").attr("aria-expanded", "true");
+                $('#' + self.options.tabID + ' li.active').removeClass("active").find('a:first').tab('show');
+            }*/
+        },
+
+        /**
+         * activate tab by order without tab active/passive control
+         * @author Mustafa Zeynel Dağlı
+         * @since 14/08/2018
+         */
+        activateTabByOrder: function (order) {
+            var self = this;
+            $('#' + self.options.tabID + ' li:eq(' + parseInt(order) + ')').removeClass("active").find('a:first').attr("aria-expanded", "false").parent("li").next('li').addClass("active").find("a:first").attr("aria-expanded", "true");
+            $('#' + self.options.tabID + ' li:eq(' + parseInt(order) + ')').removeClass("active").find('a:first').tab('show');
+            /*if ($('#' + self.options.tabID + ' li:eq(' + parseInt(order) + ')').find('a:first').hasClass('disabled')) {
+                console.log('tab to be activated has been disabled before');
+            } else {
+                alert('next tab active order 2 ');
+                $('#' + self.options.tabID + ' li:eq(' + parseInt(order) + ')').removeClass("active").find('a:first').attr("aria-expanded", "false").parent("li").next('li').addClass("active").find("a:first").attr("aria-expanded", "true");
+                $('#' + self.options.tabID + ' li:eq(' + parseInt(order) + ')').removeClass("active").find('a:first').tab('show');
+            }*/
+        },
+
+        /**
+         * disable all tabs without tab disable/enable control
+         * @author Mustafa Zeynel Dağlı
+         * @since 14/08/2018
+         */
+        disableAllTabs: function () {
+            var self = this;
+            $('#' + self.options.tabID + '  li').find("a:first").addClass('disabled');
+            $('#' + self.options.tabID + '  li').find("a:first").removeAttr('data-toggle');
+        },
+
+        /**
+         * disable all tabs but the one tab is active
+         * @author Mustafa Zeynel Dağlı
+         * @since 14/08/2018
+         */
+        disableAllTabsButOne: function () {
+            var self = this;
+            $('#' + self.options.tabID + '  li').not('.active').find("a:first").addClass('disabled');
+            $('#' + self.options.tabID + '  li').not('.active').find("a:first").removeAttr('data-toggle');
+        },
+
+        /**
+         * disable tab by order without tab disable/enable control
+         * @author Mustafa Zeynel Dağlı
+         * @since 14/08/2018
+         */
+        disableTabByOrder: function (order) {
+            var self = this;
+            $('#' + self.options.tabID + '  li:eq(' + parseInt(order) + ')').find("a:first").addClass('disabled');
+            $('#' + self.options.tabID + '  li:eq(' + parseInt(order) + ')').find("a:first").removeAttr('data-toggle');
+        },
+
+        /**
+         * enable all tabs  without tab disable/enable control
+         * @author Mustafa Zeynel Dağlı
+         * @since 14/08/2018
+         */
+        enableAllTabs: function () {
+            var self = this;
+            $('#' + self.options.tabID + ' li').not('.active').find("a.dropdown-toggle.disabled").removeClass('disabled').attr("data-toggle", "dropdown");
+            $('#' + self.options.tabID + ' li').not('.active').find("a.disabled").removeClass('disabled').attr("data-toggle", "tab");
+        },
+
+        /**
+         * enable tab by order without tab disable/enable control
+         * @author Mustafa Zeynel Dağlı
+         * @since 14/08/2018
+         */
+        enableTabByOrder: function (order) {
+            var self = this;
+            $('#' + self.options.tabID + ' li:eq(' + parseInt(order) + ')').not('.active').find("a.dropdown-toggle.disabled").removeClass('disabled').attr("data-toggle", "dropdown");
+            $('#' + self.options.tabID + ' li:eq(' + parseInt(order) + ')').not('.active').find("a.disabled").removeClass('disabled').attr("data-toggle", "tab");
+        },
+
 
     });
 
