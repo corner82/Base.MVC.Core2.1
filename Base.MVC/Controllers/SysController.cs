@@ -51,6 +51,41 @@ namespace Base.MVC.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Segment()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Sector()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> ReliabilityRate()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Brand()
+        {
+            return View();
+        }
+        //Contact Person Role
+        public async Task<IActionResult> CPRole()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> VehicleKitType()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> VehicleModel()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> Test()
         {
             return View();
