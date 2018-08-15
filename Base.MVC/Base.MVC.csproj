@@ -43,6 +43,9 @@
     <Content Update="Views\Sys\TNofVehicles.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Sys\Vehicle.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Sys\VehicleModel.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
