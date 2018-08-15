@@ -135,5 +135,10 @@ namespace Base.MVC.Controllers
         {
             return View();
         }
+
+        public async Task<IActionResult> DemoReqType()
+        {
+            return View();
+        }
     }
 }

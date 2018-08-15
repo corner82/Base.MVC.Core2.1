@@ -67,6 +67,9 @@
     <Content Update="Views\Sys\Sector.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Sys\DemoReqType.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Sys\WarrantyMil.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
