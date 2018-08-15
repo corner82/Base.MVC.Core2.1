@@ -21,16 +21,16 @@ $(document).ready(function () {
     * @author Gül Özdemir
     * @since 15/08/2016
     */
-    //to annuelrevenue form
-    $("#loading-image-annuelrevenue").loadImager();
-    //to annuelrevenue form grid loading-image
-    $("#loading-image-annuelrevenueGrid").loadImager();
+    //to annualrevenue form
+    $("#loading-image-annualrevenue").loadImager();
+    //to annualrevenue form grid loading-image
+    $("#loading-image-annualrevenueGrid").loadImager();
    
     var langCode = $("#langCode").val();
     //alert(langCode);
 
 
-    $('#annuelrevenueForm').validationEngine();
+    $('#annualrevenueForm').validationEngine();
 
 
     /* devexgrid */
@@ -143,14 +143,14 @@ $(document).ready(function () {
         },
 
         columns: [{
-            caption: "Annuel Revenue",
+            caption: "Annual Revenue",
             dataField: "StoreCity"
         }],
 
         onSelectionChanged: function (selectedItems) {
             var data = selectedItems.selectedRowsData[0];
             if (data) {
-                fillAnnuelRevenueForm(data);
+                fillAnnualRevenueForm(data);
             }
         }
 
@@ -171,74 +171,74 @@ $(document).ready(function () {
  * @since 15/08/2018
  */
 
-    window.insertAnnuelrevenue = function () {
-        $("#loading-image-annuelrevenue").loadImager('removeLoadImage');
-        $("#loading-image-annuelrevenue").loadImager('appendImage');
+    window.insertAnnualrevenue = function () {
+        $("#loading-image-annualrevenue").loadImager('removeLoadImage');
+        $("#loading-image-annualrevenue").loadImager('appendImage');
 
-        var annuelrevenue_name = $('#txt-annuelrevenue-name').val();
+        var annualrevenue_name = $('#txt-annualrevenue-name').val();
 
         var aj = $(window).ajaxCall({
             proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
             data: {
-                url: 'pkInsert_sysannuelrevenue',
+                url: 'pkInsert_sysannualrevenue',
                 
-                name: annuelrevenue_name,
+                name: annualrevenue_name,
                 pk: $("#pk").val()
             }
         })
         aj.ajaxCall({
             onError: function (event, textStatus, errorThrown) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'annuelrevenue Ekleme İşlemi Başarısız...',
-                    'annuelrevenue Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
-                console.error('"pkInsert_sysAnnuelrevenue" servis hatası->' + textStatus);
-                $("#loading-image-annuelrevenue").loadImager('removeLoadImage');
+                dm.dangerMessage('show', 'annualrevenue Ekleme İşlemi Başarısız...',
+                    'annualrevenue Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
+                console.error('"pkInsert_sysAnnualrevenue" servis hatası->' + textStatus);
+                $("#loading-image-annualrevenue").loadImager('removeLoadImage');
             },
             onSuccess: function (event, data) {
                 console.log(data);
                 var data = data;
                 sm.successMessage({
                     onShown: function (event, data) {
-                        $('#annuelrevenueForm')[0].reset();
+                        $('#annualrevenueForm')[0].reset();
 
-                        $("#loading-image-annuelrevenue").loadImager('removeLoadImage');
+                        $("#loading-image-annualrevenue").loadImager('removeLoadImage');
 
                     }
                 });
-                sm.successMessage('show', 'annuelrevenue Kayıt İşlemi Başarılı...',
-                    'annuelrevenue kayıt işlemini gerçekleştirdiniz... ',
+                sm.successMessage('show', 'annualrevenue Kayıt İşlemi Başarılı...',
+                    'annualrevenue kayıt işlemini gerçekleştirdiniz... ',
                     data);
-                $("#loading-image-annuelrevenue").loadImager('removeLoadImage');
+                $("#loading-image-annualrevenue").loadImager('removeLoadImage');
 
             },
             onErrorDataNull: function (event, data) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'annuelrevenue Kayıt İşlemi Başarısız...',
-                    'annuelrevenue kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysannuelrevenue" servis datası boştur!!');
-                $("#loading-image-annuelrevenue").loadImager('removeLoadImage');
+                dm.dangerMessage('show', 'annualrevenue Kayıt İşlemi Başarısız...',
+                    'annualrevenue kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
+                console.error('"pkInsert_sysannualrevenue" servis datası boştur!!');
+                $("#loading-image-annualrevenue").loadImager('removeLoadImage');
             },
             onErrorMessage: function (event, data) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'annuelrevenue Kayıt İşlemi Başarısız...',
-                    'annuelrevenue kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysAnnuelrevenue" servis datası boştur!!');
-                $("#loading-image-annuelrevenue").loadImager('removeLoadImage');
+                dm.dangerMessage('show', 'annualrevenue Kayıt İşlemi Başarısız...',
+                    'annualrevenue kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
+                console.error('"pkInsert_sysAnnualrevenue" servis datası boştur!!');
+                $("#loading-image-annualrevenue").loadImager('removeLoadImage');
             },
             onError23503: function (event, data) {
                 dm.dangerMessage('Error23503');
-                $("#loading-image-annuelrevenue").loadImager('removeLoadImage');
+                $("#loading-image-annualrevenue").loadImager('removeLoadImage');
             },
             onError23505: function (event, data) {
                 dm.dangerMessage({
                     onShown: function (event, data) {
-                        $('#annuelrevenueForm')[0].reset();
-                        $("#loading-image-annuelrevenue").loadImager('removeLoadImage');
+                        $('#annualrevenueForm')[0].reset();
+                        $("#loading-image-annualrevenue").loadImager('removeLoadImage');
                     }
                 });
                 dm.dangerMessage('show', 'Kayıt İşlemi Başarısız...',
-                    'Aynı isim ile annuelrevenue kaydı yapılmıştır, yeni bir annuelrevenue kaydı deneyiniz... ');
-                $("#loading-image-annuelrevenue").loadImager('removeLoadImage');
+                    'Aynı isim ile annualrevenue kaydı yapılmıştır, yeni bir annualrevenue kaydı deneyiniz... ');
+                $("#loading-image-annualrevenue").loadImager('removeLoadImage');
             }
         })
         aj.ajaxCall('call');
@@ -250,13 +250,13 @@ $(document).ready(function () {
  * @since 15/08/2018
  */
 
-    window.resetAnnuelRevenueForm = function () {
-        $("#loading-image-annuelrevenue").loadImager('removeLoadImage');
-        $("#loading-image-annuelrevenue").loadImager('appendImage');
+    window.resetAnnualRevenueForm = function () {
+        $("#loading-image-annualrevenue").loadImager('removeLoadImage');
+        $("#loading-image-annualrevenue").loadImager('appendImage');
 
-        $('#annuelrevenueForm').validationEngine('hide');
+        $('#annualrevenueForm').validationEngine('hide');
         
-        $("#loading-image-annuelrevenue").loadImager('removeLoadImage');
+        $("#loading-image-annualrevenue").loadImager('removeLoadImage');
 
         return false;
     }
@@ -269,12 +269,12 @@ $(document).ready(function () {
     * @since 15/08/2018
     */
 
-    window.insertAnnuelRevenueWrapper = function (e) {
+    window.insertAnnualRevenueWrapper = function (e) {
         e.preventDefault();
 
-        if ($("#annuelrevenueForm").validationEngine('validate')) {
+        if ($("#annualrevenueForm").validationEngine('validate')) {
 
-            insertAnnuelRevenue();
+            insertAnnualRevenue();
         }
         return false;
     }
@@ -287,13 +287,13 @@ $(document).ready(function () {
     * @since 15/08/2018
     */
 
-    window.fillAnnuelRevenueForm = function (data) {
-        $("#loading-image-annuelrevenue").loadImager('removeLoadImage');
-        $("#loading-image-annuelrevenue").loadImager('appendImage');
+    window.fillAnnualRevenueForm = function (data) {
+        $("#loading-image-annualrevenue").loadImager('removeLoadImage');
+        $("#loading-image-annualrevenue").loadImager('appendImage');
 
-        document.getElementById("txt-annuelrevenue-name").value = data.Employee;
+        document.getElementById("txt-annualrevenue-name").value = data.Employee;
     
-        $("#loading-image-annuelrevenue").loadImager('removeLoadImage');
+        $("#loading-image-annualrevenue").loadImager('removeLoadImage');
 
         return false;
     }
