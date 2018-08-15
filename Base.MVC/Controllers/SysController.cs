@@ -86,6 +86,16 @@ namespace Base.MVC.Controllers
             return View();
         }
 
+        public async Task<IActionResult> TNofVehicles()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> TNofEmployes()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> Test()
         {
             return View();
