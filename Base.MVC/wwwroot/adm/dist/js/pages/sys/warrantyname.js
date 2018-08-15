@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
 
     "use strict";
@@ -13,9 +12,9 @@ $(document).ready(function () {
 
 
     /*
-    * warranty LoadImager
+    * Warranty LoadImager
     * @author Ceydacan Seyrek
-    * @since 14/08/2016
+    * @since 14/08/2018
     */
     //to warranty form
     $("#loading-image-warranty").loadImager();
@@ -245,10 +244,10 @@ $(document).ready(function () {
 
 
     /**
- * insertmodel
+ * insert Warranty
  * @returns {undefined}
  * @author Ceydacan Seyrek
- * @since 14/08/2016
+ * @since 14/08/2018
  */
 
     window.insertmodel = function () {
@@ -269,8 +268,8 @@ $(document).ready(function () {
         aj.ajaxCall({
             onError: function (event, textStatus, errorThrown) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'model Ekleme Ýþlemi Baþarýsýz...',
-                    'model Ekleme Ýþlemi Baþarýsýz..., sistem yöneticisi ile temasa geçiniz... ')
+                dm.dangerMessage('show', 'Warranty Ekleme Ýþlemi Baþarýsýz...',
+                    'Warranty Ekleme Ýþlemi Baþarýsýz..., sistem yöneticisi ile temasa geçiniz... ')
                 console.error('"pkInsert_sysCustomerInfo" servis hatasý->' + textStatus);
                 $("#loading-image-warranty").loadImager('removeLoadImage');
             },
@@ -285,7 +284,7 @@ $(document).ready(function () {
 
                     }
                 });
-                sm.successMessage('show', 'model Kayýt Ýþlemi Baþarýlý...',
+                sm.successMessage('show', 'Warranty Kayýt Ýþlemi Baþarýlý...',
                     'model kayýt iþlemini gerçekleþtirdiniz... ',
                     data);
                 $("#loading-image-warranty").loadImager('removeLoadImage');
@@ -293,15 +292,15 @@ $(document).ready(function () {
             },
             onErrorDataNull: function (event, data) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Müþteri Kontak Kiþi Kayýt Ýþlemi Baþarýsýz...',
-                    'Müþteri Kontak Kiþi kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
+                dm.dangerMessage('show', 'Warranty Kayýt Ýþlemi Baþarýsýz...',
+                    'Warranty kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysCustomerContactPerson" servis datasý boþtur!!');
                 $("#loading-image-warranty").loadImager('removeLoadImage');
             },
             onErrorMessage: function (event, data) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Müþteri Kontak Kiþi Kayýt Ýþlemi Baþarýsýz...',
-                    'Müþteri Kontak Kiþi kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
+                dm.dangerMessage('show', 'Warranty Kayýt Ýþlemi Baþarýsýz...',
+                    'Warrantykayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysCustomerContactPerson" servis datasý boþtur!!');
                 $("#loading-image-model").loadImager('removeLoadImage');
             },
@@ -317,7 +316,7 @@ $(document).ready(function () {
                     }
                 });
                 dm.dangerMessage('show', 'Kayýt Ýþlemi Baþarýsýz...',
-                    'Ayný isim ile Ülke Kiþi kaydý yapýlmýþtýr, yeni birÜlke kaydý deneyiniz... ');
+                    'Ayný isim ile Warranty kaydý yapýlmýþtýr, yeni bir Warranty kaydý deneyiniz... ');
                 $("#loading-image-warranty").loadImager('removeLoadImage');
             }
         })
@@ -327,7 +326,7 @@ $(document).ready(function () {
     * reset model Form
     * @returns {undefined}
     * @author Ceydacan Seyrek
-    * @since 14/08/2016
+    * @since 14/08/2018
     */
 
     window.resetwarrantyForm = function () {
@@ -347,7 +346,7 @@ $(document).ready(function () {
     * insert model Wrapper
     * @returns {Boolean}
     * @author Ceydacan Seyrek
-    * @since 14/08/2016
+    * @since 14/08/2018
     */
 
     window.insertmodelWrapper = function (e) {
@@ -365,7 +364,7 @@ $(document).ready(function () {
     * Fill model form
     * @returns {Boolean}
     * @author Ceydacan Seyrek
-    * @since 14/08/2016
+    * @since 14/08/2018
     */
 
     window.fillwarrantyForm = function (data) {

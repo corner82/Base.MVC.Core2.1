@@ -1,7 +1,7 @@
 /*
 * Warranty Type Form
 * @author Ceydacan Seyrek
-* @since 13/08/2016
+* @since 13/08/2018
 */
 $(document).ready(function () {
 
@@ -19,7 +19,7 @@ $(document).ready(function () {
     /*
     * Warranty Type LoadImager
     * @author Ceydacan Seyrek
-    * @since 13/08/2016
+    * @since 13/08/2018
     */
     //to Warranty Type form
     $("#loading-image-wrType").loadImager();
@@ -184,8 +184,8 @@ $(document).ready(function () {
         aj.ajaxCall({
             onError: function (event, textStatus, errorThrown) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Garanti Type Ekleme Ýþlemi Baþarýsýz...',
-                    'Garanti Type Ekleme Ýþlemi Baþarýsýz..., sistem yöneticisi ile temasa geçiniz... ')
+                dm.dangerMessage('show', 'Warranty Type Ekleme Ýþlemi Baþarýsýz...',
+                    'Warranty Type Ekleme Ýþlemi Baþarýsýz..., sistem yöneticisi ile temasa geçiniz... ')
                 console.error('"pkInsert_sysCustomerInfo" servis hatasý->' + textStatus);
                 $("#loading-image-wrType").loadImager('removeLoadImage');
             },
@@ -200,23 +200,23 @@ $(document).ready(function () {
 
                     }
                 });
-                sm.successMessage('show', 'Garanti Type Kayýt Ýþlemi Baþarýlý...',
-                    'Garanti Type kayýt iþlemini gerçekleþtirdiniz... ',
+                sm.successMessage('show', 'Warranty Type Kayýt Ýþlemi Baþarýlý...',
+                    'Warranty Type kayýt iþlemini gerçekleþtirdiniz... ',
                     data);
                 $("#loading-image-wrType").loadImager('removeLoadImage');
 
             },
             onErrorDataNull: function (event, data) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Müþteri Kontak Kiþi Kayýt Ýþlemi Baþarýsýz...',
-                    'Müþteri Kontak Kiþi kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
+                dm.dangerMessage('show', 'Warranty Type Kayýt Ýþlemi Baþarýsýz...',
+                    'Warranty Type kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysCustomerContactPerson" servis datasý boþtur!!');
                 $("#loading-image-wrType").loadImager('removeLoadImage');
             },
             onErrorMessage: function (event, data) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Müþteri Kontak Kiþi Kayýt Ýþlemi Baþarýsýz...',
-                    'Müþteri Kontak Kiþi kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
+                dm.dangerMessage('show', 'Warranty Type Kayýt Ýþlemi Baþarýsýz...',
+                    'Warranty Type kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysCustomerContactPerson" servis datasý boþtur!!');
                 $("#loading-image-wrType").loadImager('removeLoadImage');
             },
@@ -232,7 +232,7 @@ $(document).ready(function () {
                     }
                 });
                 dm.dangerMessage('show', 'Kayýt Ýþlemi Baþarýsýz...',
-                    'Ayný isim ile Ülke Kiþi kaydý yapýlmýþtýr, yeni birÜlke kaydý deneyiniz... ');
+                    'Ayný isim ile Warranty Type kaydý yapýlmýþtýr, yeni bir Warranty Type kaydý deneyiniz... ');
                 $("#loading-image-wrType").loadImager('removeLoadImage');
             }
         })

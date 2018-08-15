@@ -1,5 +1,5 @@
 /*
-* Demo Location Form
+* Park Off Type Form
 * @author Ceydacan Seyrek
 * @since 15/08/2018
 */
@@ -17,14 +17,14 @@ $(document).ready(function () {
 
 
     /*
-    * demo Location LoadImager
+    * Park Off Type LoadImager
     * @author Ceydacan Seyrek
     * @since 15/08/2018
     */
-    //to demo Location form
-    $("#loading-image-demoLocation").loadImager();
-    //to demo Location form grid loading-image
-    $("#loading-image-demoLocationGrid").loadImager();
+    //to warranty mileage form
+    $("#loading-image-parkoff").loadImager();
+    //to warranty mileage form grid loading-image
+    $("#loading-image-parkoffGrid").loadImager();
 
     var langCode = $("#langCode").val();
     //alert(langCode);
@@ -64,7 +64,7 @@ $(document).ready(function () {
     DevExpress.localization.locale(langCode);
 
 
-    $("#gridContainer_demoLocation").dxDataGrid({
+    $("#gridContainer_parkoff").dxDataGrid({
 
         showColumnLines: true,
 
@@ -139,14 +139,20 @@ $(document).ready(function () {
         },
 
         columns: [{
-            caption: "Demo Location",
+            caption: "Park Off Name",
             dataField: "StoreCity"
-        }],
+        }, {
+            caption: "Park Off Day",
+            dataField: "SaleAmount"
+        }, {
+            caption: "Park Off Comment",
+            dataField: "StoreState"
+            }],
 
         onSelectionChanged: function (selectedItems) {
             var data = selectedItems.selectedRowsData[0];
             if (data) {
-                filldemoLocationForm(data);
+                fillparkoffForm(data);
             }
         }
 
@@ -161,21 +167,21 @@ $(document).ready(function () {
 
 
     /**
- * Demo Location
+ * insertPark Off Type
  * @author Ceydacan Seyrek
  * @since 15/08/2018
  */
 
-    window.insertdemoLocation = function () {
-        $("#loading-image-demoLocation").loadImager('removeLoadImage');
-        $("#loading-image-demoLocation").loadImager('appendImage');
+    window.insertparkoff = function () {
+        $("#loading-image-parkoff").loadImager('removeLoadImage');
+        $("#loading-image-parkoff").loadImager('appendImage');
 
-        var cst_purchaselastupdate = $('#txt-demoLocation-name').val();
+        var cst_purchaselastupdate = $('#txt-country-name').val();
 
         var aj = $(window).ajaxCall({
             proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
             data: {
-                url: 'pkInsert_sysdemoLocation',
+                url: 'pkInsert_sysparkoff',
 
                 name: warrantyMileage_name,
                 pk: $("#pk").val()
@@ -184,108 +190,110 @@ $(document).ready(function () {
         aj.ajaxCall({
             onError: function (event, textStatus, errorThrown) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Demo Location Ekleme Ýþlemi Baþarýsýz...',
-                    'Demo Location Ekleme Ýþlemi Baþarýsýz..., sistem yöneticisi ile temasa geçiniz... ')
+                dm.dangerMessage('show', 'Park Off Type Ekleme Ýþlemi Baþarýsýz...',
+                    'Park Off Type Ekleme Ýþlemi Baþarýsýz..., sistem yöneticisi ile temasa geçiniz... ')
                 console.error('"pkInsert_sysCustomerInfo" servis hatasý->' + textStatus);
-                $("#loading-image-demoLocation").loadImager('removeLoadImage');
+                $("#loading-image-parkoff").loadImager('removeLoadImage');
             },
             onSuccess: function (event, data) {
                 console.log(data);
                 var data = data;
                 sm.successMessage({
                     onShown: function (event, data) {
-                        $('#demoLocationForm')[0].reset();
+                        $('#parkoffForm')[0].reset();
 
-                        $("#loading-image-demoLocation").loadImager('removeLoadImage');
+                        $("#loading-image-parkoff").loadImager('removeLoadImage');
 
                     }
                 });
-                sm.successMessage('show', 'Demo Location Kayýt Ýþlemi Baþarýlý...',
-                    'Demo Location kayýt iþlemini gerçekleþtirdiniz... ',
+                sm.successMessage('show', 'Park Off Type Kayýt Ýþlemi Baþarýlý...',
+                    'Park Off Type kayýt iþlemini gerçekleþtirdiniz... ',
                     data);
-                $("#loading-image-demoLocation").loadImager('removeLoadImage');
+                $("#loading-image-parkoff").loadImager('removeLoadImage');
 
             },
             onErrorDataNull: function (event, data) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Demo Location Kayýt Ýþlemi Baþarýsýz...',
-                    'Demo Location kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
+                dm.dangerMessage('show', 'Park Off Type Kayýt Ýþlemi Baþarýsýz...',
+                    'Park Off Type kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysCustomerContactPerson" servis datasý boþtur!!');
-                $("#loading-image-demoLocation").loadImager('removeLoadImage');
+                $("#loading-image-parkoff").loadImager('removeLoadImage');
             },
             onErrorMessage: function (event, data) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Demo LocationKayýt Ýþlemi Baþarýsýz...',
-                    'Demo Location kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
+                dm.dangerMessage('show', 'Park Off Type Kayýt Ýþlemi Baþarýsýz...',
+                    'Park Off Type kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysCustomerContactPerson" servis datasý boþtur!!');
-                $("#loading-image-demoLocation").loadImager('removeLoadImage');
+                $("#loading-image-parkoff").loadImager('removeLoadImage');
             },
             onError23503: function (event, data) {
                 dm.dangerMessage('Error23503');
-                $("#loading-image-demoLocation").loadImager('removeLoadImage');
+                $("#loading-image-parkoff").loadImager('removeLoadImage');
             },
             onError23505: function (event, data) {
                 dm.dangerMessage({
                     onShown: function (event, data) {
                         $('#customerContactPersonForm')[0].reset();
-                        $("#loading-image-demoLocation").loadImager('removeLoadImage');
+                        $("#loading-image-parkoff").loadImager('removeLoadImage');
                     }
                 });
                 dm.dangerMessage('show', 'Kayýt Ýþlemi Baþarýsýz...',
-                    'Ayný isim ile Demo Location  kaydý yapýlmýþtýr, yeni bir Demo Location kaydý deneyiniz... ');
-                $("#loading-image-demoLocation").loadImager('removeLoadImage');
+                    'Ayný isim ile Park Off Type kaydý yapýlmýþtýr, yeni bir Park Off Type kaydý deneyiniz... ');
+                $("#loading-image-parkoff").loadImager('removeLoadImage');
             }
         })
         aj.ajaxCall('call');
     }
     /**
-    * reset demoLocation Form
+    * reset Park Off Type Form
     * @author Ceydacan Seyrek
     * @since 15/08/2018
     */
 
-    window.resetdemoLocationForm = function () {
-        $("#loading-image-demoLocation").loadImager('removeLoadImage');
-        $("#loading-image-demoLocation").loadImager('appendImage');
+    window.resetparkoffForm = function () {
+        $("#loading-image-parkoff").loadImager('removeLoadImage');
+        $("#loading-image-parkoff").loadImager('appendImage');
 
-        $('#demoLocationForm').validationEngine('hide');
+        $('#parkoffForm').validationEngine('hide');
 
-        $("#loading-image-demoLocation").loadImager('removeLoadImage');
+        $("#loading-image-parkoff").loadImager('removeLoadImage');
 
         return false;
     }
 
 
     /**
-    * insert demoLocation Wrapper
+    * insert Park Off Type Wrapper
     * @author Ceydacan Seyrek
     * @since 15/08/2018
     */
 
-    window.insertdemoLocationWrapper = function (e) {
+    window.insertparkoffWrapper = function (e) {
         e.preventDefault();
 
-        if ($("#demoLocationForm").validationEngine('validate')) {
+        if ($("#parkoffForm").validationEngine('validate')) {
 
-            insertdemoLocation();
+            insertparkoff();
         }
         return false;
     }
 
 
     /**
-    * Fill demo Location form
+    * Fill Park Off Type form
     * @author Ceydacan Seyrek
     * @since 15/08/2018
     */
 
-    window.filldemoLocationForm = function (data) {
-        $("#loading-image-demoLocation").loadImager('removeLoadImage');
-        $("#loading-image-demoLocation").loadImager('appendImage');
+    window.fillparkoffForm = function (data) {
+        $("#loading-image-parkoff").loadImager('removeLoadImage');
+        $("#loading-image-parkoff").loadImager('appendImage');
 
-        document.getElementById("txt-demoLocation-name").value = data.StoreCity;
+        document.getElementById("txt-parkoff-name").value = data.StoreCity;
+        document.getElementById("txt-parkoffday-name").value = data.SaleAmount;
+        document.getElementById("txt-parkoffcomment-name").value = data.StoreState;
 
-        $("#loading-image-demoLocation").loadImager('removeLoadImage');
+        $("#loading-image-parkoff").loadImager('removeLoadImage');
 
         return false;
     }

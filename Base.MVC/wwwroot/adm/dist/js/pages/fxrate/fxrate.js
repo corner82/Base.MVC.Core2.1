@@ -249,7 +249,7 @@ $(document).ready(function () {
     }
 
     /**
-    * insert FxrateInfo
+    * insert Fx Rate Info
     * @returns {undefined}
     * @since 02/08/2018
     */
@@ -280,8 +280,8 @@ $(document).ready(function () {
         aj.ajaxCall({
             onError: function (event, textStatus, errorThrown) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Müþteri Ekleme Ýþlemi Baþarýsýz...',
-                    'Müþteri Ekleme Ýþlemi Baþarýsýz..., sistem yöneticisi ile temasa geçiniz... ')
+                dm.dangerMessage('show', 'Fx Rate Ekleme Ýþlemi Baþarýsýz...',
+                    'Fx Rate Ekleme Ýþlemi Baþarýsýz..., sistem yöneticisi ile temasa geçiniz... ')
                 console.error('"pkInsert_sysCustomerInfo" servis hatasý->' + textStatus);
                 $("#loading-image-cstInfo").loadImager('removeLoadImage');
             },
@@ -303,23 +303,23 @@ $(document).ready(function () {
 
                     }
                 });
-                sm.successMessage('show', 'Müþteri Kayýt Ýþlemi Baþarýlý...',
-                    'Müþteri kayýt iþlemini gerçekleþtirdiniz... ',
+                sm.successMessage('show', 'Fx Rate Kayýt Ýþlemi Baþarýlý...',
+                    'Fx Rate kayýt iþlemini gerçekleþtirdiniz... ',
                     data);
                 $("#loading-image-cstInfo").loadImager('removeLoadImage');
 
             },
             onErrorDataNull: function (event, data) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Müþteri Kayýt Ýþlemi Baþarýsýz...',
-                    'Müþteri kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
+                dm.dangerMessage('show', 'Fx Rate Kayýt Ýþlemi Baþarýsýz...',
+                    'Fx Rate kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysCustomerInfo" servis datasý boþtur!!');
                 $("#loading-image-cstInfo").loadImager('removeLoadImage');
             },
             onErrorMessage: function (event, data) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Müþteri Kayýt Ýþlemi Baþarýsýz...',
-                    'Müþteri kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
+                dm.dangerMessage('show', 'Fx Rate Kayýt Ýþlemi Baþarýsýz...',
+                    'Fx Rate kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysCustomerInfo" servis datasý boþtur!!');
                 $("#loading-image-cstInfo").loadImager('removeLoadImage');
             },
@@ -335,7 +335,7 @@ $(document).ready(function () {
                     }
                 });
                 dm.dangerMessage('show', 'ACL Yetki Kayýt Ýþlemi Baþarýsýz...',
-                    'Ayný isim ile Müþteri  kaydý yapýlmýþtýr, yeni bir Müþteri kaydý deneyiniz... ');
+                    'Ayný isim ile Fx Rate  kaydý yapýlmýþtýr, yeni bir Fx Rate kaydý deneyiniz... ');
                 $("#loading-image-cstInfo").loadImager('removeLoadImage');
             }
         })
@@ -346,7 +346,7 @@ $(document).ready(function () {
     /**
     * reset button function for Customer Info insert form
     * @returns null
-    * @since 14/07/2016
+    * @since 02/08/2018
     */
     var resetCustomerInfoForm = function () {
         $("#loading-image-cstInfo").loadImager('removeLoadImage');

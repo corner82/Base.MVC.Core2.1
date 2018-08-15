@@ -1,7 +1,7 @@
 ﻿/*
-* warranty mileage Form
+* Warranty Mileage Form
 * @author Ceydacan Seyrek
-* @since 13/08/2016
+* @since 13/08/2018
 */
 $(document).ready(function () {
 
@@ -19,7 +19,7 @@ $(document).ready(function () {
     /*
     * warranty mileage LoadImager
     * @author Ceydacan Seyrek
-    * @since 13/08/2016
+    * @since 13/08/2018
     */
     //to warranty mileage form
     $("#loading-image-wrMil").loadImager();
@@ -184,8 +184,8 @@ $(document).ready(function () {
         aj.ajaxCall({
             onError: function (event, textStatus, errorThrown) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'garanti km Ekleme İşlemi Başarısız...',
-                    'garanti km Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
+                dm.dangerMessage('show', 'Warranty Mileage Ekleme İşlemi Başarısız...',
+                    'Warranty Mileage Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
                 console.error('"pkInsert_sysCustomerInfo" servis hatası->' + textStatus);
                 $("#loading-image-wrMil").loadImager('removeLoadImage');
             },
@@ -200,7 +200,7 @@ $(document).ready(function () {
 
                     }
                 });
-                sm.successMessage('show', 'warranty mileage Kayıt İşlemi Başarılı...',
+                sm.successMessage('show', 'Warranty Mileage Kayıt İşlemi Başarılı...',
                     'warranty mileage kayıt işlemini gerçekleştirdiniz... ',
                     data);
                 $("#loading-image-wrMil").loadImager('removeLoadImage');
@@ -208,15 +208,15 @@ $(document).ready(function () {
             },
             onErrorDataNull: function (event, data) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Müşteri Kontak Kişi Kayıt İşlemi Başarısız...',
-                    'Müşteri Kontak Kişi kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
+                dm.dangerMessage('show', 'Warranty MileageKayıt İşlemi Başarısız...',
+                    'Warranty Mileage kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysCustomerContactPerson" servis datası boştur!!');
                 $("#loading-image-wrMil").loadImager('removeLoadImage');
             },
             onErrorMessage: function (event, data) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Müşteri Kontak Kişi Kayıt İşlemi Başarısız...',
-                    'Müşteri Kontak Kişi kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
+                dm.dangerMessage('show', 'Warranty Mileage Kayıt İşlemi Başarısız...',
+                    'Warranty Mileage kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysCustomerContactPerson" servis datası boştur!!');
                 $("#loading-image-wrMil").loadImager('removeLoadImage');
             },
@@ -232,7 +232,7 @@ $(document).ready(function () {
                     }
                 });
                 dm.dangerMessage('show', 'Kayıt İşlemi Başarısız...',
-                    'Aynı isim ile Ülke Kişi kaydı yapılmıştır, yeni birÜlke kaydı deneyiniz... ');
+                    'Aynı isim ile Warranty Mileage kaydı yapılmıştır, yeni bir Warranty Mileage kaydı deneyiniz... ');
                 $("#loading-image-wrMil").loadImager('removeLoadImage');
             }
         })
