@@ -140,5 +140,15 @@ namespace Base.MVC.Controllers
         {
             return View();
         }
+
+        public async Task<IActionResult> BuybackTerrain()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> TradebackTerrain()
+        {
+            return View();
+        }
     }
 }
