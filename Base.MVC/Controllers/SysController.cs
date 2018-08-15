@@ -96,6 +96,11 @@ namespace Base.MVC.Controllers
             return View();
         }
 
+        public async Task<IActionResult> AnnualRevenue()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> Test()
         {
             return View();

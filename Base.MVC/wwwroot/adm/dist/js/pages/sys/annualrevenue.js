@@ -21,9 +21,9 @@ $(document).ready(function () {
     * @author Gül Özdemir
     * @since 15/08/2016
     */
-    //to brand form
+    //to annuelrevenue form
     $("#loading-image-annuelrevenue").loadImager();
-    //to brand form grid loading-image
+    //to annuelrevenue form grid loading-image
     $("#loading-image-annuelrevenueGrid").loadImager();
    
     var langCode = $("#langCode").val();
@@ -68,7 +68,7 @@ $(document).ready(function () {
     DevExpress.localization.locale(langCode);
 
 
-    $("#gridContainer_annuelrevenue").dxDataGrid({
+    $("#gridContainer_annualrevenue").dxDataGrid({
 
         showColumnLines: true,
 
@@ -182,7 +182,7 @@ $(document).ready(function () {
             data: {
                 url: 'pkInsert_sysannuelrevenue',
                 
-                name: brand_name,
+                name: annuelrevenue_name,
                 pk: $("#pk").val()
             }
         })
@@ -214,14 +214,14 @@ $(document).ready(function () {
             onErrorDataNull: function (event, data) {
                 dm.dangerMessage('resetOnShown');
                 dm.dangerMessage('show', 'annuelrevenue Kayıt İşlemi Başarısız...',
-                    'Brand kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
+                    'annuelrevenue kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysannuelrevenue" servis datası boştur!!');
                 $("#loading-image-annuelrevenue").loadImager('removeLoadImage');
             },
             onErrorMessage: function (event, data) {
                 dm.dangerMessage('resetOnShown');
                 dm.dangerMessage('show', 'annuelrevenue Kayıt İşlemi Başarısız...',
-                    'Brand kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
+                    'annuelrevenue kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysAnnuelrevenue" servis datası boştur!!');
                 $("#loading-image-annuelrevenue").loadImager('removeLoadImage');
             },
