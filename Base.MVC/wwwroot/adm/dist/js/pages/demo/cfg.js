@@ -56,7 +56,7 @@ $(document).ready(function () {
     "RU": 3000 //Russia
   };
   //World map by jvectormap
-  $('#world-map').vectorMap({
+  /*$('#world-map').vectorMap({
     map: 'world_mill_en',
     backgroundColor: "transparent",
     regionStyle: {
@@ -79,7 +79,7 @@ $(document).ready(function () {
       if (typeof visitorsData[code] != "undefined")
         el.html(el.html() + ': ' + visitorsData[code] + ' new visitors');
     }
-  });
+  });*/
 
   //Sparkline charts
   var myvalues = [1000, 1200, 920, 927, 931, 1027, 819, 930, 1021];
@@ -180,6 +180,50 @@ $(document).ready(function () {
     $('#tab_passive_2').click(function () {
         $("#attached_deals_tab").organizeTabs('disableAllTabsButOne');
     });
+
+
+    $('#asideTestLeft').customAsideLeft({
+        width : "900"});
+    //tab 2_1 side bar panel left toggle
+   $("#sidebar_left_toggle").on("click", function () {
+       // $(".sidebar.left").sidebar().trigger("sidebar:open");
+       //alert('test');
+       $('#asideTestLeft').customAsideLeft('toggleAside');
+    });
+
+
+    $('#asideTestRight').customAsideRight({
+        width: "900"
+    });
+    //tab 2_1 side bar panel left toggle
+    $("#sidebar_right_toggle").on("click", function () {
+        // $(".sidebar.left").sidebar().trigger("sidebar:open");
+        //alert('test');
+        $('#asideTestRight').customAsideRight('toggleAside');
+    });
+
+
+
+    // Click handlers
+    /*$(".sidebar").on("click", function () {
+        var $this = $(this);
+        var action = $this.attr("data-action");
+        var side = $this.attr("data-side");
+        $(".sidebar." + side).trigger("sidebar:" + action);
+        return false;
+    });*/
+
+
+    //var sides = ["left", "top", "right", "bottom"];
+
+    // Initialize sidebars
+    /*for (var i = 0; i < sides.length; ++i) {
+        var cSide = sides[i];
+        $(".sidebar." + cSide).sidebar({ side: cSide }).hide().trigger("sidebar:close").on("sidebar:closed", function () {
+            $(this).show();
+        });
+    }*/
+
     
 
     /* devexgrid */

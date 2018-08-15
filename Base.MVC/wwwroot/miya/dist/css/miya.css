@@ -124,3 +124,326 @@ if it's not present, don't show loader */
 .alert-info-miya {
     padding: 8px 35px 8px 8px;
 }
+
+
+
+
+.control-sidebar-custom-bg {
+    position: fixed;
+    z-index: 1000;
+    bottom: 0;
+}
+
+/*
+ * Component: Control sidebar. left component.
+ */
+.control-sidebar-custom-bg,
+.control-sidebar-custom-left{
+    /*top: 0;*/
+    /*right: -500px;*/
+    /*left: -500px;
+    width: 500px;*/
+    /*-webkit-transition: right 0.3s ease-in-out;
+    -o-transition: right 0.3s ease-in-out;
+    transition: right 0.3s ease-in-out;*/
+    -webkit-transition: left 0.3s ease-in-out;
+    -o-transition: left 0.3s ease-in-out;
+    transition: left 0.3s ease-in-out;
+    
+}
+
+.control-sidebar-custom-left{
+    position: absolute;
+    padding-top: 50px;
+    z-index: 1010;
+}
+
+@media (max-width: 768px) {
+    .control-sidebar-custom-left{
+        padding-top: 100px;
+    }
+}
+
+.control-sidebar-custom-left> .tab-content {
+    padding: 10px 15px;
+}
+
+.control-sidebar-custom-left.control-sidebar-custom-open,
+.control-sidebar-custom-left.control-sidebar-custom-open + .control-sidebar-custom-bg {
+    /*right: 0;*/
+    left : 0;
+}
+
+.control-sidebar-custom-open .control-sidebar-custom-bg,
+.control-sidebar-custom-open .control-sidebar-custom-left{
+    /* right: 0;*/ 
+    left : 0;
+}
+
+/*
+ * Component: Control sidebar. right component.
+ */
+.control-sidebar-custom-bg,
+.control-sidebar-custom-right {
+    /*top: 0;*/
+    /*right: -500px;*/
+    /*left: -500px;
+    width: 500px;*/
+    -webkit-transition: right 0.3s ease-in-out;
+    -o-transition: right 0.3s ease-in-out;
+    transition: right 0.3s ease-in-out;
+}
+
+.control-sidebar-custom-right {
+    position: absolute;
+    padding-top: 50px;
+    z-index: 1010;
+}
+
+@media (max-width: 768px) {
+    .control-sidebar-custom-right {
+        padding-top: 100px;
+    }
+}
+
+.control-sidebar-custom-right > .tab-content {
+    padding: 10px 15px;
+}
+
+.control-sidebar-custom-right.control-sidebar-custom-open,
+.control-sidebar-custom-right.control-sidebar-custom-open + .control-sidebar-custom-bg {
+    right: 0;
+}
+
+.control-sidebar-custom-open .control-sidebar-custom-bg,
+.control-sidebar-custom-open .control-sidebar-custom-left {
+    right: 0;
+}
+
+
+
+
+@media (min-width: 768px) {
+    .control-sidebar-custom-open .content-wrapper,
+    .control-sidebar-custom-open .right-side,
+    .control-sidebar-custom-open .main-footer {
+        /*margin-right: 230px;*/
+        margin-left: 230px;
+    }
+}
+
+.control-sidebar-custom-tabs > li:first-of-type > a {
+    margin-left: 1px;
+}
+
+.control-sidebar-custom-tabs > li:first-of-type > a,
+.control-sidebar-custom-tabs > li:first-of-type > a:hover {
+    border-left-width: 0 !important;
+}
+
+.control-sidebar-custom-tabs > li > a {
+    border-radius: 0 !important;
+}
+
+.control-sidebar-custom-tabs > li > a,
+.control-sidebar-custom-tabs > li > a:hover {
+    border-top: none;
+    border-right: none;
+    border-left: 1px solid transparent !important;
+    border-bottom: 1px solid transparent !important;
+}
+
+.control-sidebar-custom-tabs > li > a .icon {
+    font-size: 16px;
+}
+
+.control-sidebar-custom-tabs > li.active > a,
+.control-sidebar-custom-tabs > li.active > a:hover,
+.control-sidebar-custom-tabs > li.active > a:focus,
+.control-sidebar-custom-tabs > li.active > a:active {
+    border-top: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+}
+
+@media (max-width: 768px) {
+.control-sidebar-custom-tabs {
+    display: table;
+}
+
+.control-sidebar-custom-tabs > li {
+    display: table-cell !important;
+}
+}
+
+.control-sidebar-custom-heading {
+    font-weight: 400;
+    font-size: 16px;
+    padding: 10px 0;
+    margin-bottom: 10px;
+}
+
+.control-sidebar-custom-subheading {
+    display: block;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.control-sidebar-custom-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0 -15px;
+}
+
+.control-sidebar-custom-menu > li > a {
+    display: block;
+    padding: 10px 15px;
+}
+
+.control-sidebar-custom-menu > li > a:before,
+.control-sidebar-custom-menu > li > a:after {
+    content: " ";
+    display: table;
+}
+
+.control-sidebar-custom-menu > li > a:after {
+    clear: both;
+}
+
+.control-sidebar-custom-menu > li > a > .control-sidebar-custom-subheading {
+    margin-top: 0;
+}
+
+.control-sidebar-custom-menu .menu-icon {
+    float: left;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 35px;
+}
+
+.control-sidebar-custom-menu .menu-info {
+    margin-left: 45px;
+    margin-top: 3px;
+}
+
+.control-sidebar-custom-menu .menu-info > .control-sidebar-custom-subheading {
+    margin: 0;
+}
+
+.control-sidebar-custom-menu .menu-info > p {
+    margin: 0;
+    font-size: 11px;
+}
+
+.control-sidebar-custom-menu .progress {
+    margin: 0;
+}
+
+.control-sidebar-custom-dark {
+    color: #b8c7ce;
+}
+
+.control-sidebar-custom-dark,
+.control-sidebar-custom-dark + .control-sidebar-custom-bg {
+    background: #222d32;
+}
+
+.control-sidebar-custom-dark .control-sidebar-custom-tabs {
+    border-bottom: #1c2529;
+}
+
+.control-sidebar-custom-dark .control-sidebar-custom-tabs > li > a {
+    background: #181f23;
+    color: #b8c7ce;
+}
+
+.control-sidebar-custom-dark .control-sidebar-custom-tabs > li > a,
+.control-sidebar-custom-dark .control-sidebar-custom-tabs > li > a:hover {
+    border-left-color: #141a1d !important;
+    border-bottom-color: #141a1d !important;
+}
+
+.control-sidebar-custom-dark .control-sidebar-custom-tabs > li > a:hover,
+.control-sidebar-custom-dark .control-sidebar-custom-tabs > li > a:focus,
+.control-sidebar-custom-dark .control-sidebar-custom-tabs > li > a:active {
+    background: #1c2529;
+}
+
+.control-sidebar-custom-dark .control-sidebar-custom-tabs > li.active > a,
+.control-sidebar-custom-dark .control-sidebar-custom-tabs > li.active > a:hover,
+.control-sidebar-custom-dark .control-sidebar-custom-tabs > li.active > a:focus,
+.control-sidebar-custom-dark .control-sidebar-custom-tabs > li.active > a:active {
+    background: #222d32;
+    color: #fff;
+}
+
+.control-sidebar-custom-dark .control-sidebar-custom-heading,
+.control-sidebar-custom-dark .control-sidebar-custom-subheading {
+    color: #fff;
+}
+
+.control-sidebar-custom-dark .control-sidebar-custom-menu > li > a:hover {
+    background: #1e282c;
+}
+
+.control-sidebar-custom-dark .control-sidebar-custom-menu > li > a .menu-info > p {
+    color: #b8c7ce;
+}
+
+.control-sidebar-custom-light {
+    color: #5e5e5e;
+}
+
+.control-sidebar-custom-light,
+.control-sidebar-custom-light + .control-sidebar-custom-bg {
+    background: #f9fafc;
+    border-left: 1px solid #d2d6de;
+}
+
+.control-sidebar-custom-light .control-sidebar-custom-tabs {
+    border-bottom: #d2d6de;
+}
+
+.control-sidebar-custom-light .control-sidebar-custom-tabs > li > a {
+    background: #e8ecf4;
+    color: #444444;
+}
+
+.control-sidebar-custom-light .control-sidebar-custom-tabs > li > a,
+.control-sidebar-custom-light .control-sidebar-custom-tabs > li > a:hover {
+    border-left-color: #d2d6de !important;
+    border-bottom-color: #d2d6de !important;
+}
+
+.control-sidebar-custom-light .control-sidebar-custom-tabs > li > a:hover,
+.control-sidebar-custom-light .control-sidebar-custom-tabs > li > a:focus,
+.control-sidebar-custom-light .control-sidebar-custom-tabs > li > a:active {
+    background: #eff1f7;
+}
+
+.control-sidebar-custom-light .control-sidebar-custom-tabs > li.active > a,
+.control-sidebar-custom-light .control-sidebar-custom-tabs > li.active > a:hover,
+.control-sidebar-custom-light .control-sidebar-custom-tabs > li.active > a:focus,
+.control-sidebar-custom-light .control-sidebar-custom-tabs > li.active > a:active {
+    background: #f9fafc;
+    color: #111;
+}
+
+.control-sidebar-custom-light .control-sidebar-custom-heading,
+.control-sidebar-custom-light .control-sidebar-custom-subheading {
+    color: #111;
+}
+
+.control-sidebar-custom-light .control-sidebar-custom-menu {
+    margin-left: -14px;
+}
+
+.control-sidebar-custom-light .control-sidebar-custom-menu > li > a:hover {
+    background: #f4f4f5;
+}
+
+.control-sidebar-custom-light .control-sidebar-custom-menu > li > a .menu-info > p {
+    color: #5e5e5e;
+}
