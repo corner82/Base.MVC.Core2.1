@@ -101,11 +101,6 @@ namespace Base.MVC.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Vehicle()
-        {
-            return View();
-        }
-
         public async Task<IActionResult> Test()
         {
             return View();
