@@ -30,6 +30,15 @@
     <Content Update="Views\Sys\AnnualRevenue.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Sys\BuybackMonth.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Sys\TradebackMonth.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Sys\TradebackMil.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Sys\BuybackMil.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

@@ -155,6 +155,21 @@ namespace Base.MVC.Controllers
         {
             return View();
         }
+                
+        public async Task<IActionResult> TradebackMil()
+        {
+            return View();
+        }
+                        
+        public async Task<IActionResult> BuybackMonth()
+        {
+            return View();
+        }
+                                
+        public async Task<IActionResult> TradebackMonth()
+        {
+            return View();
+        }
 
     }
 }
