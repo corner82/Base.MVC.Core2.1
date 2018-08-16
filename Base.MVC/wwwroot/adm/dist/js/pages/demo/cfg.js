@@ -182,30 +182,33 @@ $(document).ready(function () {
     });
 
 
-    $('#asideTestLeft').customAsideLeft({
+    $('#asideTestLeft').asideLeft({
         width: "900"
     });
 
-    $('#asideTestLeft').customAsideLeft({
-        onOpening: function () {
+    $('#asideTestLeft').asideLeft({
+        onOpening: function (event, element) {
+            console.log(element);
+            console.log(element.css);
+            alert(element);
             alert('onopening event left slider');
         }
     });
 
-    $('#asideTestLeft').customAsideLeft({
-        onOpened: function () {
+    $('#asideTestLeft').asideLeft({
+        onOpened: function (event, element) {
             alert('onopened event left slider');
         }
     });
 
-    $('#asideTestLeft').customAsideLeft({
-        onClosing: function () {
+    $('#asideTestLeft').asideLeft({
+        onClosing: function (event, element) {
             alert('onclosing event left slider');
         }
     });
 
-    $('#asideTestLeft').customAsideLeft({
-        onClosed: function () {
+    $('#asideTestLeft').asideLeft({
+        onClosed: function (event, element) {
             alert('onclosed event left slider');
         }
     });
@@ -213,33 +216,34 @@ $(document).ready(function () {
    $("#sidebar_left_toggle").on("click", function () {
        // $(".sidebar.left").sidebar().trigger("sidebar:open");
        //alert('test');
-       $('#asideTestLeft').customAsideLeft('toggleAside');
+       $('#asideTestLeft').asideLeft('toggle');
     });
 
 
-    $('#asideTestRight').customAsideRight({
+    $('#asideTestRight').asideRight({
         width: "900"
     });
-    $('#asideTestRight').customAsideRight({
-        onOpening: function () {
+    $('#asideTestRight').asideRight({
+        onOpening: function (event, element) {
+            console.log(element);
             alert('onopening event right slider');
         }
     });
 
-    $('#asideTestRight').customAsideRight({
-        onOpened: function () {
+    $('#asideTestRight').asideRight({
+        onOpened: function (event, element) {
             alert('onopened event right slider');
         }
     });
 
-    $('#asideTestRight').customAsideRight({
-        onClosing: function () {
+    $('#asideTestRight').asideRight({
+        onClosing: function (event, element) {
             alert('onclosing event right slider');
         }
     });
 
-    $('#asideTestRight').customAsideRight({
-        onClosed: function () {
+    $('#asideTestRight').asideRight({
+        onClosed: function (event, element) {
             alert('onclosed event right slider');
         }
     });
@@ -247,7 +251,7 @@ $(document).ready(function () {
     $("#sidebar_right_toggle").on("click", function () {
         // $(".sidebar.left").sidebar().trigger("sidebar:open");
         //alert('test');
-        $('#asideTestRight').customAsideRight('toggleAside');
+        $('#asideTestRight').asideRight('toggle');
     });
 
 

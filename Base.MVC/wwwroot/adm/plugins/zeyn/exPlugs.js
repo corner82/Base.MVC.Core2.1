@@ -2313,7 +2313,7 @@
      * @author Mustafa Zeynel Dağlı
      * @since 15/08/2018
      */
-    $.widget("sanalfabrika.customAsideLeft", {
+    $.widget("sanalfabrika.asideLeft", {
         /**
          * Default options.
          * @returns {null}
@@ -2356,15 +2356,35 @@
          * @author Mustafa Zeynel Dağlı
          * @since 15/08/2018
          */
-        openAside: function () {
+        open: function () {
             var self = this;
-            //alert('openAside func');
             if (self.options.slide) {
+                self._trigger('onOpening', event, self.element);
+
                 self.element.css('left', '0');
                 self.element.addClass('control-sidebar-custom-open');
+
+                self._trigger('onOpened', event, { data: self.element });
                 
             } else {
-                //alert('aside open but not slide');
+            }
+        },
+
+        /**
+         * close aside
+         * @author Mustafa Zeynel Dağlı
+         * @since 16/08/2018
+         */
+        close: function () {
+            var self = this;
+            if (self.options.slide) {
+                self._trigger('onClosing', event, { data: self.element });
+
+                self.element.css('left', '-' + self.options.width + 'px');
+                self.element.removeClass('control-sidebar-custom-open');
+
+                self._trigger('onClosed', event, { data: self.element });
+            } else {
             }
         },
 
@@ -2373,9 +2393,8 @@
         * @author Mustafa Zeynel Dağlı
         * @since 15/08/2018
         */
-        toggleAside: function () {
+        toggle: function () {
             var self = this;
-            //alert('openAside func');
             if (self.element.hasClass('control-sidebar-custom-open')) {
                 self._trigger('onClosing', event, { data: self.element });
 
@@ -2384,7 +2403,7 @@
 
                 self._trigger('onClosed', event, { data: self.element });
             } else {
-                self._trigger('onOpening', event, { data: self.element });
+                self._trigger('onOpening', event,  self.element );
 
                 self.element.css('left', '0px');
                 self.element.addClass('control-sidebar-custom-open');
@@ -2401,7 +2420,7 @@
     * @author Mustafa Zeynel Dağlı
     * @since 15/08/2018
     */
-    $.widget("sanalfabrika.customAsideRight", {
+    $.widget("sanalfabrika.asideRight", {
         /**
          * Default options.
          * @returns {null}
@@ -2444,15 +2463,36 @@
          * @author Mustafa Zeynel Dağlı
          * @since 15/08/2018
          */
-        openAside: function () {
+        open: function () {
             var self = this;
-            //alert('openAside func');
             if (self.options.slide) {
+                self._trigger('onOpening', event, self.element);
+
                 self.element.css('right', '0');
                 self.element.addClass('control-sidebar-custom-open');
 
+                self._trigger('onOpened', event, { data: self.element });
+
             } else {
-                //alert('aside open but not slide');
+            }
+        },
+
+        /**
+         * close aside
+         * @author Mustafa Zeynel Dağlı
+         * @since 16/08/2018
+         */
+        close: function () {
+            var self = this;
+            if (self.options.slide) {
+                self._trigger('onClosing', event, { data: self.element });
+
+                self.element.css('right', '-' + self.options.width + 'px');
+                self.element.removeClass('control-sidebar-custom-open');
+
+                self._trigger('onClosed', event, { data: self.element });
+            } else {
+                
             }
         },
 
@@ -2461,9 +2501,8 @@
         * @author Mustafa Zeynel Dağlı
         * @since 15/08/2018
         */
-        toggleAside: function () {
+        toggle: function () {
             var self = this;
-            //alert('openAside func');
             if (self.element.hasClass('control-sidebar-custom-open')) {
                 self._trigger('onClosing', event, { data: self.element });
 
