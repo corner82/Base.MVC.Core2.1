@@ -2377,12 +2377,19 @@
             var self = this;
             //alert('openAside func');
             if (self.element.hasClass('control-sidebar-custom-open')) {
-               
+                self._trigger('onClosing', event, { data: self.element });
+
                 self.element.css('left', '-' + self.options.width + 'px');
-                self.element.removeClass('control-sidebar-custom-open')
+                self.element.removeClass('control-sidebar-custom-open');
+
+                self._trigger('onClosed', event, { data: self.element });
             } else {
+                self._trigger('onOpening', event, { data: self.element });
+
                 self.element.css('left', '0px');
-                self.element.addClass('control-sidebar-custom-open')
+                self.element.addClass('control-sidebar-custom-open');
+
+                self._trigger('onOpened', event, { data: self.element });
             }
         },
 
@@ -2458,12 +2465,20 @@
             var self = this;
             //alert('openAside func');
             if (self.element.hasClass('control-sidebar-custom-open')) {
+                self._trigger('onClosing', event, { data: self.element });
 
                 self.element.css('right', '-' + self.options.width + 'px');
-                self.element.removeClass('control-sidebar-custom-open')
+                self.element.removeClass('control-sidebar-custom-open');
+
+                self._trigger('onClosed', event, { data : self.element });
+
             } else {
+                self._trigger('onOpening', event, { data: self.element });
+
                 self.element.css('right', '0px');
-                self.element.addClass('control-sidebar-custom-open')
+                self.element.addClass('control-sidebar-custom-open');
+
+                self._trigger('onOpened', event, { data: self.element });
             }
         },
 
