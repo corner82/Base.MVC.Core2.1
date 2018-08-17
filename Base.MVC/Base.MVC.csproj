@@ -130,6 +130,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\adm\plugins\font-awesome-5.1.1\" />
+    <Folder Include="wwwroot\adm\plugins\node_js\modules\" />
   </ItemGroup>
 
   <ItemGroup>
