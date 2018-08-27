@@ -39,6 +39,9 @@ $(document).ready(function () {
     $("#loading-image-vehicleGrid").loadImager();
    
     var langCode = $("#langCode").val();
+
+    var vehicleModel = "";
+    var vehicleType = "";
     //alert(langCode);
 
 
@@ -97,7 +100,7 @@ $(document).ready(function () {
 
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
-
+                        vehicleKitTypeForDefineFields(selectedData.selectedData.text);
                     }
                 }
             });
@@ -261,9 +264,14 @@ $(document).ready(function () {
                 width: '100%',
 
                 onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
+                    if (selectedData.selectedData.value > 1) {
+                        vehicleModel = selectedData.selectedData.text;
                     }
+                    else
+                    {
+                        vehicleModel = "";
+                    }
+                    document.getElementById("txt-vehicle-name").value = vehicleModel + "-" + document.getElementById("txt-modeldescription").value;
                 }
             });
 
@@ -277,7 +285,7 @@ $(document).ready(function () {
                 }
             });
             dm.dangerMessage('show', window.lang.translate('vehiclemodel bulunamamıştır...'), window.lang.translate('vehiclemodel  bulunamamıştır...'));
-        },
+        }
     })
     ajaxACLResources_vehiclemodel.ajaxCallWidget('call');
 
@@ -417,9 +425,13 @@ $(document).ready(function () {
                 width: '100%',
 
                 onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
+                    if (selectedData.selectedData.value > 1) {
+                        vehicleType = selectedData.selectedData.text;
                     }
+                    else {
+                        vehicleType = "";
+                    }
+                    document.getElementById("txt-gfz-vehicletype").value = vehicleType + document.getElementById("txt-gfz").value;
                 }
             });
 
@@ -1038,6 +1050,7 @@ $(document).ready(function () {
 
         $('#dropdownVehicleKitType').ddslick('select', { index: String(0) });
         $('#dropdownApplicationType').ddslick('select', { index: String(0) });
+        $('#dropdownVehicleModel').ddslick('select', { index: String(0) });
         $('#dropdownVehicleVariant').ddslick('select', { index: String(0) });
         $('#dropdownVehicleType').ddslick('select', { index: String(0) });
         $('#dropdownGVM').ddslick('select', { index: String(0) });
@@ -1102,5 +1115,60 @@ $(document).ready(function () {
 
         return false;
     }
+
+    /**
+    * Model Description On Change
+    * @returns 
+    * @author Gül Özdemir
+    * @since 17/08/2018
+    */
+
+    window.modelDescOnChange = function () {
+        
+        document.getElementById("txt-vehicle-name").value = vehicleModel + "-" + document.getElementById("txt-modeldescription").value;
+    }
+
+    /**
+    * GFZ text value On Change
+    * @returns 
+    * @author Gül Özdemir
+    * @since 17/08/2018
+    */
+    window.gfzOnChange = function () {
+
+        document.getElementById("txt-gfz-vehicletype").value = vehicleType + document.getElementById("txt-gfz").value;
+    }
+
+
+    /**
+    *.vehicleKitType On Change - CBU / CKD
+    * @returns 
+    * @author Gül Özdemir
+    * @since 17/08/2018
+    */
+    window.vehicleKitTypeForDefineFields = function (kittype) {
+
+        //alert(kittype);
+
+        if (kittype === "CBU") {
+            document.getElementById("txt-gfz").value = "";
+            document.getElementById("txt-gfz").disabled = true;
+            document.getElementById("txt-kpno").value = "";
+            document.getElementById("txt-kpno").disabled = true;
+            $('#dropdownStockInfo').ddslick('select', { index: String(0) });
+            //çalışmıyor bakılacak...
+            document.getElementById("dropdownStockInfo").disabled;
+            
+        }
+        else 
+        {
+            document.getElementById("txt-gfz").disabled = false;
+            document.getElementById("txt-kpno").disabled = false;
+            //document.getElementById("dropdownStockInfo").disabled = false;
+            //çalışmıyor bakılacak...
+            document.getElementById("dropdownStockInfo").enabled;
+        }
+    }
+
 });
 

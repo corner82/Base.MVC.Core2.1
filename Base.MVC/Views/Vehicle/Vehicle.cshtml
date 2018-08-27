@@ -196,7 +196,7 @@
                                          <div class="input-group-addon">
                                              <i class="fa fa-user"></i>
                                          </div>
-                                         <input type="text" class="form-control" id="txt-gfz-vehicletype" disabled><input type="text" class="form-control validate[required]" placeholder="GFZ" id="txt-gfz">
+                                         <input type="text" class="form-control" id="txt-gfz-vehicletype" disabled><input type="text" class="form-control validate[required]" placeholder="GFZ" id="txt-gfz" onChange="gfzOnChange()">
                                      </div>
                                  </div>
 
@@ -216,17 +216,21 @@
                                          <div class="input-group-addon">
                                              <i class="fa fa-user"></i>
                                          </div>
-                                         <input type="text" class="form-control validate[required]" placeholder="Model Description" id="txt-modeldescription">
+                                         <input type="text" class="form-control validate[required]" placeholder="Model Description" id="txt-modeldescription" onChange="modelDescOnChange()">
                                      </div>
                                  </div>
 
-                                 <div class="" id="ajaxACL-stockinfo">
+
+                                 <div class="form-group" id="st-info">
                                      <label>Stock Info:</label>
-                                     <div id="loading-image-stockinfo" class="input-group">
-                                         <div class="input-group-addon">
-                                             <i class="fa fa-copyright"></i>
+
+                                     <div class="" id="ajaxACL-stockinfo">
+                                         <div id="loading-image-stockinfo" class="input-group">
+                                             <div class="input-group-addon">
+                                                 <i class="fa fa-copyright"></i>
+                                             </div>
+                                             <div id="dropdownStockInfo" class="form-control validate[required]"></div>
                                          </div>
-                                         <div id="dropdownStockInfo" class="form-control validate[required]"></div>
                                      </div>
                                  </div>
 
@@ -236,7 +240,7 @@
                                          <div class="input-group-addon">
                                              <i class="fa fa-user"></i>
                                          </div>
-                                         <input type="text" class="form-control validate[required]" placeholder="Vehicle Name" id="txt-vehicle-name" disabled>
+                                         <input type="text" class="form-control validate[required]" placeholder="Vehicle Model + Model Description" id="txt-vehicle-name" disabled>
                                      </div>
                                  </div>
                              </div>
