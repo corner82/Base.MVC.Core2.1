@@ -185,6 +185,9 @@ $(document).ready(function () {
                 }
             });
 
+            $('#dropdownApplicationType').ddslick('disable');
+            //$('#dropdownApplicationType').ddslick('enable');
+
             $("#loading-image-applicationtype").loadImager('removeLoadImage');
         },
         onErrorDataNull: function (event, data) {
@@ -1155,15 +1158,15 @@ $(document).ready(function () {
             document.getElementById("txt-gfz").disabled = true;
             document.getElementById("txt-kpno").value = "";
             document.getElementById("txt-kpno").disabled = true;
-            $('#dropdownStockInfo').ddslick('select', { index: String(0) });
-            $('#dropdownStockInfo').ddslick('disable');
+           /* $('#dropdownStockInfo').ddslick('select', { index: String(0) });
+            $('#dropdownStockInfo').ddslick('disable');*/
         }
         else 
         {
             document.getElementById("txt-gfz").disabled = false;
             document.getElementById("txt-kpno").disabled = false;
             //document.getElementById("dropdownStockInfo").disabled = false;
-            $('#dropdownStockInfo').ddslick('enable');
+            //$('#dropdownStockInfo').ddslick('enable');
         }
     }
 
