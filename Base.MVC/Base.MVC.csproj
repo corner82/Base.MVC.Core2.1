@@ -54,6 +54,9 @@
     <Content Update="Views\Sys\BuybackTerrain.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Sys\Training.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Vehicle\Vehicle.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
