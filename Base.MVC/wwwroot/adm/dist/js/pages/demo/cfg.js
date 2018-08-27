@@ -8,7 +8,31 @@ $(document).ready(function () {
     forcePlaceholderSize: true,
     zIndex: 999999
   });
-  $(".connectedSortable .box-header, .connectedSortable .nav-tabs-custom").css("cursor", "move");
+    $(".connectedSortable .box-header, .connectedSortable .nav-tabs-custom").css("cursor", "move");
+
+    $(document).click(function (event) {
+        alert(event.target.nodeName);
+        console.log($(this));
+        alert($(this).attr('data-toggle'));
+        var test = event.target;
+        //alert(test.attr('data-toggle'));
+
+        //var socket = io.connect('https://localhost:8444');
+        var socket = io.connect('http://localhost:3000', { reconnect: true });
+        /*var $messageForm = $('#send-message');
+        var $messageBox = $('#chat-input');*/
+
+        /*$messageForm.submit(function (e) {
+            e.preventDefault();
+            socket.emit('send message', 'click message');
+            //$messageBox.val('');
+        })*/
+        socket.emit('send message', 'click message');
+
+        /*socket.on('new message', function (data) {
+            $('.panel-body').append(data + '<br/>');
+        })*/
+    });
   
   //jQuery UI sortable for the todo list
   $(".todo-list").sortable({
