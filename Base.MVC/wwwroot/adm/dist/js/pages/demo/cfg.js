@@ -12,8 +12,9 @@ $(document).ready(function () {
 
     $(document).click(function (event) {
         alert(event.target.nodeName);
-        console.log($(this));
-        alert($(this).attr('data-toggle'));
+        alert($(event.target).data('nodejs-log'));
+        alert('session id =>' + localStorage.getItem('sessionID'));
+        alert('user name =>' + localStorage.getItem('userName'));
         var test = event.target;
         //alert(test.attr('data-toggle'));
 
@@ -27,7 +28,9 @@ $(document).ready(function () {
             socket.emit('send message', 'click message');
             //$messageBox.val('');
         })*/
-        socket.emit('send message', 'click message');
+        var msg = '{ "UserName" : "test zeynel","Host" : "localhost:3000","Action": "' + $("#requestUriRegulated").val() + '","Controller":"' + $("#requestUriRegulated").val() + '","Port":"3000","UserAgent":"Chrome","UserIP":"127.0.0.1","Method":"Demo","SessionID": "test session id","UserToken":"ssssss","UserPublicKey":"' + $("#publicKey").val() +'"}';
+        //socket.emit('send message', 'click message');
+        socket.emit('send message', msg);
 
         /*socket.on('new message', function (data) {
             $('.panel-body').append(data + '<br/>');

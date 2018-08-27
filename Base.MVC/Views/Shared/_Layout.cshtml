@@ -18,6 +18,8 @@
 var currentUser = Context.Session.Get<SessionUserModel>("CurrentUser");
 ViewData["Title"] = Localizer["Miya Sales Program Dashboard"];
 ViewData["UserName"] = currentUser.Email;
+ViewData["PublicKey"] = currentUser.ConcurrencyStamp;
+ViewData["SessionID"] = Context.Session.Id;
 
 // Retrieves the requested culture
 //var rqf = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>();
@@ -76,6 +78,7 @@ ViewData["defaultDevExLangPath"] = "/adm/plugins/devextreme/js/localization/dx.m
 <body class="skin-blue sidebar-mini">
     <input id="langCode" type="hidden" value="@ViewBag.ShortCultureInfo" />
     <input id="requestUriRegulated" type="hidden" value="@ViewBag.ReplacedCultureUri" />
+    <input id="publicKey" type="hidden" value="@ViewBag.PublicKey" />
 
     <div class="se-pre-con"></div>
     <div class="wrapper">
@@ -129,11 +132,16 @@ ViewData["defaultDevExLangPath"] = "/adm/plugins/devextreme/js/localization/dx.m
     <script src="~/adm/plugins/jquery-lang-js-master/js/js.cookie.js" type="text/javascript"></script>
     <script src="~/adm/plugins/jquery-lang-js-master/js/jquery-lang.js" type="text/javascript"></script>
     <!-- jquery-lang-js-master ekleniyor son -->
-
     <!-- bootstrap-modal-nakupanda ekleniyor-->
     <script src="~/adm/plugins/bootstrap-modal-nakupanda/bootstrap-dialog.min.js" type="text/javascript"></script>
 
-
+    <script>
+        $(document).ready(function () {
+            // set localstorage for page logs
+            localStorage.setItem('sessionID', "@ViewBag.SessionID");
+            localStorage.setItem('userName', "@ViewBag.UserName");
+        });
+    </script>
     @RenderSection("javascriptsPageSpecs", required: false)
 </body>
 </html>

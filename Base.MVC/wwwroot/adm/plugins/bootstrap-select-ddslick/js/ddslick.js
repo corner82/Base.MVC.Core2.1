@@ -159,22 +159,60 @@
             l.onSelected.call(this, c)
         }
     }
+
+    /**
+     * disable ddsclick 
+     * @param {type} a
+     * @param {type} b
+     * @returns {undefined}
+     * @author Zeynel Dağlı
+     * @since 27/08/2018
+     */
+    function disableDDslick(b) {
+        var c = b.data("ddslick");
+        c.settings.disableDDslick = true; 
+    }
+
+    /**
+     * enable ddsclick 
+     * @param {type} a
+     * @param {type} b
+     * @returns {undefined}
+     * @author Zeynel Dağlı
+     * @since 27/08/2018
+     */
+    function enableDDslick(b) {
+        var c = b.data("ddslick");
+        c.settings.disableDDslick = false;
+    }
     
     function h(b) {
+        var data = b.data("ddslick");
+        //var data = c.data("ddslick");
         var c = b.find(".dd-select"),
             d = c.siblings(".dd-options"),
             e = c.find(".dd-pointer"),
             f = d.is(":visible");
         a(".dd-click-off-close").not(d).slideUp(50);
         a(".dd-pointer").removeClass("dd-pointer-up");
-        if (f) {
-            d.slideUp("fast");
-            e.removeClass("dd-pointer-up")
-        } else {
-            d.slideDown("fast");
-            e.addClass("dd-pointer-up")
+        //alert(data.settings.disableDDslick);
+        /**
+         * ddslick disable edildiği zaman click event çalışması engelleniyor, 
+         * disable property false olduğu zaman dropdown çalışıyor
+         * @author Mustafa Zeynel Dağlı
+         * @since 27/08/2018
+         **/
+        if (data.settings.disableDDslick == false) {
+            if (f) {
+                d.slideUp("fast");
+                e.removeClass("dd-pointer-up")
+            } else {
+                d.slideDown("fast");
+                e.addClass("dd-pointer-up")
+            }
+            k(b)
         }
-        k(b)
+        
     }
 
     function i(a) {
@@ -284,7 +322,12 @@
                                     </div>\n\
                                 </div>\n\
                             </div>',
-            
+            /**
+             * disable ddslick
+             * @author Mustafa Zeynel Dağlı
+             * @since 27/08/2018
+             */
+            disableDDslick : false,
         };
         
         /*d = '<div class="dd-select"><input class="dd-selected-value" type="hidden" /><a class="dd-selected"></a><span class="dd-pointer dd-pointer-down"> </span></div>',
@@ -606,6 +649,31 @@
             selectItemByValue(a(this), b.index);
         })
     };
+
+    /**
+     * wrapper for disable ddslick
+     * @param {type} b
+     * @returns {ddslick_L1.b@call;each}
+     * @author Zeynel Dağlı
+     * @since 27/08/2018
+     */
+    b.disable = function (b) {
+        disableDDslick(a(this));
+    };
+
+    /**
+     * wrapper for enable ddslick
+     * @param {type} b
+     * @returns {ddslick_L1.b@call;each}
+     * @author Zeynel Dağlı
+     * @since 27/08/2018
+     */
+    b.enable = function (b) {
+        enableDDslick(a(this));
+    };
+
+
+
     b.open = function() {
         return this.each(function() {
             var b = a(this),
