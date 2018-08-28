@@ -33,6 +33,7 @@ $(document).ready(function () {
     $("#loading-image-vehiclemodelgr").loadImager();
     $("#loading-image-config").loadImager();
     $("#loading-image-cab").loadImager();
+    $("#loading-image-kp").loadImager();
     $("#loading-image-stockinfo").loadImager();
 
     //to vehiclemodel form grid loading-image
@@ -185,7 +186,7 @@ $(document).ready(function () {
                 }
             });
 
-            $('#dropdownApplicationType').ddslick('disable');
+            //$('#dropdownApplicationType').ddslick('disable');
             //$('#dropdownApplicationType').ddslick('enable');
 
             $("#loading-image-applicationtype").loadImager('removeLoadImage');
@@ -754,7 +755,84 @@ $(document).ready(function () {
     })
     ajaxACLResources_cab.ajaxCallWidget('call');
 
+
     //4x2, 4x4, 6x4, 8x4, 6x6, 8x8, 8x4/4
+    var cbdata_kp = [
+        {
+            text: 'Search...',
+            value: 1,
+            selected: true
+        },
+        {
+            text: "KP000637",
+            value: 2,
+            selected: false
+        },
+        {
+            text: "KP000638",
+            value: 3,
+            selected: false
+        },
+        {
+            text: "KP000639",
+            value: 4,
+            selected: false
+        },
+    ];
+
+    $('#loading-image-kp').loadImager('removeLoadImage');
+    $("#loading-image-kp").loadImager('appendImage');
+
+    var ajaxACLResources_kp = $('#ajaxACL-kp').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+
+    });
+
+    ajaxACLResources_kp.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-kp').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#dropdownKPNo').ddslick({
+                //height: 150,
+                data: cbdata_kp,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            $("#loading-image-kp").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-kp').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('KPNo bulunamamıştır...'), window.lang.translate('KpNo  bulunamamıştır...'));
+        },
+    })
+    ajaxACLResources_kp.ajaxCallWidget('call');
+
+
+    //BTO, BTS
     var cbdata_stockinfo = [
         {
             text: 'Search...',
@@ -800,7 +878,7 @@ $(document).ready(function () {
 
             $('#dropdownStockInfo').ddslick({
                 //height: 150,
-                data: cbdata_cab,
+                data: cbdata_stockinfo,
                 width: '100%',
 
                 onSelected: function (selectedData) {
@@ -969,8 +1047,7 @@ $(document).ready(function () {
 
         var vehicle_name = $('#txt-vehicle-name').val();
         var gfz = $('#txt-gfz').val();
-        var gfz = $('#txt-gfz-vehicletype').val();
-        var gfz = $('#txt-kpno').val();
+        var gfz_vehicletype = $('#txt-gfz-vehicletype').val();
 
         var aj = $(window).ajaxCall({
             proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
@@ -1060,6 +1137,7 @@ $(document).ready(function () {
         $('#dropdownVehicleModelGr').ddslick('select', { index: String(0) });
         $('#dropdownConfig').ddslick('select', { index: String(0) });
         $('#dropdownCab').ddslick('select', { index: String(0) });
+        $('#dropdownKPNo').ddslick('select', { index: String(0) });
         $('#dropdownStockInfo').ddslick('select', { index: String(0) });
 
         $("#loading-image-vehicle").loadImager('removeLoadImage');
@@ -1101,7 +1179,7 @@ $(document).ready(function () {
         document.getElementById("txt-vehicle-name").value = data.StoreCity;
         document.getElementById("txt-gfz").value = data.Employee;
         document.getElementById("txt-gfz-vehicletype").value = data.Employee; //data.VehicleType
-        document.getElementById("txt-kpno").value = data.Employee;
+       
 
         $('#dropdownVehicleKitType').ddslick('select', { index: 2 });
         $('#dropdownApplicationType').ddslick('select', { index: 2 });
@@ -1112,6 +1190,7 @@ $(document).ready(function () {
         $('#dropdownVehicleModelGr').ddslick('select', { index: 2 });
         $('#dropdownConfig').ddslick('select', { index: 2 });
         $('#dropdownCab').ddslick('select', { index: 2 });
+        $('#dropdownKPNo').ddslick('select', { index: 2 });
         $('#dropdownStockInfo').ddslick('select', { index: 2 });
 
         $("#loading-image-vehicle").loadImager('removeLoadImage');
@@ -1156,15 +1235,16 @@ $(document).ready(function () {
         if (kittype === "CBU") {
             document.getElementById("txt-gfz").value = "";
             document.getElementById("txt-gfz").disabled = true;
-            document.getElementById("txt-kpno").value = "";
-            document.getElementById("txt-kpno").disabled = true;
-           /* $('#dropdownStockInfo').ddslick('select', { index: String(0) });
-            $('#dropdownStockInfo').ddslick('disable');*/
+            
+            $('#dropdownKPNo').ddslick('select', { index: String(0) });
+            /* $('#dropdownKPNo').ddslick('disable');*/
+            $('#dropdownStockInfo').ddslick('select', { index: String(0) });
+           /* $('#dropdownStockInfo').ddslick('disable');*/
         }
         else 
         {
             document.getElementById("txt-gfz").disabled = false;
-            document.getElementById("txt-kpno").disabled = false;
+            //document.getElementById("dropdownKPNo").disabled = false;
             //document.getElementById("dropdownStockInfo").disabled = false;
             //$('#dropdownStockInfo').ddslick('enable');
         }
