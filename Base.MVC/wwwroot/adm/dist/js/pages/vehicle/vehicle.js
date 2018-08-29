@@ -29,6 +29,7 @@ $(document).ready(function () {
     $("#loading-image-vehiclemodel").loadImager();
     $("#loading-image-vehiclevariant").loadImager();
     $("#loading-image-vehicletype").loadImager();
+    $("#loading-image-vehicletonaj").loadImager();
     $("#loading-image-gvm").loadImager();
     $("#loading-image-vehiclemodelgr").loadImager();
     $("#loading-image-config").loadImager();
@@ -120,89 +121,6 @@ $(document).ready(function () {
     })
     ajaxACLResources_vehiclekittype.ajaxCallWidget('call');
 
-
-    var cbdata_app = [
-        {
-            text: 'Search...',
-            value: 1,
-            selected: true
-        },
-        {
-            text: "Longhaul",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "Traction/distribution",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "Hydrodrive",
-            value: 4,
-            selected: false
-        },
-        {
-            text: "Heavy Duty",
-            value: 5,
-            selected: false
-        }
-    ];
-
-    $('#loading-image-applicationtype').loadImager('removeLoadImage');
-    $("#loading-image-applicationtype").loadImager('appendImage');
-
-    var ajaxACLResources_applicationtype = $('#ajaxACL-applicationtype').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
-    });
-
-    ajaxACLResources_applicationtype.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-applicationtype').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
-        },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
-            $('#dropdownApplicationType').ddslick({
-                //height: 150,
-                data: cbdata_app,
-                width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            //$('#dropdownApplicationType').ddslick('disable');
-            //$('#dropdownApplicationType').ddslick('enable');
-
-            $("#loading-image-applicationtype").loadImager('removeLoadImage');
-        },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-applicationtype').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('applicationtype bulunamamıştır...'), window.lang.translate('applicationtype  bulunamamıştır...'));
-        },
-    })
-    ajaxACLResources_applicationtype.ajaxCallWidget('call');
-
     //CLA, TGM, TGS, VW, XHCV
     var cbdata_model = [
         {
@@ -293,6 +211,299 @@ $(document).ready(function () {
     })
     ajaxACLResources_vehiclemodel.ajaxCallWidget('call');
 
+    //CLA CBU 2-axis , CLA CBU 3- & 4-axis, TGM < 16t non tract.
+    var cbdata_modelgr = [
+        {
+            text: 'Search...',
+            value: 1,
+            selected: true
+        },
+        {
+            text: "CLA CBU 2-axis",
+            value: 2,
+            selected: false
+        },
+        {
+            text: "CLA CBU 3- & 4-axis",
+            value: 3,
+            selected: false
+        },
+        {
+            text: "TGM < 16t non tract",
+            value: 4,
+            selected: false
+        },
+    ];
+
+    $('#loading-image-vehiclemodelgr').loadImager('removeLoadImage');
+    $("#loading-image-vehiclemodelgr").loadImager('appendImage');
+
+    var ajaxACLResources_vehiclemodelgr = $('#ajaxACL-vehiclemodelgr').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+
+    });
+
+    ajaxACLResources_vehiclemodelgr.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-vehiclemodelgr').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#dropdownVehicleModelGr').ddslick({
+                //height: 150,
+                data: cbdata_modelgr,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            $("#loading-image-vehiclemodelgr").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-vehiclemodelgr').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('vehiclemodelgr bulunamamıştır...'), window.lang.translate('vehiclemodelgr  bulunamamıştır...'));
+        },
+    })
+    ajaxACLResources_vehiclemodelgr.ajaxCallWidget('call');
+
+    //LMC6, LN62
+    var cbdata_type = [
+        {
+            text: 'Search...',
+            value: 1,
+            selected: true
+        },
+        {
+            text: "LMC6",
+            value: 2,
+            selected: false
+        },
+        {
+            text: "LN62",
+            value: 3,
+            selected: false
+        }
+    ];
+
+    $('#loading-image-vehicletype').loadImager('removeLoadImage');
+    $("#loading-image-vehicletype").loadImager('appendImage');
+
+    var ajaxACLResources_vehicletype = $('#ajaxACL-vehicletype').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+
+    });
+
+    ajaxACLResources_vehicletype.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-vehicletype').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#dropdownVehicleType').ddslick({
+                //height: 150,
+                data: cbdata_type,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 1) {
+                        vehicleType = selectedData.selectedData.text;
+                    }
+                    else {
+                        vehicleType = "";
+                    }
+                    document.getElementById("txt-gfz-vehicletype").value = vehicleType + document.getElementById("txt-gfz").value;
+                }
+            });
+
+            $("#loading-image-vehicletype").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-vehicletype').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('vehicletype bulunamamıştır...'), window.lang.translate('vehicletype  bulunamamıştır...'));
+        },
+    })
+    ajaxACLResources_vehicletype.ajaxCallWidget('call');
+
+    //26.280, 15.220
+    var cbdata_vehicletonaj = [
+        {
+            text: 'Search...',
+            value: 1,
+            selected: true
+        },
+        {
+            text: "26.280",
+            value: 2,
+            selected: false
+        },
+        {
+            text: "15.220",
+            value: 3,
+            selected: false
+        }
+    ];
+
+    $('#loading-image-vehicletonaj').loadImager('removeLoadImage');
+    $("#loading-image-vehicletonaj").loadImager('appendImage');
+
+    var ajaxACLResources_vehicletonaj = $('#ajaxACL-vehicletonaj').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+
+    });
+
+    ajaxACLResources_vehicletonaj.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-vehicletonaj').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#dropdownVehicleTonaj').ddslick({
+                //height: 150,
+                data: cbdata_vehicletonaj,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            $("#loading-image-vehicletonaj").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-vehicletonaj').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('vehicletonaj bulunamamıştır...'), window.lang.translate('vehicletonaj  bulunamamıştır...'));
+        },
+    })
+    ajaxACLResources_vehicletonaj.ajaxCallWidget('call');
+
+   //18.000, 17.000, 24.000
+    var cbdata_gvm = [
+        {
+            text: 'Search...',
+            value: 1,
+            selected: true
+        },
+        {
+            text: "17.000",
+            value: 2,
+            selected: false
+        },
+        {
+            text: "18.000",
+            value: 3,
+            selected: false
+        },
+        {
+            text: "24.000",
+            value: 4,
+            selected: false
+        },
+    ];
+
+    $('#loading-image-gvm').loadImager('removeLoadImage');
+    $("#loading-image-gvm").loadImager('appendImage');
+
+    var ajaxACLResources_gvm = $('#ajaxACL-gvm').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+
+    });
+
+    ajaxACLResources_gvm.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-gvm').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#dropdownGVM').ddslick({
+                //height: 150,
+                data: cbdata_gvm,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            $("#loading-image-gvm").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-gvm').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('gvm bulunamamıştır...'), window.lang.translate('gvm  bulunamamıştır...'));
+        },
+    })
+    ajaxACLResources_gvm.ajaxCallWidget('call');
     //T/T, F/C, TIP, MIX, Tipper
     var cbdata_variant = [
         {
@@ -379,230 +590,7 @@ $(document).ready(function () {
     ajaxACLResources_vehiclevariant.ajaxCallWidget('call');
 
 
-    //LMC6, LN62
-    var cbdata_type = [
-        {
-            text: 'Search...',
-            value: 1,
-            selected: true
-        },
-        {
-            text: "LMC6",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "LN62",
-            value: 3,
-            selected: false
-        }
-    ];
-
-    $('#loading-image-vehicletype').loadImager('removeLoadImage');
-    $("#loading-image-vehicletype").loadImager('appendImage');
-
-    var ajaxACLResources_vehicletype = $('#ajaxACL-vehicletype').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
-    });
-
-    ajaxACLResources_vehicletype.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-vehicletype').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
-        },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
-            $('#dropdownVehicleType').ddslick({
-                //height: 150,
-                data: cbdata_type,
-                width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 1) {
-                        vehicleType = selectedData.selectedData.text;
-                    }
-                    else {
-                        vehicleType = "";
-                    }
-                    document.getElementById("txt-gfz-vehicletype").value = vehicleType + document.getElementById("txt-gfz").value;
-                }
-            });
-
-            $("#loading-image-vehicletype").loadImager('removeLoadImage');
-        },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-vehicletype').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('vehicletype bulunamamıştır...'), window.lang.translate('vehicletype  bulunamamıştır...'));
-        },
-    })
-    ajaxACLResources_vehicletype.ajaxCallWidget('call');
-
-
-    //18.000, 17.000, 24.000
-    var cbdata_gvm = [
-        {
-            text: 'Search...',
-            value: 1,
-            selected: true
-        },
-        {
-            text: "17.000",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "18.000",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "24.000",
-            value: 4,
-            selected: false
-        },
-    ];
-
-    $('#loading-image-gvm').loadImager('removeLoadImage');
-    $("#loading-image-gvm").loadImager('appendImage');
-
-    var ajaxACLResources_gvm = $('#ajaxACL-gvm').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
-    });
-
-    ajaxACLResources_gvm.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-gvm').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
-        },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
-            $('#dropdownGVM').ddslick({
-                //height: 150,
-                data: cbdata_gvm,
-                width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loading-image-gvm").loadImager('removeLoadImage');
-        },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-gvm').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('gvm bulunamamıştır...'), window.lang.translate('gvm  bulunamamıştır...'));
-        },
-    })
-    ajaxACLResources_gvm.ajaxCallWidget('call');
-
-    //CLA CBU 2-axis , CLA CBU 3- & 4-axis, TGM < 16t non tract.
-    var cbdata_modelgr = [
-        {
-            text: 'Search...',
-            value: 1,
-            selected: true
-        },
-        {
-            text: "CLA CBU 2-axis",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "CLA CBU 3- & 4-axis",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "TGM < 16t non tract",
-            value: 4,
-            selected: false
-        },
-    ];
-
-    $('#loading-image-vehiclemodelgr').loadImager('removeLoadImage');
-    $("#loading-image-vehiclemodelgr").loadImager('appendImage');
-
-    var ajaxACLResources_vehiclemodelgr = $('#ajaxACL-vehiclemodelgr').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
-    });
-
-    ajaxACLResources_vehiclemodelgr.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-vehiclemodelgr').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
-        },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
-            $('#dropdownVehicleModelGr').ddslick({
-                //height: 150,
-                data: cbdata_modelgr,
-                width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loading-image-vehiclemodelgr").loadImager('removeLoadImage');
-        },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-vehiclemodelgr').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('vehiclemodelgr bulunamamıştır...'), window.lang.translate('vehiclemodelgr  bulunamamıştır...'));
-        },
-    })
-    ajaxACLResources_vehiclemodelgr.ajaxCallWidget('call');
+ 
 
 
     //4x2, 4x4, 6x4, 8x4, 6x6, 8x8, 8x4/4
@@ -902,6 +890,88 @@ $(document).ready(function () {
     })
     ajaxACLResources_stockinfo.ajaxCallWidget('call');
 
+    var cbdata_app = [
+        {
+            text: 'Search...',
+            value: 1,
+            selected: true
+        },
+        {
+            text: "Longhaul",
+            value: 2,
+            selected: false
+        },
+        {
+            text: "Traction/distribution",
+            value: 3,
+            selected: false
+        },
+        {
+            text: "Hydrodrive",
+            value: 4,
+            selected: false
+        },
+        {
+            text: "Heavy Duty",
+            value: 5,
+            selected: false
+        }
+    ];
+
+    $('#loading-image-applicationtype').loadImager('removeLoadImage');
+    $("#loading-image-applicationtype").loadImager('appendImage');
+
+    var ajaxACLResources_applicationtype = $('#ajaxACL-applicationtype').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+
+    });
+
+    ajaxACLResources_applicationtype.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-applicationtype').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#dropdownApplicationType').ddslick({
+                //height: 150,
+                data: cbdata_app,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            //$('#dropdownApplicationType').ddslick('disable');
+            //$('#dropdownApplicationType').ddslick('enable');
+
+            $("#loading-image-applicationtype").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-applicationtype').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('applicationtype bulunamamıştır...'), window.lang.translate('applicationtype  bulunamamıştır...'));
+        },
+    })
+    ajaxACLResources_applicationtype.ajaxCallWidget('call');
+
 
     /* devexgrid */
     var orders = new DevExpress.data.CustomStore({
@@ -937,6 +1007,59 @@ $(document).ready(function () {
 
     DevExpress.localization.locale(langCode);
 
+
+    $("#gridContainer_vehicle_buybacktradeback_desc").dxDataGrid({
+
+        showColumnLines: true,
+
+        showRowLines: true,
+
+        showBorders: true,
+
+        dataSource: orders,
+
+        columnHidingEnabled: true,
+
+        selection: {
+            mode: "single"
+        },
+
+        hoverStateEnabled: true,
+
+        editing: {
+            //mode: "batch"
+            mode: "form",
+            allowAdding: true,
+            allowUpdating: true,
+            allowDeleting: true,
+            useIcons: true
+        },
+
+        pager: {
+            allowedPageSizes: [3, 6, 9, 12],
+            showInfo: true,
+            showNavigationButtons: true,
+            showPageSizeSelector: true,
+            visible: true
+        },
+
+        paging: {
+            pageSize: 3
+        },
+
+        columns: [{
+            caption: "Buyback & Tradeback Description",
+            dataField: "StoreCity"
+        }],
+
+        onSelectionChanged: function (selectedItems) {
+            var data = selectedItems.selectedRowsData[0];
+            if (data) {
+                //fillVehicleForm(data);
+            }
+        }
+
+    });
 
     $("#gridContainer_vehicle").dxDataGrid({
 
@@ -1024,8 +1147,7 @@ $(document).ready(function () {
             }
         }
 
-    });
-    
+    });    
     function logEvent(eventName) {
          var logList = $("#events ul"),
              newItem = $("<li>", { text: eventName });
@@ -1132,6 +1254,7 @@ $(document).ready(function () {
         $('#dropdownApplicationType').ddslick('select', { index: String(0) });
         $('#dropdownVehicleModel').ddslick('select', { index: String(0) });
         $('#dropdownVehicleVariant').ddslick('select', { index: String(0) });
+        $('#dropdownVehicleTonaj').ddslick('select', { index: String(0) });
         $('#dropdownVehicleType').ddslick('select', { index: String(0) });
         $('#dropdownGVM').ddslick('select', { index: String(0) });
         $('#dropdownVehicleModelGr').ddslick('select', { index: String(0) });
@@ -1179,13 +1302,15 @@ $(document).ready(function () {
         document.getElementById("txt-vehicle-name").value = data.StoreCity;
         document.getElementById("txt-gfz").value = data.Employee;
         document.getElementById("txt-gfz-vehicletype").value = data.Employee; //data.VehicleType
-       
+        document.getElementById("txt-modeldescription").value = data.Employee; //data.VehicleType
+        document.getElementById("txt-vehicle-property").value = data.Employee; //data.VehicleType
 
         $('#dropdownVehicleKitType').ddslick('select', { index: 2 });
         $('#dropdownApplicationType').ddslick('select', { index: 2 });
         $('#dropdownVehicleModel').ddslick('select', { index: 2 });
         $('#dropdownVehicleVariant').ddslick('select', { index: 2 });
         $('#dropdownVehicleType').ddslick('select', { index: 2 });
+        $('#dropdownVehicleTonaj').ddslick('select', { index: 2 });
         $('#dropdownGVM').ddslick('select', { index: 2 });
         $('#dropdownVehicleModelGr').ddslick('select', { index: 2 });
         $('#dropdownConfig').ddslick('select', { index: 2 });
