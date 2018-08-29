@@ -20,6 +20,7 @@ $(document).ready(function () {
     $("#loading-image-Training").loadImager();
 
     //to City form
+    $("#loading-image-City").loadImager();    //to City form
     $("#loading-image-City").loadImager();
 
     //to Training form grid loading-image

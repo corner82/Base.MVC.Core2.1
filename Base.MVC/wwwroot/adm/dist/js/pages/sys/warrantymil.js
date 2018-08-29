@@ -1,9 +1,4 @@
-﻿/*
-* Warranty Mileage Form
-* @author Ceydacan Seyrek
-* @since 13/08/2018
-*/
-$(document).ready(function () {
+﻿$(document).ready(function () {
 
     "use strict";
 
@@ -17,17 +12,107 @@ $(document).ready(function () {
 
 
     /*
-    * warranty mileage LoadImager
+    * Warranty LoadImager
     * @author Ceydacan Seyrek
-    * @since 13/08/2018
+    * @since 14/08/2018
     */
-    //to warranty mileage form
-    $("#loading-image-wrMil").loadImager();
-    //to warranty mileage form grid loading-image
-    $("#loading-image-wrMilGrid").loadImager();
-   
+    //to warranty form
+    $("#loading-image-warranty").loadImager();
+
+    //to model form
+    $("#loading-image-model").loadImager();
+
+    //to warranty form grid loading-image
+    $("#loading-image-warrantyGrid").loadImager();
+
     var langCode = $("#langCode").val();
     //alert(langCode);
+
+    $('#warrantyForm').validationEngine();
+
+    var cbdata_model = [{}];
+
+    var cbdata = [
+        {
+            text: 'Search...',
+            value: 1,
+            selected: true
+        },
+        {
+            text: "Warranty",
+            value: 2,
+            selected: false
+        },
+        {
+            text: "BuyBack",
+            value: 3,
+            selected: false
+        },
+        {
+            text: "TradeBack",
+            value: 4,
+            selected: false
+        },
+        {
+            text: "R&M",
+            value: 5,
+            selected: false
+        }
+    ];
+
+
+
+    $('#loading-image-model').loadImager('removeLoadImage');
+    $("#loading-image-model").loadImager('appendImage');
+
+    var ajaxACLResources_model = $('#ajaxACL-model').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+
+    });
+
+    ajaxACLResources_model.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-model').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#dropdownModel').ddslick({
+                //height: 150,
+                data: cbdata,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            $("#loading-image-model").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-model').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('Ülke bulunamamıştır...'), window.lang.translate('Ülke  bulunamamıştır...'));
+        },
+    })
+    ajaxACLResources_model.ajaxCallWidget('call');
+
 
     /* devexgrid */
     var orders = new DevExpress.data.CustomStore({
@@ -64,7 +149,7 @@ $(document).ready(function () {
     DevExpress.localization.locale(langCode);
 
 
-    $("#gridContainer_wrMil").dxDataGrid({
+    $("#gridContainer_warranty").dxDataGrid({
 
         showColumnLines: true,
 
@@ -139,153 +224,162 @@ $(document).ready(function () {
         },
 
         columns: [{
-            caption: "Warranty Mileage",
-            dataField: "SaleAmount"
+            caption: "Model",
+            dataField: "StoreCity"
+        }, {
+            caption: "Warranty",
+            dataField: "StoreState"
         }],
 
         onSelectionChanged: function (selectedItems) {
             var data = selectedItems.selectedRowsData[0];
             if (data) {
-                fillwrMilForm(data);
+                fillwarrantyForm(data);
             }
         }
 
     });
-    
-    function logEvent(eventName) {
-         var logList = $("#events ul"),
-             newItem = $("<li>", { text: eventName });
 
-         logList.prepend(newItem);
-     }
+    function logEvent(eventName) {
+        var logList = $("#events ul"),
+            newItem = $("<li>", { text: eventName });
+
+        logList.prepend(newItem);
+    }
 
 
     /**
- * insertWarranty Mileage
+ * insert Warranty
+ * @returns {undefined}
  * @author Ceydacan Seyrek
- * @since 13/08/2018
+ * @since 14/08/2018
  */
 
-    window.insertwrMil = function () {
-        $("#loading-image-wrMil").loadImager('removeLoadImage');
-        $("#loading-image-wrMil").loadImager('appendImage');
+    window.insertmodel = function () {
+        $("#loading-image-warranty").loadImager('removeLoadImage');
+        $("#loading-image-warranty").loadImager('appendImage');
 
-        var cst_purchaselastupdate = $('#txt-country-name').val();
+        var cst_purchaselastupdate = $('#txt-model-name').val();
 
         var aj = $(window).ajaxCall({
             proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
             data: {
-                url: 'pkInsert_syswrmil',
-                
-                name: warrantyMileage_name,
+                url: 'pkInsert_sysmodel',
+
+                name: model_name,
                 pk: $("#pk").val()
             }
         })
         aj.ajaxCall({
             onError: function (event, textStatus, errorThrown) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Warranty Mileage Ekleme İşlemi Başarısız...',
-                    'Warranty Mileage Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
+                dm.dangerMessage('show', 'Warranty Ekleme İşlemi Başarısız...',
+                    'Warranty Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
                 console.error('"pkInsert_sysCustomerInfo" servis hatası->' + textStatus);
-                $("#loading-image-wrMil").loadImager('removeLoadImage');
+                $("#loading-image-warranty").loadImager('removeLoadImage');
             },
             onSuccess: function (event, data) {
                 console.log(data);
                 var data = data;
                 sm.successMessage({
                     onShown: function (event, data) {
-                        $('#wrMilForm')[0].reset();
+                        $('#modelForm')[0].reset();
 
-                        $("#loading-image-wrMil").loadImager('removeLoadImage');
+                        $("#loading-image-warranty").loadImager('removeLoadImage');
 
                     }
                 });
-                sm.successMessage('show', 'Warranty Mileage Kayıt İşlemi Başarılı...',
-                    'warranty mileage kayıt işlemini gerçekleştirdiniz... ',
+                sm.successMessage('show', 'Warranty Kayıt İşlemi Başarılı...',
+                    'model kayıt işlemini gerçekleştirdiniz... ',
                     data);
-                $("#loading-image-wrMil").loadImager('removeLoadImage');
+                $("#loading-image-warranty").loadImager('removeLoadImage');
 
             },
             onErrorDataNull: function (event, data) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Warranty MileageKayıt İşlemi Başarısız...',
-                    'Warranty Mileage kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
+                dm.dangerMessage('show', 'Warranty Kayıt İşlemi Başarısız...',
+                    'Warranty kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysCustomerContactPerson" servis datası boştur!!');
-                $("#loading-image-wrMil").loadImager('removeLoadImage');
+                $("#loading-image-warranty").loadImager('removeLoadImage');
             },
             onErrorMessage: function (event, data) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Warranty Mileage Kayıt İşlemi Başarısız...',
-                    'Warranty Mileage kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
+                dm.dangerMessage('show', 'Warranty Kayıt İşlemi Başarısız...',
+                    'Warrantykayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysCustomerContactPerson" servis datası boştur!!');
-                $("#loading-image-wrMil").loadImager('removeLoadImage');
+                $("#loading-image-model").loadImager('removeLoadImage');
             },
             onError23503: function (event, data) {
                 dm.dangerMessage('Error23503');
-                $("#loading-image-wrMil").loadImager('removeLoadImage');
+                $("#loading-image-warranty").loadImager('removeLoadImage');
             },
             onError23505: function (event, data) {
                 dm.dangerMessage({
                     onShown: function (event, data) {
                         $('#customerContactPersonForm')[0].reset();
-                        $("#loading-image-wrMil").loadImager('removeLoadImage');
+                        $("#loading-image-warranty").loadImager('removeLoadImage');
                     }
                 });
                 dm.dangerMessage('show', 'Kayıt İşlemi Başarısız...',
-                    'Aynı isim ile Warranty Mileage kaydı yapılmıştır, yeni bir Warranty Mileage kaydı deneyiniz... ');
-                $("#loading-image-wrMil").loadImager('removeLoadImage');
+                    'Aynı isim ile Warranty kaydı yapılmıştır, yeni bir Warranty kaydı deneyiniz... ');
+                $("#loading-image-warranty").loadImager('removeLoadImage');
             }
         })
         aj.ajaxCall('call');
     }
- /**
- * reset warranty mileage Form
- * @author Ceydacan Seyrek
- * @since 13/08/2018
- */
+    /**
+    * reset model Form
+    * @returns {undefined}
+    * @author Ceydacan Seyrek
+    * @since 14/08/2018
+    */
 
-    window.resetwrMilForm = function () {
-        $("#loading-image-wrMil").loadImager('removeLoadImage');
-        $("#loading-image-wrMil").loadImager('appendImage');
+    window.resetwarrantyForm = function () {
+        $("#loading-image-warranty").loadImager('removeLoadImage');
+        $("#loading-image-warranty").loadImager('appendImage');
 
-        $('#wrMilForm').validationEngine('hide');
-        
-        $("#loading-image-wrMil").loadImager('removeLoadImage');
+        $('#warrantyForm').validationEngine('hide');
+        $('#dropdownModel').ddslick('select', { index: String(0) });
+
+        $("#loading-image-warranty").loadImager('removeLoadImage');
 
         return false;
     }
 
 
     /**
-    * insert Warranty Mileage Wrapper
+    * insert model Wrapper
+    * @returns {Boolean}
     * @author Ceydacan Seyrek
-    * @since 13/08/2018
+    * @since 14/08/2018
     */
 
-    window.insertwrMilWrapper = function (e) {
+    window.insertmodelWrapper = function (e) {
         e.preventDefault();
 
-        if ($("#wrMilForm").validationEngine('validate')) {
+        if ($("#warrantyForm").validationEngine('validate')) {
 
-            insertwrMil();
+            insertwarranty();
         }
         return false;
     }
 
 
     /**
-    * Fill Warranty Mileage form
+    * Fill model form
+    * @returns {Boolean}
     * @author Ceydacan Seyrek
-    * @since 13/08/2018
+    * @since 14/08/2018
     */
 
-    window.fillwrMilForm = function (data) {
-        $("#loading-image-wrMil").loadImager('removeLoadImage');
-        $("#loading-image-wrMil").loadImager('appendImage');
+    window.fillwarrantyForm = function (data) {
+        $("#loading-image-warranty").loadImager('removeLoadImage');
+        $("#loading-image-warranty").loadImager('appendImage');
 
-        document.getElementById("txt-wrMil-name").value = data.SaleAmount;
-    
-        $("#loading-image-wrMil").loadImager('removeLoadImage');
+        $('#dropdownModel').ddslick('select', { index: 3 });
+        document.getElementById("txt-warranty-name").value = data.StoreCity;
+
+        $("#loading-image-warranty").loadImager('removeLoadImage');
 
         return false;
     }
