@@ -449,7 +449,9 @@ if it's not present, don't show loader */
 }
 
 
-
+.row-min-height {
+    min-height: 100%;
+}
 
 
 
