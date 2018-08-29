@@ -74,19 +74,6 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Application Type:</label>
-
-                                            <div class="" id="ajaxACL-applicationtype">
-                                                <div id="loading-image-applicationtype" class="input-group">
-                                                    <div class="input-group-addon">
-                                                        <i class="fa fa-copyright"></i>
-                                                    </div>
-                                                    <div id="dropdownApplicationType" class="form-control validate[required]"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
                                             <label>Vehicle Model:</label>
 
                                             <div class="" id="ajaxACL-vehiclemodel">
@@ -100,14 +87,14 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Vehicle Variant:</label>
+                                            <label>Vehicle Model Grouping:</label>
 
-                                            <div class="" id="ajaxACL-vehiclevariant">
-                                                <div id="loading-image-vehiclevariant" class="input-group">
+                                            <div class="" id="ajaxACL-vehiclemodelgr">
+                                                <div id="loading-image-vehiclemodelgr" class="input-group">
                                                     <div class="input-group-addon">
                                                         <i class="fa fa-copyright"></i>
                                                     </div>
-                                                    <div id="dropdownVehicleVariant" class="form-control validate[required]"></div>
+                                                    <div id="dropdownVehicleModelGr" class="form-control validate[required]"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -126,6 +113,19 @@
                                         </div>
 
                                         <div class="form-group">
+                                            <label>Vehicle Tonaj Type:</label>
+
+                                            <div class="" id="ajaxACL-vehicletonaj">
+                                                <div id="loading-image-vehicletonaj" class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-copyright"></i>
+                                                    </div>
+                                                    <div id="dropdownVehicleTonaj" class="form-control validate[required]"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
                                             <label>GVM:</label>
 
                                             <div class="" id="ajaxACL-gvm">
@@ -139,22 +139,6 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Vehicle Model Group:</label>
-
-                                            <div class="" id="ajaxACL-vehiclemodelgr">
-                                                <div id="loading-image-vehiclemodelgr" class="input-group">
-                                                    <div class="input-group-addon">
-                                                        <i class="fa fa-copyright"></i>
-                                                    </div>
-                                                    <div id="dropdownVehicleModelGr" class="form-control validate[required]"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.col -->
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
                                             <label>Config:</label>
 
                                             <div class="" id="ajaxACL-config">
@@ -166,6 +150,26 @@
                                                 </div>
                                             </div>
                                         </div>
+
+
+                                        <div class="form-group">
+                                            <label>Vehicle Variant:</label>
+
+                                            <div class="" id="ajaxACL-vehiclevariant">
+                                                <div id="loading-image-vehiclevariant" class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-copyright"></i>
+                                                    </div>
+                                                    <div id="dropdownVehicleVariant" class="form-control validate[required]"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- /.col -->
+
+                                    <div class="col-md-6">
+
 
                                         <div class="form-group">
                                             <label>Cab:</label>
@@ -230,6 +234,19 @@
                                         </div>
 
                                         <div class="form-group">
+                                            <label>Application Type:</label>
+
+                                            <div class="" id="ajaxACL-applicationtype">
+                                                <div id="loading-image-applicationtype" class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-copyright"></i>
+                                                    </div>
+                                                    <div id="dropdownApplicationType" class="form-control validate[required]"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
                                             <label>Vehicle Name:</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon">
@@ -241,23 +258,12 @@
                                     </div>
                                     <!-- /.col -->
                                 </div>
+                                
                                 <div class="box-footer clearfix no-border">
-                                    <table class="table text-center">
-                                        <tbody>
-                                            <tr>
-                                                <td width="75%">
-                                                    &nbsp;
-                                                </td>
-                                                <td>
-                                                    <button type="reset" class="btn btn-block btn-primary btn-md" id="btn-vehicle-clear" onclick="resetVehicleForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                                </td>
-                                                <td>
-                                                    <button type="submit" class="btn btn-block btn-primary btn-md" id="btn-vehicle-save" onclick="insertVehicleWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <button type="reset" class="btn btn-primary btn-md pull-right" id="btn-vehicle-clear" onclick="resetVehicleForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>&nbsp;&nbsp;&nbsp;
+                                    <button type="submit" class="btn btn-primary btn-md pull-right" id="btn-vehicle-save" onclick="insertVehicleWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>&nbsp;&nbsp;&nbsp;
                                 </div>
+                                
                             </form>
 
                         </div>
