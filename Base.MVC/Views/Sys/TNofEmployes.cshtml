@@ -34,19 +34,8 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 
-    <!-- Content Header (Page header) -->
-    <section class="content-header-breadcrumb-miya">
-        <div class="row text-right">
-            <div class="col-md-12">
-
-                <ol class="breadcrumb breadcrumb-miya">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="#">UI</a></li>
-                    <li class="active">General</li>
-                </ol>
-            </div>
-        </div>
-    </section>
+      <!-- Breadcrumb-->
+     @Html.Partial("~/Views/Shared/AdminBreadCrumbPartial.cshtml")
 
     <!-- Main content -->
     <section class="content">
@@ -95,10 +84,10 @@
                                                 &nbsp;
                                             </td>
                                             <td>
-                                                <button type="reset" class="btn btn-block btn-primary btn-lg" id="btn-tnofemployes-clear" onclick="resetTNofEmployesForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                                <button type="reset" class="btn btn-block btn-primary btn-md" id="btn-tnofemployes-clear" onclick="resetTNofEmployesForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
                                             </td>
                                             <td>
-                                                <button type="submit" class="btn btn-block btn-primary btn-lg" id="btn-tnofemployes-save" onclick="insertTNofEmployesWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                                <button type="submit" class="btn btn-block btn-primary btn-md" id="btn-tnofemployes-save" onclick="insertTNofEmployesWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -112,12 +101,6 @@
             </section><!-- /.Left col -->
 
         </div><!-- /.row (main row) -->
-
-
-    </section><!-- /.content -->
-    <!-- Main content -->
-    <section class="content">
-
         <!-- Main row -->
         <div class="row">
             <!-- Left col -->
@@ -142,8 +125,8 @@
 
         </div><!-- /.row (main row) -->
 
-
     </section><!-- /.content -->
+
 </div><!-- /.content-wrapper -->
 
 @section javascriptsPageSpecs {
