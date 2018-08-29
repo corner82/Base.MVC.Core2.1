@@ -1008,6 +1008,59 @@ $(document).ready(function () {
     DevExpress.localization.locale(langCode);
 
 
+    $("#gridContainer_vehicle_buybacktradeback_desc").dxDataGrid({
+
+        showColumnLines: true,
+
+        showRowLines: true,
+
+        showBorders: true,
+
+        dataSource: orders,
+
+        columnHidingEnabled: true,
+
+        selection: {
+            mode: "single"
+        },
+
+        hoverStateEnabled: true,
+
+        editing: {
+            //mode: "batch"
+            mode: "form",
+            allowAdding: true,
+            allowUpdating: true,
+            allowDeleting: true,
+            useIcons: true
+        },
+
+        pager: {
+            allowedPageSizes: [3, 6, 9, 12],
+            showInfo: true,
+            showNavigationButtons: true,
+            showPageSizeSelector: true,
+            visible: true
+        },
+
+        paging: {
+            pageSize: 3
+        },
+
+        columns: [{
+            caption: "Buyback & Tradeback Description",
+            dataField: "StoreCity"
+        }],
+
+        onSelectionChanged: function (selectedItems) {
+            var data = selectedItems.selectedRowsData[0];
+            if (data) {
+                //fillVehicleForm(data);
+            }
+        }
+
+    });
+
     $("#gridContainer_vehicle").dxDataGrid({
 
         showColumnLines: true,
@@ -1094,8 +1147,7 @@ $(document).ready(function () {
             }
         }
 
-    });
-    
+    });    
     function logEvent(eventName) {
          var logList = $("#events ul"),
              newItem = $("<li>", { text: eventName });
@@ -1202,6 +1254,7 @@ $(document).ready(function () {
         $('#dropdownApplicationType').ddslick('select', { index: String(0) });
         $('#dropdownVehicleModel').ddslick('select', { index: String(0) });
         $('#dropdownVehicleVariant').ddslick('select', { index: String(0) });
+        $('#dropdownVehicleTonaj').ddslick('select', { index: String(0) });
         $('#dropdownVehicleType').ddslick('select', { index: String(0) });
         $('#dropdownGVM').ddslick('select', { index: String(0) });
         $('#dropdownVehicleModelGr').ddslick('select', { index: String(0) });
@@ -1249,13 +1302,15 @@ $(document).ready(function () {
         document.getElementById("txt-vehicle-name").value = data.StoreCity;
         document.getElementById("txt-gfz").value = data.Employee;
         document.getElementById("txt-gfz-vehicletype").value = data.Employee; //data.VehicleType
-       
+        document.getElementById("txt-modeldescription").value = data.Employee; //data.VehicleType
+        document.getElementById("txt-vehicle-property").value = data.Employee; //data.VehicleType
 
         $('#dropdownVehicleKitType').ddslick('select', { index: 2 });
         $('#dropdownApplicationType').ddslick('select', { index: 2 });
         $('#dropdownVehicleModel').ddslick('select', { index: 2 });
         $('#dropdownVehicleVariant').ddslick('select', { index: 2 });
         $('#dropdownVehicleType').ddslick('select', { index: 2 });
+        $('#dropdownVehicleTonaj').ddslick('select', { index: 2 });
         $('#dropdownGVM').ddslick('select', { index: 2 });
         $('#dropdownVehicleModelGr').ddslick('select', { index: 2 });
         $('#dropdownConfig').ddslick('select', { index: 2 });
