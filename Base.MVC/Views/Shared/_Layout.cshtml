@@ -5,6 +5,7 @@
 @inject IHttpContextAccessor HttpContextAccessor
 @inject RequestCultureFinder CultureProvider
 @inject RequestUriCultureFinder UriCultureProvider
+@inject RemoteAddressFinder remoteAddressFinder
 @using System
 @using System.Text
 @using Base.Core.Entities.Session
@@ -20,6 +21,7 @@ ViewData["Title"] = Localizer["Miya Sales Program Dashboard"];
 ViewData["UserName"] = currentUser.Email;
 ViewData["PublicKey"] = currentUser.ConcurrencyStamp;
 ViewData["SessionID"] = Context.Session.Id;
+ViewData["UserIP"] = remoteAddressFinder.GetRequestIP();
 
 // Retrieves the requested culture
 //var rqf = Context.Request.HttpContext.Features.Get<IRequestCultureFeature>();
@@ -140,6 +142,7 @@ ViewData["defaultDevExLangPath"] = "/adm/plugins/devextreme/js/localization/dx.m
             // set localstorage for page logs
             localStorage.setItem('sessionID', "@ViewBag.SessionID");
             localStorage.setItem('userName', "@ViewBag.UserName");
+            localStorage.setItem('userIP', "@ViewBag.UserIP");
         });
     </script>
     @RenderSection("javascriptsPageSpecs", required: false)
