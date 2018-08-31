@@ -151,16 +151,11 @@ namespace Base.MVC.Controllers
             return View();
         }
                         
-        public async Task<IActionResult> BuybackMonth()
+        public async Task<IActionResult> Month()
         {
             return View();
         }
-                                
-        public async Task<IActionResult> TradebackMonth()
-        {
-            return View();
-        }
-                                        
+        
         public async Task<IActionResult> Training()
         {
             return View();
