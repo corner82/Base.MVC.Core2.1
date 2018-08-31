@@ -116,7 +116,7 @@ namespace Base.MVC.Controllers
             return View();
         }
 
-        public async Task<IActionResult> WarrantyMil()
+        public async Task<IActionResult> Mil()
         {
             return View();
         }
@@ -147,16 +147,6 @@ namespace Base.MVC.Controllers
         }
 
         public async Task<IActionResult> TradebackTerrain()
-        {
-            return View();
-        }
-        
-        public async Task<IActionResult> BuybackMil()
-        {
-            return View();
-        }
-                
-        public async Task<IActionResult> TradebackMil()
         {
             return View();
         }

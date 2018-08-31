@@ -12,25 +12,25 @@
 
 
     /*
-    * Warranty LoadImager
+    * Mil LoadImager
     * @author Ceydacan Seyrek
     * @since 14/08/2018
     */
-    //to warranty form
-    $("#loading-image-warranty").loadImager();
+    //to mil form
+    $("#loading-image-mil").loadImager();
 
-    //to model form
-    $("#loading-image-model").loadImager();
+    //to milType form
+    $("#loading-image-milType").loadImager();
 
-    //to warranty form grid loading-image
-    $("#loading-image-warrantyGrid").loadImager();
+    //to mil form grid loading-image
+    $("#loading-image-milGrid").loadImager();
 
     var langCode = $("#langCode").val();
     //alert(langCode);
 
-    $('#warrantyForm').validationEngine();
+    $('#milForm').validationEngine();
 
-    var cbdata_model = [{}];
+    var cbdata_milType = [{}];
 
     var cbdata = [
         {
@@ -62,10 +62,10 @@
 
 
 
-    $('#loading-image-model').loadImager('removeLoadImage');
-    $("#loading-image-model").loadImager('appendImage');
+    $('#loading-image-milType').loadImager('removeLoadImage');
+    $("#loading-image-milType").loadImager('appendImage');
 
-    var ajaxACLResources_model = $('#ajaxACL-model').ajaxCallWidget({
+    var ajaxACLResources_milType = $('#ajaxACL-milType').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
         data: {
             url: '1'
@@ -74,12 +74,12 @@
 
     });
 
-    ajaxACLResources_model.ajaxCallWidget({
+    ajaxACLResources_milType.ajaxCallWidget({
         onError: function (event, textStatus, errorThrown) {
 
             dm.dangerMessage({
                 onShown: function () {
-                    $('#loading-image-model').loadImager('removeLoadImage');
+                    $('#loading-image-milType').loadImager('removeLoadImage');
                 }
             });
             dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
@@ -87,7 +87,7 @@
         onSuccess: function (event, data) {
             //var data = $.parseJSON(cbdata);
 
-            $('#dropdownModel').ddslick({
+            $('#dropdownMilType').ddslick({
                 //height: 150,
                 data: cbdata,
                 width: '100%',
@@ -99,19 +99,19 @@
                 }
             });
 
-            $("#loading-image-model").loadImager('removeLoadImage');
+            $("#loading-image-milType").loadImager('removeLoadImage');
         },
         onErrorDataNull: function (event, data) {
             console.log("Error : " + event + " -data :" + data);
             dm.dangerMessage({
                 onShown: function () {
-                    $('#loading-image-model').loadImager('removeLoadImage');
+                    $('#loading-image-milType').loadImager('removeLoadImage');
                 }
             });
             dm.dangerMessage('show', window.lang.translate('Ülke bulunamamıştır...'), window.lang.translate('Ülke  bulunamamıştır...'));
         },
     })
-    ajaxACLResources_model.ajaxCallWidget('call');
+    ajaxACLResources_milType.ajaxCallWidget('call');
 
 
     /* devexgrid */
@@ -149,7 +149,7 @@
     DevExpress.localization.locale(langCode);
 
 
-    $("#gridContainer_warranty").dxDataGrid({
+    $("#gridContainer_mil").dxDataGrid({
 
         showColumnLines: true,
 
@@ -224,17 +224,17 @@
         },
 
         columns: [{
-            caption: "Model",
+            caption: "Mil Type",
             dataField: "StoreCity"
         }, {
-            caption: "Warranty",
+            caption: "Mil",
             dataField: "StoreState"
         }],
 
         onSelectionChanged: function (selectedItems) {
             var data = selectedItems.selectedRowsData[0];
             if (data) {
-                fillwarrantyForm(data);
+                fillMilForm(data);
             }
         }
 
@@ -249,34 +249,34 @@
 
 
     /**
- * insert Warranty
+ * insert mil
  * @returns {undefined}
  * @author Ceydacan Seyrek
  * @since 14/08/2018
  */
 
-    window.insertmodel = function () {
-        $("#loading-image-warranty").loadImager('removeLoadImage');
-        $("#loading-image-warranty").loadImager('appendImage');
+    window.insertmilType = function () {
+        $("#loading-image-mil").loadImager('removeLoadImage');
+        $("#loading-image-mil").loadImager('appendImage');
 
-        var cst_purchaselastupdate = $('#txt-model-name').val();
+        var cst_purchaselastupdate = $('#txt-milType-name').val();
 
         var aj = $(window).ajaxCall({
             proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
             data: {
-                url: 'pkInsert_sysmodel',
+                url: 'pkInsert_sysmilType',
 
-                name: model_name,
+                name: milType_name,
                 pk: $("#pk").val()
             }
         })
         aj.ajaxCall({
             onError: function (event, textStatus, errorThrown) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Warranty Ekleme İşlemi Başarısız...',
-                    'Warranty Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
+                dm.dangerMessage('show', 'mil Ekleme İşlemi Başarısız...',
+                    'mil Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
                 console.error('"pkInsert_sysCustomerInfo" servis hatası->' + textStatus);
-                $("#loading-image-warranty").loadImager('removeLoadImage');
+                $("#loading-image-mil").loadImager('removeLoadImage');
             },
             onSuccess: function (event, data) {
                 console.log(data);
@@ -285,101 +285,101 @@
                     onShown: function (event, data) {
                         $('#modelForm')[0].reset();
 
-                        $("#loading-image-warranty").loadImager('removeLoadImage');
+                        $("#loading-image-mil").loadImager('removeLoadImage');
 
                     }
                 });
-                sm.successMessage('show', 'Warranty Kayıt İşlemi Başarılı...',
-                    'model kayıt işlemini gerçekleştirdiniz... ',
+                sm.successMessage('show', 'mil Kayıt İşlemi Başarılı...',
+                    'milType kayıt işlemini gerçekleştirdiniz... ',
                     data);
-                $("#loading-image-warranty").loadImager('removeLoadImage');
+                $("#loading-image-mil").loadImager('removeLoadImage');
 
             },
             onErrorDataNull: function (event, data) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Warranty Kayıt İşlemi Başarısız...',
-                    'Warranty kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
+                dm.dangerMessage('show', 'mil Kayıt İşlemi Başarısız...',
+                    'mil kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysCustomerContactPerson" servis datası boştur!!');
-                $("#loading-image-warranty").loadImager('removeLoadImage');
+                $("#loading-image-mil").loadImager('removeLoadImage');
             },
             onErrorMessage: function (event, data) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Warranty Kayıt İşlemi Başarısız...',
-                    'Warrantykayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
+                dm.dangerMessage('show', 'mil Kayıt İşlemi Başarısız...',
+                    'Mil kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysCustomerContactPerson" servis datası boştur!!');
-                $("#loading-image-model").loadImager('removeLoadImage');
+                $("#loading-image-milType").loadImager('removeLoadImage');
             },
             onError23503: function (event, data) {
                 dm.dangerMessage('Error23503');
-                $("#loading-image-warranty").loadImager('removeLoadImage');
+                $("#loading-image-mil").loadImager('removeLoadImage');
             },
             onError23505: function (event, data) {
                 dm.dangerMessage({
                     onShown: function (event, data) {
                         $('#customerContactPersonForm')[0].reset();
-                        $("#loading-image-warranty").loadImager('removeLoadImage');
+                        $("#loading-image-mil").loadImager('removeLoadImage');
                     }
                 });
                 dm.dangerMessage('show', 'Kayıt İşlemi Başarısız...',
-                    'Aynı isim ile Warranty kaydı yapılmıştır, yeni bir Warranty kaydı deneyiniz... ');
-                $("#loading-image-warranty").loadImager('removeLoadImage');
+                    'Aynı isim ile mil kaydı yapılmıştır, yeni bir mil kaydı deneyiniz... ');
+                $("#loading-image-mil").loadImager('removeLoadImage');
             }
         })
         aj.ajaxCall('call');
     }
     /**
-    * reset model Form
+    * reset milType Form
     * @returns {undefined}
     * @author Ceydacan Seyrek
     * @since 14/08/2018
     */
 
-    window.resetwarrantyForm = function () {
-        $("#loading-image-warranty").loadImager('removeLoadImage');
-        $("#loading-image-warranty").loadImager('appendImage');
+    window.resetMilForm = function () {
+        $("#loading-image-mil").loadImager('removeLoadImage');
+        $("#loading-image-mil").loadImager('appendImage');
 
-        $('#warrantyForm').validationEngine('hide');
-        $('#dropdownModel').ddslick('select', { index: String(0) });
+        $('#milForm').validationEngine('hide');
+        $('#dropdownMilType').ddslick('select', { index: String(0) });
 
-        $("#loading-image-warranty").loadImager('removeLoadImage');
+        $("#loading-image-mil").loadImager('removeLoadImage');
 
         return false;
     }
 
 
     /**
-    * insert model Wrapper
+    * insert milType Wrapper
     * @returns {Boolean}
     * @author Ceydacan Seyrek
     * @since 14/08/2018
     */
 
-    window.insertmodelWrapper = function (e) {
+    window.insertmilTypeWrapper = function (e) {
         e.preventDefault();
 
-        if ($("#warrantyForm").validationEngine('validate')) {
+        if ($("#milForm").validationEngine('validate')) {
 
-            insertwarranty();
+            insertMil();
         }
         return false;
     }
 
 
     /**
-    * Fill model form
+    * Fill milType form
     * @returns {Boolean}
     * @author Ceydacan Seyrek
     * @since 14/08/2018
     */
 
-    window.fillwarrantyForm = function (data) {
-        $("#loading-image-warranty").loadImager('removeLoadImage');
-        $("#loading-image-warranty").loadImager('appendImage');
+    window.fillMilForm = function (data) {
+        $("#loading-image-mil").loadImager('removeLoadImage');
+        $("#loading-image-mil").loadImager('appendImage');
 
-        $('#dropdownModel').ddslick('select', { index: 3 });
-        document.getElementById("txt-warranty-name").value = data.StoreCity;
+        $('#dropdownMilType').ddslick('select', { index: 3 });
+        document.getElementById("txt-mil-name").value = data.StoreCity;
 
-        $("#loading-image-warranty").loadImager('removeLoadImage');
+        $("#loading-image-mil").loadImager('removeLoadImage');
 
         return false;
     }
