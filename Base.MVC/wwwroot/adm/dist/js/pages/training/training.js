@@ -900,6 +900,8 @@
         $('#trainingInfoForm').validationEngine('hide');
 
         $('#dropdownTrName').ddslick('select', { index: String(0) });
+        $('#dropdownTrainer').ddslick('select', { index: String(0) });
+        $('#dropdownCity').ddslick('select', { index: String(0) });
 
         $("#loading-image-truser").loadImager('removeLoadImage');
 
