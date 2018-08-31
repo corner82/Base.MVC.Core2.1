@@ -212,23 +212,15 @@ namespace Base.MVC
                 {
                     var supportedCultures = new List<CultureInfo>
                     {
-                        new CultureInfo("es"),
                         new CultureInfo("en-US"),
-                        new CultureInfo("en-AU"),
-                        new CultureInfo("en-GB"),
-                        new CultureInfo("en"),
-                        new CultureInfo("es-ES"),
-                        new CultureInfo("es-MX"),
-                        new CultureInfo("fr-FR"),
-                        new CultureInfo("fr"),
-                        new CultureInfo("tr-TR"),
-                        new CultureInfo("ru-RU"),
-                        //new CultureInfo("ru-RU"),
+                        new CultureInfo("af-ZA"),
+                        new CultureInfo("de-DE"),
+                        new CultureInfo("tr-TR")
                     };
 
                     var requestLocalizationOptions = new RequestLocalizationOptions
                     {
-                        DefaultRequestCulture = new RequestCulture("es-MX"),
+                        DefaultRequestCulture = new RequestCulture("en-US"),
                         SupportedCultures = supportedCultures,
                         SupportedUICultures = supportedCultures
                     };
@@ -260,7 +252,9 @@ namespace Base.MVC
 
                         mvcRoutes.MapRoute(
                         name: "defaultCulture",
-                        template: "{culture:regex(^[a-z]{{2}}-[A-Z]{{2}}$)}/{controller=Home}/{action=Index}/{id?}");
+                        template: "{culture:regex(^[a-z]{{2}}-[a-z]{{2}}$)}/{controller=Home}/{action=Index}/{id?}");
+                        //template: "{culture:regex(^[a-z]{{2}}(-[a-z]{{2}})?$)}/{controller=Home}/{action=Index}/{id?}");
+                        //template: "{culture:regex(^[a-z]{{2}}$)}/{controller=Home}/{action=Index}/{id?}");
 
                         mvcRoutes.MapRoute(
                             name: "defaultApi",

@@ -49,7 +49,7 @@ window.leftMenuWidget.leftMenu('setBaseMenu');*/
 
 
 // admin page set language list (dropdown)
-$("#lang_list_container").setLangList();
+$("#lang_list_container").setLangList({ microsoftCulture: true });
 $("#lang_list_container").setLangList('fillLangList');
 
 

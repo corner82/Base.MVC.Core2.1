@@ -11,11 +11,11 @@ $(document).ready(function () {
     $(".connectedSortable .box-header, .connectedSortable .nav-tabs-custom").css("cursor", "move");
 
     $(document).click(function (event) {
-        alert(event.target.nodeName);
+        /*alert(event.target.nodeName);
         alert($(event.target).data('nodejs-log'));
         alert('session id =>' + localStorage.getItem('sessionID'));
         alert('user name =>' + localStorage.getItem('userName'));
-        alert('user IP =>' + localStorage.getItem('userIP'));
+        alert('user IP =>' + localStorage.getItem('userIP'));*/
         var test = event.target;
         //alert(test.attr('data-toggle'));
 

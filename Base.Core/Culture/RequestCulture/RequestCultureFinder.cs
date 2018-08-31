@@ -25,7 +25,8 @@ namespace Base.Core.Culture.RequestCulture
         {
             var rqf = _context.HttpContext.Request.HttpContext.Features.Get<IRequestCultureFeature>();
             var culture = rqf.RequestCulture.Culture;
-            var cultureShortName = GetShortCultureInfo(culture.ToString());
+            var uripath = _context.HttpContext.Request.Path;
+            var cultureShortName = GetShortCultureInfo(culture.ToString().ToLower());
             return cultureShortName;
 
         }
@@ -34,7 +35,7 @@ namespace Base.Core.Culture.RequestCulture
         {
             if(!string.IsNullOrEmpty(cultureInfo))
             {
-               switch (cultureInfo)
+               switch (cultureInfo.ToLower())
                 {
                     case CultureInfoNames.TR:
                         return "tr";

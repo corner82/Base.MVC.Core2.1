@@ -1,0 +1,139 @@
+﻿@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHttpContextAccessor HttpContextAccessor
+@using System
+@using System.Text
+@using Base.Core.Entities.Session
+@using Base.Core.Extensions.Session
+@using Microsoft.AspNetCore.Http
+@{
+    var currentUser = Context.Session.Get<SessionUserModel>("CurrentUser");
+}
+
+
+<div class="nav-tabs-custom">
+    <ul class="nav nav-tabs pull-right" id="attached_deals_tab">
+        <li class="nav-item"><a href="#tab_1-1" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Tab 1</a></li>
+        <li class="nav-item"><a href="#tab_2-2" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Tab 2</a></li>
+        <li class="active nav-item"><a href="#tab_3-2" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="true">Tab 3</a></li>
+        <li class="dropdown nav-item">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                Dropdown <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+            </ul>
+        </li>
+        <li class="pull-left header" lang="en"><i class="fa fa-th"></i>Search</li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane" id="tab_1-1" style="padding: 21px 20px 65px 20px;">
+            <b>How to use:</b>
+            <p>
+                Exactly like the original bootstrap tabs except you should use
+                the custom wrapper <code>.nav-tabs-custom</code> to achieve this style.
+            </p>
+            A wonderful serenity has taken possession of my entire soul,
+            like these sweet mornings of spring which I enjoy with my whole heart.
+            I am alone, and feel the charm of existence in this spot,
+            which was created for the bliss of souls like mine. I am so happy,
+            my dear friend, so absorbed in the exquisite sense of mere tranquil existence,
+            that I neglect my talents. I should be incapable of drawing a single stroke
+            at the present moment; and yet I feel that I never was a greater artist than now.
+
+            <!--<div class="box-footer clearfix no-border">-->
+            <button class="btn btn-default pull-right" id="tab_next_1" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>Sonraki Tab</button>
+            <button class="btn btn-default pull-right" id="tab_active_1" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>Tüm tablar aktif</button>
+            <button class="btn btn-default pull-right" id="tab_passive_1" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>Tüm tablar pasif</button>
+            <button class="btn btn-default pull-right" id="tab_active_order_1" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>3.tab aktif</button>
+            <button class="btn btn-default pull-right" id="tab_enable_order_1" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>enable tab by order</button>
+            <!--</div>-->
+        </div><!-- /.tab-pane -->
+        <div class="tab-pane" id="tab_2-2" style="padding: 21px 20px 65px 20px;">
+            The European languages are members of the same family. Their separate existence is a myth.
+            For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
+            in their grammar, their pronunciation and their most common words. Everyone realizes why a
+            new common language would be desirable: one could refuse to pay expensive translators. To
+            achieve this, it would be necessary to have uniform grammar, pronunciation and more common
+            words. If several languages coalesce, the grammar of the resulting language is more simple
+            and regular than that of the individual languages.
+
+            <!--<div class="box-footer clearfix no-border">-->
+            <button class="btn btn-default pull-right" id="tab_next_2" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>Sonraki Tab</button>
+            <button class="btn btn-default pull-right" id="tab_before_2" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>Önceki Tab</button>
+            <button class="btn btn-default pull-right" id="tab_active_2" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>Tüm tablar aktif</button>
+            <button class="btn btn-default pull-right" id="tab_passive_2" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>Tüm tablar pasif</button>
+            <button class="btn btn-default pull-right sidebar" id="sidebar_left_toggle" data-action="toggle" data-side="bottom" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>sidebar left</button>
+            <button class="btn btn-default pull-right sidebar" id="sidebar_right_toggle" data-action="toggle" data-side="bottom" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>sidebar right</button>
+            <!--</div>-->
+        </div><!-- /.tab-pane -->
+        <div class="tab-pane active" id="tab_3-2">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>SMTP Host:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-mail-reply"></i>
+                            </div>
+                            <input type="text" class="form-control" placeholder="SMTP Host">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>SMTP Port:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-mail-forward"></i>
+                            </div>
+                            <input type="text" class="form-control" placeholder="SMTP Port">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>User Name:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-user"></i>
+                            </div>
+                            <input type="text" class="form-control" placeholder="User Name">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>SMTP Host:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-mail-reply"></i>
+                            </div>
+                            <input type="text" class="form-control" placeholder="SMTP Host">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>SMTP Port:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-mail-forward"></i>
+                            </div>
+                            <input type="text" class="form-control" placeholder="SMTP Port">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>User Name:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-user"></i>
+                            </div>
+                            <input type="text" class="form-control" placeholder="User Name">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div><!-- /.tab-pane -->
+    </div><!-- /.tab-content -->
+</div>

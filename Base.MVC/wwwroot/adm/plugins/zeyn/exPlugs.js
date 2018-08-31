@@ -79,16 +79,9 @@
             //jquery lang master
             window.lang = new Lang();
 
-            //lang.dynamic('tr', '../plugins/jquery-lang-js-master/js/langpack/tr.json');
-            window.lang.dynamic('th', '/adm/plugins/jquery-lang-js-master/js/langpack/th.json');
             window.lang.dynamic('tr', '/adm/plugins/jquery-lang-js-master/js/langpack/tr.json');
-            window.lang.dynamic('ar', '/adm/plugins/jquery-lang-js-master/js/langpack/ar.json');
-            window.lang.dynamic('zh', '/adm/plugins/jquery-lang-js-master/js/langpack/zh.json');
-            window.lang.dynamic('fa', '/adm/plugins/jquery-lang-js-master/js/langpack/fa.json');
-            window.lang.dynamic('ru', '/adm/plugins/jquery-lang-js-master/js/langpack/ru.json');
             window.lang.dynamic('de', '/adm/plugins/jquery-lang-js-master/js/langpack/de.json');
             window.lang.dynamic('af', '/adm/plugins/jquery-lang-js-master/js/langpack/af.json');
-            window.lang.dynamic('es', '/adm/plugins/jquery-lang-js-master/js/langpack/es.json');
             window.lang.init({
                 defaultLang: 'en'
             });
@@ -372,7 +365,8 @@
             requestUriTranslated: '/',
             langCode: 'tr',
             useLangMaster: 'true',
-            activeLangDisplayId: 'default_lang'
+            activeLangDisplayId: 'default_lang',
+            microsoftCulture : false,
         },
         /**
          * private constructor method for jquery widget
@@ -454,6 +448,33 @@
 
         },
 
+        __setFilteredLangCode: function (langCode) {
+            var self = this;
+            var filteredLangCode = langCode
+            //alert(self.options.microsoftCulture);
+            if (self.options.microsoftCulture) {
+                switch (langCode) {
+                    case 'en':
+                        filteredLangCode = "en-US"
+                        break;
+                    case 'de':
+                        filteredLangCode = "de-DE"
+                        break;
+                    case 'tr':
+                        filteredLangCode = "tr-TR"
+                        break;
+                    case 'af':
+                        filteredLangCode = "af-ZA"
+                        break;
+                    default:
+                        filteredLangCode = "en-US"
+                }
+                return filteredLangCode;
+            } else {
+                return filteredLangCode;
+            }
+        },
+
         _fillByLangCode: function (data) {
             var data = data;
             var self = this;
@@ -461,7 +482,7 @@
             $.each(data, function (key, value) {
 
                 var requestUriTranslatedLocal = self.options.requestUriTranslated;
-                requestUriTranslatedLocal = requestUriTranslatedLocal.replace("--dil--", value.language_main_code);
+                requestUriTranslatedLocal = requestUriTranslatedLocal.replace("--dil--", self.__setFilteredLangCode(value.language_main_code));
                 //console.log(requestUriTranslatedLocal);
                 if (self.options.useLangMaster == 'true') {
                     if (self.options.langCode == value.language_main_code) {
@@ -503,7 +524,7 @@
             var self = this;
             var html = '';
             $.each(data, function (key, value) {
-
+                var filteredLangcode = self.__setFilteredLangCode(value.language_main_code);
                 var requestUriTranslatedLocal = self.options.requestUriTranslated;
                 //requestUriTranslatedLocal = requestUriTranslatedLocal.replace("--dil--", value.language_main_code);
                 //console.log(requestUriTranslatedLocal);
@@ -511,13 +532,13 @@
                     if (self.options.langCode == value.language_main_code) {
                         $('#' + self.options.activeLangDisplayId + '').html(value.language);
                         html += '<li class="active">' +
-                            '<a style="display:block;color:#000000;" onclick="window.lang.change(\'' + value.language_main_code + '\'); window.location.href= \'/' + value.language_main_code + requestUriTranslatedLocal + '\';">' +
+                            '<a style="display:block;color:#000000;" onclick="window.lang.change(\'' + value.language_main_code + '\'); window.location.href= \'/' + filteredLangcode + requestUriTranslatedLocal + '\';">' +
                             '<span class="logo-mini">' + value.language_main_code + '</span><span>&nbsp;&nbsp;&nbsp;' + value.language + '</span>' +
                             '</a>' +
                             '</li>';
                     } else {
                         html += '<li >' +
-                            '<a style="display:block;color:#000000;" onclick="window.lang.change(\'' + value.language_main_code + '\'); window.location.href= \'/' + value.language_main_code + requestUriTranslatedLocal + '\';">' +
+                            '<a style="display:block;color:#000000;" onclick="window.lang.change(\'' + value.language_main_code + '\'); window.location.href= \'/' + filteredLangcode + requestUriTranslatedLocal + '\';">' +
                             '<span class="logo-mini">' + value.language_main_code + '</span><span>&nbsp;&nbsp;&nbsp;' + value.language + '</span>' +
                             '</a>' +
                             '</li>';
@@ -526,13 +547,13 @@
                     if (self.options.langCode == value.language_main_code) {
                         $('#' + self.options.activeLangDisplayId + '').html(value.language);
                         html += '<li class="active">' +
-                            '<a style="display:block;color:#000000;" onclick="window.lang.change(\'' + value.language_main_code + '\');window.location.href= \'' + value.language_main_code + requestUriTranslatedLocal + '\';">' +
+                            '<a style="display:block;color:#000000;" onclick="window.lang.change(\'' + value.language_main_code + '\');window.location.href= \'' + filteredLangcode + requestUriTranslatedLocal + '\';">' +
                             '<span class="logo-mini">' + value.language_main_code + '</span><span>&nbsp;&nbsp;&nbsp;' + value.language + '</span>' +
                             '</a>' +
                             '</li>';
                     } else {
                         html += '<li >' +
-                            '<a  style="display:block;color:#000000;" onclick="window.lang.change(\'' + value.language_main_code + '\');window.location.href= \'' + value.language_main_code + requestUriTranslatedLocal + '\';">' +
+                            '<a  style="display:block;color:#000000;" onclick="window.lang.change(\'' + value.language_main_code + '\');window.location.href= \'' + filteredLangcode + requestUriTranslatedLocal + '\';">' +
                             '<span class="logo-mini">' + value.language_main_code + '</span><span>&nbsp;&nbsp;&nbsp;' + value.language + '</span>' +
                             '</a>' +
                             '</li>';

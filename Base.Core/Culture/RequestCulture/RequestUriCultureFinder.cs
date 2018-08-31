@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Base.Core.Culture.RequestCulture
@@ -48,18 +49,54 @@ namespace Base.Core.Culture.RequestCulture
 
         private string ReplaceCultureCode(string queryStr)
         {
+
+
             StringBuilder queryStrBuilder = new StringBuilder(queryStr);
             queryStrBuilder.Replace("  ", string.Empty);
             queryStrBuilder.Replace(Environment.NewLine, string.Empty);
-            queryStrBuilder.Replace("/" + CultureInfoNames.AF + "/", "/--dil--/");
-            queryStrBuilder.Replace("/" + CultureInfoNames.US + "/", "/--dil--/");
-            queryStrBuilder.Replace("/" + CultureInfoNames.TR + "/", "/--dil--/");
-            queryStrBuilder.Replace("/" + CultureInfoNames.FA + "/", "/--dil--/");
-            queryStrBuilder.Replace("/" + CultureInfoNames.AR + "/", "/--dil--/");
-            queryStrBuilder.Replace("/" + CultureInfoNames.ZH + "/", "/--dil--/");
-            queryStrBuilder.Replace("/" + CultureInfoNames.MX + "/", "/--dil--/");
-            queryStrBuilder.Replace("/" + CultureInfoNames.FR + "/", "/--dil--/");
-            queryStrBuilder.Replace("/" + CultureInfoNames.RU + "/", "/--dil--/");
+
+
+            string[] queryParts = queryStr.Split('/');
+
+            if(queryParts.Length > 1 && queryParts[1].Contains("-"))
+            {
+                Dictionary<string, string> langValues = new Dictionary<string, string>()
+                {
+                    { "tr-tr", "--dil--" },
+                    { "de-de", "--dil--" },
+                    { "en-us", "--dil--" },
+                    { "af-za", "--dil--" },
+                };
+
+                /* queryParts[1] = queryParts[1].ToLower();
+                 StringBuilder queryPartBuilder = new StringBuilder(queryParts[1]);
+                 foreach (string k in langValues.Keys)
+                 {
+                     queryPartBuilder.Replace(k, langValues[k]);
+                     if (queryPartBuilder.ToString() == langValues[k]) break;
+                 }*/
+
+                StringBuilder queryPartBuilder = new StringBuilder("--dil--");
+
+                queryParts[1] = queryPartBuilder.ToString();
+                queryParts = queryParts.Skip(1).ToArray();
+                StringBuilder newQueryStr = new StringBuilder();
+                foreach (string k in queryParts)
+                {
+                    newQueryStr.Append("/"+k);
+                }
+                return newQueryStr.ToString();
+            }
+
+            /*queryStrBuilder.Replace("/" + CultureInfoNames.AF.ToLower() + "/", "/--dil--/");
+            queryStrBuilder.Replace("/" + CultureInfoNames.US.ToLower() + "/", "/--dil--/");
+            queryStrBuilder.Replace("/" + CultureInfoNames.TR.ToLower() + "/", "/--dil--/");
+            queryStrBuilder.Replace("/" + CultureInfoNames.FA.ToLower() + "/", "/--dil--/");
+            queryStrBuilder.Replace("/" + CultureInfoNames.AR.ToLower() + "/", "/--dil--/");
+            queryStrBuilder.Replace("/" + CultureInfoNames.ZH.ToLower() + "/", "/--dil--/");
+            queryStrBuilder.Replace("/" + CultureInfoNames.MX.ToLower() + "/", "/--dil--/");
+            queryStrBuilder.Replace("/" + CultureInfoNames.FR.ToLower() + "/", "/--dil--/");
+            queryStrBuilder.Replace("/" + CultureInfoNames.RU.ToLower() + "/", "/--dil--/");*/
             return queryStrBuilder.ToString();
         }
        

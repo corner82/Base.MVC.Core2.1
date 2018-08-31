@@ -2,89 +2,81 @@
   {
     "Key": "Hello",
     "LocalizedValue": {
-      "fr-FR": "Bonjour",
+      "de-DE": "Bonjour",
       "en-US": "Hello",
-      "es-MX": "test espanol",
-      "tr-TR": "Merhaba",
-      "ru-RU": "Dashboard"
+      "af-ZA": "test espanol",
+      "tr-TR": "Merhaba"
     }
   },
   {
     "Key": "Dashboard",
     "LocalizedValue": {
-      "fr-FR": "Bonjour Dashboard",
+      "de-DE": "Bonjour Dashboard",
       "en-US": "Dashboard",
-      "es-MX": "Tablero",
-      "tr-TR": "Dashboard",
-      "ru-RU": "Dashboard"
+      "af-ZA": "Tablero",
+      "tr-TR": "Dashboard"
     }
   },
   {
     "Key": "Control Panel",
     "LocalizedValue": {
-      "fr-FR": "Bonjour Control Panel",
+      "de-DE": "Bonjour Control Panel",
       "en-US": "Control Panel",
-      "es-MX": "Panel de control",
-      "tr-TR": "Kontrol Paneli",
-      "ru-RU": "Dashboard"
+      "af-ZA": "Panel de control",
+      "tr-TR": "Kontrol Paneli"
     }
   },
   {
     "Key": "Login Page",
     "LocalizedValue": {
-      "fr-FR": "Bonjour Login PAge",
+      "de-DE": "Bonjour Login PAge",
       "en-US": "Login Page",
-      "es-MX": "Página de inicio de sesión",
-      "tr-TR": "Giriş Yap",
-      "ru-RU": "Dashboard"
+      "af-ZA": "Página de inicio de sesión",
+      "tr-TR": "Giriş Yap"
     }
   },
   {
     "Key": "Registration Page",
     "LocalizedValue": {
-      "fr-FR": "Bonjour Login Page",
+      "de-DE": "Bonjour Login Page",
       "en-US": "Registration Page",
-      "es-MX": "Página de registro",
-      "tr-TR": "Kaydol",
-      "ru-RU": "Dashboard"
+      "af-ZA": "Página de registro",
+      "tr-TR": "Kaydol"
     }
   },
   {
     "Key": "Sales Management",
     "LocalizedValue": {
-      "fr-FR": "Bonjour sales Manager",
+      "de-DE": "Bonjour sales Manager",
       "en-US": "Sales Management",
-      "es-MX": "Gestión",
-      "tr-TR": "Satış Programı",
-      "ru-RU": "Dashboard"
+      "af-ZA": "Gestión",
+      "tr-TR": "Satış Programı"
     }
   },
   {
     "Key": "See All Messages",
     "LocalizedValue": {
-      "fr-FR": "Bonjour See All Messages",
+      "de-DE": "Bonjour See All Messages",
       "en-US": "See All Messages",
-      "es-MX": "Ver todos los mensajes",
-      "tr-TR": "Tüm mesajları gör",
-      "ru-RU": "Dashboard"
+      "af-ZA": "Ver todos los mensajes",
+      "tr-TR": "Tüm mesajları gör"
     }
   },
   {
     "Key": "MİYA sales management program support team",
     "LocalizedValue": {
-      "fr-FR": "Bonjour MİYA sales management program support team",
+      "de-DE": "Bonjour MİYA sales management program support team",
       "en-US": "MİYA sales management program support team",
-      "es-MX": "MİYA equipo de soporte del programa de gestión de ventas",
-      "tr-TR": "MİYA satış programı destek ekibi",
-      "ru-RU": "Dashboard"
+      "af-ZA": "MİYA equipo de soporte del programa de gestión de ventas",
+      "tr-TR": "MİYA satış programı destek ekibi"
     }
   },
   {
     "Key": "New Orders",
     "LocalizedValue": {
-      "fr-FR": "Bonjour New Orders",
+      "de-DE": "Bonjour New Orders",
       "en-US": "New Orders",
-      "es-MX": "Nuevos pedidos",
+      "af-ZA": "Nuevos pedidos",
       "tr-TR": "Yeni Siparişler",
       "ru-RU": "Dashboard"
     }
@@ -92,434 +84,380 @@
   {
     "Key": "Bounce Rate",
     "LocalizedValue": {
-      "fr-FR": "Bonjour Bounce Rate",
+      "de-DE": "Bonjour Bounce Rate",
       "en-US": "Bounce Rate",
-      "es-MX": "Porcentaje de rebote",
-      "tr-TR": "Geri Dönüşler",
-      "ru-RU": "Dashboard"
+      "af-ZA": "Porcentaje de rebote",
+      "tr-TR": "Geri Dönüşler"
     }
   },
   {
     "Key": "User Registrations",
     "LocalizedValue": {
-      "fr-FR": "Bonjour User Registrations",
+      "de-DE": "Bonjour User Registrations",
       "en-US": "User Registrations",
-      "es-MX": "Registros de usuario",
-      "tr-TR": "Kullanıcı Kayıtları",
-      "ru-RU": "Dashboard"
+      "af-ZA": "Registros de usuario",
+      "tr-TR": "Kullanıcı Kayıtları"
     }
   },
   {
     "Key": "Completed Sales",
     "LocalizedValue": {
-      "fr-FR": "Bonjour Completed Sales",
+      "de-DE": "Bonjour Completed Sales",
       "en-US": "Completed Sales",
-      "es-MX": "Ventas completadas",
-      "tr-TR": "Tamamlanan Satışlar",
-      "ru-RU": "Dashboard"
+      "af-ZA": "Ventas completadas",
+      "tr-TR": "Tamamlanan Satışlar"
     }
   },
   {
     "Key": "Logout",
     "LocalizedValue": {
-      "fr-FR": "Bonjour Logout",
+      "de-DE": "Bonjour Logout",
       "en-US": "Logout",
-      "es-MX": "Cerrar sesión",
-      "tr-TR": "Çıkış",
-      "ru-RU": "Dashboard"
+      "af-ZA": "Cerrar sesión",
+      "tr-TR": "Çıkış"
     }
   },
   {
     "Key": "Donut",
     "LocalizedValue": {
-      "fr-FR": "Bonjour Donut",
+      "de-DE": "Bonjour Donut",
       "en-US": "Donut",
-      "es-MX": "Rosquilla",
-      "tr-TR": "Pasta grafik",
-      "ru-RU": "Dashboard"
+      "af-ZA": "Rosquilla",
+      "tr-TR": "Pasta grafik"
     }
   },
   {
     "Key": "Area",
     "LocalizedValue": {
-      "fr-FR": "Bonjour Area",
+      "de-DE": "Bonjour Area",
       "en-US": "Area",
-      "es-MX": "Zona",
-      "tr-TR": "Alan",
-      "ru-RU": "Dashboard"
+      "af-ZA": "Zona",
+      "tr-TR": "Alan"
     }
   },
   {
     "Key": "Chat",
     "LocalizedValue": {
-      "fr-FR": "Bonjour Chat",
+      "de-DE": "Bonjour Chat",
       "en-US": "Chat",
-      "es-MX": "Charla",
-      "tr-TR": "Mesajlaşma",
-      "ru-RU": "Dashboard"
+      "af-ZA": "Charla",
+      "tr-TR": "Mesajlaşma"
     }
   },
   {
     "Key": "{0} minutes",
     "LocalizedValue": {
-      "fr-FR": "Bonjour {0} minutes",
+      "de-DE": "Bonjour {0} minutes",
       "en-US": "{0} minutes",
-      "es-MX": "{0} minutos",
-      "tr-TR": "{0} dakika",
-      "ru-RU": "Dashboard"
+      "af-ZA": "{0} minutos",
+      "tr-TR": "{0} dakika"
     }
   },
   {
     "Key": "{0} hours",
     "LocalizedValue": {
-      "fr-FR": "Bonjour {0} hours",
+      "de-DE": "Bonjour {0} hours",
       "en-US": "{0} hours",
-      "es-MX": "{0} horas",
-      "tr-TR": "{0} saat",
-      "ru-RU": "Dashboard"
+      "af-ZA": "{0} horas",
+      "tr-TR": "{0} saat"
     }
   },
   {
     "Key": "{0} days",
     "LocalizedValue": {
-      "fr-FR": "Bonjour {0} days",
+      "de-DE": "Bonjour {0} days",
       "en-US": "{0} days",
-      "es-MX": "{0} dias",
-      "tr-TR": "{0} gün",
-      "ru-RU": "Dashboard"
+      "af-ZA": "{0} dias",
+      "tr-TR": "{0} gün"
     }
   },
   {
     "Key": "Add item",
     "LocalizedValue": {
-      "fr-FR": "Bonjour Add item",
+      "de-DE": "Bonjour Add item",
       "en-US": "Add item",
-      "es-MX": "Añadir artículo",
-      "tr-TR": "Ekle",
-      "ru-RU": "Dashboard"
+      "af-ZA": "Añadir artículo",
+      "tr-TR": "Ekle"
     }
   },
   {
     "Key": "{0} months",
     "LocalizedValue": {
-      "fr-FR": "Bonjour {0} months",
+      "de-DE": "Bonjour {0} months",
       "en-US": "{0} months",
-      "es-MX": "{0} meses",
-      "tr-TR": "{0} ay",
-      "ru-RU": "Dashboard"
+      "af-ZA": "{0} meses",
+      "tr-TR": "{0} ay"
     }
   },
   {
     "Key": "To Do List",
     "LocalizedValue": {
-      "fr-FR": "Bonjour To Do List",
+      "de-DE": "Bonjour To Do List",
       "en-US": "To Do List",
-      "es-MX": "Lista de quehaceres",
-      "tr-TR": "Yapılacaklar",
-      "ru-RU": "Yapılacaklar"
+      "af-ZA": "Lista de quehaceres",
+      "tr-TR": "Yapılacaklar"
     }
   },
   {
     "Key": "Status",
     "LocalizedValue": {
-      "fr-FR": "Bonjour Status",
+      "de-DE": "Bonjour Status",
       "en-US": "Status",
-      "es-MX": "Estado",
-      "tr-TR": "Durum",
-      "ru-RU": "Durum"
+      "af-ZA": "Estado",
+      "tr-TR": "Durum"
     }
   },
   {
     "Key": "Type message",
     "LocalizedValue": {
-      "fr-FR": "Bonjour Type message",
+      "de-DE": "Bonjour Type message",
       "en-US": "Type message",
-      "es-MX": "Escriba mensaje",
-      "tr-TR": "Mesaj yaz",
-      "ru-RU": "Mesaj yaz"
+      "af-ZA": "Escriba mensaje",
+      "tr-TR": "Mesaj yaz"
     }
   },
   {
     "Key": "Open",
     "LocalizedValue": {
-      "fr-FR": "Bonjour open",
+      "de-DE": "Bonjour open",
       "en-US": "Open",
-      "es-MX": "Abierto",
-      "tr-TR": "Aç",
-      "ru-RU": "Aç"
+      "af-ZA": "Abierto",
+      "tr-TR": "Aç"
     }
   },
   {
     "Key": "Profile",
     "LocalizedValue": {
-      "fr-FR": "Bonjour Profile",
+      "de-DE": "Bonjour Profile",
       "en-US": "Profile",
-      "es-MX": "Perfil",
-      "tr-TR": "Profilim",
-      "ru-RU": "Profilim"
+      "af-ZA": "Perfil",
+      "tr-TR": "Profilim"
     }
   },
   {
     "Key": "Departman",
     "LocalizedValue": {
-      "fr-FR": "Bonjour Departman",
+      "de-DE": "Bonjour Departman",
       "en-US": "Departman",
-      "es-MX": "Departamental",
-      "tr-TR": "Departman",
-      "ru-RU": "Departman"
+      "af-ZA": "Departamental",
+      "tr-TR": "Departman"
     }
   },
   {
     "Key": "{0} messages",
     "LocalizedValue": {
-      "fr-FR": "{0} messages bonjour",
+      "de-DE": "{0} messages bonjour",
       "en-US": "{0} messages",
-      "es-MX": "{0} mensajes",
-      "tr-TR": "{0} mesaj",
-      "ru-RU": "{0} mesaj"
+      "af-ZA": "{0} mensajes",
+      "tr-TR": "{0} mesaj"
     }
   },
   {
     "Key": "{0} notifications",
     "LocalizedValue": {
-      "fr-FR": "{0} messages notifications",
+      "de-DE": "{0} messages notifications",
       "en-US": "{0} notifications",
-      "es-MX": "{0} notificaciones",
-      "tr-TR": "{0} hatırlatma",
-      "ru-RU": "{0} hatırlatma"
+      "af-ZA": "{0} notificaciones",
+      "tr-TR": "{0} hatırlatma"
     }
   },
   {
     "Key": "{0} tasks",
     "LocalizedValue": {
-      "fr-FR": "{0} bonjour tasks",
+      "de-DE": "{0} bonjour tasks",
       "en-US": "{0} tasks",
-      "es-MX": "{0} tarea",
-      "tr-TR": "{0} görev",
-      "ru-RU": "{0} görev"
+      "af-ZA": "{0} tarea",
+      "tr-TR": "{0} görev"
     }
   },
   {
     "Key": "View all",
     "LocalizedValue": {
-      "fr-FR": "Bonjour View all",
+      "de-DE": "Bonjour View all",
       "en-US": "View all",
-      "es-MX": "Ver todo",
-      "tr-TR": "Tamamını gör",
-      "ru-RU": "Tamamını gör"
+      "af-ZA": "Ver todo",
+      "tr-TR": "Tamamını gör"
     }
   },
   {
     "Key": "Last login time",
     "LocalizedValue": {
-      "fr-FR": "Bonjour Last login time",
+      "de-DE": "Bonjour Last login time",
       "en-US": "Last login time",
-      "es-MX": "Último inicio de sesión Hora",
-      "tr-TR": "Sisteme son giriş tarihi",
-      "ru-RU": "Sisteme son giriş tarihi"
+      "af-ZA": "Último inicio de sesión Hora",
+      "tr-TR": "Sisteme son giriş tarihi"
     }
   },
   {
     "Key": "Followed issues",
     "LocalizedValue": {
-      "fr-FR": "Bonjour Followed issues",
+      "de-DE": "Bonjour Followed issues",
       "en-US": "Followed issues",
-      "es-MX": "Problemas seguidos",
-      "tr-TR": "Takipteki işler",
-      "ru-RU": "Takipteki işler"
+      "af-ZA": "Problemas seguidos",
+      "tr-TR": "Takipteki işler"
     }
   },
   {
     "Key": "More Info",
     "LocalizedValue": {
-      "fr-FR": "Bonjour More Info",
+      "de-DE": "Bonjour More Info",
       "en-US": "More Info",
-      "es-MX": "Más información",
-      "tr-TR": "Detaylı Bilgi",
-      "ru-RU": "Detaylı Bilgi"
+      "af-ZA": "Más información",
+      "tr-TR": "Detaylı Bilgi"
     }
   },
   {
     "Key": "Sign in to start your session",
     "LocalizedValue": {
-      "fr-FR": "Bonjour sign in",
+      "de-DE": "Bonjour sign in",
       "en-US": "Sign in to start your session",
-      "es-MX": "Registrarse",
-      "tr-TR": "Sisteme giriş yapın",
-      "ru-RU": "Sisteme giriş yapın"
+      "af-ZA": "Registrarse",
+      "tr-TR": "Sisteme giriş yapın"
     }
   },
   {
     "Key": "Subject",
     "LocalizedValue": {
-      "fr-FR": "Bonjour Subject",
+      "de-DE": "Bonjour Subject",
       "en-US": "Subject",
-      "es-MX": "Tema",
-      "tr-TR": "Konu",
-      "ru-RU": "Konu"
+      "af-ZA": "Tema",
+      "tr-TR": "Konu"
     }
   },
   {
     "Key": "Send",
     "LocalizedValue": {
-      "fr-FR": "Bonjour Send",
+      "de-DE": "Bonjour Send",
       "en-US": "Send",
-      "es-MX": "Enviar",
-      "tr-TR": "Gönder",
-      "ru-RU": "Gönder"
+      "af-ZA": "Enviar",
+      "tr-TR": "Gönder"
     }
   },
   {
     "Key": "Email",
     "LocalizedValue": {
-      "fr-FR": "Bonjour email",
+      "de-DE": "Bonjour email",
       "en-US": "Email",
-      "es-MX": "Correo electrónico",
-      "tr-TR": "Eposta",
-      "ru-RU": "Eposta"
+      "af-ZA": "Correo electrónico",
+      "tr-TR": "Eposta"
     }
   },
   {
     "Key": "Password",
     "LocalizedValue": {
-      "fr-FR": "Bonjour password",
+      "de-DE": "Bonjour password",
       "en-US": "Password",
-      "es-MX": "Contraseña",
-      "tr-TR": "Şifre",
-      "ru-RU": "Şifre"
+      "af-ZA": "Contraseña",
+      "tr-TR": "Şifre"
     }
   },
   {
     "Key": "Remember Me",
     "LocalizedValue": {
-      "fr-FR": "Bonjour remember me",
+      "de-DE": "Bonjour remember me",
       "en-US": "Remember Me",
-      "es-MX": "Recuérdame",
-      "tr-TR": "Beni Hatırla",
-      "ru-RU": "Beni Hatırla"
+      "af-ZA": "Recuérdame",
+      "tr-TR": "Beni Hatırla"
     }
   },
   {
     "Key": "Sign In",
     "LocalizedValue": {
-      "fr-FR": "Bonjour sign in",
+      "de-DE": "Bonjour sign in",
       "en-US": "Sign In",
-      "es-MX": "Registrarse",
-      "tr-TR": "Giriş Yap",
-      "ru-RU": "Giriş Yap"
+      "af-ZA": "Registrarse",
+      "tr-TR": "Giriş Yap"
     }
   },
   {
     "Key": "Register a new membership",
     "LocalizedValue": {
-      "fr-FR": "Bonjour register",
+      "de-DE": "Bonjour register",
       "en-US": "Register a new membership",
-      "es-MX": "Registro",
-      "tr-TR": "Kayıt Ol",
-      "ru-RU": "Kayıt Ol"
+      "af-ZA": "Registro",
+      "tr-TR": "Kayıt Ol"
     }
   },
   {
     "Key": "Sign in using Facebook",
     "LocalizedValue": {
-      "fr-FR": "Bonjour sign in facebook",
+      "de-DE": "Bonjour sign in facebook",
       "en-US": "Sign in using Facebook",
-      "es-MX": "Inicie sesión con Facebook",
-      "tr-TR": "Facebook hesabı ile kayıt ol",
-      "ru-RU": "Facebook hesabı ile kayıt ol"
+      "af-ZA": "Inicie sesión con Facebook",
+      "tr-TR": "Facebook hesabı ile kayıt ol"
     }
   },
   {
     "Key": "Sign in using Google+",
     "LocalizedValue": {
-      "fr-FR": "Bonjour sign in google",
+      "de-DE": "Bonjour sign in google",
       "en-US": "Sign in using Google+",
-      "es-MX": "Inicia sesión con Google+",
-      "tr-TR": "Google+ hesabı ile kayıt ol",
-      "ru-RU": "Google+ hesabı ile kayıt ol"
+      "af-ZA": "Inicia sesión con Google+",
+      "tr-TR": "Google+ hesabı ile kayıt ol"
     }
   },
   {
     "Key": "I forgot my password",
     "LocalizedValue": {
-      "fr-FR": "Bonjour forgot password",
+      "de-DE": "Bonjour forgot password",
       "en-US": "I forgot my password",
-      "es-MX": "Se te olvidó tu contraseña",
-      "tr-TR": "Şifremi unuttum",
-      "ru-RU": "Şifremi unuttum"
+      "af-ZA": "Se te olvidó tu contraseña",
+      "tr-TR": "Şifremi unuttum"
     }
   },
   {
     "Key": "- OR -",
     "LocalizedValue": {
-      "fr-FR": "Bonjour -OR-",
+      "de-DE": "Bonjour -OR-",
       "en-US": "- OR -",
-      "es-MX": "-O-",
-      "tr-TR": "Veya",
-      "ru-RU": "Veya"
+      "af-ZA": "-O-",
+      "tr-TR": "Veya"
     }
   },
   {
     "Key": "BoxLengthRequired",
     "LocalizedValue": {
-      "fr-FR": "Bonjour email filed is required",
+      "de-DE": "Bonjour email filed is required",
       "en-US": "Email field is required",
-      "es-MX": "Por favor ingrese su contraseña",
-      "tr-TR": "Eposta alanı doldurulması zorunludur",
-      "ru-RU": "Eposta alanı doldurulması zorunludur"
+      "af-ZA": "Por favor ingrese su contraseña",
+      "tr-TR": "Eposta alanı doldurulması zorunludur"
     }
   },
-  /*{
-    "Key": "BoxLengthRequired",
-    "LocalizedValue": {
-      "fr-FR": "Bonjour email filed is required",
-      "en-US": "Email field is required",
-      "es-MX": "Por favor ingrese su contraseña",
-      "tr-TR": "Eposta alanı doldurulması zorunludur",
-      "ru-RU": "Eposta alanı doldurulması zorunludur"
-    }
-  },*/
   {
     "Key": "User Name field is required",
     "LocalizedValue": {
-      "fr-FR": "Bonjour User Name field is required",
+      "de-DE": "Bonjour User Name field is required",
       "en-US": "User Name field is required",
-      "es-MX": "El campo Nombre de usuario es obligatorio",
-      "tr-TR": "Kullanıcı adı alanı doldurulması zorunludur",
-      "ru-RU": "Kullanıcı adı alanı doldurulması zorunludur"
+      "af-ZA": "El campo Nombre de usuario es obligatorio",
+      "tr-TR": "Kullanıcı adı alanı doldurulması zorunludur"
     }
   },
   {
     "Key": "Register a new membership",
     "LocalizedValue": {
-      "fr-FR": "Bonjour Register a new membership",
+      "de-DE": "Bonjour Register a new membership",
       "en-US": "Register a new membership",
-      "es-MX": "Registra una nueva membresía",
-      "tr-TR": "Yeni kayıt oluşturun",
-      "ru-RU": "Yeni kayıt oluşturun"
+      "af-ZA": "Registra una nueva membresía",
+      "tr-TR": "Yeni kayıt oluşturun"
     }
   },
 
   {
     "Key": "PasswordRequired",
     "LocalizedValue": {
-      "fr-FR": "Bonjour Please type your password",
+      "de-DE": "Bonjour Please type your password",
       "en-US": "Please type your password",
-      "es-MX": "El campo Correo electrónico es obligatorio",
-      "tr-TR": "Lütfen şifrenizi belirleyiniz",
-      "ru-RU": "Lütfen şifrenizi belirleyiniz"
+      "af-ZA": "El campo Correo electrónico es obligatorio",
+      "tr-TR": "Lütfen şifrenizi belirleyiniz"
     }
   },
   {
     "Key": "Miya Sales Program Dashboard",
     "LocalizedValue": {
-      "fr-FR": "Bonjour Miya/Man Sales Program",
+      "de-DE": "Bonjour Miya/Man Sales Program",
       "en-US": "Miya/Man Sales Program Dashboard",
-      "es-MX": "Miya/Man Programa de ventas",
-      "tr-TR": "Miya/ Man Satış Ana Sayfa",
-      "ru-RU": "Miya/ Man Satış Ana Sayfa"
+      "af-ZA": "Miya/Man Programa de ventas",
+      "tr-TR": "Miya/ Man Satış Ana Sayfa"
     }
   }
-
-
 ]
