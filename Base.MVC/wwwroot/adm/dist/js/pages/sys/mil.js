@@ -1,4 +1,4 @@
-$(document).ready(function () {
+ï»¿$(document).ready(function () {
 
     "use strict";
 
@@ -6,32 +6,31 @@ $(document).ready(function () {
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
     var wcm = $(window).warningComplexMessage({
-        denyButtonLabel: 'Vazgeç',
-        actionButtonLabel: 'Ýþleme devam et'
+        denyButtonLabel: 'VazgeÃ§',
+        actionButtonLabel: 'Ä°ÅŸleme devam et'
     });
 
 
     /*
-    * Training LoadImager
+    * Mil LoadImager
     * @author Ceydacan Seyrek
-    * @since 17/08/2018
+    * @since 14/08/2018
     */
-    //to Training form
-    $("#loading-image-Training").loadImager();
+    //to mil form
+    $("#loading-image-mil").loadImager();
 
-    //to City form
-    $("#loading-image-City").loadImager();    //to City form
-    $("#loading-image-City").loadImager();
+    //to milType form
+    $("#loading-image-milType").loadImager();
 
-    //to Training form grid loading-image
-    $("#loading-image-TrainingGrid").loadImager();
+    //to mil form grid loading-image
+    $("#loading-image-milGrid").loadImager();
 
     var langCode = $("#langCode").val();
     //alert(langCode);
 
-    $('#TrainingForm').validationEngine();
+    $('#milForm').validationEngine();
 
-    var cbdata_City = [{}];
+    var cbdata_milType = [{}];
 
     var cbdata = [
         {
@@ -40,26 +39,33 @@ $(document).ready(function () {
             selected: true
         },
         {
-            text: "South Africa",
+            text: "Warranty",
             value: 2,
             selected: false
         },
         {
-            text: "Turkey",
+            text: "BuyBack",
             value: 3,
             selected: false
         },
         {
-            text: "Germany",
+            text: "TradeBack",
             value: 4,
+            selected: false
+        },
+        {
+            text: "R&M",
+            value: 5,
             selected: false
         }
     ];
 
-    $('#loading-image-City').loadImager('removeLoadImage');
-    $("#loading-image-City").loadImager('appendImage');
 
-    var ajaxACLResources_City = $('#ajaxACL-City').ajaxCallWidget({
+
+    $('#loading-image-milType').loadImager('removeLoadImage');
+    $("#loading-image-milType").loadImager('appendImage');
+
+    var ajaxACLResources_milType = $('#ajaxACL-milType').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
         data: {
             url: '1'
@@ -68,20 +74,20 @@ $(document).ready(function () {
 
     });
 
-    ajaxACLResources_City.ajaxCallWidget({
+    ajaxACLResources_milType.ajaxCallWidget({
         onError: function (event, textStatus, errorThrown) {
 
             dm.dangerMessage({
                 onShown: function () {
-                    $('#loading-image-City').loadImager('removeLoadImage');
+                    $('#loading-image-milType').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamýþtýr...'), window.lang.translate('Servis  bulunamamýþtýr...'));
+            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamÄ±ÅŸtÄ±r...'), window.lang.translate('Servis  bulunamamÄ±ÅŸtÄ±r...'));
         },
         onSuccess: function (event, data) {
             //var data = $.parseJSON(cbdata);
 
-            $('#dropdownCity').ddslick({
+            $('#dropdownMilType').ddslick({
                 //height: 150,
                 data: cbdata,
                 width: '100%',
@@ -93,19 +99,19 @@ $(document).ready(function () {
                 }
             });
 
-            $("#loading-image-City").loadImager('removeLoadImage');
+            $("#loading-image-milType").loadImager('removeLoadImage');
         },
         onErrorDataNull: function (event, data) {
             console.log("Error : " + event + " -data :" + data);
             dm.dangerMessage({
                 onShown: function () {
-                    $('#loading-image-City').loadImager('removeLoadImage');
+                    $('#loading-image-milType').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Ülke bulunamamýþtýr...'), window.lang.translate('Ülke  bulunamamýþtýr...'));
+            dm.dangerMessage('show', window.lang.translate('Ãœlke bulunamamÄ±ÅŸtÄ±r...'), window.lang.translate('Ãœlke  bulunamamÄ±ÅŸtÄ±r...'));
         },
     })
-    ajaxACLResources_City.ajaxCallWidget('call');
+    ajaxACLResources_milType.ajaxCallWidget('call');
 
 
     /* devexgrid */
@@ -143,7 +149,7 @@ $(document).ready(function () {
     DevExpress.localization.locale(langCode);
 
 
-    $("#gridContainer_Training").dxDataGrid({
+    $("#gridContainer_mil").dxDataGrid({
 
         showColumnLines: true,
 
@@ -218,17 +224,17 @@ $(document).ready(function () {
         },
 
         columns: [{
-            caption: "City",
+            caption: "Mil Type",
             dataField: "StoreCity"
         }, {
-                caption: "Training",
+            caption: "Mil",
             dataField: "StoreState"
         }],
 
         onSelectionChanged: function (selectedItems) {
             var data = selectedItems.selectedRowsData[0];
             if (data) {
-                fillTrainingForm(data);
+                fillMilForm(data);
             }
         }
 
@@ -243,137 +249,137 @@ $(document).ready(function () {
 
 
     /**
- * insert Training
+ * insert mil
  * @returns {undefined}
  * @author Ceydacan Seyrek
- * @since 17/08/2018
+ * @since 14/08/2018
  */
 
-    window.insertCity = function () {
-        $("#loading-image-Training").loadImager('removeLoadImage');
-        $("#loading-image-Training").loadImager('appendImage');
+    window.insertmilType = function () {
+        $("#loading-image-mil").loadImager('removeLoadImage');
+        $("#loading-image-mil").loadImager('appendImage');
 
-        var cst_purchaselastupdate = $('#txt-City-name').val();
+        var cst_purchaselastupdate = $('#txt-milType-name').val();
 
         var aj = $(window).ajaxCall({
             proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
             data: {
-                url: 'pkInsert_sysCity',
+                url: 'pkInsert_sysmilType',
 
-                name: City_name,
+                name: milType_name,
                 pk: $("#pk").val()
             }
         })
         aj.ajaxCall({
             onError: function (event, textStatus, errorThrown) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Training Ekleme Ýþlemi Baþarýsýz...',
-                    'Training Ekleme Ýþlemi Baþarýsýz..., sistem yöneticisi ile temasa geçiniz... ')
-                console.error('"pkInsert_sysCustomerInfo" servis hatasý->' + textStatus);
-                $("#loading-image-Training").loadImager('removeLoadImage');
+                dm.dangerMessage('show', 'mil Ekleme Ä°ÅŸlemi BaÅŸarÄ±sÄ±z...',
+                    'mil Ekleme Ä°ÅŸlemi BaÅŸarÄ±sÄ±z..., sistem yÃ¶neticisi ile temasa geÃ§iniz... ')
+                console.error('"pkInsert_sysCustomerInfo" servis hatasÄ±->' + textStatus);
+                $("#loading-image-mil").loadImager('removeLoadImage');
             },
             onSuccess: function (event, data) {
                 console.log(data);
                 var data = data;
                 sm.successMessage({
                     onShown: function (event, data) {
-                        $('#TrainingForm')[0].reset();
+                        $('#modelForm')[0].reset();
 
-                        $("#loading-image-Training").loadImager('removeLoadImage');
+                        $("#loading-image-mil").loadImager('removeLoadImage');
 
                     }
                 });
-                sm.successMessage('show', 'Training Kayýt Ýþlemi Baþarýlý...',
-                    'City kayýt iþlemini gerçekleþtirdiniz... ',
+                sm.successMessage('show', 'mil KayÄ±t Ä°ÅŸlemi BaÅŸarÄ±lÄ±...',
+                    'milType kayÄ±t iÅŸlemini gerÃ§ekleÅŸtirdiniz... ',
                     data);
-                $("#loading-image-Training").loadImager('removeLoadImage');
+                $("#loading-image-mil").loadImager('removeLoadImage');
 
             },
             onErrorDataNull: function (event, data) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Training Kayýt Ýþlemi Baþarýsýz...',
-                    'Training kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysCustomerContactPerson" servis datasý boþtur!!');
-                $("#loading-image-Training").loadImager('removeLoadImage');
+                dm.dangerMessage('show', 'mil KayÄ±t Ä°ÅŸlemi BaÅŸarÄ±sÄ±z...',
+                    'mil kayÄ±t iÅŸlemi baÅŸarÄ±sÄ±z, sistem yÃ¶neticisi ile temasa geÃ§iniz... ');
+                console.error('"pkInsert_sysCustomerContactPerson" servis datasÄ± boÅŸtur!!');
+                $("#loading-image-mil").loadImager('removeLoadImage');
             },
             onErrorMessage: function (event, data) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Training Kayýt Ýþlemi Baþarýsýz...',
-                    'Training kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysCustomerContactPerson" servis datasý boþtur!!');
-                $("#loading-image-City").loadImager('removeLoadImage');
+                dm.dangerMessage('show', 'mil KayÄ±t Ä°ÅŸlemi BaÅŸarÄ±sÄ±z...',
+                    'Mil kayÄ±t iÅŸlemi baÅŸarÄ±sÄ±z, sistem yÃ¶neticisi ile temasa geÃ§iniz... ');
+                console.error('"pkInsert_sysCustomerContactPerson" servis datasÄ± boÅŸtur!!');
+                $("#loading-image-milType").loadImager('removeLoadImage');
             },
             onError23503: function (event, data) {
                 dm.dangerMessage('Error23503');
-                $("#loading-image-Training").loadImager('removeLoadImage');
+                $("#loading-image-mil").loadImager('removeLoadImage');
             },
             onError23505: function (event, data) {
                 dm.dangerMessage({
                     onShown: function (event, data) {
                         $('#customerContactPersonForm')[0].reset();
-                        $("#loading-image-Training").loadImager('removeLoadImage');
+                        $("#loading-image-mil").loadImager('removeLoadImage');
                     }
                 });
-                dm.dangerMessage('show', 'Kayýt Ýþlemi Baþarýsýz...',
-                    'Ayný isim ile Training kaydý yapýlmýþtýr, yeni bir Training kaydý deneyiniz... ');
-                $("#loading-image-Training").loadImager('removeLoadImage');
+                dm.dangerMessage('show', 'KayÄ±t Ä°ÅŸlemi BaÅŸarÄ±sÄ±z...',
+                    'AynÄ± isim ile mil kaydÄ± yapÄ±lmÄ±ÅŸtÄ±r, yeni bir mil kaydÄ± deneyiniz... ');
+                $("#loading-image-mil").loadImager('removeLoadImage');
             }
         })
         aj.ajaxCall('call');
     }
     /**
-    * reset City Form
+    * reset milType Form
     * @returns {undefined}
     * @author Ceydacan Seyrek
-    * @since 17/08/2018
+    * @since 14/08/2018
     */
 
-    window.resetTrainingForm = function () {
-        $("#loading-image-Training").loadImager('removeLoadImage');
-        $("#loading-image-Training").loadImager('appendImage');
+    window.resetMilForm = function () {
+        $("#loading-image-mil").loadImager('removeLoadImage');
+        $("#loading-image-mil").loadImager('appendImage');
 
-        $('#TrainingForm').validationEngine('hide');
-        $('#dropdownCity').ddslick('select', { index: String(0) });
+        $('#milForm').validationEngine('hide');
+        $('#dropdownMilType').ddslick('select', { index: String(0) });
 
-        $("#loading-image-Training").loadImager('removeLoadImage');
+        $("#loading-image-mil").loadImager('removeLoadImage');
 
         return false;
     }
 
 
     /**
-    * insert City Wrapper
+    * insert milType Wrapper
     * @returns {Boolean}
     * @author Ceydacan Seyrek
-    * @since 17/08/2018
+    * @since 14/08/2018
     */
 
-    window.insertCityWrapper = function (e) {
+    window.insertmilTypeWrapper = function (e) {
         e.preventDefault();
 
-        if ($("#TrainingForm").validationEngine('validate')) {
+        if ($("#milForm").validationEngine('validate')) {
 
-            insertTraining();
+            insertMil();
         }
         return false;
     }
 
 
     /**
-    * Fill City form
+    * Fill milType form
     * @returns {Boolean}
     * @author Ceydacan Seyrek
-    * @since 17/08/2018
+    * @since 14/08/2018
     */
 
-    window.fillTrainingForm = function (data) {
-        $("#loading-image-Training").loadImager('removeLoadImage');
-        $("#loading-image-Training").loadImager('appendImage');
+    window.fillMilForm = function (data) {
+        $("#loading-image-mil").loadImager('removeLoadImage');
+        $("#loading-image-mil").loadImager('appendImage');
 
-        $('#dropdownCity').ddslick('select', { index: 3 });
-        document.getElementById("txt-Training-name").value = data.StoreCity;
+        $('#dropdownMilType').ddslick('select', { index: 3 });
+        document.getElementById("txt-mil-name").value = data.StoreCity;
 
-        $("#loading-image-Training").loadImager('removeLoadImage');
+        $("#loading-image-mil").loadImager('removeLoadImage');
 
         return false;
     }

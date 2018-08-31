@@ -33,16 +33,7 @@
     <Content Update="Views\Sys\AnnualRevenue.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Views\Sys\BuybackMonth.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Sys\TradebackMonth.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Sys\TradebackMil.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Sys\BuybackMil.cshtml">
+    <Content Update="Views\Sys\Month.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Sys\TradebackTerrain.cshtml">
@@ -57,13 +48,7 @@
     <Content Update="Views\Sys\BuybackTerrain.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Views\Sys\Training.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Training\training.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Training\UserTraining.cshtml">
+    <Content Update="Views\Training\Training.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Vehicle\Vehicle.cshtml">
@@ -96,7 +81,7 @@
     <Content Update="Views\Sys\DemoReqType.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Views\Sys\WarrantyMil.cshtml">
+    <Content Update="Views\Sys\Mil.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Sys\State.cshtml">
