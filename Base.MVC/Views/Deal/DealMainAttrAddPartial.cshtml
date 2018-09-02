@@ -14,21 +14,22 @@
 
 <div class="nav-tabs-custom">
     <ul class="nav nav-tabs pull-right" id="attached_deals_tab">
-        <li class="nav-item"><a href="#tab_1-1" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Tab 1</a></li>
-        <li class="nav-item"><a href="#tab_2-2" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Tab 2</a></li>
-        <li class="active nav-item"><a href="#tab_3-2" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="true">Tab 3</a></li>
-        <li class="dropdown nav-item">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                Dropdown <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                <li role="presentation" class="divider"></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-            </ul>
-        </li>
+        <li class="nav-item"><a href="#tab_1-1" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Trade IN</a></li>
+        <li class="nav-item"><a href="#tab_2-2" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Buy Back</a></li>
+        <li class=" nav-item"><a href="#tab_3-2" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Trade Back</a></li>
+        <li class="active nav-item"><a href="#tab_3-2" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="true">Deal</a></li>
+        <!--<li class="dropdown nav-item">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+            Dropdown <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+        </ul>
+    </li>-->
         <li class="pull-left header" lang="en"><i class="fa fa-th"></i>Search</li>
     </ul>
     <div class="tab-content">
@@ -74,7 +75,20 @@
         </div><!-- /.tab-pane -->
         <div class="tab-pane active" id="tab_3-2">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 ">
+
+                    <div class="form-group">
+                        <label>Vehicle Kit Type:</label>
+
+                        <div class="" id="ajaxACL-vehiclekittype">
+                            <div id="loading-image-vehiclekittype" class="input-group zeyn-load-imager">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-copyright"></i>
+                                </div>
+                                <div id="dropdownVehicleKitType" ></div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label>SMTP Host:</label>
                         <div class="input-group">

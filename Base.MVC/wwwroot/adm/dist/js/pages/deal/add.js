@@ -1,5 +1,20 @@
 $(document).ready(function () {
 
+
+    var sm = $(window).successMessage();
+    var dm = $(window).dangerMessage();
+    var wm = $(window).warningMessage();
+    var wcm = $(window).warningComplexMessage({
+        denyButtonLabel: 'Vazgeç',
+        actionButtonLabel: 'Ýþleme devam et'
+    });
+
+    //deal list  grid loading-image
+    $("#loading-image-vehicleGrid").loadImager();
+
+    $('#loading-image-vehiclekittype').loadImager();
+
+
   //Make the dashboard widgets sortable Using jquery UI
   $(".connectedSortable").sortable({
     placeholder: "sort-highlight",
@@ -69,79 +84,12 @@ $(document).ready(function () {
   /* jQueryKnob */
   $(".knob").knob();
 
-  //jvectormap data
-  var visitorsData = {
-    "US": 398, //USA
-    "SA": 400, //Saudi Arabia
-    "CA": 1000, //Canada
-    "DE": 500, //Germany
-    "FR": 760, //France
-    "CN": 300, //China
-    "AU": 700, //Australia
-    "BR": 600, //Brazil
-    "IN": 800, //India
-    "GB": 320, //Great Britain
-    "RU": 3000 //Russia
-  };
-  //World map by jvectormap
-  /*$('#world-map').vectorMap({
-    map: 'world_mill_en',
-    backgroundColor: "transparent",
-    regionStyle: {
-      initial: {
-        fill: '#e4e4e4',
-        "fill-opacity": 1,
-        stroke: 'none',
-        "stroke-width": 0,
-        "stroke-opacity": 1
-      }
-    },
-    series: {
-      regions: [{
-          values: visitorsData,
-          scale: ["#92c1dc", "#ebf4f9"],
-          normalizeFunction: 'polynomial'
-        }]
-    },
-    onRegionLabelShow: function (e, el, code) {
-      if (typeof visitorsData[code] != "undefined")
-        el.html(el.html() + ': ' + visitorsData[code] + ' new visitors');
-    }
-  });*/
+ 
+  
 
-  //Sparkline charts
-  var myvalues = [1000, 1200, 920, 927, 931, 1027, 819, 930, 1021];
-  $('#sparkline-1').sparkline(myvalues, {
-    type: 'line',
-    lineColor: '#92c1dc',
-    fillColor: "#ebf4f9",
-    height: '50',
-    width: '80'
-  });
-  myvalues = [515, 519, 520, 522, 652, 810, 370, 627, 319, 630, 921];
-  $('#sparkline-2').sparkline(myvalues, {
-    type: 'line',
-    lineColor: '#92c1dc',
-    fillColor: "#ebf4f9",
-    height: '50',
-    width: '80'
-  });
-  myvalues = [15, 19, 20, 22, 33, 27, 31, 27, 19, 30, 21];
-  $('#sparkline-3').sparkline(myvalues, {
-    type: 'line',
-    lineColor: '#92c1dc',
-    fillColor: "#ebf4f9",
-    height: '50',
-    width: '80'
-  });
+  
 
-  //The Calender
-  $("#calendar").datepicker();
-
-  //SLIMSCROLL FOR CHAT WIDGET
-  $('#chat-box').slimScroll({
-    height: '250px'
-  });
+ 
 
 
 
@@ -283,31 +231,79 @@ $(document).ready(function () {
     });
 
 
+    var cbdata = [
+        {
+            text: 'Search...',
+            value: 1,
+            selected: true
+        },
+        {
+            text: "CKD",
+            value: 2,
+            selected: false
+        },
+        {
+            text: "CBU",
+            value: 3,
+            selected: false
+        }
+    ];
 
-    // Click handlers
-    /*$(".sidebar").on("click", function () {
-        var $this = $(this);
-        var action = $this.attr("data-action");
-        var side = $this.attr("data-side");
-        $(".sidebar." + side).trigger("sidebar:" + action);
-        return false;
-    });*/
+    $('#loading-image-vehiclekittype').loadImager('removeLoadImage');
+    $("#loading-image-vehiclekittype").loadImager('appendImage');
 
+    var ajaxACLResources_vehiclekittype = $('#ajaxACL-vehiclekittype').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
 
-    //var sides = ["left", "top", "right", "bottom"];
+    });
 
-    // Initialize sidebars
-    /*for (var i = 0; i < sides.length; ++i) {
-        var cSide = sides[i];
-        $(".sidebar." + cSide).sidebar({ side: cSide }).hide().trigger("sidebar:close").on("sidebar:closed", function () {
-            $(this).show();
-        });
-    }*/
+    ajaxACLResources_vehiclekittype.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-vehiclekittype').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamýþtýr...'), window.lang.translate('Servis  bulunamamýþtýr...'));
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#dropdownVehicleKitType').ddslick({
+                //height: 150,
+                data: cbdata,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+                        //vehicleKitTypeForDefineFields(selectedData.selectedData.text);
+                    }
+                }
+            });
+
+            $("#loading-image-vehiclekittype").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-vehiclekittype').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('vehiclekittype bulunamamýþtýr...'), window.lang.translate('vehiclekittype  bulunamamýþtýr...'));
+        },
+    })
+    ajaxACLResources_vehiclekittype.ajaxCallWidget('call');
 
     
 
     /* devexgrid */
-    var orders = new DevExpress.data.CustomStore({
+    /*var orders = new DevExpress.data.CustomStore({
         load: function (loadOptions) {
             var deferred = $.Deferred(),
                 args = {};
@@ -336,22 +332,37 @@ $(document).ready(function () {
 
             return deferred.promise();
         }
-    });
+    });*/
+
+
+    var gridDataSource = {
+        store: {
+            type: 'array',
+            data: [{ "OrderNumber": 35703, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Harv Mudd", "OrderDate": "2013/11/12" },
+            { "OrderNumber": 35706, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Harv Mudd", "OrderDate": "2013/11/14" },
+            { "OrderNumber": 35709, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Harv Mudd", "OrderDate": "2013/11/18" },
+            { "OrderNumber": 35711, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Jim Packard", "OrderDate": "2013/11/22" },
+            { "OrderNumber": 35714, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Harv Mudd", "OrderDate": "2013/11/30" },
+            { "OrderNumber": 35789, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Clark Morgan", "OrderDate": "2013/12/01" },
+            { "OrderNumber": 35983, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Todd Hoffman", "OrderDate": "2013/12/03" },
+            { "OrderNumber": 36488, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Todd Hoffman", "OrderDate": "2013/12/05" },
+            { "OrderNumber": 36987, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Clark Morgan", "OrderDate": "2013/12/07" },
+            { "OrderNumber": 37642, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Clark Morgan", "OrderDate": "2013/12/08" },
+            { "OrderNumber": 38466, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Harv Mudd", "OrderDate": "2013/12/10" },
+            { "OrderNumber": 38775, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Harv Mudd", "OrderDate": "2013/12/15" }]
+        }
+    };
+
+
     DevExpress.localization.locale("en");
-    $("#gridContainer").dxDataGrid({
-
+    $("#gridContainer_vehicle").dxDataGrid({
         showColumnLines: true,
-
         showRowLines: true,
-
         rowAlternationEnabled: true,
-
         showBorders: true,
-
-        dataSource: orders,
-
+       // dataSource: orders,
+        dataSource: gridDataSource,
         columnHidingEnabled: true,
-
         editing: {
             //mode: "batch"
             mode: "row",
@@ -360,22 +371,18 @@ $(document).ready(function () {
             allowDeleting: true,
             useIcons: true
         },
-
         "export": {
             enabled: true,
             fileName: "Orders"
         },
-
         grouping: {
             contextMenuEnabled: true,
             expandMode: "rowClick"
         },
-
         groupPanel: {
             emptyPanelText: "Use the context menu of header columns to group data",
             visible: true
         },
-
         pager: {
             allowedPageSizes: [5, 8, 15, 30],
             showInfo: true,
@@ -383,31 +390,25 @@ $(document).ready(function () {
             showPageSizeSelector: true,
             visible: true
         },
-
         paging: {
             pageSize: 8
         },
-
         filterRow: {
             visible: true,
             applyFilter: "auto"
         },
-
         searchPanel: {
             visible: true,
             width: 240,
             placeholder: "Search..."
         },
-
         headerFilter: {
             visible: true
         },
-
         columnChooser: {
             enabled: true,
             mode: "select"
         },
-
         columns: [{
             allowGrouping: false,
             dataField: "OrderNumber",
@@ -417,45 +418,34 @@ $(document).ready(function () {
             caption: "City",
             dataField: "StoreCity"
         }, {
-            caption: "State",
-            dataField: "StoreState"
+            caption: "Salesman",
+            dataField: "Salesman"
         },
-            "Employee", {
+            "Employee",
+        {
             dataField: "OrderDate",
             dataType: "date"
         }, {
-            dataField: "SaleAmount",
+            dataField: "Customer",
 
         }],
-
         customizeColumns: function (columns) {
-            columns[5].format = { type: "currency", currency: "EUR" };
+            //columns[5].format = { type: "currency", currency: "EUR" };
         },
-
         summary: {
             totalItems: [{
                 column: "OrderNumber",
                 summaryType: "count"
-            }, {
+            }, /*{
                 column: "SaleAmount",
                 summaryType: "sum",
                 valueFormat: "currency"
-            }]
+            }*/]
         }
 
     });
 
 
- 
 
-  /* The todo list plugin */
-  /*$(".todo-list").todolist({
-    onCheck: function (ele) {
-      console.log("The element has been checked")
-    },
-    onUncheck: function (ele) {
-      console.log("The element has been unchecked")
-    }
-  });*/
 
 });
