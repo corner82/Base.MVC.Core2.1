@@ -33,6 +33,9 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link href="~/adm/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
 
+    <!-- tag cabin css -->
+    <link href="~/adm/plugins/zeyn/tag-cabin/tag-cabin.css" rel="stylesheet" type="text/css" />
+
 }
 
 <!-- Content Wrapper. Contains page content -->
@@ -608,11 +611,15 @@
     <script src="~/adm/plugins/devextreme/js/dx.all.js"></script>
     <script src="https://unpkg.com/devextreme-intl/dist/devextreme-intl.min.js"></script>
 
+    <!--devexpress datagrid lang call js variable _Layout ViewData callback ViewBag -->
+    <script src="@ViewBag.defaultDevExLangPath"></script>
+
     <!--  ddslick -->
     <script src="~/adm/plugins/bootstrap-select-ddslick/js/ddslick.js"></script>
 
-    <!--devexpress datagrid lang call js variable _Layout ViewData callback ViewBag -->
-    <script src="@ViewBag.defaultDevExLangPath"></script>
+    <!-- tagCabin Js-->
+    <script src="~/adm/plugins/zeyn/tag-cabin/tag-cabin.js"></script>
+
 
     <!-- node js io -->
     <script src="~/adm/plugins/node_js/modules/socket.io-client/dist/socket.io.js"></script>

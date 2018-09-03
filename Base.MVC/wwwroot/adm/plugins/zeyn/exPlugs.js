@@ -63,6 +63,7 @@
             if ($("#langCode").length > 0) {
                 if ($("#langCode").val() != null && $("#langCode").val() != '') {
                     //alert('lang code bulundu2');
+                    //alert($("#langCode").val());
                     self.options.langDefault = $("#langCode").val();
                 }
 
@@ -361,9 +362,9 @@
          */
         options: {
             basePath: '/',
-            baseLanguage: 'tr',
+            baseLanguage: 'en',
             requestUriTranslated: '/',
-            langCode: 'tr',
+            langCode: 'en',
             useLangMaster: 'true',
             activeLangDisplayId: 'default_lang',
             microsoftCulture : false,

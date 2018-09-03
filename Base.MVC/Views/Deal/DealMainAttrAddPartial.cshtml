@@ -14,10 +14,10 @@
 
 <div class="nav-tabs-custom">
     <ul class="nav nav-tabs pull-right" id="attached_deals_tab">
-        <li class="nav-item"><a href="#tab_1-1" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Trade IN</a></li>
-        <li class="nav-item"><a href="#tab_2-2" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Buy Back</a></li>
-        <li class=" nav-item"><a href="#tab_3-2" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Trade Back</a></li>
-        <li class="active nav-item"><a href="#tab_3-2" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="true">Deal</a></li>
+        <li class="nav-item"><a href="#tab_TradeBack" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Trade Back</a></li>
+        <li class="nav-item"><a href="#tab_BuyBack" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Buy back</a></li>
+        <li class=" nav-item"><a href="#tab_VehicleType" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Add vehicle type</a></li>
+        <li class="active nav-item"><a href="#tab_DealAttr" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="true">Deal</a></li>
         <!--<li class="dropdown nav-item">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
             Dropdown <span class="caret"></span>
@@ -30,124 +30,348 @@
             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
         </ul>
     </li>-->
-        <li class="pull-left header" lang="en"><i class="fa fa-th"></i>Search</li>
+        <li class="pull-left header" lang="en"><i class="fa fa-th"></i>Deal</li>
     </ul>
     <div class="tab-content">
-        <div class="tab-pane" id="tab_1-1" style="padding: 21px 20px 65px 20px;">
-            <b>How to use:</b>
-            <p>
-                Exactly like the original bootstrap tabs except you should use
-                the custom wrapper <code>.nav-tabs-custom</code> to achieve this style.
-            </p>
-            A wonderful serenity has taken possession of my entire soul,
-            like these sweet mornings of spring which I enjoy with my whole heart.
-            I am alone, and feel the charm of existence in this spot,
-            which was created for the bliss of souls like mine. I am so happy,
-            my dear friend, so absorbed in the exquisite sense of mere tranquil existence,
-            that I neglect my talents. I should be incapable of drawing a single stroke
-            at the present moment; and yet I feel that I never was a greater artist than now.
-
-            <!--<div class="box-footer clearfix no-border">-->
-            <button class="btn btn-default pull-right" id="tab_next_1" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>Sonraki Tab</button>
-            <button class="btn btn-default pull-right" id="tab_active_1" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>Tüm tablar aktif</button>
-            <button class="btn btn-default pull-right" id="tab_passive_1" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>Tüm tablar pasif</button>
-            <button class="btn btn-default pull-right" id="tab_active_order_1" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>3.tab aktif</button>
-            <button class="btn btn-default pull-right" id="tab_enable_order_1" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>enable tab by order</button>
-            <!--</div>-->
-        </div><!-- /.tab-pane -->
-        <div class="tab-pane" id="tab_2-2" style="padding: 21px 20px 65px 20px;">
-            The European languages are members of the same family. Their separate existence is a myth.
-            For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
-            in their grammar, their pronunciation and their most common words. Everyone realizes why a
-            new common language would be desirable: one could refuse to pay expensive translators. To
-            achieve this, it would be necessary to have uniform grammar, pronunciation and more common
-            words. If several languages coalesce, the grammar of the resulting language is more simple
-            and regular than that of the individual languages.
-
-            <!--<div class="box-footer clearfix no-border">-->
-            <button class="btn btn-default pull-right" id="tab_next_2" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>Sonraki Tab</button>
-            <button class="btn btn-default pull-right" id="tab_before_2" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>Önceki Tab</button>
-            <button class="btn btn-default pull-right" id="tab_active_2" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>Tüm tablar aktif</button>
-            <button class="btn btn-default pull-right" id="tab_passive_2" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>Tüm tablar pasif</button>
-            <button class="btn btn-default pull-right sidebar" id="sidebar_left_toggle" data-action="toggle" data-side="bottom" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>sidebar left</button>
-            <button class="btn btn-default pull-right sidebar" id="sidebar_right_toggle" data-action="toggle" data-side="bottom" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>sidebar right</button>
-            <!--</div>-->
-        </div><!-- /.tab-pane -->
-        <div class="tab-pane active" id="tab_3-2">
+        <div class="tab-pane" id="tab_TradeBack" style="padding: 21px 20px 65px 20px;">
             <div class="row">
                 <div class="col-md-6 ">
 
                     <div class="form-group">
-                        <label>Vehicle Kit Type:</label>
-
-                        <div class="" id="ajaxACL-vehiclekittype">
-                            <div id="loading-image-vehiclekittype" class="input-group zeyn-load-imager">
+                        <label lang="en">Vehicle type</label>
+                        <div class="" id="ajax_DdslickVehicleTypeTradeBack">
+                            <div id="loadingImage_DdslickVehicleTypeTradeBack" class="input-group zeyn-load-imager">
                                 <div class="input-group-addon">
                                     <i class="fa fa-copyright"></i>
                                 </div>
-                                <div id="dropdownVehicleKitType" ></div>
+                                <div id="ddslickVehicleTypeTradeBack"></div>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>SMTP Host:</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                <i class="fa fa-mail-reply"></i>
+                        <label lang="en">Customer type</label>
+                        <div class="" id="ajax_DdslickCustomerTypeTradeBack">
+                            <div id="loadingImage_DdslickCustomerTypeTradeBack" class="input-group zeyn-load-imager">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-copyright"></i>
+                                </div>
+                                <div id="ddslickCustomerTypeTradeBack"></div>
                             </div>
-                            <input type="text" class="form-control" placeholder="SMTP Host">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>SMTP Port:</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                <i class="fa fa-mail-forward"></i>
+                        <label lang="en">Truck type</label>
+                        <div class="" id="ajax_DdslickTruckTypeTradeBack">
+                            <div id="loadingImage_DdslickTruckTypeTradeBack" class="input-group zeyn-load-imager">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-copyright"></i>
+                                </div>
+                                <div id="ddslickTruckTypeTradeBack"></div>
                             </div>
-                            <input type="text" class="form-control" placeholder="SMTP Port">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>User Name:</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                <i class="fa fa-user"></i>
-                            </div>
-                            <input type="text" class="form-control" placeholder="User Name">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>SMTP Host:</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                <i class="fa fa-mail-reply"></i>
+                        <label lang="en">Terrain</label>
+                        <div class="" id="ajax_DdslickTerrainTypeTradeBack">
+                            <div id="loadingImage_DdslickTerrainTypeTradeBack" class="input-group zeyn-load-imager">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-copyright"></i>
+                                </div>
+                                <div id="ddslickTerrainTypeTradeBack"></div>
                             </div>
-                            <input type="text" class="form-control" placeholder="SMTP Host">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>SMTP Port:</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                <i class="fa fa-mail-forward"></i>
+                        <label lang="en">R&M</label>
+
+                        <div class="" id="ajax_DdslickRepMainTradeBack">
+                            <div id="loadingImage_DdslickRepMainTradeBack" class="input-group zeyn-load-imager">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-copyright"></i>
+                                </div>
+                                <div id="ddslickRepMainTradeBack"></div>
                             </div>
-                            <input type="text" class="form-control" placeholder="SMTP Port">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>User Name:</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                <i class="fa fa-user"></i>
+                        <label lang="en">Hydraulics</label>
+                        <div class="" id="ajax_DdslickHydraTradeBack">
+                            <div id="loadingImage_DdslickHydraTradeBack" class="input-group zeyn-load-imager">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-copyright"></i>
+                                </div>
+                                <div id="ddslickHydraTradeBack"></div>
                             </div>
-                            <input type="text" class="form-control" placeholder="User Name">
                         </div>
                     </div>
                 </div>
             </div>
-            
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 ">
+
+                    <div id="gridContainer_TradeBack"></div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 ">
+                    <div class="form-group">
+                        <label lang="en">Deal tradeback</label>
+                        <div class="">
+                            <div id="loadingImage_TagCabinDealTradeBacks" class="input-group zeyn-load-imager">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-hand-o-right"></i>
+                                </div>
+                                <div style="margin-bottom: -10px;width:96%" class="tag-container-tradebacks">
+                                    <ul id="tagcabin_DealTradeBacks" class="tag-box"></ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <button class="btn btn-default pull-right" id="tab_next_2" style="margin-top: 20px;margin-right: 10px;" lang="en"><i class="fa fa-plus"></i>  Add</button>
+            </div>
+        </div><!-- /.tab-pane -->
+        <div class="tab-pane" id="tab_BuyBack" style="padding: 21px 20px 65px 20px;">
+            <div class="row">
+                <div class="col-md-6 ">
+
+                    <div class="form-group">
+                        <label lang="en">Vehicle type</label>
+                        <div class="" id="ajax_DdslickVehicleTypeBuyBack">
+                            <div id="loadingImage_DdslickVehicleTypeBuyBack" class="input-group zeyn-load-imager">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-copyright"></i>
+                                </div>
+                                <div id="ddslickVehicleTypeBuyBack"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label lang="en">Customer type</label>
+                        <div class="" id="ajax_DdslickCustomerTypeBuyBack">
+                            <div id="loadingImage_DdslickCustomerTypeBuyBack" class="input-group zeyn-load-imager">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-copyright"></i>
+                                </div>
+                                <div id="ddslickCustomerTypeBuyBack"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label lang="en">Truck type</label>
+                        <div class="" id="ajax_DdslickTruckTypeBuyBack">
+                            <div id="loadingImage_DdslickTruckTypeBuyBack" class="input-group zeyn-load-imager">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-copyright"></i>
+                                </div>
+                                <div id="ddslickTruckTypeBuyBack"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label lang="en">Terrain</label>
+                        <div class="" id="ajax_DdslickTerrainTypeBuyBack">
+                            <div id="loadingImage_DdslickTerrainTypeBuyBack" class="input-group zeyn-load-imager">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-copyright"></i>
+                                </div>
+                                <div id="ddslickTerrainTypeBuyBack"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label lang="en">R&M</label>
+                        <div class="" id="ajax_DdslickRepMainBuyBack">
+                            <div id="loadingImage_DdslickRepMainBuyBack" class="input-group zeyn-load-imager">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-copyright"></i>
+                                </div>
+                                <div id="ddslickRepMainBuyBack"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label lang="en">Hydraulics</label>
+                        <div class="" id="ajax_DdslickHydraBuyBack">
+                            <div id="loadingImage_DdslickHydraBuyBack" class="input-group zeyn-load-imager">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-copyright"></i>
+                                </div>
+                                <div id="ddslickHydraBuyBack"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 ">
+
+                    <div id="gridContainer_BuyBack"></div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 ">
+                    <div class="form-group">
+                        <label lang="en">Deal buyback</label>
+                        <div class="">
+                            <div id="loadingImage_TagCabinDealBuyBacks" class="input-group zeyn-load-imager">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-hand-o-right"></i>
+                                </div>
+                                <div style="margin-bottom: -10px;width:96%" class="tag-container-buybacks">
+                                    <ul id="tagcabin_DealBuyBacks" class="tag-box"></ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <button class="btn btn-default pull-right" id="tab_next_2" style="margin-top: 20px;margin-right: 10px;" lang="en"><i class="fa fa-plus"></i>  Add</button>
+            </div>
+        </div><!-- /.tab-pane -->
+        <div class="tab-pane " id="tab_VehicleType">
+            <div class="row">
+                <div class="col-md-6 ">
+                    <div class="form-group">
+                        <label lang="en">Vehicle type</label>
+                        <div class="" id="ajax_DdslickVehicleType">
+                            <div id="loadingImage_DdslickVehicleType" class="input-group zeyn-load-imager">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-copyright"></i>
+                                </div>
+                                <div id="ddslickVehicleType"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <!--<div class="form-group">
+                        <label lang="en">Realization rate</label>
+
+                        <div class="" id="ajax_DdslickRealizationRate2">
+                            <div id="loadingImage_DdslickRealizationRate2" class="input-group zeyn-load-imager">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-copyright"></i>
+                                </div>
+                                <div id="ddslickRealizationRate2"></div>
+                            </div>
+                        </div>
+                    </div>-->
+                    <div class="form-group">
+                        <label lang="en">Total count</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-mail-forward"></i>
+                            </div>
+                            <input type="text" class="form-control" placeholder="total count">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 ">
+                    <div class="form-group">
+                        <label lang="en">Deal vehicle types</label>
+                        <div class="">
+                            <div id="loadingImage_TagCabinDealVehicles" class="input-group zeyn-load-imager">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-hand-o-right"></i>
+                                </div>
+                                <div style="margin-bottom: -10px;width:96%" class="tag-container">
+                                    <ul id="tagcabin_DealVehicles" class="tag-box"></ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row">
+                <button class="btn btn-default pull-right" id="tab_next_2" style="margin-top: 20px;margin-right: 10px;" lang="en"><i class="fa fa-plus"></i>Add</button>
+            </div>
+
+        </div><!-- /.tab-pane -->
+        <div class="tab-pane active" id="tab_DealAttr">
+            <div class="row">
+                <div class="col-md-6 ">
+
+                    <div class="form-group">
+                        <label lang="en">Customer</label>
+                        <div class="" id="ajax_DdslickCustomer">
+                            <div id="loadingImage_DdslickCustomer" class="input-group zeyn-load-imager">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-copyright"></i>
+                                </div>
+                                <div id="ddslickCustomer"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label lang="en">
+                            House deal
+                            <div class="icheckbox_minimal-blue checked" aria-checked="false" aria-disabled="false" style="position: relative;">
+                                <input type="checkbox" class="minimal" checked="" style="position: absolute; opacity: 0;">
+                                <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                </ins>
+                            </div>
+
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label lang="en">Priority</label>
+                        <div class="" id="ajax_DdslickPriority">
+                            <div id="loadingImage_DdslickPriority" class="input-group zeyn-load-imager">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-copyright"></i>
+                                </div>
+                                <div id="ddslickPriority"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label lang="en">Realization rate</label>
+
+                        <div class="" id="ajax_DdslickRealizationRate">
+                            <div id="loadingImage_DdslickRealizationRate" class="input-group zeyn-load-imager">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-copyright"></i>
+                                </div>
+                                <div id="ddslickRealizationRate"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label lang="en">Discount rate</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-mail-forward"></i>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Discount rate">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <button class="btn btn-default pull-right" id="tab_next_2" style="margin-top: 20px;margin-right: 10px;" lang="en"><i class="fa fa-plus"></i>Save</button>
+            </div>
+
         </div><!-- /.tab-pane -->
     </div><!-- /.tab-content -->
 </div>
