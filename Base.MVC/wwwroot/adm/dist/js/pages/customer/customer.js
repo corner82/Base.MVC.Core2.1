@@ -1543,7 +1543,7 @@
 
         "export": {
             enabled: true,
-            fileName: "Orders"
+            fileName: window.lang.translate('Customer list')
         },
 
         grouping: {
@@ -1552,7 +1552,7 @@
         },
 
         groupPanel: {
-            emptyPanelText: "Use the context menu of header columns to group data",
+            emptyPanelText: window.lang.translate('Use the context menu of header columns to group data'),
             visible: true
         },
 
