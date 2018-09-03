@@ -78,7 +78,7 @@ $(document).ready(function () {
 
     var cbdata = [
         {
-            text: 'Search...',
+            text: window.lang.translate('Please select') + "...",
             value: 1,
             selected: true
         },
@@ -101,7 +101,7 @@ $(document).ready(function () {
 
     var cbdata2 = [
         {
-            text: 'Search...',
+            text: window.lang.translate('Please select') + "...",
             value: 1,
             selected: true
         },
@@ -124,7 +124,7 @@ $(document).ready(function () {
 
     var cbdataWrName = [
         {
-            text: 'Search...',
+            text: window.lang.translate('Please select') + "...",
             value: 1,
             selected: true
         },
@@ -147,7 +147,7 @@ $(document).ready(function () {
 
     var cbdataWrType = [
         {
-            text: 'Search...',
+            text: window.lang.translate('Please select') + "...",
             value: 1,
             selected: true
         },
@@ -170,7 +170,7 @@ $(document).ready(function () {
 
     var cbdataWrMil = [
         {
-            text: 'Search...',
+            text: window.lang.translate('Please select') + "...",
             value: 1,
             selected: true
         },
@@ -193,7 +193,7 @@ $(document).ready(function () {
 
     var cbdataWrRM = [
         {
-            text: 'Search...',
+            text: window.lang.translate('Please select') + "...",
             value: 1,
             selected: true
         },
@@ -766,32 +766,32 @@ $(document).ready(function () {
         },
 
         columns: [{
-            caption: "Warranty Unique Code",
+            caption: window.lang.translate('Warranty unique code') + "...",
+            dataField: "StoreState" 
+        }, {
+            caption: window.lang.translate('Vehicle type name') + "...",
+            dataField: "StoreCity" 
+        }, {
+            caption: window.lang.translate('Vehicle model name') + "...",
+            dataField: "StoreState" 
+        }, {
+            caption: window.lang.translate('Warranty name') + "...",
+            dataField: "StoreState" 
+        }, {
+            caption: window.lang.translate('Warranty price') + "...",
+            dataField: "StoreState" 
+        }, {
+            caption: window.lang.translate('Warranty type') + "...",
             dataField: "StoreState"
         }, {
-            caption: "Vehicle Type",
-            dataField: "StoreCity"
+            caption: window.lang.translate('Warranty mileage(1.)') + "...",
+            dataField: "StoreState" 
         }, {
-            caption: "Vehicle Model",
+            caption: window.lang.translate('Warranty mileage(2.)') + "...",
             dataField: "StoreState"
         }, {
-            caption: "Warranty Name",
-            dataField: "StoreState"
-        }, {
-            caption: "Warranty Price",
-            dataField: "StoreState"
-        }, {
-            caption: "Warranty Type",
-            dataField: "StoreState"
-        }, {
-            caption: "Warranty Mileage1",
-            dataField: "StoreState"
-        }, {
-            caption: "Warranty Mileage2",
-            dataField: "StoreState"
-        }, {
-            caption: "Repair&Maintanance",
-            dataField: "StoreState"
+            caption: window.lang.translate('Repair&maintenance') + "...",
+            dataField: "StoreState" 
         }],
 
         onSelectionChanged: function (selectedItems) {
@@ -879,10 +879,10 @@ $(document).ready(function () {
         },
 
         columns: [{
-            caption: "Model",
+            caption: window.lang.translate('Vehicle model name') + "...",
             dataField: "StoreCity"
         }, {
-            caption: "Warranty",
+            caption: window.lang.translate('Warranty name') + "...",
             dataField: "StoreState"
         }],
 
