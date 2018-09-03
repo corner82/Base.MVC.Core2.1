@@ -31,56 +31,45 @@
 }
 
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+    <div class="content-wrapper">
 
-    <!-- Content Header (Page header) -->
-    <section class="content-header-breadcrumb-miya">
-        <div class="row text-right">
-            <div class="col-md-12">
+        <!-- Breadcrumb-->
+        @Html.Partial("~/Views/Shared/AdminBreadCrumbPartial.cshtml")
 
-                <ol class="breadcrumb breadcrumb-miya">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="#">UI</a></li>
-                    <li class="active">General</li>
-                </ol>
-            </div>
-        </div>
-    </section>
+        <!-- Main content -->
+        <section class="content">
 
-    <!-- Main content -->
-    <section class="content">
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <section class="col-lg-12 connectedSortable">
 
-        <!-- Main row -->
-        <div class="row">
-            <!-- Left col -->
-            <section class="col-lg-12 connectedSortable">
+                    <div class="box box-info">
+                        <div class="box-header">
+                            <i class="fa fa-comments-o"></i>
+                            <h3 class="box-title">Warranty Form</h3>
 
-                <div class="box box-info">
-                    <div class="box-header">
-                        <i class="fa fa-comments-o"></i>
-                        <h3 class="box-title">Warranty Form</h3>
-
-                        <div class="box-tools pull-right">
-                            <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                            <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                            <div class="box-tools pull-right">
+                                <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                            </div>
                         </div>
-                    </div>
-                    <div class="box-body">
-                        
-                        <form id='warrantyForm' method="get">
-                            <div class="col-md-12">
-                                <div class="row" id="loading-image-wrUnique">
-                                    <div class="form-group">
-                                        <label>Warranty Unique Code:</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-copyright"></i>
+                        <div class="box-body">
+
+                            <form id='warrantyForm' method="get">
+                                <div class="col-md-12">
+                                    <div class="row" id="loading-image-wrUnique">
+                                        <div class="form-group">
+                                            <label>Warranty Unique Code:</label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <input type="text" class="form-control validate[required]" placeholder="Warranty Unique Code" id="txt-wrUnique-name" disabled>
                                             </div>
-                                            <input type="text" class="form-control validate[required]" placeholder="Warranty Unique Code" id="txt-wrUnique-name" disabled>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Vehicle Type Name:</label>
@@ -116,19 +105,6 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label>Warranty Price:</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-copyright"></i>
-                                            </div>
-                                            <input type="number" class="form-control validate[required]" placeholder="Warranty Name" id="txt-wrPrice-name">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.col -->
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
                                         <label>Warranty Type:</label>
                                         <div class="" id="ajaxACL-wrType">
                                             <div id="loading-image-wrType" class="input-group">
@@ -139,6 +115,10 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <!-- /.col -->
+
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Warranty Mileage(1.) :</label>
                                         <div class="" id="ajaxACL-wrMil">
@@ -172,70 +152,66 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                    <!-- /.col -->
-                                <div class="col-md-12">
-                                    <h3 class="box-title">Warranty Package Price must be in Euros.</h3>
-                                </div>
-                                   
-                                    <div class="box-footer clearfix no-border">
-                                        <table class="table text-center">
-                                            <tbody>
-                                                <tr>
-                                                    <td width="75%">
-                                                        &nbsp;
-                                                    </td>
-                                                    <td>
-                                                        <button type="reset" class="btn btn-block btn-primary btn-lg" id="btn-warranty-clear" onclick="resetwarrantyForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                                    </td>
-                                                    <td>
-                                                        <button type="submit" class="btn btn-block btn-primary btn-lg" id="btn-warranty-save" onclick="insertwarrantyWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                    <div class="form-group">
+                                        <label>Warranty Price:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-copyright"></i>
+                                            </div>
+                                            <input type="number" class="form-control validate[required]" placeholder="Warranty Name" id="txt-wrPrice-name">
+                                        </div>
                                     </div>
-</form>
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-md-12">
+                                    <label>Warranty Package Price must be in Euros.</label>
+                                </div>
+
+                                <div class="box-footer clearfix no-border">
+                                    <table class="table text-center">
+                                        <tbody>
+                                            <tr>
+                                                <td width="75%">
+                                                    &nbsp;
+                                                </td>
+                                                <td>
+                                                    <button type="reset" class="btn btn-block btn-primary btn-lg" id="btn-warranty-clear" onclick="resetwarrantyForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                                </td>
+                                                <td>
+                                                    <button type="submit" class="btn btn-block btn-primary btn-lg" id="btn-warranty-save" onclick="insertwarrantyWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </form>
 
                         </div>
                     </div>
 
-            </section><!-- /.Left col -->
+                    <div class="box box-info">
+                        <div class="box-header">
+                            <i class="fa fa-comments-o"></i>
+                            <h3 class="box-title">Warranty List</h3>
 
-        </div><!-- /.row (main row) -->
-
-
-    </section><!-- /.content -->
-    <!-- Main content -->
-    <section class="content">
-
-        <!-- Main row -->
-        <div class="row">
-            <!-- Left col -->
-            <section class="col-lg-12 connectedSortable">
-
-                <div class="box box-info">
-                    <div class="box-header">
-                        <i class="fa fa-comments-o"></i>
-                        <h3 class="box-title">Warranty List</h3>
-
-                        <div class="box-tools pull-right">
-                            <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                            <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                            <div class="box-tools pull-right">
+                                <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                            </div>
+                        </div>
+                        <div class="box-body" id="loading-image-warrantyGrid">
+                            <div id="gridContainer_warranty"></div>
                         </div>
                     </div>
-                    <div class="box-body" id="loading-image-warrantyGrid">
-                        <div id="gridContainer_warranty"></div>
-                    </div>
-                </div>
+                </section><!-- /.Left col -->
 
-            </section><!-- /.Left col -->
-
-        </div><!-- /.row (main row) -->
+            </div><!-- /.row (main row) -->
 
 
-    </section><!-- /.content -->
-</div><!-- /.content-wrapper -->
+        </section><!-- /.content -->
+        <!-- Main content -->
+
+    </div><!-- /.content-wrapper -->
 
 @section javascriptsPageSpecs {
 

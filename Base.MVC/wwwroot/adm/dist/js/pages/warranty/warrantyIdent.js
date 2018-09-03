@@ -31,6 +31,13 @@ $(document).ready(function () {
 
     //to warranty form grid loading-image
     $("#loading-image-warrantyGrid").loadImager();
+    var UniqueCode = "";
+    var Model = "";
+    var Mil1 = "";
+    var Mil2 = "";
+    var WrType = "";
+    var WrRM = "";
+
 
     var langCode = $("#langCode").val();
     //alert(langCode);
@@ -86,6 +93,93 @@ $(document).ready(function () {
         }
     ];
 
+    var cbdataWrName = [
+        {
+            text: 'Search...',
+            value: 1,
+            selected: true
+        },
+        {
+            text: "TGS Extended Warranties_Combination",
+            value: 2,
+            selected: false
+        },
+        {
+            text: "CLA Extended Warranties",
+            value: 3,
+            selected: false
+        },
+        {
+            text: "TGX Extended Warranties_ Extended Scope (Heavy Duty)",
+            value: 4,
+            selected: false
+        }
+    ];
+
+    var cbdataWrType = [
+        {
+            text: 'Search...',
+            value: 1,
+            selected: true
+        },
+        {
+            text: "Driveline",
+            value: 2,
+            selected: false
+        },
+        {
+            text: "Combination",
+            value: 3,
+            selected: false
+        },
+        {
+            text: "Entire Vehicle",
+            value: 4,
+            selected: false
+        }
+    ];
+
+    var cbdataWrMil = [
+        {
+            text: 'Search...',
+            value: 1,
+            selected: true
+        },
+        {
+            text: "24 MONTHS/300 000 KM",
+            value: 2,
+            selected: false
+        },
+        {
+            text: "48 MONTHS/200 000 KM",
+            value: 3,
+            selected: false
+        },
+        {
+            text: "36 MONTHS/75 000 KM",
+            value: 4,
+            selected: false
+        }
+    ];
+
+    var cbdataWrRM = [
+        {
+            text: 'Search...',
+            value: 1,
+            selected: true
+        },
+        {
+            text: "Yes",
+            value: 2,
+            selected: false
+        },
+        {
+            text: "No",
+            value: 3,
+            selected: false
+        },
+    ];
+
 
 //model
     $('#loading-image-model').loadImager('removeLoadImage');
@@ -123,6 +217,7 @@ $(document).ready(function () {
 
                     }
                 }
+
             });
 
             $("#loading-image-model").loadImager('removeLoadImage');
@@ -171,10 +266,14 @@ $(document).ready(function () {
                 data: cbdata2,
                 width: '100%',
 
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
+                 onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 1) {
+                        Model = selectedData.selectedData.text;
                     }
+                    else {
+                        Model = "";
+                    }
+                    document.getElementById("txt-wrUnique-name").value = Model + Mil1 + Mil2 + WrType + WrRM;
                 }
             });
 
@@ -221,7 +320,7 @@ $(document).ready(function () {
 
             $('#dropdownWrName').ddslick({
                 //height: 150,
-                data: cbdata2,
+                data: cbdataWrName,
                 width: '100%',
 
                 onSelected: function (selectedData) {
@@ -244,7 +343,7 @@ $(document).ready(function () {
         },
     })
     ajaxACLResources_wrName.ajaxCallWidget('call');
-//vh Model End
+//vh Name End
 
     //wrType
     $('#loading-image-wrType').loadImager('removeLoadImage');
@@ -274,13 +373,17 @@ $(document).ready(function () {
 
             $('#dropdownWrType').ddslick({
                 //height: 150,
-                data: cbdata,
+                data: cbdataWrType,
                 width: '100%',
 
                 onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
+                    if (selectedData.selectedData.value > 1) {
+                        WrType = selectedData.selectedData.text;
                     }
+                    else {
+                        WrType = "";
+                    }
+                    document.getElementById("txt-wrUnique-name").value = Model + Mil1 + Mil2 + WrType + WrRM;
                 }
             });
 
@@ -327,13 +430,17 @@ $(document).ready(function () {
 
             $('#dropdownWrMil').ddslick({
                 //height: 150,
-                data: cbdata,
+                data: cbdataWrMil,
                 width: '100%',
 
                 onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
+                    if (selectedData.selectedData.value > 1) {
+                        Mil1 = selectedData.selectedData.text;
                     }
+                    else {
+                        Mil1 = "";
+                    }
+                    document.getElementById("txt-wrUnique-name").value = Model + Mil1 + Mil2 + WrType + WrRM;
                 }
             });
 
@@ -380,13 +487,17 @@ $(document).ready(function () {
 
             $('#dropdownWrMils').ddslick({
                 //height: 150,
-                data: cbdata,
+                data: cbdataWrMil,
                 width: '100%',
 
                 onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
+                    if (selectedData.selectedData.value > 1) {
+                        Mil2 = selectedData.selectedData.text;
                     }
+                    else {
+                        Mil2 = "";
+                    }
+                    document.getElementById("txt-wrUnique-name").value = Model + Mil1 + Mil2 + WrType + WrRM;
                 }
             });
 
@@ -433,13 +544,17 @@ $(document).ready(function () {
 
             $('#dropdownRm').ddslick({
                 //height: 150,
-                data: cbdata,
+                data: cbdataWrRM,
                 width: '100%',
 
                 onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
+                    if (selectedData.selectedData.value > 1) {
+                        WrRM = selectedData.selectedData.text;
                     }
+                    else {
+                        WrRM = "";
+                    }
+                    document.getElementById("txt-wrUnique-name").value = Model + Mil1 + Mil2 + WrType + WrRM;
                 }
             });
 
