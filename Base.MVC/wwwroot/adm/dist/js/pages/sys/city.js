@@ -274,13 +274,13 @@ $(document).ready(function () {
         },
 
         columns: [{
-            caption: "Country",
+            caption: window.lang.translate('Country'),
             dataField: "StoreCity"
         }, {
-            caption: "State",
+            caption: window.lang.translate('State'),
             dataField: "StoreCity"
         }, {
-            caption: "City",
+            caption: window.lang.translate('City'),
             dataField: "StoreCity"
         }],
 

@@ -230,6 +230,29 @@
         }
     ];
 
+    var cbdata_state = [
+        {
+            text: window.lang.translate('Please select') + "...",
+            value: 1,
+            selected: true
+        },
+        {
+            text: "South Africa",
+            value: 2,
+            selected: false
+        },
+        {
+            text: "Turkey",
+            value: 3,
+            selected: false
+        },
+        {
+            text: "Germany",
+            value: 4,
+            selected: false
+        }
+    ];
+
     $('#loading-image-state').loadImager('removeLoadImage');
     $("#loading-image-state").loadImager('appendImage');
 
