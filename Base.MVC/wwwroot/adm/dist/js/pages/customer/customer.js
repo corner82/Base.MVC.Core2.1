@@ -1660,7 +1660,7 @@
 
         "export": {
             enabled: true,
-            fileName: "CustomerAddress"
+            fileName: window.lang.translate('CustomerAddress'),
         },
 
         pager: {
@@ -1741,7 +1741,7 @@
         },
 
         groupPanel: {
-            emptyPanelText: "Use the context menu of header columns to group data",
+            emptyPanelText: window.lang.translate('Use the context menu of header columns to group data'),
             visible: true
         },
 
@@ -1865,7 +1865,7 @@
         },
 
         groupPanel: {
-            emptyPanelText: "Use the context menu of header columns to group data",
+            emptyPanelText: window.lang.translate('Use the context menu of header columns to group data'),
             visible: true
         },
 
@@ -2061,7 +2061,7 @@
         },
 
         groupPanel: {
-            emptyPanelText: "Use the context menu of header columns to group data",
+            emptyPanelText: window.lang.translate('Use the context menu of header columns to group data'),
             visible: true
         },
 

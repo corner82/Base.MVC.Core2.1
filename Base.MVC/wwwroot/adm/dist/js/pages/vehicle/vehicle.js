@@ -11,8 +11,8 @@ $(document).ready(function () {
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
     var wcm = $(window).warningComplexMessage({
-        denyButtonLabel: 'Vazgeç',
-        actionButtonLabel: 'İşleme devam et'
+        denyButtonLabel: window.lang.translate('Cancel'),
+        actionButtonLabel: window.lang.translate('Continue')
     });
 
 
@@ -1048,7 +1048,7 @@ $(document).ready(function () {
         },
 
         columns: [{
-            caption: "Buyback & Tradeback Description",
+            caption: window.lang.translate('Buyback & Tradeback descriptions'),
             dataField: "StoreCity"
         }],
 
@@ -1090,7 +1090,7 @@ $(document).ready(function () {
 
         "export": {
             enabled: true,
-            fileName: "Orders"
+            fileName: window.lang.translate('Vehicle list'),
         },
 
         grouping: {
@@ -1099,7 +1099,7 @@ $(document).ready(function () {
         },
 
         groupPanel: {
-            emptyPanelText: "Use the context menu of header columns to group data",
+            emptyPanelText: window.lang.translate('Use the context menu of header columns to group data'),
             visible: true
         },
 
@@ -1136,7 +1136,7 @@ $(document).ready(function () {
         },
 
         columns: [{
-            caption: "Vehicle Name",
+            caption: window.lang.translate('Vehicle name'),
             dataField: "StoreCity"
         }],
 
