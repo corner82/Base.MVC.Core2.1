@@ -223,7 +223,26 @@
     "Vat number": "Umsatzsteuer-Identifikationsnummer",
     "Customer group": "Kundengruppe",
     "Segment": "Segment",
-    "Sector": "Sektor"
+    "Sector": "Sektor",
+    "Vehicle list": "Fahrzeugliste",
+    "Buyback & Tradeback descriptions": "Buyback & Tradeback beschreibungen",
+    "Vehicle name": "Fahrzeugname",
+    "Property": "Eigentum",
+    "Application type": "Anwendungstyp",
+    "Model description": "Modellbeschreibung",
+    "BTO/BTS": "BTO/BTS",
+    "KP no (Premarkup)": "KP nein (Vormarkierung)",
+    "GFZ": "GFZ",
+    "Cab": "Cab",
+    "Vehicle variant": "Voertuig variant",
+    "Config": "Config",
+    "GVM": "GVM",
+    "Vehicle tonaj type": "Fahrzeug tonaj type",
+    "Vehicle type": "Fahrzeugtyp",
+    "Vehicle model grouping": "Fahrzeugmodellgruppierung",
+    "Vehicle model": "Fahrzeugmodell",
+    "Vehicle kit type": "Fahrzeugkit-Typ",
+    "Vehicle form": "Fahrzeugform"
 
   }
 	
