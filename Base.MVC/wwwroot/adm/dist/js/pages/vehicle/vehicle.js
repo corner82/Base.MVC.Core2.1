@@ -52,7 +52,7 @@ $(document).ready(function () {
 
     var cbdata = [
         {
-            text: 'Search...',
+            text: window.lang.translate('Please select') + "...",
             value: 1,
             selected: true
         },
@@ -124,7 +124,7 @@ $(document).ready(function () {
     //CLA, TGM, TGS, VW, XHCV
     var cbdata_model = [
         {
-            text: 'Search...',
+            text: window.lang.translate('Please select') + "...",
             value: 1,
             selected: true
         },
@@ -214,7 +214,7 @@ $(document).ready(function () {
     //CLA CBU 2-axis , CLA CBU 3- & 4-axis, TGM < 16t non tract.
     var cbdata_modelgr = [
         {
-            text: 'Search...',
+            text: window.lang.translate('Please select') + "...",
             value: 1,
             selected: true
         },
@@ -289,7 +289,7 @@ $(document).ready(function () {
     //LMC6, LN62
     var cbdata_type = [
         {
-            text: 'Search...',
+            text: window.lang.translate('Please select') + "...",
             value: 1,
             selected: true
         },
@@ -363,7 +363,7 @@ $(document).ready(function () {
     //26.280, 15.220
     var cbdata_vehicletonaj = [
         {
-            text: 'Search...',
+            text: window.lang.translate('Please select') + "...",
             value: 1,
             selected: true
         },
@@ -433,7 +433,7 @@ $(document).ready(function () {
    //18.000, 17.000, 24.000
     var cbdata_gvm = [
         {
-            text: 'Search...',
+            text: window.lang.translate('Please select') + "...",
             value: 1,
             selected: true
         },
@@ -507,7 +507,7 @@ $(document).ready(function () {
     //T/T, F/C, TIP, MIX, Tipper
     var cbdata_variant = [
         {
-            text: 'Search...',
+            text: window.lang.translate('Please select') + "...",
             value: 1,
             selected: true
         },
@@ -596,7 +596,7 @@ $(document).ready(function () {
     //4x2, 4x4, 6x4, 8x4, 6x6, 8x8, 8x4/4
     var cbdata_config = [
         {
-            text: 'Search...',
+            text: window.lang.translate('Please select') + "...",
             value: 1,
             selected: true
         },
@@ -671,7 +671,7 @@ $(document).ready(function () {
     //4x2, 4x4, 6x4, 8x4, 6x6, 8x8, 8x4/4
     var cbdata_cab = [
         {
-            text: 'Search...',
+            text: window.lang.translate('Please select') + "...",
             value: 1,
             selected: true
         },
@@ -747,7 +747,7 @@ $(document).ready(function () {
     //4x2, 4x4, 6x4, 8x4, 6x6, 8x8, 8x4/4
     var cbdata_kp = [
         {
-            text: 'Search...',
+            text: window.lang.translate('Please select') + "...",
             value: 1,
             selected: true
         },
@@ -823,7 +823,7 @@ $(document).ready(function () {
     //BTO, BTS
     var cbdata_stockinfo = [
         {
-            text: 'Search...',
+            text: window.lang.translate('Please select') + "...",
             value: 1,
             selected: true
         },
@@ -892,7 +892,7 @@ $(document).ready(function () {
 
     var cbdata_app = [
         {
-            text: 'Search...',
+            text: window.lang.translate('Please select') + "...",
             value: 1,
             selected: true
         },

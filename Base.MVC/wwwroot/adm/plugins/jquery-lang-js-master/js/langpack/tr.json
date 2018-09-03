@@ -224,7 +224,29 @@
     "Vat number": "Vergi no",
     "Customer group": "Müşteri Grubu",
     "Segment": "Segment",
-    "Sector": "Sektör"
+    "Sector": "Sektör",
+    "Vehicle list": "Araç listesi",
+    "Buyback & Tradeback descriptions": "Buyback & Tradeback tanımları",
+    "Vehicle name": "Araç adı",
+    "Property": "Özelliği",
+    "Application type": "Uygulama tipi",
+    "Model description": "Model açıklaması",
+    "BTO/BTS": "BTO/BTS",
+    "KP no (Premarkup)": "KP no (Premarkup)",
+    "GFZ": "GFZ",
+    "Cab": "Cab",
+    "Vehicle variant": "Fahrzeugvariante",
+    "Config": "Config",
+    "GVM": "GVM",
+    "Vehicle variant": "Araç varyantı",
+    "Config": "Config",
+    "GVM": "GVM",
+    "Vehicle tonaj type": "Araç tonaj tipi",
+    "Vehicle type": "Araç tipi",
+    "Vehicle model grouping": "Araç model grubu",
+    "Vehicle model": "Araç modeli",
+    "Vehicle kit type": "Araç kit tipi",
+    "Vehicle form": "Araç formu"
   }
 	
 }
