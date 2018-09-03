@@ -790,7 +790,7 @@ $(document).ready(function () {
             caption: window.lang.translate('Warranty mileage(2.)') + "...",
             dataField: "StoreState"
         }, {
-            caption: window.lang.translate('Repair&maintanance') + "...",
+            caption: window.lang.translate('Repair&maintenance') + "...",
             dataField: "StoreState" 
         }],
 

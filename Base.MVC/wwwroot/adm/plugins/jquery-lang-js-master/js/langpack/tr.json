@@ -231,17 +231,17 @@
     "Vehicle model name": "Araç model adı",
     "Warranty name": "Garanti adı",
     "Warranty name list":  "Garanti adı listesi",
-	"Warranty unique code": "Garanti özel kodu",
-	"Vehicle type name":"Araç tipi",
-	"Vehicle model name": "Araç modeli",
-	"Warranty type":"Garanti tipi",
-	"Warranty mileage(1.)":"Garanti kilometresi(1.)",
-	"Warranty mileage(2.)":"Garanti kilometresi(2.)",
-	"Repair&maintanance":"Bakım&onarım",
-	"Warranty price":"Garanti fiyatı",
-	"Warranty Package Price must be in Euros":"Garanti paketi fiyatı euro olmalıdır",
-	"Warranty list":"Garanti listesi",
-	"":""
+	  "Warranty unique code": "Garanti özel kodu",
+	  "Vehicle type name":"Araç tipi",
+	  "Vehicle model name": "Araç modeli",
+	  "Warranty type":"Garanti tipi",
+	  "Warranty mileage(1.)":"Garanti kilometresi(1.)",
+	  "Warranty mileage(2.)":"Garanti kilometresi(2.)",
+	  "Repair&maintanance":"Bakım&onarım",
+	  "Warranty price":"Garanti fiyatı",
+	  "Warranty Package Price must be in Euros":"Garanti paketi fiyatı euro olmalıdır",
+	  "Warranty list":"Garanti listesi",
+	  "":""
   }
 	
 }
