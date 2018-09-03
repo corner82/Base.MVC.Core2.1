@@ -22,6 +22,7 @@
     $("#loading-image-cstInfoGrid").loadImager();
 
     $("#loading-image-country").loadImager();
+    $("#loading-image-state").loadImager();
     $("#loading-image-city").loadImager();
     $("#loading-image-reliabilityrate").loadImager();
     $("#loading-image-sector").loadImager();
@@ -133,7 +134,7 @@
 
     var cbdata = [
         {
-            text:'Search...',
+            text: window.lang.translate('Please select') + "...",
             value: 1,
             selected: true
         },
@@ -204,6 +205,81 @@
         },
     })
     ajaxACLResources_country.ajaxCallWidget('call');
+
+
+    var cbdata = [
+        {
+            text: window.lang.translate('Please select') + "...",
+            value: 1,
+            selected: true
+        },
+        {
+            text: "South Africa",
+            value: 2,
+            selected: false
+        },
+        {
+            text: "Turkey",
+            value: 3,
+            selected: false
+        },
+        {
+            text: "Germany",
+            value: 4,
+            selected: false
+        }
+    ];
+
+    $('#loading-image-state').loadImager('removeLoadImage');
+    $("#loading-image-state").loadImager('appendImage');
+
+    var ajaxACLResources_state = $('#ajaxACL-state').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+
+    });
+
+    ajaxACLResources_state.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-state').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#dropdownState').ddslick({
+                //height: 150,
+                data: cbdata,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            $("#loading-image-state").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-state').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('Ülke bulunamamıştır...'), window.lang.translate('Ülke  bulunamamıştır...'));
+        },
+    })
+    ajaxACLResources_state.ajaxCallWidget('call');
 
 
     $('#loading-image-city').loadImager('removeLoadImage');
@@ -1166,7 +1242,7 @@
                 height: 200,
                 data: data_product,
                 width:'100%',
-                selectText: "Select your preferred social network",
+                selectText: window.lang.translate('Please select') + "...",
                 searchText: window.lang.translate('Search') + "...",
                 //showSelectedHTML : false,
                 defaultSelectedIndex: 3,
@@ -1515,16 +1591,16 @@
         columns: [{
             allowGrouping: false,
             dataField: "OrderNumber",
-            caption: "Invoice Number",
+            caption: window.lang.translate('Country') + "...",
             width: 130
         }, {
-            caption: "City",
-            dataField: "StoreCity"
-        }, {
-            caption: "State",
+            caption: window.lang.translate('State') + "...",
             dataField: "StoreState"
-        },
-            "Employee", {
+        }, {
+            caption: window.lang.translate('City') + "...",
+            dataField: "StoreCity"
+        }, 
+        "Employee", {
             dataField: "OrderDate",
             dataType: "date"
         }, {
@@ -2124,6 +2200,9 @@
         var ddData_country = $('#dropdownCountry').data('ddslick')
         var country_id = ddData_country.selectedData.value;
 
+        var ddData_state = $('#dropdownState').data('ddslick')
+        var state_id = ddData_state.selectedData.value;
+
         var ddData_city = $('#dropdownCity').data('ddslick')
         var city_id = ddData_city.selectedData.value;
 
@@ -2232,6 +2311,7 @@
         $('#customerInfoForm').validationEngine('hide');
         
         $('#dropdownCountry').ddslick('select', { index: String(0) });
+        $('#dropdownState').ddslick('select', { index: String(0) });
         $('#dropdownCity').ddslick('select', { index: String(0) });
         $('#dropdownSector').ddslick('select', { index: String(0) });
         $('#dropdownSegment').ddslick('select', { index: String(0) });
@@ -2264,6 +2344,7 @@
         document.getElementById("registration-datepicker").value = Date();
         
         $('#dropdownCountry').ddslick('select', { index: 3 });
+        $('#dropdownState').ddslick('select', { index: 2 });
         $('#dropdownCity').ddslick('select', { index: 2 });
         $('#dropdownSector').ddslick('select', { index: 3 });
         $('#dropdownSegment').ddslick('select', { index: 2 });
@@ -2588,6 +2669,7 @@
         document.getElementById("registration-datepicker").value = Date();
 
         $('#dropdownCountry').ddslick('select', { index: 3 });
+        $('#dropdownState').ddslick('select', { index: 2 });
         $('#dropdownCity').ddslick('select', { index: 2 });
         $('#dropdownSector').ddslick('select', { index: 3 });
         $('#dropdownSegment').ddslick('select', { index: 2 });
