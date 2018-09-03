@@ -219,7 +219,26 @@
     "Vat number": "BTW-nommer",
     "Customer group": "Kliëntegroep",
     "Segment": "Segment",
-    "Sector": "Sektor"
+    "Sector": "Sektor",
+    "Vehicle list": "Voertuiglys",
+    "Buyback & Tradeback descriptions": "Buyback & Tradeback beskrywings",
+    "Vehicle name": "Voertuignaam",
+    "Property": "Eiendom",
+    "Application type": "Aansoek tipe",
+    "Model description": "Model beskrywing",
+    "BTO/BTS": "BTO/BTS",
+    "KP no (Premarkup)": "KP no (Premarkup)",
+    "GFZ": "GFZ",
+    "Cab": "Cab",
+    "Vehicle variant": "Voertuig variant",
+    "Config": "Config",
+    "GVM": "GVM",
+    "Vehicle tonaj type": "Voertuig tonaj tipe",
+    "Vehicle type": "Voertuigtipe",
+    "Vehicle model grouping": "Voertuigmodelgroepering",
+    "Vehicle model": "Voertuigmodel",
+    "Vehicle kit type": "Voertuig tipe",
+    "Vehicle form": "Voertuig vorm"
 
 
   }

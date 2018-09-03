@@ -220,23 +220,8 @@
     "Vat number": "Umsatzsteuer-Identifikationsnummer",
     "Customer group": "Kundengruppe",
     "Segment": "Segment",
-    "Sector": "Sektor",
-    "Warranty form": "Garantieformular",
-    "Warranty name identification": "Garantie namensidentifikation",
-    "Warranty information": "Garantieinformationen",
-    "Vehicle model name": "Fahrzeugmodellname",
-    "Warranty name": "Garantienname",
-    "Warranty name list": "Garantie Namensliste",
-    "Warranty unique code": "Garantie eindeutiger Code",
-    "Vehicle type name":"Fahrzeugtypname",
-    "Vehicle model name": "Fahrzeugmodellname",
-    "Warranty type":"Garantieart",
-    "Warranty mileage(1.)":"Gewährleistungsmeilen(1.)",
-    "Warranty mileage(2.)":"Gewährleistungsmeilen(2.)",
-    "Repair&maintanance":"Reparatur und wartung",
-    "Warranty price":"Garantiepreis",
-    "Warranty Package Price must be in Euros":"Garantiepaketpreis muss in Euro sein",
-    "Warranty list":"Garantieliste"
+    "Sector": "Sektor"
+
   }
 	
 }
