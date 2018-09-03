@@ -19,6 +19,8 @@ $(document).ready(function () {
     */
     //to warranty form
     $("#loading-image-warranty").loadImager();
+    $("#loading-image-warrantyName").loadImager();
+    $("#loading-image-modelName").loadImager();
 
     //to model form
     $("#loading-image-model").loadImager();
@@ -42,7 +44,34 @@ $(document).ready(function () {
     var langCode = $("#langCode").val();
     //alert(langCode);
 
+    var tab_active = function () {
+        //Update & View Mode
+        //enabled tabs
+
+        $("a[data-toggle='tab'").prop('disabled', false);
+        $("a[data-toggle='tab'").each(function () {
+            $(this).attr('href', $(this).prop('data-href')); // restore original href
+        });
+        $("a[data-toggle='tab'").removeClass('disabled-link');
+    }
+
+    var tab_disable = function () {
+        //Add new record
+        //tablar kapatýlacak
+
+        $("a[data-toggle='tab'").prop('disabled', true);
+        $("a[data-toggle='tab'").each(function () {
+            $(this).prop('data-href', $(this).attr('href')); // hold you original href
+            $(this).attr('href', '#'); // clear href
+        });
+        $("a[data-toggle='tab'").addClass('disabled-link');
+
+    }
+
+    tab_disable();
+
     $('#warrantyForm').validationEngine();
+    $('#warrantyNameForm').validationEngine();
 
     var cbdata_model = [{}];
     var cbdata_vhmodel = [{}];
@@ -180,6 +209,60 @@ $(document).ready(function () {
         },
     ];
 
+
+    //model
+    $('#loading-image-modelName').loadImager('removeLoadImage');
+    $("#loading-image-modelName").loadImager('appendImage');
+
+    var ajaxACLResources_modelName = $('#ajaxACL-modelName').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+
+    });
+
+    ajaxACLResources_modelName.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-modelName').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamýþtýr...'), window.lang.translate('Servis  bulunamamýþtýr...'));
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#dropdownModelName').ddslick({
+                //height: 150,
+                data: cbdata,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+
+            });
+
+            $("#loading-image-modelName").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-modelName').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('model bulunamamýþtýr...'), window.lang.translate('model  bulunamamýþtýr...'));
+        },
+    })
+    ajaxACLResources_modelName.ajaxCallWidget('call');
+//Model End
 
 //model
     $('#loading-image-model').loadImager('removeLoadImage');
@@ -605,38 +688,6 @@ $(document).ready(function () {
         }
     });
 
-    /* devexgrid */
-    var orders = new DevExpress.data.CustomStore({
-        load: function (loadOptions) {
-            var deferred = $.Deferred(),
-                args = {};
-
-            if (loadOptions.sort) {
-                args.orderby = loadOptions.sort[0].selector;
-                if (loadOptions.sort[0].desc)
-                    args.orderby += " desc";
-            }
-
-            args.skip = loadOptions.skip || 0;
-            args.take = loadOptions.take || 12;
-
-            $.ajax({
-                url: "https://js.devexpress.com/Demos/WidgetsGallery/data/orderItems",
-                dataType: "json",
-                data: args,
-                success: function (result) {
-                    deferred.resolve(result.items, { totalCount: result.totalCount });
-                },
-                error: function () {
-                    deferred.reject("Data Loading Error");
-                },
-                timeout: 5000
-            });
-
-            return deferred.promise();
-        }
-    });
-
     DevExpress.localization.locale(langCode);
 
 
@@ -752,6 +803,98 @@ $(document).ready(function () {
 
     });
 
+
+    $("#gridContainer_warrantyName").dxDataGrid({
+
+        showColumnLines: true,
+
+        showRowLines: true,
+
+        showBorders: true,
+
+        dataSource: orders,
+
+        columnHidingEnabled: true,
+
+        selection: {
+            mode: "single"
+        },
+
+        hoverStateEnabled: true,
+
+        editing: {
+            //mode: "batch"
+            mode: "form",
+            //allowAdding: true,
+            //allowUpdating: true,
+            allowDeleting: true,
+            useIcons: true
+        },
+
+        "export": {
+            enabled: true,
+            fileName: "Orders"
+        },
+
+        grouping: {
+            contextMenuEnabled: true,
+            expandMode: "rowClick"
+        },
+
+        groupPanel: {
+            emptyPanelText: "Use the context menu of header columns to group data",
+            visible: true
+        },
+
+        pager: {
+            allowedPageSizes: [5, 8, 15, 30],
+            showInfo: true,
+            showNavigationButtons: true,
+            showPageSizeSelector: true,
+            visible: true
+        },
+
+        paging: {
+            pageSize: 8
+        },
+
+        filterRow: {
+            visible: true,
+            applyFilter: "auto"
+        },
+
+        searchPanel: {
+            visible: true,
+            width: 240,
+            placeholder: window.lang.translate('Search') + "...",
+        },
+
+        headerFilter: {
+            visible: true
+        },
+
+        columnChooser: {
+            enabled: true,
+            mode: "select"
+        },
+
+        columns: [{
+            caption: "Model",
+            dataField: "StoreCity"
+        }, {
+            caption: "Warranty",
+            dataField: "StoreState"
+        }],
+
+        onSelectionChanged: function (selectedItems) {
+            var data = selectedItems.selectedRowsData[0];
+            if (data) {
+                fillwarrantyNameForm(data);
+            }
+        }
+
+    });
+
     function logEvent(eventName) {
         var logList = $("#events ul"),
             newItem = $("<li>", { text: eventName });
@@ -759,6 +902,20 @@ $(document).ready(function () {
         logList.prepend(newItem);
     }
 
+
+
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        var target = $(e.target).attr("href") // activated tab
+
+        if (target == "#tab_1") {
+            //alert("#tab_1");
+        }
+        if (target == "#tab_2") {
+            // grid refresh olmasý gerektiði için kullanýldý.
+            $(gridContainer_warranty).dxDataGrid("updateDimensions");
+            //alert("#tab_2");
+        }
+    });
 
     /**
  * insertmodel
@@ -854,12 +1011,12 @@ $(document).ready(function () {
         $('#dropdownModel').ddslick('select', { index: String(0) });
         $('#dropdownVhModel').ddslick('select', { index: String(0) });
         $('#dropdownWrName').ddslick('select', { index: String(0) });
-        $('#dropdownWrPrice').ddslick('select', { index: String(0) });
         $('#dropdownWrType').ddslick('select', { index: String(0) });
         $('#dropdownWrMil').ddslick('select', { index: String(0) });
         $('#dropdownWrMils').ddslick('select', { index: String(0) });
         $('#dropdownRm').ddslick('select', { index: String(0) });
         $("#loading-image-warranty").loadImager('removeLoadImage');
+
         return false;
     }
 
@@ -896,15 +1053,72 @@ $(document).ready(function () {
         $('#dropdownModel').ddslick('select', { index: 3 });
         $('#dropdownVhModel').ddslick('select', { index: 3 });
         $('#dropdownWrName').ddslick('select', { index: 2 });
-        $('#dropdownWrPrice').ddslick('select', { index: 2 });
         $('#dropdownWrType').ddslick('select', { index: 3 });
         $('#dropdownWrMil').ddslick('select', { index: 2 });
         $('#dropdownWrMils').ddslick('select', { index: 3 });
         $('#dropdownRm').ddslick('select', { index: 2 });
-        document.getElementById("txt-warranty-name").value = data.StoreCity;
+        document.getElementById("txt-wrPrice-name").value = data.SaleAmount;
 
         $("#loading-image-warranty").loadImager('removeLoadImage');
+        return false;
+    }
 
+    /**
+  * reset model Form
+  * @returns {undefined}
+  * @author Ceydacan Seyrek
+  * @since 14/08/2018
+  */
+
+    window.resetwarrantyNameForm = function () {
+        $("#loading-image-warrantyName").loadImager('removeLoadImage');
+        $("#loading-image-warrantyName").loadImager('appendImage');
+
+        $('#warrantyNameForm').validationEngine('hide');
+        $('#dropdownModelName').ddslick('select', { index: String(0) });
+
+        $("#loading-image-warrantyName").loadImager('removeLoadImage');
+
+        tab_disable();
+        return false;
+    }
+
+
+    /**
+    * insert model Wrapper
+    * @returns {Boolean}
+    * @author Ceydacan Seyrek
+    * @since 14/08/2018
+    */
+
+    window.insertmodelNameWrapper = function (e) {
+        e.preventDefault();
+
+        if ($("#warrantyNameForm").validationEngine('validate')) {
+
+            insertwarrantyName();
+        }
+        return false;
+    }
+
+
+    /**
+    * Fill model form
+    * @returns {Boolean}
+    * @author Ceydacan Seyrek
+    * @since 14/08/2018
+    */
+
+    window.fillwarrantyNameForm = function (data) {
+        $("#loading-image-warrantyName").loadImager('removeLoadImage');
+        $("#loading-image-warrantyName").loadImager('appendImage');
+
+        $('#dropdownModelName').ddslick('select', { index: 3 });
+        document.getElementById("txt-wrName-name").value = data.StoreCity;
+
+        $("#loading-image-warrantyName").loadImager('removeLoadImage');
+
+        tab_active();
         return false;
     }
 });

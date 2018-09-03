@@ -940,7 +940,7 @@
         document.getElementById("txt-Explanation-name").value = data.Employee;
         document.getElementById("start-datepicker").value = data.OrderDate;
         document.getElementById("end-datepicker").value = data.OrderDate;
-        document.getElementById("txt-Grade-name").value = data.Employee;
+        document.getElementById("txt-Grade-name").value = data.OrderNumber;
         $("#loading-image-truser").loadImager('removeLoadImage');
 
         return false;
