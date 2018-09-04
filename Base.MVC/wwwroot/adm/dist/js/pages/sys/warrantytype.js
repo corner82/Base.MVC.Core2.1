@@ -139,7 +139,7 @@ $(document).ready(function () {
         },
 
         columns: [{
-            caption: "Warranty Type",
+            caption: window.lang.translate('Warranty Type') + "...",
             dataField: "StoreCity"
         }],
 
