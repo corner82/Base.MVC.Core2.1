@@ -267,7 +267,20 @@
     "Repair&maintanance": "Bakım&onarım",
     "Warranty price": "Garanti fiyatı",
     "Warranty Package Price must be in Euros": "Garanti paketi fiyatı euro olmalıdır",
-    "Warranty list": "Garanti listesi"
+    "Warranty list": "Garanti listesi",
+	"Training identification":"Eğitim tanımlama",
+	"Training information":"Eğitim bilgileri",
+	"Training name":"Eğitim adı",
+	"Training name list":"Eğitim adı listesi",
+	"Trainer":"Eğitimi alan",
+	"Training city":"Eğitim şehri",
+	"Training address":"Eğitim adresi",
+	"Postal code":"Posta kodu",
+	"Explanation":"Açıklama",
+	"Training start date":"Eğitim başlangıç tarihi",
+	"Training end date":"Eğitim bitiş tarihi",
+	"Grade":"Puan",
+	"Training list info":"Eğitim listesi bilgileri"
   }
 	
 }

@@ -96,7 +96,7 @@
 
     var cbdata = [
         {
-            text: 'Search...',
+            text: window.lang.translate('Please select') + "...",
             value: 1,
             selected: true
         },
@@ -119,7 +119,7 @@
 
     var data_trName = [{
         "value": 0,
-        "text": "Select...",
+        "text": window.lang.translate('Please select') + "...",
         selected: true
     }, {
         "value": 1,
@@ -138,7 +138,7 @@
 
     var data_city = [{
             "value": 0,
-            "text": "Select...",
+        "text": window.lang.translate('Please select') + "...",
             "stateID": 0,
             selected: true
         }, {
@@ -165,7 +165,7 @@
 
     var data_trainer = [{
         "value": 0,
-        "text": "Select...",
+        "text": window.lang.translate('Please select') + "...",
         selected: true
         }, {
             "value": 1,
@@ -446,13 +446,13 @@
         columns: [{
             allowGrouping: false,
             dataField: "OrderNumber",
-            caption: "Invoice Number",
+            caption: window.lang.translate('Invoice Number') + "...",
             width: 130
         }, {
-            caption: "City",
+            caption: window.lang.translate('City') + "...",
             dataField: "StoreCity"
         }, {
-            caption: "State",
+            caption: window.lang.translate('State') + "...",
             dataField: "StoreState"
         },
             "Employee", {
@@ -577,34 +577,34 @@
             mode: "select"
         },
         columns: [{
-            caption: "Training Name",
+            caption: window.lang.translate('Training Name') + "...",
             dataField: "StoreState",
             width: 130
         }, {
-            caption: "Trainer",
+            caption: window.lang.translate('Trainer') + "...",
             dataField: "Employee",
         }, {
-            caption: "Training City",
+            caption: window.lang.translate('Training City') + "...",
             dataField: "StoreCity"
         }, {
-            caption: "Training Address",
+            caption: window.lang.translate('Training Address') + "...",
             dataField: "StoreState",
         }, {
-            caption: "Postal Code",
+            caption: window.lang.translate('Postal Code') + "...",
             dataField: "OrderNumber",
         }, {
-            caption: "Explanation",
+            caption: window.lang.translate('Explanation') + "...",
             dataField: "Employee",
         }, {
-            caption: "Start Date",
+            caption: window.lang.translate('Training start date') + "...",
             dataField: "OrderDate",
                 dataType: "date",
         }, {
-            caption: "End Date",
+            caption: window.lang.translate('Training end date') + "...",
             dataField: "OrderDate",
                 dataType: "date",
         }, {
-            caption: "Grade",
+            caption:window.lang.translate('Grade') + "...",
             dataField: "OrderNumber",
         }],
 

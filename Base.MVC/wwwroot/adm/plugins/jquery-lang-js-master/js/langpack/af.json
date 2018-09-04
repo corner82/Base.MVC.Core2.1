@@ -258,8 +258,20 @@
     "Repair&maintanance": "Repair & onderhoud",
     "Warranty price": "Waarborgprys",
     "Warranty Package Price must be in Euros": "Garantiepakket moet in euro's wees",
-    "Warranty list": "Waarborglys"
-
+    "Warranty list": "Waarborglys",
+	"Training identification":"Opleidingsidentifikasie",
+	"Training information":"Opleidingsinligting",
+	"Training name":"Opleidingsnaam",
+	"Training name list":"Opleidings naamlys",
+	"Trainer":"Afrigter",
+	"Training city":"Opleidingsstad",
+	"Training address":"Opleidingsadres",
+	"Postal code":"Poskode",
+	"Explanation":"Verklaring",
+	"Training start date":"Opleidings begin datum",
+	"Training end date":"Opleidings einddatum",
+	"Grade":"Graad",
+	"Training list info":"Opleidingslysinligting"
   }
 
 }

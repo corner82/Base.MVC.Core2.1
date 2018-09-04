@@ -259,8 +259,20 @@
     "Repair&maintanance": "Reparatur und wartung",
     "Warranty price": "Garantiepreis",
     "Warranty Package Price must be in Euros": "Garantiepaketpreis muss in Euro sein",
-    "Warranty list": "Garantieliste"
-
+    "Warranty list": "Garantieliste",
+	"Training identification":"Trainingsidentifikation",
+	"Training information":"Trainingsinformation",
+	"Training name":"Trainingsname",
+	"Training name list":"Trainingsnamenliste",
+	"Trainer":"Trainer",
+	"Training city":"Trainingsstadt",
+	"Training address":"Trainingsadresse",
+	"Postal code":"Postleitzahl",
+	"Explanation":"Erläuterung",
+	"Training start date":"Startdatum des Trainings"",
+	"Training end date":"Trainingsenddatum",
+	"Grade":"Klasse",
+	"Training list info":"Trainingslisteninfo"
   }
 	
 }
