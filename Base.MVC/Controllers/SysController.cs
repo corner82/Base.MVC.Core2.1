@@ -146,7 +146,7 @@ namespace Base.MVC.Controllers
             return View();
         }
 
-        public async Task<IActionResult> TradebackTerrain()
+        public async Task<IActionResult> Terrain()
         {
             return View();
         }

@@ -273,7 +273,13 @@
 	"Grade":"Graad",
 	"Training list info":"Opleidingslysinligting",
 	"Warranty Type Form":"Waarborg Tipe Vorm",
-	"Warranty Type List":"Waarborg Tipe Lys"
+	"Warranty Type List":"Waarborg Tipe Lys",
+	"Terrain identification form":"Terreinidentifikasievorm",
+	"Terrain type":"Terrein tipe",
+	"Terrain name":"Terreinnaam",
+	"Terrain value":"Terreinwaarde",
+	"If the value entered is 'more than', check the checkbox":"As die waarde wat ingevoer is, 'meer as' is, merk die boks",
+	"Terrain List":"Terreinlys"
   }
 
 }

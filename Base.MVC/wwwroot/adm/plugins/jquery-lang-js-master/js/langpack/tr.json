@@ -282,7 +282,13 @@
 	"Grade":"Puan",
 	"Training list info":"Eğitim listesi bilgileri",
 	"Warranty Type Form":"Garanti tipi formu",
-	"Warranty Type List":"Garanti tipi listesi"
+	"Warranty Type List":"Garanti tipi listesi",	
+	"Terrain identification form":"Terrain tanımlama formu",
+	"Terrain type":"Terrain tipi",
+	"Terrain name":"Terrain adı",
+	"Terrain value":"Terrain değeri",
+	"If the value entered is 'more than', check the checkbox":"Girilen değer daha fazla anlamı taşıyorsa checkboxı işaretleyin",
+	"Terrain List":"Terrain listesi"
   }
 	
 }

@@ -39,6 +39,9 @@
     <Content Update="Views\Sys\Accessory.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Sys\Terrain.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Sys\Month.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

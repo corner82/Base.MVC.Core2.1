@@ -274,7 +274,13 @@
 	"Grade":"Klasse",
 	"Training list info":"Trainingslisteninfo",
 	"Warranty Type Form":"Garantieformular",
-	"Warranty Type List":"Liste der Garantiearten"
+	"Warranty Type List":"Liste der Garantiearten",	
+	"Terrain identification form":"Geländeidentifizierungsformular",
+	"Terrain type":"Geländeart",
+	"Terrain name":"Gelände-Name",
+	"Terrain value":"Geländewert",
+	"If the value entered is "more than", check the checkbox":"Wenn der eingegebene Wert 'mehr als' ist, aktivieren Sie das Kontrollkästchen",
+	"Terrain List":"Geländeliste"
   }
 	
 }
