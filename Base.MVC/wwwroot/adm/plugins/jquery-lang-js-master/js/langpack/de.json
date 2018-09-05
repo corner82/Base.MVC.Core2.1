@@ -285,7 +285,12 @@
 	"Park off name":"Park aus name",
 	"Park off day":"Park aus tag",
 	"Park off comment":"Park aus kommentar",
-	"Park off type list":"Park aus typ liste"
+	"Park off type list":"Park aus typ liste",	
+	"Fx rate identification form":"Fx rate Identifikationsformular",
+	"Fx rate start date":"Fx rate anfangsdatum",
+	"Fx rate end date":"Fx rate ende datum",
+	"Fx rate":"Fx rate",
+	"Fx rate list":"Fx rate liste"
   }
 	
 }

@@ -284,7 +284,12 @@
 	"Park off name":"Parkeer name",
 	"Park off day":"Parkeer dag",
 	"Park off comment":"Parker kommentaar",
-	"Park off type list":"Parkeer tipe lys"
+	"Park off type list":"Parkeer tipe lys",	
+	"Fx rate identification form":"Fx rate identifikasie vorm",
+	"Fx rate start date":"Fx rate begin datum",
+	"Fx rate end date":"Fx rate einddatum",
+	"Fx rate":"Fx rate",
+	"Fx rate list":"Fx rate lys"
   }
 
 }

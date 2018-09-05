@@ -293,7 +293,12 @@
 	"Park off name":"Park off adı",
 	"Park off day":"Park off süresi",
 	"Park off comment":"Park off açıklaması",
-	"Park off type list":"Park off tipi listesi"
+	"Park off type list":"Park off tipi listesi",
+	"Fx rate identification form":"Fx rate tanımlama formu",
+	"Fx rate start date":"Fx rate başlangıç tarihi",
+	"Fx rate end date":"Fx rate bitiş tarihi",
+	"Fx rate":"Fx rate",
+	"Fx rate list":"Fx rate listesi",
   }
 	
 }

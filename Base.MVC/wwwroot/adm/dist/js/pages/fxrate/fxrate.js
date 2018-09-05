@@ -10,9 +10,6 @@ $(document).ready(function () {
         actionButtonLabel: 'Ýþleme devam et'
     });
 
-    var langCode = $("#langCode").val();
-    //alert(langCode);
-
     /*
     * datepicker format
     * @author Ceydacan Seyrek
@@ -29,45 +26,22 @@ $(document).ready(function () {
         locale: langCode,
         format: 'yyyy/mm/dd'
     });
-
     /*
-    * datepicker format
+    * Fxrate LoadImager
     * @author Ceydacan Seyrek
-    * @since 08/08/2018
+    * @since 14/08/2018
     */
+    //to Fxrate form
+    $("#loading-image-Fxrate").loadImager();
 
-    var tab_active = function () {
-        //Update & View Mode
-        //enabled tabs
+    //to Fxrate form grid loading-image
+    $("#loading-image-FxrateGrid").loadImager();
 
-        $("a[data-toggle='tab'").prop('disabled', false);
-        $("a[data-toggle='tab'").each(function () {
-            $(this).attr('href', $(this).prop('data-href')); // restore original href
-        });
-        $("a[data-toggle='tab'").removeClass('disabled-link');
-    }
+    var langCode = $("#langCode").val();
+    //alert(langCode);
 
-    var tab_disable = function () {
-        //Add new record
-        //tablar kapatýlacak
+    $('#FxrateForm').validationEngine();
 
-        $("a[data-toggle='tab'").prop('disabled', true);
-        $("a[data-toggle='tab'").each(function () {
-            $(this).prop('data-href', $(this).attr('href')); // hold you original href
-            $(this).attr('href', '#'); // clear href
-        });
-        $("a[data-toggle='tab'").addClass('disabled-link');
-
-    }
-
-    tab_disable();
-    /*
-    * Fx Rate Info insert form validation engine attached to work
-    * @author Ceydacan Seyrek
-    * @since 08/08/2018
-    */
-    $('#fxrateInfoForm').validationEngine();
-   
 
     /* devexgrid */
     var orders = new DevExpress.data.CustomStore({
@@ -101,10 +75,10 @@ $(document).ready(function () {
         }
     });
 
-    DevExpress.localization.locale("en");
+    DevExpress.localization.locale(langCode);
 
 
-    $("#gridContainer_fxrate").dxDataGrid({
+    $("#gridContainer_Fxrate").dxDataGrid({
 
         showColumnLines: true,
 
@@ -124,7 +98,7 @@ $(document).ready(function () {
 
         editing: {
             //mode: "batch"
-            mode: "row",
+            mode: "form",
             //allowAdding: true,
             //allowUpdating: true,
             allowDeleting: true,
@@ -166,7 +140,7 @@ $(document).ready(function () {
         searchPanel: {
             visible: true,
             width: 240,
-            placeholder: "Search..."
+            placeholder: window.lang.translate('Search') + "...",
         },
 
         headerFilter: {
@@ -179,50 +153,24 @@ $(document).ready(function () {
         },
 
         columns: [{
-            allowGrouping: false,
-            dataField: "OrderNumber",
-            caption: "Invoice Number",
-            width: 130
+            caption: window.lang.translate('Fxrate start date') + "...",
+            dataField: "OrderDate"
         }, {
-            caption: "City",
-            dataField: "StoreCity"
+            caption: window.lang.translate('Fxrate end date') + "...",
+            dataField: "OrderDate"
         }, {
-            caption: "State",
-            dataField: "StoreState"
-        },
-            "Employee", {
-            dataField: "OrderDate",
-            dataType: "date"
-        }, {
-            dataField: "SaleAmount",
-
+            caption: window.lang.translate('Fxrate') + "...",
+            dataField: "SaleAmount"
         }],
-
-        customizeColumns: function (columns) {
-            columns[5].format = { type: "currency", currency: "EUR" };
-        },
-
-        summary: {
-            totalItems: [{
-                column: "OrderNumber",
-                summaryType: "count"
-            }, {
-                column: "SaleAmount",
-                summaryType: "sum",
-                valueFormat: "currency"
-            }]
-        },
 
         onSelectionChanged: function (selectedItems) {
             var data = selectedItems.selectedRowsData[0];
             if (data) {
-
-                fillCustomerInfoForm(data);
+                fillFxrateForm(data);
             }
         }
 
     });
-
 
     function logEvent(eventName) {
         var logList = $("#events ul"),
@@ -233,149 +181,137 @@ $(document).ready(function () {
 
 
     /**
-    * insert FxrateInfo Wrapper
-    * @returns {Boolean}
-    * @since 02/08/2018
-    */
+ * insert Fxrate
+ * @returns {undefined}
+ * @author Ceydacan Seyrek
+ * @since 14/08/2018
+ */
 
-    var insertFxrateInfoWrapper = function (e) {
-        e.preventDefault();
-
-        if ($("#fxrateInfoForm").validationEngine('validate')) {
-
-            insertFxrateInfo();
-        }
-        return false;
-    }
-
-    /**
-    * insert Fx Rate Info
-    * @returns {undefined}
-    * @since 02/08/2018
-    */
-
-    var insertFxrateInfo = function () {
-
-        $("#loading-image-cstInfo").loadImager('removeLoadImage');
-        $("#loading-image-cstInfo").loadImager('appendImage');
-
-        var cst_name = $('#txt-cst-name').val();
-
-        var ddData_country = $('#dropdownCountry').data('ddslick')
-        var country_id = ddData_country.selectedData.value;
-
-        var ddData_city = $('#dropdownCity').data('ddslick')
-        var city_id = ddData_city.selectedData.value;
+    window.insertFxrateType = function () {
+        $("#loading-image-Fxrate").loadImager('removeLoadImage');
+        $("#loading-image-Fxrate").loadImager('appendImage');
 
         var aj = $(window).ajaxCall({
             proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
             data: {
-                url: 'pkInsert_sysCustomerInfo',
-                name: cst_name,
-                country_id: country_id,
-                city_id: city_id,
+                url: 'pkInsert_sysFxrate',
+
+                name: Fxrate_name,
                 pk: $("#pk").val()
             }
         })
         aj.ajaxCall({
             onError: function (event, textStatus, errorThrown) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Fx Rate Ekleme Ýþlemi Baþarýsýz...',
-                    'Fx Rate Ekleme Ýþlemi Baþarýsýz..., sistem yöneticisi ile temasa geçiniz... ')
+                dm.dangerMessage('show', 'Fxrate Ekleme Ýþlemi Baþarýsýz...',
+                    'Fxrate Ekleme Ýþlemi Baþarýsýz..., sistem yöneticisi ile temasa geçiniz... ')
                 console.error('"pkInsert_sysCustomerInfo" servis hatasý->' + textStatus);
-                $("#loading-image-cstInfo").loadImager('removeLoadImage');
+                $("#loading-image-Fxrate").loadImager('removeLoadImage');
             },
             onSuccess: function (event, data) {
                 console.log(data);
                 var data = data;
                 sm.successMessage({
                     onShown: function (event, data) {
-                        $('#fxrateInfoForm')[0].reset();
+                        $('#modelForm')[0].reset();
 
-                        $("#loading-image-cstInfo").loadImager('removeLoadImage');
-
-                        $("#loading-image-fxrtInfoGrid").loadImager('removeLoadImage');
-                        $("#loading-image-fxrtInfoGrid").loadImager('appendImage');
-
-                        $('#gridContainer_fxrate').refresh();   //test edilecek!
-
-                        $("#loading-image-fxrtInfoGrid").loadImager('removeLoadImage');
+                        $("#loading-image-Fxrate").loadImager('removeLoadImage');
 
                     }
                 });
-                sm.successMessage('show', 'Fx Rate Kayýt Ýþlemi Baþarýlý...',
-                    'Fx Rate kayýt iþlemini gerçekleþtirdiniz... ',
+                sm.successMessage('show', 'Fxrate Kayýt Ýþlemi Baþarýlý...',
+                    'Fxrate kayýt iþlemini gerçekleþtirdiniz... ',
                     data);
-                $("#loading-image-cstInfo").loadImager('removeLoadImage');
+                $("#loading-image-Fxrate").loadImager('removeLoadImage');
 
             },
             onErrorDataNull: function (event, data) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Fx Rate Kayýt Ýþlemi Baþarýsýz...',
-                    'Fx Rate kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysCustomerInfo" servis datasý boþtur!!');
-                $("#loading-image-cstInfo").loadImager('removeLoadImage');
+                dm.dangerMessage('show', 'Fxrate Kayýt Ýþlemi Baþarýsýz...',
+                    'Fxrate kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
+                console.error('"pkInsert_sysCustomerContactPerson" servis datasý boþtur!!');
+                $("#loading-image-Fxrate").loadImager('removeLoadImage');
             },
             onErrorMessage: function (event, data) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Fx Rate Kayýt Ýþlemi Baþarýsýz...',
-                    'Fx Rate kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysCustomerInfo" servis datasý boþtur!!');
-                $("#loading-image-cstInfo").loadImager('removeLoadImage');
+                dm.dangerMessage('show', 'Fxrate Kayýt Ýþlemi Baþarýsýz...',
+                    'Fxrate kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
+                console.error('"pkInsert_sysCustomerContactPerson" servis datasý boþtur!!');
+                $("#loading-image-Fxrate").loadImager('removeLoadImage');
             },
             onError23503: function (event, data) {
                 dm.dangerMessage('Error23503');
-                $("#loading-image-cstInfo").loadImager('removeLoadImage');
+                $("#loading-image-Fxrate").loadImager('removeLoadImage');
             },
             onError23505: function (event, data) {
                 dm.dangerMessage({
                     onShown: function (event, data) {
-                        $('#fxrateInfoForm')[0].reset();
-                        $("#loading-image-cstInfo").loadImager('removeLoadImage');
+                        $("#loading-image-Fxrate").loadImager('removeLoadImage');
                     }
                 });
-                dm.dangerMessage('show', 'ACL Yetki Kayýt Ýþlemi Baþarýsýz...',
-                    'Ayný isim ile Fx Rate  kaydý yapýlmýþtýr, yeni bir Fx Rate kaydý deneyiniz... ');
-                $("#loading-image-cstInfo").loadImager('removeLoadImage');
+                dm.dangerMessage('show', 'Kayýt Ýþlemi Baþarýsýz...',
+                    'Ayný isim ile Fxrate kaydý yapýlmýþtýr, yeni bir Fxrate kaydý deneyiniz... ');
+                $("#loading-image-Fxrate").loadImager('removeLoadImage');
             }
         })
         aj.ajaxCall('call');
     }
+    /**
+    * reset Fxrate Form
+    * @returns {undefined}
+    * @author Ceydacan Seyrek
+    * @since 14/08/2018
+    */
+
+    window.resetFxrateForm = function () {
+        $("#loading-image-Fxrate").loadImager('removeLoadImage');
+        $("#loading-image-Fxrate").loadImager('appendImage');
+
+        $('#FxrateForm').validationEngine('hide');
+
+        $("#loading-image-Fxrate").loadImager('removeLoadImage');
+
+        return false;
+    }
 
 
     /**
-    * reset button function for Customer Info insert form
-    * @returns null
-    * @since 02/08/2018
+    * insert Fxrate Wrapper
+    * @returns {Boolean}
+    * @author Ceydacan Seyrek
+    * @since 14/08/2018
     */
-    var resetCustomerInfoForm = function () {
-        $("#loading-image-cstInfo").loadImager('removeLoadImage');
-        $("#loading-image-cstInfo").loadImager('appendImage');
 
-        $('#fxrateInfoForm').validationEngine('hide');
+    window.insertFxrateWrapper = function (e) {
+        e.preventDefault();
 
-        $("#loading-image-cstInfo").loadImager('removeLoadImage');
+        if ($("#FxrateForm").validationEngine('validate')) {
 
-        //yeni kayda açýk, tablar kapatýlýyor
-        tab_disable();
-
+            insertFxrate();
+        }
         return false;
     }
 
-    //seçilen satýra göre form doldurma
-    var fillCustomerInfoForm = function (data) {
-        $("#loading-image-cstInfo").loadImager('removeLoadImage');
-        $("#loading-image-cstInfo").loadImager('appendImage');
+
+    /**
+    * Fill Fxrate form
+    * @returns {Boolean}
+    * @author Ceydacan Seyrek
+    * @since 14/08/2018
+    */
+
+    window.fillFxrateForm = function (data) {
+        $("#loading-image-Fxrate").loadImager('removeLoadImage');
+        $("#loading-image-Fxrate").loadImager('appendImage');
 
         document.getElementById("start-datepicker").value = data.OrderDate;
         document.getElementById("end-datepicker").value = data.OrderDate;
-        document.getElementById("rate").value = data.SaleAmount;
+        document.getElementById("txt-fxrate-name").value = data.SaleAmount;
+        
 
-        $("#loading-image-cstInfo").loadImager('removeLoadImage');
-        tab_active();
+        $("#loading-image-Fxrate").loadImager('removeLoadImage');
 
         return false;
     }
-
 });
 
