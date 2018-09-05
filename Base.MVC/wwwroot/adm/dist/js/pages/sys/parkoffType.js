@@ -139,13 +139,13 @@ $(document).ready(function () {
         },
 
         columns: [{
-            caption: "Park Off Name",
+            caption: window.lang.translate('Park off name') + "...",
             dataField: "StoreCity"
         }, {
-            caption: "Park Off Day",
+            caption: window.lang.translate('Park off day') + "...",
             dataField: "SaleAmount"
         }, {
-            caption: "Park Off Comment",
+            caption: window.lang.translate('Park off comment') + "...",
             dataField: "StoreState"
             }],
 

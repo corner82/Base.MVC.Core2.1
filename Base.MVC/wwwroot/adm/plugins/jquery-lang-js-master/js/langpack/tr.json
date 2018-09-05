@@ -288,7 +288,12 @@
 	"Terrain name":"Terrain adı",
 	"Terrain value":"Terrain değeri",
 	"If the value entered is 'more than', check the checkbox":"Girilen değer daha fazla anlamı taşıyorsa checkboxı işaretleyin",
-	"Terrain List":"Terrain listesi"
+	"Terrain List":"Terrain listesi",
+	"Park off type form":"Park off tipi formu",
+	"Park off name":"Park off adı",
+	"Park off day":"Park off süresi",
+	"Park off comment":"Park off açıklaması",
+	"Park off type list":"Park off tipi listesi"
   }
 	
 }

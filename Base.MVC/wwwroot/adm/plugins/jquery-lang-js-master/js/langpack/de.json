@@ -279,8 +279,13 @@
 	"Terrain type":"Geländeart",
 	"Terrain name":"Gelände-Name",
 	"Terrain value":"Geländewert",
-	"If the value entered is "more than", check the checkbox":"Wenn der eingegebene Wert 'mehr als' ist, aktivieren Sie das Kontrollkästchen",
-	"Terrain List":"Geländeliste"
+	"If the value entered is 'more than', check the checkbox":"Wenn der eingegebene Wert 'mehr als' ist, aktivieren Sie das Kontrollkästchen",
+	"Terrain List":"Geländeliste",
+	"Park off type form":"Park aus formular",
+	"Park off name":"Park aus name",
+	"Park off day":"Park aus tag",
+	"Park off comment":"Park aus kommentar",
+	"Park off type list":"Park aus typ liste"
   }
 	
 }

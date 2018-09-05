@@ -279,7 +279,12 @@
 	"Terrain name":"Terreinnaam",
 	"Terrain value":"Terreinwaarde",
 	"If the value entered is 'more than', check the checkbox":"As die waarde wat ingevoer is, 'meer as' is, merk die boks",
-	"Terrain List":"Terreinlys"
+	"Terrain List":"Terreinlys",
+	"Park off type form":"Parkeer tipe form",
+	"Park off name":"Parkeer name",
+	"Park off day":"Parkeer dag",
+	"Park off comment":"Parker kommentaar",
+	"Park off type list":"Parkeer tipe lys"
   }
 
 }
