@@ -67,7 +67,11 @@ ViewData["defaultDevExLangPath"] = "/adm/plugins/devextreme/js/localization/dx.m
     <link href="~/adm/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
     <link href="~/miya/dist/css/miya.css" rel="stylesheet" type="text/css" />
 
+    <!-- offline js -->
+    <link href="~/adm/plugins/offline_js/themes/offline-theme-dark.css" rel="stylesheet" type="text/css" />
+    <link href="~/adm/plugins/offline_js/themes/offline-language-english.css" rel="stylesheet" type="text/css" />
 
+    
     @RenderSection("stylesPageSpecs", required: false)
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -120,6 +124,9 @@ ViewData["defaultDevExLangPath"] = "/adm/plugins/devextreme/js/localization/dx.m
     <script>
         $.widget.bridge('uibutton', $.ui.button);
     </script>
+
+    <!-- offline js -->
+    <script src="~/adm/plugins/offline_js/offline.js" type="text/javascript"></script>
 
     <!-- jquery validation engine -->
     <script src="@ViewBag.defaultValidationEnginePath" type="text/javascript"></script>
