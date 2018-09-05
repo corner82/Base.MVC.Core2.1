@@ -290,7 +290,10 @@
 	"Fx rate start date":"Fx rate anfangsdatum",
 	"Fx rate end date":"Fx rate ende datum",
 	"Fx rate":"Fx rate",
-	"Fx rate list":"Fx rate liste"
+	"Fx rate list":"Fx rate liste",
+	"Demo request type form":"Demo Anfrage Typ Formular",
+	"Demo request type name":"Name der Demo-Anfrage-Art",
+	"Demo request type list":"Liste der Demo-Anforderungstypen"
   }
 	
 }

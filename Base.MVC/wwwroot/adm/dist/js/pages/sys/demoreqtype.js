@@ -139,7 +139,7 @@ $(document).ready(function () {
         },
 
         columns: [{
-            caption: "Demo Request Type",
+            caption: window.lang.translate('Demo request type name') + "...",
             dataField: "StoreCity"
         }],
 

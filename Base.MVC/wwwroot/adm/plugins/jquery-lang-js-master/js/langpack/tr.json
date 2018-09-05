@@ -298,7 +298,10 @@
 	"Fx rate start date":"Fx rate başlangıç tarihi",
 	"Fx rate end date":"Fx rate bitiş tarihi",
 	"Fx rate":"Fx rate",
-	"Fx rate list":"Fx rate listesi"
+	"Fx rate list":"Fx rate listesi",
+	"Demo request type form":"Demo isteği türü formu",
+	"Demo request type name":"Demo isteği türü adı",
+	"Demo request type list":"Demo isteği türü listesi"
   }
 	
 }

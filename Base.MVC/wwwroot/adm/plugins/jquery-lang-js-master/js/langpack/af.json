@@ -289,7 +289,10 @@
 	"Fx rate start date":"Fx rate begin datum",
 	"Fx rate end date":"Fx rate einddatum",
 	"Fx rate":"Fx rate",
-	"Fx rate list":"Fx rate lys"
+	"Fx rate list":"Fx rate lys",	
+	"Demo request type form":"Demo versoek tipe vorm",
+	"Demo request type name":"Demo-versoek tipe naam",
+	"Demo request type list":"Demo versoek tipe lys"
   }
 
 }
