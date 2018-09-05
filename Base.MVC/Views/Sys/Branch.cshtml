@@ -59,6 +59,18 @@
                             <div class="row" id="loading-image-branch">
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label><span lang="en">MAN Branch office</span></label>
+
+                                        <div class="" id="ajaxACL-manbranchoffice">
+                                            <div id="loading-image-manbranchoffice" class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <div id="dropdownMANBranchOffice" class="form-control validate[required]"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <label><span lang="en">Branch name</span></label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
@@ -73,21 +85,19 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-user"></i>
                                             </div>
-                                            <input type="text" class="form-control validate[required]" placeholder="Branch Name" id="txt-branch-name">
+                                            <input type="text" class="form-control validate[required]" placeholder="Branch Name" id="txt-embress-no">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label><span lang="en">Active</span></label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-user"></i>
-                                            </div>
+                                        <label lang="en">
+                                            Active
                                             <div class="icheckbox_minimal-blue checked" aria-checked="false" aria-disabled="false" style="position: relative;">
                                                 <input type="checkbox" class="minimal" checked="" style="position: absolute; opacity: 0;">
                                                 <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
                                                 </ins>
                                             </div>
-                                        </div>
+
+                                        </label>
                                     </div>
                                 </div>
                                 <!-- /.col -->
@@ -108,26 +118,40 @@
 
                                     <div class="form-group">
                                         <label><span lang="en">City name</span></label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-user"></i>
+
+                                        <div class="" id="ajaxACL-city">
+                                            <div id="loading-image-city" class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <div id="dropdownCity" class="form-control validate[required]"></div>
                                             </div>
-                                            <input type="text" class="form-control validate[required]" placeholder="City Name" id="txt-city-name">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label><span lang="en">Province name</span></label>
 
-                                        <div class="" id="ajaxACL-state">
-                                            <div id="loading-image-state" class="input-group">
+                                        <div class="" id="ajaxACL-province">
+                                            <div id="loading-image-province" class="input-group">
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-copyright"></i>
                                                 </div>
-                                                <div id="dropdownProvince" class="form-control validate[required]"></div>
+                                                <div id="dropdownProvince" class="form-control"></div>
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label><span lang="en">Address</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-user"></i>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Branch Address" id="txt-branch-address">
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <!-- /.col -->
                             </div>

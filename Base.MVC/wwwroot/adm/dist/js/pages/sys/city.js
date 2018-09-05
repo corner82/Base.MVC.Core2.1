@@ -15,17 +15,17 @@ $(document).ready(function () {
     /*
     * city LoadImager
     * @author Gül Özdemir
-    * @since 13/08/2016
+    * @since 13/08/2018
     */
+
+    //to country form
+    $("#loading-image-country").loadImager();
 
     //to city form
     $("#loading-image-city").loadImager();
 
-    //to state form
-    $("#loading-image-state").loadImager();
-
-    //to country form
-    $("#loading-image-country").loadImager();
+    //to province form
+    $("#loading-image-province").loadImager();
 
     //to state form grid loading-image
     $("#loading-image-cityGrid").loadImager();
