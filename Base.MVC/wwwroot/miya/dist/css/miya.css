@@ -1,8 +1,10 @@
 .box > .overlay,
 .zeyn-load-imager > .overlay,
+.offline-load-imager > .overlay,
 .overlay-wrapper > .overlay,
 .box > .loading-img,
 .zeyn-load-imager > .loading-img,
+.offline-load-imager > .loading-img,
 .overlay-wrapper > .loading-img {
     position: absolute;
     top: 0;
@@ -11,6 +13,12 @@
     height: 100%;
 }
 
+.offline-load-imager .overlay
+ {
+    z-index: 1200;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 3px;
+}
 
 .zeyn-load-imager .overlay,
 .overlay-wrapper .overlay {
@@ -18,7 +26,7 @@
     background: rgba(255, 255, 255, 0.7);
     border-radius: 3px;
 }
-
+    .offline-load-imager .overlay > .fa,
     .zeyn-load-imager .overlay > .fa,
     .overlay-wrapper .overlay > .fa {
         position: absolute;
@@ -30,6 +38,7 @@
         font-size: 30px;
     }
 
+    .offline-load-imager .overlay.dark,
     .zeyn-load-imager .overlay.dark,
     .overlay-wrapper .overlay.dark {
         background: rgba(0, 0, 0, 0.5);
