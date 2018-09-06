@@ -292,7 +292,17 @@
 	"Fx rate list":"Fx rate lys",	
 	"Demo request type form":"Demo versoek tipe vorm",
 	"Demo request type name":"Demo-versoek tipe naam",
-	"Demo request type list":"Demo versoek tipe lys"
+	"Demo request type list":"Demo versoek tipe lys",
+	"Branch/Dealer information form":"Tak/Handelaar inligting vorm",
+	"Branch/Dealer name":"Tak/Handelaar naam",
+	"Branch/Dealer no":"Tak/Handelaar no",
+	"Branch/Dealer country":"Tak/Handelaarland",
+	"Branch/Dealer state":"Tak/Handelaarstaat",
+	"Branch/Dealer city":"Tak/Handelaar stad",
+	"Branch/Dealer address":"Tak/Handelaar adres",
+	"Branch/Dealer postal code":"Tak/Handelaar poskode",
+	"Branch/Dealer department":"Tak/Handelaar departement",
+	"Branch/Dealer list":"Tak/Handelaar lys"
   }
 
 }

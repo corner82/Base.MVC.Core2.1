@@ -293,7 +293,17 @@
 	"Fx rate list":"Fx rate liste",
 	"Demo request type form":"Demo Anfrage Typ Formular",
 	"Demo request type name":"Name der Demo-Anfrage-Art",
-	"Demo request type list":"Liste der Demo-Anforderungstypen"
+	"Demo request type list":"Liste der Demo-Anforderungstypen",
+	"Branch/Dealer information form":"Filiale/Händler informationsformular",
+	"Branch/Dealer name":"Filiale/Händler name",
+	"Branch/Dealer no":"Filiale/Händler nummer",
+	"Branch/Dealer country":"Filiale/Händler and",
+	"Branch/Dealer state":"Filiale/Händler zustand",
+	"Branch/Dealer city":"Filiale/Händler stadt",
+	"Branch/Dealer address":"Filiale/Händler adresse",
+	"Branch/Dealer postal code":"Filiale/Händler postleitzahl",
+	"Branch/Dealer department":"Filiale/Händler abteilung",
+	"Branch/Dealer list":"Filiale/Händler liste"
   }
 	
 }

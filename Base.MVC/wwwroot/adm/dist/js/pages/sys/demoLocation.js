@@ -1,5 +1,5 @@
-/*
-* Demo Location Form
+ï»¿/*
+* Location Form
 * @author Ceydacan Seyrek
 * @since 15/08/2018
 */
@@ -11,23 +11,284 @@ $(document).ready(function () {
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
     var wcm = $(window).warningComplexMessage({
-        denyButtonLabel: 'Vazgeç',
-        actionButtonLabel: 'Ýþleme devam et'
+        denyButtonLabel: 'VazgeÃ§',
+        actionButtonLabel: 'Ä°ÅŸleme devam et'
     });
 
 
     /*
-    * demo Location LoadImager
+    *  Location LoadImager
     * @author Ceydacan Seyrek
     * @since 15/08/2018
     */
-    //to demo Location form
-    $("#loading-image-demoLocation").loadImager();
-    //to demo Location form grid loading-image
-    $("#loading-image-demoLocationGrid").loadImager();
+    //to Location form
+    $("#loading-image-location").loadImager();
+    //to Location form grid loading-image
+    $("#loading-image-locationGrid").loadImager();
+    $("#loading-image-country").loadImager();
+    $("#loading-image-state").loadImager();
+    $("#loading-image-city").loadImager();
+    $("#loading-image-department").loadImager();
 
     var langCode = $("#langCode").val();
     //alert(langCode);
+
+    var cbdata_country = [{}];
+
+    var cbdata = [
+        {
+            text: window.lang.translate('Please select') + "...",
+            value: 1,
+            selected: true
+        },
+        {
+            text: "South Africa",
+            value: 2,
+            selected: false
+        },
+        {
+            text: "Turkey",
+            value: 3,
+            selected: false
+        },
+        {
+            text: "Germany",
+            value: 4,
+            selected: false
+        }
+    ];
+
+    $('#loading-image-country').loadImager('removeLoadImage');
+    $("#loading-image-country").loadImager('appendImage');
+
+    var ajaxACLResources_country = $('#ajaxACL-country').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+
+    });
+
+    ajaxACLResources_country.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-country').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamÄ±ÅŸtÄ±r...'), window.lang.translate('Servis  bulunamamÄ±ÅŸtÄ±r...'));
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#dropdownCountry').ddslick({
+                //height: 150,
+                data: cbdata,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            $("#loading-image-country").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-country').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('Ãœlke bulunamamÄ±ÅŸtÄ±r...'), window.lang.translate('Ãœlke  bulunamamÄ±ÅŸtÄ±r...'));
+        },
+    })
+    ajaxACLResources_country.ajaxCallWidget('call');
+
+    var cbdata_state = [
+        {
+            text: window.lang.translate('Please select') + "...",
+            value: 1,
+            selected: true
+        },
+        {
+            text: "South Africa",
+            value: 2,
+            selected: false
+        },
+        {
+            text: "Turkey",
+            value: 3,
+            selected: false
+        },
+        {
+            text: "Germany",
+            value: 4,
+            selected: false
+        }
+    ];
+
+    $('#loading-image-state').loadImager('removeLoadImage');
+    $("#loading-image-state").loadImager('appendImage');
+
+    var ajaxACLResources_state = $('#ajaxACL-state').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+
+    });
+
+    ajaxACLResources_state.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-state').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamÄ±ÅŸtÄ±r...'), window.lang.translate('Servis  bulunamamÄ±ÅŸtÄ±r...'));
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#dropdownState').ddslick({
+                //height: 150,
+                data: cbdata,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            $("#loading-image-state").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-state').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('Ãœlke bulunamamÄ±ÅŸtÄ±r...'), window.lang.translate('Ãœlke  bulunamamÄ±ÅŸtÄ±r...'));
+        },
+    })
+    ajaxACLResources_state.ajaxCallWidget('call');
+
+
+    $('#loading-image-city').loadImager('removeLoadImage');
+    $("#loading-image-city").loadImager('appendImage');
+
+    var ajaxACLResources_city = $('#ajaxACL-city').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+    });
+
+    ajaxACLResources_city.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-city').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('Activity'), 'Servis  bulunamamÄ±ÅŸtÄ±r...');
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#dropdownCity').ddslick({
+                //height: 150,
+                data: cbdata,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            $("#loading-image-city").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-city').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('Rol bulunamamÄ±ÅŸtÄ±r...'), 'Rol  bulunamamÄ±ÅŸtÄ±r...');
+        },
+    })
+    ajaxACLResources_city.ajaxCallWidget('call');
+
+
+
+    $('#loading-image-department').loadImager('removeLoadImage');
+    $("#loading-image-department").loadImager('appendImage');
+
+    var ajaxACLResources_department = $('#ajaxACL-department').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+
+    });
+
+    ajaxACLResources_department.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-department').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamÄ±ÅŸtÄ±r...'), window.lang.translate('Servis  bulunamamÄ±ÅŸtÄ±r...'));
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#dropdownDepartment').ddslick({
+                //height: 150,
+                data: cbdata,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            $("#loading-image-department").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-department').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('department bulunamamÄ±ÅŸtÄ±r...'), window.lang.translate('department  bulunamamÄ±ÅŸtÄ±r...'));
+        },
+    })
+    ajaxACLResources_department.ajaxCallWidget('call');
+
+
+
 
     /* devexgrid */
     var orders = new DevExpress.data.CustomStore({
@@ -64,7 +325,7 @@ $(document).ready(function () {
     DevExpress.localization.locale(langCode);
 
 
-    $("#gridContainer_demoLocation").dxDataGrid({
+    $("#gridContainer_location").dxDataGrid({
 
         showColumnLines: true,
 
@@ -139,14 +400,14 @@ $(document).ready(function () {
         },
 
         columns: [{
-            caption: "Demo Location",
+            caption: "Location",
             dataField: "StoreCity"
         }],
 
         onSelectionChanged: function (selectedItems) {
             var data = selectedItems.selectedRowsData[0];
             if (data) {
-                filldemoLocationForm(data);
+                fillLocationForm(data);
             }
         }
 
@@ -161,21 +422,21 @@ $(document).ready(function () {
 
 
     /**
- * Demo Location
+ * Location
  * @author Ceydacan Seyrek
  * @since 15/08/2018
  */
 
-    window.insertdemoLocation = function () {
-        $("#loading-image-demoLocation").loadImager('removeLoadImage');
-        $("#loading-image-demoLocation").loadImager('appendImage');
+    window.insertLocation = function () {
+        $("#loading-image-Location").loadImager('removeLoadImage');
+        $("#loading-image-Location").loadImager('appendImage');
 
-        var cst_purchaselastupdate = $('#txt-demoLocation-name').val();
+        var cst_purchaselastupdate = $('#txt-location-name').val();
 
         var aj = $(window).ajaxCall({
             proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
             data: {
-                url: 'pkInsert_sysdemoLocation',
+                url: 'pkInsert_sysLocation',
 
                 name: warrantyMileage_name,
                 pk: $("#pk").val()
@@ -184,108 +445,107 @@ $(document).ready(function () {
         aj.ajaxCall({
             onError: function (event, textStatus, errorThrown) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Demo Location Ekleme Ýþlemi Baþarýsýz...',
-                    'Demo Location Ekleme Ýþlemi Baþarýsýz..., sistem yöneticisi ile temasa geçiniz... ')
-                console.error('"pkInsert_sysCustomerInfo" servis hatasý->' + textStatus);
-                $("#loading-image-demoLocation").loadImager('removeLoadImage');
+                dm.dangerMessage('show', 'Location Ekleme Ä°ÅŸlemi BaÅŸarÄ±sÄ±z...',
+                    'Location Ekleme Ä°ÅŸlemi BaÅŸarÄ±sÄ±z..., sistem yÃ¶neticisi ile temasa geÃ§iniz... ')
+                console.error('"pkInsert_sysCustomerInfo" servis hatasÄ±->' + textStatus);
+                $("#loading-image-location").loadImager('removeLoadImage');
             },
             onSuccess: function (event, data) {
                 console.log(data);
                 var data = data;
                 sm.successMessage({
                     onShown: function (event, data) {
-                        $('#demoLocationForm')[0].reset();
+                        $('#locationForm')[0].reset();
 
-                        $("#loading-image-demoLocation").loadImager('removeLoadImage');
+                        $("#loading-image-location").loadImager('removeLoadImage');
 
                     }
                 });
-                sm.successMessage('show', 'Demo Location Kayýt Ýþlemi Baþarýlý...',
-                    'Demo Location kayýt iþlemini gerçekleþtirdiniz... ',
+                sm.successMessage('show', 'Location Kayï¿½t ï¿½ï¿½lemi Baï¿½arï¿½lï¿½...',
+                    'Location kayï¿½t iï¿½lemini gerï¿½ekleï¿½tirdiniz... ',
                     data);
-                $("#loading-image-demoLocation").loadImager('removeLoadImage');
+                $("#loading-image-location").loadImager('removeLoadImage');
 
             },
             onErrorDataNull: function (event, data) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Demo Location Kayýt Ýþlemi Baþarýsýz...',
-                    'Demo Location kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysCustomerContactPerson" servis datasý boþtur!!');
-                $("#loading-image-demoLocation").loadImager('removeLoadImage');
+                dm.dangerMessage('show', 'Location KayÄ±t Ä°ÅŸlemi BaÅŸarÄ±sÄ±z...',
+                    'Location kayÄ±t iÅŸlemi baÅŸarÄ±sÄ±z, sistem yÃ¶neticisi ile temasa geÃ§iniz... ');
+                console.error('"pkInsert_sysCustomerContactPerson" servis datasÄ± boÅŸtur!!');
+                $("#loading-image-location").loadImager('removeLoadImage');
             },
             onErrorMessage: function (event, data) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Demo LocationKayýt Ýþlemi Baþarýsýz...',
-                    'Demo Location kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysCustomerContactPerson" servis datasý boþtur!!');
-                $("#loading-image-demoLocation").loadImager('removeLoadImage');
+                dm.dangerMessage('show', 'LocationKayÄ±t Ä°ÅŸlemi BaÅŸarÄ±sÄ±z...',
+                    'Location kayÄ±t iÅŸlemi baÅŸarÄ±sÄ±z, sistem yÃ¶neticisi ile temasa geÃ§iniz... ');
+                console.error('"pkInsert_sysCustomerContactPerson" servis datasÄ± boÅŸtur!!');
+                $("#loading-image-location").loadImager('removeLoadImage');
             },
             onError23503: function (event, data) {
                 dm.dangerMessage('Error23503');
-                $("#loading-image-demoLocation").loadImager('removeLoadImage');
+                $("#loading-image-location").loadImager('removeLoadImage');
             },
             onError23505: function (event, data) {
                 dm.dangerMessage({
                     onShown: function (event, data) {
-                        $('#customerContactPersonForm')[0].reset();
-                        $("#loading-image-demoLocation").loadImager('removeLoadImage');
+                        $("#loading-imagelocation").loadImager('removeLoadImage');
                     }
                 });
-                dm.dangerMessage('show', 'Kayýt Ýþlemi Baþarýsýz...',
-                    'Ayný isim ile Demo Location  kaydý yapýlmýþtýr, yeni bir Demo Location kaydý deneyiniz... ');
-                $("#loading-image-demoLocation").loadImager('removeLoadImage');
+                dm.dangerMessage('show', 'KayÄ±t Ä°ÅŸlemi BaÅŸarÄ±sÄ±z...',
+                    'AynÄ± isim ile Location  kaydÄ± yapÄ±lmÄ±ÅŸtÄ±r, yeni bir Location kaydÄ± deneyiniz... ');
+                $("#loading-image-location").loadImager('removeLoadImage');
             }
         })
         aj.ajaxCall('call');
     }
     /**
-    * reset demoLocation Form
+    * reset Location Form
     * @author Ceydacan Seyrek
     * @since 15/08/2018
     */
 
-    window.resetdemoLocationForm = function () {
-        $("#loading-image-demoLocation").loadImager('removeLoadImage');
-        $("#loading-image-demoLocation").loadImager('appendImage');
+    window.resetLocationForm = function () {
+        $("#loading-image-location").loadImager('removeLoadImage');
+        $("#loading-image-location").loadImager('appendImage');
 
-        $('#demoLocationForm').validationEngine('hide');
+        $('#locationForm').validationEngine('hide');
 
-        $("#loading-image-demoLocation").loadImager('removeLoadImage');
+        $("#loading-image-location").loadImager('removeLoadImage');
 
         return false;
     }
 
 
     /**
-    * insert demoLocation Wrapper
+    * insert Location Wrapper
     * @author Ceydacan Seyrek
     * @since 15/08/2018
     */
 
-    window.insertdemoLocationWrapper = function (e) {
+    window.insertLocationWrapper = function (e) {
         e.preventDefault();
 
-        if ($("#demoLocationForm").validationEngine('validate')) {
+        if ($("#locationForm").validationEngine('validate')) {
 
-            insertdemoLocation();
+            insertLocation();
         }
         return false;
     }
 
 
     /**
-    * Fill demo Location form
+    * Fill Location form
     * @author Ceydacan Seyrek
     * @since 15/08/2018
     */
 
-    window.filldemoLocationForm = function (data) {
-        $("#loading-image-demoLocation").loadImager('removeLoadImage');
-        $("#loading-image-demoLocation").loadImager('appendImage');
+    window.fillLocationForm = function (data) {
+        $("#loading-image-location").loadImager('removeLoadImage');
+        $("#loading-image-location").loadImager('appendImage');
 
-        document.getElementById("txt-demoLocation-name").value = data.StoreCity;
+        document.getElementById("txt-location-name").value = data.StoreCity;
 
-        $("#loading-image-demoLocation").loadImager('removeLoadImage');
+        $("#loading-image-location").loadImager('removeLoadImage');
 
         return false;
     }

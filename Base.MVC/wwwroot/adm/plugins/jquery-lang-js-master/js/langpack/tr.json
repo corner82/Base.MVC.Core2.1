@@ -301,7 +301,17 @@
 	"Fx rate list":"Fx rate listesi",
 	"Demo request type form":"Demo isteği türü formu",
 	"Demo request type name":"Demo isteği türü adı",
-	"Demo request type list":"Demo isteği türü listesi"
+	"Demo request type list":"Demo isteği türü listesi",
+	"Branch/Dealer information form":"Şube/Bayi bilgi formu",
+	"Branch/Dealer name":"Şube/Bayi adı",
+	"Branch/Dealer no":"Şube/Bayi no",
+	"Branch/Dealer country":"Şube/Bayi ülkesi",
+	"Branch/Dealer state":"Şube/Bayi bölgesi",
+	"Branch/Dealer city":"Şube/Bayi şehri",
+	"Branch/Dealer address":"Şube/Bayi adresi",
+	"Branch/Dealer postal code":"Şube/Bayi posta kodu",
+	"Branch/Dealer department":"Şube/Bayi departmanı",
+	"Branch/Dealer list":"Şube/Bayi listesi"
   }
 	
 }
