@@ -32,9 +32,14 @@ ViewData["Culture"] = culture;*/
 ViewData["ShortCultureInfo"] = CultureProvider.GetRequestCultureInfo();
 ViewData["ReplacedCultureUri"] = UriCultureProvider.ReplaceCultureCode();
 
+// js validation engine langugae file dynamically created
 ViewData["defaultValidationEnginePath"] = "/adm/plugins/validationEngine/jquery.validationEngine-" + ViewData["ShortCultureInfo"] + ".js";
 
+//devexpress language file dynamically created
 ViewData["defaultDevExLangPath"] = "/adm/plugins/devextreme/js/localization/dx.messages." + ViewData["ShortCultureInfo"] + ".js";
+
+//offline js css dynamically created
+ViewData["offlineJSLangFile"] = "/adm/plugins/offline_js/themes/offline-language-" + ViewData["ShortCultureInfo"] + ".css";
 
 }
 
@@ -69,7 +74,7 @@ ViewData["defaultDevExLangPath"] = "/adm/plugins/devextreme/js/localization/dx.m
 
     <!-- offline js -->
     <link href="~/adm/plugins/offline_js/themes/offline-theme-dark.css" rel="stylesheet" type="text/css" />
-    <link href="~/adm/plugins/offline_js/themes/offline-language-english.css" rel="stylesheet" type="text/css" />
+    <link href="@ViewBag.offlineJSLangFile" rel="stylesheet" type="text/css" />
 
     
     @RenderSection("stylesPageSpecs", required: false)
@@ -87,7 +92,7 @@ ViewData["defaultDevExLangPath"] = "/adm/plugins/devextreme/js/localization/dx.m
     <input id="publicKey" type="hidden" value="@ViewBag.PublicKey" />
 
     <div class="se-pre-con"></div>
-    <div class="wrapper">
+    <div class="wrapper offline-load-imager" id="offlineWrapperImager">
         <!-- Header nav bar-->
         @Html.Partial("HeaderNavBarPartial.cshtml")
 

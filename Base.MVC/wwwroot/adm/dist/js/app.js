@@ -1127,6 +1127,17 @@ $(document).ready(function () {
     /*$("#lang_list_container").setLangList();
     $("#lang_list_container").setLangList('fillLangList');*/
 
+    //offline loading-image
+    $("#offlineWrapperImager").loadImager();
+    // offline up event handler
+    Offline.on("up", function () {
+        $("#offlineWrapperImager").loadImager('removeLoadImage');
+    });
+    // offline down event handler
+    Offline.on("down", function () {
+        $("#offlineWrapperImager").loadImager('appendImage');
+    });
+
 });
 
 

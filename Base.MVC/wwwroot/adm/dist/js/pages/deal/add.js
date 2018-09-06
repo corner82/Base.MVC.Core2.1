@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-
     var sm = $(window).successMessage();
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
@@ -9,6 +8,7 @@ $(document).ready(function () {
         actionButtonLabel: 'Ýþleme devam et'
     });
 
+    
     //deal list  grid loading-image
     $("#loading-image-vehicleGrid").loadImager();
 
