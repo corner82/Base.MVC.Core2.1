@@ -1,3 +1,7 @@
+.form-control {
+    height: 40px;
+}
+
 .box > .overlay,
 .zeyn-load-imager > .overlay,
 .offline-load-imager > .overlay,
