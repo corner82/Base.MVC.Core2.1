@@ -23,6 +23,13 @@ $(document).ready(function () {
     */
     //to accessory form
     $("#loading-image-accessory").loadImager();
+
+    $("#loading-image-vehiclemodel").loadImager();
+    $("#loading-image-kp").loadImager();
+    $("#loading-image-supplier").loadImager();
+    $("#loading-image-options").loadImager();
+    $("#loading-image-onsiteoffsite").loadImager();
+
     //to accessory form grid loading-image
     $("#loading-image-accessoryGrid").loadImager();
    
@@ -32,6 +39,397 @@ $(document).ready(function () {
 
     $('#accessoryForm').validationEngine();
 
+
+    //CLA, TGM, TGS, VW, XHCV
+    var cbdata_model = [
+        {
+            text: window.lang.translate('Please select') + "...",
+            value: 1,
+            selected: true
+        },
+        {
+            text: "CLA",
+            value: 2,
+            selected: false
+        },
+        {
+            text: "TGM",
+            value: 3,
+            selected: false
+        },
+        {
+            text: "TGS",
+            value: 4,
+            selected: false
+        },
+        {
+            text: "VW",
+            value: 5,
+            selected: false
+        },
+        {
+            text: "XHCV",
+            value: 6,
+            selected: false
+        }
+    ];
+
+    $('#loading-image-vehiclemodel').loadImager('removeLoadImage');
+    $("#loading-image-vehiclemodel").loadImager('appendImage');
+
+    var ajaxACLResources_vehiclemodel = $('#ajaxACL-vehiclemodel').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+
+    });
+
+    ajaxACLResources_vehiclemodel.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-vehiclemodel').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#dropdownVehicleModel').ddslick({
+                //height: 150,
+                data: cbdata_model,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 1) {
+                    }
+                }
+            });
+
+            $("#loading-image-vehiclemodel").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-vehiclemodel').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('vehiclemodel bulunamamıştır...'), window.lang.translate('vehiclemodel  bulunamamıştır...'));
+        }
+    })
+    ajaxACLResources_vehiclemodel.ajaxCallWidget('call');
+
+    //4x2, 4x4, 6x4, 8x4, 6x6, 8x8, 8x4/4
+    var cbdata_kp = [
+        {
+            text: window.lang.translate('Please select') + "...",
+            value: 1,
+            selected: true
+        },
+        {
+            text: "KP000637",
+            value: 2,
+            selected: false
+        },
+        {
+            text: "KP000638",
+            value: 3,
+            selected: false
+        },
+        {
+            text: "KP000639",
+            value: 4,
+            selected: false
+        },
+    ];
+
+    $('#loading-image-kp').loadImager('removeLoadImage');
+    $("#loading-image-kp").loadImager('appendImage');
+
+    var ajaxACLResources_kp = $('#ajaxACL-kp').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+
+    });
+
+    ajaxACLResources_kp.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-kp').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#dropdownKPNo').ddslick({
+                //height: 150,
+                data: cbdata_kp,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            $("#loading-image-kp").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-kp').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('KPNo bulunamamıştır...'), window.lang.translate('KpNo  bulunamamıştır...'));
+        },
+    })
+    ajaxACLResources_kp.ajaxCallWidget('call');
+
+    //supplier
+    var cbdata_supplier = [
+        {
+            text: window.lang.translate('Please select') + "...",
+            value: 1,
+            selected: true
+        },
+        {
+            text: "XXXXXXXXXXX",
+            value: 2,
+            selected: false
+        },
+        {
+            text: "YYYYYYYYYYY",
+            value: 3,
+            selected: false
+        },
+        {
+            text: "ZZZZZZZZZZZZ",
+            value: 4,
+            selected: false
+        },
+    ];
+
+    $('#loading-image-supplier').loadImager('removeLoadImage');
+    $("#loading-image-supplier").loadImager('appendImage');
+
+    var ajaxACLResources_supplier = $('#ajaxACL-supplier').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+
+    });
+
+    ajaxACLResources_supplier.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-supplier').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#dropdownSupplier').ddslick({
+                //height: 150,
+                data: cbdata_supplier,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            $("#loading-image-supplier").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-supplier').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('Supplier bulunamamıştır...'), window.lang.translate('Supplier  bulunamamıştır...'));
+        },
+    })
+    ajaxACLResources_supplier.ajaxCallWidget('call');
+
+
+    //options
+    var cbdata_options = [
+        {
+            text: window.lang.translate('Please select') + "...",
+            value: 1,
+            selected: true
+        },
+        {
+            text: "Canvas",
+            value: 2,
+            selected: false
+        },
+        {
+            text: "Concave",
+            value: 3,
+            selected: false
+        },
+        {
+            text: "Film",
+            value: 4,
+            selected: false
+        },
+        {
+            text: "Elektro",
+            value: 4,
+            selected: false
+        },
+        {
+            text: "Gama",
+            value: 4,
+            selected: false
+        },
+    ];
+
+    $('#loading-image-options').loadImager('removeLoadImage');
+    $("#loading-image-options").loadImager('appendImage');
+
+    var ajaxACLResources_options = $('#ajaxACL-options').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+
+    });
+
+    ajaxACLResources_options.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-options').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#dropdownOptions').ddslick({
+                //height: 150,
+                data: cbdata_options,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            $("#loading-image-options").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-options').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('Options bulunamamıştır...'), window.lang.translate('Supplier  bulunamamıştır...'));
+        },
+    })
+    ajaxACLResources_options.ajaxCallWidget('call');
+
+
+    //options
+    var cbdata_onsiteoffsite = [
+        {
+            text: window.lang.translate('Please select') + "...",
+            value: 1,
+            selected: true
+        },
+        {
+            text: "Onsite",
+            value: 2,
+            selected: false
+        },
+        {
+            text: "Offsite",
+            value: 3,
+            selected: false
+        }
+    ];
+
+    $('#loading-image-onsiteoffsite').loadImager('removeLoadImage');
+    $("#loading-image-onsiteoffsite").loadImager('appendImage');
+
+    var ajaxACLResources_onsiteoffsite = $('#ajaxACL-onsiteoffsite').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+
+    });
+
+    ajaxACLResources_onsiteoffsite.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-onsiteoffsite').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#dropdownOnsiteOffsite').ddslick({
+                //height: 150,
+                data: cbdata_onsiteoffsite,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            $("#loading-image-onsiteoffsite").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-onsiteoffsite').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('onsiteoffsite bulunamamıştır...'), window.lang.translate('onsiteoffsite  bulunamamıştır...'));
+        },
+    })
+    ajaxACLResources_onsiteoffsite.ajaxCallWidget('call');
 
     /* devexgrid */
     var orders = new DevExpress.data.CustomStore({
@@ -175,7 +573,8 @@ $(document).ready(function () {
         $("#loading-image-accessory").loadImager('removeLoadImage');
         $("#loading-image-accessory").loadImager('appendImage');
 
-        var accessory_name = $('#txt-accessory-name').val();
+        var backoffice_accessory_name = $('#txt-backofficeaccessoryname').val();
+        var salesman_accessory_name = $('#txt-salesmanaccessoryname').val();
 
         var aj = $(window).ajaxCall({
             proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
@@ -255,6 +654,12 @@ $(document).ready(function () {
         $("#loading-image-accessory").loadImager('appendImage');
 
         $('#accessoryForm').validationEngine('hide');
+
+        $('#dropdownVehicleModel').ddslick('select', { index: String(0) });
+        $('#dropdownKPNo').ddslick('select', { index: String(0) });
+        $('#dropdownSupplier').ddslick('select', { index: String(0) });
+        $('#dropdownOptions').ddslick('select', { index: String(0) });
+        $('#dropdownOnsiteOffsite').ddslick('select', { index: String(0) });
         
         $("#loading-image-accessory").loadImager('removeLoadImage');
 
@@ -291,8 +696,15 @@ $(document).ready(function () {
         $("#loading-image-accessory").loadImager('removeLoadImage');
         $("#loading-image-accessory").loadImager('appendImage');
 
-        document.getElementById("txt-accessory-name").value = data.Employee;
-    
+        document.getElementById("txt-featurebackofficeaccessoryname").value = data.Employee;
+        document.getElementById("txt-featuresalesmanaccessoryname").value = data.Employee;
+
+        $('#dropdownVehicleModel').ddslick('select', { index: 1 });
+        $('#dropdownKPNo').ddslick('select', { index: 1 });
+        $('#dropdownSupplier').ddslick('select', { index: 1 });
+        $('#dropdownOptions').ddslick('select', { index: 1 });
+        $('#dropdownOnsiteOffsite').ddslick('select', { index: 1 });
+
         $("#loading-image-accessory").loadImager('removeLoadImage');
 
         return false;

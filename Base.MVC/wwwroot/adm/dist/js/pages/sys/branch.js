@@ -686,7 +686,7 @@ $(document).ready(function () {
         $("#loading-image-branch").loadImager('appendImage');
 
         document.getElementById("txt-branch-name").value = data.Employee;
-        document.getElementById("txt-embress-no").value = data.Employee;
+        document.getElementById("txt-embrace-no").value = data.Employee;
         document.getElementById("txt-branch-address").value = data.Employee;
         //active
         //checkbox-branch-active
