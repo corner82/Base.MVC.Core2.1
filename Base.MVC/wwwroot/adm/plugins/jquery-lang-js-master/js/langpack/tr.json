@@ -311,7 +311,19 @@
 	"Branch/Dealer address":"Şube/Bayi adresi",
 	"Branch/Dealer postal code":"Şube/Bayi posta kodu",
 	"Branch/Dealer department":"Şube/Bayi departmanı",
-	"Branch/Dealer list":"Şube/Bayi listesi"
+	"Branch/Dealer list":"Şube/Bayi listesi",
+	"Buyback/Tradeback information form":"Buyback/Tradeback bilgi rormu",
+	"Tonnage":"Tonaj",
+	"Contract type":"Sözleşme tipi",
+	"Customer type":"Müşteri tipi",
+	"ComfortSuper":"ComfortSuper",
+	"% Off road":"% Off road",
+	"Truck type":"Araç Tipi",
+	"Hydraulics":"Hidrolik",
+	"Mileage per annum (km)":"Yıllık kilometre (km)",
+	"Months":"Ay",	
+	"Price":"Fiyat",
+	"BuyBack/TradeBack list":"BuyBack/TradeBack listesi"
   }
 	
 }

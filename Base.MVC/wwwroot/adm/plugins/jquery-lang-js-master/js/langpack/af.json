@@ -302,7 +302,19 @@
 	"Branch/Dealer address":"Tak/Handelaar adres",
 	"Branch/Dealer postal code":"Tak/Handelaar poskode",
 	"Branch/Dealer department":"Tak/Handelaar departement",
-	"Branch/Dealer list":"Tak/Handelaar lys"
+	"Branch/Dealer list":"Tak/Handelaar lys",
+	"Buyback/Tradeback information form":"BuyBack/TradeBack inligting vorm",
+	"Tonnage":"Tonnage",
+	"Contract type":"Kontrak tipe",
+	"Customer type":"Klant tipe",
+	"ComfortSuper":"ComfortSuper",
+	"% Off road":"% Off road",
+	"Truck type":"Vragmotortipe",
+	"Hydraulics":"Hydraulics",
+	"Mileage per annum (km)":"Kilometerstand per jaar (km)",
+	"Months":"Maande",	
+	"Price":"Prys",
+	"BuyBack/TradeBack list":"BuyBack/TradeBack lys"
   }
 
 }
