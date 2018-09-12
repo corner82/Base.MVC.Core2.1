@@ -22,7 +22,7 @@ $(document).ready(function () {
 * @since 10/09/2018
 */
 //to Buyback Tradeback Matrix form
-    $("loading-image-bbTbInfo").loadImager();
+    $("#loadingImage_bbTbInfo").loadImager();
     $("#loadingImage_DdslickTonnage").loadImager();
     $("#loadingImage_DdslickContractType").loadImager();
     $("#loadingImage_DdslickCustomerType").loadImager();
@@ -770,15 +770,15 @@ $(document).ready(function () {
         editing: {
             //mode: "batch"
             mode: "form",
-            //allowAdding: true,
-            //allowUpdating: true,
+            allowAdding: true,
+            allowUpdating: true,
             allowDeleting: true,
             useIcons: true
         },
 
         "export": {
             enabled: true,
-            fileName: "Orders"
+            fileName: "buybacktradebackMatrix"
         },
 
         grouping: {
@@ -853,15 +853,29 @@ $(document).ready(function () {
         }, {
             caption: window.lang.translate('Price') + "...",
             dataField: "SaleAmount"
+        }, {
+            name: 'Active/Passive',
+            caption: "Active/Passive",
+            //dataField: "active",
+            dataType: "boolean"
         }],
+        rowPrepared: function (rowElement, rowInfo) {
+            if (rowInfo.data.key == 1)
+                rowElement.css('background', 'green');
+            else if (rowInfo.data.key == 0)
+                rowElement.css('background', 'yellow');
 
+        },
         onSelectionChanged: function (selectedItems) {
             var data = selectedItems.selectedRowsData[0];
             if (data) {
                 fillbbTbMatrixForm(data);
             }
-        }
-
+        },
+        editingColumnExtensions:
+            {
+                columnName: 'Active/Passive',
+            }
     });
 
     function logEvent(eventName) {
