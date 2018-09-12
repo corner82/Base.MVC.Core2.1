@@ -124,5 +124,28 @@
     $('#loadingImage_DdslickHydraTradeBack').loadImager();
 
 
+    /**
+    * ddslick vehicle type-campaign dropdown load imager
+    * @author Mustafa Zeynel Dağlı
+    * @since 11/09/2018
+    */
+    $('#loadingImage_DdslickVehicleTypeCampaign').loadImager();
 
+    /**
+    * ddslick campaign dropdown load imager
+    * @author Mustafa Zeynel Dağlı
+    * @since 11/09/2018
+    */
+    $('#loadingImage_DdslickCampaigns').loadImager();
+
+    /**
+    * tagcabin deal-campaign  load imager
+    * @author Mustafa Zeynel Dağlı
+    * @since 11/09/2018
+    */
+    $('#loadingImage_TagCabinDealCampaigns').loadImager();
+    
+
+    
+    
 });

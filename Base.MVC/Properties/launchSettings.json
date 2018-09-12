@@ -1,6 +1,6 @@
 {
   "iisSettings": {
-    "windowsAuthentication": false,
+    "windowsAuthentication": true,
     "anonymousAuthentication": true,
     "iisExpress": {
       "applicationUrl": "http://localhost:51769",
@@ -10,7 +10,7 @@
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
-      "launchBrowser": true,
+      "workingDirectory": "C:\\Users\\M. Zeynel Dağlı\\Documents\\visual studio 2017\\Projects\\Base.SIS\\Base.MVC",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

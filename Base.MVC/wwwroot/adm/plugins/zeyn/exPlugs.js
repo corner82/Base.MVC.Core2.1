@@ -2367,7 +2367,7 @@
             }
             self.element.css('left', '-' + self.options.width + 'px');
             self.element.css('width', '' + self.options.width + 'px');
-            self.element.css('top', '0px');
+            self.element.css('top', '' + self.options.width + 'px');
             self.element.addClass('control-sidebar-custom-left');
             self.element.addClass('control-sidebar-custom-light');
             
@@ -2474,10 +2474,23 @@
             }
             self.element.css('right', '-' + self.options.width + 'px');
             self.element.css('width', '' + self.options.width + 'px');
-            self.element.css('top', '0px');
+            self.element.css('top', '' + self.options.width + 'px');
             self.element.addClass('control-sidebar-custom-right');
             self.element.addClass('control-sidebar-custom-light');
 
+        },
+
+        /**
+         * set element  from top
+         * @author Mustafa Zeynel Dağlı
+         * @since 11/09/2018
+         */
+        setFromTop: function (top) {
+            var self = this;
+            if (top != null) {
+                self.element.css('top', parseFloat(top));
+            }
+               
         },
 
         /**

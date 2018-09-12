@@ -493,6 +493,10 @@ if it's not present, don't show loader */
     min-height: 100%;
 }
 
+.padding-top-minus-50 {
+    padding-top : -50px;
+}
+
 
 
 /*svg test*/

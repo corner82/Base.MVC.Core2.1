@@ -6,6 +6,11 @@
     <OutputType>WinExe</OutputType>
     <StartupObject />
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <PackageProjectUrl></PackageProjectUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningLevel>2</WarningLevel>
   </PropertyGroup>
 
   <ItemGroup>

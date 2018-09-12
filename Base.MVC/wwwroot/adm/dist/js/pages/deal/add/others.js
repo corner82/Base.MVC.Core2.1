@@ -8,6 +8,17 @@ $(document).ready(function () {
         actionButtonLabel: 'Ýþleme devam et'
     });
 
+    //offline loading-image
+    //$("#offlineWrapperImager").loadImager();
+    // offline up event handler
+   /* Offline.on("up", function () {
+        $("#offlineWrapperImager").loadImager('removeLoadImage');
+    });*/
+    // offline down event handler
+    /*Offline.on("down", function () {
+        $("#offlineWrapperImager").loadImager('appendImage');
+    });*/
+
    // $.getScript({ url: "loadingImages.js", cache: true });
     
   //Make the dashboard widgets sortable Using jquery UI
@@ -54,7 +65,60 @@ $(document).ready(function () {
     handle: ".handle",
     forcePlaceholderSize: true,
     zIndex: 999999
-  });
+    });
+
+    // vehicle type date picker
+    $('.datepicker').datepicker({
+        format: 'mm/dd/yyyy',
+        startDate: '-1d'
+    });
+
+
+    // deal campaign asider 
+    $('#campaignAddAside').asideRight({
+        width: "900"
+    });
+    $('#campaignAddAside').asideRight({
+        onOpening: function (event, element) {
+            //console.log(element);
+            //alert('onopening event right slider');
+        }
+    });
+
+    $('#campaignAddAside').asideRight({
+        onOpened: function (event, element) {
+            //alert('onopened event right slider');
+        }
+    });
+
+    $('#campaignAddAside').asideRight({
+        onClosing: function (event, element) {
+            //alert('onclosing event right slider');
+        }
+    });
+
+    $('#campaignAddAside').asideRight({
+        onClosed: function (event, element) {
+            //alert('onclosed event right slider');
+        }
+    });
+    //tab 2_1 side bar panel left toggle
+    $("#toggle_CampaignAsider").on("click", function () {
+        // $(".sidebar.left").sidebar().trigger("sidebar:open");
+        //alert('test');
+        
+        //alert($(this).offset().top);
+        $('#campaignAddAside').asideRight('setFromTop', (parseFloat($(this).offset().top))-500);
+        $('#campaignAddAside').asideRight('toggle');
+    });
+
+    $("#toggle_closeCampaignAside").on("click", function () {
+        $('#campaignAddAside').asideRight('toggle');
+    });
+
+    /*$('#testZeyn').slimScroll({
+        height: '250px'
+    });*/
 
 
 });
