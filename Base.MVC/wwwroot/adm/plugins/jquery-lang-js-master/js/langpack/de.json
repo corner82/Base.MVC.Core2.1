@@ -303,7 +303,19 @@
 	"Branch/Dealer address":"Filiale/Händler adresse",
 	"Branch/Dealer postal code":"Filiale/Händler postleitzahl",
 	"Branch/Dealer department":"Filiale/Händler abteilung",
-	"Branch/Dealer list":"Filiale/Händler liste"
+	"Branch/Dealer list":"Filiale/Händler liste",
+	"Buyback/Tradeback information form":"BuyBack/TradeBack informationsformular",
+	"Tonnage":"Tonnage",
+	"Contract type":"Vertragstyp",
+	"Customer type":"Kundentyp",
+	"ComfortSuper":"ComfortSuper",
+	"% Off road":"% Offroad",
+	"Truck type":"LKW-Typ",
+	"Hydraulics":"Hydraulik",
+	"Mileage per annum (km)":"Kilometerleistung pro Jahr (km)",
+	"Months":"Monate",	
+	"Price":"Preis",
+	"BuyBack/TradeBack list":"BuyBack/TradeBack-Liste"
   }
 	
 }

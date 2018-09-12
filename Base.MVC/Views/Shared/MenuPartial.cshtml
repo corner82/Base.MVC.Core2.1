@@ -27,7 +27,7 @@
         <ul class="treeview-menu">
             <li class="active"><a href="/Sys/AnnualRevenue"><i class="fa fa-circle-o"></i> Annual Revenue</a></li>
             <li><a href="/Sys/Brand"><i class="fa fa-circle-o"></i> Brand</a></li>
-            <li><a href="/Sys/BuybackTerrain"><i class="fa fa-circle-o"></i> Buyback Terrain</a></li>
+            <li><a href="/Sys/Terrain"><i class="fa fa-circle-o"></i> Terrain</a></li>
             <li><a href="/Sys/Country"><i class="fa fa-circle-o"></i> Country</a></li>
             <li><a href="/Sys/State"><i class="fa fa-circle-o"></i> State</a></li>
             <li><a href="/Sys/City"><i class="fa fa-circle-o"></i> City</a></li>
@@ -35,7 +35,7 @@
             <li><a href="/Sys/Sector"><i class="fa fa-circle-o"></i> Sector</a></li>
             <li><a href="/Sys/CPRole"><i class="fa fa-circle-o"></i> Customer Person Role</a></li>
             <li><a href="/Sys/CustomerGrp"><i class="fa fa-circle-o"></i> Customer Group</a></li>
-            <li><a href="/Sys/DemoLocation"><i class="fa fa-circle-o"></i> Demo Location</a></li>
+            <li><a href="/Sys/DemoLocation"><i class="fa fa-circle-o"></i> Branch/Dealer Information</a></li>
             <li><a href="/Sys/DemoReqType"><i class="fa fa-circle-o"></i> Demo Request Type</a></li>
             <li><a href="/Sys/FxRate"><i class="fa fa-circle-o"></i> Fx Rate</a></li>
             <li><a href="/Sys/Mil"><i class="fa fa-circle-o"></i> Mileage</a></li>
@@ -43,10 +43,10 @@
             <li><a href="/Sys/ReliabilityRate"><i class="fa fa-circle-o"></i> Reliability Rate</a></li>
             <li><a href="/Sys/TNofEmployes"><i class="fa fa-circle-o"></i> Total Number of Employes</a></li>
             <li><a href="/Sys/TNofVehicles"><i class="fa fa-circle-o"></i> Total Number of Vehicles</a></li>
-            <li><a href="/Sys/TradebackTerrain"><i class="fa fa-circle-o"></i> Tradeback Terrain</a></li>
+            @*<li><a href="/Sys/TradebackTerrain"><i class="fa fa-circle-o"></i> Tradeback Terrain</a></li>*@
             <li><a href="/Sys/VehicleKitType"><i class="fa fa-circle-o"></i> Vehicle Kit Type</a></li>
             <li><a href="/Sys/VehicleModel"><i class="fa fa-circle-o"></i> Vehicle Model</a></li>
-            <li><a href="/Sys/WarrantyName"><i class="fa fa-circle-o"></i> Warranty Name</a></li>
+            @*<li><a href="/Sys/WarrantyName"><i class="fa fa-circle-o"></i> Warranty Name</a></li>*@
             <li><a href="/Sys/WarrantyType"><i class="fa fa-circle-o"></i> Warranty Type</a></li>
             <li><a href="/Sys/Branch"><i class="fa fa-circle-o"></i> Branch</a></li>
             <li><a href="/Sys/Accessory"><i class="fa fa-circle-o"></i> Accessory</a></li>
@@ -106,6 +106,17 @@
         </a>
         <ul class="treeview-menu">
             <li><a href="/Deal/Add"><i class="fa fa-circle-o"></i> Deal List</a></li>
+
+        </ul>
+    </li>
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-files-o"></i>
+            <span>Buyback&Tradeback</span>
+            <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="/BuybackTradeback/BuybackTradebackMatrix"><i class="fa fa-circle-o"></i> Buyback&Tradeback Matrix</a></li>
 
         </ul>
     </li>

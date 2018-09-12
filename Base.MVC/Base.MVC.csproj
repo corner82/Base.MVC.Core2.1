@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Views\Buyback-Tradeback\BuybackTradebackMatrix.cshtml">
+    <Content Update="Views\BuybackTradeback\BuybackTradebackMatrix.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Deal\Add.cshtml">
