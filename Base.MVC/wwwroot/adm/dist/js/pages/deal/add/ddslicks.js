@@ -36,12 +36,12 @@
     ajax_DdslickCustomer.ajaxCallWidget({
         onError: function (event, textStatus, errorThrown) {
 
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickCustomer').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
+            $(window).dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
         },
         onSuccess: function (event, data) {
             //var data = $.parseJSON(cbdata);
@@ -62,12 +62,12 @@
         },
         onErrorDataNull: function (event, data) {
             console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickCustomer').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('vehiclekittype bulunamamıştır...'), window.lang.translate('vehiclekittype  bulunamamıştır...'));
+            $(window).dangerMessage('show', window.lang.translate('vehiclekittype bulunamamıştır...'), window.lang.translate('vehiclekittype  bulunamamıştır...'));
         },
     })
     ajax_DdslickCustomer.ajaxCallWidget('call');
@@ -117,12 +117,12 @@
     ajax_DdslickPriority.ajaxCallWidget({
         onError: function (event, textStatus, errorThrown) {
 
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickPriority').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Priority data not found...'), window.lang.translate('Priority data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('Priority data not found...'), window.lang.translate('Priority data not found...'));
         },
         onSuccess: function (event, data) {
             //var data = $.parseJSON(cbdata);
@@ -143,12 +143,12 @@
         },
         onErrorDataNull: function (event, data) {
             console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickPriority').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Priority data not found...'), window.lang.translate('Priority data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('Priority data not found...'), window.lang.translate('Priority data not found...'));
         },
     })
     ajax_DdslickPriority.ajaxCallWidget('call');
@@ -198,12 +198,12 @@
     ajax_DdslickRealizationRate.ajaxCallWidget({
         onError: function (event, textStatus, errorThrown) {
 
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickRealizationRate').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Realization Rate data not found...'), window.lang.translate('Realization Rate data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('Realization Rate data not found...'), window.lang.translate('Realization Rate data not found...'));
         },
         onSuccess: function (event, data) {
             //var data = $.parseJSON(cbdata);
@@ -224,12 +224,12 @@
         },
         onErrorDataNull: function (event, data) {
             console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickRealizationRate').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Realization Rate data not found...'), window.lang.translate('Realization Rate data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('Realization Rate data not found...'), window.lang.translate('Realization Rate data not found...'));
         },
     })
     ajax_DdslickRealizationRate.ajaxCallWidget('call');
@@ -291,12 +291,12 @@
     ajax_DdslickVehicleType.ajaxCallWidget({
         onError: function (event, textStatus, errorThrown) {
 
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickVehicleType').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Priority data not found...'), window.lang.translate('Priority data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('Priority data not found...'), window.lang.translate('Priority data not found...'));
         },
         onSuccess: function (event, data) {
             //var data = $.parseJSON(cbdata);
@@ -317,12 +317,12 @@
         },
         onErrorDataNull: function (event, data) {
             console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickVehicleType').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Vehicle Type data not found...'), window.lang.translate('Vehicle Type data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('Vehicle Type data not found...'), window.lang.translate('Vehicle Type data not found...'));
         },
     })
     ajax_DdslickVehicleType.ajaxCallWidget('call');
@@ -386,12 +386,12 @@
     ajax_DdslickVehicleTypeBuyBack.ajaxCallWidget({
         onError: function (event, textStatus, errorThrown) {
 
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickVehicleTypeBuyBack').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Vehicle type data not found...'), window.lang.translate('Vehiicle type data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('Vehicle type data not found...'), window.lang.translate('Vehiicle type data not found...'));
         },
         onSuccess: function (event, data) {
             //var data = $.parseJSON(cbdata);
@@ -412,12 +412,12 @@
         },
         onErrorDataNull: function (event, data) {
             console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickVehicleTypeBuyBack').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Vehicle Type data not found...'), window.lang.translate('Vehicle Type data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('Vehicle Type data not found...'), window.lang.translate('Vehicle Type data not found...'));
         },
     })
     ajax_DdslickVehicleTypeBuyBack.ajaxCallWidget('call');
@@ -463,12 +463,12 @@
     ajax_DdslickCustomerTypeBuyBack.ajaxCallWidget({
         onError: function (event, textStatus, errorThrown) {
 
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickCustomerTypeBuyBack').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Customer  type data not found...'), window.lang.translate('Customer type data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('Customer  type data not found...'), window.lang.translate('Customer type data not found...'));
         },
         onSuccess: function (event, data) {
             //var data = $.parseJSON(cbdata);
@@ -489,12 +489,12 @@
         },
         onErrorDataNull: function (event, data) {
             console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickCustomerTypeBuyBack').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Customer Type data not found...'), window.lang.translate('Customer Type data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('Customer Type data not found...'), window.lang.translate('Customer Type data not found...'));
         },
     })
     ajax_DdslickCustomerTypeBuyBack.ajaxCallWidget('call');
@@ -540,12 +540,12 @@
     ajax_DdslickTruckTypeBuyBack.ajaxCallWidget({
         onError: function (event, textStatus, errorThrown) {
 
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickTruckTypeBuyBack').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Truck  type data not found...'), window.lang.translate('Truck type data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('Truck  type data not found...'), window.lang.translate('Truck type data not found...'));
         },
         onSuccess: function (event, data) {
             //var data = $.parseJSON(cbdata);
@@ -566,12 +566,12 @@
         },
         onErrorDataNull: function (event, data) {
             console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickTruckTypeBuyBack').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Truck Type data not found...'), window.lang.translate('Truck Type data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('Truck Type data not found...'), window.lang.translate('Truck Type data not found...'));
         },
     })
     ajax_DdslickTruckTypeBuyBack.ajaxCallWidget('call');
@@ -612,12 +612,12 @@
     ajax_DdslickTerrainTypeBuyBack.ajaxCallWidget({
         onError: function (event, textStatus, errorThrown) {
 
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickTerrainTypeBuyBack').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Terrain  type data not found...'), window.lang.translate('Terrain type data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('Terrain  type data not found...'), window.lang.translate('Terrain type data not found...'));
         },
         onSuccess: function (event, data) {
             //var data = $.parseJSON(cbdata);
@@ -638,12 +638,12 @@
         },
         onErrorDataNull: function (event, data) {
             console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickTerrainTypeBuyBack').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Terrain Type data not found...'), window.lang.translate('Terrain Type data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('Terrain Type data not found...'), window.lang.translate('Terrain Type data not found...'));
         },
     })
     ajax_DdslickTerrainTypeBuyBack.ajaxCallWidget('call');
@@ -684,12 +684,12 @@
     ajax_DdslickRepMainBuyBack.ajaxCallWidget({
         onError: function (event, textStatus, errorThrown) {
 
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickRepMainBuyBack').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('R&M  type data not found...'), window.lang.translate('R&M type data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('R&M  type data not found...'), window.lang.translate('R&M type data not found...'));
         },
         onSuccess: function (event, data) {
             //var data = $.parseJSON(cbdata);
@@ -710,12 +710,12 @@
         },
         onErrorDataNull: function (event, data) {
             console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickRepMainBuyBack').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('R&M Type data not found...'), window.lang.translate('R&M Type data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('R&M Type data not found...'), window.lang.translate('R&M Type data not found...'));
         },
     })
     ajax_DdslickRepMainBuyBack.ajaxCallWidget('call');
@@ -762,12 +762,12 @@
     ajax_DdslickHydraBuyBack.ajaxCallWidget({
         onError: function (event, textStatus, errorThrown) {
 
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickHydraBuyBack').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Hydraulics  type data not found...'), window.lang.translate('Hydraulics type data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('Hydraulics  type data not found...'), window.lang.translate('Hydraulics type data not found...'));
         },
         onSuccess: function (event, data) {
             //var data = $.parseJSON(cbdata);
@@ -788,12 +788,12 @@
         },
         onErrorDataNull: function (event, data) {
             console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickHydraBuyBack').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Hydraulics Type data not found...'), window.lang.translate('Hydraulics Type data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('Hydraulics Type data not found...'), window.lang.translate('Hydraulics Type data not found...'));
         },
     })
     ajax_DdslickHydraBuyBack.ajaxCallWidget('call');
@@ -855,12 +855,12 @@
     ajax_DdslickVehicleTypeTradeBack.ajaxCallWidget({
         onError: function (event, textStatus, errorThrown) {
 
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickVehicleTypeTradeBack').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Vehicle type data not found...'), window.lang.translate('Vehiicle type data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('Vehicle type data not found...'), window.lang.translate('Vehiicle type data not found...'));
         },
         onSuccess: function (event, data) {
             //var data = $.parseJSON(cbdata);
@@ -881,12 +881,12 @@
         },
         onErrorDataNull: function (event, data) {
             console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickVehicleTypeTradeBack').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Vehicle Type data not found...'), window.lang.translate('Vehicle Type data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('Vehicle Type data not found...'), window.lang.translate('Vehicle Type data not found...'));
         },
     })
     ajax_DdslickVehicleTypeTradeBack.ajaxCallWidget('call');
@@ -931,12 +931,12 @@
     ajax_DdslickCustomerTypeTradeBack.ajaxCallWidget({
         onError: function (event, textStatus, errorThrown) {
 
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickCustomerTypeTradeBack').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Customer  type data not found...'), window.lang.translate('Customer type data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('Customer  type data not found...'), window.lang.translate('Customer type data not found...'));
         },
         onSuccess: function (event, data) {
             //var data = $.parseJSON(cbdata);
@@ -957,12 +957,12 @@
         },
         onErrorDataNull: function (event, data) {
             console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickCustomerTypeTradeBack').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Customer Type data not found...'), window.lang.translate('Customer Type data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('Customer Type data not found...'), window.lang.translate('Customer Type data not found...'));
         },
     })
     ajax_DdslickCustomerTypeTradeBack.ajaxCallWidget('call');
@@ -1008,12 +1008,12 @@
     ajax_DdslickTruckTypeTradeBack.ajaxCallWidget({
         onError: function (event, textStatus, errorThrown) {
 
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickTruckTypeTradeBack').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Truck  type data not found...'), window.lang.translate('Truck type data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('Truck  type data not found...'), window.lang.translate('Truck type data not found...'));
         },
         onSuccess: function (event, data) {
             //var data = $.parseJSON(cbdata);
@@ -1034,12 +1034,12 @@
         },
         onErrorDataNull: function (event, data) {
             console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickTruckTypeTradeBack').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Truck Type data not found...'), window.lang.translate('Truck Type data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('Truck Type data not found...'), window.lang.translate('Truck Type data not found...'));
         },
     })
     ajax_DdslickTruckTypeTradeBack.ajaxCallWidget('call');
@@ -1080,12 +1080,12 @@
     ajax_DdslickTerrainTypeTradeBack.ajaxCallWidget({
         onError: function (event, textStatus, errorThrown) {
 
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickTerrainTypeTradeBack').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Terrain  type data not found...'), window.lang.translate('Terrain type data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('Terrain  type data not found...'), window.lang.translate('Terrain type data not found...'));
         },
         onSuccess: function (event, data) {
             //var data = $.parseJSON(cbdata);
@@ -1106,12 +1106,12 @@
         },
         onErrorDataNull: function (event, data) {
             console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickTerrainTypeTradeBack').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Terrain Type data not found...'), window.lang.translate('Terrain Type data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('Terrain Type data not found...'), window.lang.translate('Terrain Type data not found...'));
         },
     })
     ajax_DdslickTerrainTypeTradeBack.ajaxCallWidget('call');
@@ -1152,12 +1152,12 @@
     ajax_DdslickRepMainTradeBack.ajaxCallWidget({
         onError: function (event, textStatus, errorThrown) {
 
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickRepMainTradeBack').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('R&M  type data not found...'), window.lang.translate('R&M type data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('R&M  type data not found...'), window.lang.translate('R&M type data not found...'));
         },
         onSuccess: function (event, data) {
             //var data = $.parseJSON(cbdata);
@@ -1178,12 +1178,12 @@
         },
         onErrorDataNull: function (event, data) {
             console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickRepMainTradeBack').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('R&M Type data not found...'), window.lang.translate('R&M Type data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('R&M Type data not found...'), window.lang.translate('R&M Type data not found...'));
         },
     })
     ajax_DdslickRepMainTradeBack.ajaxCallWidget('call');
@@ -1229,12 +1229,12 @@
     ajax_DdslickHydraTradeBack.ajaxCallWidget({
         onError: function (event, textStatus, errorThrown) {
 
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickHydraTradeBack').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Hydraulics  type data not found...'), window.lang.translate('Hydraulics type data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('Hydraulics  type data not found...'), window.lang.translate('Hydraulics type data not found...'));
         },
         onSuccess: function (event, data) {
             //var data = $.parseJSON(cbdata);
@@ -1255,18 +1255,206 @@
         },
         onErrorDataNull: function (event, data) {
             console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
+            $(window).dangerMessage({
                 onShown: function () {
                     $('#loadingImage_DdslickHydraTradeBack').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Hydraulics Type data not found...'), window.lang.translate('Hydraulics Type data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('Hydraulics Type data not found...'), window.lang.translate('Hydraulics Type data not found...'));
         },
     })
     ajax_DdslickHydraTradeBack.ajaxCallWidget('call');
 
 
     //TradeBack tab form elements end
+
+
+    //add deal-campaign aside tab form elements begin
+    /**
+    * ddslick vehicle type dropdown 
+    * @author Mustafa Zeynel Dağlı
+    * @since 15/08/2018
+    */
+    var ddslickVehicleTypeDataCampaign = [
+        {
+            text: 'Please select',
+            value: -1,
+            selected: true
+        },
+        {
+            text: "TGS-26-4406X4BLS-LX-ALU-EL",
+            value: 2,
+            selected: false
+        },
+        {
+            text: "TGS-26-4406X4BLS-LX-ALU-ELX",
+            value: 3,
+            selected: false
+        },
+        {
+            text: "TGS-16-4406X4BLS-LX-ALU-EL",
+            value: 4,
+            selected: false
+        },
+        {
+            text: "TGS-26-5406X4BLS-LX-ALU-EL",
+            value: 5,
+            selected: false
+        },
+        {
+            text: "TGX-26-5406X4BLS-LX-ALU-EL",
+            value: 5,
+            selected: false
+        },
+        {
+            text: "TGV-26-5406X4BLS-LX-ALU-EL",
+            value: 5,
+            selected: false
+        }
+    ];
+    $('#loadingImage_DdslickVehicleTypeCampaign').loadImager('removeLoadImage');
+    $("#loadingImage_DdslickVehicleTypeCampain").loadImager('appendImage');
+    var ajax_DdslickVehicleTypeCampaign = $('#ajax_DdslickVehicleTypeCampaign').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+
+    });
+    ajax_DdslickVehicleTypeCampaign.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            $(window).dangerMessage({
+                onShown: function () {
+                    $('#loadingImage_DdslickVehicleTypeCampain').loadImager('removeLoadImage');
+                }
+            });
+            $(window).dangerMessage('show', window.lang.translate('Priority data not found...'), window.lang.translate('Priority data not found...'));
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#ddslickVehicleTypeCampaign').ddslick({
+                //height: 150,
+                data: ddslickVehicleTypeDataCampaign,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+                        //vehicleKitTypeForDefineFields(selectedData.selectedData.text);
+                    }
+                }
+            });
+
+            $("#loadingImage_DdslickVehicleTypeCampain").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            $(window).dangerMessage({
+                onShown: function () {
+                    $('#loadingImage_DdslickVehicleTypeCampain').loadImager('removeLoadImage');
+                }
+            });
+            $(window).dangerMessage('show', window.lang.translate('Vehicle Type data not found...'), window.lang.translate('Vehicle Type data not found...'));
+        },
+    })
+    ajax_DdslickVehicleTypeCampaign.ajaxCallWidget('call');
+
+
+    /**
+    * ddslick vehicle type dropdown 
+    * @author Mustafa Zeynel Dağlı
+    * @since 15/08/2018
+    */
+    var ddslickDataCampaigns = [
+        {
+            text: 'Please select',
+            value: -1,
+            selected: true
+        },
+        {
+            text: "TGS-26-4406X4BLS-LX-ALU-EL",
+            value: 2,
+            selected: false
+        },
+        {
+            text: "TGS-26-4406X4BLS-LX-ALU-ELX",
+            value: 3,
+            selected: false
+        },
+        {
+            text: "TGS-16-4406X4BLS-LX-ALU-EL",
+            value: 4,
+            selected: false
+        },
+        {
+            text: "TGS-26-5406X4BLS-LX-ALU-EL",
+            value: 5,
+            selected: false
+        },
+        {
+            text: "TGX-26-5406X4BLS-LX-ALU-EL",
+            value: 5,
+            selected: false
+        },
+        {
+            text: "TGV-26-5406X4BLS-LX-ALU-EL",
+            value: 5,
+            selected: false
+        }
+    ];
+    $('#loadingImage_DdslickCampaigns').loadImager('removeLoadImage');
+    $("#loadingImage_DdslickCampaigns").loadImager('appendImage');
+    var ajax_DdslickCampaigns = $('#ajax_DdslickCampaigns').ajaxCallWidget({
+        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+
+    });
+    ajax_DdslickCampaigns.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            $(window).dangerMessage({
+                onShown: function () {
+                    $('#loadingImage_DdslickCampaigns').loadImager('removeLoadImage');
+                }
+            });
+            $(window).dangerMessage('show', window.lang.translate('Priority data not found...'), window.lang.translate('Priority data not found...'));
+        },
+        onSuccess: function (event, data) {
+            //var data = $.parseJSON(cbdata);
+
+            $('#ddslickCampaigns').ddslick({
+                //height: 150,
+                data: ddslickDataCampaigns,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+                        //vehicleKitTypeForDefineFields(selectedData.selectedData.text);
+                    }
+                }
+            });
+
+            $("#loadingImage_DdslickCampaigns").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            $(window).dangerMessage({
+                onShown: function () {
+                    $('#loadingImage_DdslickCampaigns').loadImager('removeLoadImage');
+                }
+            });
+            $(window).dangerMessage('show', window.lang.translate('Vehicle Type data not found...'), window.lang.translate('Vehicle Type data not found...'));
+        },
+    })
+    ajax_DdslickCampaigns.ajaxCallWidget('call');
+
+
+    //add deal-campaign aside tab form elements end
 
 
 });
