@@ -1,0 +1,383 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Base.Core.Entities.Identity
+@inject IViewLocalizer Localizer
+@*@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet*@
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section stylesPageSpecs {
+    <!-- iCheck -->
+    <link href="~/adm/plugins/iCheck/minimal/minimal.css" rel="stylesheet" type="text/css" />
+
+    <!-- Date Picker -->
+    <link href="~/adm/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet">
+
+    <!-- devex -->
+    <link rel="stylesheet" type="text/css" href="~/adm/plugins/devextreme/css/dx.spa.css" />
+    <link rel="stylesheet" type="text/css" href="~/adm/plugins/devextreme/css/dx.common.css" />
+    <link rel="dx-theme" data-theme="generic.light" href="~/adm/plugins/devextreme/css/dx.light.css" />
+
+    <!-- validationEngine -->
+    <link rel="stylesheet" href="~/adm/plugins/validationEngine/validationEngine.jquery.css" type="text/css" />
+
+    <!-- tagCabin css -->
+    <link href="~/adm/plugins/zeyn/tag-cabin/tag-cabin.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="~/adm/dist/css/AdminLTE.css" type="text/css" />
+    <!--<link rel="stylesheet" href="~/miya/dist/css/miya.css" type="text/css" />-->
+    }
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+
+        <!-- Breadcrumb-->
+        @Html.Partial("~/Views/Shared/AdminBreadCrumbPartial.cshtml")
+
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Main row -->
+            <div class="row">
+
+                <!-- Left col -->
+                <section class="col-lg-12 connectedSortable">
+
+                    <div class="box box-info">
+                        <div class="box-header">
+                            <i class="fa fa-comments-o"></i>
+                            <h3 class="box-title"><span lang="en">Vehicle form</span></h3>
+
+                            <div class="box-tools pull-right">
+                                <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <form id='vehicleForm' method="get">
+                                <div class="row" id="loading-image-vehicle">
+                                    <div class="col-md-6">
+
+                                        <div class="form-group">
+                                            <label><span lang="en">Vehicle kit type</span></label>
+
+                                            <div class="" id="ajaxACL-vehiclekittype">
+                                                <div id="loading-image-vehiclekittype" class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-copyright"></i>
+                                                    </div>
+                                                    <div id="dropdownVehicleKitType" class="form-control validate[required]"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label><span lang="en">Vehicle model</span></label>
+
+                                            <div class="" id="ajaxACL-vehiclemodel">
+                                                <div id="loading-image-vehiclemodel" class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-copyright"></i>
+                                                    </div>
+                                                    <div id="dropdownVehicleModel" class="form-control validate[required]"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label><span lang="en">Vehicle model grouping</span></label>
+
+                                            <div class="" id="ajaxACL-vehiclemodelgr">
+                                                <div id="loading-image-vehiclemodelgr" class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-copyright"></i>
+                                                    </div>
+                                                    <div id="dropdownVehicleModelGr" class="form-control validate[required]"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label><span lang="en">Vehicle type</span></label>
+
+                                            <div class="" id="ajaxACL-vehicletype">
+                                                <div id="loading-image-vehicletype" class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-copyright"></i>
+                                                    </div>
+                                                    <div id="dropdownVehicleType" class="form-control validate[required]"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label><span lang="en">Vehicle tonaj type</span></label>
+
+                                            <div class="" id="ajaxACL-vehicletonaj">
+                                                <div id="loading-image-vehicletonaj" class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-copyright"></i>
+                                                    </div>
+                                                    <div id="dropdownVehicleTonaj" class="form-control validate[required]"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label><span lang="en">GVM</span></label>
+
+                                            <div class="" id="ajaxACL-gvm">
+                                                <div id="loading-image-gvm" class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-copyright"></i>
+                                                    </div>
+                                                    <div id="dropdownGVM" class="form-control validate[required]"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label><span lang="en">Config</span></label>
+
+                                            <div class="" id="ajaxACL-config">
+                                                <div id="loading-image-config" class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-copyright"></i>
+                                                    </div>
+                                                    <div id="dropdownConfig" class="form-control validate[required]"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label><span lang="en">Vehicle variant</span></label>
+
+                                            <div class="" id="ajaxACL-vehiclevariant">
+                                                <div id="loading-image-vehiclevariant" class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-copyright"></i>
+                                                    </div>
+                                                    <div id="dropdownVehicleVariant" class="form-control validate[required]"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- /.col -->
+
+                                    <div class="col-md-6">
+
+
+                                        <div class="form-group">
+                                            <label><span lang="en">Cab</span></label>
+
+                                            <div class="" id="ajaxACL-cab">
+                                                <div id="loading-image-cab" class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-copyright"></i>
+                                                    </div>
+                                                    <div id="dropdownCab" class="form-control validate[required]"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label><span lang="en">GFZ</span></label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-user"></i>
+                                                </div>
+                                                <input type="text" class="form-control" id="txt-gfz-vehicletype" disabled><input type="text" class="form-control validate[required]" placeholder="GFZ" id="txt-gfz" onChange="gfzOnChange()">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label><span lang="en">KP no (Premarkup)</span></label>
+
+                                            <div class="" id="ajaxACL-kp">
+                                                <div id="loading-image-kp" class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-copyright"></i>
+                                                    </div>
+                                                    <div id="dropdownKPNo" class="form-control validate[required]"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" id="st-info">
+                                            <label><span lang="en">BTO/BTS</span></label>
+
+                                            <div class="" id="ajaxACL-stockinfo">
+                                                <div id="loading-image-stockinfo" class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-copyright"></i>
+                                                    </div>
+                                                    <div id="dropdownStockInfo" class="form-control validate[required]"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label><span lang="en">Model description</span></label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-user"></i>
+                                                </div>
+                                                <input type="text" class="form-control validate[required]" placeholder="Model Description" id="txt-modeldescription" onChange="modelDescOnChange()">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label><span lang="en">Application type</span></label>
+
+                                            <div class="" id="ajaxACL-applicationtype">
+                                                <div id="loading-image-applicationtype" class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-copyright"></i>
+                                                    </div>
+                                                    <div id="dropdownApplicationType" class="form-control validate[required]"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label><span lang="en">Property</span></label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-user"></i>
+                                                </div>
+                                                <input type="text" class="form-control validate[required]" placeholder="Property" id="txt-vehicle-property">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label><span lang="en">Vehicle name</span></label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-user"></i>
+                                                </div>
+                                                <input type="text" class="form-control validate[required]" placeholder="Vehicle Model + Model Description" id="txt-vehicle-name" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+
+                                <div class="box-footer">
+                                    <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-clear" onclick="resetVehicleForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                    <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-save" onclick="insertVehicleWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+                </section><!-- /.Left col -->
+
+
+            </div><!-- /.row (main row) -->
+
+            <!-- Main row -->
+            <div class="row row-min-height">
+                <!-- Left col -->
+                <section class="col-lg-12 connectedSortable">
+
+                    <div class="box box-info">
+                        <div class="box-header">
+                            <i class="fa fa-comments-o"></i>
+                            <h3 class="box-title"><span lang="en">Buyback & Tradeback descriptions</span></h3>
+
+                            <div class="box-tools pull-right">
+                                <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                            </div>
+                        </div>
+
+                        <div class="box-body" id="loading-image-vehicleGrid">
+                            <div id="gridContainer_vehicle_buybacktradeback_desc"></div>
+                        </div>
+                    </div>
+
+                </section><!-- /.Left col -->
+
+            </div><!-- /.row (main row) -->
+
+            <!-- Main row -->
+            <div class="row row-min-height">
+                <!-- Left col -->
+                <section class="col-lg-12 connectedSortable">
+
+                    <div class="box box-info">
+                        <div class="box-header">
+                            <i class="fa fa-comments-o"></i>
+                            <h3 class="box-title"><span lang="en">Vehicle list</span></h3>
+
+                            <div class="box-tools pull-right">
+                                <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                            </div>
+                        </div>
+                        <div class="box-body" id="loading-image-vehicleGrid">
+                            <div id="gridContainer_vehicle"></div>
+                        </div>
+                    </div>
+
+                </section><!-- /.Left col -->
+
+            </div><!-- /.row (main row) -->
+
+        </section><!-- /.content -->
+
+
+    </div><!-- /.content-wrapper -->
+
+    @section javascriptsPageSpecs {
+
+        <!-- easyui implementation -->
+        <script src="~/adm/plugins/jquery-easyui-1.3.3/locale/easyui-lang-tr.js" type="text/javascript"></script>
+
+        <!-- datepicker -->
+        <script src="~/adm/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.js" type="text/javascript"></script>
+
+        <!-- Slimscroll -->
+        <script src="~/adm/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+        <!-- FastClick -->
+        <!-- iCheck 1.0.1 -->
+        <script src="~/adm/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+        <script src='~/adm/plugins/fastclick/fastclick.min.js'></script>
+
+        <!-- zeyn plugins -->
+        <script src="~/adm/plugins/zeyn/exPlugs.js" type="text/javascript"></script>
+
+        <!-- AdminLTE App -->
+        <!--<script src="dist/js/app.min.js" type="text/javascript"></script>-->
+        <script src="~/adm/dist/js/app.js" type="text/javascript"></script>
+
+        <!--  ddslick -->
+        <script src="~/adm/plugins/bootstrap-select-ddslick/js/ddslick.js"></script>
+        <script src="~/adm/plugins/zeyn/tag-cabin/tag-cabin.js"></script>
+
+        <!-- devexpress datagrid -->
+        <script src="~/adm/plugins/jszip/dist/jszip.min.js"></script>
+        <!-- <script>window.jQuery || document.write(decodeURIComponent('%3Cscript src="js/jquery.min.js"%3E%3C/script%3E'))</script>-->
+        <script src="~/adm/plugins/devextreme/js/dx.all.js"></script>
+        <script src="https://unpkg.com/devextreme-intl/dist/devextreme-intl.min.js"></script>
+
+        <!--devexpress datagrid lang call js variable _Layout ViewData callback ViewBag -->
+        <script src="@ViewBag.defaultDevExLangPath"></script>
+
+
+        <script src="~/adm/dist/js/pages/vehicle/specialvehicle.js" type="text/javascript"></script>
+
+        <script>
+            $(document).ready(function () {
+
+
+            });
+        </script>
+    }

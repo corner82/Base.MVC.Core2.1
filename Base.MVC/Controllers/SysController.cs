@@ -161,6 +161,16 @@ namespace Base.MVC.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Supplier()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> AccessoryFeatureName()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> Accessory()
         {
             return View();
