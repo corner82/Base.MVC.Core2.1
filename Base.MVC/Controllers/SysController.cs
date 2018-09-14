@@ -176,6 +176,11 @@ namespace Base.MVC.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Body()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> Branch()
         {
             return View();
