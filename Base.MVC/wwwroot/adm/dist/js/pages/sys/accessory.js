@@ -22,21 +22,22 @@ $(document).ready(function () {
     * @since 03/09/2018
     */
     //to accessory form
+    //to accessory feature name form
+    $("#loading-image-accessoryname").loadImager();
     $("#loading-image-accessory").loadImager();
 
     $("#loading-image-vehiclemodel").loadImager();
     $("#loading-image-kp").loadImager();
     $("#loading-image-supplier").loadImager();
+    $("#loading-image-faccessoryname").loadImager();
     $("#loading-image-options").loadImager();
-    $("#loading-image-featureaccessoryname").loadImager();
 
+    $("#loading-image-featurename").loadImager();
+
+    //to accessory feature name form grid loading-image
+    $("#loading-image-accessorynameGrid").loadImager();
     //to accessory form grid loading-image
     $("#loading-image-accessoryGrid").loadImager();
-
-    //to accessory feature name form
-    $("#loading-image-featurename").loadImager();
-    //to accessory feature name form grid loading-image
-    $("#loading-image-featurenameGrid").loadImager();
 
     var langCode = $("#langCode").val();
     //alert(langCode);
@@ -67,8 +68,9 @@ $(document).ready(function () {
 
     tab_disable();
 
+    $('#accessorynameForm').validationEngine();
     $('#accessoryForm').validationEngine();
-    $('#featurenameForm').validationEngine();
+
 
     //CLA, TGM, TGS, VW, XHCV
     var cbdata_model = [
@@ -318,7 +320,7 @@ $(document).ready(function () {
     //Feature accessory Name (Back office / Salesman)
     //Servisten Name ve Description Alanları dolu gelecek. Biri Backoffice, diğeri Salesman için. 
 
-    var cbdata_featureaccessoryname = [
+    var cbdata_faccessoryname = [
         {
             text: window.lang.translate('Please select') + "...",
             description : "",
@@ -339,10 +341,10 @@ $(document).ready(function () {
         }
     ];
 
-    $('#loading-image-featureaccessoryname').loadImager('removeLoadImage');
-    $("#loading-image-featureaccessoryname").loadImager('appendImage');
+    $('#loading-image-faccessoryname').loadImager('removeLoadImage');
+    $("#loading-image-faccessoryname").loadImager('appendImage');
 
-    var ajaxACLResources_featureaccessoryname = $('#ajaxACL-featureaccessoryname').ajaxCallWidget({
+    var ajaxACLResources_faccessoryname = $('#ajaxACL-faccessoryname').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
         data: {
             url: '1'
@@ -351,12 +353,12 @@ $(document).ready(function () {
 
     });
 
-    ajaxACLResources_featureaccessoryname.ajaxCallWidget({
+    ajaxACLResources_faccessoryname.ajaxCallWidget({
         onError: function (event, textStatus, errorThrown) {
 
             dm.dangerMessage({
                 onShown: function () {
-                    $('#loading-image-featureaccessoryname').loadImager('removeLoadImage');
+                    $('#loading-image-faccessoryname').loadImager('removeLoadImage');
                 }
             });
             dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
@@ -364,9 +366,9 @@ $(document).ready(function () {
         onSuccess: function (event, data) {
             //var data = $.parseJSON(cbdata);
 
-            $('#dropdownFeatureAccessoryName').ddslick({
+            $('#dropdownFAccessoryName').ddslick({
                 //height: 150,
-                data: cbdata_featureaccessoryname,
+                data: cbdata_faccessoryname,
                 width: '100%',
 
                 onSelected: function (selectedData) {
@@ -376,19 +378,19 @@ $(document).ready(function () {
                 }
             });
 
-            $("#loading-image-featureaccessoryname").loadImager('removeLoadImage');
+            $("#loading-image-faccessoryname").loadImager('removeLoadImage');
         },
         onErrorDataNull: function (event, data) {
             console.log("Error : " + event + " -data :" + data);
             dm.dangerMessage({
                 onShown: function () {
-                    $('#loading-image-featureaccessoryname').loadImager('removeLoadImage');
+                    $('#loading-image-faccessoryname').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('featureaccessoryname bulunamamıştır...'), window.lang.translate('featureaccessoryname  bulunamamıştır...'));
+            dm.dangerMessage('show', window.lang.translate('faccessoryname bulunamamıştır...'), window.lang.translate('faccessoryname  bulunamamıştır...'));
         },
     })
-    ajaxACLResources_featureaccessoryname.ajaxCallWidget('call');
+    ajaxACLResources_faccessoryname.ajaxCallWidget('call');
 
     //options
     var cbdata_options = [
@@ -765,7 +767,7 @@ $(document).ready(function () {
     }
 
 
-    $("#gridContainer_featurename").dxDataGrid({
+    $("#gridContainer_accessoryname").dxDataGrid({
 
         showColumnLines: true,
 
@@ -794,7 +796,7 @@ $(document).ready(function () {
 
         "export": {
             enabled: true,
-            fileName: "Orders"
+            fileName: "AccessoryNameList"
         },
 
         grouping: {
@@ -851,31 +853,23 @@ $(document).ready(function () {
         onSelectionChanged: function (selectedItems) {
             var data = selectedItems.selectedRowsData[0];
             if (data) {
-                fillFeatureNameForm(data);
+                fillAccessoryNameForm(data);
             }
         }
 
     });
 
-    function logEvent(eventName) {
-        var logList = $("#events ul"),
-            newItem = $("<li>", { text: eventName });
-
-        logList.prepend(newItem);
-    }
-
 
     /**
  * Insert AccessoryFeatureName
- * insertFeatureName
  * @returns {undefined}
  * @author Gül Özdemir
  * @since 13/09/2018
  */
 
-    window.insertFeatureName = function () {
-        $("#loading-image-featurename").loadImager('removeLoadImage');
-        $("#loading-image-featurename").loadImager('appendImage');
+    window.insertAccessoryName = function () {
+        $("#loading-image-accesoryname").loadImager('removeLoadImage');
+        $("#loading-image-accesoryname").loadImager('appendImage');
 
         var featurename_bo = $('#txt-featurename-bo').val();
         var featurename_sm = $('#txt-featurename-sm').val();
@@ -895,23 +889,23 @@ $(document).ready(function () {
                 dm.dangerMessage('show', 'Accessory Feature Name Ekleme İşlemi Başarısız...',
                     'Accessory Feature Name Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
                 console.error('"pkInsert_sysCustomerInfo" servis hatası->' + textStatus);
-                $("#loading-image-featurename").loadImager('removeLoadImage');
+                $("#loading-image-accesoryname").loadImager('removeLoadImage');
             },
             onSuccess: function (event, data) {
                 console.log(data);
                 var data = data;
                 sm.successMessage({
                     onShown: function (event, data) {
-                        $('#brandForm')[0].reset();
+                        $('#accesorynameForm')[0].reset();
 
-                        $("#loading-image-featurename").loadImager('removeLoadImage');
+                        $("#loading-image-accesoryname").loadImager('removeLoadImage');
 
                     }
                 });
                 sm.successMessage('show', 'Brand Kayıt İşlemi Başarılı...',
                     'Brand kayıt işlemini gerçekleştirdiniz... ',
                     data);
-                $("#loading-image-featurename").loadImager('removeLoadImage');
+                $("#loading-image-accesoryname").loadImager('removeLoadImage');
 
             },
             onErrorDataNull: function (event, data) {
@@ -919,29 +913,29 @@ $(document).ready(function () {
                 dm.dangerMessage('show', 'featurename Kayıt İşlemi Başarısız...',
                     'featurename kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysfeaturename" servis datası boştur!!');
-                $("#loading-image-featurename").loadImager('removeLoadImage');
+                $("#loading-image-accesoryname").loadImager('removeLoadImage');
             },
             onErrorMessage: function (event, data) {
                 dm.dangerMessage('resetOnShown');
                 dm.dangerMessage('show', 'featurename Kayıt İşlemi Başarısız...',
                     'featurename kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysfeaturename" servis datası boştur!!');
-                $("#loading-image-featurename").loadImager('removeLoadImage');
+                $("#loading-image-accesoryname").loadImager('removeLoadImage');
             },
             onError23503: function (event, data) {
                 dm.dangerMessage('Error23503');
-                $("#loading-image-featurename").loadImager('removeLoadImage');
+                $("#loading-image-accesoryname").loadImager('removeLoadImage');
             },
             onError23505: function (event, data) {
                 dm.dangerMessage({
                     onShown: function (event, data) {
-                        $('#featurenameForm')[0].reset();
-                        $("#loading-image-featurename").loadImager('removeLoadImage');
+                        $('#accesorynameForm')[0].reset();
+                        $("#loading-image-accesoryname").loadImager('removeLoadImage');
                     }
                 });
                 dm.dangerMessage('show', 'Kayıt İşlemi Başarısız...',
-                    'Aynı isim ile featurename kaydı yapılmıştır, yeni bir Marka kaydı deneyiniz... ');
-                $("#loading-image-featurename").loadImager('removeLoadImage');
+                    'Aynı isim ile accesoryname kaydı yapılmıştır, yeni bir Marka kaydı deneyiniz... ');
+                $("#loading-image-accesoryname").loadImager('removeLoadImage');
             }
         })
         aj.ajaxCall('call');
@@ -953,13 +947,13 @@ $(document).ready(function () {
     * @since 13/09/2018
     */
 
-    window.resetFeatureNameForm = function () {
-        $("#loading-image-featurename").loadImager('removeLoadImage');
-        $("#loading-image-featurename").loadImager('appendImage');
+    window.resetAccessoryNameForm = function () {
+        $("#loading-image-accessoryname").loadImager('removeLoadImage');
+        $("#loading-image-accessoryname").loadImager('appendImage');
 
-        $('#featurenameForm').validationEngine('hide');
+        $('#accessorynameForm').validationEngine('hide');
 
-        $("#loading-image-featurename").loadImager('removeLoadImage');
+        $("#loading-image-accessoryname").loadImager('removeLoadImage');
 
         //yeni kayda açık, tablar kapatılıyor
         tab_disable();
@@ -975,12 +969,12 @@ $(document).ready(function () {
     * @since 13/09/2018
     */
 
-    window.insertFeatureNameWrapper = function (e) {
+    window.insertAccessoryNameWrapper = function (e) {
         e.preventDefault();
 
-        if ($("#featurenameForm").validationEngine('validate')) {
+        if ($("#accessorynameForm").validationEngine('validate')) {
 
-            insertFeatureName();
+            insertAccessoryName();
         }
         return false;
     }
@@ -993,14 +987,14 @@ $(document).ready(function () {
     * @since 13/09/2018
     */
 
-    window.fillFeatureNameForm = function (data) {
-        $("#loading-image-featurename").loadImager('removeLoadImage');
-        $("#loading-image-featurename").loadImager('appendImage');
+    window.fillAccessoryNameForm = function (data) {
+        $("#loading-image-accessoryname").loadImager('removeLoadImage');
+        $("#loading-image-accessoryname").loadImager('appendImage');
 
         document.getElementById("txt-featurename-bo").value = data.StoreState;
         document.getElementById("txt-featurename-sm").value = data.StoreCity;
 
-        $("#loading-image-featurename").loadImager('removeLoadImage');
+        $("#loading-image-accessoryname").loadImager('removeLoadImage');
 
         tab_active()
 

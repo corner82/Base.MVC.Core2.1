@@ -42,6 +42,17 @@ $(document).ready(function () {
 
     $('#activityForm').validationEngine();
 
+    $('#activity-datepicker').datepicker({
+        //autoclose: true,
+        locale: langCode,
+        format: 'yyyy/mm/dd'
+    });
+
+    $('#activity-tracking-datepicker').datepicker({
+        //autoclose: true,
+        locale: langCode,
+        format: 'yyyy/mm/dd'
+    });
 
     var cbdata_customer = [
         {
@@ -542,7 +553,7 @@ $(document).ready(function () {
         $("#loading-image-activity").loadImager('removeLoadImage');
         $("#loading-image-activity").loadImager('appendImage');
 
-        document.getElementById("txt-activity-name").value = data.Employee;
+        //document.getElementById("txt-activity-name").value = data.Employee;
     
         $("#loading-image-activity").loadImager('removeLoadImage');
 

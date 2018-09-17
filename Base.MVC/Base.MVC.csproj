@@ -41,6 +41,9 @@
     <Content Update="Views\Deal\Add.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Sys\Body.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Sys\Branch.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
