@@ -32,6 +32,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\BuybackTradeback\BuybackQuota.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\BuybackTradeback\BuybackTradebackMatrix.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -41,7 +44,7 @@
     <Content Update="Views\Deal\Add.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Views\Sys\Body.cshtml">
+    <Content Update="Views\Demo\Treelistdeneme.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Sys\Branch.cshtml">
