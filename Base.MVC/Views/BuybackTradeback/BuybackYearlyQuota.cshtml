@@ -25,17 +25,16 @@
     <link rel="stylesheet" href="~/adm/plugins/validationEngine/validationEngine.jquery.css" type="text/css" />
 
     <!-- tagCabin css -->
-    <!--
-         <link href="~/adm/plugins/zeyn/tag-cabin/tag-cabin.css" rel="stylesheet" type="text/css" />
-    -->
+    <link href="~/adm/plugins/zeyn/tag-cabin/tag-cabin.css" rel="stylesheet" type="text/css" />
+
     <link rel="stylesheet" href="~/adm/dist/css/AdminLTE.css" type="text/css" />
 }
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 
-      <!-- Breadcrumb-->
-     @Html.Partial("~/Views/Shared/AdminBreadCrumbPartial.cshtml")
+    <!-- Breadcrumb-->
+    @Html.Partial("~/Views/Shared/AdminBreadCrumbPartial.cshtml")
 
     <!-- Main content -->
     <section class="content">
@@ -48,7 +47,7 @@
                 <div class="box box-info">
                     <div class="box-header">
                         <i class="fa fa-comments-o"></i>
-                        <h3 class="box-title">Total Number of Employes Form</h3>
+                        <h3 class="box-title"><span lang="en">Buyback yearly quota form</span></h3>
 
                         <div class="box-tools pull-right">
                             <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -56,66 +55,67 @@
                         </div>
                     </div>
                     <div class="box-body">
-                        <form id='brandForm' method="get">
-                            <div class="row" id="loading-image-tnofemployes">
+                        <form id='buybackYearlyQuotaForm' method="get">
+                            <div class="row" id="loadingImage_buybackYearlyQuota">
+                                
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Total Number of Employes name:</label>
+                                        <label><span lang="en">Quota year</span></label>
+                                        <div class="" id="ajax_DdslickQuotaYear">
+                                            <div id="loadingImage_DdslickQuotaYear" class="input-group zeyn-load-imager">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <div id="ddslickQuotaYear" class="form-control"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span lang="en">Quota limit</span></label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
-                                                <i class="fa fa-user"></i>
+                                                <i class="fa fa-map-pin"></i>
                                             </div>
-                                            <input type="text" class="form-control validate[required]" placeholder="Total Number of Employes Name" id="txt-tnofemployes-name">
+                                            <input type="number" class="form-control validate[required]" placeholder="Price" id="txt-BbQuotaYear-limit">
                                         </div>
                                     </div>
                                 </div>
                                 <!-- /.col -->
 
                                 <div class="col-md-6">
-                                </div>
-
-                                <!-- /.col -->
+                                </div><!-- /.col -->
                             </div>
-                            <div class="box-footer clearfix no-border">
-                                <div class="box-footer">
-                                    <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-tnofemployes-clear" onclick="resetBrandForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                    <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-tnofemployes-save" onclick="insertBrandWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
-                                </div>
+                            <div class="box-footer">
+                                <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-clear" onclick="resetBuybackQuotaYearForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-save" onclick="insertBuybackQuotaYearWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
                             </div>
                         </form>
 
-                    </div>
-                </div>
+                        <div class="box box-info">
+                            <div class="box-header">
+                                <i class="fa fa-comments-o"></i>
+                                <h3 class="box-title"><span lang="en">BuyBack yearly quota list</span></h3>
 
-            </section><!-- /.Left col -->
+                                <div class="box-tools pull-right">
+                                    <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                    <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                                </div>
+                            </div>
 
-        </div><!-- /.row (main row) -->
-        <!-- Main row -->
-        <div class="row">
-            <!-- Left col -->
-            <section class="col-lg-12 connectedSortable">
-
-                <div class="box box-info">
-                    <div class="box-header">
-                        <i class="fa fa-comments-o"></i>
-                        <h3 class="box-title">Total Number of Employes List</h3>
-
-                        <div class="box-tools pull-right">
-                            <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                            <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                            <div class="box-body" id="loadingImage_DdslickBuybackQuotaYearGrid">
+                                <div id="gridContainer_BuybackQuotaYear"></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="box-body" id="loading-image-tnofemployesGrid">
-                        <div id="gridContainer_tnofemployes"></div>
-                    </div>
                 </div>
 
             </section><!-- /.Left col -->
 
         </div><!-- /.row (main row) -->
 
-    </section><!-- /.content -->
 
+    </section><!-- /.content -->
+    <!-- Main content -->
 </div><!-- /.content-wrapper -->
 
 @section javascriptsPageSpecs {
@@ -141,10 +141,10 @@
     <script src="~/adm/dist/js/app.js" type="text/javascript"></script>
 
     <!--  ddslick -->
-    <!--
-        <script src="~/adm/plugins/bootstrap-select-ddslick/js/ddslick.js"></script>
-        <script src="~/adm/plugins/zeyn/tag-cabin/tag-cabin.js"></script>
-    -->
+    <script src="~/adm/plugins/bootstrap-select-ddslick/js/ddslick.js"></script>
+    <script src="~/adm/plugins/zeyn/tag-cabin/tag-cabin.js"></script>
+
+
     <!-- devexpress datagrid -->
     <script src="~/adm/plugins/jszip/dist/jszip.min.js"></script>
     <!-- <script>window.jQuery || document.write(decodeURIComponent('%3Cscript src="js/jquery.min.js"%3E%3C/script%3E'))</script>-->
@@ -155,7 +155,7 @@
     <script src="@ViewBag.defaultDevExLangPath"></script>
 
 
-    <script src="~/adm/dist/js/pages/sys/tnofemployes.js" type="text/javascript"></script>
+    <script src="~/adm/dist/js/pages/buyback-tradeback/buybackYearlyQuota.js" type="text/javascript"></script>
 
     <script>
         $(document).ready(function () {

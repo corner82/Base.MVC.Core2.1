@@ -66,44 +66,33 @@
                         </div>
                     </div>
                     <div class="box-body">
-                         <form id='TradebackTerrainForm' method="get">
-                         <div class="row" id="loading-image-cstInfo">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Tradeback Terrain:</label>
-                                    <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-external-link"></i>
+                        <form id='TradebackTerrainForm' method="get">
+                            <div class="row" id="loading-image-cstInfo">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Tradeback Terrain:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-external-link"></i>
+                                            </div>
+                                            <input type="text" class="form-control validate[required]" placeholder="Tradeback Terrain" id="txt-TradebackTerrain-name">
                                         </div>
-                                        <input type="text" class="form-control validate[required]" placeholder="Tradeback Terrain" id="txt-TradebackTerrain-name">
                                     </div>
                                 </div>
-                            </div>
-                            <!-- /.col -->
-            
-                            <div class="col-md-6">
-                            </div>
+                                <!-- /.col -->
 
-                            <!-- /.col -->
-                         </div>
-                         <div class="box-footer clearfix no-border">
-                            <table class="table text-center">
-                                <tbody>
-                                <tr>
-                                    <td width="75%">
-                                        &nbsp;
-                                    </td>
-                                    <td>
-                                        <button type="reset" class="btn btn-block btn-primary btn-lg" id="btn-TradebackTerrain-clear" onclick="resetTradebackTerrainForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                    </td>
-                                    <td>
-                                        <button type="submit" class="btn btn-block btn-primary btn-lg" id="btn-TradebackTerrain-save" onclick="insertTradebackTerrainWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                         </div>
-                         </form>
+                                <div class="col-md-6">
+                                </div>
+
+                                <!-- /.col -->
+                            </div>
+                            <div class="box-footer clearfix no-border">
+                                <div class="box-footer">
+                                    <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-tradebackterrain-clear" onclick="resetTradebackTerrainForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                    <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-tradebackterrain-save" onclick="inserttTradebackTerrainWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                </div>
+                            </div>
+                        </form>
                     
                     </div>
                 </div>

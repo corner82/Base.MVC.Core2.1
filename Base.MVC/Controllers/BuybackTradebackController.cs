@@ -36,5 +36,20 @@ namespace Base.MVC.Controllers
             return View();
         }
 
+        public async Task<IActionResult> BuybackMonthlyQuota()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> BuybackYearlyQuota()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> BuybackReturn()
+        {
+            return View();
+        }
+
     }
 }
