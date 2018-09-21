@@ -74,7 +74,7 @@ namespace Base.MVC
             services.AddDbContext<CustomIdentityDbContext>(options =>
                             //options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))
                             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")
-                            //, b => b.MigrationsAssembly("Miya.Core.Entities.Identity")
+                            , b => b.MigrationsAssembly("Base.MVC")
 
                             )
             );
@@ -112,6 +112,7 @@ namespace Base.MVC
             {
                 options.InstanceName = Configuration.GetConnectionString("RedisInstanceName");
                 options.Configuration = Configuration.GetConnectionString("RedisServer");
+              
             }
             );
 
