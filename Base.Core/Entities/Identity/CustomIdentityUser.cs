@@ -9,6 +9,8 @@ namespace Base.Core.Entities.Identity
 {
     public class CustomIdentityUser : IdentityUser
     {
+        public int RootId { get; set; }
+
         //public string UserName { get; set; }
         //public string Email { get; set; }
         public static explicit operator CustomIdentityUser(ClaimsPrincipal v)

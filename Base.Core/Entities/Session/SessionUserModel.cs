@@ -18,5 +18,6 @@ namespace Base.Core.Entities.Session
         public string UserAgent { get; set; }
         public List<SessionUserClaimModel> UserClaims { get; set; }
         //public List<Claim> RoleClaims { get; set; }
+        public int RootID { get; set; }
     }
 }

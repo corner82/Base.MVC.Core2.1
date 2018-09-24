@@ -174,10 +174,12 @@ namespace Base.MVC.Controllers
                         //UserAgent = Convert.ToBase64String(Encoding.UTF8.GetBytes( _deviceResolver.UserAgent.ToString()))
                         //UserAgent = _deviceResolver.UserAgent.ToString()
                         UserAgent = "",
+                        //RootID = user.RootId
                     };
                     HttpContext.Session.Set("CurrentUser", sessionUser);
                     var ff = JsonConvert.SerializeObject(user);
                     await _distributedCache.SetStringAsync(user.ConcurrencyStamp, JsonConvert.SerializeObject(sessionUser));
+                    await _distributedCache.SetStringAsync("TestKey", "Test Key value");
                     var userTest = JsonConvert.DeserializeObject<SessionUserModel>(await _distributedCache.GetStringAsync(user.ConcurrencyStamp));
 
                 }

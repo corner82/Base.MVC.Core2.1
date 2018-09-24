@@ -15,26 +15,26 @@ $(document).ready(function () {
         actionButtonLabel: 'İşleme devam et'
     });
 
-/*
-* Buyback Monthly Quota LoadImager
-* @author Ceydacan Seyrek
-* @since 17/09/2018
-*/
-//to Buyback Monthly Quota form
+    /*
+    * Buyback Monthly Quota LoadImager
+    * @author Ceydacan Seyrek
+    * @since 17/09/2018
+    */
+    //to Buyback Monthly Quota form
     $("#loadingImage_buybackMonthlyQuota").loadImager();
     $("#loadingImage_DdslickVehicleModel").loadImager();
     $("#loadingImage_DdslickQuotaYear").loadImager();
     $("#loadingImage_DdslickQuotaMonth").loadImager();
 
-//to Buyback Monthly Quota form grid loading-image
-$("#loadingImage_DdslickBuybackQuotaMonthGrid").loadImager();
+    //to Buyback Monthly Quota form grid loading-image
+    $("#loadingImage_DdslickBuybackQuotaMonthGrid").loadImager();
 
     var langCode = $("#langCode").val();
     //alert(langCode);
 
     var cbdata_country = [{}];
 
-//VehicleModel
+    //VehicleModel
     var cbdata_VehicleModel = [
         {
             text: window.lang.translate('Please select') + "...",
@@ -62,12 +62,17 @@ $("#loadingImage_DdslickBuybackQuotaMonthGrid").loadImager();
     $("#loadingImage_DdslickVehicleModel").loadImager('appendImage');
 
     var ajaxACLResources_VehicleModel = $('#ajax_DdslickVehicleModel').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        //proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        //data: {
+        //    url: '1'
+        //    //pk: $("#pk").val()
+        //}
+        proxy: 'https://91.93.128.181/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php',
         data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
+            url: 'pkVehicleAppTypesDdList_sysvehicleapptypes',
+            language_code: 'en',
+            pk: 'GsZVzEYe50uGgNM'//$("#pk").val()
+        }//https://91.93.128.181/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkVehicleCkdCbuDdList_sysvehicleckdcbu&language_code=en&pk=GsZVzEYe50uGgNM
     });
 
     ajaxACLResources_VehicleModel.ajaxCallWidget({
@@ -81,13 +86,21 @@ $("#loadingImage_DdslickBuybackQuotaMonthGrid").loadImager();
             dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
         },
         onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
+            var data = $.parseJSON(data);
+            data.splice(0, 1,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
 
             $('#ddslickVehicleModel').ddslick({
                 //height: 150,
-                data: cbdata_VehicleModel,
+                data: data, //cbdata_VehicleModel,
                 width: '100%',
-
+                //selectText: "Select your preferred social network",
+                searchText: window.lang.translate('Search'),
+                defaultSelectedIndex: 0,
+                search: true,
+                //multiSelect: true,
+                //tagBox: 'tag-container',
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
 
@@ -108,9 +121,9 @@ $("#loadingImage_DdslickBuybackQuotaMonthGrid").loadImager();
         },
     })
     ajaxACLResources_VehicleModel.ajaxCallWidget('call');
-//VehicleModel end
+    //VehicleModel end
 
-//Quota Year
+    //Quota Year
     var cbdata_quotaYear = [
         {
             text: window.lang.translate('Please select') + "...",
@@ -184,9 +197,9 @@ $("#loadingImage_DdslickBuybackQuotaMonthGrid").loadImager();
         },
     })
     ajaxACLResources_QuotaYear.ajaxCallWidget('call');
-//Quota Year End
-    
-//Quota Month
+    //Quota Year End
+
+    //Quota Month
     var cbdata_quotaMonth = [
         {
             text: window.lang.translate('Please select') + "...",
@@ -305,7 +318,7 @@ $("#loadingImage_DdslickBuybackQuotaMonthGrid").loadImager();
         },
     })
     ajaxACLResources_QuotaMonth.ajaxCallWidget('call');
-//Quota Month End
+    //Quota Month End
 
 
     /* devexgrid */
@@ -457,17 +470,17 @@ $("#loadingImage_DdslickBuybackQuotaMonthGrid").loadImager();
     }
 
 
- /**
- * Buyback Monthly Quota Form
- * @author Ceydacan Seyrek
- * @since 17/09/2018
- */
+    /**
+    * Buyback Monthly Quota Form
+    * @author Ceydacan Seyrek
+    * @since 17/09/2018
+    */
 
     window.insertBuybackMonthlyQuota = function () {
         $("#loadingImage_buybackMonthlyQuota").loadImager('removeLoadImage');
         $("#loadingImage_buybackMonthlyQuota").loadImager('appendImage');
 
-       // var cst_purchaselastupdate = $('#txt-location-name').val();
+        // var cst_purchaselastupdate = $('#txt-location-name').val();
 
         var aj = $(window).ajaxCall({
             proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
@@ -534,11 +547,11 @@ $("#loadingImage_DdslickBuybackQuotaMonthGrid").loadImager();
         })
         aj.ajaxCall('call');
     }
-/**
-* reset Buyback Monthly Quota Form
-* @author Ceydacan Seyrek
-* @since 10/09/2018
-*/
+    /**
+    * reset Buyback Monthly Quota Form
+    * @author Ceydacan Seyrek
+    * @since 10/09/2018
+    */
 
     window.resetBuybackQuotaMonthForm = function () {
         $("#loadingImage_buybackMonthlyQuota").loadImager('removeLoadImage');
@@ -555,11 +568,11 @@ $("#loadingImage_DdslickBuybackQuotaMonthGrid").loadImager();
     }
 
 
-/**
-* insert Buyback Monthly Quota Form Wrapper
-* @author Ceydacan Seyrek
-* @since 17/09/2018
-*/
+    /**
+    * insert Buyback Monthly Quota Form Wrapper
+    * @author Ceydacan Seyrek
+    * @since 17/09/2018
+    */
 
     window.insertBuybackQuotaMonthWrapper = function (e) {
         e.preventDefault();
@@ -572,11 +585,11 @@ $("#loadingImage_DdslickBuybackQuotaMonthGrid").loadImager();
     }
 
 
-/**
-* Fill Buyback Monthly Quota Form form
-* @author Ceydacan Seyrek
-* @since 17/09/2018
-*/
+    /**
+    * Fill Buyback Monthly Quota Form form
+    * @author Ceydacan Seyrek
+    * @since 17/09/2018
+    */
 
     window.fillBuybackMonthlyQuotaForm = function (data) {
         $("#loadingImage_buybackMonthlyQuota").loadImager('removeLoadImage');
