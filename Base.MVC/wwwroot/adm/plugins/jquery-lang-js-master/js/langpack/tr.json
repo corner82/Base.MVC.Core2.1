@@ -323,7 +323,32 @@
 	"Mileage per annum (km)":"Yıllık kilometre (km)",
 	"Months":"Ay",	
 	"Price":"Fiyat",
-	"BuyBack/TradeBack list":"BuyBack/TradeBack listesi"
+	"BuyBack/TradeBack list":"BuyBack/TradeBack listesi",
+	"Buyback yearly quota form":"Buyback yıllık kota formu",
+	"Quota year":"Kota yılı",
+	"Quota limit":"Kota limiti",
+	"BuyBack yearly quota list":"Yıllık buyback kota listesi",
+	"Buyback monthly quota form":"Buyback aylık kota formu",
+	"Quota month":"Kota ayı",
+	"BuyBack monthly quota list":"Aylık buyback kota listesi",
+	"Buyback vehicle return form":"Buyback araç dönüş formu",	
+	"Buyback deal list":"Buyback deal listesi",
+	"Buyback deal detail information":"Buyback deal detay bilgileri",
+	"Deal number":"Deal numarası",
+	"Deal date":"Deal tarihi",
+	"Vehicle":"Araç",
+	"All vehicle return":"Tüm araçlar dönecek mi",
+	"Yes":"Evet",
+	"No":"Hayır",
+	"Other":"Diğer",
+	"Vehicle return":"Araç dönecek mi",	
+	"Explanation":"",
+	"Attachment":"Dosya Ekleme",
+	"BuyBack vehicle list":"Buyback araç listesi",
+	"Tradeback vehicle return form":"Tradeback araç dönüş formu",
+	"Tradeback deal list":"Tradeback deal listesi",
+	"Tradeback deal detail information":"Tradeback deal detay bilgileri",
+	"Tradeback vehicle list":"Tradeback araç listesi"
   }
 	
 }

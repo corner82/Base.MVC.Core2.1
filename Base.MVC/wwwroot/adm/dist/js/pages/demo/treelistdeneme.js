@@ -325,7 +325,7 @@ $(document).ready(function () {
 * 14/07/2016
 */
     $('#tt_tree_menu2').tree({
-        url: 'https://manservices.man.com.tr/SlimProxyBoot.php?url=pkFillRolesTree_sysAclRoles&pk=tT0OmN5qQ*w4fU2' + '&language_code=' + $("#langCode").val(),
+        url: 'https://manservices.man.com.tr/SlimProxyBoot.php?url=pkFillResourceGroups_sysAclResources&pk=7.NJK0hgNKnNg*M&language_code=en',
         //url: 'https://proxy.codebase_v2.com/SlimProxyBoot.php?url=pkFillRolesTree_sysAclRoles&pk=tT0OmN5qQ*w4fU2' + $("#pk").val() + '&language_code=' + $("#langCode").val(),
         //https://manservices.man.com.tr/SlimProxyBoot.php?url=pkFillRolesTree_sysAclRoles&pk=tT0OmN5qQ*w4fU2&language_code=en
         method: 'get',
@@ -347,4 +347,9 @@ $(document).ready(function () {
 
 
 });
+
+
+
+
+
 

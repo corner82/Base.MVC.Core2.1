@@ -1,7 +1,7 @@
 ﻿/*
-* Buyback Return Form
+* Tradeback Return Form
 * @author Ceydacan Seyrek
-* @since 10/09/2018
+* @since 24/09/2018
 */
 $(document).ready(function () {
 
@@ -18,18 +18,18 @@ $(document).ready(function () {
     var expText = "";
 
 /*
-* Buyback Return LoadImager
+* Tradeback Return LoadImager
 * @author Ceydacan Seyrek
-* @since 10/09/2018
+* @since 24/09/2018
 */
-//to Buyback Return form
-    $("#loadingImage_BbReturnInfo").loadImager();
+//to Tradeback Return form
+    $("#loadingImage_tbReturnInfo").loadImager();
     $("#loadingImage_DdslickReturn").loadImager();
 
 
-//to Buyback Return form grid loading-image
-    $("#loadingImage_DdslickBuybackReturnDealGrid").loadImager();
-    $("#loadingImage_DdslickBuybackVehicleList").loadImager();
+//to Tradeback Return form grid loading-image
+    $("#loadingImage_DdslickTradebackReturnDealGrid").loadImager();
+    $("#loadingImage_DdslickTradebackVehicleList").loadImager();
 
     var tab_active = function () {
         //Update & View Mode
@@ -57,8 +57,8 @@ $(document).ready(function () {
 
     tab_disable();
 
-    $('#dealBuybackReturnForm').validationEngine();
-    $('#buybackReturnVehicleInfoForm').validationEngine();
+    $('#dealTradebackReturnForm').validationEngine();
+    $('#tradebackReturnVehicleInfoForm').validationEngine();
 
     var langCode = $("#langCode").val();
     //alert(langCode);
@@ -123,20 +123,20 @@ $(document).ready(function () {
                     if (selectedData.selectedData.value > 0) {
                         expText = selectedData.selectedData.text;
                         if (expText == 'No, it won’t return') {
-                            document.getElementById("txt-bbreturn-explanation").disabled = false;
-                            document.getElementById("txt-bbreturn-file").disabled = true;
+                            document.getElementById("txt-tbreturn-explanation").disabled = false;
+                            document.getElementById("txt-tbreturn-file").disabled = true;
                         }
                         else if (expText == 'No customer wants extension') {
-                            document.getElementById("txt-bbreturn-explanation").disabled = false;
-                            document.getElementById("txt-bbreturn-file").disabled = true;
+                            document.getElementById("txt-tbreturn-explanation").disabled = false;
+                            document.getElementById("txt-tbreturn-file").disabled = true;
                         }
                         else if (expText == 'Yes, it will return') {
-                            document.getElementById("txt-bbreturn-explanation").disabled = true;
-                            document.getElementById("txt-bbreturn-file").disabled = false;
+                            document.getElementById("txt-tbreturn-explanation").disabled = true;
+                            document.getElementById("txt-tbreturn-file").disabled = false;
                         }
                         else {
-                            document.getElementById("txt-bbreturn-explanation").disabled = true;
-                            document.getElementById("txt-bbreturn-file").disabled = true;
+                            document.getElementById("txt-tbreturn-explanation").disabled = true;
+                            document.getElementById("txt-tbreturn-file").disabled = true;
                         }
                     }
                 }
@@ -194,7 +194,7 @@ $(document).ready(function () {
     DevExpress.localization.locale(langCode);
 
 
-    $("#gridContainer_buybackDealList").dxDataGrid({
+    $("#gridContainer_tradebackDealList").dxDataGrid({
 
         showColumnLines: true,
 
@@ -223,7 +223,7 @@ $(document).ready(function () {
 
         "export": {
             enabled: true,
-            fileName: "buybackReturn"
+            fileName: "tradebackReturn"
         },
 
         grouping: {
@@ -278,12 +278,12 @@ $(document).ready(function () {
         onSelectionChanged: function (selectedItems) {
             var data = selectedItems.selectedRowsData[0];
             if (data) {
-                fillBbreturnForm(data);
+                fillTbreturnForm(data);
             }
         }
     });
 
-    $("#gridContainer_buybackVehicleList").dxDataGrid({
+    $("#gridContainer_tradebackVehicleList").dxDataGrid({
 
         showColumnLines: true,
 
@@ -312,7 +312,7 @@ $(document).ready(function () {
 
         "export": {
             enabled: true,
-            fileName: "buybackVehicle"
+            fileName: "TradebackVehicle"
         },
 
         grouping: {
@@ -379,7 +379,7 @@ $(document).ready(function () {
         onSelectionChanged: function (selectedItems) {
             var data = selectedItems.selectedRowsData[0];
             if (data) {
-                fillVehicleBuybackForm(data);
+                fillVehicleTradebackForm(data);
             }
         }
     });
@@ -393,14 +393,14 @@ $(document).ready(function () {
 
 
  /**
- * Buyback Return
+ * Tradeback Return
  * @author Ceydacan Seyrek
  * @since 10/09/2018
  */
 
-    window.insertBbreturn = function () {
-        $("#loadingImage_BbReturnInfo").loadImager('removeLoadImage');
-        $("#loadingImage_BbReturnInfo").loadImager('appendImage');
+    window.insertTbreturn = function () {
+        $("#loadingImage_tbReturnInfo").loadImager('removeLoadImage');
+        $("#loadingImage_tbReturnInfo").loadImager('appendImage');
 
        // var cst_purchaselastupdate = $('#txt-location-name').val();
 
@@ -409,52 +409,52 @@ $(document).ready(function () {
             data: {
                 url: 'pkInsert_sysbbTbInfo',
 
-                name: bbreturn_name,
+                name: tbreturn_name,
                 pk: $("#pk").val()
             }
         })
         aj.ajaxCall({
             onError: function (event, textStatus, errorThrown) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Buyback return Ekleme İşlemi Başarısız...',
-                    'Buyback return Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
+                dm.dangerMessage('show', 'Tradeback return Ekleme İşlemi Başarısız...',
+                    'Tradeback return Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
                 console.error('"pkInsert_sysbbTbInfo" servis hatası->' + textStatus);
-                $("#loadingImage_BbReturnInfo").loadImager('removeLoadImage');
+                $("#loadingImage_TbReturnInfo").loadImager('removeLoadImage');
             },
             onSuccess: function (event, data) {
                 console.log(data);
                 var data = data;
                 sm.successMessage({
                     onShown: function (event, data) {
-                        $('#buybackReturnVehicleInfoForm')[0].reset();
+                        $('#tradebackReturnVehicleInfoForm')[0].reset();
 
-                        $("#loadingImage_BbReturnInfo").loadImager('removeLoadImage');
+                        $("#loadingImage_tbReturnInfo").loadImager('removeLoadImage');
 
                     }
                 });
-                sm.successMessage('show', 'Buyback return kayıt işlemi başarılı...',
-                    'Buyback return kayıt işlemini gerçekleştirniz... ',
+                sm.successMessage('show', 'Tradeback return kayıt işlemi başarılı...',
+                    'Tradeback return kayıt işlemini gerçekleştirniz... ',
                     data);
-                $("#loadingImage_BbReturnInfo").loadImager('removeLoadImage');
+                $("#loadingImage_tbReturnInfo").loadImager('removeLoadImage');
 
             },
             onErrorDataNull: function (event, data) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Buyback return Kayıt İşlemi Başarısız...',
-                    'Buyback return kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
+                dm.dangerMessage('show', 'Tradeback return Kayıt İşlemi Başarısız...',
+                    'Tradeback return kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysbbTbInfo" servis datası boştur!!');
-                $("#loadingImage_BbReturnInfo").loadImager('removeLoadImage');
+                $("#loadingImage_tbReturnInfo").loadImager('removeLoadImage');
             },
             onErrorMessage: function (event, data) {
                 dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Buyback return İşlemi Başarısız...',
-                    'Buyback return kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
+                dm.dangerMessage('show', 'Tradeback return İşlemi Başarısız...',
+                    'Tradeback return kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysbbTbInfo" servis datası boştur!!');
-                $("#loadingImage_BbReturnInfo").loadImager('removeLoadImage');
+                $("#loadingImage_tbReturnInfo").loadImager('removeLoadImage');
             },
             onError23503: function (event, data) {
                 dm.dangerMessage('Error23503');
-                $("#loadingImage_BbReturnInfo").loadImager('removeLoadImage');
+                $("#loadingImage_tbReturnInfo").loadImager('removeLoadImage');
             },
             onError23505: function (event, data) {
                 dm.dangerMessage({
@@ -462,65 +462,65 @@ $(document).ready(function () {
                         $("#loading-imagelocation").loadImager('removeLoadImage');
                     }
                 });
-                dm.dangerMessage('show', 'Buyback return İşlemi Başarısız...',
-                    'Aynı isim ile Buyback return  kaydı yapılmıştır, yeni bir Buyback return kaydı deneyiniz... ');
-                $("#loadingImage_BbReturnInfo").loadImager('removeLoadImage');
+                dm.dangerMessage('show', 'Tradeback return İşlemi Başarısız...',
+                    'Aynı isim ile Tradeback return  kaydı yapılmıştır, yeni bir Tradeback return kaydı deneyiniz... ');
+                $("#loadingImage_tbReturnInfo").loadImager('removeLoadImage');
             }
         })
         aj.ajaxCall('call');
     }
 /**
-* reset Buyback Return Form
+* reset Tradeback Return Form
 * @author Ceydacan Seyrek
-* @since 10/09/2018
+* @since 24/09/2018
 */
 
-    window.resetBbreturnForm = function () {
-        $("#loadingImage_BbReturnInfo").loadImager('removeLoadImage');
-        $("#loadingImage_BbReturnInfo").loadImager('appendImage');
+    window.resetTbreturnForm = function () {
+        $("#loadingImage_tbReturnInfo").loadImager('removeLoadImage');
+        $("#loadingImage_tbReturnInfo").loadImager('appendImage');
 
-        $('#buybackReturnVehicleInfoForm').validationEngine('hide');
+        $('#tradebackReturnVehicleInfoForm').validationEngine('hide');
         $('#ddslickReturn').ddslick('select', { index: String(0) });
 
-        $("#loadingImage_BbReturnInfo").loadImager('removeLoadImage');
+        $("#loadingImage_tbReturnInfo").loadImager('removeLoadImage');
 
         return false;
     }
 
 
 /**
-* insert Buyback Return Wrapper
+* insert Tradeback Return Wrapper
 * @author Ceydacan Seyrek
-* @since 10/09/2018
+* @since 24/09/2018
 */
 
-    window.insertBbreturnWrapper = function (e) {
+    window.insertTbreturnWrapper = function (e) {
         e.preventDefault();
 
-        if ($("#buybackReturnVehicleInfoForm").validationEngine('validate')) {
+        if ($("#tradebackReturnVehicleInfoForm").validationEngine('validate')) {
 
-            insertBbreturn();
+            insertTbreturn();
         }
         return false;
     }
 
 
 /**
-* Fill Buyback Return form
+* Fill Tradeback Return form
 * @author Ceydacan Seyrek
-* @since 10/09/2018
+* @since 24/09/2018
 */
 
-    window.fillBbreturnForm = function (data) {
-        $("#loadingImage_BbReturnInfo").loadImager('removeLoadImage');
-        $("#loadingImage_BbReturnInfo").loadImager('appendImage');
+    window.fillTbreturnForm = function (data) {
+        $("#loadingImage_tbReturnInfo").loadImager('removeLoadImage');
+        $("#loadingImage_tbReturnInfo").loadImager('appendImage');
 
-        //document.getElementById("txt-bbreturn-price").value = data.SaleAmount;
-        document.getElementById("txt-bbreturn-dealNo").value = data.SaleAmount;
-        document.getElementById("txt-bbreturn-dealDate").value = data.OrderDate;
+        //document.getElementById("txt-Tbreturn-price").value = data.SaleAmount;
+        document.getElementById("txt-tbreturn-dealNo").value = data.SaleAmount;
+        document.getElementById("txt-tbreturn-dealDate").value = data.OrderDate;
         
 
-        $("#loadingImage_BbReturnInfo").loadImager('removeLoadImage');
+        $("#loadingImage_tbReturnInfo").loadImager('removeLoadImage');
         $('#ddslickReturn').ddslick('select', { index: 2 });
 
         tab_active();
@@ -529,17 +529,17 @@ $(document).ready(function () {
 
 
 
-    window.fillVehicleBuybackForm = function (data) {
-        $("#loadingImage_BbReturnInfo").loadImager('removeLoadImage');
-        $("#loadingImage_BbReturnInfo").loadImager('appendImage');
+    window.fillVehicleTradebackForm = function (data) {
+        $("#loadingImage_tbReturnInfo").loadImager('removeLoadImage');
+        $("#loadingImage_tbReturnInfo").loadImager('appendImage');
 
-        //document.getElementById("txt-bbreturn-price").value = data.SaleAmount;
-        //document.getElementById("txt-bbreturn-dealNo").value = data.SaleAmount;
-        //document.getElementById("txt-bbreturn-dealDate").value = data.OrderDate;
+        //document.getElementById("txt-tbreturn-price").value = data.SaleAmount;
+        //document.getElementById("txt-tbreturn-dealNo").value = data.SaleAmount;
+        //document.getElementById("txt-tbreturn - dealDate").value = data.OrderDate;
 
-        $("#loadingImage_BbReturnInfo").loadImager('removeLoadImage');
+        $("#loadingImage_tbReturnInfo").loadImager('removeLoadImage');
         $('#ddslickReturn').ddslick('select', { index: 3 });
-        document.getElementById("txt-bbreturn-vehicle").value = 'WAGP21ZZ2FT022928';
+        document.getElementById("txt-tbreturn-vehicle").value = 'WAGP21ZZ2FT022928';
 
         tab_active();
         return false;

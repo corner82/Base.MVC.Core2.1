@@ -47,7 +47,7 @@
                 <div class="box box-info">
                     <div class="box-header">
                         <i class="fa fa-comments-o"></i>
-                        <h3 class="box-title"><span lang="en">Buyback vehicle return form</span></h3>
+                        <h3 class="box-title"><span lang="en">Tradeback vehicle return form</span></h3>
 
                         <div class="box-tools pull-right">
                             <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -58,26 +58,26 @@
 
                         <div class="nav-tabs-custom">
                             <ul class="nav nav-tabs pull-right">
-                                <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true"><span lang="en">Buyback deal list</span></a></li>
-                                <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false" class="disable" disabled=""><span lang="en">Buyback deal detail information</span></a></li>
+                                <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true"><span lang="en">Tradeback deal list</span></a></li>
+                                <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false" class="disable" disabled=""><span lang="en">Tradeback deal detail information</span></a></li>
 
                                 <li class="pull-left header"><i class="fa fa-th"></i></li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tab_1">
-                                        <form id='dealBuybackReturnForm' method="get">
+                                        <form id='dealTradebackReturnForm' method="get">
                                             <div class="box box-info">
-                                                    <div class="box-body" id="loadingImage_DdslickBuybackReturnDealGrid">
-                                                        <div id="gridContainer_buybackDealList"></div>
+                                                    <div class="box-body" id="loadingImage_DdslickTradebackReturnDealGrid">
+                                                        <div id="gridContainer_tradebackDealList"></div>
                                                     </div>
                                             </div>
                                         </form>
                                     </div>
 
                                     <div class="tab-pane" id="tab_2">
-                                        <form id='buybackReturnVehicleInfoForm' method="get">
-                                            <div class="row" id="loadingImage_BbReturnInfo">
+                                        <form id='tradebackReturnVehicleInfoForm' method="get">
+                                            <div class="row" id="loadingImage_tbReturnInfo">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label><span lang="en">Deal number</span></label>
@@ -85,7 +85,7 @@
                                                             <div class="input-group-addon">
                                                                 <i class="fa fa-copyright"></i>
                                                             </div>
-                                                            <input type="text" class="form-control validate[required]" placeholder="Deal number" id="txt-bbreturn-dealNo" disabled>
+                                                            <input type="text" class="form-control validate[required]" placeholder="Deal number" id="txt-tbreturn-dealNo" disabled>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -94,7 +94,7 @@
                                                             <div class="input-group-addon">
                                                                 <i class="fa fa-copyright"></i>
                                                             </div>
-                                                            <input type="text" class="form-control validate[required]" placeholder="Deal date" id="txt-bbreturn-dealDate" disabled>
+                                                            <input type="text" class="form-control validate[required]" placeholder="Deal date" id="txt-tbreturn-dealDate" disabled>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -103,15 +103,15 @@
                                                             <div class="input-group-addon">
                                                                 <i class="fa fa-copyright"></i>
                                                             </div>
-                                                            <input type="text" class="form-control validate[required]" placeholder="Deal date" id="txt-bbreturn-vehicle" disabled>
+                                                            <input type="text" class="form-control validate[required]" placeholder="Deal date" id="txt-tbreturn-vehicle" disabled>
                                                         </div>
                                                     </div>
                                                     <div>
                                                         <div class="input-group">
                                                             <label><span lang="en">All veicle return</span></label><br>
-                                                            <input type="radio" name="rd-bbreturn-allReturn" value="yes"><span lang="en">Yes</span><br>
-                                                            <input type="radio" name="rd-bbreturn-allReturn" value="no"><span lang="en">No</span><br>
-                                                            <input type="radio" name="rd-bbreturn-allReturn" value="other"><span lang="en"> Other</span>
+                                                            <input type="radio" name="rd-tbreturn-allReturn" value="yes"><span lang="en">Yes</span><br>
+                                                            <input type="radio" name="rd-tbreturn-allReturn" value="no"><span lang="en">No</span><br>
+                                                            <input type="radio" name="rd-tbreturn-allReturn" value="other"><span lang="en"> Other</span>
                                                         </div>
                                                     </div>
 
@@ -138,7 +138,7 @@
                                                             <div class="input-group-addon">
                                                                 <i class="fa fa-map-pin"></i>
                                                             </div>
-                                                            <input type="text" class="form-control validate[required]" placeholder="Explanation" id="txt-bbreturn-explanation">
+                                                            <input type="text" class="form-control validate[required]" placeholder="Explanation" id="txt-tbreturn-explanation">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -147,7 +147,7 @@
                                                             <div class="input-group-addon">
                                                                 <i class="fa fa-map-pin"></i>
                                                             </div>
-                                                            <input type="file" class="form-control validate[required]" placeholder="file upload" id="txt-bbreturn-file" lang="en">
+                                                            <input type="file" class="form-control validate[required]" placeholder="file upload" id="txt-tbreturn-file" lang="en">
                                                         </div>
                                                     </div>
 
@@ -155,14 +155,14 @@
                                             </div>
 
                                             <div class="box-footer">
-                                                <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-clear" onclick="resetBbreturnForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                                <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-save" onclick="insertBbreturnWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                                <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-clear" onclick="resetTbreturnForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                                <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-save" onclick="insertTbreturnWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
                                             </div>
 
                                             <div class="box box-info">
                                                 <div class="box-header">
                                                     <i class="fa fa-comments-o"></i>
-                                                    <h3 class="box-title"><span lang="en">BuyBack vehicle list</span></h3>
+                                                    <h3 class="box-title"><span lang="en">Tradeback vehicle list</span></h3>
 
                                                     <div class="box-tools pull-right">
                                                         <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -170,8 +170,8 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="box-body" id="loadingImage_DdslickBuybackVehicleList">
-                                                    <div id="gridContainer_buybackVehicleList"></div>
+                                                <div class="box-body" id="loadingImage_DdslickTradebackVehicleList">
+                                                    <div id="gridContainer_tradebackVehicleList"></div>
                                                 </div>
                                             </div>
                                         </form>
@@ -225,7 +225,7 @@
     <script src="@ViewBag.defaultDevExLangPath"></script>
 
 
-    <script src="~/adm/dist/js/pages/buyback-tradeback/buybackReturn.js" type="text/javascript"></script>
+    <script src="~/adm/dist/js/pages/buyback-tradeback/tradebackReturn.js" type="text/javascript"></script>
 
     <script>
         $(document).ready(function () {
