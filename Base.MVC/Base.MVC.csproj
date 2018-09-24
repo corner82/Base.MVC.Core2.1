@@ -38,6 +38,9 @@
     <Content Update="Views\BuybackTradeback\BuybackTradebackMatrix.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Customer\ActivityMngr.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Customer\Activity.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

@@ -36,6 +36,12 @@ namespace Base.MVC.Controllers
             return View();
         }
 
+        public async Task<IActionResult> ActivityMngr()
+        {
+            return View();
+        }
+
+
         public async Task<IActionResult> Activity()
         {
             return View();

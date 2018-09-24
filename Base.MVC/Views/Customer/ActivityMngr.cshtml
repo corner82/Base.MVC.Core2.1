@@ -1,0 +1,306 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Base.Core.Entities.Identity
+@inject IViewLocalizer Localizer
+@*@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet*@
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section stylesPageSpecs {
+    <!-- iCheck -->
+    <link href="~/adm/plugins/iCheck/minimal/minimal.css" rel="stylesheet" type="text/css" />
+
+    <!-- Date Picker -->
+    <link href="~/adm/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet">
+
+    <!-- devex -->
+    <link rel="stylesheet" type="text/css" href="~/adm/plugins/devextreme/css/dx.spa.css" />
+    <link rel="stylesheet" type="text/css" href="~/adm/plugins/devextreme/css/dx.common.css" />
+    <link rel="dx-theme" data-theme="generic.light" href="~/adm/plugins/devextreme/css/dx.light.css" />
+
+    <!-- validationEngine -->
+    <link rel="stylesheet" href="~/adm/plugins/validationEngine/validationEngine.jquery.css" type="text/css" />
+
+    <!-- tagCabin css -->
+    <link href="~/adm/plugins/zeyn/tag-cabin/tag-cabin.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="~/adm/dist/css/AdminLTE.css" type="text/css" />
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+     <!-- Breadcrumb-->
+     @Html.Partial("~/Views/Shared/AdminBreadCrumbPartial.cshtml")
+
+    <!-- Main content -->
+    <section class="content">
+
+        <!-- Main row -->
+        <div class="row">
+            <!-- Left col -->
+            <section class="col-lg-12 connectedSortable">
+
+                <div class="box box-info">
+                    <div class="box-header">
+                        <i class="fa fa-comments-o"></i>
+                        <h3 class="box-title">Customer Activity Form</h3>
+
+                        <div class="box-tools pull-right">
+                            <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                            <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <form id='activitForm' method="get">
+                            <div class="row" id="loading-image-activity">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label><span lang="en">Customer name</span></label>
+                                        <div class="" id="ajaxACL-customername">
+                                            <div id="loading-image-customername" class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <div id="dropdownCustomerName" class="form-control"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label><span lang="en">Customer contact person</span></label>
+                                        <div class="" id="ajaxACL-contactperson">
+                                            <div id="loading-image-contactperson" class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <div id="dropdownContactPerson" class="form-control"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label><span lang="en">Activity type</span></label>
+                                        <div class="" id="ajaxACL-activitytype">
+                                            <div id="loading-image-activitytype" class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <div id="dropdownActivityType" class="form-control"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label><span lang="en">Activity comment</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-user"></i>
+                                            </div>
+                                            <input type="text" class="form-control validate[required]" placeholder="Activity comment" id="txt-activity-comment">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label><span lang="en">Activity status</span></label>
+                                        <div class="" id="ajaxACL-activitystatus">
+                                            <div id="loading-image-activitystatus" class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <div id="dropdownActivityStatus" class="form-control"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label><span lang="en">Planed/Unplaned Activity</span></label>
+                                        <div class="" id="ajaxACL-activityplaned">
+                                            <div id="loading-image-activityplaned" class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <div id="dropdownActivityPlaned" class="form-control"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- /.col -->
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label><span lang="en">Activity date/time</span></label>
+
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input type="text" class="form-control pull-right" name="activity-datepicker" id="activity-datepicker">
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label><span lang="en">Application grup / Segment</span></label>
+                                        <div class="" id="ajaxACL-applicationgrup">
+                                            <div id="loading-image-applicationgrup" class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <div id="dropdownApplicationgrup" class="form-control"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label><span lang="en">Type of vehicle concerned</span></label>
+                                        <div class="" id="ajaxACL-concernedvehicletype">
+                                            <div id="loading-image-concernedvehicletype" class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <div id="dropdownConcernedVehicleType" class="form-control"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label><span lang="en">Note to the manager</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-user"></i>
+                                            </div>
+                                            <input type="text" class="form-control validate[required]" placeholder="Note to the Manager" id="txt-note-manager">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label><span lang="en">Activity tracking date/time</span></label>
+
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input type="text" class="form-control pull-right" name="activity-tracking-datepicker" id="activity-tracking-datepicker">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label><span lang="en">Activity tracking type</span></label>
+                                        <div class="" id="ajaxACL-activitytrackingtype">
+                                            <div id="loading-image-activitytrackingtype" class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <div id="dropdownActivitytrackingtype" class="form-control"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- /.col -->
+                            </div>
+                            <div class="box-footer clearfix no-border">
+                                <table class="table text-center">
+                                    <tbody>
+                                        <tr>
+                                            <td width="75%">
+                                                &nbsp;
+                                            </td>
+                                            <td>
+                                                <button type="reset" class="btn btn-block btn-primary btn-md" id="btn-brand-clear" onclick="resetActivityForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                            </td>
+                                            <td>
+                                                <button type="submit" class="btn btn-block btn-primary btn-md" id="btn-brand-save" onclick="insertActivityWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+            </section><!-- /.Left col -->
+
+        </div><!-- /.row (main row) -->
+        <!-- Main row -->
+        <div class="row">
+            <!-- Left col -->
+            <section class="col-lg-12 connectedSortable">
+
+                <div class="box box-info">
+                    <div class="box-header">
+                        <i class="fa fa-comments-o"></i>
+                        <h3 class="box-title">Customer Activity List</h3>
+
+                        <div class="box-tools pull-right">
+                            <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                            <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                        </div>
+                    </div>
+                    <div class="box-body" id="loading-image-activityGrid">
+                        <div id="gridContainer_activity"></div>
+                    </div>
+                </div>
+
+            </section><!-- /.Left col -->
+
+        </div><!-- /.row (main row) -->
+
+    </section><!-- /.content -->
+ 
+</div><!-- /.content-wrapper -->
+
+@section javascriptsPageSpecs {
+
+    <!-- easyui implementation -->
+    <script src="~/adm/plugins/jquery-easyui-1.3.3/locale/easyui-lang-tr.js" type="text/javascript"></script>
+
+    <!-- datepicker -->
+    <script src="~/adm/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.js" type="text/javascript"></script>
+
+    <!-- Slimscroll -->
+    <script src="~/adm/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <!-- FastClick -->
+    <!-- iCheck 1.0.1 -->
+    <script src="~/adm/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+    <script src='~/adm/plugins/fastclick/fastclick.min.js'></script>
+
+    <!-- zeyn plugins -->
+    <script src="~/adm/plugins/zeyn/exPlugs.js" type="text/javascript"></script>
+
+    <!-- AdminLTE App -->
+    <!--<script src="dist/js/app.min.js" type="text/javascript"></script>-->
+    <script src="~/adm/dist/js/app.js" type="text/javascript"></script>
+
+    <!--  ddslick -->
+    <script src="~/adm/plugins/bootstrap-select-ddslick/js/ddslick.js"></script>
+    <script src="~/adm/plugins/zeyn/tag-cabin/tag-cabin.js"></script>
+
+
+    <!-- devexpress datagrid -->
+    <script src="~/adm/plugins/jszip/dist/jszip.min.js"></script>
+    <!-- <script>window.jQuery || document.write(decodeURIComponent('%3Cscript src="js/jquery.min.js"%3E%3C/script%3E'))</script>-->
+    <script src="~/adm/plugins/devextreme/js/dx.all.js"></script>
+    <script src="https://unpkg.com/devextreme-intl/dist/devextreme-intl.min.js"></script>
+
+    <!--devexpress datagrid lang call js variable _Layout ViewData callback ViewBag -->
+    <script src="@ViewBag.defaultDevExLangPath"></script>
+
+
+    <script src="~/adm/dist/js/pages/customer/activitymngr.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function () {
+
+
+        });
+    </script>
+}
