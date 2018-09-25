@@ -49,7 +49,7 @@ $(document).ready(function () {
 
     $('#vehicleForm').validationEngine();
 
-
+/*
     var cbdata = [
         {
             text: window.lang.translate('Please select') + "...",
@@ -68,16 +68,17 @@ $(document).ready(function () {
         }
     ];
 
-
+*/
 
     $('#loading-image-vehiclekittype').loadImager('removeLoadImage');
     $("#loading-image-vehiclekittype").loadImager('appendImage');
 
     var ajaxACLResources_vehiclekittype = $('#ajaxACL-vehiclekittype').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        proxy: 'https://localhost:44317/Vehicle/sysvehicleconfigtypes',
         data: {
-            url: '1'
+            url: '1',
             //pk: $("#pk").val()
+            dataType: 'json'
         }
 
     });
@@ -92,8 +93,8 @@ $(document).ready(function () {
             });
             dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
         },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
+        onSuccess: function (event, cbdata_vehiclekittype) {
+            var cbdata = $.parseJSON(cbdata_vehiclekittype);
 
             $('#dropdownVehicleKitType').ddslick({
                 //height: 150,
@@ -889,7 +890,7 @@ $(document).ready(function () {
         },
     })
     ajaxACLResources_stockinfo.ajaxCallWidget('call');
-
+/*
     var cbdata_app = [
         {
             text: window.lang.translate('Please select') + "...",
@@ -917,12 +918,12 @@ $(document).ready(function () {
             selected: false
         }
     ];
-
+*/
     $('#loading-image-applicationtype').loadImager('removeLoadImage');
     $("#loading-image-applicationtype").loadImager('appendImage');
 
     var ajaxACLResources_applicationtype = $('#ajaxACL-applicationtype').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        proxy: 'https://localhost:44317/Vehicle/sysvehicleapptypes',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -940,12 +941,12 @@ $(document).ready(function () {
             });
             dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
         },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
+        onSuccess: function (event, cbdata_app) {
+            var cbdata = $.parseJSON(cbdata_app);
 
             $('#dropdownApplicationType').ddslick({
                 //height: 150,
-                data: cbdata_app,
+                data: cbdata,
                 width: '100%',
 
                 onSelected: function (selectedData) {
