@@ -34,12 +34,13 @@ $(document).ready(function () {
     //to warranty form grid loading-image
     $("#loading-image-warrantyGrid").loadImager();
     var UniqueCode = "";
+    var VhType = "";
     var Model = "";
     var Mil1 = "";
     var Mil2 = "";
     var WrType = "";
     var WrRM = "";
-
+    var VhTypeId = ""; 
 
     var langCode = $("#langCode").val();
     //alert(langCode);
@@ -76,98 +77,6 @@ $(document).ready(function () {
     var cbdata_model = [{}];
     var cbdata_vhmodel = [{}];
 
-    var cbdata = [
-        {
-            text: window.lang.translate('Please select') + "...",
-            value: 1,
-            selected: true
-        },
-        {
-            text: "TGS",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "TGX",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "CLA",
-            value: 4,
-            selected: false
-        }
-    ];
-
-    var cbdata2 = [
-        {
-            text: window.lang.translate('Please select') + "...",
-            value: 1,
-            selected: true
-        },
-        {
-            text: "TGS4X2",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "CLA6X4",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "TGX4X4 H/D",
-            value: 4,
-            selected: false
-        }
-    ];
-
-    var cbdataWrName = [
-        {
-            text: window.lang.translate('Please select') + "...",
-            value: 1,
-            selected: true
-        },
-        {
-            text: "TGS Extended Warranties_Combination",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "CLA Extended Warranties",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "TGX Extended Warranties_ Extended Scope (Heavy Duty)",
-            value: 4,
-            selected: false
-        }
-    ];
-
-    var cbdataWrType = [
-        {
-            text: window.lang.translate('Please select') + "...",
-            value: 1,
-            selected: true
-        },
-        {
-            text: "Driveline",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "Combination",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "Entire Vehicle",
-            value: 4,
-            selected: false
-        }
-    ];
-
     var cbdataWrMil = [
         {
             text: window.lang.translate('Please select') + "...",
@@ -194,17 +103,17 @@ $(document).ready(function () {
     var cbdataWrRM = [
         {
             text: window.lang.translate('Please select') + "...",
-            value: 1,
+            value: 3,
             selected: true
         },
         {
             text: "Yes",
-            value: 2,
+            value: 1,
             selected: false
         },
         {
             text: "No",
-            value: 3,
+            value: 0,
             selected: false
         },
     ];
@@ -215,10 +124,11 @@ $(document).ready(function () {
     $("#loading-image-modelName").loadImager('appendImage');
 
     var ajaxACLResources_modelName = $('#ajaxACL-modelName').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        proxy: '/Warranty/sysvehiclegroups',
         data: {
-            url: '1'
+            url: '1',
             //pk: $("#pk").val()
+            dataType: 'json'
         }
 
     });
@@ -233,8 +143,9 @@ $(document).ready(function () {
             });
             dm.dangerMessage('show', window.lang.translate('Servis  bulunamamýþtýr...'), window.lang.translate('Servis  bulunamamýþtýr...'));
         },
-        onSuccess: function (event, data) {
+        onSuccess: function (event, cbdata_vehicletype) {
             //var data = $.parseJSON(cbdata);
+            var cbdata = $.parseJSON(cbdata_vehicletype);
 
             $('#dropdownModelName').ddslick({
                 //height: 150,
@@ -269,10 +180,11 @@ $(document).ready(function () {
     $("#loading-image-model").loadImager('appendImage');
 
     var ajaxACLResources_model = $('#ajaxACL-model').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        proxy: '/Warranty/sysvehiclegroups',
         data: {
-            url: '1'
+            url: '1',
             //pk: $("#pk").val()
+            dataType: 'json'
         }
 
     });
@@ -287,8 +199,9 @@ $(document).ready(function () {
             });
             dm.dangerMessage('show', window.lang.translate('Servis  bulunamamýþtýr...'), window.lang.translate('Servis  bulunamamýþtýr...'));
         },
-        onSuccess: function (event, data) {
+        onSuccess: function (event, cbdata_vehicletype) {
             //var data = $.parseJSON(cbdata);
+            var cbdata = $.parseJSON(cbdata_vehicletype);
 
             $('#dropdownModel').ddslick({
                 //height: 150,
@@ -296,11 +209,15 @@ $(document).ready(function () {
                 width: '100%',
 
                 onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
+                    if (selectedData.selectedData.value > 1) {
+                        VhType = selectedData.selectedData.text;
+                        VhTypeId = selectedData.selectedData.value;
                     }
+                    else {
+                        VhType = "";
+                    }
+                    document.getElementById("txt-wrUnique-name").value = VhType + Model + Mil1 + Mil2 + WrType + WrRM;
                 }
-
             });
 
             $("#loading-image-model").loadImager('removeLoadImage');
@@ -323,10 +240,11 @@ $(document).ready(function () {
     $("#loading-image-vhModel").loadImager('appendImage');
 
     var ajaxACLResources_vhModel = $('#ajaxACL-vhModel').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        proxy: '/Warranty/sysvehicleconfigtypes',
         data: {
-            url: '1'
+            url: '1',
             //pk: $("#pk").val()
+            dataType: 'json'
         }
 
     });
@@ -341,22 +259,24 @@ $(document).ready(function () {
             });
             dm.dangerMessage('show', window.lang.translate('Servis  bulunamamýþtýr...'), window.lang.translate('Servis  bulunamamýþtýr...'));
         },
-        onSuccess: function (event, data) {
+        onSuccess: function (event, cbdata_vehicleModel) {
             //var data = $.parseJSON(cbdata);
+            var cbdataVm = $.parseJSON(cbdata_vehicleModel);
 
             $('#dropdownVhModel').ddslick({
                 //height: 150,
-                data: cbdata2,
+                data: cbdataVm,
                 width: '100%',
 
                  onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 1) {
                         Model = selectedData.selectedData.text;
+
                     }
                     else {
                         Model = "";
                     }
-                    document.getElementById("txt-wrUnique-name").value = Model + Mil1 + Mil2 + WrType + WrRM;
+                     document.getElementById("txt-wrUnique-name").value = VhType + Model + Mil1 + Mil2 + WrType + WrRM;
                 }
             });
 
@@ -380,10 +300,9 @@ $(document).ready(function () {
     $("#loading-image-wrName").loadImager('appendImage');
 
     var ajaxACLResources_wrName = $('#ajaxACL-wrName').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        proxy: '/Warranty/syswarranties',
         data: {
-            url: '1'
-            //pk: $("#pk").val()
+            test : "test string",
         }
 
     });
@@ -398,8 +317,9 @@ $(document).ready(function () {
             });
             dm.dangerMessage('show', window.lang.translate('Servis  bulunamamýþtýr...'), window.lang.translate('Servis  bulunamamýþtýr...'));
         },
-        onSuccess: function (event, data) {
+        onSuccess: function (event, cbdata_wrName) {
             //var data = $.parseJSON(cbdata);
+            var cbdataWrName = $.parseJSON(cbdata_wrName);
 
             $('#dropdownWrName').ddslick({
                 //height: 150,
@@ -433,10 +353,11 @@ $(document).ready(function () {
     $("#loading-image-wrType").loadImager('appendImage');
 
     var ajaxACLResources_wrType = $('#ajaxACL-wrType').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        proxy: '/Warranty/syswarrantytypes',
         data: {
-            url: '1'
+            url: '1',
             //pk: $("#pk").val()
+            dataType: 'json'
         }
 
     });
@@ -449,11 +370,11 @@ $(document).ready(function () {
                     $('#loading-image-wrType').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamýþtýr...'), window.lang.translate('Servis  bulunamamýþtýr...'));
+            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamýþtýr...' ), window.lang.translate('Servis  bulunamamýþtýr...'));
         },
-        onSuccess: function (event, data) {
+        onSuccess: function (event, cbdata_wrType) {
             //var data = $.parseJSON(cbdata);
-
+            var cbdataWrType = $.parseJSON(cbdata_wrType);
             $('#dropdownWrType').ddslick({
                 //height: 150,
                 data: cbdataWrType,
@@ -466,7 +387,7 @@ $(document).ready(function () {
                     else {
                         WrType = "";
                     }
-                    document.getElementById("txt-wrUnique-name").value = Model + Mil1 + Mil2 + WrType + WrRM;
+                    document.getElementById("txt-wrUnique-name").value = VhType + Model + Mil1 + Mil2 + WrType + WrRM;
                 }
             });
 
@@ -523,7 +444,7 @@ $(document).ready(function () {
                     else {
                         Mil1 = "";
                     }
-                    document.getElementById("txt-wrUnique-name").value = Model + Mil1 + Mil2 + WrType + WrRM;
+                    document.getElementById("txt-wrUnique-name").value = VhType + Model + Mil1 + Mil2 + WrType + WrRM;
                 }
             });
 
@@ -580,7 +501,7 @@ $(document).ready(function () {
                     else {
                         Mil2 = "";
                     }
-                    document.getElementById("txt-wrUnique-name").value = Model + Mil1 + Mil2 + WrType + WrRM;
+                    document.getElementById("txt-wrUnique-name").value = VhType + Model + Mil1 + Mil2 + WrType + WrRM;
                 }
             });
 
@@ -637,7 +558,7 @@ $(document).ready(function () {
                     else {
                         WrRM = "";
                     }
-                    document.getElementById("txt-wrUnique-name").value = Model + Mil1 + Mil2 + WrType + WrRM;
+                    document.getElementById("txt-wrUnique-name").value = VhType + Model + Mil1 + Mil2 + WrType + WrRM;
                 }
             });
 
