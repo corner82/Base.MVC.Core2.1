@@ -178,12 +178,12 @@ $(document).ready(function () {
         var vehiclemodel_name = $('#txt-vehiclemodel-name').val();
 
         var aj = $(window).ajaxCall({
-            proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
+            //proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
             data: {
-                url: 'pkInsert_sysvehiclemodel',
+                url: 'https://localhost:44317/Home/Index',
                 
-                name: vehiclemodel_name,
-                pk: $("#pk").val()
+            //    name: vehiclemodel_name,
+            //    pk: $("#pk").val()
             }
         })
         aj.ajaxCall({

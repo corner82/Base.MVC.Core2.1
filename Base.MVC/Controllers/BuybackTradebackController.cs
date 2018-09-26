@@ -11,6 +11,11 @@ using Base.Filters.Auth.Hmac;
 using Base.Filters.Log.RabbitMQ;
 using Base.Filters.Session;
 using Newtonsoft.Json;
+using Base.Core.Http.HttpRequest.Concrete;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+
 
 namespace Base.MVC.Controllers
 {
@@ -50,6 +55,31 @@ namespace Base.MVC.Controllers
         {
             return View();
         }
+
+        public async Task<IActionResult> TradebackReturn()
+        {
+            return View();
+        }
+
+        //Servis düzenlemeleri Araç tipi
+        public async Task<string> sysvehiclegroups()
+        {
+            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
+
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            //_hmacManager.test();
+            //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
+            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkVehicleGroupsDdList_sysvehiclegroups&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
+
+
+
+
 
     }
 }

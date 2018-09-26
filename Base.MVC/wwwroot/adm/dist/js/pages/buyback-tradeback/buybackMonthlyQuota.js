@@ -32,47 +32,45 @@ $(document).ready(function () {
     var langCode = $("#langCode").val();
     //alert(langCode);
 
-    var cbdata_country = [{}];
+    $('#buybackMonthlyQuotaForm').validationEngine();
+
+    //var cbdata_country = [{}];
 
     //VehicleModel
-    var cbdata_VehicleModel = [
-        {
-            text: window.lang.translate('Please select') + "...",
-            value: 1,
-            selected: true
-        },
-        {
-            text: "TGS",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "CLA",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "TGX",
-            value: 4,
-            selected: false
-        }
-    ];
+    //var cbdata_VehicleModel = [
+    //    {
+    //        text: window.lang.translate('Please select') + "...",
+    //        value: 1,
+    //        selected: true
+    //    },
+    //    {
+    //        text: "TGS",
+    //        value: 2,
+    //        selected: false
+    //    },
+    //    {
+    //        text: "CLA",
+    //        value: 3,
+    //        selected: false
+    //    },
+    //    {
+    //        text: "TGX",
+    //        value: 4,
+    //        selected: false
+    //    }
+    //];
 
     $('#loadingImage_DdslickVehicleModel').loadImager('removeLoadImage');
     $("#loadingImage_DdslickVehicleModel").loadImager('appendImage');
 
     var ajaxACLResources_VehicleModel = $('#ajax_DdslickVehicleModel').ajaxCallWidget({
-        //proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        //data: {
-        //    url: '1'
-        //    //pk: $("#pk").val()
-        //}
-        proxy: 'https://91.93.128.181/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php',
+        proxy: '/Vehicle/sysvehiclegroups',
         data: {
-            url: 'pkVehicleAppTypesDdList_sysvehicleapptypes',
-            language_code: 'en',
-            pk: 'GsZVzEYe50uGgNM'//$("#pk").val()
-        }//https://91.93.128.181/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkVehicleCkdCbuDdList_sysvehicleckdcbu&language_code=en&pk=GsZVzEYe50uGgNM
+            url: '1',
+            //pk: $("#pk").val()
+            dataType: 'json'
+        }
+
     });
 
     ajaxACLResources_VehicleModel.ajaxCallWidget({
@@ -85,28 +83,25 @@ $(document).ready(function () {
             });
             dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
         },
-        onSuccess: function (event, data) {
-            var data = $.parseJSON(data);
-            data.splice(0, 1,
-                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-            );
+        onSuccess: function (event, cbdata_vehicletype) {
+            var cbdata = $.parseJSON(cbdata_vehicletype);
+            
+            //data.splice(0, 1,
+            //    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            //);
 
             $('#ddslickVehicleModel').ddslick({
                 //height: 150,
-                data: data, //cbdata_VehicleModel,
+                data: cbdata,
                 width: '100%',
-                //selectText: "Select your preferred social network",
-                searchText: window.lang.translate('Search'),
-                defaultSelectedIndex: 0,
-                search: true,
-                //multiSelect: true,
-                //tagBox: 'tag-container',
+
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
-
+                        
                     }
                 }
-            });
+
+             });
 
             $("#loadingImage_DdslickVehicleModel").loadImager('removeLoadImage');
         },

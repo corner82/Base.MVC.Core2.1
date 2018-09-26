@@ -70,7 +70,7 @@
                                                 <div class="row" id="loading-image-warrantyName">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label><span lang="en">Vehicle model name</span></label>
+                                                            <label><span lang="en">Vehicle type name</span></label>
 
                                                             <div class="" id="ajaxACL-modelName">
                                                                 <div id="loading-image-modelName" class="input-group">
@@ -162,7 +162,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label><span lang="en">Warranty Name:</span></label>
-                                                        <div class="" id="ajaxACL-wrName">
+                                                        <div class="" id="ajaxACL-wrName" >
                                                             <div id="loading-image-wrName" class="input-group">
                                                                 <div class="input-group-addon">
                                                                     <i class="fa fa-truck"></i>
@@ -186,8 +186,9 @@
                                                 <!-- /.col -->
 
                                                 <div class="col-md-6">
+
                                                     <div class="form-group">
-                                                        <label><span lang="en">Warranty mileage(1.)</span></label>
+                                                        <label><span lang="en">Warranty mileage</span></label>
                                                         <div class="" id="ajaxACL-wrMil">
                                                             <div id="loading-image-wrMil" class="input-group">
                                                                 <div class="input-group-addon">
@@ -198,13 +199,13 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label><span lang="en">Warranty mileage(2.)</span></label>
-                                                        <div class="" id="ajaxACL-wrMils">
-                                                            <div id="loading-image-wrMils" class="input-group">
+                                                        <label><span lang="en">Warranty month</span></label>
+                                                        <div class="" id="ajaxACL-wrMonth">
+                                                            <div id="loading-image-wrMonth" class="input-group">
                                                                 <div class="input-group-addon">
                                                                     <i class="fa fa-truck"></i>
                                                                 </div>
-                                                                <div id="dropdownWrMils" class="form-control validate[required]"></div>
+                                                                <div id="dropdownWrMonth" class="form-control validate[required]"></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -225,14 +226,12 @@
                                                             <div class="input-group-addon">
                                                                 <i class="fa fa-copyright"></i>
                                                             </div>
-                                                            <input type="number" class="form-control validate[required]" placeholder="Warranty Name" id="txt-wrPrice-name">
+                                                            <input type="number" class="form-control validate[required]" placeholder="Warranty Price" id="txt-wrPrice-name">
                                                         </div>
+                                                        <label><span lang="en">Warranty Package Price must be in Euros</span></label>
                                                     </div>
                                                 </div>
                                                 <!-- /.col -->
-                                                <div class="col-md-12">
-                                                    <label><span lang="en">Warranty Package Price must be in Euros</span></label>
-                                                </div>
 
                                                 <div class="box-footer">
                                                     <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-clear" onclick="resetwarrantyForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
