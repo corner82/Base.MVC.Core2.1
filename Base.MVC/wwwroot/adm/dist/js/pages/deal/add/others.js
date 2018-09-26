@@ -1,5 +1,70 @@
 $(document).ready(function () {
 
+
+
+   /* $.ajax({
+        url: '/Home/IndexGet',
+        type: 'POST',
+        data: JSON.stringify({
+            //missing brackets
+                Address1: '423 Judy Road',
+                Address2: '1001',
+                City: 'New York',
+                State: 'NY',
+                ZipCode: '10301',
+                Country: "USA"
+        }),
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) {
+            alert(data.success);
+        },
+        error: function () {
+            alert("error");
+        }
+    });*/
+
+    var ajax_PostObjectTypeParameter = $(window).ajaxCallWidget({
+        proxy: '/Home/IndexPostObjectParameter',
+        type: 'POST',
+        data: JSON.stringify({
+            //missing brackets
+            Address1: '423 Judy Road',
+            Address2: '1001',
+            City: 'New York',
+            State: 'NY',
+            ZipCode: '10301',
+            Country: "USA"
+        }),
+    });
+    ajax_PostObjectTypeParameter.ajaxCallWidget('call');
+
+
+    var ajax_PostPrimitiveTypeParameterFromHeader = $(window).ajaxCallWidget({
+        proxy: '/Home/IndexPostPrimitiveTypeParameterFromHeader',
+        headers: {
+            "myFirstHeader": "first value",
+            "MySecondHeader": "second value"
+        },
+        type: 'POST',
+    });
+    ajax_PostPrimitiveTypeParameterFromHeader.ajaxCallWidget('call');
+
+
+
+    var ajax_PostPrimitiveTypeParameter = $(window).ajaxCallWidget({
+        proxy: '/Home/IndexPostPrimitiveTypeParameter',
+        //contentType: "application/x-www-form-urlencoded",
+        type: 'POST',
+        //dataType: '*/*',
+        //data: "addressInfo=test",
+        data: JSON.stringify("www test")
+    });
+    ajax_PostPrimitiveTypeParameter.ajaxCallWidget('call');
+
+
+    
+
+
     var sm = $(window).successMessage();
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();

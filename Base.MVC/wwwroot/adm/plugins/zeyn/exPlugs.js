@@ -1568,6 +1568,8 @@
             errorUrl: null,
             type: 'GET',
             dataType: 'json',
+            contentType: 'application/json',
+            headers : null,
             async: true,
             outbounds: function (e) {
                 alert('outbounds example ajax call widget');
@@ -1591,6 +1593,8 @@
                 data: this.options.data,
                 type: this.options.type,
                 dataType: this.options.dataType,
+                contentType: this.options.contentType,
+                headers: this.options.headers,
                 async: this.options.async,
                 success: function (data, textStatus, jqXHR) {
                     //console.log(data);

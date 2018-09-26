@@ -152,6 +152,7 @@ namespace Base.MVC
             services.AddMvc()
                 .AddViewLocalization()
                 .AddDataAnnotationsLocalization();
+                //.AddXmlSerializerFormatters();
 
             services.AddScoped<AjaxSessionTimeOutAttribute>();
             services.AddScoped<HmacTokenGeneratorAttribute>();

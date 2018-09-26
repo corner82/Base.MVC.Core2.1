@@ -12,9 +12,12 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System;
+using System.Collections;
+using Base.MVC.Models.HttpRequest;
 
 namespace Base.MVC.Controllers
 {
+   
     public class HomeController : Controller
     {
 
@@ -63,6 +66,84 @@ namespace Base.MVC.Controllers
                 }
             }*/
 
+        }
+
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> IndexPostObjectParameter([FromBody] AddressInfo addressInfo)
+        {
+            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
+
+            if(ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                //_hmacManager.test();
+                //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
+                var response = await HttpClientRequestFactory.Get("https://manservices.man.com.tr/SlimProxyBoot.php?url=fillServicesDdlist_infoAfterSales&pk=zC3zCuVV2cttXP6", headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            } else
+            {
+                throw new Exception("Model satate is not valid");
+            }
+            
+        }
+
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> IndexPostPrimitiveTypeParameter([FromBody] string  addressInfo)
+        {
+            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
+            if(ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                //_hmacManager.test();
+                //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
+                var response = await HttpClientRequestFactory.Get("https://manservices.man.com.tr/SlimProxyBoot.php?url=fillServicesDdlist_infoAfterSales&pk=zC3zCuVV2cttXP6", headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            } else
+            {
+                throw new Exception("Model satate is not valid");
+            }
+            
+        }
+
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> IndexPostPrimitiveTypeParameterFromHeader([FromHeader] string myFirstHeader, [FromHeader] string mySecondHeader)
+        {
+            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
+
+            if(ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                //_hmacManager.test();
+                //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
+                var response = await HttpClientRequestFactory.Get("https://manservices.man.com.tr/SlimProxyBoot.php?url=fillServicesDdlist_infoAfterSales&pk=zC3zCuVV2cttXP6", headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model satate is not valid");
+            }
+            
         }
     }
 }
