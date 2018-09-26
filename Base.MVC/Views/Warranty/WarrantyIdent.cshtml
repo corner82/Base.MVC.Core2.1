@@ -162,7 +162,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label><span lang="en">Warranty Name:</span></label>
-                                                        <div class="" id="ajaxACL-wrName">
+                                                        <div class="" id="ajaxACL-wrName" >
                                                             <div id="loading-image-wrName" class="input-group">
                                                                 <div class="input-group-addon">
                                                                     <i class="fa fa-truck"></i>
@@ -171,11 +171,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    
-                                                </div>
-                                                <!-- /.col -->
-
-                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label><span lang="en">Warranty type</span></label>
                                                         <div class="" id="ajaxACL-wrType">
@@ -187,6 +182,11 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <!-- /.col -->
+
+                                                <div class="col-md-6">
+
                                                     <div class="form-group">
                                                         <label><span lang="en">Warranty mileage</span></label>
                                                         <div class="" id="ajaxACL-wrMil">
@@ -198,17 +198,17 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    @*<div class="form-group">
-            <label><span lang="en">Warranty mileage(2.)</span></label>
-            <div class="" id="ajaxACL-wrMils">
-                <div id="loading-image-wrMils" class="input-group">
-                    <div class="input-group-addon">
-                        <i class="fa fa-truck"></i>
-                    </div>
-                    <div id="dropdownWrMils" class="form-control validate[required]"></div>
-                </div>
-            </div>
-        </div>*@
+                                                    <div class="form-group">
+                                                        <label><span lang="en">Warranty month</span></label>
+                                                        <div class="" id="ajaxACL-wrMonth">
+                                                            <div id="loading-image-wrMonth" class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-truck"></i>
+                                                                </div>
+                                                                <div id="dropdownWrMonth" class="form-control validate[required]"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="form-group">
                                                         <label><span lang="en">Repair&maintenance</span></label>
                                                         <div class="" id="ajaxACL-rm">
@@ -220,21 +220,18 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label><span lang="en">Warranty price</span></label>
                                                         <div class="input-group">
                                                             <div class="input-group-addon">
                                                                 <i class="fa fa-copyright"></i>
                                                             </div>
-                                                            <input type="number" class="form-control validate[required]" placeholder="Warranty Name" id="txt-wrPrice-name">
+                                                            <input type="number" class="form-control validate[required]" placeholder="Warranty Price" id="txt-wrPrice-name">
                                                         </div>
+                                                        <label><span lang="en">Warranty Package Price must be in Euros</span></label>
                                                     </div>
-                                                    <label><span lang="en">Warranty Package Price must be in Euros</span></label>
                                                 </div>
+                                                <!-- /.col -->
 
                                                 <div class="box-footer">
                                                     <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-clear" onclick="resetwarrantyForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>

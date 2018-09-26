@@ -30,6 +30,8 @@ namespace Base.MVC.Controllers
             return View();
         }
 
+        [HttpGet]
+        [HttpPost]
         [SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
@@ -78,8 +80,8 @@ namespace Base.MVC.Controllers
             return data.ToString();
         }
 
-        [HttpPost]
-        public async Task<string> syswarranties([FromBody] string test)
+        //Garanti
+        public async Task<string> syswarranties()//([FromBody] string test)
         {
             // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
 
@@ -89,12 +91,13 @@ namespace Base.MVC.Controllers
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
             //_hmacManager.test();
             //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
+            //var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkUpdateAct_syswarranties&name=denneea&vehicle_group_id=8&id=5&pk=GsZVzEYe50uGgNM", headers);
             var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkWarrantiesParentsDdList_syswarranties&vehicle_group_id=8&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
                 
-        //Araç config--> 4x2, 2x2, 8x4..
+        //Garanti tipi
         public async Task<string> syswarrantytypes()
         {
             // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
