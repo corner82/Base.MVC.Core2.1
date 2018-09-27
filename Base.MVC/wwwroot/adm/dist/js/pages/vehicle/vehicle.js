@@ -75,10 +75,10 @@ $(document).ready(function () {
 
     var ajaxACLResources_vehiclekittype = $('#ajaxACL-vehiclekittype').ajaxCallWidget({
         proxy: '/Vehicle/SysVehicleCKDCBU/',
+        type: 'POST',
         data: {
             url: '1',
             //pk: $("#pk").val()
-            dataType: 'json'
         }
 
     });
@@ -162,6 +162,7 @@ $(document).ready(function () {
 
     var ajaxACLResources_vehiclemodel = $('#ajaxACL-vehiclemodel').ajaxCallWidget({
         proxy: '/Vehicle/SysVehicleGroups/',
+        type: 'POST',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -243,6 +244,7 @@ $(document).ready(function () {
 
     var ajaxACLResources_vehiclemodelgr = $('#ajaxACL-vehiclemodelgr').ajaxCallWidget({
         proxy: '/Vehicle/SysVehicleGroupTypes/',
+        type: 'POST',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -315,6 +317,7 @@ $(document).ready(function () {
 
     var ajaxACLResources_vehicletype = $('#ajaxACL-vehicletype').ajaxCallWidget({
         proxy: '/Vehicle/SysVehicleGroupTypes/',
+        type: 'POST',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -390,6 +393,7 @@ $(document).ready(function () {
 
     var ajaxACLResources_vehicletonaj = $('#ajaxACL-vehicletonaj').ajaxCallWidget({
         proxy: '/Vehicle/SysVehicleGTModels/',
+        type: 'POST',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -465,6 +469,7 @@ $(document).ready(function () {
 
     var ajaxACLResources_gvm = $('#ajaxACL-gvm').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        //type: 'POST',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -550,6 +555,7 @@ $(document).ready(function () {
 
     var ajaxACLResources_vehiclevariant = $('#ajaxACL-vehiclevariant').ajaxCallWidget({
         proxy: '/Vehicle/SysVehicleModelVariant/',
+        type: 'POST',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -630,6 +636,7 @@ $(document).ready(function () {
 
     var ajaxACLResources_config = $('#ajaxACL-config').ajaxCallWidget({
         proxy: '/Vehicle/SysVehicleConfigTypes/',
+        type: 'POST',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -708,6 +715,7 @@ $(document).ready(function () {
 
     var ajaxACLResources_cab = $('#ajaxACL-cab').ajaxCallWidget({
         proxy: '/Vehicle/SysVehicleCabTypes/',
+        type: 'POST',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -784,6 +792,7 @@ $(document).ready(function () {
 
     var ajaxACLResources_kp = $('#ajaxACL-kp').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        //type: 'POST',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -856,6 +865,7 @@ $(document).ready(function () {
 
     var ajaxACLResources_stockinfo = $('#ajaxACL-stockinfo').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        //type: 'POST',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -935,6 +945,7 @@ $(document).ready(function () {
 
     var ajaxACLResources_applicationtype = $('#ajaxACL-applicationtype').ajaxCallWidget({
         proxy: '/Vehicle/SysVehicleAppTypes/',
+        type: 'POST',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -1185,6 +1196,7 @@ $(document).ready(function () {
 
         var aj = $(window).ajaxCall({
             proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
+            type: 'POST',
             data: {
                 url: 'pkInsert_sysvehicle',
                 
