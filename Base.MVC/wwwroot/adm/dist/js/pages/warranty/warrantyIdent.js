@@ -38,6 +38,7 @@ $(document).ready(function () {
     var UniqueCode = "";
     var VhType = "";
     var Model = "";
+    var ModelId = "";
     var Mil1 = "";
     var Mil2 = "";
     var WrType = "";
@@ -159,6 +160,9 @@ $(document).ready(function () {
     $('#loading-image-model').loadImager('removeLoadImage');
     $("#loading-image-model").loadImager('appendImage');
 
+    $('#loading-image-wrName').loadImager('removeLoadImage');
+    $("#loading-image-wrName").loadImager('appendImage');
+
     var ajaxACLResources_model = $('#ajaxACL-model').ajaxCallWidget({
         proxy: '/Warranty/Sysvehiclegroups',
         data: {
@@ -191,9 +195,65 @@ $(document).ready(function () {
                 width: '100%',
 
                 onSelected: function (selectedData) {
+                            //$('#dropdownWrName').ddslick('select', { index: String(0) });
                     if (selectedData.selectedData.value > 0) {
                         VhType = selectedData.selectedData.text;
-                        VhTypeId = selectedData.selectedData.value;
+                        //VhTypeId = "vehicle_group_id=2";
+                        ModelId = selectedData.selectedData.value;
+
+                       //wrname
+                        $('#loading-image-wrName').loadImager('removeLoadImage');
+                        $("#loading-image-wrName").loadImager('appendImage');
+                        var ajaxACLResources_wrName = $('#ajaxACL-wrName').ajaxCallWidget({
+                            proxy: '/Warranty/SysWarrantyNameFilter',//'/Warranty/Syswarranties',
+                            headers: {
+                                "vehicle_group_id": ModelId//"vehicle_group_id=" + ModelId
+                            },
+                            type: 'POST',
+                        });
+
+                        ajaxACLResources_wrName.ajaxCallWidget({
+                            onError: function (event, textStatus, errorThrown) {
+
+                                dm.dangerMessage({
+                                    onShown: function () {
+                                        $('#loading-image-wrName').loadImager('removeLoadImage');
+                                    }
+                                });
+                                dm.dangerMessage('show', window.lang.translate('Servis  bulunamamýþtýr...'), window.lang.translate('Servis  bulunamamýþtýr...'));
+                            },
+                            onSuccess: function (event, cbdata_wrName) {
+                                //var data = $.parseJSON(cbdata);
+                                var cbdataWrName = $.parseJSON(cbdata_wrName);
+                                cbdataWrName.splice(0, 0,
+                                    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                                );
+                                $('#dropdownWrName').ddslick({
+                                    //height: 150,
+                                    data: cbdataWrName,
+                                    width: '100%',
+
+                                    onSelected: function (selectedData) {
+                                        if (selectedData.selectedData.value > 0) {
+
+                                        }
+                                    }
+                                });
+
+                                $("#loading-image-wrName").loadImager('removeLoadImage');
+                            },
+                            onErrorDataNull: function (event, data) {
+                                console.log("Error : " + event + " -data :" + data);
+                                dm.dangerMessage({
+                                    onShown: function () {
+                                        $('#loading-image-wrName').loadImager('removeLoadImage');
+                                    }
+                                });
+                                dm.dangerMessage('show', window.lang.translate('wrName bulunamamýþtýr...'), window.lang.translate('wrName  bulunamamýþtýr...'));
+                            },
+                        })
+                        ajaxACLResources_wrName.ajaxCallWidget('call');
+//vh Name End
                     }
                     else {
                         VhType = "";
@@ -255,7 +315,7 @@ $(document).ready(function () {
                  onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
                         Model = selectedData.selectedData.text;
-
+                        
                     }
                     else {
                         Model = "";
@@ -279,60 +339,62 @@ $(document).ready(function () {
     ajaxACLResources_vhModel.ajaxCallWidget('call');
 //vh Model End
 
-    //wrName 
-    $('#loading-image-wrName').loadImager('removeLoadImage');
-    $("#loading-image-wrName").loadImager('appendImage');
+//    //wrName 
+//    $('#loading-image-wrName').loadImager('removeLoadImage');
+//    $("#loading-image-wrName").loadImager('appendImage');
 
-    var ajaxACLResources_wrName = $('#ajaxACL-wrName').ajaxCallWidget({
-        proxy: '/Warranty/Syswarranties',
-        data: {
-            //test : "test string",
-        }
+//    var ajaxACLResources_wrName = $('#ajaxACL-wrName').ajaxCallWidget({
+//        proxy: '/Warranty/SysWarrantyNameFilter',//'/Warranty/Syswarranties',
+//        //data: {
 
-    });
+//        //    //test : "test string",
+//        //}
+//        type: 'POST',
+//        data: JSON.stringify(ModelId)
+//    });
 
-    ajaxACLResources_wrName.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
+//    ajaxACLResources_wrName.ajaxCallWidget({
+//        onError: function (event, textStatus, errorThrown) {
 
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-wrName').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamýþtýr...'), window.lang.translate('Servis  bulunamamýþtýr...'));
-        },
-        onSuccess: function (event, cbdata_wrName) {
-            //var data = $.parseJSON(cbdata);
-            var cbdataWrName = $.parseJSON(cbdata_wrName);
-            cbdataWrName.splice(0, 0,
-                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-            );
-            $('#dropdownWrName').ddslick({
-                //height: 150,
-                data: cbdataWrName,
-                width: '100%',
+//            dm.dangerMessage({
+//                onShown: function () {
+//                    $('#loading-image-wrName').loadImager('removeLoadImage');
+//                }
+//            });
+//            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamýþtýr...'), window.lang.translate('Servis  bulunamamýþtýr...'));
+//        },
+//        onSuccess: function (event, cbdata_wrName) {
+//            //var data = $.parseJSON(cbdata);
+//            var cbdataWrName = $.parseJSON(cbdata_wrName);
+//            cbdataWrName.splice(0, 0,
+//                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+//            );
+//            $('#dropdownWrName').ddslick({
+//                //height: 150,
+//                data: cbdataWrName,
+//                width: '100%',
 
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
+//                onSelected: function (selectedData) {
+//                    if (selectedData.selectedData.value > 0) {
 
-                    }
-                }
-            });
+//                    }
+//                }
+//            });
 
-            $("#loading-image-wrName").loadImager('removeLoadImage');
-        },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-wrName').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('wrName bulunamamýþtýr...'), window.lang.translate('wrName  bulunamamýþtýr...'));
-        },
-    })
-    ajaxACLResources_wrName.ajaxCallWidget('call');
-//vh Name End
+//            $("#loading-image-wrName").loadImager('removeLoadImage');
+//        },
+//        onErrorDataNull: function (event, data) {
+//            console.log("Error : " + event + " -data :" + data);
+//            dm.dangerMessage({
+//                onShown: function () {
+//                    $('#loading-image-wrName').loadImager('removeLoadImage');
+//                }
+//            });
+//            dm.dangerMessage('show', window.lang.translate('wrName bulunamamýþtýr...'), window.lang.translate('wrName  bulunamamýþtýr...'));
+//        },
+//    })
+//    ajaxACLResources_wrName.ajaxCallWidget('call');
+////vh Name End
 
     //wrType
     $('#loading-image-wrType').loadImager('removeLoadImage');
