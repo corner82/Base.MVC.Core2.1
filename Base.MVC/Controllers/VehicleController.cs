@@ -66,184 +66,198 @@ namespace Base.MVC.Controllers
             return data.ToString();
         }
 
-
-        public async Task<string> sysvehicleckdcbu()
+        /// <summary>
+        /// get vehicle CKD CBU
+        /// Vehicle kit type (CKD, CBU)
+        /// Gül Özdemir
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysVehicleCKDCBU()
         {
-            //Vehicle kit type (CKD, CBU)
-
-            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
-
             var headers = new Dictionary<string, string>();
             var tokenGenerated = HttpContext.Session.GetHmacToken();
             headers.Add("X-Hmac", tokenGenerated);
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            //_hmacManager.test();
-            //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
             var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkVehicleCkdCbuDdList_sysvehicleckdcbu&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
 
-        public async Task<string> sysvehiclegroups()
+        /// <summary>
+        /// get vehiclegroups
+        /// Vehicle Model (Groups) (CLA, TGM, TGS,...)
+        /// Gül Özdemir
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysVehicleGroups()
         {
-            //Vehicle Model (Groups) (CLA, TGM, TGS,...)
-
-            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
-
             var headers = new Dictionary<string, string>();
             var tokenGenerated = HttpContext.Session.GetHmacToken();
             headers.Add("X-Hmac", tokenGenerated);
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            //_hmacManager.test();
-            //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
             var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkVehicleGroupsDdList_sysvehiclegroups&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
 
-        public async Task<string> sysvehiclegtmodels()
+        /// <summary>
+        /// get vehicle grup tonaj models
+        /// Vehicle Model Tonaj (CLA, TGM, TGS)
+        /// Gül Özdemir
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysVehicleGTModels()
         {
-            //Vehicle Model Tonaj (CLA, TGM, TGS)
-
-            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
-
             var headers = new Dictionary<string, string>();
             var tokenGenerated = HttpContext.Session.GetHmacToken();
             headers.Add("X-Hmac", tokenGenerated);
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            //_hmacManager.test();
-            //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
             var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkVehicleGtModelsDdList_sysvehiclegtmodels&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
 
-        public async Task<string> sysvehicleconfigtypes()
+        /// <summary>
+        /// get vehicle config types
+        /// Gül Özdemir
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysVehicleConfigTypes()
         {
-            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
-
             var headers = new Dictionary<string, string>();
             var tokenGenerated = HttpContext.Session.GetHmacToken();
             headers.Add("X-Hmac", tokenGenerated);
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            //_hmacManager.test();
-            //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
             var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkVehicleConfigTypesDdList_sysvehicleconfigtypes&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
 
-        public async Task<string> sysvehicleapptypes()
+        /// <summary>
+        /// get vehicle application types
+        /// Gül Özdemir
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysVehicleAppTypes()
         {
-            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
-
+ 
             var headers = new Dictionary<string, string>();
             var tokenGenerated = HttpContext.Session.GetHmacToken();
             headers.Add("X-Hmac", tokenGenerated);
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            //_hmacManager.test();
-            //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
             var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkVehicleAppTypesDdList_sysvehicleapptypes&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
 
-        public async Task<string> sysvehiclebtobts()
+        /// <summary>
+        /// get vehicle bto/bts
+        /// Gül Özdemir
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysVehicleBTOBTS()
         {
-            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
-
             var headers = new Dictionary<string, string>();
             var tokenGenerated = HttpContext.Session.GetHmacToken();
             headers.Add("X-Hmac", tokenGenerated);
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            //_hmacManager.test();
-            //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
-            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkVehicleBtoBtsTypesDdList_sysvehiclebtobts&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+             var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkVehicleBtoBtsTypesDdList_sysvehiclebtobts&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
 
-        public async Task<string> sysvehiclecabtypes()
+        /// <summary>
+        /// get vehicle cab types
+        /// Gül Özdemir
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysVehicleCabTypes()
         {
-            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
-
             var headers = new Dictionary<string, string>();
             var tokenGenerated = HttpContext.Session.GetHmacToken();
             headers.Add("X-Hmac", tokenGenerated);
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            //_hmacManager.test();
-            //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
             var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkVehicleCapTypesDdList_sysvehiclecaptypes&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
 
-
-        public async Task<string> sysvehiclegrouptypes()
+        /// <summary>
+        /// get vehicle group types
+        /// Gül Özdemir
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysVehicleGroupTypes()
         {
-            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
-
             var headers = new Dictionary<string, string>();
             var tokenGenerated = HttpContext.Session.GetHmacToken();
             headers.Add("X-Hmac", tokenGenerated);
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            //_hmacManager.test();
-            //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
-            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkVehicleGroupTypesDdList_sysvehiclegrouptypes&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+             var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkVehicleGroupTypesDdList_sysvehiclegrouptypes&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
 
-        public async Task<string> sysvehiclemodelvariant()
+        /// <summary>
+        /// get vehicle model variant
+        /// Gül Özdemir
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysVehicleModelVariant()
         {
-            // vehicle varyant
-            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
-
             var headers = new Dictionary<string, string>();
             var tokenGenerated = HttpContext.Session.GetHmacToken();
             headers.Add("X-Hmac", tokenGenerated);
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            //_hmacManager.test();
-            //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
             var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkVehicleModelVariantsDdList_sysvehiclemodelvariants&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
 
-        public async Task<string> Index1()
-        {
-            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
-
-
-            var headers = new Dictionary<string, string>();
-            var tokenGenerated = HttpContext.Session.GetHmacToken();
-            headers.Add("X-Hmac", tokenGenerated);
-            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            //_hmacManager.test();
-            //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
-            var response = await HttpClientRequestFactory.Get("https://manservices.man.com.tr/SlimProxyBoot.php?url=fillServicesDdlist_infoAfterSales&pk=zC3zCuVV2cttXP6", headers);
-            var data = response.Content.ReadAsStringAsync().Result;
-            return data.ToString();
-            //return "test";
-
-            // aşağıdaki blok self-signed cert çağırıken kullanılabiliyor
-            /*
-            using (var httpClientHandler = new HttpClientHandler())
-            {
-                httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
-                using (var client = new HttpClient(httpClientHandler))
-                {
-                    // Make your request...
-                    client.BaseAddress = new Uri("https://proxy.codebase_v2.com/SlimProxyBoot.php?url=fillServicesDdlist_infoAfterSales&pk=ktibmGO59ym7sIc");
-                    client.DefaultRequestHeaders.Accept.Clear();
-                    client.DefaultRequestHeaders.Accept.Add(
-                        new MediaTypeWithQualityHeaderValue("application/json"));
-                    HttpResponseMessage response = await client.GetAsync("https://proxy.codebase_v2.com/SlimProxyBoot.php?url=fillServicesDdlist_infoAfterSales&pk=ktibmGO59ym7sIc");
-                    var data = response.Content.ReadAsStringAsync().Result;
-                    return data.ToString();
-                }
-            }*/
-
-        }
     }
 }

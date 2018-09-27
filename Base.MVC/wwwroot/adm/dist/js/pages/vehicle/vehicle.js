@@ -74,7 +74,7 @@ $(document).ready(function () {
     $("#loading-image-vehiclekittype").loadImager('appendImage');
 
     var ajaxACLResources_vehiclekittype = $('#ajaxACL-vehiclekittype').ajaxCallWidget({
-        proxy: '/Vehicle/sysvehicleckdcbu/',
+        proxy: '/Vehicle/SysVehicleCKDCBU/',
         data: {
             url: '1',
             //pk: $("#pk").val()
@@ -161,7 +161,7 @@ $(document).ready(function () {
     $("#loading-image-vehiclemodel").loadImager('appendImage');
 
     var ajaxACLResources_vehiclemodel = $('#ajaxACL-vehiclemodel').ajaxCallWidget({
-        proxy: '/Vehicle/sysvehiclegroups/',
+        proxy: '/Vehicle/SysVehicleGroups/',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -242,7 +242,7 @@ $(document).ready(function () {
     $("#loading-image-vehiclemodelgr").loadImager('appendImage');
 
     var ajaxACLResources_vehiclemodelgr = $('#ajaxACL-vehiclemodelgr').ajaxCallWidget({
-        proxy: '/Vehicle/sysvehiclegrouptypes/',
+        proxy: '/Vehicle/SysVehicleGroupTypes/',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -314,7 +314,7 @@ $(document).ready(function () {
     $("#loading-image-vehicletype").loadImager('appendImage');
 
     var ajaxACLResources_vehicletype = $('#ajaxACL-vehicletype').ajaxCallWidget({
-        proxy: '/Vehicle/sysvehiclegrouptypes/',
+        proxy: '/Vehicle/SysVehicleGroupTypes/',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -389,7 +389,7 @@ $(document).ready(function () {
     $("#loading-image-vehicletonaj").loadImager('appendImage');
 
     var ajaxACLResources_vehicletonaj = $('#ajaxACL-vehicletonaj').ajaxCallWidget({
-        proxy: '/Vehicle/sysvehiclegtmodels/',
+        proxy: '/Vehicle/SysVehicleGTModels/',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -549,7 +549,7 @@ $(document).ready(function () {
     $("#loading-image-vehiclevariant").loadImager('appendImage');
 
     var ajaxACLResources_vehiclevariant = $('#ajaxACL-vehiclevariant').ajaxCallWidget({
-        proxy: '/Vehicle/sysvehiclemodelvariant/',
+        proxy: '/Vehicle/SysVehicleModelVariant/',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -629,7 +629,7 @@ $(document).ready(function () {
     $("#loading-image-config").loadImager('appendImage');
 
     var ajaxACLResources_config = $('#ajaxACL-config').ajaxCallWidget({
-        proxy: '/Vehicle/sysvehicleconfigtypes/',
+        proxy: '/Vehicle/SysVehicleConfigTypes/',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -707,7 +707,7 @@ $(document).ready(function () {
     $("#loading-image-cab").loadImager('appendImage');
 
     var ajaxACLResources_cab = $('#ajaxACL-cab').ajaxCallWidget({
-        proxy: '/Vehicle/sysvehiclecabtypes/',
+        proxy: '/Vehicle/SysVehicleCabTypes/',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -934,7 +934,7 @@ $(document).ready(function () {
     $("#loading-image-applicationtype").loadImager('appendImage');
 
     var ajaxACLResources_applicationtype = $('#ajaxACL-applicationtype').ajaxCallWidget({
-        proxy: '/Vehicle/sysvehicleapptypes/',
+        proxy: '/Vehicle/SysVehicleAppTypes/',
         data: {
             url: '1'
             //pk: $("#pk").val()
