@@ -49,7 +49,7 @@ namespace Base.MVC.Controllers
         //Servis düzenlemeleri 
 
         //Araç grubu--> CLA-TGS..
-        public async Task<string> sysvehiclegroups()
+        public async Task<string> Sysvehiclegroups()
         {
             // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
 
@@ -65,7 +65,7 @@ namespace Base.MVC.Controllers
         }
 
         //Araç config--> 4x2, 2x2, 8x4..
-        public async Task<string> sysvehicleconfigtypes()
+        public async Task<string> Sysvehicleconfigtypes()
         {
             // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
 
@@ -81,7 +81,7 @@ namespace Base.MVC.Controllers
         }
 
         //Garanti
-        public async Task<string> syswarranties()//([FromBody] string test)
+        public async Task<string> Syswarranties()//([FromBody] string test)
         {
             // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
 
@@ -98,7 +98,7 @@ namespace Base.MVC.Controllers
         }
                 
         //Garanti tipi
-        public async Task<string> syswarrantytypes()
+        public async Task<string> Syswarrantytypes()
         {
             // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
 
@@ -111,8 +111,68 @@ namespace Base.MVC.Controllers
             var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkWarrantyTypesDdList_syswarrantytypes&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
+        }        
+        
+        //Garanti ay
+        public async Task<string> Sysmonths()
+        {
+            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
+
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            //_hmacManager.test();
+            //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
+            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkWarrantyMonthsDdList_sysmonths&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
         }
 
+        //Garanti km
+        public async Task<string> Sysmileages()
+        {
+            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
+
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            //_hmacManager.test();
+            //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
+            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkMileagesWarrantyDdList_sysmileages&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
+
+
+        //garanti adı dropdown filtreli deneme
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysWarrantyNameFilter([FromHeader] string vehicle_group_id)
+        {
+            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                var url = "http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkWarrantiesParentsDdList_syswarranties&language_code=en&pk=GsZVzEYe50uGgNM&vehicle_group_id=" + vehicle_group_id;
+                //_hmacManager.test();
+                //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
+                var response = await HttpClientRequestFactory.Get(url,headers);//("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkWarrantiesParentsDdList_syswarranties&language_code=en&pk=GsZVzEYe50uGgNM&vehicle_group_id=", headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model satate is not valid");
+            }
+
+        }
 
 
 

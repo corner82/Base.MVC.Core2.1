@@ -336,51 +336,11 @@
      * @author Mustafa Zeynel Dağlı
      * @since 15/08/2018
      */
-    var ddslickVehicleTypeDataBuyBack = [
-        {
-            text: 'Please select',
-            value: -1,
-            selected: true
-        },
-        {
-            text: "TGS-26-4406X4BLS-LX-ALU-EL",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "TGS-26-4406X4BLS-LX-ALU-ELX",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "TGS-16-4406X4BLS-LX-ALU-EL",
-            value: 4,
-            selected: false
-        },
-        {
-            text: "TGS-26-5406X4BLS-LX-ALU-EL",
-            value: 5,
-            selected: false
-        },
-        {
-            text: "TGX-26-5406X4BLS-LX-ALU-EL",
-            value: 5,
-            selected: false
-        },
-        {
-            text: "TGV-26-5406X4BLS-LX-ALU-EL",
-            value: 5,
-            selected: false
-        }
-    ];
     $('#loadingImage_DdslickVehicleTypeBuyBack').loadImager('removeLoadImage');
     $("#loadingImage_DdslickVehicleTypeBuyBack").loadImager('appendImage');
     var ajax_DdslickVehicleTypeBuyBack = $('#ajax_DdslickVehicleTypeBuyBack').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
+        proxy: '/Vehicle/SysVehicleTypesForBuybackInDeal/',
+        type : 'POST'
 
     });
     ajax_DdslickVehicleTypeBuyBack.ajaxCallWidget({
@@ -391,14 +351,15 @@
                     $('#loadingImage_DdslickVehicleTypeBuyBack').loadImager('removeLoadImage');
                 }
             });
-            $(window).dangerMessage('show', window.lang.translate('Vehicle type data not found...'), window.lang.translate('Vehiicle type data not found...'));
+            $(window).dangerMessage('show', window.lang.translate('Vehicle type data not found'), window.lang.translate('Vehiicle type data not found...'));
         },
         onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
+            var data = $.parseJSON(data);
 
             $('#ddslickVehicleTypeBuyBack').ddslick({
                 //height: 150,
-                data: ddslickVehicleTypeDataBuyBack,
+                //data: ddslickVehicleTypeDataBuyBack,
+                data: data,
                 width: '100%',
 
                 onSelected: function (selectedData) {
