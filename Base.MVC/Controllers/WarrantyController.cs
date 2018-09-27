@@ -49,7 +49,11 @@ namespace Base.MVC.Controllers
         //Servis düzenlemeleri 
 
         //Araç grubu--> CLA-TGS..
-        public async Task<string> Sysvehiclegroups()
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysVehicleGroups()
         {
             // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
 
@@ -65,7 +69,11 @@ namespace Base.MVC.Controllers
         }
 
         //Araç config--> 4x2, 2x2, 8x4..
-        public async Task<string> Sysvehicleconfigtypes()
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysVehicleConfigTypes()
         {
             // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
 
@@ -81,7 +89,11 @@ namespace Base.MVC.Controllers
         }
 
         //Garanti
-        public async Task<string> Syswarranties()//([FromBody] string test)
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysWarranties()//([FromBody] string test)
         {
             // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
 
@@ -96,9 +108,13 @@ namespace Base.MVC.Controllers
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
-                
+
         //Garanti tipi
-        public async Task<string> Syswarrantytypes()
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysWarrantyTypes()
         {
             // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
 
@@ -111,10 +127,14 @@ namespace Base.MVC.Controllers
             var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkWarrantyTypesDdList_syswarrantytypes&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
-        }        
-        
+        }
+
         //Garanti ay
-        public async Task<string> Sysmonths()
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysMonths()
         {
             // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
 
@@ -130,7 +150,11 @@ namespace Base.MVC.Controllers
         }
 
         //Garanti km
-        public async Task<string> Sysmileages()
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysMileages()
         {
             // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
 
@@ -146,6 +170,10 @@ namespace Base.MVC.Controllers
         }
 
         //Garanti name grid
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
         public async Task<string> SysWarrantiesGrid()
         {
             // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
@@ -162,6 +190,10 @@ namespace Base.MVC.Controllers
         }
 
         //Garanti grid
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
         public async Task<string> SysWarrantiesTypeGrid()
         {
             // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.

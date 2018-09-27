@@ -82,13 +82,8 @@ $(document).ready(function () {
     $("#loading-image-modelName").loadImager('appendImage');
 
     var ajaxACLResources_modelName = $('#ajaxACL-modelName').ajaxCallWidget({
-        proxy: '/Warranty/Sysvehiclegroups',
-        data: {
-            url: '1',
-            //pk: $("#pk").val()
-            dataType: 'json'
-        }
-
+        proxy: '/Warranty/SysVehicleGroups',
+        type: 'POST'
     });
 
     ajaxACLResources_modelName.ajaxCallWidget({
@@ -262,13 +257,8 @@ $(document).ready(function () {
     $("#loading-image-vhModel").loadImager('appendImage');
 
     var ajaxACLResources_vhModel = $('#ajaxACL-vhModel').ajaxCallWidget({
-        proxy: '/Warranty/Sysvehicleconfigtypes',
-        data: {
-            url: '1',
-            //pk: $("#pk").val()
-            dataType: 'json'
-        }
-
+        proxy: '/Warranty/SysVehicleConfigTypes',
+        type: 'POST'
     });
 
     ajaxACLResources_vhModel.ajaxCallWidget({
@@ -383,13 +373,8 @@ $(document).ready(function () {
     $("#loading-image-wrType").loadImager('appendImage');
 
     var ajaxACLResources_wrType = $('#ajaxACL-wrType').ajaxCallWidget({
-        proxy: '/Warranty/Syswarrantytypes',
-        data: {
-            url: '1',
-            //pk: $("#pk").val()
-            dataType: 'json'
-        }
-
+        proxy: '/Warranty/SysWarrantyTypes',
+        type: 'POST'
     });
 
     ajaxACLResources_wrType.ajaxCallWidget({
@@ -444,13 +429,8 @@ $(document).ready(function () {
     $("#loading-image-wrMil").loadImager('appendImage');
 
     var ajaxACLResources_wrMil = $('#ajaxACL-wrMil').ajaxCallWidget({
-        proxy: '/Warranty/Sysmileages',
-        data: {
-            url: '1',
-            //pk: $("#pk").val()
-             dataType: 'json'
-        }
-
+        proxy: '/Warranty/SysMileages',
+        type: 'POST'
     });
 
     ajaxACLResources_wrMil.ajaxCallWidget({
@@ -505,12 +485,8 @@ $(document).ready(function () {
     $("#loading-image-wrMonth").loadImager('appendImage');
 
     var ajaxACLResources_wrMonth = $('#ajaxACL-wrMonth').ajaxCallWidget({
-        proxy: '/Warranty/Sysmonths',
-                data: {
-                    url: '1',
-                    //pk: $("#pk").val()
-                    dataType: 'json'
-                }
+        proxy: '/Warranty/SysMonths',
+        type: 'POST'
     });
 
     ajaxACLResources_wrMonth.ajaxCallWidget({
@@ -636,6 +612,7 @@ $(document).ready(function () {
             $.ajax({
                 url: '/Warranty/SysWarrantiesGrid',
                 dataType: "json",
+                type: 'POST',
                 data: args,
                 success: function (result) {
                     deferred.resolve(result.items, { totalCount: result.totalCount });
@@ -668,6 +645,7 @@ $(document).ready(function () {
             $.ajax({
                 url: '/Warranty/SysWarrantiesTypeGrid',
                 dataType: "json",
+                type: 'POST',
                 data: args,
                 success: function (result) {
                     deferred.resolve(result.items, { totalCount: result.totalCount });
