@@ -510,6 +510,7 @@ $(document).ready(function () {
         },
     })
     ajaxACLResources_gvm.ajaxCallWidget('call');
+/*
     //T/T, F/C, TIP, MIX, Tipper
     var cbdata_variant = [
         {
@@ -543,12 +544,12 @@ $(document).ready(function () {
             selected: false
         }
     ];
-
+*/
     $('#loading-image-vehiclevariant').loadImager('removeLoadImage');
     $("#loading-image-vehiclevariant").loadImager('appendImage');
 
     var ajaxACLResources_vehiclevariant = $('#ajaxACL-vehiclevariant').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        proxy: '/Vehicle/sysvehiclemodelvariant/',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -566,8 +567,8 @@ $(document).ready(function () {
             });
             dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
         },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
+        onSuccess: function (event, datavariant) {
+            var cbdata_variant = $.parseJSON(datavariant);
 
             $('#dropdownVehicleVariant').ddslick({
                 //height: 150,
