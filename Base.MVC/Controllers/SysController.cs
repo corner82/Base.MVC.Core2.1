@@ -11,6 +11,7 @@ using Base.Filters.Auth.Hmac;
 using Base.Filters.Log.RabbitMQ;
 using Base.Filters.Session;
 using Newtonsoft.Json;
+using Base.Core.Http.HttpRequest.Concrete;
 
 namespace Base.MVC.Controllers
 {
