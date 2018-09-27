@@ -376,11 +376,8 @@
     $('#loadingImage_DdslickVehicleTypeBuyBack').loadImager('removeLoadImage');
     $("#loadingImage_DdslickVehicleTypeBuyBack").loadImager('appendImage');
     var ajax_DdslickVehicleTypeBuyBack = $('#ajax_DdslickVehicleTypeBuyBack').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
+        proxy: '/Vehicle/SysVehicleTypesForBuybackInDeal/',
+        type : 'POST'
 
     });
     ajax_DdslickVehicleTypeBuyBack.ajaxCallWidget({
@@ -394,11 +391,12 @@
             $(window).dangerMessage('show', window.lang.translate('Vehicle type data not found...'), window.lang.translate('Vehiicle type data not found...'));
         },
         onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
+            var data = $.parseJSON(data);
 
             $('#ddslickVehicleTypeBuyBack').ddslick({
                 //height: 150,
-                data: ddslickVehicleTypeDataBuyBack,
+                //data: ddslickVehicleTypeDataBuyBack,
+                data: data,
                 width: '100%',
 
                 onSelected: function (selectedData) {
