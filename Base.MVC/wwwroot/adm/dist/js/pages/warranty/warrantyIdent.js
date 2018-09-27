@@ -33,6 +33,8 @@ $(document).ready(function () {
 
     //to warranty form grid loading-image
     $("#loading-image-warrantyGrid").loadImager();
+    $("#loading-image-warrantyNameGrid").loadImager();
+
     var UniqueCode = "";
     var VhType = "";
     var Model = "";
@@ -77,29 +79,6 @@ $(document).ready(function () {
     var cbdata_model = [{}];
     var cbdata_vhmodel = [{}];
 
-    var cbdataWrMil = [
-        {
-            text: window.lang.translate('Please select') + "...",
-            value: 1,
-            selected: true
-        },
-        {
-            text: "24 MONTHS/300 000 KM",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "48 MONTHS/200 000 KM",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "36 MONTHS/75 000 KM",
-            value: 4,
-            selected: false
-        }
-    ];
-
     var cbdataWrRM = [
         {
             text: window.lang.translate('Please select') + "...",
@@ -118,13 +97,12 @@ $(document).ready(function () {
         },
     ];
 
-
     //model
     $('#loading-image-modelName').loadImager('removeLoadImage');
     $("#loading-image-modelName").loadImager('appendImage');
 
     var ajaxACLResources_modelName = $('#ajaxACL-modelName').ajaxCallWidget({
-        proxy: '/Warranty/sysvehiclegroups',
+        proxy: '/Warranty/Sysvehiclegroups',
         data: {
             url: '1',
             //pk: $("#pk").val()
@@ -182,7 +160,7 @@ $(document).ready(function () {
     $("#loading-image-model").loadImager('appendImage');
 
     var ajaxACLResources_model = $('#ajaxACL-model').ajaxCallWidget({
-        proxy: '/Warranty/sysvehiclegroups',
+        proxy: '/Warranty/Sysvehiclegroups',
         data: {
             url: '1',
             //pk: $("#pk").val()
@@ -203,17 +181,17 @@ $(document).ready(function () {
         },
         onSuccess: function (event, cbdata_vehicletype) {
             //var data = $.parseJSON(cbdata);
-            var cbdata = $.parseJSON(cbdata_vehicletype);
-            cbdata.splice(0, 0,
+            var cbdata_vehicletype = $.parseJSON(cbdata_vehicletype);
+            cbdata_vehicletype.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
             $('#dropdownModel').ddslick({
                 //height: 150,
-                data: cbdata,
+                data: cbdata_vehicletype,
                 width: '100%',
 
                 onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 1) {
+                    if (selectedData.selectedData.value > 0) {
                         VhType = selectedData.selectedData.text;
                         VhTypeId = selectedData.selectedData.value;
                     }
@@ -244,7 +222,7 @@ $(document).ready(function () {
     $("#loading-image-vhModel").loadImager('appendImage');
 
     var ajaxACLResources_vhModel = $('#ajaxACL-vhModel').ajaxCallWidget({
-        proxy: '/Warranty/sysvehicleconfigtypes',
+        proxy: '/Warranty/Sysvehicleconfigtypes',
         data: {
             url: '1',
             //pk: $("#pk").val()
@@ -275,7 +253,7 @@ $(document).ready(function () {
                 width: '100%',
 
                  onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 1) {
+                    if (selectedData.selectedData.value > 0) {
                         Model = selectedData.selectedData.text;
 
                     }
@@ -306,7 +284,7 @@ $(document).ready(function () {
     $("#loading-image-wrName").loadImager('appendImage');
 
     var ajaxACLResources_wrName = $('#ajaxACL-wrName').ajaxCallWidget({
-        proxy: '/Warranty/syswarranties',
+        proxy: '/Warranty/Syswarranties',
         data: {
             //test : "test string",
         }
@@ -361,7 +339,7 @@ $(document).ready(function () {
     $("#loading-image-wrType").loadImager('appendImage');
 
     var ajaxACLResources_wrType = $('#ajaxACL-wrType').ajaxCallWidget({
-        proxy: '/Warranty/syswarrantytypes',
+        proxy: '/Warranty/Syswarrantytypes',
         data: {
             url: '1',
             //pk: $("#pk").val()
@@ -392,7 +370,7 @@ $(document).ready(function () {
                 width: '100%',
 
                 onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 1) {
+                    if (selectedData.selectedData.value > 0) {
                         WrType = selectedData.selectedData.text;
                     }
                     else {
@@ -422,10 +400,11 @@ $(document).ready(function () {
     $("#loading-image-wrMil").loadImager('appendImage');
 
     var ajaxACLResources_wrMil = $('#ajaxACL-wrMil').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        proxy: '/Warranty/Sysmileages',
         data: {
-            url: '1'
+            url: '1',
             //pk: $("#pk").val()
+             dataType: 'json'
         }
 
     });
@@ -440,16 +419,19 @@ $(document).ready(function () {
             });
             dm.dangerMessage('show', window.lang.translate('Servis  bulunamamýþtýr...'), window.lang.translate('Servis  bulunamamýþtýr...'));
         },
-        onSuccess: function (event, data) {
+        onSuccess: function (event, cbdata_wrMil) {
             //var data = $.parseJSON(cbdata);
-
+            var cbdata_wrMil = $.parseJSON(cbdata_wrMil);
+            cbdata_wrMil.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#dropdownWrMil').ddslick({
                 //height: 150,
-                data: cbdataWrMil,
+                data: cbdata_wrMil,
                 width: '100%',
 
                 onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 1) {
+                    if (selectedData.selectedData.value > 0) {
                         Mil1 = selectedData.selectedData.text;
                     }
                     else {
@@ -479,12 +461,12 @@ $(document).ready(function () {
     $("#loading-image-wrMonth").loadImager('appendImage');
 
     var ajaxACLResources_wrMonth = $('#ajaxACL-wrMonth').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
+        proxy: '/Warranty/Sysmonths',
+                data: {
+                    url: '1',
+                    //pk: $("#pk").val()
+                    dataType: 'json'
+                }
     });
 
     ajaxACLResources_wrMonth.ajaxCallWidget({
@@ -497,16 +479,19 @@ $(document).ready(function () {
             });
             dm.dangerMessage('show', window.lang.translate('Servis  bulunamamýþtýr...'), window.lang.translate('Servis  bulunamamýþtýr...'));
         },
-        onSuccess: function (event, data) {
+        onSuccess: function (event, cbdata_wrMonth) {
             //var data = $.parseJSON(cbdata);
-
+            var cbdata_wrMonth = $.parseJSON(cbdata_wrMonth);
+            cbdata_wrMonth.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#dropdownWrMonth').ddslick({
                 //height: 150,
-                data: cbdataWrMil,
+                data: cbdata_wrMonth,
                 width: '100%',
 
                 onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 1) {
+                    if (selectedData.selectedData.value > 0) {
                         Mil2 = selectedData.selectedData.text;
                     }
                     else {
@@ -563,7 +548,7 @@ $(document).ready(function () {
                 width: '100%',
 
                 onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 1) {
+                    if (selectedData.selectedData.value > 0) {
                         WrRM = selectedData.selectedData.text;
                     }
                     else {
@@ -884,13 +869,13 @@ $(document).ready(function () {
     });
 
     /**
- * insertmodel
+ * insertwarranty
  * @returns {undefined}
  * @author Ceydacan Seyrek
  * @since 14/08/2018
  */
 
-    window.insertmodel = function () {
+    window.insertwarranty = function () {
         $("#loading-image-warranty").loadImager('removeLoadImage');
         $("#loading-image-warranty").loadImager('appendImage');
 
@@ -951,7 +936,7 @@ $(document).ready(function () {
             onError23505: function (event, data) {
                 dm.dangerMessage({
                     onShown: function (event, data) {
-                        $('#customerContactPersonForm')[0].reset();
+                        $('#warrantyForm')[0].reset();
                         $("#loading-image-warranty").loadImager('removeLoadImage');
                     }
                 });
@@ -962,6 +947,88 @@ $(document).ready(function () {
         })
         aj.ajaxCall('call');
     }
+
+ /**
+ * insertwarrantyName
+ * @returns {undefined}
+ * @author Ceydacan Seyrek
+ * @since 14/08/2018
+ */
+
+    window.insertwarrantyName = function () {
+        $("#loading-image-warrantyName").loadImager('removeLoadImage');
+        $("#loading-image-warrantyName").loadImager('appendImage');
+
+        var cst_purchaselastupdate = $('#txt-model-name').val();
+
+        var aj = $(window).ajaxCall({
+            proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
+            data: {
+                url: 'pkInsert_sysmodel',
+
+                name: model_name,
+                pk: $("#pk").val()
+            }
+        })
+        aj.ajaxCall({
+            onError: function (event, textStatus, errorThrown) {
+                dm.dangerMessage('resetOnShown');
+                dm.dangerMessage('show', 'Garanti Ekleme Ýþlemi Baþarýsýz...',
+                    'Garanti Ekleme Ýþlemi Baþarýsýz..., sistem yöneticisi ile temasa geçiniz... ')
+                console.error('"pkInsert_sysCustomerInfo" servis hatasý->' + textStatus);
+                $("#loading-image-warrantyName").loadImager('removeLoadImage');
+            },
+            onSuccess: function (event, data) {
+                console.log(data);
+                var data = data;
+                sm.successMessage({
+                    onShown: function (event, data) {
+                        $('#modelForm')[0].reset();
+
+                        $("#loading-image-warrantyName").loadImager('removeLoadImage');
+
+                    }
+                });
+                sm.successMessage('show', 'Garanti Kayýt Ýþlemi Baþarýlý...',
+                    'Garanti kayýt iþlemini gerçekleþtirdiniz... ',
+                    data);
+                $("#loading-image-warrantyName").loadImager('removeLoadImage');
+
+            },
+            onErrorDataNull: function (event, data) {
+                dm.dangerMessage('resetOnShown');
+                dm.dangerMessage('show', 'Garanti Kayýt Ýþlemi Baþarýsýz...',
+                    'Garanti kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
+                console.error('"pkInsert_sysCustomerContactPerson" servis datasý boþtur!!');
+                $("#loading-image-warrantyName").loadImager('removeLoadImage');
+            },
+            onErrorMessage: function (event, data) {
+                dm.dangerMessage('resetOnShown');
+                dm.dangerMessage('show', 'Garanti Kayýt Ýþlemi Baþarýsýz...',
+                    'Garanti kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
+                console.error('"pkInsert_sysCustomerContactPerson" servis datasý boþtur!!');
+                $("#loading-image-warrantyName").loadImager('removeLoadImage');
+            },
+            onError23503: function (event, data) {
+                dm.dangerMessage('Error23503');
+                $("#loading-image-warrantyName").loadImager('removeLoadImage');
+            },
+            onError23505: function (event, data) {
+                dm.dangerMessage({
+                    onShown: function (event, data) {
+                        $('#warrantyNameForm')[0].reset();
+                        $("#loading-image-warrantyName").loadImager('removeLoadImage');
+                    }
+                });
+                dm.dangerMessage('show', 'Kayýt Ýþlemi Baþarýsýz...',
+                    'Ayný isim ile Garanti kaydý yapýlmýþtýr, yeni bir Garanti kaydý deneyiniz... ');
+                $("#loading-image-warrantyName").loadImager('removeLoadImage');
+            }
+        })
+        aj.ajaxCall('call');
+    }
+
+
     /**
     * reset model Form
     * @returns {undefined}
@@ -988,13 +1055,13 @@ $(document).ready(function () {
 
 
     /**
-    * insert model Wrapper
+    * insert warranty Wrapper
     * @returns {Boolean}
     * @author Ceydacan Seyrek
     * @since 14/08/2018
     */
 
-    window.insertmodelWrapper = function (e) {
+    window.insertwarrantyWrapper = function (e) {
         e.preventDefault();
 
         if ($("#warrantyForm").validationEngine('validate')) {
@@ -1051,13 +1118,14 @@ $(document).ready(function () {
 
 
     /**
-    * insert model Wrapper
+    * insert warranty name Wrapper
     * @returns {Boolean}
     * @author Ceydacan Seyrek
     * @since 14/08/2018
     */
 
-    window.insertmodelNameWrapper = function (e) {
+
+    window.insertwarrantyNameWrapper = function (e) {
         e.preventDefault();
 
         if ($("#warrantyNameForm").validationEngine('validate')) {
