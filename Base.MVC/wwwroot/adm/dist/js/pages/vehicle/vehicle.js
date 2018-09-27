@@ -95,7 +95,9 @@ $(document).ready(function () {
         },
         onSuccess: function (event, datackdcbu) {
             var cbdata_vehiclekittype = $.parseJSON(datackdcbu);
-
+            cbdata_vehiclekittype.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#dropdownVehicleKitType').ddslick({
                 //height: 150,
                 data: cbdata_vehiclekittype,
@@ -182,7 +184,9 @@ $(document).ready(function () {
         },
         onSuccess: function (event, datamodel) {
             var cbdata_model = $.parseJSON(datamodel);
-
+            cbdata_model.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#dropdownVehicleModel').ddslick({
                 //height: 150,
                 data: cbdata_model,
@@ -264,7 +268,9 @@ $(document).ready(function () {
         },
         onSuccess: function (event, datamodelgr) {
             //var cbdata_modelgr = $.parseJSON(datamodelgr);
-
+            //cbdata_modelgr.splice(0, 0,
+            //{ text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            //);
             $('#dropdownVehicleModelGr').ddslick({
                 //height: 150,
                 data: cbdata_modelgr,
@@ -337,7 +343,9 @@ $(document).ready(function () {
         },
         onSuccess: function (event, datavehicletype) {
             var cbdata_type = $.parseJSON(datavehicletype);
-
+            cbdata_type.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#dropdownVehicleType').ddslick({
                 //height: 150,
                 data: cbdata_type,
@@ -413,7 +421,9 @@ $(document).ready(function () {
         },
         onSuccess: function (event, datatonaj) {
             var cbdata_vehicletonaj = $.parseJSON(datatonaj);
-
+            cbdata_vehicletonaj.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#dropdownVehicleTonaj').ddslick({
                 //height: 150,
                 data: cbdata_vehicletonaj,
@@ -488,8 +498,10 @@ $(document).ready(function () {
             dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
         },
         onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
+            //var cbdata_gvm = $.parseJSON(data);
+            //cbdata_gvm.splice(0, 0,
+            //    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            //);
             $('#dropdownGVM').ddslick({
                 //height: 150,
                 data: cbdata_gvm,
@@ -575,7 +587,9 @@ $(document).ready(function () {
         },
         onSuccess: function (event, datavariant) {
             var cbdata_variant = $.parseJSON(datavariant);
-
+            cbdata_variant.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#dropdownVehicleVariant').ddslick({
                 //height: 150,
                 data: cbdata_variant,
@@ -656,7 +670,9 @@ $(document).ready(function () {
         },
         onSuccess: function (event, dataconfig) {
             var cbdata_config = $.parseJSON(dataconfig);
-
+            cbdata_config.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#dropdownConfig').ddslick({
                 //height: 150,
                 data: cbdata_config,
@@ -735,7 +751,9 @@ $(document).ready(function () {
         },
         onSuccess: function (event, datacab) {
             var cbdata_cab = $.parseJSON(datacab);
-
+            cbdata_cab.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#dropdownCab').ddslick({
                 //height: 150,
                 data: cbdata_cab,
@@ -811,8 +829,10 @@ $(document).ready(function () {
             dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
         },
         onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
+            //var cbdata_kp = $.parseJSON(cbdata);
+            //cbdata_kp.splice(0, 0,
+            //    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            //);
             $('#dropdownKPNo').ddslick({
                 //height: 150,
                 data: cbdata_kp,
@@ -864,8 +884,8 @@ $(document).ready(function () {
     $("#loading-image-stockinfo").loadImager('appendImage');
 
     var ajaxACLResources_stockinfo = $('#ajaxACL-stockinfo').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        //type: 'POST',
+        proxy: '/Vehicle/SysVehicleBTOBTS/',
+        type: 'POST',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -885,7 +905,9 @@ $(document).ready(function () {
         },
         onSuccess: function (event, btobtsdata) {
             var cbdata_btobts = $.parseJSON(btobtsdata);
-
+            cbdata_btobts.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#dropdownStockInfo').ddslick({
                 //height: 150,
                 data: cbdata_btobts,
@@ -964,11 +986,13 @@ $(document).ready(function () {
             dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
         },
         onSuccess: function (event, cbdata_app) {
-            var cbdata = $.parseJSON(cbdata_app);
-
+            var cbdata_apptype = $.parseJSON(cbdata_app);
+            cbdata_apptype.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#dropdownApplicationType').ddslick({
                 //height: 150,
-                data: cbdata,
+                data: cbdata_apptype,
                 width: '100%',
 
                 onSelected: function (selectedData) {
