@@ -105,7 +105,7 @@ $(document).ready(function () {
                         $("#loadingImage_DdslickMonths").loadImager('appendImage');
 
                          //Offroad --- Mil ---- Month
-                        if (contractType == 1) {//buyback
+                        if (contractType = 1) {//buyback
                             var ajaxACLResources_OffRoad = $('#ajax_DdslickOffRoad').ajaxCallWidget({
                                 proxy: '/BuybackTradeback/SysBbTerrains/',
                                 type: 'POST'
@@ -120,7 +120,7 @@ $(document).ready(function () {
                                 type: 'POST'
                             });
                         }
-                        else if (contractType == 2) {//Tradeback
+                        else if (contractType = 2) {//Tradeback
                             var ajaxACLResources_OffRoad = $('#ajax_DdslickOffRoad').ajaxCallWidget({
                                 proxy: '/BuybackTradeback/SysTbTerrains/',
                                 type: 'POST'
