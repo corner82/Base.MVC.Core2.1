@@ -107,31 +107,31 @@ $(document).ready(function () {
                          //Offroad --- Mil ---- Month
                         if (contractType == 1) {//buyback
                             var ajaxACLResources_OffRoad = $('#ajax_DdslickOffRoad').ajaxCallWidget({
-                                proxy: 'BuybackTradeback/SysBbTerrains/',
+                                proxy: '/BuybackTradeback/SysBbTerrains/',
                                 type: 'POST'
                             });
 
                             var ajaxACLResources_Mileage = $('#ajax_DdslickMileage').ajaxCallWidget({
-                                proxy: 'BuybackTradeback/SysBbMileages/',
+                                proxy: '/BuybackTradeback/SysBbMileages/',
                                 type: 'POST'
                             });
                             var ajaxACLResources_Months = $('#ajax_DdslickMonths').ajaxCallWidget({
-                                proxy: 'BuybackTradeback/SysBbMonths/',
+                                proxy: '/BuybackTradeback/SysBbMonths/',
                                 type: 'POST'
                             });
                         }
                         else if (contractType == 2) {//Tradeback
                             var ajaxACLResources_OffRoad = $('#ajax_DdslickOffRoad').ajaxCallWidget({
-                                proxy: 'BuybackTradeback/SysTbTerrains/',
+                                proxy: '/BuybackTradeback/SysTbTerrains/',
                                 type: 'POST'
                             });
 
                             var ajaxACLResources_Mileage = $('#ajax_DdslickMileage').ajaxCallWidget({
-                                proxy: 'BuybackTradeback/SysTbMileages/',
+                                proxy: '/BuybackTradeback/SysTbMileages/',
                                 type: 'POST'
                             });
                             var ajaxACLResources_Months = $('#ajax_DdslickMonths').ajaxCallWidget({
-                                proxy: 'BuybackTradeback/SysTbMonths/',
+                                proxy: '/BuybackTradeback/SysTbMonths/',
                                 type: 'POST'
                             });
                         }
@@ -265,6 +265,9 @@ $(document).ready(function () {
                         })
                         ajaxACLResources_Months.ajaxCallWidget('call');
                         //Month end
+                        $('#ddslickOffRoad').ddslick('select', { index: String(0) });
+                        $('#ddslickMileage').ddslick('select', { index: String(0) });
+                        $('#ddslickMonths').ddslick('select', { index: String(0) });
                     }
                 }
             });
@@ -408,77 +411,6 @@ $(document).ready(function () {
     ajaxACLResources_ComfortSuper.ajaxCallWidget('call');
 //ComfortSuper End
 
-//OffRoad
-//    var cbdata_offRoad = [
-//        {
-//            text: window.lang.translate('Please select') + "...",
-//            value: 1,
-//            selected: true
-//        },
-//        {
-//            text: "Less than 5%",
-//            value: 2,
-//            selected: false
-//        },
-//        {
-//            text: "More than 5%",
-//            value: 3,
-//            selected: false
-//        }
-//    ];
-
-//    $('#loadingImage_DdslickOffRoad').loadImager('removeLoadImage');
-//    $("#loadingImage_DdslickOffRoad").loadImager('appendImage');
-
-//    var ajaxACLResources_OffRoad = $('#ajax_DdslickOffRoad').ajaxCallWidget({
-//        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-//        data: {
-//            url: '1'
-//            //pk: $("#pk").val()
-//        }
-
-//    });
-
-//    ajaxACLResources_OffRoad.ajaxCallWidget({
-//        onError: function (event, textStatus, errorThrown) {
-
-//            dm.dangerMessage({
-//                onShown: function () {
-//                    $('#loadingImage_DdslickOffRoad').loadImager('removeLoadImage');
-//                }
-//            });
-//            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis bulunamamıştır...'));
-//        },
-//        onSuccess: function (event, data) {
-//            //var data = $.parseJSON(cbdata);
-
-//            $('#ddslickOffRoad').ddslick({
-//                //height: 150,
-//                data: cbdata_offRoad,
-//                width: '100%',
-
-//                onSelected: function (selectedData) {
-//                    if (selectedData.selectedData.value > 0) {
-
-//                    }
-//                }
-//            });
-
-//            $("#loadingImage_DdslickOffRoad").loadImager('removeLoadImage');
-//        },
-//        onErrorDataNull: function (event, data) {
-//            console.log("Error : " + event + " -data :" + data);
-//            dm.dangerMessage({
-//                onShown: function () {
-//                    $('#loadingImage_DdslickOffRoad').loadImager('removeLoadImage');
-//                }
-//            });
-//            dm.dangerMessage('show', window.lang.translate('OffRoad bulunamamıştır...'), window.lang.translate('OffRoad bulunamamıştır...'));
-//        },
-//    })
-//    ajaxACLResources_OffRoad.ajaxCallWidget('call');
-////OffRoad End
-
 //TruckType
     var cbdata_truckType = [
         {
@@ -617,180 +549,6 @@ $(document).ready(function () {
     ajaxACLResources_Hydraulics.ajaxCallWidget('call');
 //Hydraulics End
 
-//Mileage
-//    var cbdata_mileage = [
-//        {
-//            text: window.lang.translate('Please select') + "...",
-//            value: 1,
-//            selected: true
-//        },
-//        {
-//            text: "40.000",
-//            value: 2,
-//            selected: false
-//        },
-//        {
-//            text: "60.000",
-//            value: 3,
-//            selected: false
-//        },
-//        {
-//            text: "80.000",
-//            value: 4,
-//            selected: false
-//        },
-//        {
-//            text: "100.000",
-//            value: 5,
-//            selected: false
-//        },
-//        {
-//            text: "120.000",
-//            value: 6,
-//            selected: false
-//        }
-//    ];
-
-//    $('#loadingImage_DdslickMileage').loadImager('removeLoadImage');
-//    $("#loadingImage_DdslickMileage").loadImager('appendImage');
-
-//    var ajaxACLResources_Mileage = $('#ajax_DdslickMileage').ajaxCallWidget({
-//        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-//        data: {
-//            url: '1'
-//            //pk: $("#pk").val()
-//        }
-
-//    });
-
-//    ajaxACLResources_Mileage.ajaxCallWidget({
-//        onError: function (event, textStatus, errorThrown) {
-
-//            dm.dangerMessage({
-//                onShown: function () {
-//                    $('#loadingImage_DdslickMileage').loadImager('removeLoadImage');
-//                }
-//            });
-//            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis bulunamamıştır...'));
-//        },
-//        onSuccess: function (event, data) {
-//            //var data = $.parseJSON(cbdata);
-
-//            $('#ddslickMileage').ddslick({
-//                //height: 150,
-//                data: cbdata_mileage,
-//                width: '100%',
-
-//                onSelected: function (selectedData) {
-//                    if (selectedData.selectedData.value > 0) {
-
-//                    }
-//                }
-//            });
-
-//            $("#loadingImage_DdslickMileage").loadImager('removeLoadImage');
-//        },
-//        onErrorDataNull: function (event, data) {
-//            console.log("Error : " + event + " -data :" + data);
-//            dm.dangerMessage({
-//                onShown: function () {
-//                    $('#loadingImage_DdslickMileage').loadImager('removeLoadImage');
-//                }
-//            });
-//            dm.dangerMessage('show', window.lang.translate('Mileage bulunamamıştır...'), window.lang.translate('Mileage bulunamamıştır...'));
-//        },
-//    })
-//    ajaxACLResources_Mileage.ajaxCallWidget('call');
-////Mileage End
-
-//Months
-//    var cbdata_months = [
-//        {
-//            text: window.lang.translate('Please select') + "...",
-//            value: 1,
-//            selected: true
-//        },
-//        {
-//            text: "36",
-//            value: 2,
-//            selected: false
-//        },
-//        {
-//            text: "42",
-//            value: 3,
-//            selected: false
-//        },
-//        {
-//            text: "48",
-//            value: 4,
-//            selected: false
-//        },
-//        {
-//            text: "54",
-//            value: 5,
-//            selected: false
-//        },
-//        {
-//            text: "60",
-//            value: 6,
-//            selected: false
-//        }
-//    ];
-
-//    $('#loadingImage_DdslickMonths').loadImager('removeLoadImage');
-//    $("#loadingImage_DdslickMonths").loadImager('appendImage');
-
-//    var ajaxACLResources_Months = $('#ajax_DdslickMonths').ajaxCallWidget({
-//        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-//        data: {
-//            url: '1'
-//            //pk: $("#pk").val()
-//        }
-
-//    });
-
-//    ajaxACLResources_Months.ajaxCallWidget({
-//        onError: function (event, textStatus, errorThrown) {
-
-//            dm.dangerMessage({
-//                onShown: function () {
-//                    $('#loadingImage_DdslickMonths').loadImager('removeLoadImage');
-//                }
-//            });
-//            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis bulunamamıştır...'));
-//        },
-//        onSuccess: function (event, data) {
-//            //var data = $.parseJSON(cbdata);
-
-//            $('#ddslickMonths').ddslick({
-//                //height: 150,
-//                data: cbdata_months,
-//                width: '100%',
-
-//                onSelected: function (selectedData) {
-//                    if (selectedData.selectedData.value > 0) {
-
-//                    }
-//                }
-//            });
-
-//            $("#loadingImage_DdslickMonths").loadImager('removeLoadImage');
-//        },
-//        onErrorDataNull: function (event, data) {
-//            console.log("Error : " + event + " -data :" + data);
-//            dm.dangerMessage({
-//                onShown: function () {
-//                    $('#loadingImage_DdslickMonths').loadImager('removeLoadImage');
-//                }
-//            });
-//            dm.dangerMessage('show', window.lang.translate('Months bulunamamıştır...'), window.lang.translate('Months bulunamamıştır...'));
-//        },
-//    })
-//    ajaxACLResources_Months.ajaxCallWidget('call');
-////Months End
-
-
-
     /* devexgrid */
     var orders = new DevExpress.data.CustomStore({
         load: function (loadOptions) {
@@ -901,9 +659,6 @@ $(document).ready(function () {
         },
 
         columns: [{
-        //    caption: window.lang.translate('Tonnage') + "...",
-        //    dataField: "StoreCity"
-        //}, {
             caption: window.lang.translate('Contract type') + "...",
             dataField: "StoreState"
         }, {
@@ -1084,14 +839,14 @@ $(document).ready(function () {
 
         $("#loadingImage_bbTbInfo").loadImager('removeLoadImage');
         //$('#ddslickTonnage').ddslick('select', { index: 3 });
-        $('#ddslickContractType').ddslick('select', { index: 2 });
-        $('#ddslickCustomerType').ddslick('select', { index: 2 });
+        $('#ddslickContractType').ddslick('select', { index: 1 });
+        $('#ddslickCustomerType').ddslick('select', { index: 1 });
         $('#ddslickComfortSuper').ddslick('select', { index: 1 });
-        $('#ddslickOffRoad').ddslick('select', { index: 2 });
-        $('#ddslickTruckType').ddslick('select', { index: 5 });
-        $('#ddslickHydraulics').ddslick('select', { index: 2 });
-        $('#ddslickMileage').ddslick('select', { index: 5 });
-        $('#ddslickMonths').ddslick('select', { index: 4 });
+        $('#ddslickOffRoad').ddslick('select', { index: 1 });
+        $('#ddslickTruckType').ddslick('select', { index: 1 });
+        $('#ddslickHydraulics').ddslick('select', { index: 1 });
+        $('#ddslickMileage').ddslick('select', { index: 1 });
+        $('#ddslickMonths').ddslick('select', { index: 1 });
 
         return false;
     }
