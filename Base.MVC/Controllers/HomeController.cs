@@ -14,6 +14,12 @@ using System.Net.Http.Headers;
 using System;
 using System.Collections;
 using Base.MVC.Models.HttpRequest;
+using System.IO;
+using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.AspNetCore.Http.Extensions;
+using System.Linq;
+using System.Reflection;
+using Base.Core.Utills.Url;
 
 namespace Base.MVC.Controllers
 {
@@ -22,9 +28,14 @@ namespace Base.MVC.Controllers
     {
 
         private readonly IStringLocalizer _localizer;
-        public HomeController(IStringLocalizer localizer)
+        private QueryCreater _queryCreater;
+
+
+        public HomeController(IStringLocalizer localizer,
+                              QueryCreater queryCreater)
         {
             _localizer = localizer;
+            _queryCreater = queryCreater;
         }
 
         [SessionTimeOut]
@@ -82,6 +93,13 @@ namespace Base.MVC.Controllers
                 var tokenGenerated = HttpContext.Session.GetHmacToken();
                 headers.Add("X-Hmac", tokenGenerated);
                 headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                
+
+                string test = _queryCreater.GetQueryStringFromObject(addressInfo);
+
+               
+
+
                 //_hmacManager.test();
                 //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
                 var response = await HttpClientRequestFactory.Get("https://manservices.man.com.tr/SlimProxyBoot.php?url=fillServicesDdlist_infoAfterSales&pk=zC3zCuVV2cttXP6", headers);
@@ -107,8 +125,6 @@ namespace Base.MVC.Controllers
                 var tokenGenerated = HttpContext.Session.GetHmacToken();
                 headers.Add("X-Hmac", tokenGenerated);
                 headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-                //_hmacManager.test();
-                //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
                 var response = await HttpClientRequestFactory.Get("https://manservices.man.com.tr/SlimProxyBoot.php?url=fillServicesDdlist_infoAfterSales&pk=zC3zCuVV2cttXP6", headers);
                 var data = response.Content.ReadAsStringAsync().Result;
                 return data.ToString();

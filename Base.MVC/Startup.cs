@@ -24,6 +24,7 @@ using Base.Core.Entities.Identity;
 using Base.Filters.Session.Ajax;
 using Base.Filters.Auth.Hmac;
 using Base.Filters.Log.RabbitMQ;
+using Base.Core.Utills.Url;
 using Base.Core.Culture.RequestCulture;
 
 namespace Base.MVC
@@ -157,7 +158,7 @@ namespace Base.MVC
             services.AddScoped<AjaxSessionTimeOutAttribute>();
             services.AddScoped<HmacTokenGeneratorAttribute>();
             services.AddScoped<PageEntryLogRabbitMQAttribute>();
-
+            services.AddScoped<QueryCreater>(); 
             //services.AddScoped<ISessionService, SessionService>();
             //services.AddSingleton<HmacServiceManagerBase, HmacServiceManager>();
             services.AddTransient<RemoteAddressFinder, RemoteAddressFinder>();
