@@ -137,9 +137,6 @@
     <Content Update="Views\Sys\Mil.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Views\Sys\State.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
     <Content Update="Views\Sys\Country.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
