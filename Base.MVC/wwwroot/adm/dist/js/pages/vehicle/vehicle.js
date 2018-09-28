@@ -781,7 +781,7 @@ $(document).ready(function () {
     ajaxACLResources_cab.ajaxCallWidget('call');
 
 
-    //4x2, 4x4, 6x4, 8x4, 6x6, 8x8, 8x4/4
+/*
     var cbdata_kp = [
         {
             text: window.lang.translate('Please select') + "...",
@@ -804,13 +804,13 @@ $(document).ready(function () {
             selected: false
         },
     ];
-
+*/
     $('#loading-image-kp').loadImager('removeLoadImage');
     $("#loading-image-kp").loadImager('appendImage');
 
     var ajaxACLResources_kp = $('#ajaxACL-kp').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        //type: 'POST',
+        proxy: '/Vehicle/SysVehicleKPNumbers/',
+        type: 'POST',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -828,13 +828,12 @@ $(document).ready(function () {
             });
             dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
         },
-        onSuccess: function (event, data) {
-            //var cbdata_kp = $.parseJSON(cbdata);
-            //cbdata_kp.splice(0, 0,
-            //    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-            //);
-            $('#dropdownKPNo').ddslick({
-                //height: 150,
+        onSuccess: function (event, datakp) {
+            var cbdata_kp = $.parseJSON(datakp);
+            cbdata_kp.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+            $('#dropdownKPNo').ddslick({               
                 data: cbdata_kp,
                 width: '100%',
 
@@ -1201,7 +1200,6 @@ $(document).ready(function () {
 
          logList.prepend(newItem);
      }
-
 
     /**
  * insertVehicle

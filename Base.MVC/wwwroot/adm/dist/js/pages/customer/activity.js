@@ -32,6 +32,7 @@ $(document).ready(function () {
     $("#loading-image-applicationgrup").loadImager();
     $("#loading-image-concernedvehicletype").loadImager();
     $("#loading-image-activitytrackingtype").loadImager();
+    $('#loading-image-activityplaned').loadImager();
 
     //to activity form grid loading-image
     $("#loading-image-activityGrid").loadImager();
@@ -203,7 +204,7 @@ $(document).ready(function () {
     })
     ajaxACLResources_contactperson.ajaxCallWidget('call');
 
-
+/*
     var cbdata_activitytype = [
         {
             text: window.lang.translate('Please select') + "...",
@@ -241,12 +242,13 @@ $(document).ready(function () {
             selected: false
         },
     ];
-
+    */
     $('#loading-image-activitytype').loadImager('removeLoadImage');
     $("#loading-image-activitytype").loadImager('appendImage');
 
     var ajaxACLResources_activitytype = $('#ajaxACL-activitytype').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        proxy: '/Customer/SysCsActivityTypes/',
+        type: 'POST',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -264,8 +266,11 @@ $(document).ready(function () {
             });
             dm.dangerMessage('show', window.lang.translate('activitytype  bulunamamıştır...'), window.lang.translate('activitytype  bulunamamıştır...'));
         },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
+        onSuccess: function (event, dataacttyp) {
+            var cbdata_activitytype = $.parseJSON(dataacttyp);
+            cbdata_activitytype.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
 
             $('#dropdownActivityType').ddslick({
                 //height: 150,
@@ -293,7 +298,60 @@ $(document).ready(function () {
     })
     ajaxACLResources_activitytype.ajaxCallWidget('call');
 
-   
+
+    $('#loading-image-activityplaned').loadImager('removeLoadImage');
+    $("#loading-image-activityplaned").loadImager('appendImage');
+
+    var ajaxACLResources_activityplaned = $('#ajaxACL-activityplaned').ajaxCallWidget({
+        proxy: '/Customer/SysCsActStatuTypess/',
+        type: 'POST',
+        data: {
+            url: '1'
+            //pk: $("#pk").val()
+        }
+
+    });
+
+    ajaxACLResources_activityplaned.ajaxCallWidget({
+        onError: function (event, textStatus, errorThrown) {
+
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-activityplaned').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
+        },
+        onSuccess: function (event, dataactpln) {
+            var cbdata_activityplaned = $.parseJSON(dataactpln);
+            cbdata_activityplaned.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+            $('#dropdownActivityPlaned').ddslick({
+                data: cbdata_activityplaned,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            $("#loading-image-activityplaned").loadImager('removeLoadImage');
+        },
+        onErrorDataNull: function (event, data) {
+            console.log("Error : " + event + " -data :" + data);
+            dm.dangerMessage({
+                onShown: function () {
+                    $('#loading-image-activityplaned').loadImager('removeLoadImage');
+                }
+            });
+            dm.dangerMessage('show', window.lang.translate('activityplaned bulunamamıştır...'), window.lang.translate('activityplaned  bulunamamıştır...'));
+        },
+    })
+    ajaxACLResources_activityplaned.ajaxCallWidget('call');
+
 
     /* devexgrid */
     var data_activity = new DevExpress.data.CustomStore({

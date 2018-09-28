@@ -47,6 +47,11 @@ namespace Base.MVC.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Province()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> CustomerGrp()
         {
             return View();

@@ -72,6 +72,9 @@
     <Content Update="Views\Sys\AccessoryFeatureName.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Sys\Province.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Sys\Supplier.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
