@@ -517,11 +517,14 @@
     })
     ajaxACLResources_reliabilityRate.ajaxCallWidget('call');
 
+
+
     $('#loading-image-sector').loadImager('removeLoadImage');
     $("#loading-image-sector").loadImager('appendImage');
 
     var ajaxACLResources_sector = $('#ajaxACL-sector').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        proxy: '/Customer/SysCustomerSectorTypes/',
+        type: 'POST',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -539,12 +542,13 @@
             });
             dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
         },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
+        onSuccess: function (event, datasector) {
+            var cbdata_sector = $.parseJSON(datasector);
+            cbdata_sector.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#dropdownSector').ddslick({
-                //height: 150,
-                data: cbdata,
+                data: cbdata_sector,
                 width: '100%',
 
                 onSelected: function (selectedData) {
@@ -568,16 +572,17 @@
     })
     ajaxACLResources_sector.ajaxCallWidget('call');
 
+
     $('#loading-image-segment').loadImager('removeLoadImage');
     $("#loading-image-segment").loadImager('appendImage');
 
     var ajaxACLResources_segment = $('#ajaxACL-segment').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        proxy: '/Customer/SysCustomerSegmentTypes/',
+        type: 'POST',
         data: {
             url: '1'
             //pk: $("#pk").val()
         }
-
     });
 
     ajaxACLResources_segment.ajaxCallWidget({
@@ -590,12 +595,13 @@
             });
             dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
         },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
+        onSuccess: function (event, datasegment) {
+            var cbdata_segment = $.parseJSON(datasegment);
+            cbdata_segment.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#dropdownSegment').ddslick({
-                //height: 150,
-                data: cbdata,
+                data: cbdata_segment,
                 width: '100%',
 
                 onSelected: function (selectedData) {

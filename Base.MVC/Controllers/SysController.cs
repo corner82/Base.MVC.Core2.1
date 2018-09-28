@@ -13,6 +13,9 @@ using Base.Filters.Session;
 using Newtonsoft.Json;
 using Base.Core.Http.HttpRequest.Concrete;
 using Base.MVC.Models.HttpRequest;
+using Microsoft.AspNetCore.Http.Extensions;
+using Base.Core.Utills.Url;
+using Microsoft.Extensions.Localization;
 
 namespace Base.MVC.Controllers
 {
@@ -20,9 +23,15 @@ namespace Base.MVC.Controllers
     {
 
         private readonly IDistributedCache _distributedCache;
-        public SysController(IDistributedCache distributedCache)
+        private readonly IStringLocalizer _localizer;
+        private QueryCreater _queryCreater;
+
+        public SysController(IDistributedCache distributedCache, IStringLocalizer localizer,
+                              QueryCreater queryCreater)
         {
             _distributedCache = distributedCache;
+            _localizer = localizer;
+            _queryCreater = queryCreater;
         }
         public IActionResult Index()
         {
@@ -280,9 +289,46 @@ namespace Base.MVC.Controllers
                 var tokenGenerated = HttpContext.Session.GetHmacToken();
                 headers.Add("X-Hmac", tokenGenerated);
                 headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+
+                string test = _queryCreater.GetQueryStringFromObject(provinceInfo);
+                var encodedURL = Request.GetEncodedUrl();
+                Request.GetEncodedPathAndQuery();
+
                 //_hmacManager.test();
                 //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
                 var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkCountryRegionsDdList_syscountryregions&country_id=107&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model satate is not valid");
+            }
+        }
+
+        /// <summary>
+        /// get City List (ddslick dropdown)
+        /// Gül Özdemir
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysCity([FromBody] CityInfo cityInfo)
+        {
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                //_hmacManager.test();
+                //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
+                //http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkCityDdList_syscity&country_id=107&region_id=1&language_code=en&pk=GsZVzEYe50uGgNM
+
+                var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkCityDdList_syscity&pk=GsZVzEYe50uGgNM", headers);
                 var data = response.Content.ReadAsStringAsync().Result;
                 return data.ToString();
             }

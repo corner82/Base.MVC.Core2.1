@@ -119,6 +119,48 @@ namespace Base.MVC.Controllers
             return data.ToString();
         }
 
+        /// <summary>
+        /// get Customer Sector
+        /// Gül Özdemir
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysCustomerSectorTypes()
+        {
+            //Vehicle  type for deal buybacks
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkCustomerSectorTypesDdList_syscustomersectortypes&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
 
+        /// <summary>
+        /// get Customer Segment
+        /// Gül Özdemir
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysCustomerSegmentTypes()
+        {
+            //Vehicle  type for deal buybacks
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkCustomerSegmentTypesDdList_syscustomersegmenttypes&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
     }
 }
