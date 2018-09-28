@@ -13,23 +13,23 @@ $(document).ready(function () {
 
 
     /*
-    * State LoadImager
+    * Province LoadImager
     * @author Gül Özdemir
     * @since 13/08/2016
     */
-    //to state form
-    $("#loading-image-state").loadImager();
+    //to province form
+    $("#loading-image-province").loadImager();
 
     //to country form
     $("#loading-image-country").loadImager();
 
-    //to state form grid loading-image
-    $("#loading-image-stateGrid").loadImager();
+    //to province form grid loading-image
+    $("#loading-image-provinceGrid").loadImager();
 
     var langCode = $("#langCode").val();
     //alert(langCode);
 
-    $('#stateForm').validationEngine();
+    $('#provinceForm').validationEngine();
 
     var cbdata_country = [{}];
 
@@ -145,7 +145,7 @@ $(document).ready(function () {
     DevExpress.localization.locale(langCode);
 
 
-    $("#gridContainer_state").dxDataGrid({
+    $("#gridContainer_province").dxDataGrid({
 
         showColumnLines: true,
 
@@ -223,14 +223,14 @@ $(document).ready(function () {
             caption: "Country",
             dataField: "StoreCity"
         },{
-            caption: "State",
+            caption: "Province",
             dataField: "StoreCity"
         }],
 
         onSelectionChanged: function (selectedItems) {
             var data = selectedItems.selectedRowsData[0];
             if (data) {
-                fillStateForm(data);
+                fillProvinceForm(data);
             }
         }
 
@@ -252,8 +252,8 @@ $(document).ready(function () {
  */
 
     window.insertCountry = function () {
-        $("#loading-image-state").loadImager('removeLoadImage');
-        $("#loading-image-state").loadImager('appendImage');
+        $("#loading-image-province").loadImager('removeLoadImage');
+        $("#loading-image-province").loadImager('appendImage');
 
         var cst_purchaselastupdate = $('#txt-country-name').val();
 
@@ -272,7 +272,7 @@ $(document).ready(function () {
                 dm.dangerMessage('show', 'Country Ekleme İşlemi Başarısız...',
                     'Country Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
                 console.error('"pkInsert_sysCustomerInfo" servis hatası->' + textStatus);
-                $("#loading-image-state").loadImager('removeLoadImage');
+                $("#loading-image-province").loadImager('removeLoadImage');
             },
             onSuccess: function (event, data) {
                 console.log(data);
@@ -281,14 +281,14 @@ $(document).ready(function () {
                     onShown: function (event, data) {
                         $('#countryForm')[0].reset();
 
-                        $("#loading-image-state").loadImager('removeLoadImage');
+                        $("#loading-image-province").loadImager('removeLoadImage');
 
                     }
                 });
                 sm.successMessage('show', 'Country Kayıt İşlemi Başarılı...',
                     'Country kayıt işlemini gerçekleştirdiniz... ',
                     data);
-                $("#loading-image-state").loadImager('removeLoadImage');
+                $("#loading-image-province").loadImager('removeLoadImage');
 
             },
             onErrorDataNull: function (event, data) {
@@ -296,29 +296,29 @@ $(document).ready(function () {
                 dm.dangerMessage('show', 'Müşteri Kontak Kişi Kayıt İşlemi Başarısız...',
                     'Müşteri Kontak Kişi kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysCustomerContactPerson" servis datası boştur!!');
-                $("#loading-image-state").loadImager('removeLoadImage');
+                $("#loading-image-province").loadImager('removeLoadImage');
             },
             onErrorMessage: function (event, data) {
                 dm.dangerMessage('resetOnShown');
                 dm.dangerMessage('show', 'Müşteri Kontak Kişi Kayıt İşlemi Başarısız...',
                     'Müşteri Kontak Kişi kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
                 console.error('"pkInsert_sysCustomerContactPerson" servis datası boştur!!');
-                $("#loading-image-country").loadImager('removeLoadImage');
+                $("#loading-image-provincey").loadImager('removeLoadImage');
             },
             onError23503: function (event, data) {
                 dm.dangerMessage('Error23503');
-                $("#loading-image-state").loadImager('removeLoadImage');
+                $("#loading-image-province").loadImager('removeLoadImage');
             },
             onError23505: function (event, data) {
                 dm.dangerMessage({
                     onShown: function (event, data) {
                         $('#customerContactPersonForm')[0].reset();
-                        $("#loading-image-state").loadImager('removeLoadImage');
+                        $("#loading-image-province").loadImager('removeLoadImage');
                     }
                 });
                 dm.dangerMessage('show', 'Kayıt İşlemi Başarısız...',
                     'Aynı isim ile Ülke Kişi kaydı yapılmıştır, yeni birÜlke kaydı deneyiniz... ');
-                $("#loading-image-state").loadImager('removeLoadImage');
+                $("#loading-image-province").loadImager('removeLoadImage');
             }
         })
         aj.ajaxCall('call');
@@ -330,14 +330,14 @@ $(document).ready(function () {
     * @since 13/08/2018
     */
 
-    window.resetStateForm = function () {
-        $("#loading-image-state").loadImager('removeLoadImage');
-        $("#loading-image-state").loadImager('appendImage');
+    window.resetProvinceForm = function () {
+        $("#loading-image-province").loadImager('removeLoadImage');
+        $("#loading-image-province").loadImager('appendImage');
 
-        $('#StateForm').validationEngine('hide');
+        $('#provinceForm').validationEngine('hide');
         $('#dropdownCountry').ddslick('select', { index: String(0) });
 
-        $("#loading-image-state").loadImager('removeLoadImage');
+        $("#loading-image-province").loadImager('removeLoadImage');
 
         return false;
     }
@@ -353,9 +353,9 @@ $(document).ready(function () {
     window.insertCountryWrapper = function (e) {
         e.preventDefault();
 
-        if ($("#stateForm").validationEngine('validate')) {
+        if ($("#provinceForm").validationEngine('validate')) {
 
-            insertState();
+            insertProvince();
         }
         return false;
     }
@@ -368,14 +368,14 @@ $(document).ready(function () {
     * @since 13/08/2018
     */
 
-    window.fillStateForm = function (data) {
-        $("#loading-image-state").loadImager('removeLoadImage');
-        $("#loading-image-state").loadImager('appendImage');
+    window.fillProvinceForm = function (data) {
+        $("#loading-image-province").loadImager('removeLoadImage');
+        $("#loading-image-province").loadImager('appendImage');
 
         $('#dropdownCountry').ddslick('select', { index: 3 });
-        document.getElementById("txt-state-name").value = data.StoreCity;
+        document.getElementById("txt-province-name").value = data.StoreCity;
 
-        $("#loading-image-state").loadImager('removeLoadImage');
+        $("#loading-image-province").loadImager('removeLoadImage');
 
         return false;
     }

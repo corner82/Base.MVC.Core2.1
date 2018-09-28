@@ -47,7 +47,7 @@
                 <div class="box box-info">
                     <div class="box-header">
                         <i class="fa fa-comments-o"></i>
-                        <h3 class="box-title">State Form</h3>
+                        <h3 class="box-title"><span lang="en">Province Identification Form</span></h3>
 
                         <div class="box-tools pull-right">
                             <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -55,11 +55,11 @@
                         </div>
                     </div>
                     <div class="box-body">
-                        <form id='stateForm' method="get">
-                            <div class="row" id="loading-image-state">
+                        <form id='provinceForm' method="get">
+                            <div class="row" id="loading-image-province">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Country name:</label>
+                                        <label><span lang="en">Country name</span></label>
 
                                         <div class="" id="ajaxACL-country">
                                             <div id="loading-image-country" class="input-group">
@@ -71,12 +71,12 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label>State name:</label>
+                                        <label><span lang="en">Province name</span></label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-user"></i>
                                             </div>
-                                            <input type="text" class="form-control validate[required]" placeholder="State Name" id="txt-state-name">
+                                            <input type="text" class="form-control validate[required]" placeholder="Province Name" id="txt-province-name">
                                         </div>
                                     </div>
                                 </div>
@@ -95,10 +95,10 @@
                                                 &nbsp;
                                             </td>
                                             <td>
-                                                <button type="reset" class="btn btn-block btn-primary btn-md" id="btn-state-clear" onclick="resetStateForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                                <button type="reset" class="btn btn-block btn-primary btn-md" id="btn-province-clear" onclick="resetProvinceForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
                                             </td>
                                             <td>
-                                                <button type="submit" class="btn btn-block btn-primary btn-md" id="btn-state-save" onclick="insertStateWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                                <button type="submit" class="btn btn-block btn-primary btn-md" id="btn-province-save" onclick="insertProvinceWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -120,15 +120,15 @@
                 <div class="box box-info">
                     <div class="box-header">
                         <i class="fa fa-comments-o"></i>
-                        <h3 class="box-title">State List</h3>
+                        <h3 class="box-title"><span lang="en">Province List</span></h3>
 
                         <div class="box-tools pull-right">
                             <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
                             <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
                         </div>
                     </div>
-                    <div class="box-body" id="loading-image-StateGrid">
-                        <div id="gridContainer_state"></div>
+                    <div class="box-body" id="loading-image-ProvinceGrid">
+                        <div id="gridContainer_province"></div>
                     </div>
                 </div>
 
@@ -177,7 +177,7 @@
     <script src="@ViewBag.defaultDevExLangPath"></script>
 
 
-    <script src="~/adm/dist/js/pages/sys/state.js" type="text/javascript"></script>
+    <script src="~/adm/dist/js/pages/sys/province.js" type="text/javascript"></script>
 
     <script>
         $(document).ready(function () {

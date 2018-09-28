@@ -22,7 +22,7 @@
     $("#loading-image-cstInfoGrid").loadImager();
 
     $("#loading-image-country").loadImager();
-    $("#loading-image-state").loadImager();
+    $("#loading-image-province").loadImager();
     $("#loading-image-city").loadImager();
     $("#loading-image-reliabilityrate").loadImager();
     $("#loading-image-sector").loadImager();
@@ -128,38 +128,13 @@
     $('#customerPurchaseForm').validationEngine();
     $('#customerContactPersonForm').validationEngine();
 
-    /* Geçici data */
-    //Dropdown plugin data
-    var cbdata_country = [{}];
-
-    var cbdata = [
-        {
-            text: window.lang.translate('Please select') + "...",
-            value: 1,
-            selected: true
-        },
-        {
-            text: "South Africa",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "Turkey",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "Germany",
-            value: 4,
-            selected: false
-        }
-    ];
 
     $('#loading-image-country').loadImager('removeLoadImage');
     $("#loading-image-country").loadImager('appendImage');  
 
     var ajaxACLResources_country = $('#ajaxACL-country').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        proxy: '/Sys/SysCountrys/',
+        type: 'POST',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -177,12 +152,15 @@
             });
             dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
         },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
+        onSuccess: function (event, datacountry) {
+            var cbdata_country = $.parseJSON(datacountry);
+            cbdata_country.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
 
             $('#dropdownCountry').ddslick({
                 //height: 150,
-                data: cbdata,
+                data: cbdata_country,
                 width: '100%',
 
                 onSelected: function (selectedData) {
@@ -205,58 +183,191 @@
         },
     })
     ajaxACLResources_country.ajaxCallWidget('call');
-
-
+    var cbdata_province = [
+        {
+            text: 'Search...',
+            value: 1,
+            selected: true
+        },
+        {
+            text: "Western Cape",
+            value: 2,
+            selected: false
+        },
+        {
+            text: "Northern Cape",
+            value: 3,
+            selected: false
+        },
+        {
+            text: "North West",
+            value: 4,
+            selected: false
+        },
+        {
+            text: "Mpumalanga",
+            value: 5,
+            selected: false
+        },
+        {
+            text: "Free State",
+            value: 6,
+            selected: false
+        },
+        {
+            text: "KwaZulu - Natal",
+            value: 6,
+            selected: false
+        },
+        {
+            text: "Gauteng",
+            value: 6,
+            selected: false
+        },
+        {
+            text: "Limpopo",
+            value: 6,
+            selected: false
+        },
+    ];
+    var cbdata_city = [
+        {
+            text: 'Search...',
+            value: 1,
+            selected: true
+        },
+        {
+            text: "Bellville",
+            value: 2,
+            selected: false
+        },
+        {
+            text: "Cape Town",
+            value: 3,
+            selected: false
+        },
+        {
+            text: "Constantia",
+            value: 4,
+            selected: false
+        },
+        {
+            text: 'George',
+            value: 5,
+            selected: false
+        },
+        {
+            text: "Hopefield",
+            value: 6,
+            selected: false
+        },
+        {
+            text: "Oudtshoorn",
+            value: 7,
+            selected: false
+        },
+        {
+            text: "Paarl",
+            value: 8,
+            selected: false
+        },
+        {
+            text: 'Simon’s Town',
+            value: 9,
+            selected: false
+        },
+        {
+            text: "Stellenbosch",
+            value: 10,
+            selected: false
+        },
+        {
+            text: "Swellendam",
+            value: 11,
+            selected: false
+        },
+        {
+            text: "Worcester",
+            value: 12,
+            selected: false
+        },
+        {
+            text: "Vredenburg",
+            value: 13,
+            selected: false
+        }
+    ];
     var cbdata = [
         {
-            text: window.lang.translate('Please select') + "...",
+            text: 'Search...',
             value: 1,
             selected: true
         },
         {
-            text: "South Africa",
+            text: "Bellville",
             value: 2,
             selected: false
         },
         {
-            text: "Turkey",
+            text: "Cape Town",
             value: 3,
             selected: false
         },
         {
-            text: "Germany",
+            text: "Constantia",
             value: 4,
+            selected: false
+        },
+        {
+            text: 'George',
+            value: 5,
+            selected: false
+        },
+        {
+            text: "Hopefield",
+            value: 6,
+            selected: false
+        },
+        {
+            text: "Oudtshoorn",
+            value: 7,
+            selected: false
+        },
+        {
+            text: "Paarl",
+            value: 8,
+            selected: false
+        },
+        {
+            text: 'Simon’s Town',
+            value: 9,
+            selected: false
+        },
+        {
+            text: "Stellenbosch",
+            value: 10,
+            selected: false
+        },
+        {
+            text: "Swellendam",
+            value: 11,
+            selected: false
+        },
+        {
+            text: "Worcester",
+            value: 12,
+            selected: false
+        },
+        {
+            text: "Vredenburg",
+            value: 13,
             selected: false
         }
     ];
+    $('#loading-image-province').loadImager('removeLoadImage');
+    $("#loading-image-province").loadImager('appendImage');
 
-    var cbdata_state = [
-        {
-            text: window.lang.translate('Please select') + "...",
-            value: 1,
-            selected: true
-        },
-        {
-            text: "South Africa",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "Turkey",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "Germany",
-            value: 4,
-            selected: false
-        }
-    ];
-
-    $('#loading-image-state').loadImager('removeLoadImage');
-    $("#loading-image-state").loadImager('appendImage');
-
-    var ajaxACLResources_state = $('#ajaxACL-state').ajaxCallWidget({
+    var ajaxACLResources_province = $('#ajaxACL-province').ajaxCallWidget({
         proxy: 'https://jsonplaceholder.typicode.com/todos/',
         data: {
             url: '1'
@@ -265,12 +376,12 @@
 
     });
 
-    ajaxACLResources_state.ajaxCallWidget({
+    ajaxACLResources_province.ajaxCallWidget({
         onError: function (event, textStatus, errorThrown) {
 
             dm.dangerMessage({
                 onShown: function () {
-                    $('#loading-image-state').loadImager('removeLoadImage');
+                    $('#loading-image-province').loadImager('removeLoadImage');
                 }
             });
             dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
@@ -278,9 +389,9 @@
         onSuccess: function (event, data) {
             //var data = $.parseJSON(cbdata);
 
-            $('#dropdownState').ddslick({
+            $('#dropdownProvince').ddslick({
                 //height: 150,
-                data: cbdata,
+                data: cbdata_province,
                 width: '100%',
 
                 onSelected: function (selectedData) {
@@ -290,19 +401,19 @@
                 }
             });
 
-            $("#loading-image-state").loadImager('removeLoadImage');
+            $("#loading-image-province").loadImager('removeLoadImage');
         },
         onErrorDataNull: function (event, data) {
             console.log("Error : " + event + " -data :" + data);
             dm.dangerMessage({
                 onShown: function () {
-                    $('#loading-image-state').loadImager('removeLoadImage');
+                    $('#loading-image-province').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Ülke bulunamamıştır...'), window.lang.translate('Ülke  bulunamamıştır...'));
+            dm.dangerMessage('show', window.lang.translate('Bölge bulunamamıştır...'), window.lang.translate('Bölge  bulunamamıştır...'));
         },
     })
-    ajaxACLResources_state.ajaxCallWidget('call');
+    ajaxACLResources_province.ajaxCallWidget('call');
 
 
     $('#loading-image-city').loadImager('removeLoadImage');
@@ -331,7 +442,7 @@
 
             $('#dropdownCity').ddslick({
                 //height: 150,
-                data: cbdata,
+                data: cbdata_city,
                 width: '100%',
 
                 onSelected: function (selectedData) {
