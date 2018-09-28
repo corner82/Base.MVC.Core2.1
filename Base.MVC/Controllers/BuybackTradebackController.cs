@@ -77,7 +77,159 @@ namespace Base.MVC.Controllers
             return data.ToString();
         }
 
+        /// <summary>
+        /// buyback tradeback contract type 
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysBbTbContractTypes()
+        {
+            // buyback tradeback contract type 
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkBbContractTypesDdList_sysbbcontracttypes&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
 
+        /// <summary>
+        /// buyback off road 
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysBbTerrains()
+        {
+            // buyback offroad
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkTerrainsBuybackDdList_systerrains&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
+
+        /// <summary>
+        /// tradeback off road 
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysTbTerrains()
+        {
+            // tradeback off road 
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkTerrainsTradebackDdList_systerrains&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
+
+        /// <summary>
+        /// buyback Mil 
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysBbMileages()
+        {
+            // buyback mil
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkMileagesBuybackDdList_sysmileages&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
+
+        /// <summary>
+        /// tradeback Mil
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysTbMileages()
+        {
+            // tradeback mil 
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkMileagesTradebackDdList_sysmileages&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
+        
+        /// <summary>
+        /// buyback Month 
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysBbMonths()
+        {
+            // buyback month
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkBuybackMonthsDdList_sysmonths&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
+
+        /// <summary>
+        /// tradeback month
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysTbMonths()
+        {
+            // tradeback month
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkTradebackMonthsDdList_sysmonths&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
 
 
 
