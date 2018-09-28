@@ -49,8 +49,6 @@ $(document).ready(function () {
     });
     ajax_PostPrimitiveTypeParameterFromHeader.ajaxCallWidget('call');
 
-
-
     var ajax_PostPrimitiveTypeParameter = $(window).ajaxCallWidget({
         proxy: '/Home/IndexPostPrimitiveTypeParameter',
         //contentType: "application/x-www-form-urlencoded",
@@ -61,6 +59,20 @@ $(document).ready(function () {
     });
     ajax_PostPrimitiveTypeParameter.ajaxCallWidget('call');
 
+    var ajax_GetObjectTypeParameter = $(window).ajaxCallWidget({
+        proxy: '/Home/IndexGetObjectParameter',
+        type: 'GET',
+        data: {
+            //missing brackets
+            Address1: '423 Judy Road',
+            Address2: '1001',
+            City: 'New York',
+            State: 'NY',
+            ZipCode: '10301',
+            Country: "USA"
+        },
+    });
+    ajax_GetObjectTypeParameter.ajaxCallWidget('call');
 
     
 
@@ -106,7 +118,7 @@ $(document).ready(function () {
         //alert(test.attr('data-toggle'));
 
         //var socket = io.connect('https://localhost:8444');
-        var socket = io.connect('http://localhost:3000', { reconnect: true });
+        //var socket = io.connect('http://localhost:3000', { reconnect: true });
         /*var $messageForm = $('#send-message');
         var $messageBox = $('#chat-input');*/
 

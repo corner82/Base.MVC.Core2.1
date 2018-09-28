@@ -96,7 +96,8 @@ namespace Base.MVC.Controllers
                 
 
                 string test = _queryCreater.GetQueryStringFromObject(addressInfo);
-
+                var encodedURL = Request.GetEncodedUrl();
+                Request.GetEncodedPathAndQuery();
                
 
 
@@ -160,6 +161,43 @@ namespace Base.MVC.Controllers
                 throw new Exception("Model satate is not valid");
             }
             
+        }
+
+
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpGet]
+        public async Task<string> IndexGetObjectParameter()
+        {
+            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
+
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+
+
+                //string test = _queryCreater.GetQueryStringFromObject(addressInfo);
+                var encodedURL = Request.GetEncodedUrl();
+                var pathAndQuery = Request.GetEncodedPathAndQuery();
+                var displayURL = Request.GetDisplayUrl();
+                string path = Request.Path.ToString();
+                string queryStr = Request.QueryString.ToString();
+
+                //_hmacManager.test();
+                //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
+                var response = await HttpClientRequestFactory.Get("https://manservices.man.com.tr/SlimProxyBoot.php?url=fillServicesDdlist_infoAfterSales&pk=zC3zCuVV2cttXP6", headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model satate is not valid");
+            }
+
         }
     }
 }
