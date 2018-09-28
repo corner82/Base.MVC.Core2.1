@@ -83,8 +83,8 @@ $(document).ready(function () {
         },
         onSuccess: function (event, cbdata_contractType) {
             //var data = $.parseJSON(cbdata);
-            var cbdataCt = $.parseJSON(cbdata_contractType);
-            cbdataCt.splice(0, 0,
+            var cbdata_Ct = $.parseJSON(cbdata_contractType);
+            cbdata_Ct.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
             $('#ddslickContractType').ddslick({
