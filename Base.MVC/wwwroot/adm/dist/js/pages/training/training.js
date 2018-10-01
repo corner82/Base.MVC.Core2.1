@@ -28,7 +28,6 @@
     */
     //to Training Indo form
     $("#loading-image-truser").loadImager();
-
     $("#loading-image-trName").loadImager();
     $("#loading-image-trainer").loadImager();
     $("#loading-image-city").loadImager();
@@ -58,31 +57,9 @@
     * @author Ceydacan Seyrek
     * @since 29/08/2016
     */
-    var tab_active = function () {
-        //Update & View Mode
-        //enabled tabs
+    var tabOrganizer = $("#training_tab").organizeTabs({ tabID: "training_tab" });
+    $("#training_tab").organizeTabs('disableAllTabs');
 
-        $("a[data-toggle='tab'").prop('disabled', false);
-        $("a[data-toggle='tab'").each(function () {
-            $(this).attr('href', $(this).prop('data-href')); // restore original href
-        });
-        $("a[data-toggle='tab'").removeClass('disabled-link');
-    }
-
-    var tab_disable = function () {
-        //Add new record
-        //tablar kapatılacak
-
-        $("a[data-toggle='tab'").prop('disabled', true);
-        $("a[data-toggle='tab'").each(function () {
-            $(this).prop('data-href', $(this).attr('href')); // hold you original href
-            $(this).attr('href', '#'); // clear href
-        });
-        $("a[data-toggle='tab'").addClass('disabled-link');
-
-    }
-
-    tab_disable();
     /*
     * training Info insert form validation engine attached to work
     * @since 29/08/2016
@@ -631,22 +608,6 @@
     });
 
 
-
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-        var target = $(e.target).attr("href") // activated tab
-
-        if (target == "#tab_1") {
-            //alert("#tab_1");
-        }
-        if (target == "#tab_2") {
-            // grid refresh olması gerektiği için kullanıldı.
-            $(gridContainer_trainingInfo).dxDataGrid("updateDimensions");
-            //alert("#tab_2");
-        }
-    });
-
-
-
     /**
     * insert CustomerInfo Wrapper
     * @returns {Boolean}
@@ -674,7 +635,7 @@
         $("#loading-image-trInfo").loadImager('removeLoadImage');
         $("#loading-image-trInfo").loadImager('appendImage');
 
-        var cst_name = $('#txt-cst-name').val();
+        var cst_name = $('#txt-trn-name').val();
 
         var aj = $(window).ajaxCall({
             proxy: 'https://jsonplaceholder.typicode.com/todos/',
@@ -783,7 +744,7 @@
         $("#loading-image-trInfo").loadImager('removeLoadImage');
 
         //yeni kayda açık, tablar kapatılıyor
-        tab_disable();
+        //tab_disable();
 
         return false;
     }
@@ -793,11 +754,10 @@
         $("#loading-image-trInfo").loadImager('removeLoadImage');
         $("#loading-image-trInfo").loadImager('appendImage');
 
-        document.getElementById("txt-cst-name").value = data.Employee;
+        document.getElementById("txt-trn-name").value = data.Employee;
 
         $("#loading-image-trInfo").loadImager('removeLoadImage');
-        tab_active();
-
+        $("#training_tab").organizeTabs('enableAllTabs');
         return false;
     }
 
@@ -904,7 +864,7 @@
         $('#dropdownCity').ddslick('select', { index: String(0) });
 
         $("#loading-image-truser").loadImager('removeLoadImage');
-
+        $("#training_tab").organizeTabs('activatePrevTab');
         return false;
     }
 
@@ -934,7 +894,6 @@
         $('#dropdownTrName').ddslick('select', { index: 2 });
         $('#dropdownTrainer').ddslick('select', { index: 2 });
         $('#dropdownCity').ddslick('select', { index: 2 });
-        document.getElementById("txt-cst-name").value = data.Employee;
         document.getElementById("txt-TrAdr-name").value = data.Employee;
         document.getElementById("txt-PtCode-name").value = data.Employee;
         document.getElementById("txt-Explanation-name").value = data.Employee;
