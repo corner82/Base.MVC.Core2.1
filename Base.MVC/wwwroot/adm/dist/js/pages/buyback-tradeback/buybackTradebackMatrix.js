@@ -288,34 +288,12 @@ $(document).ready(function () {
 //Contract Type End
     
 //Customer Type
-    var cbdata_customerType = [
-        {
-            text: window.lang.translate('Please select') + "...",
-            value: 1,
-            selected: true
-        },
-        {
-            text: "Retail",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "Key Account",
-            value: 3,
-            selected: false
-        }
-    ];
-
     $('#loadingImage_DdslickCustomerType').loadImager('removeLoadImage');
     $("#loadingImage_DdslickCustomerType").loadImager('appendImage');
 
     var ajaxACLResources_CustomerType = $('#ajax_DdslickCustomerType').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
+        proxy: '/Customer/SysCustomerType/',
+        type: 'POST'
     });
 
     ajaxACLResources_CustomerType.ajaxCallWidget({
@@ -328,9 +306,12 @@ $(document).ready(function () {
             });
             dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
         },
-        onSuccess: function (event, data) {
+        onSuccess: function (event, cbdata_cusType) {
             //var data = $.parseJSON(cbdata);
-
+            var cbdata_customerType = $.parseJSON(cbdata_cusType);
+            cbdata_customerType.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#ddslickCustomerType').ddslick({
                 //height: 150,
                 data: cbdata_customerType,
