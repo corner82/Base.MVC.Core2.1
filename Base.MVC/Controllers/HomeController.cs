@@ -180,7 +180,6 @@ namespace Base.MVC.Controllers
                 headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
 
 
-                //string test = _queryCreater.GetQueryStringFromObject(addressInfo);
                 var encodedURL = Request.GetEncodedUrl();
                 var pathAndQuery = Request.GetEncodedPathAndQuery();
                 var displayURL = Request.GetDisplayUrl();

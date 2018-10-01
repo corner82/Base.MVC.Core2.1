@@ -129,7 +129,7 @@ $(document).ready(function () {
         })*/
         var msg = '{ "UserName" : "' + localStorage.getItem('userName') + '","Host" : "localhost:3000","Action": "' + $("#requestUriRegulated").val() + '","Controller":"' + $("#requestUriRegulated").val() + '","Port":"3000","UserAgent":"Chrome","UserIP":"127.0.0.1","Method":"Demo","SessionID": "' + localStorage.getItem('sessionID')+'","UserToken":"ssssss","UserPublicKey":"' + $("#publicKey").val() +'"}';
         //socket.emit('send message', 'click message');
-        socket.emit('send message', msg);
+        //socket.emit('send message', msg);
 
         /*socket.on('new message', function (data) {
             $('.panel-body').append(data + '<br/>');
