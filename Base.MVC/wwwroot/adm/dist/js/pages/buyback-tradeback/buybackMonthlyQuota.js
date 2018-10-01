@@ -64,13 +64,8 @@ $(document).ready(function () {
     $("#loadingImage_DdslickVehicleModel").loadImager('appendImage');
 
     var ajaxACLResources_VehicleModel = $('#ajax_DdslickVehicleModel').ajaxCallWidget({
-        proxy: '/Vehicle/sysvehiclegroups',
-        data: {
-            url: '1',
-            //pk: $("#pk").val()
-            dataType: 'json'
-        }
-
+        proxy: '/Vehicle/SysVehicleGroups',
+        type: 'POST'
     });
 
     ajaxACLResources_VehicleModel.ajaxCallWidget({
@@ -85,10 +80,9 @@ $(document).ready(function () {
         },
         onSuccess: function (event, cbdata_vehicletype) {
             var cbdata = $.parseJSON(cbdata_vehicletype);
-            
-            //data.splice(0, 1,
-            //    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-            //);
+            cbdata.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
 
             $('#ddslickVehicleModel').ddslick({
                 //height: 150,
