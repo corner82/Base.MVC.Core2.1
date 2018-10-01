@@ -18,8 +18,6 @@
     */
     //to customer info form
     $("#loading-image-cstInfo").loadImager();
-    //to customer info grid loading-image
-    $("#loading-image-cstInfoGrid").loadImager();
 
     $("#loading-image-country").loadImager();
     $("#loading-image-province").loadImager();
@@ -32,6 +30,8 @@
     $("#loading-image-totalemployees").loadImager();
     $("#loading-image-annuelrevenue").loadImager();
 
+    //to customer info grid loading-image
+    $("#loading-image-cstInfoGrid").loadImager();
     /*
     * Customer Purchase Plan Tab LoadImager
     * @author Gül Özdemir
@@ -470,7 +470,8 @@
     $("#loading-image-reliabilityrate").loadImager('appendImage');
 
     var ajaxACLResources_reliabilityRate = $('#ajaxACL-reliabilityrate').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        proxy: '/Customer/SysCustomerReliability/',
+        type: 'POST',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -488,12 +489,15 @@
             });
             dm.dangerMessage('show', 'Servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
         },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
+        onSuccess: function (event, datareliability) {
+            var cbdata_reliability = $.parseJSON(datareliability);
+            cbdata_reliability.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
 
             $('#dropdownReliabilityRate').ddslick({
                 //height: 150,
-                data: cbdata,
+                data: cbdata_reliability,
                 width: '100%',
 
                 onSelected: function (selectedData) {
@@ -782,7 +786,8 @@
     $("#loading-image-annuelrevenue").loadImager('appendImage');
 
     var ajaxACLResources_annuelrevenue = $('#ajaxACL-annuelrevenue').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        proxy: '/Customer/SysCustomerAnnualRevenue/',
+        type: 'POST',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -800,12 +805,13 @@
             });
             dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
         },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
+        onSuccess: function (event, dataannuelrevenue) {
+            var cbdata_annuelrevenue = $.parseJSON(dataannuelrevenue);
+            cbdata_annuelrevenue.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#dropdownAnnuelRevenue').ddslick({
-                //height: 150,
-                data: cbdata,
+                data: cbdata_annuelrevenue,
                 width: '100%',
 
                 onSelected: function (selectedData) {
@@ -835,7 +841,8 @@
     $("#loading-image-lastpurchasedbrand").loadImager('appendImage');
 
     var ajaxACLResources_lastpurchasedbrand = $('#ajaxACL-lastpurchasedbrand').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        proxy: '/Vehicle/SysVehicleBrand/',
+        type: 'POST',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -853,12 +860,13 @@
             });
             dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
         },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
+        onSuccess: function (event, datavehiclebrand) {
+            var cbdata_vehiclebrand = $.parseJSON(datavehiclebrand);
+            cbdata_vehiclebrand.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#dropdownLastPurchaseBrand').ddslick({
-                //height: 150,
-                data: cbdata,
+                data: cbdata_vehiclebrand,
                 width: '100%',
 
                 onSelected: function (selectedData) {
@@ -877,7 +885,7 @@
                     $('#loading-image-lastpurchasedbrand').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', 'Rol Bulunamamıştır...', 'Rol  bulunamamıştır...');
+            dm.dangerMessage('show', 'Brand Bulunamamıştır...', 'Brand  bulunamamıştır...');
         },
     })
     ajaxACLResources_lastpurchasedbrand.ajaxCallWidget('call');
@@ -1571,7 +1579,8 @@
     $("#loading-image-brand").loadImager('appendImage');
 
     var ajaxACLResources_brand = $('#ajaxACL-brand').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        proxy: '/Vehicle/SysVehicleBrand/',
+        type: 'POST',
         data: {
             url: '1'
             //pk: $("#pk").val()
@@ -1589,12 +1598,15 @@
             });
             dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
         },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
+        onSuccess: function (event, databrand) {
+            var cbdata_brand = $.parseJSON(databrand);
+            cbdata_brand.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
 
             $('#dropdownBrand').ddslick({
                 //height: 150,
-                data: data_priority,
+                data: cbdata_brand,
                 width: '100%',
 
                 onSelected: function (selectedData) {
