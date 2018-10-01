@@ -114,9 +114,7 @@
     "Service Name": "Dienstname",
     "PDF Link": "PDF Link",
     "Service Spare Part Target": "Service Ersatzteil Ziel",
-    /*deal pages expressions begin  */
     "Vehicle type data not found": "Daten zum Fahrzeugtyp nicht gefunden",
-    /*deal pages expressions end  */
     "TARGET": "ZIEL",
     "Type": "Art",
     "Jan-May 2017": "Januar bis Mai 2017",
@@ -267,8 +265,6 @@
     "Training address": "Trainingsadresse",
     "Postal code": "Postleitzahl",
     "Training start date": "Startdatum des Trainings",
-    "\",",
-    : null,
     "Training end date": "Trainingsenddatum",
     "Grade": "Klasse",
     "Training list info": "Trainingslisteninfo",
@@ -341,5 +337,5 @@
     "Tradeback deal detail information": "Tradeback Details zu Deals ",
     "Tradeback vehicle list": "Tradeback Fahrzeugliste "
   }
-	
+
 }

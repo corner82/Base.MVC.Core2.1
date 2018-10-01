@@ -310,8 +310,8 @@
         addTags: function (data, infoArrayManual) {
             var self = this;
             var infoArrayManual = infoArrayManual;
-            console.log('parsejson öncesi');
-            console.log(data);
+            //console.log('parsejson öncesi');
+            //console.log(data);
             var dataArr = $.parseJSON(data);
             var infoArray = {};
             //console.log(dataArr);

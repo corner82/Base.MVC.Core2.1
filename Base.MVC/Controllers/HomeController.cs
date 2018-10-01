@@ -85,7 +85,6 @@ namespace Base.MVC.Controllers
         [HttpPost]
         public async Task<string> IndexPostObjectParameter([FromBody] AddressInfo addressInfo)
         {
-            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
 
             if(ModelState.IsValid)
             {
@@ -93,13 +92,10 @@ namespace Base.MVC.Controllers
                 var tokenGenerated = HttpContext.Session.GetHmacToken();
                 headers.Add("X-Hmac", tokenGenerated);
                 headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-                
 
                 string test = _queryCreater.GetQueryStringFromObject(addressInfo);
                 var encodedURL = Request.GetEncodedUrl();
                 Request.GetEncodedPathAndQuery();
-               
-
 
                 //_hmacManager.test();
                 //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
@@ -119,7 +115,6 @@ namespace Base.MVC.Controllers
         [HttpPost]
         public async Task<string> IndexPostPrimitiveTypeParameter([FromBody] string  addressInfo)
         {
-            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
             if(ModelState.IsValid)
             {
                 var headers = new Dictionary<string, string>();
@@ -142,7 +137,6 @@ namespace Base.MVC.Controllers
         [HttpPost]
         public async Task<string> IndexPostPrimitiveTypeParameterFromHeader([FromHeader] string myFirstHeader, [FromHeader] string mySecondHeader)
         {
-            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
 
             if(ModelState.IsValid)
             {
@@ -170,7 +164,6 @@ namespace Base.MVC.Controllers
         [HttpGet]
         public async Task<string> IndexGetObjectParameter()
         {
-            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
 
             if (ModelState.IsValid)
             {
