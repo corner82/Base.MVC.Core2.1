@@ -57,6 +57,7 @@
                 @Html.Partial("DealListPartial.cshtml")
 
                 <!-- Breadcrumb-->
+                
                 @Html.Partial("DealMainAttrAddPartial.cshtml")
 
                 <!-- TO DO List -->
@@ -247,6 +248,8 @@
                 checkboxClass: 'icheckbox_minimal',
                 radioClass: 'iradio_minimal'
             });
+
+            $("#langCode").jsLangMaster();
 
         });
     </script>

@@ -9,6 +9,159 @@
     }
   },
   {
+    "Key": "Total count",
+    "LocalizedValue": {
+      "de-DE": "Komplette anzahl",
+      "en-US": "Total count",
+      "af-ZA": "Totale telling",
+      "tr-TR": "Toplam"
+    }
+  },
+  {
+    "Key": "Date",
+    "LocalizedValue": {
+      "de-DE": "Datum",
+      "en-US": "Date",
+      "af-ZA": "Datum",
+      "tr-TR": "Tarih"
+    }
+  },
+  {
+    "Key": "Deal buyback",
+    "LocalizedValue": {
+      "de-DE": "Deal-Rückkauf",
+      "en-US": "Deal buyback",
+      "af-ZA": "Deal terugkoop",
+      "tr-TR": "Buyback"
+    }
+  },
+  {
+    "Key": "Hydraulics",
+    "LocalizedValue": {
+      "de-DE": "Hydraulik",
+      "en-US": "Hydraulics",
+      "af-ZA": "Hydraulics",
+      "tr-TR": "Hidrolikler"
+    }
+  },
+  {
+    "Key": "R&M",
+    "LocalizedValue": {
+      "de-DE": "R&M",
+      "en-US": "R&M",
+      "af-ZA": "R&M",
+      "tr-TR": "Bakım&Onarım"
+    }
+  },
+  {
+    "Key": "Terrain",
+    "LocalizedValue": {
+      "de-DE": "Terrain",
+      "en-US": "Terrain",
+      "af-ZA": "Terrein",
+      "tr-TR": "Arazi"
+    }
+  },
+  {
+    "Key": "Truck type",
+    "LocalizedValue": {
+      "de-DE": "LKW-Typ",
+      "en-US": "Truck type",
+      "af-ZA": "Vragmotor tipe",
+      "tr-TR": "Araç tipi"
+    }
+  },
+  {
+    "Key": "Customer type",
+    "LocalizedValue": {
+      "de-DE": "Kundentyp",
+      "en-US": "Customer type",
+      "af-ZA": "Kliënt tipe",
+      "tr-TR": "Müşteri tipi"
+    }
+  },
+  {
+    "Key": "Vehicle type",
+    "LocalizedValue": {
+      "de-DE": "Fahrzeugtyp",
+      "en-US": "Vehicle type",
+      "af-ZA": "Voertuigtipe",
+      "tr-TR": "Kampanya ekle"
+    }
+  },
+  {
+    "Key": "Add campaign",
+    "LocalizedValue": {
+      "de-DE": "Kampagne hinzufügen",
+      "en-US": "Add campaign",
+      "af-ZA": "Voeg veldtog by",
+      "tr-TR": "Kampanya ekle"
+    }
+  },
+  {
+    "Key": "Save",
+    "LocalizedValue": {
+      "de-DE": "Sparen",
+      "en-US": "Save",
+      "af-ZA": "red",
+      "tr-TR": "Kaydet"
+    }
+  },
+  {
+    "Key": "House deal",
+    "LocalizedValue": {
+      "de-DE": "House deal",
+      "en-US": "House deal",
+      "af-ZA": "House deal",
+      "tr-TR": "House deal"
+    }
+  },
+  {
+    "Key": "Discount rate",
+    "LocalizedValue": {
+      "de-DE": "Realisierungsrate",
+      "en-US": "Discount rate",
+      "af-ZA": "Afslagkoers",
+      "tr-TR": "İndirim oranı"
+    }
+  },
+  {
+    "Key": "Realization rate",
+    "LocalizedValue": {
+      "de-DE": "Realisierungsrate",
+      "en-US": "Realization rate",
+      "af-ZA": "Realisasie koers",
+      "tr-TR": "Gerçekleşme oranı"
+    }
+  },
+  {
+    "Key": "Priority",
+    "LocalizedValue": {
+      "de-DE": "Priorität",
+      "en-US": "Priority",
+      "af-ZA": "Prioriteit",
+      "tr-TR": "Öncelik"
+    }
+  },
+  {
+    "Key": "Customer",
+    "LocalizedValue": {
+      "de-DE": "Kunde",
+      "en-US": "Customer",
+      "af-ZA": "Kliënt",
+      "tr-TR": "Müşteri"
+    }
+  },
+  {
+    "Key": "Deal",
+    "LocalizedValue": {
+      "de-DE": "Deale",
+      "en-US": "Deal",
+      "af-ZA": "Ooreenkoms",
+      "tr-TR": "Sözleşme"
+    }
+  },
+  {
     "Key": "Dashboard",
     "LocalizedValue": {
       "de-DE": "Bonjour Dashboard",

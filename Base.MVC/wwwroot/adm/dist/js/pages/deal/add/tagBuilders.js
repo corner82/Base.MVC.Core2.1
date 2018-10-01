@@ -1,5 +1,14 @@
 ﻿$(document).ready(function () {
 
+
+    /**
+   * tagcabin deal-campaign  load imager
+   * @author Mustafa Zeynel Dağlı
+   * @since 11/09/2018
+   */
+    $('#loadingImage_TagCabinDealCampaigns').loadImager();
+
+
     //add vehicle type tab form elements begin
 
     //Deal Vehicle typers tag cabin

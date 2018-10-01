@@ -1572,8 +1572,8 @@
             headers : null,
             async: true,
             outbounds: function (e) {
-                alert('outbounds example ajax call widget');
-                alert(window.lang.translate('piece'));
+                /*alert('outbounds example ajax call widget');
+                alert(window.lang.translate('piece'));*/
             }
         },
         /**

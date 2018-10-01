@@ -1106,6 +1106,15 @@ $(document).ready(function () {
 
 
     /**
+    * jquery lang master created dynamically
+    * @author Mustafa Zeynel Daðlý
+    * @since 01/10/2018
+    */
+    //alert("js lang-master çaðýrýldý");
+    //$("#langCode").jsLangMaster();
+
+
+    /**
     * @author Mustafa Zeynel Daðlý
     * @since 03/07/2018
     * @todo ios mobil cihazlarda cookie deðiþmediði için aþaðýdaki kod bloðu 
@@ -1137,6 +1146,8 @@ $(document).ready(function () {
     Offline.on("down", function () {
         $("#offlineWrapperImager").loadImager('appendImage');
     });
+
+    
 
 });
 
