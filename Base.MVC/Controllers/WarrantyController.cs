@@ -50,7 +50,12 @@ namespace Base.MVC.Controllers
 
         //Servis düzenlemeleri 
 
-        //Araç grubu--> CLA-TGS..
+        /// <summary>
+        /// get Vehicle Group
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// 
+        /// <returns></returns>
         [SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
@@ -70,7 +75,12 @@ namespace Base.MVC.Controllers
             return data.ToString();
         }
 
-        //Araç config--> 4x2, 2x2, 8x4..
+        /// <summary>
+        /// get Vehicle Config ( 4x2, 2x2, 8x4..)
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// 
+        /// <returns></returns>
         [SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
@@ -90,7 +100,12 @@ namespace Base.MVC.Controllers
             return data.ToString();
         }
 
-        //Garanti
+        /// <summary>
+        /// get Warranty
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// 
+        /// <returns></returns>
         [SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
@@ -111,7 +126,12 @@ namespace Base.MVC.Controllers
             return data.ToString();
         }
 
-        //Garanti tipi
+        /// <summary>
+        /// get Warranty Type
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// 
+        /// <returns></returns>
         [SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
@@ -131,7 +151,12 @@ namespace Base.MVC.Controllers
             return data.ToString();
         }
 
-        //Garanti ay
+        /// <summary>
+        /// get Warranty Month
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// 
+        /// <returns></returns>
         [SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
@@ -151,7 +176,12 @@ namespace Base.MVC.Controllers
             return data.ToString();
         }
 
-        //Garanti km
+        /// <summary>
+        /// get Warranty Mileages
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// 
+        /// <returns></returns>
         [SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
@@ -171,7 +201,12 @@ namespace Base.MVC.Controllers
             return data.ToString();
         }
 
-        //Garanti name grid
+        /// <summary>
+        /// get Warranty Name Grid
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// 
+        /// <returns></returns>
         [SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
@@ -191,7 +226,12 @@ namespace Base.MVC.Controllers
             return data.ToString();
         }
 
-        //Garanti grid
+        /// <summary>
+        /// get Warranty Matrix Grid
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// 
+        /// <returns></returns>
         [SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
@@ -211,8 +251,12 @@ namespace Base.MVC.Controllers
             return data.ToString();
         }
 
-
-        //garanti adı dropdown filtreli deneme
+        /// <summary>
+        /// get Warranty Name with Filter 
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// 
+        /// <returns></returns>
         [SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]

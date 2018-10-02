@@ -30,6 +30,8 @@
     $("#loading-image-truser").loadImager();
     $("#loading-image-trName").loadImager();
     $("#loading-image-trainer").loadImager();
+    $("#loading-image-country").loadImager();
+    $("#loading-image-region").loadImager();
     $("#loading-image-city").loadImager();
 
     var langCode = $("#langCode").val();
@@ -71,153 +73,13 @@
     //Dropdown plugin data
     var cbdata_country = [{}];
 
-    var cbdata = [
-        {
-            text: window.lang.translate('Please select') + "...",
-            value: 1,
-            selected: true
-        },
-        {
-            text: "South Africa",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "Turkey",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "Germany",
-            value: 4,
-            selected: false
-        }
-    ];
-
-    var data_trName = [{
-        "value": 0,
-        "text": window.lang.translate('Please select') + "...",
-        selected: true
-    }, {
-        "value": 1,
-        "text": "High",
-        selected: false
-    }, {
-        "value": 2,
-        "text": "Normal",
-        selected: false
-    }, {
-        "value": 3,
-        "text": "Low",
-        selected: false
-
-    }];
-
-    var data_city = [{
-            "value": 0,
-        "text": window.lang.translate('Please select') + "...",
-            "stateID": 0,
-            selected: true
-        }, {
-            "value": 1,
-            "text": "Pretoria",
-            "stateID": 1,
-            selected: false
-        }, {
-            "value": 2,
-            "text": "Bloemfontein",
-            "stateID": 1,
-            selected: false
-        }, {
-            "value": 3,
-            "text": "CapeTown",
-            "stateID": 1,
-            selected: false
-        }, {
-            "value": 4,
-            "text": "Johannesburg",
-            "stateID": 2,
-            selected: false
-    }];
-
-    var data_trainer = [{
-        "value": 0,
-        "text": window.lang.translate('Please select') + "...",
-        selected: true
-        }, {
-            "value": 1,
-            "text": "CEO"
-        }, {
-            "value": 2,
-            "text": "Owner"
-        }, {
-            "value": 3,
-            "text": "Salesman"
-        }, {
-            "value": 4,
-            "text": "Others"
-    }];
-
-    $('#loading-image-trName').loadImager('removeLoadImage');
-    $("#loading-image-trName").loadImager('appendImage');
-
-    var ajaxACLResources_trName = $('#ajaxACL-trName').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-    });
-
-    ajaxACLResources_trName.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-trName').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
-        },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
-            $('#dropdownTrName').ddslick({
-                //height: 150,
-                data: data_trName,
-                width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loading-image-trName").loadImager('removeLoadImage');
-        },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-trName').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'trName not show...', 'trName not show...');
-        },
-    })
-    ajaxACLResources_trName.ajaxCallWidget('call');
-
+    //trainer
     $('#loading-image-trainer').loadImager('removeLoadImage');
     $("#loading-image-trainer").loadImager('appendImage');
 
     var ajaxACLResources_trainer = $('#ajaxACL-trainer').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
+        proxy: '/Training/SysSalesman/',
+        type: 'POST'
     });
 
     ajaxACLResources_trainer.ajaxCallWidget({
@@ -230,12 +92,15 @@
             });
             dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
         },
-        onSuccess: function (event, data) {
+        onSuccess: function (event, data_trainer) {
             //var data = $.parseJSON(cbdata);
-
+            var cbdata_trainer = $.parseJSON(data_trainer);
+            cbdata_trainer.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#dropdownTrainer').ddslick({
                 //height: 150,
-                data: data_trainer,
+                data: cbdata_trainer,
                 width: '100%',
 
                 onSelected: function (selectedData) {
@@ -258,57 +123,169 @@
         },
     })
     ajaxACLResources_trainer.ajaxCallWidget('call');
+    //end trainer
 
-    $('#loading-image-city').loadImager('removeLoadImage');
-    $("#loading-image-city").loadImager('appendImage');
+    //country --> 
+    $('#loading-image-country').loadImager('removeLoadImage');
+    $("#loading-image-country").loadImager('appendImage');
 
-    var ajaxACLResources_city = $('#ajaxACL-city').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
+    var ajaxACLResources_country = $('#ajaxACL-country').ajaxCallWidget({
+        proxy: '/Sys/SysCountrys/',
+        type: 'POST'
     });
 
-    ajaxACLResources_city.ajaxCallWidget({
+    ajaxACLResources_country.ajaxCallWidget({
         onError: function (event, textStatus, errorThrown) {
 
             dm.dangerMessage({
                 onShown: function () {
-                    $('#loading-image-city').loadImager('removeLoadImage');
+                    $('#loading-image-country').loadImager('removeLoadImage');
                 }
             });
             dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
         },
-        onSuccess: function (event, data) {
+        onSuccess: function (event, datacountry) {
             //var data = $.parseJSON(cbdata);
-
-            $('#dropdownCity').ddslick({
+            var cbdata_country = $.parseJSON(datacountry);
+            cbdata_country.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+            $('#dropdownCountry').ddslick({
                 //height: 150,
-                data: data_city,
+                data: cbdata_country,
                 width: '100%',
 
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
+                        var country_id = selectedData.selectedData.value;
+                        //region
+                        $('#loading-image-region').loadImager('removeLoadImage');
+                        $("#loading-image-region").loadImager('appendImage');
+                        var ajaxACLResources_region = $('#ajaxACL-region').ajaxCallWidget({
+                            proxy: '/Sys/SysRegionFilter/',
+                            headers: {
+                                "country_id": 107 //country_id
+                            },
+                            type: 'POST'
+                        });
 
+                        ajaxACLResources_region.ajaxCallWidget({
+                            onError: function (event, textStatus, errorThrown) {
+
+                                dm.dangerMessage({
+                                    onShown: function () {
+                                        $('#loading-image-region').loadImager('removeLoadImage');
+                                    }
+                                });
+                                dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
+                            },
+                            onSuccess: function (event, dataregion) {
+                                //var data = $.parseJSON(cbdata);
+                                var cbdata_region = $.parseJSON(dataregion);
+                                cbdata_region.splice(0, 0,
+                                    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                                );
+                                $('#dropdownRegion').ddslick({
+                                    //height: 150,
+                                    data: cbdata_region,
+                                    width: '100%',
+
+                                    onSelected: function (selectedData) {
+                                        if (selectedData.selectedData.value > 0) {
+                                            var region_id = selectedData.selectedData.value;
+                                            //city
+                                            $('#loading-image-city').loadImager('removeLoadImage');
+                                            $("#loading-image-city").loadImager('appendImage');
+
+                                            var ajaxACLResources_city = $('#ajaxACL-city').ajaxCallWidget({
+                                                proxy: '/Sys/SysCityFilter/',
+                                                headers: {
+                                                    "country_id": 107, //country_id
+                                                    "region_id": 1 //region_id
+                                                },
+                                                type: 'POST'
+
+                                            });
+
+                                            ajaxACLResources_city.ajaxCallWidget({
+                                                onError: function (event, textStatus, errorThrown) {
+
+                                                    dm.dangerMessage({
+                                                        onShown: function () {
+                                                            $('#loading-image-city').loadImager('removeLoadImage');
+                                                        }
+                                                    });
+                                                    dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
+                                                },
+                                                onSuccess: function (event, data_city) {
+                                                    //var data = $.parseJSON(cbdata);
+                                                    var cbdata_city = $.parseJSON(data_city);
+                                                    cbdata_city.splice(0, 0,
+                                                        { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                                                    );
+                                                    $('#dropdownCity').ddslick({
+                                                        //height: 150,
+                                                        data: cbdata_city,
+                                                        width: '100%',
+
+                                                        onSelected: function (selectedData) {
+                                                            if (selectedData.selectedData.value > 0) {
+
+                                                            }
+                                                        }
+                                                    });
+
+                                                    $("#loading-image-city").loadImager('removeLoadImage');
+                                                },
+                                                onErrorDataNull: function (event, data) {
+                                                    console.log("Error : " + event + " -data :" + data);
+                                                    dm.dangerMessage({
+                                                        onShown: function () {
+                                                            $('#loading-image-city').loadImager('removeLoadImage');
+                                                        }
+                                                    });
+                                                    dm.dangerMessage('show', 'city not show...', 'city not show...');
+                                                },
+                                            })
+                                            ajaxACLResources_city.ajaxCallWidget('call');
+    //end city
+
+                                        }
+                                    }
+                                });
+
+                                $("#loading-image-region").loadImager('removeLoadImage');
+                            },
+                            onErrorDataNull: function (event, data) {
+                                console.log("Error : " + event + " -data :" + data);
+                                dm.dangerMessage({
+                                    onShown: function () {
+                                        $('#loading-image-region').loadImager('removeLoadImage');
+                                    }
+                                });
+                                dm.dangerMessage('show', 'region not show...', 'region not show...');
+                            },
+                        })
+                        ajaxACLResources_region.ajaxCallWidget('call');
+    //end region
                     }
                 }
             });
 
-            $("#loading-image-city").loadImager('removeLoadImage');
+            $("#loading-image-country").loadImager('removeLoadImage');
         },
         onErrorDataNull: function (event, data) {
             console.log("Error : " + event + " -data :" + data);
             dm.dangerMessage({
                 onShown: function () {
-                    $('#loading-image-city').loadImager('removeLoadImage');
+                    $('#loading-image-country').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', 'city not show...', 'city not show...');
+            dm.dangerMessage('show', 'country not show...', 'country not show...');
         },
     })
-    ajaxACLResources_city.ajaxCallWidget('call');
+    ajaxACLResources_country.ajaxCallWidget('call');
+    //end country
 
 
     /* devexgrid */
@@ -343,6 +320,39 @@
         }
     });
 
+
+    var traniningDef = new DevExpress.data.CustomStore({
+        load: function (loadOptions) {
+            var deferred = $.Deferred(),
+                args = {};
+
+            if (loadOptions.sort) {
+                args.orderby = loadOptions.sort[0].selector;
+                if (loadOptions.sort[0].desc)
+                    args.orderby += " desc";
+            }
+
+            args.skip = loadOptions.skip || 0;
+            args.take = loadOptions.take || 12;
+
+            $.ajax({
+                url: '/Training/SysTrainingDefGrid',
+                dataType: "json",
+                data: args,
+                type: 'POST',
+                success: function (result) {
+                    deferred.resolve(result.items, { totalCount: result.totalCount });
+                },
+                error: function () {
+                    deferred.reject("Data Loading Error");
+                },
+                timeout: 5000
+            });
+
+            return deferred.promise();
+        }
+    });
+
     DevExpress.localization.locale(langCode);
 
 
@@ -354,7 +364,7 @@
 
         showBorders: true,
 
-        dataSource: orders,
+        dataSource: traniningDef,
 
         columnHidingEnabled: true,
 
@@ -375,7 +385,7 @@
 
         "export": {
             enabled: true,
-            fileName: "Orders"
+            fileName: "traniningDef"
         },
 
         grouping: {
@@ -421,49 +431,18 @@
         },
 
         columns: [{
-            allowGrouping: false,
-            dataField: "OrderNumber",
-            caption: window.lang.translate('Invoice Number') + "...",
-            width: 130
+            caption: window.lang.translate('Training name') + "...",
+            dataField: "name"
         }, {
-            caption: window.lang.translate('City') + "...",
-            dataField: "StoreCity"
-        }, {
-            caption: window.lang.translate('State') + "...",
-            dataField: "StoreState"
-        },
-            "Employee", {
-            dataField: "OrderDate",
-            dataType: "date"
-        }, {
-            dataField: "SaleAmount",
-
+            caption: window.lang.translate('Active/Passive') + "...",
+            dataField: "state_active"
         }],
-
-        customizeColumns: function (columns) {
-            columns[5].format = { type: "currency", currency: "EUR" };
-        },
-
-        summary: {
-            totalItems: [{
-                column: "OrderNumber",
-                summaryType: "count"
-            }, {
-                column: "SaleAmount",
-                summaryType: "sum",
-                valueFormat: "currency"
-            }]
-        },
 
         onSelectionChanged: function (selectedItems) {
             var data = selectedItems.selectedRowsData[0];
             if (data) {
 
                 fillTrainingIdentForm(data);
-
-                //alert("gridContainer_trainingName - onSelectionChanged :" + data);
-                //$(".employeeNotes").text(data.Notes);
-                //$(".employeePhoto").attr("src", data.Picture);
             }
         }
 
@@ -745,7 +724,7 @@
 
         //yeni kayda açık, tablar kapatılıyor
         //tab_disable();
-
+        $("#training_tab").organizeTabs('disableAllTabs');
         return false;
     }
 
@@ -754,7 +733,8 @@
         $("#loading-image-trInfo").loadImager('removeLoadImage');
         $("#loading-image-trInfo").loadImager('appendImage');
 
-        document.getElementById("txt-trn-name").value = data.Employee;
+        document.getElementById("txt-trn-name").value = data.name;
+        document.getElementById("txt-training-trName").value = data.name;
 
         $("#loading-image-trInfo").loadImager('removeLoadImage');
         $("#training_tab").organizeTabs('enableAllTabs');
@@ -859,8 +839,10 @@
 
         $('#trainingInfoForm').validationEngine('hide');
 
-        $('#dropdownTrName').ddslick('select', { index: String(0) });
+        //$('#dropdownTrName').ddslick('select', { index: String(0) });
         $('#dropdownTrainer').ddslick('select', { index: String(0) });
+        $('#dropdownCountry').ddslick('select', { index: String(0) });
+        $('#dropdownRegion').ddslick('select', { index: String(0) });
         $('#dropdownCity').ddslick('select', { index: String(0) });
 
         $("#loading-image-truser").loadImager('removeLoadImage');
@@ -891,8 +873,10 @@
         $("#loading-image-truser").loadImager('removeLoadImage');
         $("#loading-image-truser").loadImager('appendImage');
 
-        $('#dropdownTrName').ddslick('select', { index: 2 });
+        //$('#dropdownTrName').ddslick('select', { index: 2 });
         $('#dropdownTrainer').ddslick('select', { index: 2 });
+        $('#dropdownCountry').ddslick('select', { index: 2 });
+        $('#dropdownRegion').ddslick('select', { index: 2 });
         $('#dropdownCity').ddslick('select', { index: 2 });
         document.getElementById("txt-TrAdr-name").value = data.Employee;
         document.getElementById("txt-PtCode-name").value = data.Employee;
