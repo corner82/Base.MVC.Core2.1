@@ -194,9 +194,9 @@ $(document).ready(function () {
                 console.error('"pkInsert_sysCustomerInfo" servis hatası->' + textStatus);
                 $("#loading-image-country").loadImager('removeLoadImage');
             },
-            onSuccess: function (event, data) {
-                console.log(data);
-                var data = data;
+            onSuccess: function (event, mydata) {
+                console.log(mydata);
+                var data = mydata;
                 sm.successMessage({
                     onShown: function (event, data) {
                         $('#countryForm')[0].reset();
