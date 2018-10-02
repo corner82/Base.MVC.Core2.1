@@ -69,10 +69,11 @@ namespace Base.MVC.Controllers
             return "role not found";
         }
 
+        //[HttpGet("Acc/CreateRole/{roleStr}")]
         [HttpGet]
-        public async Task<string> CreateRole()
+        public async Task<string> CreateRole(string roleStr)
         {
-            if (!_roleManager.RoleExistsAsync("Back Offic eOrder Management").Result)
+            if (!_roleManager.RoleExistsAsync("Back Office Order Management").Result)
             {
                 CustomIdentityRole role = new CustomIdentityRole
                 {
@@ -85,7 +86,7 @@ namespace Base.MVC.Controllers
                 if (!roleResult.Succeeded)
                 {
                     ModelState.AddModelError("", "We can't add the role");
-                    return "test";
+                    return "we cannot add the role";
                 }
                 else if (roleResult.Succeeded)
                 {
