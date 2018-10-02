@@ -977,21 +977,51 @@ $(document).ready(function () {
  */
 
     window.insertwarrantyName = function () {
+
+        alert("geldim 3");
+
         $("#loading-image-warrantyName").loadImager('removeLoadImage');
         $("#loading-image-warrantyName").loadImager('appendImage');
 
-        var cst_purchaselastupdate = $('#txt-model-name').val();
+        var ddData = $('#dropdownModelName').data('ddslick');
+        vehicle_group_id = ddData.selectedData.value;
 
-        var aj = $(window).ajaxCall({
-            proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
+        var warrantyName = $('#txt-model-name').val();
+
+        //var warrantyInfo = new WarrantyInfo
+        //{
+        //    VehicleTypeId = vehicle_group_id,
+        //    WarrantyName = warrantyName              
+        //};
+
+        //var aj = $(window).ajaxCall({
+        //    proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
+        //    data: {
+        //        url: 'pkInsert_sysmodel',
+
+        //        name: model_name,
+        //        pk: $("#pk").val()
+        //    }
+        //})
+        
+        alert("geldim ");
+        alert(vehicle_group_id);
+        alert(warrantyName);
+        //
+
+        var ajax_InsertWarrantyName = $(window).ajaxCallWidget({
+            proxy: '/Warranty/IndexGetObjectParameter',
+            type: 'GET',
             data: {
-                url: 'pkInsert_sysmodel',
+                //missing brackets
+                vehicle_group_id: vehicle_group_id,
+                name: warrantyName,
+            },
+        });
+        
+        alert("bitti");
 
-                name: model_name,
-                pk: $("#pk").val()
-            }
-        })
-        aj.ajaxCall({
+        ajax_InsertWarrantyName.ajaxCall({
             onError: function (event, textStatus, errorThrown) {
                 dm.dangerMessage('resetOnShown');
                 dm.dangerMessage('show', 'Garanti Ekleme Ýþlemi Baþarýsýz...',
@@ -1046,7 +1076,7 @@ $(document).ready(function () {
                 $("#loading-image-warrantyName").loadImager('removeLoadImage');
             }
         })
-        aj.ajaxCall('call');
+        ajax_InsertWarrantyName.ajaxCall('call');
     }
 
 
@@ -1152,9 +1182,12 @@ $(document).ready(function () {
 
     window.insertwarrantyNameWrapper = function (e) {
         e.preventDefault();
+        alert("geldim 1");
+        console.log("geldim 1")
 
         if ($("#warrantyNameForm").validationEngine('validate')) {
-
+            alert("geldim 2");
+            console.log("geldim 2")
             insertwarrantyName();
         }
         return false;

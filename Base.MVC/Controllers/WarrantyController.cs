@@ -15,6 +15,8 @@ using Base.Core.Http.HttpRequest.Concrete;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Http.Extensions;
+
 namespace Base.MVC.Controllers
 {
     public class WarrantyController : Controller
@@ -238,7 +240,93 @@ namespace Base.MVC.Controllers
 
         }
 
+        /// <summary>
+        /// get Warranty Name Insert
+        /// Gül Özdemir
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        /// http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkInsertAct_syswarranties&name=dennee&vehicle_group_id=8&pk=GsZVzEYe50uGgNM
+        /// 
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> InsertAct_SysWarranties([FromBody] string warrantyNameInfo)
+        {
+            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                var response = await HttpClientRequestFactory.Get("https://manservices.man.com.tr/SlimProxyBoot.php?url=fillServicesDdlist_infoAfterSales&pk=zC3zCuVV2cttXP6", headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model satate is not valid");
+            }
 
+        }
+
+        /// <summary>
+        /// get Warranty Name Insert
+        /// Gül Özdemir
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        /// http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkInsertAct_syswarranties&name=dennee&vehicle_group_id=8&pk=GsZVzEYe50uGgNM
+        /// 
+
+        [SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpGet]
+        public async Task<string> IndexGetObjectParameter()
+        {
+            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
+
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+
+
+                var encodedURL = Request.GetEncodedUrl();
+                Console.WriteLine("encodedURL :" + encodedURL);
+
+                var pathAndQuery = Request.GetEncodedPathAndQuery();
+                Console.WriteLine("pathAndQuery :" + pathAndQuery);
+
+                var displayURL = Request.GetDisplayUrl();
+                Console.WriteLine("displayURL :" + displayURL);
+
+                string path = Request.Path.ToString();
+                Console.WriteLine("path :" + path);
+
+                string queryStr = Request.QueryString.ToString();
+                Console.WriteLine("queryStr :" + queryStr);
+
+                Console.WriteLine("headers :" + headers);
+                queryStr = "http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkInsertAct_syswarranties&pk=GsZVzEYe50uGgNM" + queryStr;
+                //_hmacManager.test();
+                //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
+                //var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkInsertAct_syswarranties&pk=GsZVzEYe50uGgNM", headers);
+                var response = await HttpClientRequestFactory.Get(queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model satate is not valid");
+            }
+
+        }
 
     }
 }

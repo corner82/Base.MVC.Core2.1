@@ -129,6 +129,35 @@
     $('#customerContactPersonForm').validationEngine();
 
 
+    /*
+    var cbdata_province = [
+        {
+            text: 'Please Select xxx...',
+            value: 1,
+            selected: true
+        }
+    ];
+
+    $('#dropdownProvince').ddslick({
+        //height: 150,
+        data: cbdata_province,
+        width: '100%',
+    });
+    */
+    var cbdata_city = [
+        {
+            text: 'Please Select xxx...',
+            value: 1,
+            selected: true
+        }
+    ];
+
+    $('#dropdownCity').ddslick({
+        //height: 150,
+        data: cbdata_city,
+        width: '100%',
+    });
+
     $('#loading-image-country').loadImager('removeLoadImage');
     $("#loading-image-country").loadImager('appendImage');  
 
@@ -165,6 +194,74 @@
 
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
+                        //var provinceInfo = new ProvinceInfo;
+                        //provinceInfo.country_id = selectedData.selectedData.value;
+                        var country_id = selectedData.selectedData.value;
+                        country_id = 107;
+                        //////////////////////////////////////////////////////////
+                        alert(country_id);
+
+                        $('#loading-image-province').loadImager('removeLoadImage');
+                        $("#loading-image-province").loadImager('appendImage');  
+
+                        var ajaxACLResources_getprovince = $('#ajaxACL-province').ajaxCallWidget({
+                            //proxy: '/Sys/SysCountrys/',
+                            //type: 'POST',
+                            //data: {
+                            //    url: '1'
+                            //    //pk: $("#pk").val()
+                            //}
+
+                            proxy: '/Sys/SysCountryRegions/',
+                            type: 'POST',
+                            headers: {
+                                "country_id=": "107" //country_id,                              
+                            },
+                        });
+
+                        ajaxACLResources_getprovince.ajaxCallWidget({
+                            onError: function (event, textStatus, errorThrown) {
+
+                                dm.dangerMessage({
+                                    onShown: function () {
+                                        $('#loading-image-province').loadImager('removeLoadImage');
+                                    }
+                                });
+                                dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
+                            },
+                            onSuccess: function (event, dataprovince) {
+                                var cbdata_province = $.parseJSON(dataprovince);
+
+                                //alert(cbdata_province);
+
+                                $('#dropdownProvince').ddslick({
+                                    //height: 150,
+                                    data: cbdata_province,
+                                    width: '100%',
+
+                                    onSelected: function (selectedData) {
+                                        if (selectedData.selectedData.value > 0) {
+
+                                        }
+                                    }
+                                });
+
+                                $("#loading-image-province").loadImager('removeLoadImage');
+                            },
+                            onErrorDataNull: function (event, data) {
+                                console.log("Error : " + event + " -data :" + data);
+                                dm.dangerMessage({
+                                    onShown: function () {
+                                        $('#loading-image-province').loadImager('removeLoadImage');
+                                    }
+                                });
+                                dm.dangerMessage('show', window.lang.translate('Bölge bulunamamıştır...'), window.lang.translate('Bölge  bulunamamıştır...'));
+                            },
+                        })
+                        ajaxACLResources_getprovince.ajaxCallWidget('call');
+
+                       
+                        //////////////////////////////////////////////////////////
 
                     }
                 }
@@ -183,7 +280,8 @@
         },
     })
     ajaxACLResources_country.ajaxCallWidget('call');
-    var cbdata_province = [
+
+    var cbdata_province_ = [
         {
             text: 'Search...',
             value: 1,
@@ -364,6 +462,8 @@
             selected: false
         }
     ];
+
+/*
     $('#loading-image-province').loadImager('removeLoadImage');
     $("#loading-image-province").loadImager('appendImage');
 
@@ -388,7 +488,9 @@
         },
         onSuccess: function (event, data) {
             //var data = $.parseJSON(cbdata);
-
+            cbdata_province.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#dropdownProvince').ddslick({
                 //height: 150,
                 data: cbdata_province,
@@ -465,7 +567,7 @@
         },
     })
     ajaxACLResources_city.ajaxCallWidget('call');
-
+*/
     $('#loading-image-reliabilityrate').loadImager('removeLoadImage');
     $("#loading-image-reliabilityrate").loadImager('appendImage');
 
