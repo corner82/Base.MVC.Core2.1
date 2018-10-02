@@ -73,62 +73,13 @@
     //Dropdown plugin data
     var cbdata_country = [{}];
 
-    var data_city = [{
-            "value": 0,
-        "text": window.lang.translate('Please select') + "...",
-            "stateID": 0,
-            selected: true
-        }, {
-            "value": 1,
-            "text": "Pretoria",
-            "stateID": 1,
-            selected: false
-        }, {
-            "value": 2,
-            "text": "Bloemfontein",
-            "stateID": 1,
-            selected: false
-        }, {
-            "value": 3,
-            "text": "CapeTown",
-            "stateID": 1,
-            selected: false
-        }, {
-            "value": 4,
-            "text": "Johannesburg",
-            "stateID": 2,
-            selected: false
-    }];
-
-    var data_trainer = [{
-        "value": 0,
-        "text": window.lang.translate('Please select') + "...",
-        selected: true
-        }, {
-            "value": 1,
-            "text": "CEO"
-        }, {
-            "value": 2,
-            "text": "Owner"
-        }, {
-            "value": 3,
-            "text": "Salesman"
-        }, {
-            "value": 4,
-            "text": "Others"
-        }];
-
     //trainer
     $('#loading-image-trainer').loadImager('removeLoadImage');
     $("#loading-image-trainer").loadImager('appendImage');
 
     var ajaxACLResources_trainer = $('#ajaxACL-trainer').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
+        proxy: '/Training/SysSalesman/',
+        type: 'POST'
     });
 
     ajaxACLResources_trainer.ajaxCallWidget({
@@ -141,12 +92,15 @@
             });
             dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
         },
-        onSuccess: function (event, data) {
+        onSuccess: function (event, data_trainer) {
             //var data = $.parseJSON(cbdata);
-
+            var cbdata_trainer = $.parseJSON(data_trainer);
+            cbdata_trainer.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#dropdownTrainer').ddslick({
                 //height: 150,
-                data: data_trainer,
+                data: cbdata_trainer,
                 width: '100%',
 
                 onSelected: function (selectedData) {
@@ -171,7 +125,7 @@
     ajaxACLResources_trainer.ajaxCallWidget('call');
     //end trainer
 
-    //country
+    //country --> 
     $('#loading-image-country').loadImager('removeLoadImage');
     $("#loading-image-country").loadImager('appendImage');
 
