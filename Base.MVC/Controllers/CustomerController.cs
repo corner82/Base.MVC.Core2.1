@@ -12,6 +12,9 @@ using Base.Filters.Log.RabbitMQ;
 using Base.Filters.Session;
 using Newtonsoft.Json;
 using Base.Core.Http.HttpRequest.Concrete;
+using Base.Filters.Session.Ajax;
+using Base.MVC.Models.HttpRequest;
+using Base.Core.Utills.Url;
 
 namespace Base.MVC.Controllers
 {
@@ -19,9 +22,13 @@ namespace Base.MVC.Controllers
     {
 
         private readonly IDistributedCache _distributedCache;
-        public CustomerController(IDistributedCache distributedCache)
+        private QueryCreater _queryCreater;
+
+        public CustomerController(IDistributedCache distributedCache,
+                                  QueryCreater queryCreater)
         {
             _distributedCache = distributedCache;
+            _queryCreater = queryCreater;
         }
         public IActionResult Index()
         {
@@ -222,5 +229,31 @@ namespace Base.MVC.Controllers
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
+
+
+        /// <summary>
+        /// get all Customers
+        /// Mustafa Zeynel
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        [AjaxSessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> DdslickGetAllCustomers([FromBody] DefaultPostModel postModel)
+        {
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            string queryStr = _queryCreater.GetQueryStringFromObject(postModel);
+            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?"+ queryStr, headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
+
+       
+
     }
 }

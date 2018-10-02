@@ -199,23 +199,23 @@ namespace Base.MVC.Controllers
         }
 
         /// <summary>
-        /// get vehicle types for deal buyback vehicle types
+        /// get priority for deal buyback vehicle types
         /// Mustafa Zeynel Dağlı
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        [AjaxSessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> PriorityDDSlickServiceProxy()
+        public async Task<string> PriorityDDSlickServiceProxy([FromBody] DefaultPostModel postModel)
         {
-            //Vehicle  type for deal buybacks
             var headers = new Dictionary<string, string>();
             var tokenGenerated = HttpContext.Session.GetHmacToken();
             headers.Add("X-Hmac", tokenGenerated);
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            string queryStr = _queryCreater.GetQueryStringFromObject(postModel);
+            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?" + queryStr, headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }

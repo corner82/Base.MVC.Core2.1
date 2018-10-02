@@ -8,10 +8,10 @@ namespace Base.Filters.Session.Ajax
 {
     public class AjaxSessionTimeOutAttribute : ActionFilterAttribute
     {
-        private readonly RemoteAddressFinder _remoteAdresFinder;
+        //private readonly RemoteAddressFinder _remoteAdresFinder;
 
-        public  AjaxSessionTimeOutAttribute(RemoteAddressFinder remoteAdresFinder) {
-            _remoteAdresFinder = remoteAdresFinder;
+        public  AjaxSessionTimeOutAttribute(/*RemoteAddressFinder remoteAdresFinder*/) {
+            //_remoteAdresFinder = remoteAdresFinder;
         }
 
         public override void OnActionExecuting(ActionExecutingContext context)

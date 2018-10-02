@@ -149,31 +149,17 @@
      * @author Mustafa Zeynel Dağlı
      * @since 15/08/2018
      */
-    var ddslickCustomerData = [
-        {
-            text: 'Please select...',
-            value: 1,
-            selected: true
-        },
-        {
-            text: "South Africa Corp.",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "Pine Town Corp",
-            value: 3,
-            selected: false
-        }
-    ];
     $('#loadingImage_DdslickCustomer').loadImager('removeLoadImage');
     $("#loadingImage_DdslickCustomer").loadImager('appendImage');
     var ajax_DdslickCustomer = $('#ajax_DdslickCustomer').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
+        proxy: '/Customer/DdslickGetAllCustomers',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkCustomerDdList_infocustomer",
+            pkIdentity: $("#publicKey").val()
+        })
 
     });
     ajax_DdslickCustomer.ajaxCallWidget({
@@ -191,7 +177,7 @@
 
             $('#ddslickCustomer').ddslick({
                 //height: 150,
-                data: ddslickCustomerData,
+                data: $.parseJSON(data),
                 width: '100%',
 
                 onSelected: function (selectedData) {
@@ -220,41 +206,18 @@
      * @author Mustafa Zeynel Dağlı
      * @since 15/08/2018
      */
-    var ddslickPriorityData = [
-        {
-            text: 'Please select',
-            value: -1,
-            selected: true
-        },
-        {
-            text: "Normal",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "Strategic",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "Very Strategic",
-            value: 4,
-            selected: false
-        },
-        {
-            text: "Ultimate Deal",
-            value: 5,
-            selected: false
-        }
-    ];
     $('#loadingImage_DdslickPriority').loadImager('removeLoadImage');
     $("#loadingImage_DdslickPriority").loadImager('appendImage');
     var ajax_DdslickPriority = $('#ajax_DdslickPriority').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
+        proxy: '/Sys/PriorityDDSlickServiceProxy',
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkPriorityTypeDdList_sysprioritytype",
+            pkIdentity: $("#publicKey").val()
+        }),
+        type : "POST"
+        
 
     });
     ajax_DdslickPriority.ajaxCallWidget({
@@ -272,7 +235,7 @@
 
             $('#ddslickPriority').ddslick({
                 //height: 150,
-                data: ddslickPriorityData,
+                data: $.parseJSON(data),
                 width: '100%',
 
                 onSelected: function (selectedData) {
