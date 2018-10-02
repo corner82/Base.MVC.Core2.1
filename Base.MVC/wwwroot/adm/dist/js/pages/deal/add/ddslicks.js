@@ -264,41 +264,17 @@
     * @author Mustafa Zeynel Dağlı
     * @since 15/08/2018
     */
-    var ddslickRealizationRateData = [
-        {
-            text: 'Please select',
-            value: -1,
-            selected: true
-        },
-        {
-            text: "<%25",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "%25-%50",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "%50-%75",
-            value: 4,
-            selected: false
-        },
-        {
-            text: ">%75",
-            value: 5,
-            selected: false
-        }
-    ];
     $('#loadingImage_DdslickRealizationRate').loadImager('removeLoadImage');
     $("#loadingImage_DdslickRealizationRate").loadImager('appendImage');
     var ajax_DdslickRealizationRate = $('#ajax_DdslickRealizationRate').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
+        proxy: '/Sys/DDSlickRealizationRateServiceProxy',
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkProbabilitiesDdList_sysprobabilities",
+            pkIdentity: $("#publicKey").val()
+        }),
+        type: "POST"
 
     });
     ajax_DdslickRealizationRate.ajaxCallWidget({
@@ -316,7 +292,7 @@
 
             $('#ddslickRealizationRate').ddslick({
                 //height: 150,
-                data: ddslickRealizationRateData,
+                data: $.parseJSON(data),
                 width: '100%',
 
                 onSelected: function (selectedData) {
