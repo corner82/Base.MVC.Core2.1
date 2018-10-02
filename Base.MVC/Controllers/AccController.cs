@@ -55,6 +55,77 @@ namespace Base.MVC.Controllers
             return View();
         }
 
+        //[Route("Acc/[controller]")]
+        [HttpGet("Acc/DeleteRole/{roleStr}")]
+        public async Task<string> DeleteRole(string roleStr)
+        {
+            if(_roleManager.RoleExistsAsync(roleStr).Result)
+            {
+                var role = _roleManager.Roles.Where(p => p.Name == roleStr).FirstOrDefault();
+                IdentityResult roleResult = await _roleManager.DeleteAsync(role);
+                if (roleResult.Succeeded) return "role delete succeeded";
+                return "role delete not succeeded";
+            }
+            return "role not found";
+        }
+
+        [HttpGet]
+        public async Task<string> CreateRole()
+        {
+            if (!_roleManager.RoleExistsAsync("Back Offic eOrder Management").Result)
+            {
+                CustomIdentityRole role = new CustomIdentityRole
+                {
+                    Name = "Back Office Order Management",
+                    
+                };
+
+                IdentityResult roleResult = _roleManager.CreateAsync(role).Result;
+
+                if (!roleResult.Succeeded)
+                {
+                    ModelState.AddModelError("", "We can't add the role");
+                    return "test";
+                }
+                else if (roleResult.Succeeded)
+                {
+                    await _roleManager.AddClaimAsync(role, new Claim(ClaimsIdentity.DefaultRoleClaimType, "deal.edit"));
+                    await _roleManager.AddClaimAsync(role, new Claim(ClaimsIdentity.DefaultRoleClaimType, "deal.delete"));
+                    await _roleManager.AddClaimAsync(role, new Claim(ClaimsIdentity.DefaultRoleClaimType, "deal.list"));
+                    await _roleManager.AddClaimAsync(role, new Claim(ClaimsIdentity.DefaultRoleClaimType, "deal.invoice"));
+                    await _roleManager.AddClaimAsync(role, new Claim(ClaimsIdentity.DefaultRoleClaimType, "deal.documantcontrol"));
+                    await _roleManager.AddClaimAsync(role, new Claim(ClaimsIdentity.DefaultRoleClaimType, "deal.list"));
+                }
+                //return View();
+            }
+
+            if (!_roleManager.RoleExistsAsync("Salesman").Result)
+            {
+                CustomIdentityRole role = new CustomIdentityRole
+                {
+                    Name = "Salesman"
+                };
+
+                IdentityResult roleResult = _roleManager.CreateAsync(role).Result;
+
+                if (!roleResult.Succeeded)
+                {
+                    ModelState.AddModelError("", "We can't add the role");
+                    return  "we cannot add the role"; 
+                } else
+                {
+                    await _roleManager.AddClaimAsync(role, new Claim(ClaimsIdentity.DefaultRoleClaimType, "owndeal.create"));
+                    await _roleManager.AddClaimAsync(role, new Claim(ClaimsIdentity.DefaultRoleClaimType, "owndeal.update"));
+                    await _roleManager.AddClaimAsync(role, new Claim(ClaimsIdentity.DefaultRoleClaimType, "owndeal.list"));
+                }
+
+               
+            }
+
+
+            return "Role creation success";
+        }
+
         [HttpPost]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel)

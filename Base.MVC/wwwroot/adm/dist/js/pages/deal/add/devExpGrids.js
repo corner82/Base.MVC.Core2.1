@@ -22,6 +22,7 @@
     };
     //DevExpress.localization.locale("en");
     //alert($('#langCode').val());
+    //alert(window.lang.translate("Search"));
     DevExpress.localization.locale($('#langCode').val());
     $("#gridContainer_BuyBack").dxDataGrid({
         showColumnLines: true,
@@ -68,7 +69,8 @@
         searchPanel: {
             visible: true,
             width: 240,
-            placeholder: "Search..."
+            //placeholder: "Search..."
+            placeholder: window.lang.translate("Search")
         },
         headerFilter: {
             visible: true

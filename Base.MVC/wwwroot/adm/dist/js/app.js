@@ -1111,7 +1111,7 @@ $(document).ready(function () {
     * @since 01/10/2018
     */
     //alert("js lang-master çaðýrýldý");
-    //$("#langCode").jsLangMaster();
+   // $("#langCode").jsLangMaster();
 
 
     /**
@@ -1183,7 +1183,7 @@ $(window).on('load', function () {
     * @author Mustafa Zeynel Daðlý
     * @since 15/05/2018
     */
-    $("#langCode").jsLangMaster();
+    //$("#langCode").jsLangMaster();
 
 });
 

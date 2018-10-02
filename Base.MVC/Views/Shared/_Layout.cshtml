@@ -76,7 +76,7 @@ ViewData["offlineJSLangFile"] = "/adm/plugins/offline_js/themes/offline-language
     <link href="~/adm/plugins/offline_js/themes/offline-theme-dark.css" rel="stylesheet" type="text/css" />
     <link href="@ViewBag.offlineJSLangFile" rel="stylesheet" type="text/css" />
 
-    
+
     @RenderSection("stylesPageSpecs", required: false)
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -85,6 +85,40 @@ ViewData["offlineJSLangFile"] = "/adm/plugins/offline_js/themes/offline-language
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <!-- jQuery 3.3.1.4 -->
+    <script src="~/adm/plugins/jQuery/jquery-3.3.1.min.js"></script>
+
+    <!-- jquery-lang-js-master ekleniyor-->
+    <script src="~/adm/plugins/jquery-lang-js-master/js/js.cookie.js" type="text/javascript"></script>
+    <script src="~/adm/plugins/jquery-lang-js-master/js/jquery-lang.js" type="text/javascript"></script>
+    <!-- jquery-lang-js-master ekleniyor son -->
+
+    <script type="text/javascript">
+        var defaultLang;
+        if ($("#langCode").length > 0) {
+            if ($("#langCode").val() != null && $("#langCode").val() != '') {
+                defaultLang = $("#langCode").val();
+            }
+
+        } else if (Cookies && Cookies.length > 0) {
+            if (Cookies.get('langCookie') != null && Cookies.get('langCookie') != '') {
+                defaultLang = Cookies.get('langCookie');
+            }
+        } else {
+            defaultLang = 'tr';
+        }
+
+        //jquery lang master
+        window.lang = new Lang();
+        window.lang.dynamic('tr', '/adm/plugins/jquery-lang-js-master/js/langpack/tr.json');
+        window.lang.dynamic('de', '/adm/plugins/jquery-lang-js-master/js/langpack/de.json');
+        window.lang.dynamic('af', '/adm/plugins/jquery-lang-js-master/js/langpack/af.json');
+        window.lang.init({
+            defaultLang: 'en'
+        });
+        window.lang.change(defaultLang);
+    </script>
+
 </head>
 <body class="skin-blue sidebar-mini">
     <input id="langCode" type="hidden" value="@ViewBag.ShortCultureInfo" />
@@ -121,8 +155,7 @@ ViewData["offlineJSLangFile"] = "/adm/plugins/offline_js/themes/offline-language
 
 
     </div><!-- ./wrapper -->
-    <!-- jQuery 3.3.1.4 -->
-    <script src="~/adm/plugins/jQuery/jquery-3.3.1.min.js"></script>
+    
     <!-- jQuery UI 1.11.2 -->
     <script src="~/adm/plugins/jQueryUI/jquery-ui-1.12.1.min.js" type="text/javascript"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -142,12 +175,16 @@ ViewData["offlineJSLangFile"] = "/adm/plugins/offline_js/themes/offline-language
     <!-- Slimscroll -->
     <script src="~/adm/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
 
-    <!-- jquery-lang-js-master ekleniyor-->
-    <script src="~/adm/plugins/jquery-lang-js-master/js/js.cookie.js" type="text/javascript"></script>
-    <script src="~/adm/plugins/jquery-lang-js-master/js/jquery-lang.js" type="text/javascript"></script>
-    <!-- jquery-lang-js-master ekleniyor son -->
+    
     <!-- bootstrap-modal-nakupanda ekleniyor-->
     <script src="~/adm/plugins/bootstrap-modal-nakupanda/bootstrap-dialog.min.js" type="text/javascript"></script>
+
+    <!-- zeyn plugins -->
+    <script src="~/adm/plugins/zeyn/exPlugs.js" type="text/javascript"></script>
+    <!-- AdminLTE App -->
+    <!--<script src="dist/js/app.min.js" type="text/javascript"></script>-->
+    <script src="~/adm/dist/js/app.js" type="text/javascript"></script>
+
 
     <script>
         $(document).ready(function () {
