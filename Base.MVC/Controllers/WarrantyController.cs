@@ -56,7 +56,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -81,7 +81,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -106,7 +106,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -132,7 +132,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -157,7 +157,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -182,7 +182,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -207,7 +207,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -232,7 +232,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -257,7 +257,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -293,8 +293,7 @@ namespace Base.MVC.Controllers
         /// <returns></returns>
         /// http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkInsertAct_syswarranties&name=dennee&vehicle_group_id=8&pk=GsZVzEYe50uGgNM
         /// 
-
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpGet]

@@ -32,7 +32,7 @@ namespace Base.MVC.Controllers
             return View();
         }
 
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpGet]
@@ -50,7 +50,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -73,7 +73,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -95,7 +95,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -117,7 +117,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -138,7 +138,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -159,7 +159,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -181,7 +181,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -202,7 +202,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -223,7 +223,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -244,7 +244,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -265,7 +265,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -286,7 +286,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -307,7 +307,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]

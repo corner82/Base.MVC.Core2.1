@@ -61,7 +61,17 @@ namespace Base.MVC.Controllers
             return View();
         }
 
-        //Servis düzenlemeleri Araç tipi
+
+        /// <summary>
+        /// buyback tradeback vehicle groups
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        //[SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
         public async Task<string> sysvehiclegroups()
         {
             // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
@@ -83,7 +93,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -105,7 +115,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -127,7 +137,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -149,7 +159,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -171,7 +181,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -186,14 +196,14 @@ namespace Base.MVC.Controllers
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
-        
+
         /// <summary>
         /// buyback Month 
         /// Ceydacan Seyrek
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -215,7 +225,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]

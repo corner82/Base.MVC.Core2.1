@@ -52,7 +52,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -84,7 +84,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -109,14 +109,14 @@ namespace Base.MVC.Controllers
             }
 
         }
-        
+
         /// <summary>
         /// get trainig definitions
         /// Ceydacan Seyrek
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -133,15 +133,15 @@ namespace Base.MVC.Controllers
             var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkEducationDefinitionsDdList_syseducationdefinitions&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
-        }        
-        
+        }
+
         /// <summary>
         /// get trainig definition Grid
         /// Ceydacan Seyrek
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -166,7 +166,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -191,7 +191,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -208,7 +208,28 @@ namespace Base.MVC.Controllers
                 return data.ToString();
         }
 
-
+        /// <summary>
+        /// get Salesman 
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        //[SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysTraningSalesmanGrid()
+        {
+            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                var url = "http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkFillEducationsSalesmanGridx_syseducationssalesman&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM";
+                var response = await HttpClientRequestFactory.Get(url, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+        }
 
     }
 }

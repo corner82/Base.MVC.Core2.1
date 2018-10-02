@@ -31,80 +31,80 @@
 }
 
 <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+<div class="content-wrapper">
 
-        <!-- Breadcrumb-->
-        @Html.Partial("~/Views/Shared/AdminBreadCrumbPartial.cshtml")
+    <!-- Breadcrumb-->
+    @Html.Partial("~/Views/Shared/AdminBreadCrumbPartial.cshtml")
 
-        <!-- Main content -->
-        <section class="content">
+    <!-- Main content -->
+    <section class="content">
 
-            <!-- Main row -->
-            <div class="row">
-                <!-- Left col -->
-                <section class="col-lg-12 connectedSortable">
+        <!-- Main row -->
+        <div class="row">
+            <!-- Left col -->
+            <section class="col-lg-12 connectedSortable">
 
-                    <div class="box box-info">
-                        <div class="box-header">
-                            <i class="fa fa-comments-o"></i>
-                            <h3 class="box-title"><span lang="en">Demo request type form</span></h3>
+                <div class="box box-info">
+                    <div class="box-header">
+                        <i class="fa fa-comments-o"></i>
+                        <h3 class="box-title"><span lang="en">Demo request type form</span></h3>
 
-                            <div class="box-tools pull-right">
-                                <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                            </div>
+                        <div class="box-tools pull-right">
+                            <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
                         </div>
-                        <div class="box-body">
-                            <form id='DemoReqTypeForm' method="get">
-                                <div class="row" id="loading-image-cstInfo">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label><span lang="en">Demo request type name</span></label>
-                                            <div class="input-group">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-circle"></i>
-                                                </div>
-                                                <input type="text" class="form-control validate[required]" placeholder="Warranty Mileage Name" id="txt-DemoReqType-name">
+                    </div>
+                    <div class="box-body">
+                        <form id='DemoReqTypeForm' method="get">
+                            <div class="row" id="loading-image-cstInfo">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label><span lang="en">Demo request type name</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-circle"></i>
                                             </div>
+                                            <input type="text" class="form-control validate[required]" placeholder="Warranty Mileage Name" id="txt-DemoReqType-name">
                                         </div>
                                     </div>
-                                    <!-- /.col -->
-
-                                    <div class="col-md-6">
-                                    </div>
-
-                                    <!-- /.col -->
                                 </div>
-                                <div class="box-footer">
-                                    <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-clear" onclick="resetDemoReqTypeForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                    <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-save" onclick="insertDemoReqTypeWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
-                                </div>
-                            </form>
-                            <div class="box box-info">
-                                <div class="box-header">
-                                    <i class="fa fa-comments-o"></i>
-                                    <h3 class="box-title"><span lang="en">Demo request type list</span></h3>
+                                <!-- /.col -->
 
-                                    <div class="box-tools pull-right">
-                                        <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                        <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
-                                    </div>
+                                <div class="col-md-6">
                                 </div>
 
-                                <div class="box-body" id="loading-image-DemoReqTypeGrid">
-                                    <div id="gridContainer_DemoReqType"></div>
+                                <!-- /.col -->
+                            </div>
+                            <div class="box-footer">
+                                <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-clear" onclick="resetDemoReqTypeForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-save" onclick="insertDemoReqTypeWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                            </div>
+                        </form>
+                        <div class="box box-info">
+                            <div class="box-header">
+                                <i class="fa fa-comments-o"></i>
+                                <h3 class="box-title"><span lang="en">Demo request type list</span></h3>
+
+                                <div class="box-tools pull-right">
+                                    <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                    <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
                                 </div>
+                            </div>
+
+                            <div class="box-body" id="loading-image-DemoReqTypeGrid">
+                                <div id="gridContainer_DemoReqType"></div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                </section><!-- /.Left col -->
+            </section><!-- /.Left col -->
 
-            </div><!-- /.row (main row) -->
+        </div><!-- /.row (main row) -->
 
 
-        </section><!-- /.content -->
-        <!-- Main content -->
-    </div><!-- /.content-wrapper -->
+    </section><!-- /.content -->
+    <!-- Main content -->
+</div><!-- /.content-wrapper -->
 
 @section javascriptsPageSpecs {
 
@@ -122,11 +122,10 @@
     <script src='~/adm/plugins/fastclick/fastclick.min.js'></script>
 
     <!-- zeyn plugins -->
-    <script src="~/adm/plugins/zeyn/exPlugs.js" type="text/javascript"></script>
-
+    <!--<script src="~/adm/plugins/zeyn/exPlugs.js" type="text/javascript"></script>-->
     <!-- AdminLTE App -->
     <!--<script src="dist/js/app.min.js" type="text/javascript"></script>-->
-    <script src="~/adm/dist/js/app.js" type="text/javascript"></script>
+    <!--<script src="~/adm/dist/js/app.js" type="text/javascript"></script>-->
 
     <!--  ddslick -->
     <script src="~/adm/plugins/bootstrap-select-ddslick/js/ddslick.js"></script>

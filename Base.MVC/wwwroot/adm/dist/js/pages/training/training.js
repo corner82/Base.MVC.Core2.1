@@ -73,7 +73,7 @@
     //Dropdown plugin data
     var cbdata_country = [{}];
 
-    //trainer
+    //trainee
     $('#loading-image-trainer').loadImager('removeLoadImage');
     $("#loading-image-trainer").loadImager('appendImage');
 
@@ -123,9 +123,9 @@
         },
     })
     ajaxACLResources_trainer.ajaxCallWidget('call');
-    //end trainer
+    //end trainee
 
-    //country --> 
+    //country --> region--> city
     $('#loading-image-country').loadImager('removeLoadImage');
     $("#loading-image-country").loadImager('appendImage');
 
@@ -201,7 +201,7 @@
                                                 proxy: '/Sys/SysCityFilter/',
                                                 headers: {
                                                     "country_id": 107, //country_id
-                                                    "region_id": 1 //region_id
+                                                    "region_id": 7 //region_id
                                                 },
                                                 type: 'POST'
 
@@ -289,7 +289,8 @@
 
 
     /* devexgrid */
-    var orders = new DevExpress.data.CustomStore({
+    //Traning Info grid
+    var trainingSalesman = new DevExpress.data.CustomStore({
         load: function (loadOptions) {
             var deferred = $.Deferred(),
                 args = {};
@@ -304,8 +305,9 @@
             args.take = loadOptions.take || 12;
 
             $.ajax({
-                url: "https://js.devexpress.com/Demos/WidgetsGallery/data/orderItems",
+                url: '/Training/SysTraningSalesmanGrid',
                 dataType: "json",
+                type: 'POST',
                 data: args,
                 success: function (result) {
                     deferred.resolve(result.items, { totalCount: result.totalCount });
@@ -320,8 +322,8 @@
         }
     });
 
-
-    var traniningDef = new DevExpress.data.CustomStore({
+    //Training Name Grid
+    var trainingDef = new DevExpress.data.CustomStore({
         load: function (loadOptions) {
             var deferred = $.Deferred(),
                 args = {};
@@ -355,25 +357,18 @@
 
     DevExpress.localization.locale(langCode);
 
-
+    //Traning name Grid
     $("#gridContainer_trainingName").dxDataGrid({
 
         showColumnLines: true,
-
         showRowLines: true,
-
         showBorders: true,
-
-        dataSource: traniningDef,
-
+        dataSource: trainingDef,
         columnHidingEnabled: true,
-
         selection: {
             mode: "single"
         },
-
         hoverStateEnabled: true,
-
         editing: {
             //mode: "batch"
             mode: "row",
@@ -382,22 +377,18 @@
             allowDeleting: true,
             useIcons: true
         },
-
         "export": {
             enabled: true,
-            fileName: "traniningDef"
+            fileName: "trainingDef"
         },
-
         grouping: {
             contextMenuEnabled: true,
             expandMode: "rowClick"
         },
-
         groupPanel: {
             emptyPanelText: "Use the context menu of header columns to group data",
             visible: true
         },
-
         pager: {
             allowedPageSizes: [5, 8, 15, 30],
             showInfo: true,
@@ -405,31 +396,25 @@
             showPageSizeSelector: true,
             visible: true
         },
-
         paging: {
             pageSize: 8
         },
-
         filterRow: {
             visible: true,
             applyFilter: "auto"
         },
-
         searchPanel: {
             visible: true,
             width: 240,
             placeholder: window.lang.translate('Search') + "...",
         },
-
         headerFilter: {
             visible: true
         },
-
         columnChooser: {
             enabled: true,
             mode: "select"
         },
-
         columns: [{
             caption: window.lang.translate('Training name') + "...",
             dataField: "name"
@@ -445,38 +430,20 @@
                 fillTrainingIdentForm(data);
             }
         }
-
     });
 
-
-    function logEvent(eventName) {
-        var logList = $("#events ul"),
-            newItem = $("<li>", { text: eventName });
-
-        logList.prepend(newItem);
-    }
-
-
     //Training List Info dxDataGrid
-
     $("#gridContainer_trainingInfo").dxDataGrid({
 
         showColumnLines: true,
-
         showRowLines: true,
-
         showBorders: true,
-
-        dataSource: orders,
-
+        dataSource: trainingSalesman,
         columnHidingEnabled: true,
-
         selection: {
             mode: "single"
         },
-
         hoverStateEnabled: true,
-
         editing: {
             //mode: "batch"
             mode: "row",
@@ -485,22 +452,18 @@
             allowDeleting: true,
             useIcons: true
         },
-
         "export": {
             enabled: true,
-            fileName: "ContactPerson"
+            fileName: "trainingSalesman"
         },
-
         grouping: {
             contextMenuEnabled: true,
             expandMode: "rowClick"
         },
-
         groupPanel: {
             emptyPanelText: "Use the context menu of header columns to group data",
             visible: true
         },
-
         pager: {
             allowedPageSizes: [5, 8, 15, 30],
             showInfo: true,
@@ -508,60 +471,60 @@
             showPageSizeSelector: true,
             visible: true
         },
-
         paging: {
             pageSize: 8
         },
-
         filterRow: {
             visible: true,
             applyFilter: "auto"
         },
-
         searchPanel: {
             visible: true,
             width: 240,
             placeholder: window.lang.translate('Search') + "...",
         },
-
         headerFilter: {
             visible: true
         },
-
         columnChooser: {
             enabled: true,
             mode: "select"
         },
         columns: [{
             caption: window.lang.translate('Training Name') + "...",
-            dataField: "StoreState",
-            width: 130
+            dataField: "name"
         }, {
             caption: window.lang.translate('Trainer') + "...",
-            dataField: "Employee",
+            dataField: "name_surname"
         }, {
             caption: window.lang.translate('Training City') + "...",
-            dataField: "StoreCity"
+            dataField: "city_name"
         }, {
-            caption: window.lang.translate('Training Address') + "...",
-            dataField: "StoreState",
+            caption: window.lang.translate('Training Address') + "1...",
+            dataField: "address1"
+        }, {
+            caption: window.lang.translate('Training Address') + "2...",
+            dataField: "address2"
+        }, {
+            caption: window.lang.translate('Training Address') + "3...",
+            dataField: "address3"
         }, {
             caption: window.lang.translate('Postal Code') + "...",
-            dataField: "OrderNumber",
+            dataField: "postalcode"
         }, {
             caption: window.lang.translate('Explanation') + "...",
-            dataField: "Employee",
+            dataField: "description"
         }, {
             caption: window.lang.translate('Training start date') + "...",
-            dataField: "OrderDate",
-                dataType: "date",
+            dataField: "edu_start_date",
+            dataType: "date"
         }, {
             caption: window.lang.translate('Training end date') + "...",
-            dataField: "OrderDate",
-                dataType: "date",
+            dataField: "edu_end_date",
+            dataType: "date"
         }, {
             caption:window.lang.translate('Grade') + "...",
-            dataField: "OrderNumber",
+            dataField: "education_value"
         }],
 
         onRowRemoving: function (e) {
@@ -586,35 +549,41 @@
         }
     });
 
+    function logEvent(eventName) {
+        var logList = $("#events ul"),
+            newItem = $("<li>", { text: eventName });
+
+        logList.prepend(newItem);
+    }
 
     /**
-    * insert CustomerInfo Wrapper
+    * insert training name Wrapper
     * @returns {Boolean}
     * @since 29/08/2018
     */
 
-    window.insertCustomerInfoWrapper = function (e) {
+    window.insertTrainingIdentWrapper = function (e) {
         //e.preventDefault();
 
         if ($("#trainingIdentForm").validationEngine('validate')) {
 
-            insertCustomerInfo();
+            insertTrainingName();
         }
         return false;
     }
 
     /**
-    * insert CustomerInfo
+    * insert traning name
     * @returns {undefined}
     * @since 29/08/2018
     */
 
-    window.insertCustomerInfo = function () {
+    window.insertTrainingName = function () {
 
         $("#loading-image-trInfo").loadImager('removeLoadImage');
         $("#loading-image-trInfo").loadImager('appendImage');
 
-        var cst_name = $('#txt-trn-name').val();
+        //var cst_name = $('#txt-trn-name').val();
 
         var aj = $(window).ajaxCall({
             proxy: 'https://jsonplaceholder.typicode.com/todos/',
@@ -708,11 +677,10 @@
         aj.ajaxCall('call');
     }
 
-
     /**
-    * reset button function for Customer Info insert form
+    * reset button function for Training insert form
     * @returns null
-    * @since 29/08/2016
+    * @since 29/08/2018
     */
     window.resetTrainingIdentForm = function () {
         $("#loading-image-trInfo").loadImager('removeLoadImage');
@@ -728,7 +696,6 @@
         return false;
     }
 
-
     window.fillTrainingIdentForm = function (data) {
         $("#loading-image-trInfo").loadImager('removeLoadImage');
         $("#loading-image-trInfo").loadImager('appendImage');
@@ -741,14 +708,18 @@
         return false;
     }
 
+    /**
+    * insert Training info Wrapper
+    * @returns {Boolean}
+    * @since 29/08/2018
+    */
 
-
-    window.insertCustomerPurchaseWrapper = function (e) {
+    window.insertTrainingInfoWrapper = function (e) {
         e.preventDefault();
 
-        if ($("#customerPurchaseForm").validationEngine('validate')) {
+        if ($("#trainingInfoForm").validationEngine('validate')) {
 
-            insertCustomerPurchase();
+            insertTrainingInfo();
         }
         return false;
     }
@@ -764,7 +735,7 @@
         $("#loading-image-truser").loadImager('appendImage');
 
         //training id alınacak
-        var cst_id = 1;
+       // var cst_id = 1;
 
         var aj = $(window).ajaxCall({
             proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
@@ -850,23 +821,6 @@
         return false;
     }
 
-
-    /**
-    * insert Training info Wrapper
-    * @returns {Boolean}
-    * @since 29/08/2018
-    */
-
-    window.insertTrainingInfoWrapper = function (e) {
-        e.preventDefault();
-
-        if ($("#trainingInfoForm").validationEngine('validate')) {
-
-            insertTrainingInfo();
-        }
-        return false;
-    }
-
     //Training info Form
     window.fillTrainingInfoForm = function (data) {
 
@@ -874,16 +828,16 @@
         $("#loading-image-truser").loadImager('appendImage');
 
         //$('#dropdownTrName').ddslick('select', { index: 2 });
-        $('#dropdownTrainer').ddslick('select', { index: 2 });
-        $('#dropdownCountry').ddslick('select', { index: 2 });
-        $('#dropdownRegion').ddslick('select', { index: 2 });
-        $('#dropdownCity').ddslick('select', { index: 2 });
-        document.getElementById("txt-TrAdr-name").value = data.Employee;
-        document.getElementById("txt-PtCode-name").value = data.Employee;
-        document.getElementById("txt-Explanation-name").value = data.Employee;
-        document.getElementById("start-datepicker").value = data.OrderDate;
-        document.getElementById("end-datepicker").value = data.OrderDate;
-        document.getElementById("txt-Grade-name").value = data.OrderNumber;
+        //$('#dropdownTrainer').ddslick('select', { index: 2 });
+        //$('#dropdownCountry').ddslick('select', { index: 2 });
+        //$('#dropdownRegion').ddslick('select', { index: 2 });
+        $('#dropdownCity').ddslick('select', { value: data.city_id });
+        //document.getElementById("txt-TrAdr-name").value = data.name;
+        document.getElementById("txt-PtCode-name").value = data.postalcode;
+        document.getElementById("txt-Explanation-name").value = data.description;
+        document.getElementById("start-datepicker").value = data.edu_start_date;
+        document.getElementById("end-datepicker").value = data.edu_end_date;
+        document.getElementById("txt-Grade-name").value = data.education_value;
         $("#loading-image-truser").loadImager('removeLoadImage');
 
         return false;

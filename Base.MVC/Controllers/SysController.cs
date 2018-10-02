@@ -221,7 +221,7 @@ namespace Base.MVC.Controllers
         }
 
        
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -255,7 +255,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -292,25 +292,14 @@ namespace Base.MVC.Controllers
                 headers.Add("X-Hmac", tokenGenerated);
                 headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
 
-                //string provinceInfoStr= _queryCreater.GetQueryStringFromObject(provinceInfo);
-                //var encodedURL = Request.GetEncodedUrl();
-                //Request.GetEncodedPathAndQuery();
-
-
                 //var pathAndQuery = Request.GetEncodedPathAndQuery();
                 //var displayURL = Request.GetDisplayUrl();
                 //string path = Request.Path.ToString();
                 string queryStr = Request.QueryString.ToString();
 
                 //var url = "http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkCountryRegionsDdList_syscountryregions&language_code=en&pk=GsZVzEYe50uGgNM&country_id=" + country_id;
-                //var url = "http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkCountryRegionsDdList_syscountryregions&language_code=en&pk=GsZVzEYe50uGgNM&" + queryStr;
 
                 var url = "http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkCountryRegionsDdList_syscountryregions&language_code=en&pk=GsZVzEYe50uGgNM&" + queryStr;
-
-                //http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkCountryRegionsDdList_syscountryregions&country_id=107&language_code=en&pk=GsZVzEYe50uGgNM
-                //_hmacManager.test();
-                //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
-                //var response = await HttpClientRequestFactory.Get(url, headers);
                 var response = await HttpClientRequestFactory.Get(url, headers);
                 var data = response.Content.ReadAsStringAsync().Result;
                 return data.ToString();
@@ -347,10 +336,6 @@ namespace Base.MVC.Controllers
 
                 var url = "http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkCityDdList_syscity&language_code=en&pk=GsZVzEYe50uGgNM&" + queryStr;
 
-                //http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkCityDdList_syscity&country_id=107&region_id=1&language_code=en&pk=GsZVzEYe50uGgNM
-                //_hmacManager.test();
-                //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
-                //var response = await HttpClientRequestFactory.Get(url, headers);
                 var response = await HttpClientRequestFactory.Get(url, headers);
                 var data = response.Content.ReadAsStringAsync().Result;
                 return data.ToString();
@@ -367,7 +352,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -399,7 +384,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
