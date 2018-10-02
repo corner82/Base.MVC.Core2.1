@@ -1039,8 +1039,9 @@ $(document).ready(function () {
             args.take = loadOptions.take || 12;
 
             $.ajax({
-                url: "https://js.devexpress.com/Demos/WidgetsGallery/data/orderItems",
+                url: "/Vehicle/SysVehicleList",
                 dataType: "json",
+                type: 'POST',
                 data: args,
                 success: function (result) {
                     deferred.resolve(result.items, { totalCount: result.totalCount });

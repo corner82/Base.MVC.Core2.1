@@ -31,616 +31,616 @@
 }
 
 <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+<div class="content-wrapper">
 
-        <!-- Breadcrumb-->
-        @Html.Partial("~/Views/Shared/AdminBreadCrumbPartial.cshtml")
+    <!-- Breadcrumb-->
+    @Html.Partial("~/Views/Shared/AdminBreadCrumbPartial.cshtml")
 
-        <!-- Main content -->
-        <section class="content">
+    <!-- Main content -->
+    <section class="content">
 
-            <!-- Main row -->
-            <div class="row">
-                <!-- Left col -->
-                <section class="col-lg-12 connectedSortable">
+        <!-- Main row -->
+        <div class="row">
+            <!-- Left col -->
+            <section class="col-lg-12 connectedSortable">
 
-                    <div class="box box-info">
-                        <div class="box-header">
-                            <i class="fa fa-comments-o"></i>
-                            <h3 class="box-title"><span lang="en">Customer info</span></h3>
+                <div class="box box-info">
+                    <div class="box-header">
+                        <i class="fa fa-comments-o"></i>
+                        <h3 class="box-title"><span lang="en">Customer info</span></h3>
 
-                            <div class="box-tools pull-right">
-                                <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
-                            </div>
+                        <div class="box-tools pull-right">
+                            <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                            <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
                         </div>
-                        <div class="box-body">
-                            <div class="nav-tabs-custom">
-                                <ul class="nav nav-tabs pull-right">
-                                    <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true"><span lang="en">Customer</span></a></li>
-                                    <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false" class="disable" disabled=""><span lang="en">Contact address</span></a></li>
-                                    <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false" class="disable" disabled=""><span lang="en">Purchase plan</span></a></li>
-                                    <li class=""><a href="#tab_4" data-toggle="tab" aria-expanded="false" class="disable" disabled=""><span lang="en">Contact person</span></a></li>
-                                    <li class=""><a href="#tab_5" data-toggle="tab" aria-expanded="false" class="disable" disabled=""><span lang="en">Customer activity</span></a></li>
+                    </div>
+                    <div class="box-body">
+                        <div class="nav-tabs-custom">
+                            <ul class="nav nav-tabs pull-right">
+                                <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true"><span lang="en">Customer</span></a></li>
+                                <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false" class="disable" disabled=""><span lang="en">Contact address</span></a></li>
+                                <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false" class="disable" disabled=""><span lang="en">Purchase plan</span></a></li>
+                                <li class=""><a href="#tab_4" data-toggle="tab" aria-expanded="false" class="disable" disabled=""><span lang="en">Contact person</span></a></li>
+                                <li class=""><a href="#tab_5" data-toggle="tab" aria-expanded="false" class="disable" disabled=""><span lang="en">Customer activity</span></a></li>
 
-                                    <li class="pull-left header"><i class="fa fa-th"></i></li>
-                                </ul>
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="tab_1">
-                                        <form id='customerInfoForm' method="get">
-                                            <div class="row" id="loading-image-cstInfo">
-                                                <div class="col-md-6">
-
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Customer name</span></label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-user"></i>
-                                                            </div>
-                                                            <input type="text" class="form-control validate[required]" placeholder="Customer name" id="txt-cst-name">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Customer short name</span></label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-user"></i>
-                                                            </div>
-                                                            <input type="text" class="form-control validate[required]" placeholder="Customer short name" id="txt-cst-sname">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Country</span></label>
-
-                                                        <div class="" id="ajaxACL-country">
-                                                            <div id="loading-image-country" class="input-group">
-                                                                <div class="input-group-addon">
-                                                                    <i class="fa fa-copyright"></i>
-                                                                </div>
-                                                                <div id="dropdownCountry" class="form-control"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Province</span></label>
-
-                                                        <div class="" id="ajaxACL-province">
-                                                            <div id="loading-image-province" class="input-group">
-                                                                <div class="input-group-addon">
-                                                                    <i class="fa fa-copyright"></i>
-                                                                </div>
-                                                                <div id="dropdownProvince" class="form-control"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label><span lang="en">City</span></label>
-
-                                                        <div class="" id="ajaxACL-city">
-                                                            <div id="loading-image-city" class="input-group">
-                                                                <div class="input-group-addon">
-                                                                    <i class="fa fa-copyright"></i>
-                                                                </div>
-                                                                <div id="dropdownCity" class="form-control"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-
-
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Phone number</span></label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-phone"></i>
-                                                            </div>
-                                                            <input type="text" class="form-control" placeholder="Phone number" name="txt-cst-phone" id="txt-cst-phone">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label><span lang="en">E-mail</span></label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-envelope"></i>
-                                                            </div>
-                                                            <input type="text" class="form-control validate[required,custom[email]]" placeholder="E-mail" name="txt-cst-email" id="txt-cst-email">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Web site</span></label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-globe"></i>
-                                                            </div>
-                                                            <input type="text" class="form-control" placeholder="Web Site" name="txt-cst-website" id="txt-cst-website">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Reliability rate</span></label>
-                                                        <div class="" id="ajaxACL-reliabilityrate">
-                                                            <div id="loading-image-reliabilityrate" class="input-group">
-                                                                <div class="input-group-addon">
-                                                                    <i class="fa fa-copyright"></i>
-                                                                </div>
-                                                                <div id="dropdownReliabilityRate" class="form-control"></div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                <!-- /.col -->
-                                                <div class="col-md-6">
-
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Sector</span></label>
-                                                        <div class="" id="ajaxACL-sector">
-                                                            <div id="loading-image-sector" class="input-group">
-                                                                <div class="input-group-addon">
-                                                                    <i class="fa fa-copyright"></i>
-                                                                </div>
-                                                                <div id="dropdownSector" class="form-control"></div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Segment</span></label>
-
-                                                        <div class="" id="ajaxACL-segment">
-                                                            <div id="loading-image-segment" class="input-group">
-                                                                <div class="input-group-addon">
-                                                                    <i class="fa fa-copyright"></i>
-                                                                </div>
-                                                                <div id="dropdownSegment" class="form-control"></div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Customer group</span></label>
-                                                        <div class="" id="ajaxACL-customergroup">
-                                                            <div id="loading-image-customergroup" class="input-group">
-                                                                <div class="input-group-addon">
-                                                                    <i class="fa fa-copyright"></i>
-                                                                </div>
-                                                                <div id="dropdownCustomerGroup" class="form-control"></div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label><span lang="en">VAT number</span></label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-user"></i>
-                                                            </div>
-                                                            <input type="text" class="form-control" placeholder="VAT number" name="txt-cst-vatnumber" id="txt-cst-vatnumber">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Registration number</span></label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-user"></i>
-                                                            </div>
-                                                            <input type="text" class="form-control" placeholder="Registration number" name="txt-cst-regnumber" id="txt-cst-regnumber">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Registration date</span></label>
-
-                                                        <div class="input-group date">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-calendar"></i>
-                                                            </div>
-                                                            <input type="text" class="form-control pull-right" name="registration-datepicker" id="registration-datepicker">
-                                                        </div>
-
-                                                        <!-- /.input group -->
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Total number of vehicles</span></label>
-                                                        <div class="" id="ajaxACL-totalvehicles">
-                                                            <div id="loading-image-totalvehicles" class="input-group">
-                                                                <div class="input-group-addon">
-                                                                    <i class="fa fa-copyright"></i>
-                                                                </div>
-                                                                <div id="dropdownTotalVehicles" class="form-control"></div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Total number of employees</span></label>
-                                                        <div class="" id="ajaxACL-totalemployees">
-                                                            <div id="loading-image-totalemployees" class="input-group">
-                                                                <div class="input-group-addon">
-                                                                    <i class="fa fa-copyright"></i>
-                                                                </div>
-                                                                <div id="dropdownTotalEmployees" class="form-control"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Annual revenue</span></label>
-                                                        <div class="" id="ajaxACL-annuelrevenue">
-                                                            <div id="loading-image-annuelrevenue" class="input-group">
-                                                                <div class="input-group-addon">
-                                                                    <i class="fa fa-copyright"></i>
-                                                                </div>
-                                                                <div id="dropdownAnnuelRevenue" class="form-control"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                <!-- /.col -->
-                                            </div>
-                                            <div class="box-footer">
-                                                <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-cst-clear" onclick="resetCustomerInfoForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                                <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-cst-save" onclick="insertCustomerInfoWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
-                                            </div>
-
-                                        </form>
-                                    </div>
-
-                                    <!-- /.tab-pane -->
-
-                                    <div class="tab-pane" id="tab_2">
-                                        <div class="row">
+                                <li class="pull-left header"><i class="fa fa-th"></i></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab_1">
+                                    <form id='customerInfoForm' method="get">
+                                        <div class="row" id="loading-image-cstInfo">
                                             <div class="col-md-6">
-                                                <div id="gridContainer_contactaddress"></div>
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">Customer name</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control validate[required]" placeholder="Customer name" id="txt-cst-name">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">Customer short name</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control validate[required]" placeholder="Customer short name" id="txt-cst-sname">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">Country</span></label>
+
+                                                    <div class="" id="ajaxACL-country">
+                                                        <div id="loading-image-country" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownCountry" class="form-control"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">Province</span></label>
+
+                                                    <div class="" id="ajaxACL-province">
+                                                        <div id="loading-image-province" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownProvince" class="form-control"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">City</span></label>
+
+                                                    <div class="" id="ajaxACL-city">
+                                                        <div id="loading-image-city" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownCity" class="form-control"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">Phone number</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-phone"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Phone number" name="txt-cst-phone" id="txt-cst-phone">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">E-mail</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-envelope"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control validate[required,custom[email]]" placeholder="E-mail" name="txt-cst-email" id="txt-cst-email">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">Web site</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-globe"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Web Site" name="txt-cst-website" id="txt-cst-website">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">Reliability rate</span></label>
+                                                    <div class="" id="ajaxACL-reliabilityrate">
+                                                        <div id="loading-image-reliabilityrate" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownReliabilityRate" class="form-control"></div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
                                             </div>
 
                                             <!-- /.col -->
                                             <div class="col-md-6">
-                                                <div id="gridContainer_contactphone"></div>
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">Sector</span></label>
+                                                    <div class="" id="ajaxACL-sector">
+                                                        <div id="loading-image-sector" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownSector" class="form-control"></div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">Segment</span></label>
+
+                                                    <div class="" id="ajaxACL-segment">
+                                                        <div id="loading-image-segment" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownSegment" class="form-control"></div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">Customer group</span></label>
+                                                    <div class="" id="ajaxACL-customergroup">
+                                                        <div id="loading-image-customergroup" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownCustomerGroup" class="form-control"></div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">VAT number</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="VAT number" name="txt-cst-vatnumber" id="txt-cst-vatnumber">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">Registration number</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Registration number" name="txt-cst-regnumber" id="txt-cst-regnumber">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">Registration date</span></label>
+
+                                                    <div class="input-group date">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control pull-right" name="registration-datepicker" id="registration-datepicker">
+                                                    </div>
+
+                                                    <!-- /.input group -->
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">Total number of vehicles</span></label>
+                                                    <div class="" id="ajaxACL-totalvehicles">
+                                                        <div id="loading-image-totalvehicles" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownTotalVehicles" class="form-control"></div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">Total number of employees</span></label>
+                                                    <div class="" id="ajaxACL-totalemployees">
+                                                        <div id="loading-image-totalemployees" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownTotalEmployees" class="form-control"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">Annual revenue</span></label>
+                                                    <div class="" id="ajaxACL-annuelrevenue">
+                                                        <div id="loading-image-annuelrevenue" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownAnnuelRevenue" class="form-control"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- /.col -->
+                                        </div>
+                                        <div class="box-footer">
+                                            <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-cst-clear" onclick="resetCustomerInfoForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                            <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-cst-save" onclick="insertCustomerInfoWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                        </div>
+
+                                    </form>
+                                </div>
+
+                                <!-- /.tab-pane -->
+
+                                <div class="tab-pane" id="tab_2">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div id="gridContainer_contactaddress"></div>
+                                        </div>
+
+                                        <!-- /.col -->
+                                        <div class="col-md-6">
+                                            <div id="gridContainer_contactphone"></div>
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                </div><!-- /.tab-pane -->
+                                <!-- Yatırım Planları -->
+                                <div class="tab-pane" id="tab_3">
+                                    <form id='customerPurchaseForm' method="get">
+                                        <div class="row" id="loading-image-cstPurchase">
+                                            <div class="col-md-6">
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">Last purchase date</span></label>
+                                                    <div class="input-group date">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control pull-right" name="lastpurchase-datepicker" id="lastpurchase-datepicker">
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><span lang="en">Last purchased brand</span></label>
+                                                    <div class="" id="ajaxACL-lastpurchasedbrand">
+                                                        <div id="loading-image-lastpurchasedbrand" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownLastPurchaseBrand" class="form-control"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">Purchase decision</span></label>
+                                                    <div class="" id="ajaxACL-purchasedecision">
+                                                        <div id="loading-image-purchasedecision" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownPurchaseDecision" class="form-control"></div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- /.col -->
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label><span lang="en">Date of purchase plan</span></label>
+                                                    <div class="" id="ajaxACL-dateofpurchaseplan">
+                                                        <div id="loading-image-dateofpurchaseplan" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownDateofPurchasePlan" class="form-control"></div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><span lang="en">Number of vehicles to purchase</span></label>
+                                                    <div class="" id="ajaxACL-numberofvehiclestopurchase">
+                                                        <div id="loading-image-numberofvehiclestopurchase" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownNumberofVehiclestoP" class="form-control"></div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">Last update</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-phone"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Last update" name="txt-cst-purchaselastupdate" id="txt-cst-purchaselastupdate" readonly="true">
+                                                    </div>
+                                                </div>
                                             </div>
                                             <!-- /.col -->
                                         </div>
-                                    </div><!-- /.tab-pane -->
-                                    <!-- Yatırım Planları -->
-                                    <div class="tab-pane" id="tab_3">
-                                        <form id='customerPurchaseForm' method="get">
-                                            <div class="row" id="loading-image-cstPurchase">
-                                                <div class="col-md-6">
+                                        <div class="box-footer">
+                                            <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-cstp-clear" onclick="resetCustomerPurchaseForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                            <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-cstp-save" onclick="insertCustomerPurchaseWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                        </div>
 
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Last purchase date</span></label>
-                                                        <div class="input-group date">
+                                    </form>
+                                </div><!-- /.tab-pane -->
+                                <div class="tab-pane" id="tab_4">
+                                    <!-- Customer contact person form -->
+                                    <form id='customerContactPersonForm' method="get">
+                                        <div class="row" id="loading-image-cstcp">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label><span lang="en">First name</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="First name" name="txt-cp-firstname" id="txt-cp-firstname">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><span lang="en">Last name</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Last name" name="txt-cp-lastname" id="txt-cp-lastname">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><span lang="en">GSM</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="GSM" name="txt-cp-gsm" id="txt-cp-gsm">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><span lang="en">Phone</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Phone" name="txt-cp-phone" id="txt-cp-phone">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><span lang="en">E-mail</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="E-mail" name="txt-cp-email" id="txt-cp-email">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">Birth date</span></label>
+                                                    <div class="input-group date">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control pull-right" name="cp-birthdate-datepicker" id="cp-birthdate-datepicker">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><span lang="en">Reference</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Reference" name="txt-cp-reference" id="txt-cp-reference">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><span lang="en">Hobies</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Hobies" name="txt-cp-hobies" id="txt-cp-hobies">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><span lang="en">Club</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Club" name="txt-cp-club" id="txt-cp-club">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- /.col -->
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label><span lang="en">Priority</span></label>
+                                                    <div class="" id="ajaxACL-priority">
+                                                        <div id="loading-image-priority" class="input-group zeyn-load-imager">
                                                             <div class="input-group-addon">
-                                                                <i class="fa fa-calendar"></i>
+                                                                <i class="fa fa-copyright"></i>
                                                             </div>
-                                                            <input type="text" class="form-control pull-right" name="lastpurchase-datepicker" id="lastpurchase-datepicker">
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Last purchased brand</span></label>
-                                                        <div class="" id="ajaxACL-lastpurchasedbrand">
-                                                            <div id="loading-image-lastpurchasedbrand" class="input-group">
-                                                                <div class="input-group-addon">
-                                                                    <i class="fa fa-copyright"></i>
-                                                                </div>
-                                                                <div id="dropdownLastPurchaseBrand" class="form-control"></div>
-                                                            </div>
+                                                            <div id="dropdownPriority" class="form-control"></div>
                                                         </div>
                                                     </div>
-
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Purchase decision</span></label>
-                                                        <div class="" id="ajaxACL-purchasedecision">
-                                                            <div id="loading-image-purchasedecision" class="input-group">
-                                                                <div class="input-group-addon">
-                                                                    <i class="fa fa-copyright"></i>
-                                                                </div>
-                                                                <div id="dropdownPurchaseDecision" class="form-control"></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><span lang="en">Title</span></label>
+                                                    <div class="" id="ajaxACL-title">
+                                                        <div id="loading-image-title" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
                                                             </div>
-
+                                                            <div id="dropdownTitle" class="form-control"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><span lang="en">Role</span></label>
+                                                    <div class="" id="ajaxACL-role">
+                                                        <div id="loading-image-role" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownRole" class="form-control"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><span lang="en">Product interest</span></label>
+                                                    <div class="" id="ajaxACL-productinterest">
+                                                        <div id="loading-image-productinterest" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownProductInterest" class="form-control"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><span lang="en">Competitor satisfaction</span></label>
+                                                    <div class="" id="ajaxACL-compsatisfaction">
+                                                        <div id="loading-image-compsatisfaction" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownCompSatisfaction" class="form-control"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><span lang="en">MAN satisfaction</span></label>
+                                                    <div class="" id="ajaxACL-mansatisfaction">
+                                                        <div id="loading-image-mansatisfaction" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownMANSatisfaction" class="form-control"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><span lang="en">Brand loyalty</span></label>
+                                                    <div class="" id="ajaxACL-brandloyalty">
+                                                        <div id="loading-image-brandloyalty" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownBrandLoyalty" class="form-control"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><span lang="en">Last brand</span></label>
+                                                    <div class="" id="ajaxACL-brand">
+                                                        <div id="loading-image-brand" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownBrand" class="form-control"></div>
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                <!-- /.col -->
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Date of purchase plan</span></label>
-                                                        <div class="" id="ajaxACL-dateofpurchaseplan">
-                                                            <div id="loading-image-dateofpurchaseplan" class="input-group">
-                                                                <div class="input-group-addon">
-                                                                    <i class="fa fa-copyright"></i>
-                                                                </div>
-                                                                <div id="dropdownDateofPurchasePlan" class="form-control"></div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Number of vehicles to purchase</span></label>
-                                                        <div class="" id="ajaxACL-numberofvehiclestopurchase">
-                                                            <div id="loading-image-numberofvehiclestopurchase" class="input-group">
-                                                                <div class="input-group-addon">
-                                                                    <i class="fa fa-copyright"></i>
-                                                                </div>
-                                                                <div id="dropdownNumberofVehiclestoP" class="form-control"></div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Last update</span></label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-phone"></i>
-                                                            </div>
-                                                            <input type="text" class="form-control" placeholder="Last update" name="txt-cst-purchaselastupdate" id="txt-cst-purchaselastupdate" readonly="true">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                            <div class="box-footer">
-                                                <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-cstp-clear" onclick="resetCustomerPurchaseForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                                <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-cstp-save" onclick="insertCustomerPurchaseWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
                                             </div>
 
-                                        </form>
-                                    </div><!-- /.tab-pane -->
-                                    <div class="tab-pane" id="tab_4">
-                                        <!-- Customer contact person form -->
-                                        <form id='customerContactPersonForm' method="get">
-                                            <div class="row" id="loading-image-cstcp">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label><span lang="en">First name</span></label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-user"></i>
-                                                            </div>
-                                                            <input type="text" class="form-control" placeholder="First name" name="txt-cp-firstname" id="txt-cp-firstname">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Last name</span></label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-user"></i>
-                                                            </div>
-                                                            <input type="text" class="form-control" placeholder="Last name" name="txt-cp-lastname" id="txt-cp-lastname">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><span lang="en">GSM</span></label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-user"></i>
-                                                            </div>
-                                                            <input type="text" class="form-control" placeholder="GSM" name="txt-cp-gsm" id="txt-cp-gsm">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Phone</span></label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-user"></i>
-                                                            </div>
-                                                            <input type="text" class="form-control" placeholder="Phone" name="txt-cp-phone" id="txt-cp-phone">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><span lang="en">E-mail</span></label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-user"></i>
-                                                            </div>
-                                                            <input type="text" class="form-control" placeholder="E-mail" name="txt-cp-email" id="txt-cp-email">
-                                                        </div>
-                                                    </div>
+                                            <!-- /.col -->
+                                        </div>
 
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Birth date</span></label>
-                                                        <div class="input-group date">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-calendar"></i>
-                                                            </div>
-                                                            <input type="text" class="form-control pull-right" name="cp-birthdate-datepicker" id="cp-birthdate-datepicker">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Reference</span></label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-user"></i>
-                                                            </div>
-                                                            <input type="text" class="form-control" placeholder="Reference" name="txt-cp-reference" id="txt-cp-reference">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Hobies</span></label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-user"></i>
-                                                            </div>
-                                                            <input type="text" class="form-control" placeholder="Hobies" name="txt-cp-hobies" id="txt-cp-hobies">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Club</span></label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-user"></i>
-                                                            </div>
-                                                            <input type="text" class="form-control" placeholder="Club" name="txt-cp-club" id="txt-cp-club">
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        <div class="box-footer">
+                                            <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-cstcp-clear" onclick="resetContactPersonForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                            <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-cstcp-save" onclick="insertContactPersonWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                        </div>
 
-                                                <!-- /.col -->
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Priority</span></label>
-                                                        <div class="" id="ajaxACL-priority">
-                                                            <div id="loading-image-priority" class="input-group">
-                                                                <div class="input-group-addon">
-                                                                    <i class="fa fa-copyright"></i>
-                                                                </div>
-                                                                <div id="dropdownPriority" class="form-control"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Title</span></label>
-                                                        <div class="" id="ajaxACL-title">
-                                                            <div id="loading-image-title" class="input-group">
-                                                                <div class="input-group-addon">
-                                                                    <i class="fa fa-copyright"></i>
-                                                                </div>
-                                                                <div id="dropdownTitle" class="form-control"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Role</span></label>
-                                                        <div class="" id="ajaxACL-role">
-                                                            <div id="loading-image-role" class="input-group">
-                                                                <div class="input-group-addon">
-                                                                    <i class="fa fa-copyright"></i>
-                                                                </div>
-                                                                <div id="dropdownRole" class="form-control"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Product interest</span></label>
-                                                        <div class="" id="ajaxACL-productinterest">
-                                                            <div id="loading-image-productinterest" class="input-group">
-                                                                <div class="input-group-addon">
-                                                                    <i class="fa fa-copyright"></i>
-                                                                </div>
-                                                                <div id="dropdownProductInterest" class="form-control"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Competitor satisfaction</span></label>
-                                                        <div class="" id="ajaxACL-compsatisfaction">
-                                                            <div id="loading-image-compsatisfaction" class="input-group">
-                                                                <div class="input-group-addon">
-                                                                    <i class="fa fa-copyright"></i>
-                                                                </div>
-                                                                <div id="dropdownCompSatisfaction" class="form-control"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><span lang="en">MAN satisfaction</span></label>
-                                                        <div class="" id="ajaxACL-mansatisfaction">
-                                                            <div id="loading-image-mansatisfaction" class="input-group">
-                                                                <div class="input-group-addon">
-                                                                    <i class="fa fa-copyright"></i>
-                                                                </div>
-                                                                <div id="dropdownMANSatisfaction" class="form-control"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Brand loyalty</span></label>
-                                                        <div class="" id="ajaxACL-brandloyalty">
-                                                            <div id="loading-image-brandloyalty" class="input-group">
-                                                                <div class="input-group-addon">
-                                                                    <i class="fa fa-copyright"></i>
-                                                                </div>
-                                                                <div id="dropdownBrandLoyalty" class="form-control"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Last brand</span></label>
-                                                        <div class="" id="ajaxACL-brand">
-                                                            <div id="loading-image-brand" class="input-group">
-                                                                <div class="input-group-addon">
-                                                                    <i class="fa fa-copyright"></i>
-                                                                </div>
-                                                                <div id="dropdownBrand" class="form-control"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                <!-- /.col -->
-                                            </div>
-
-                                            <div class="box-footer">
-                                                <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-cstcp-clear" onclick="resetContactPersonForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                                <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-cstcp-save" onclick="insertContactPersonWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
-                                            </div>
-
-                                        </form>
-                                        <!-- Devex datagrid -->
-                                        <div id="gridContainer_contactperson"></div>
-                                    </div><!-- /.tab-pane -->
-                                    <div class="tab-pane" id="tab_5">
-                                        <!-- Devex datagrid -->
-                                        <div id="gridContainer_activity"></div>
-                                    </div><!-- /.tab-pane -->
+                                    </form>
+                                    <!-- Devex datagrid -->
+                                    <div id="gridContainer_contactperson"></div>
+                                </div><!-- /.tab-pane -->
+                                <div class="tab-pane" id="tab_5">
+                                    <!-- Devex datagrid -->
+                                    <div id="gridContainer_activity"></div>
+                                </div><!-- /.tab-pane -->
 
 
-                                </div><!-- /.tab-content -->
-                            </div>
+                            </div><!-- /.tab-content -->
+                        </div>
 
+                    </div>
+                </div>
+
+            </section><!-- /.Left col -->
+
+        </div><!-- /.row (main row) -->
+        <!-- Main row -->
+        <div class="row">
+            <!-- Left col -->
+            <section class="col-lg-12 connectedSortable">
+
+                <div class="box box-info">
+                    <div class="box-header">
+                        <i class="fa fa-comments-o"></i>
+                        <h3 class="box-title"><span lang="en">Customer list</span></h3>
+
+                        <div class="box-tools pull-right">
+                            <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                            <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
                         </div>
                     </div>
-
-                </section><!-- /.Left col -->
-
-            </div><!-- /.row (main row) -->
-            <!-- Main row -->
-            <div class="row">
-                <!-- Left col -->
-                <section class="col-lg-12 connectedSortable">
-
-                    <div class="box box-info">
-                        <div class="box-header">
-                            <i class="fa fa-comments-o"></i>
-                            <h3 class="box-title"><span lang="en">Customer list</span></h3>
-
-                            <div class="box-tools pull-right">
-                                <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
-                            </div>
-                        </div>
-                        <div class="box-body" id="loading-image-cstInfoGrid">
-                            <div id="gridContainer_customer"></div>
-                        </div>
+                    <div class="box-body" id="loading-image-cstInfoGrid">
+                        <div id="gridContainer_customer"></div>
                     </div>
+                </div>
 
-                </section><!-- /.Left col -->
+            </section><!-- /.Left col -->
 
-            </div><!-- /.row (main row) -->
+        </div><!-- /.row (main row) -->
 
-        </section><!-- /.content -->
+    </section><!-- /.content -->
 
-    </div><!-- /.content-wrapper -->
+</div><!-- /.content-wrapper -->
 
 @section javascriptsPageSpecs {
 
@@ -657,13 +657,14 @@
     <script src="~/adm/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
     <script src='~/adm/plugins/fastclick/fastclick.min.js'></script>
 
-    <!-- zeyn plugins -->
-    <script src="~/adm/plugins/zeyn/exPlugs.js" type="text/javascript"></script>
-
     <!-- AdminLTE App -->
     <!--<script src="dist/js/app.min.js" type="text/javascript"></script>-->
-    <script src="~/adm/dist/js/app.js" type="text/javascript"></script>
-
+    <!-- <script src="~/adm/dist/js/app.js" type="text/javascript"></script> -->
+    <!-- zeyn plugins -->
+    <!-- <script src="~/adm/plugins/zeyn/exPlugs.js" type="text/javascript"></script> -->
+    <!-- AdminLTE App -->
+    <!--<script src="dist/js/app.min.js" type="text/javascript"></script>-->
+    <!-- <script src="~/adm/dist/js/app.js" type="text/javascript"></script> -->
     <!--  ddslick -->
     <script src="~/adm/plugins/bootstrap-select-ddslick/js/ddslick.js"></script>
     <script src="~/adm/plugins/zeyn/tag-cabin/tag-cabin.js"></script>

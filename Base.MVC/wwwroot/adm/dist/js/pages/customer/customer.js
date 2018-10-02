@@ -143,7 +143,7 @@
         data: cbdata_province,
         width: '100%',
     });
-    */
+    
     var cbdata_city = [
         {
             text: 'Please Select xxx...',
@@ -157,18 +157,13 @@
         data: cbdata_city,
         width: '100%',
     });
-
+*/
     $('#loading-image-country').loadImager('removeLoadImage');
     $("#loading-image-country").loadImager('appendImage');  
 
     var ajaxACLResources_country = $('#ajaxACL-country').ajaxCallWidget({
         proxy: '/Sys/SysCountrys/',
         type: 'POST',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
      });
 
     ajaxACLResources_country.ajaxCallWidget({
@@ -197,25 +192,18 @@
                         //var provinceInfo = new ProvinceInfo;
                         //provinceInfo.country_id = selectedData.selectedData.value;
                         var country_id = selectedData.selectedData.value;
-                        country_id = 107;
+                        //country_id = "107";
                         //////////////////////////////////////////////////////////
-                        alert(country_id);
+                        //alert(country_id);
 
                         $('#loading-image-province').loadImager('removeLoadImage');
                         $("#loading-image-province").loadImager('appendImage');  
 
                         var ajaxACLResources_getprovince = $('#ajaxACL-province').ajaxCallWidget({
-                            //proxy: '/Sys/SysCountrys/',
-                            //type: 'POST',
-                            //data: {
-                            //    url: '1'
-                            //    //pk: $("#pk").val()
-                            //}
-
-                            proxy: '/Sys/SysCountryRegions/',
-                            type: 'POST',
-                            headers: {
-                                "country_id=": "107" //country_id,                              
+                            proxy: '/Sys/SysCountryRegions',
+                            type: 'GET',
+                            data: {
+                                "country_id": country_id //country_id,                              
                             },
                         });
 
@@ -241,7 +229,61 @@
 
                                     onSelected: function (selectedData) {
                                         if (selectedData.selectedData.value > 0) {
+                                            var province_id = selectedData.selectedData.value;
+                                            //province_id = "1";
+                                            //******************************************
 
+                                            $('#loading-image-city').loadImager('removeLoadImage');
+                                            $("#loading-image-city").loadImager('appendImage');
+
+                                            var ajaxACLResources_getcity = $('#ajaxACL-city').ajaxCallWidget({
+                                                proxy: '/Sys/SysCity',
+                                                type: 'GET',
+                                                data: {
+                                                    "country_id": country_id,  //country_id, 
+                                                    "region_id": province_id     //province_id 
+                                                },
+                                            });
+
+                                            ajaxACLResources_getcity.ajaxCallWidget({
+                                                onError: function (event, textStatus, errorThrown) {
+
+                                                    dm.dangerMessage({
+                                                        onShown: function () {
+                                                            $('#loading-image-city').loadImager('removeLoadImage');
+                                                        }
+                                                    });
+                                                    dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
+                                                },
+                                                onSuccess: function (event, datacity) {
+                                                    var cbdata_city = $.parseJSON(datacity);
+
+                                                    $('#dropdownCity').ddslick({
+                                                        data: cbdata_city,
+                                                        width: '100%',
+
+                                                        onSelected: function (selectedData) {
+                                                            if (selectedData.selectedData.value > 0) {
+
+
+                                                            }
+                                                        }
+                                                    });
+
+                                                    $("#loading-image-city").loadImager('removeLoadImage');
+                                                },
+                                                onErrorDataNull: function (event, data) {
+                                                    console.log("Error : " + event + " -data :" + data);
+                                                    dm.dangerMessage({
+                                                        onShown: function () {
+                                                            $('#loading-image-city').loadImager('removeLoadImage');
+                                                        }
+                                                    });
+                                                    dm.dangerMessage('show', window.lang.translate('City not found...'), window.lang.translate('Bölge  bulunamamıştır...'));
+                                                },
+                                            })
+                                            ajaxACLResources_getcity.ajaxCallWidget('call');
+                                            //******************************************
                                         }
                                     }
                                 });
@@ -735,12 +777,8 @@
     $("#loading-image-customergroup").loadImager('appendImage');
 
     var ajaxACLResources_customergroup = $('#ajaxACL-customergroup').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
+        proxy: '/Sys/SysCountrys/',
+        type: 'POST',
     });
 
     ajaxACLResources_customergroup.ajaxCallWidget({
@@ -786,11 +824,8 @@
     $("#loading-image-totalvehicles").loadImager('appendImage');
 
     var ajaxACLResources_totalvehicles = $('#ajaxACL-totalvehicles').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
+        proxy: '/Sys/SysCountrys/',
+        type: 'POST',
 
     });
 
@@ -837,11 +872,12 @@
     $("#loading-image-totalemployees").loadImager('appendImage');
 
     var ajaxACLResources_totalemployees = $('#ajaxACL-totalemployees').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
+        proxy: '/Sys/SysCountrys/',
+        type: 'POST',
+        //data: {
+        //    url: '1'
+        //    //pk: $("#pk").val()
+        //}
 
     });
 
@@ -996,11 +1032,8 @@
     $("#loading-image-purchasedecision").loadImager('appendImage');
 
     var ajaxACLResources_purchasedecision = $('#ajaxACL-purchasedecision').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
+        proxy: '/Sys/SysCountrys/',
+        type: 'POST',
 
     });
 
@@ -1047,11 +1080,8 @@
     $("#loading-image-dateofpurchaseplan").loadImager('appendImage');
 
     var ajaxACLResources_dateofpurchaseplan = $('#ajaxACL-dateofpurchaseplan').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
+        proxy: '/Sys/SysCountrys/',
+        type: 'POST',
 
     });
 
@@ -1098,11 +1128,8 @@
     $("#loading-image-numberofvehiclestopurchase").loadImager('appendImage');
 
     var ajaxACLResources_numberofvehiclestopurchase = $('#ajaxACL-numberofvehiclestopurchase').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
+        proxy: '/Sys/SysCountrys/',
+        type: 'POST',
 
     });
 
@@ -1309,11 +1336,13 @@
     $("#loading-image-priority").loadImager('appendImage');
 
     var ajaxACLResources_priority = $('#ajaxACL-priority').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
+        proxy: '/Sys/SysCountrys/',
+        type: 'POST',
+        //proxy: 'https://jsonplaceholder.typicode.com/todos/',
+        //data: {
+        //    url: '1'
+        //    //pk: $("#pk").val()
+        //}
     });
 
     ajaxACLResources_priority.ajaxCallWidget({
@@ -1359,11 +1388,8 @@
     $("#loading-image-title").loadImager('appendImage');
 
     var ajaxACLResources_title = $('#ajaxACL-title').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
+        proxy: '/Sys/SysCountrys/',
+        type: 'POST',
 
     });
 
@@ -1410,11 +1436,8 @@
     $("#loading-image-role").loadImager('appendImage');
 
     var ajaxACLResources_role = $('#ajaxACL-role').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
+        proxy: '/Sys/SysCountrys/',
+        type: 'POST',
 
     });
 
@@ -1467,11 +1490,8 @@
     $("#loading-image-productinterest").loadImager('appendImage');
 
     var ajaxACLResources_productinterest = $('#ajaxACL-productinterest').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        },
+        proxy: '/Sys/SysCountrys/',
+        type: 'POST',
         async: false
     });
 
@@ -1528,11 +1548,8 @@
     $("#loading-image-compsatisfaction").loadImager('appendImage');
 
     var ajaxACLResources_compsatisfaction = $('#ajaxACL-compsatisfaction').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
+        proxy: '/Sys/SysCountrys/',
+        type: 'POST',
 
     });
 
@@ -1579,11 +1596,8 @@
     $("#loading-image-mansatisfaction").loadImager('appendImage');
 
     var ajaxACLResources_mansatisfaction = $('#ajaxACL-mansatisfaction').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
+        proxy: '/Sys/SysCountrys/',
+        type: 'POST',
 
     });
 
@@ -1630,12 +1644,8 @@
     $("#loading-image-brandloyalty").loadImager('appendImage');
 
     var ajaxACLResources_brandloyalty = $('#ajaxACL-brandloyalty').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
+        proxy: '/Sys/SysCountrys/',
+        type: 'POST',
     });
 
     ajaxACLResources_brandloyalty.ajaxCallWidget({
@@ -2461,15 +2471,8 @@
         var city_id = ddData_city.selectedData.value;
 
         var aj = $(window).ajaxCall({
-            proxy: 'https://jsonplaceholder.typicode.com/todos/',
-            data: {
-                url:'1'
-                //url: 'pkInsert_sysCustomerInfo',
-                //name: cst_name,
-                //country_id: country_id,
-                //city_id: city_id,
-                //pk: $("#pk").val()
-            }
+            proxy: '/Sys/SysCountrys/',
+            type: 'POST',
         })
         aj.ajaxCall({
             onError: function (event, textStatus, errorThrown) {

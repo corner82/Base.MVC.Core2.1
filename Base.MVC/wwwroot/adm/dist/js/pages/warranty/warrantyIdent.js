@@ -1010,7 +1010,7 @@ $(document).ready(function () {
         //
 
         var ajax_InsertWarrantyName = $(window).ajaxCallWidget({
-            proxy: '/Warranty/IndexGetObjectParameter',
+            proxy: '/Warranty/InsertActSysWarranties',
             type: 'GET',
             data: {
                 //missing brackets

@@ -284,37 +284,6 @@ namespace Base.MVC.Controllers
 
         }
 
-        /// <summary>
-        /// get Warranty Name Insert
-        /// Gül Özdemir
-        /// </summary>
-        /// 
-        /// <returns></returns>
-        /// http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkInsertAct_syswarranties&name=dennee&vehicle_group_id=8&pk=GsZVzEYe50uGgNM
-        /// 
-        [SessionTimeOut]
-        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
-        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
-        [HttpPost]
-        public async Task<string> InsertAct_SysWarranties([FromBody] string warrantyNameInfo)
-        {
-            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
-            if (ModelState.IsValid)
-            {
-                var headers = new Dictionary<string, string>();
-                var tokenGenerated = HttpContext.Session.GetHmacToken();
-                headers.Add("X-Hmac", tokenGenerated);
-                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-                var response = await HttpClientRequestFactory.Get("https://manservices.man.com.tr/SlimProxyBoot.php?url=fillServicesDdlist_infoAfterSales&pk=zC3zCuVV2cttXP6", headers);
-                var data = response.Content.ReadAsStringAsync().Result;
-                return data.ToString();
-            }
-            else
-            {
-                throw new Exception("Model satate is not valid");
-            }
-
-        }
 
         /// <summary>
         /// get Warranty Name Insert
@@ -329,7 +298,7 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpGet]
-        public async Task<string> IndexGetObjectParameter()
+        public async Task<string> InsertActSysWarranties()
         {
             // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
 
@@ -339,7 +308,6 @@ namespace Base.MVC.Controllers
                 var tokenGenerated = HttpContext.Session.GetHmacToken();
                 headers.Add("X-Hmac", tokenGenerated);
                 headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-
 
                 var encodedURL = Request.GetEncodedUrl();
                 Console.WriteLine("encodedURL :" + encodedURL);

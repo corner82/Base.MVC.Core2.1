@@ -16,6 +16,7 @@ using Base.MVC.Models.HttpRequest;
 using Microsoft.AspNetCore.Http.Extensions;
 using Base.Core.Utills.Url;
 using Microsoft.Extensions.Localization;
+using Base.Filters.Session.Ajax;
 
 namespace Base.MVC.Controllers
 {
@@ -278,11 +279,11 @@ namespace Base.MVC.Controllers
         /// 
         /// <returns></returns>
         /// 
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
-        [HttpPost]
-        public async Task<string> SysCountryRegions([FromHeader] string country_id)
+        [HttpGet]
+        public async Task<string> SysCountryRegions()
         {
             if (ModelState.IsValid)
             {
@@ -299,12 +300,12 @@ namespace Base.MVC.Controllers
                 //var pathAndQuery = Request.GetEncodedPathAndQuery();
                 //var displayURL = Request.GetDisplayUrl();
                 //string path = Request.Path.ToString();
-                //string queryStr = Request.QueryString.ToString();
+                string queryStr = Request.QueryString.ToString();
 
                 //var url = "http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkCountryRegionsDdList_syscountryregions&language_code=en&pk=GsZVzEYe50uGgNM&country_id=" + country_id;
                 //var url = "http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkCountryRegionsDdList_syscountryregions&language_code=en&pk=GsZVzEYe50uGgNM&" + queryStr;
 
-                var url = "http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkCountryRegionsDdList_syscountryregions&language_code=en&pk=GsZVzEYe50uGgNM&country_id=" + country_id;
+                var url = "http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkCountryRegionsDdList_syscountryregions&language_code=en&pk=GsZVzEYe50uGgNM&" + queryStr;
 
                 //http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkCountryRegionsDdList_syscountryregions&country_id=107&language_code=en&pk=GsZVzEYe50uGgNM
                 //_hmacManager.test();
@@ -326,11 +327,11 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [SessionTimeOut]
+        //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
-        [HttpPost]
-        public async Task<string> SysCity([FromBody] CityInfo cityInfo)
+        [HttpGet]
+        public async Task<string> SysCity()
         {
             if (ModelState.IsValid)
             {
@@ -338,11 +339,19 @@ namespace Base.MVC.Controllers
                 var tokenGenerated = HttpContext.Session.GetHmacToken();
                 headers.Add("X-Hmac", tokenGenerated);
                 headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+
+                //var pathAndQuery = Request.GetEncodedPathAndQuery();
+                //var displayURL = Request.GetDisplayUrl();
+                //string path = Request.Path.ToString();
+                string queryStr = Request.QueryString.ToString();
+
+                var url = "http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkCityDdList_syscity&language_code=en&pk=GsZVzEYe50uGgNM&" + queryStr;
+
+                //http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkCityDdList_syscity&country_id=107&region_id=1&language_code=en&pk=GsZVzEYe50uGgNM
                 //_hmacManager.test();
                 //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
-                //http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkCityDdList_syscity&country_id=107&region_id=1&language_code=en&pk=GsZVzEYe50uGgNM
-                //var url = "";
-                var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkCityDdList_syscity&pk=GsZVzEYe50uGgNM", headers);
+                //var response = await HttpClientRequestFactory.Get(url, headers);
+                var response = await HttpClientRequestFactory.Get(url, headers);
                 var data = response.Content.ReadAsStringAsync().Result;
                 return data.ToString();
             }
