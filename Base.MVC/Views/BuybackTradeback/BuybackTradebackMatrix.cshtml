@@ -55,152 +55,254 @@
                         </div>
                     </div>
                     <div class="box-body">
-                        <form id='buybackTradebackInfoForm' method="get">
-                            <div class="row" id="loadingImage_bbTbInfo">
-                                <div class="col-md-6">
-                                    @*<div class="form-group">
-                                            <label><span lang="en">Tonnage</span></label>
-                                            <div class="" id="ajax_DdslickTonnage">
-                                                <div id="loadingImage_DdslickTonnage" class="input-group zeyn-load-imager">
-                                                    <div class="input-group-addon">
-                                                        <i class="fa fa-copyright"></i>
+                        <div class="nav-tabs-custom" id="training_tab">
+                            <ul class="nav nav-tabs pull-right">
+                                <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true"><span lang="en">Buyback matrix</span></a></li>
+                                <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false" class="disable" disabled=""><span lang="en">Tradeback matrix</span></a></li>
+
+                                <li class="pull-left header"><i class="fa fa-th"></i></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab_1">
+                                    <form id='buybackInfoForm' method="get">
+                                        <div class="row" id="loadingImage_bbInfo">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label><span lang="en">Customer type</span></label>
+                                                    <div class="" id="ajax_DdslickBbCustomerType">
+                                                        <div id="loadingImage_DdslickBbCustomerType" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="ddslickBbCustomerType" class="form-control"></div>
+                                                        </div>
                                                     </div>
-                                                    <div id="ddslickTonnage" class="form-control"></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><span lang="en">ComfortSuper</span></label>
+                                                    <div class="" id="ajax_DdslickBbComfortSuper">
+                                                        <div id="loadingImage_DdslickBbComfortSuper" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="ddslickBbComfortSuper" class="form-control"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><span lang="en">% Off road</span></label>
+                                                    <div class="" id="ajax_DdslickBbOffRoad">
+                                                        <div id="loadingImage_DdslicBbkOffRoad" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="ddslickBbOffRoad" class="form-control"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><span lang="en">Truck type</span></label>
+                                                    <div class="" id="ajax_DdslickBbTruckType">
+                                                        <div id="loadingImage_DdslickBbTruckType" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="ddslickBbTruckType" class="form-control"></div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>*@
-                                    <div class="form-group">
-                                        <label><span lang="en">Contract type</span></label>
-                                        <div class="" id="ajax_DdslickContractType">
-                                            <div id="loadingImage_DdslickContractType" class="input-group zeyn-load-imager">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-truck"></i>
+                                            <!-- /.col -->
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label><span lang="en">Hydraulics</span></label>
+                                                    <div class="" id="ajax_DdslickBbHydraulics">
+                                                        <div id="loadingImage_DdslickBbHydraulics" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="ddslickBbHydraulics" class="form-control"></div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div id="ddslickContractType" class="form-control"></div>
+                                                <div class="form-group">
+                                                    <label><span lang="en">Mileage per annum (km)</span></label>
+                                                    <div class="" id="ajax_DdslickBbMileage">
+                                                        <div id="loadingImage_DdslickBbMileage" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="ddslickBbMileage" class="form-control"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><span lang="en">Months</span></label>
+                                                    <div class="" id="ajax_DdslickBbMonths">
+                                                        <div id="loadingImage_DdslickBbMonths" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="ddslickBbMonths" class="form-control"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><span lang="en">Price</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-money"></i>
+                                                        </div>
+                                                        <input type="number" class="form-control validate[required]" placeholder="Price" id="txt-BbMatrix-price">
+                                                    </div>
+                                                </div>
+                                            </div><!-- /.col -->
+                                        </div>
+                                        <div class="box-footer">
+                                            <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-bbMatrix-clear" onclick="resetBbMatrixForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                            <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-bbMatrix-save" onclick="insertBbMatrixWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                        </div>
+                                        <div class="box box-info">
+                                            <div class="box-header">
+                                                <i class="fa fa-comments-o"></i>
+                                                <h3 class="box-title"><span lang="en">BuyBack list</span></h3>
+
+                                                <div class="box-tools pull-right">
+                                                    <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                                    <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                                                </div>
+                                            </div>
+
+                                            <div class="box-body" id="loadingImage_DdslickBbMatrixGrid">
+                                                <div id="gridContainer_bbMatrix"></div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label><span lang="en">Customer type</span></label>
-                                        <div class="" id="ajax_DdslickCustomerType">
-                                            <div id="loadingImage_DdslickCustomerType" class="input-group zeyn-load-imager">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-truck"></i>
-                                                </div>
-                                                <div id="ddslickCustomerType" class="form-control"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label><span lang="en">ComfortSuper</span></label>
-                                        <div class="" id="ajax_DdslickComfortSuper">
-                                            <div id="loadingImage_DdslickComfortSuper" class="input-group zeyn-load-imager">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-truck"></i>
-                                                </div>
-                                                <div id="ddslickComfortSuper" class="form-control"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label><span lang="en">% Off road</span></label>
-                                        <div class="" id="ajax_DdslickOffRoad">
-                                            <div id="loadingImage_DdslickOffRoad" class="input-group zeyn-load-imager">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-truck"></i>
-                                                </div>
-                                                <div id="ddslickOffRoad" class="form-control"></div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </form>
                                 </div>
-                                <!-- /.col -->
 
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label><span lang="en">Truck type</span></label>
-                                        <div class="" id="ajax_DdslickTruckType">
-                                            <div id="loadingImage_DdslickTruckType" class="input-group zeyn-load-imager">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-truck"></i>
+                                <div class="tab-pane" id="tab_2">
+                                    <form id='tradebackInfoForm' method="get">
+                                        <div class="row" id="loadingImage_tbInfo">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label><span lang="en">Customer type</span></label>
+                                                    <div class="" id="ajax_DdslickTbCustomerType">
+                                                        <div id="loadingImage_DdslickTbCustomerType" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="ddslickTbCustomerType" class="form-control"></div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div id="ddslickTruckType" class="form-control"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label><span lang="en">Hydraulics</span></label>
-                                        <div class="" id="ajax_DdslickHydraulics">
-                                            <div id="loadingImage_DdslickHydraulics" class="input-group zeyn-load-imager">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-truck"></i>
+                                                <div class="form-group">
+                                                    <label><span lang="en">ComfortSuper</span></label>
+                                                    <div class="" id="ajax_DdslickTbComfortSuper">
+                                                        <div id="loadingImage_DdslickTbComfortSuper" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="ddslickTbComfortSuper" class="form-control"></div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div id="ddslickHydraulics" class="form-control"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label><span lang="en">Mileage per annum (km)</span></label>
-                                        <div class="" id="ajax_DdslickMileage">
-                                            <div id="loadingImage_DdslickMileage" class="input-group zeyn-load-imager">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-truck"></i>
+                                                <div class="form-group">
+                                                    <label><span lang="en">% Off road</span></label>
+                                                    <div class="" id="ajax_DdslickTbOffRoad">
+                                                        <div id="loadingImage_DdslickTbOffRoad" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="ddslickTbOffRoad" class="form-control"></div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div id="ddslickMileage" class="form-control"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label><span lang="en">Months</span></label>
-                                        <div class="" id="ajax_DdslickMonths">
-                                            <div id="loadingImage_DdslickMonths" class="input-group zeyn-load-imager">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-truck"></i>
+                                                <div class="form-group">
+                                                    <label><span lang="en">Truck type</span></label>
+                                                    <div class="" id="ajax_DdslickTbTruckType">
+                                                        <div id="loadingImage_DdslickTbTruckType" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="ddslickTbTruckType" class="form-control"></div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div id="ddslickMonths" class="form-control"></div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label><span lang="en">Price</span></label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-money"></i>
-                                            </div>
-                                            <input type="number" class="form-control validate[required]" placeholder="Price" id="txt-BbTbMatrix-price">
-                                        </div>
-                                    </div>
-                                </div><!-- /.col -->
-                            </div>
-                            <div class="box-footer">
-                                <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-clear" onclick="resetBbTbMatrixForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-save" onclick="insertBbTbMatrixWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
-                            </div>
-                        </form>
+                                            <!-- /.col -->
 
-                        <div class="box box-info">
-                            <div class="box-header">
-                                <i class="fa fa-comments-o"></i>
-                                <h3 class="box-title"><span lang="en">BuyBack/TradeBack list</span></h3>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label><span lang="en">Hydraulics</span></label>
+                                                    <div class="" id="ajax_DdslickTbHydraulics">
+                                                        <div id="loadingImage_DdslickTbHydraulics" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="ddslickTbHydraulics" class="form-control"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><span lang="en">Mileage per annum (km)</span></label>
+                                                    <div class="" id="ajax_DdslickTbMileage">
+                                                        <div id="loadingImage_DdslickTbMileage" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="ddslickTbMileage" class="form-control"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><span lang="en">Months</span></label>
+                                                    <div class="" id="ajax_DdslickTbMonths">
+                                                        <div id="loadingImage_DdslickTbMonths" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="ddslickTbMonths" class="form-control"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label><span lang="en">Price</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-money"></i>
+                                                        </div>
+                                                        <input type="number" class="form-control validate[required]" placeholder="Price" id="txt-TbMatrix-price">
+                                                    </div>
+                                                </div>
+                                            </div><!-- /.col -->
+                                        </div>
+                                        <div class="box-footer">
+                                            <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-clear" onclick="resetTbMatrixForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                            <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-save" onclick="insertTbMatrixWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                        </div>
+                                        <div class="box box-info">
+                                            <div class="box-header">
+                                                <i class="fa fa-comments-o"></i>
+                                                <h3 class="box-title"><span lang="en">TradeBack list</span></h3>
 
-                                <div class="box-tools pull-right">
-                                    <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                    <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                                                <div class="box-tools pull-right">
+                                                    <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                                    <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                                                </div>
+                                            </div>
+
+                                            <div class="box-body" id="loadingImage_DdslickTbMatrixGrid">
+                                                <div id="gridContainer_tbMatrix"></div>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                            </div>
-
-                            <div class="box-body" id="loadingImage_DdslickBbTbMatrixGrid">
-                                <div id="gridContainer_bbTbMatrix"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </section><!-- /.Left col -->
-
         </div><!-- /.row (main row) -->
-
-
     </section><!-- /.content -->
     <!-- Main content -->
 </div><!-- /.content-wrapper -->

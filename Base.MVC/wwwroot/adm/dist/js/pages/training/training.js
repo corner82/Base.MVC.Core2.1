@@ -541,7 +541,7 @@
             if (data) {
 
                 fillTrainingInfoForm(data);
-
+               
                 //alert("gridContainer_trainingName - onSelectionChanged :" + data);
                 //$(".employeeNotes").text(data.Notes);
                 //$(".employeePhoto").attr("src", data.Picture);
@@ -829,9 +829,9 @@
 
         //$('#dropdownTrName').ddslick('select', { index: 2 });
         //$('#dropdownTrainer').ddslick('select', { index: 2 });
-        //$('#dropdownCountry').ddslick('select', { index: 2 });
-        //$('#dropdownRegion').ddslick('select', { index: 2 });
-        $('#dropdownCity').ddslick('select', { value: data.city_id });
+        $('#dropdownCountry').ddslick('select', { index: data.country_id });
+        //$('#dropdownRegion').ddslick('select', { index: data.region_name });
+        //$('#dropdownCity').ddslick('select', { index: data.city_name});
         //document.getElementById("txt-TrAdr-name").value = data.name;
         document.getElementById("txt-PtCode-name").value = data.postalcode;
         document.getElementById("txt-Explanation-name").value = data.description;
