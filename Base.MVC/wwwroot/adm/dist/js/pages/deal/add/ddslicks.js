@@ -231,7 +231,7 @@
             $(window).dangerMessage('show', window.lang.translate('Priority data not found...'), window.lang.translate('Priority data not found...'));
         },
         onSuccess: function (event, data) {
-            alert("priority data found");
+            //alert("priority data found");
             var data = $.parseJSON(data);
             data.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: -1, selected: false, description: "" }

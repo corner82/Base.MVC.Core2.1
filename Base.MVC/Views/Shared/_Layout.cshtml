@@ -96,18 +96,18 @@ ViewData["offlineJSLangFile"] = "/adm/plugins/offline_js/themes/offline-language
     <script type="text/javascript">
         var defaultLang;
         if ($("#langCode").length > 0) {
-            alert("langcode length bulundu");
+            //alert("langcode length bulundu");
             if ($("#langCode").val() != null && $("#langCode").val() != '') {
                 defaultLang = $("#langCode").val();
             }
 
         } else if (Cookies && Cookies.length > 0) {
-            alert("langcode cookie bulundu");
+            //alert("langcode cookie bulundu");
             if (Cookies.get('langCookie') != null && Cookies.get('langCookie') != '') {
                 defaultLang = Cookies.get('langCookie');
             }
         } else {
-            alert("langcode default bulundu");
+            //alert("langcode default bulundu");
             defaultLang = 'tr';
         }
 
