@@ -65,7 +65,7 @@ namespace Base.MVC.Controllers
                 var tokenGenerated = HttpContext.Session.GetHmacToken();
                 headers.Add("X-Hmac", tokenGenerated);
                 headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-                var url = "http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkCountryRegionsDdList_syscountryregions&language_code=en&pk=GsZVzEYe50uGgNM&country_id=" + 107;//+ country_id;
+                var url = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkCountryRegionsDdList_syscountryregions&language_code=en&pk=GsZVzEYe50uGgNM&country_id=" + 107;//+ country_id;
                 //&country_id=107
                 var response = await HttpClientRequestFactory.Get(url, headers);
                 var data = response.Content.ReadAsStringAsync().Result;
@@ -97,7 +97,7 @@ namespace Base.MVC.Controllers
                 var tokenGenerated = HttpContext.Session.GetHmacToken();
                 headers.Add("X-Hmac", tokenGenerated);
                 headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-                var url = "http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkCityDdList_syscity&language_code=en&pk=GsZVzEYe50uGgNM&country_id=" + country_id + "&region_id=" + region_id;
+                var url = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkCityDdList_syscity&language_code=en&pk=GsZVzEYe50uGgNM&country_id=" + country_id + "&region_id=" + region_id;
                 //&country_id=107&region_id=1
                 var response = await HttpClientRequestFactory.Get(url, headers);
                 var data = response.Content.ReadAsStringAsync().Result;
@@ -130,7 +130,7 @@ namespace Base.MVC.Controllers
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
             //_hmacManager.test();
             //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
-            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkEducationDefinitionsDdList_syseducationdefinitions&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkEducationDefinitionsDdList_syseducationdefinitions&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
@@ -155,7 +155,7 @@ namespace Base.MVC.Controllers
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
             //_hmacManager.test();
             //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
-            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkFillEducationDefinitionsGridx_syseducationdefinitions&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillEducationDefinitionsGridx_syseducationdefinitions&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
@@ -180,7 +180,7 @@ namespace Base.MVC.Controllers
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
             //_hmacManager.test();
             //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
-            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkFillEducationsSalesmanGridx_syseducationssalesman&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillEducationsSalesmanGridx_syseducationssalesman&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
@@ -202,7 +202,7 @@ namespace Base.MVC.Controllers
                 var tokenGenerated = HttpContext.Session.GetHmacToken();
                 headers.Add("X-Hmac", tokenGenerated);
                 headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-                var url = "http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkSalesmanDdList_infoUsers&language_code=en&pk=GsZVzEYe50uGgNM";
+                var url = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkSalesmanDdList_infoUsers&language_code=en&pk=GsZVzEYe50uGgNM";
                 var response = await HttpClientRequestFactory.Get(url, headers);
                 var data = response.Content.ReadAsStringAsync().Result;
                 return data.ToString();
@@ -225,7 +225,7 @@ namespace Base.MVC.Controllers
                 var tokenGenerated = HttpContext.Session.GetHmacToken();
                 headers.Add("X-Hmac", tokenGenerated);
                 headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-                var url = "http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkFillEducationsSalesmanGridx_syseducationssalesman&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM";
+                var url = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillEducationsSalesmanGridx_syseducationssalesman&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM";
                 var response = await HttpClientRequestFactory.Get(url, headers);
                 var data = response.Content.ReadAsStringAsync().Result;
                 return data.ToString();

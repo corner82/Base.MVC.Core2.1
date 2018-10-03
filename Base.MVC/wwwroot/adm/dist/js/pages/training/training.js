@@ -72,6 +72,16 @@
     /* Geçici data */
     //Dropdown plugin data
     var cbdata_country = [{}];
+    var cbdata_select = [
+        {
+            text: window.lang.translate('Please select') + "...",
+            value: 0,
+            selected: true
+        }]
+    //$('#dropdownRegion').ddslick({ data: cbdata_select });
+    //$('#dropdownCity').ddslick({ data: cbdata_select });
+
+    
 
     //trainee
     $('#loading-image-trainer').loadImager('removeLoadImage');
@@ -153,6 +163,7 @@
             $('#dropdownCountry').ddslick({
                 //height: 150,
                 data: cbdata_country,
+                search: true,
                 width: '100%',
 
                 onSelected: function (selectedData) {
@@ -161,10 +172,11 @@
                         //region
                         $('#loading-image-region').loadImager('removeLoadImage');
                         $("#loading-image-region").loadImager('appendImage');
+
                         var ajaxACLResources_region = $('#ajaxACL-region').ajaxCallWidget({
                             proxy: '/Sys/SysRegionFilter/',
                             headers: {
-                                "country_id": 107 //country_id
+                                "country_id": country_id
                             },
                             type: 'POST'
                         });
@@ -185,11 +197,13 @@
                                 cbdata_region.splice(0, 0,
                                     { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
                                 );
+
                                 $('#dropdownRegion').ddslick({
                                     //height: 150,
                                     data: cbdata_region,
+                                    search: true,
                                     width: '100%',
-
+                                    
                                     onSelected: function (selectedData) {
                                         if (selectedData.selectedData.value > 0) {
                                             var region_id = selectedData.selectedData.value;
@@ -200,8 +214,8 @@
                                             var ajaxACLResources_city = $('#ajaxACL-city').ajaxCallWidget({
                                                 proxy: '/Sys/SysCityFilter/',
                                                 headers: {
-                                                    "country_id": 107, //country_id
-                                                    "region_id": 7 //region_id
+                                                    "country_id": country_id,
+                                                    "region_id": region_id
                                                 },
                                                 type: 'POST'
 
@@ -226,8 +240,8 @@
                                                     $('#dropdownCity').ddslick({
                                                         //height: 150,
                                                         data: cbdata_city,
+                                                        search: true,
                                                         width: '100%',
-
                                                         onSelected: function (selectedData) {
                                                             if (selectedData.selectedData.value > 0) {
 
@@ -256,6 +270,7 @@
 
                                 $("#loading-image-region").loadImager('removeLoadImage');
                             },
+
                             onErrorDataNull: function (event, data) {
                                 console.log("Error : " + event + " -data :" + data);
                                 dm.dangerMessage({
@@ -829,9 +844,24 @@
 
         //$('#dropdownTrName').ddslick('select', { index: 2 });
         //$('#dropdownTrainer').ddslick('select', { index: 2 });
-        $('#dropdownCountry').ddslick('select', { index: data.country_id });
-        //$('#dropdownRegion').ddslick('select', { index: data.region_name });
-        //$('#dropdownCity').ddslick('select', { index: data.city_name});
+        $('#dropdownCountry').ddslick('selectByValue',
+            {
+                index: '' + data.country_id + '',
+                text: '' + data.country_name + ''
+            }
+        );
+        $('#dropdownRegion').ddslick('selectByValue',
+            {
+                index: '' + data.region_id + '',
+                text: '' + data.region_name + ''
+            }
+        );
+        //$('#dropdownCity').ddslick('selectByValue',
+        //    {
+        //        index: '' + data.city_id + '',
+        //        text: '' + data.city_name + ''
+        //    }
+        //);
         //document.getElementById("txt-TrAdr-name").value = data.name;
         document.getElementById("txt-PtCode-name").value = data.postalcode;
         document.getElementById("txt-Explanation-name").value = data.description;

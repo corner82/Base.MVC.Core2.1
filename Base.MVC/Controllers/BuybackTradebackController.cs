@@ -82,7 +82,7 @@ namespace Base.MVC.Controllers
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
             //_hmacManager.test();
             //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
-            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkVehicleGroupsDdList_sysvehiclegroups&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkVehicleGroupsDdList_sysvehiclegroups&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
@@ -104,7 +104,7 @@ namespace Base.MVC.Controllers
             var tokenGenerated = HttpContext.Session.GetHmacToken();
             headers.Add("X-Hmac", tokenGenerated);
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkBbContractTypesDdList_sysbbcontracttypes&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkBbContractTypesDdList_sysbbcontracttypes&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
@@ -126,7 +126,7 @@ namespace Base.MVC.Controllers
             var tokenGenerated = HttpContext.Session.GetHmacToken();
             headers.Add("X-Hmac", tokenGenerated);
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkTerrainsBuybackDdList_systerrains&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkTerrainsBuybackDdList_systerrains&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
@@ -148,7 +148,7 @@ namespace Base.MVC.Controllers
             var tokenGenerated = HttpContext.Session.GetHmacToken();
             headers.Add("X-Hmac", tokenGenerated);
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkTerrainsTradebackDdList_systerrains&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkTerrainsTradebackDdList_systerrains&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
@@ -170,7 +170,7 @@ namespace Base.MVC.Controllers
             var tokenGenerated = HttpContext.Session.GetHmacToken();
             headers.Add("X-Hmac", tokenGenerated);
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkMileagesBuybackDdList_sysmileages&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkMileagesBuybackDdList_sysmileages&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
@@ -192,7 +192,7 @@ namespace Base.MVC.Controllers
             var tokenGenerated = HttpContext.Session.GetHmacToken();
             headers.Add("X-Hmac", tokenGenerated);
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkMileagesTradebackDdList_sysmileages&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkMileagesTradebackDdList_sysmileages&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
@@ -214,7 +214,7 @@ namespace Base.MVC.Controllers
             var tokenGenerated = HttpContext.Session.GetHmacToken();
             headers.Add("X-Hmac", tokenGenerated);
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkBuybackMonthsDdList_sysmonths&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkBuybackMonthsDdList_sysmonths&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
@@ -236,7 +236,7 @@ namespace Base.MVC.Controllers
             var tokenGenerated = HttpContext.Session.GetHmacToken();
             headers.Add("X-Hmac", tokenGenerated);
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkTradebackMonthsDdList_sysmonths&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkTradebackMonthsDdList_sysmonths&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }

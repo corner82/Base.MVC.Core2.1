@@ -70,7 +70,7 @@ namespace Base.MVC.Controllers
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
             //_hmacManager.test();
             //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
-            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkVehicleGroupsDdList_sysvehiclegroups&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkVehicleGroupsDdList_sysvehiclegroups&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
@@ -95,7 +95,7 @@ namespace Base.MVC.Controllers
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
             //_hmacManager.test();
             //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
-            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkVehicleConfigTypesDdList_sysvehicleconfigtypes&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkVehicleConfigTypesDdList_sysvehicleconfigtypes&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
@@ -121,7 +121,7 @@ namespace Base.MVC.Controllers
             //_hmacManager.test();
             //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
             //var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkUpdateAct_syswarranties&name=denneea&vehicle_group_id=8&id=5&pk=GsZVzEYe50uGgNM", headers);
-            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkWarrantiesParentsDdList_syswarranties&vehicle_group_id=8&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkWarrantiesParentsDdList_syswarranties&vehicle_group_id=8&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
@@ -146,7 +146,7 @@ namespace Base.MVC.Controllers
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
             //_hmacManager.test();
             //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
-            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkWarrantyTypesDdList_syswarrantytypes&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkWarrantyTypesDdList_syswarrantytypes&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
@@ -171,7 +171,7 @@ namespace Base.MVC.Controllers
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
             //_hmacManager.test();
             //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
-            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkWarrantyMonthsDdList_sysmonths&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkWarrantyMonthsDdList_sysmonths&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
@@ -196,7 +196,7 @@ namespace Base.MVC.Controllers
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
             //_hmacManager.test();
             //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
-            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkMileagesWarrantyDdList_sysmileages&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkMileagesWarrantyDdList_sysmileages&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
@@ -221,7 +221,7 @@ namespace Base.MVC.Controllers
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
             //_hmacManager.test();
             //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
-            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkFillWarrantiesGridx_syswarranties&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillWarrantiesGridx_syswarranties&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
@@ -246,7 +246,7 @@ namespace Base.MVC.Controllers
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
             //_hmacManager.test();
             //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
-            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkFillWarrantyMatrixGridx_syswarrantymatrix&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillWarrantyMatrixGridx_syswarrantymatrix&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
@@ -270,7 +270,7 @@ namespace Base.MVC.Controllers
                 var tokenGenerated = HttpContext.Session.GetHmacToken();
                 headers.Add("X-Hmac", tokenGenerated);
                 headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-                var url = "http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkWarrantiesParentsDdList_syswarranties&language_code=en&pk=GsZVzEYe50uGgNM&vehicle_group_id=" + vehicle_group_id;
+                var url = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkWarrantiesParentsDdList_syswarranties&language_code=en&pk=GsZVzEYe50uGgNM&vehicle_group_id=" + vehicle_group_id;
                 //_hmacManager.test();
                 //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
                 var response = await HttpClientRequestFactory.Get(url,headers);//("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkWarrantiesParentsDdList_syswarranties&language_code=en&pk=GsZVzEYe50uGgNM&vehicle_group_id=", headers);
@@ -324,7 +324,7 @@ namespace Base.MVC.Controllers
                 Console.WriteLine("queryStr :" + queryStr);
 
                 Console.WriteLine("headers :" + headers);
-                queryStr = "http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkInsertAct_syswarranties&pk=GsZVzEYe50uGgNM" + queryStr;
+                queryStr = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_syswarranties&pk=GsZVzEYe50uGgNM" + queryStr;
                 //_hmacManager.test();
                 //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
                 //var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkInsertAct_syswarranties&pk=GsZVzEYe50uGgNM", headers);
