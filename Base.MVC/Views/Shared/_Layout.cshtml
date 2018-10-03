@@ -96,15 +96,18 @@ ViewData["offlineJSLangFile"] = "/adm/plugins/offline_js/themes/offline-language
     <script type="text/javascript">
         var defaultLang;
         if ($("#langCode").length > 0) {
+            alert("langcode length bulundu");
             if ($("#langCode").val() != null && $("#langCode").val() != '') {
                 defaultLang = $("#langCode").val();
             }
 
         } else if (Cookies && Cookies.length > 0) {
+            alert("langcode cookie bulundu");
             if (Cookies.get('langCookie') != null && Cookies.get('langCookie') != '') {
                 defaultLang = Cookies.get('langCookie');
             }
         } else {
+            alert("langcode default bulundu");
             defaultLang = 'tr';
         }
 
@@ -155,7 +158,6 @@ ViewData["offlineJSLangFile"] = "/adm/plugins/offline_js/themes/offline-language
 
 
     </div><!-- ./wrapper -->
-    
     <!-- jQuery UI 1.11.2 -->
     <script src="~/adm/plugins/jQueryUI/jquery-ui-1.12.1.min.js" type="text/javascript"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -164,7 +166,8 @@ ViewData["offlineJSLangFile"] = "/adm/plugins/offline_js/themes/offline-language
     </script>
 
     <!-- offline js -->
-    <script src="~/adm/plugins/offline_js/offline.js" type="text/javascript"></script>
+    <!--<script src="~/adm/plugins/offline_js/offline.js" type="text/javascript"></script>-->
+
 
     <!-- jquery validation engine -->
     <script src="@ViewBag.defaultValidationEnginePath" type="text/javascript"></script>
@@ -175,7 +178,7 @@ ViewData["offlineJSLangFile"] = "/adm/plugins/offline_js/themes/offline-language
     <!-- Slimscroll -->
     <script src="~/adm/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
 
-    
+
     <!-- bootstrap-modal-nakupanda ekleniyor-->
     <script src="~/adm/plugins/bootstrap-modal-nakupanda/bootstrap-dialog.min.js" type="text/javascript"></script>
 

@@ -1137,7 +1137,7 @@ $(document).ready(function () {
     $("#lang_list_container").setLangList('fillLangList');*/
 
     //offline loading-image
-    $("#offlineWrapperImager").loadImager();
+    /*$("#offlineWrapperImager").loadImager();
     // offline up event handler
     Offline.on("up", function () {
         $("#offlineWrapperImager").loadImager('removeLoadImage');
@@ -1145,7 +1145,7 @@ $(document).ready(function () {
     // offline down event handler
     Offline.on("down", function () {
         $("#offlineWrapperImager").loadImager('appendImage');
-    });
+    });*/
 
     
 
@@ -1183,7 +1183,7 @@ $(window).on('load', function () {
     * @author Mustafa Zeynel Daðlý
     * @since 15/05/2018
     */
-    //$("#langCode").jsLangMaster();
+    $("#langCode").jsLangMaster();
 
 });
 

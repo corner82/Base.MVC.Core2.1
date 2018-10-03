@@ -231,11 +231,15 @@
             $(window).dangerMessage('show', window.lang.translate('Priority data not found...'), window.lang.translate('Priority data not found...'));
         },
         onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
+            alert("priority data found");
+            var data = $.parseJSON(data);
+            data.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: -1, selected: false, description: "" }
+            );
             $('#ddslickPriority').ddslick({
                 //height: 150,
-                data: $.parseJSON(data),
+                //data: $.parseJSON(data),
+                data: data,
                 width: '100%',
 
                 onSelected: function (selectedData) {

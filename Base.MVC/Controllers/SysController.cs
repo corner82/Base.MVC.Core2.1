@@ -204,7 +204,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [AjaxSessionTimeOut]
+        //[AjaxSessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -215,7 +215,7 @@ namespace Base.MVC.Controllers
             headers.Add("X-Hmac", tokenGenerated);
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
             string queryStr = _queryCreater.GetQueryStringFromObject(postModel);
-            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?" + queryStr, headers);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
@@ -226,7 +226,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        [AjaxSessionTimeOut]
+        //[AjaxSessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -237,7 +237,7 @@ namespace Base.MVC.Controllers
             headers.Add("X-Hmac", tokenGenerated);
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
             string queryStr = _queryCreater.GetQueryStringFromObject(postModel);
-            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?" + queryStr, headers);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }

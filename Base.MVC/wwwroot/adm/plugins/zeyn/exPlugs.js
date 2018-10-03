@@ -62,30 +62,30 @@
             var self = this;
             if ($("#langCode").length > 0) {
                 if ($("#langCode").val() != null && $("#langCode").val() != '') {
-                    //alert('lang code bulundu2');
+                    alert('lang code val>0 bulundu explugs');
                     //alert($("#langCode").val());
                     self.options.langDefault = $("#langCode").val();
                 }
 
             } else if (Cookies && Cookies.length > 0) {
                 if (Cookies.get('langCookie') != null && Cookies.get('langCookie') != '') {
-                    //alert('lang code bulundu1');
+                    alert('lang code cookie bulundu explugs');
                     self.options.langDefault = Cookies.get('langCookie');
                 }
             } else {
-                //alert('lang code bulundu3');
+                alert('lang code default bulundu explugs');
                 self.options.langDefault = 'tr';
             }
 
             //jquery lang master
-            window.lang = new Lang();
+            /*window.lang = new Lang();
 
             window.lang.dynamic('tr', '/adm/plugins/jquery-lang-js-master/js/langpack/tr.json');
             window.lang.dynamic('de', '/adm/plugins/jquery-lang-js-master/js/langpack/de.json');
             window.lang.dynamic('af', '/adm/plugins/jquery-lang-js-master/js/langpack/af.json');
             window.lang.init({
                 defaultLang: 'en'
-            });
+            });*/
             /* setTimeout(function() {
                      //console.log("adet translated =>"+window.lang.translate('piece'));
                      //alert(window.lang.translate('Brand Sales Units'));
