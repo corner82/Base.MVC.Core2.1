@@ -309,26 +309,18 @@ namespace Base.MVC.Controllers
                 headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
 
                 var encodedURL = Request.GetEncodedUrl();
-                Console.WriteLine("encodedURL :" + encodedURL);
-
                 var pathAndQuery = Request.GetEncodedPathAndQuery();
-                Console.WriteLine("pathAndQuery :" + pathAndQuery);
-
                 var displayURL = Request.GetDisplayUrl();
-                Console.WriteLine("displayURL :" + displayURL);
-
                 string path = Request.Path.ToString();
-                Console.WriteLine("path :" + path);
-
                 string queryStr = Request.QueryString.ToString();
-                Console.WriteLine("queryStr :" + queryStr);
 
-                Console.WriteLine("headers :" + headers);
-                queryStr = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_syswarranties&pk=GsZVzEYe50uGgNM" + queryStr;
+                //queryStr = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_syswarranties&pk=GsZVzEYe50uGgNM" + queryStr;
+                //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_syswarranties&name=dennee&vehicle_group_id=8&pk=GsZVzEYe50uGgNM
+                
                 //_hmacManager.test();
                 //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
-                //var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkInsertAct_syswarranties&pk=GsZVzEYe50uGgNM", headers);
-                var response = await HttpClientRequestFactory.Get(queryStr, headers);
+                //var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" & queryStr, headers);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
                 var data = response.Content.ReadAsStringAsync().Result;
                 return data.ToString();
             }

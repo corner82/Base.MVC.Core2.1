@@ -114,9 +114,9 @@
                 width: '100%',
 
                 onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
+                    //if (selectedData.selectedData.value > 0) {
 
-                    }
+                    //}
                 }
             });
 
@@ -243,9 +243,9 @@
                                                         search: true,
                                                         width: '100%',
                                                         onSelected: function (selectedData) {
-                                                            if (selectedData.selectedData.value > 0) {
+                                                            //if (selectedData.selectedData.value > 0) {
 
-                                                            }
+                                                            //}
                                                         }
                                                     });
 
@@ -621,7 +621,6 @@
             },
             onSuccess: function (event, data) {
                 console.log(data);
-                var data = data;
                 sm.successMessage({
                     onShown: function (event, data) {
                         $('#trainingIdentForm')[0].reset();
@@ -690,9 +689,10 @@
             }
         })
         aj.ajaxCall('call');
+
     }
 
-    /**
+    /*
     * reset button function for Training insert form
     * @returns null
     * @since 29/08/2018
@@ -770,7 +770,7 @@
             },
             onSuccess: function (event, data) {
                 console.log(data);
-                var data = data;
+                
                 sm.successMessage({
                     onShown: function (event, data) {
                         $('#trainingInfoForm')[0].reset();

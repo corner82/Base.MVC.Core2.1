@@ -988,38 +988,17 @@ $(document).ready(function () {
 
         var warrantyName = $('#txt-model-name').val();
 
-        //var warrantyInfo = new WarrantyInfo
-        //{
-        //    VehicleTypeId = vehicle_group_id,
-        //    WarrantyName = warrantyName              
-        //};
-
-        //var aj = $(window).ajaxCall({
-        //    proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
-        //    data: {
-        //        url: 'pkInsert_sysmodel',
-
-        //        name: model_name,
-        //        pk: $("#pk").val()
-        //    }
-        //})
-        
-        alert("geldim ");
-        alert(vehicle_group_id);
-        alert(warrantyName);
-        //
-
-        var ajax_InsertWarrantyName = $(window).ajaxCallWidget({
+        var ajax_InsertWarrantyName = $(ajaxAC-insertwarrantyName).ajaxCallWidget({
             proxy: '/Warranty/InsertActSysWarranties',
             type: 'GET',
             data: {
                 //missing brackets
-                vehicle_group_id: vehicle_group_id,
+                url: "pkInsertAct_syswarranties",
                 name: warrantyName,
+                vehicle_group_id: vehicle_group_id,
+                pk: "GsZVzEYe50uGgNM"
             },
         });
-        
-        alert("bitti");
 
         ajax_InsertWarrantyName.ajaxCall({
             onError: function (event, textStatus, errorThrown) {
@@ -1181,8 +1160,11 @@ $(document).ready(function () {
 
 
     window.insertwarrantyNameWrapper = function (e) {
-        e.preventDefault();
         alert("geldim 1");
+        insertwarrantyName();
+        alert("bitti");
+        e.preventDefault();
+
         console.log("geldim 1")
 
         if ($("#warrantyNameForm").validationEngine('validate')) {

@@ -122,8 +122,8 @@ $(document).ready(function () {
                 width: '100%',
 
                 onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 1) {
-                    }
+                    //if (selectedData.selectedData.value > 1) {
+                    //}
                 }
             });
 
@@ -212,8 +212,8 @@ $(document).ready(function () {
                 width: '100%',
 
                 onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 1) {
-                    }
+                    //if (selectedData.selectedData.value > 1) {
+                    //}
                 }
             });
 
@@ -419,9 +419,9 @@ $(document).ready(function () {
                     width: '100%',
     
                     onSelected: function (selectedData) {
-                        if (selectedData.selectedData.value > 0) {
+                        //if (selectedData.selectedData.value > 0) {
     
-                        }
+                        //}
                     }
                 });
     
@@ -495,9 +495,9 @@ $(document).ready(function () {
                     width: '100%',
     
                     onSelected: function (selectedData) {
-                        if (selectedData.selectedData.value > 0) {
+                        //if (selectedData.selectedData.value > 0) {
     
-                        }
+                        //}
                     }
                 });
     
@@ -580,9 +580,9 @@ $(document).ready(function () {
                     width: '100%',
     
                     onSelected: function (selectedData) {
-                        if (selectedData.selectedData.value > 0) {
+                        //if (selectedData.selectedData.value > 0) {
     
-                        }
+                        //}
                     }
                 });
     
@@ -638,7 +638,7 @@ $(document).ready(function () {
             },
             onSuccess: function (event, data) {
                 console.log(data);
-                var data = data;
+                
                 sm.successMessage({
                     onShown: function (event, data) {
                         $('#accessoryForm')[0].reset();
@@ -728,7 +728,7 @@ $(document).ready(function () {
      }
     
     
-    /**
+    /*
     * Fill Body form
     * @returns {Boolean}
     * @author Gül Özdemir
@@ -849,72 +849,80 @@ $(document).ready(function () {
         $("#loading-image-bodyname").loadImager('removeLoadImage');
         $("#loading-image-bodyname").loadImager('appendImage');
 
-        var bodyname = $('#txt-bodyname').val();
-    
-        var aj = $(window).ajaxCall({
-            proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
+        //var bodyname = $('#txt-bodyname').val();
+        //var body_type_id = "1";
+
+        //alert(bodyname);
+        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_sysaccbodydeff&language_code=en&name=denemeee&acc_body_type_id=1&pk=GsZVzEYe50uGgNM
+ 
+        var ajax_InsertBodyName = $('#ajaxACL-insertBodyName').ajaxCallWidget({
+            proxy: '/Sys/SysInsertBody',
+            type: 'GET',
             data: {
-                url: 'pkInsert_sysbrand',
-                name: brand_name,
-                    pk: $("#pk").val()
-                }
-            })
-            aj.ajaxCall({
-                onError: function (event, textStatus, errorThrown) {
-                    dm.dangerMessage('resetOnShown');
-                    dm.dangerMessage('show', 'Accessory Feature Name Ekleme İşlemi Başarısız...',
-                        'Accessory Feature Name Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
-                    console.error('"pkInsert_sysCustomerInfo" servis hatası->' + textStatus);
-                    $("#loading-image-featurename").loadImager('removeLoadImage');
-                },
-                onSuccess: function (event, data) {
-                    console.log(data);
-                    var data = data;
-                    sm.successMessage({
-                        onShown: function (event, data) {
-                            $('#brandForm')[0].reset();
-    
-                            $("#loading-image-featurename").loadImager('removeLoadImage');
-    
-                        }
-                    });
-                    sm.successMessage('show', 'Brand Kayıt İşlemi Başarılı...',
-                        'Brand kayıt işlemini gerçekleştirdiniz... ',
-                        data);
-                    $("#loading-image-featurename").loadImager('removeLoadImage');
-    
-                },
-                onErrorDataNull: function (event, data) {
-                    dm.dangerMessage('resetOnShown');
-                    dm.dangerMessage('show', 'featurename Kayıt İşlemi Başarısız...',
-                        'featurename kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
-                    console.error('"pkInsert_sysfeaturename" servis datası boştur!!');
-                    $("#loading-image-featurename").loadImager('removeLoadImage');
-                },
-                onErrorMessage: function (event, data) {
-                    dm.dangerMessage('resetOnShown');
-                    dm.dangerMessage('show', 'featurename Kayıt İşlemi Başarısız...',
-                        'featurename kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
-                    console.error('"pkInsert_sysfeaturename" servis datası boştur!!');
-                    $("#loading-image-featurename").loadImager('removeLoadImage');
-                },
-                onError23503: function (event, data) {
-                    dm.dangerMessage('Error23503');
-                    $("#loading-image-featurename").loadImager('removeLoadImage');
-                },
-                onError23505: function (event, data) {
+                url: "pkInsertAct_sysaccbodydeff",
+                language_code:"en",
+                name: "denemegul1",
+                acc_body_type_id: "1",
+                pk: "GsZVzEYe50uGgNM"
+            },
+        });
+
+        ajax_InsertBodyName.ajaxCall({
+            onError: function (event, textStatus, errorThrown) {
+                dm.dangerMessage('resetOnShown');
+                dm.dangerMessage('show', 'Body Ekleme İşlemi Başarısız...',
+                    'body Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
+                console.error('"pkInsertAct_sysaccbodydeff" servis hatası->' + textStatus);
+                $("#loading-image-bodyname").loadImager('removeLoadImage');
+            },
+            onSuccess: function (event, data) {
+                console.log(data);
+                
+                sm.successMessage({
+                    onShown: function (event, data) {
+                        $('#modelForm')[0].reset();
+
+                        $("#loading-image-bodyname").loadImager('removeLoadImage');
+
+                    }
+                });
+                sm.successMessage('show', 'Body Kayıt İşlemi Başarılı...',
+                    'Body kayıt işlemini gerçekleştirdiniz... ',
+                    data);
+                $("#loading-image-bodyname").loadImager('removeLoadImage');
+
+            },
+            onErrorDataNull: function (event, data) {
+                dm.dangerMessage('resetOnShown');
+                dm.dangerMessage('show', 'Body Kayıt İşlemi Başarısız...',
+                    'Body kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
+                console.error('"pkInsertAct_sysaccbodydeff" servis datası boştur!!');
+                $("#loading-image-bodyname").loadImager('removeLoadImage');
+            },
+            onErrorMessage: function (event, data) {
+                dm.dangerMessage('resetOnShown');
+                dm.dangerMessage('show', 'Body Kayıt İşlemi Başarısız...',
+                    'Body kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
+                console.error('"bodyname" servis datası boştur!!');
+                $("#loading-image-bodyname").loadImager('removeLoadImage');
+            },
+            onError23503: function (event, data) {
+                dm.dangerMessage('Error23503');
+                $("#loading-image-bodyname").loadImager('removeLoadImage');
+            },
+            onError23505: function (event, data) {
                 dm.dangerMessage({
-                     onShown: function (event, data) {
-                         $('#featurenameForm')[0].reset();
-                         $("#loading-image-featurename").loadImager('removeLoadImage');
-                     }
+                    onShown: function (event, data) {
+                        $('#bodynameForm')[0].reset();
+                        $("#loading-image-bodyname").loadImager('removeLoadImage');
+                    }
                 });
                 dm.dangerMessage('show', 'Kayıt İşlemi Başarısız...',
-                    'Aynı isim ile featurename kaydı yapılmıştır, yeni bir Marka kaydı deneyiniz... ');
-                $("#loading-image-featurename").loadImager('removeLoadImage');
+                    'Aynı isim ile Body kaydı yapılmıştır, yeni bir Body kaydı deneyiniz... ');
+                $("#loading-image-bodyname").loadImager('removeLoadImage');
             }
         })
-        aj.ajaxCall('call');
+        ajax_InsertBodyName.ajaxCall('call');
     }
 
     /**
@@ -945,17 +953,23 @@ $(document).ready(function () {
     * @since 13/09/2018
     */
 
-        window.insertFeatureNameWrapper = function (e) {
-            e.preventDefault();
+        window.insertBodyNameWrapper = function (e) {
+
+            alert("geldim 1");
+            insertBodyName();
+            alert("bitti");
+
+
+            //e.preventDefault();
     
-            if ($("#featurenameForm").validationEngine('validate')) {
-    
-                insertFeatureName();
-            }
+            //if ($("#bodynameForm").validationEngine('validate')) {
+
+            //    insertBodyName();
+            //}
             return false;
         }
     
-    /**
+    /*
     * Fill body Feature Name form
     * @returns {Boolean}
     * @author Gül Özdemir
