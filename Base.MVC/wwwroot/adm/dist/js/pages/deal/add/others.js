@@ -1,4 +1,4 @@
-$(document).ready(function () {
+ï»¿$(document).ready(function () {
 
 
 
@@ -81,8 +81,8 @@ $(document).ready(function () {
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
     var wcm = $(window).warningComplexMessage({
-        denyButtonLabel: 'Vazgeç',
-        actionButtonLabel: 'Ýþleme devam et'
+        denyButtonLabel: 'VazgeÃ§',
+        actionButtonLabel: 'Ä°ÅŸleme devam et'
     });
 
     //offline loading-image
@@ -193,9 +193,41 @@ $(document).ready(function () {
         $('#campaignAddAside').asideRight('toggle');
     });
 
-    /*$('#testZeyn').slimScroll({
-        height: '250px'
-    });*/
+
+    $("#addDeal").validationEngine();
+    // add deal button event handler
+    $("#add_deal").on("click", function (e) {
+        e.preventDefault();
+        alert('onclick event');
+        var ddData = $('#ddslickCustomer').data('ddslick');
+        
+        console.log(ddData);
+        alert(ddData.selectedData.value);
+        if (!ddData.selectedData.value > 0) {
+            wm.warningMessage('resetOnShown');
+            wm.warningMessage('show', window.lang.translate("Please select customer"), window.lang.translate("Please select customer"));
+            return false;
+        }
+       
+        return false;
+
+
+
+
+    })
+
+    // add deal reset
+    $("#add_deal_reset").on("click", function (e) {
+        e.preventDefault();
+        alert("deal reset");
+       // e.preventDefault();
+        //$('#aclRoleForm').validationEngine('hide');
+        return false;
+    })
+    
+
+
+    
 
 
 });

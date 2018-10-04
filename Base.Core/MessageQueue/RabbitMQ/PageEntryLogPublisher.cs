@@ -29,7 +29,9 @@ namespace Base.Core.MessageQueue.RabbitMQ
             var hostName = _configuration.GetSection("RabbitMQLog").GetSection("HostName").Value;
             var factory = new ConnectionFactory()
             {
-                HostName = hostName
+                HostName = hostName,
+                RequestedHeartbeat = 60,
+                
             };
 
             using (var connection = factory.CreateConnection())

@@ -203,7 +203,7 @@
     //tradeBack tab form elements end
 
     /* devexgrid */
-    /*var orders = new DevExpress.data.CustomStore({
+    var deals = new DevExpress.data.CustomStore({
         load: function (loadOptions) {
             var deferred = $.Deferred(),
                 args = {};
@@ -217,7 +217,45 @@
             args.skip = loadOptions.skip || 0;
             args.take = loadOptions.take || 12;
 
-            $.ajax({
+
+            var ajax_DdslickRealizationRate = $('#gridContainer_vehicle').ajaxCallWidget({
+                proxy: 'https://js.devexpress.com/Demos/WidgetsGallery/data/orderItems',
+                data: args,
+                type: "POST"
+
+            });
+            ajax_DdslickRealizationRate.ajaxCallWidget({
+                onError: function (event, textStatus, errorThrown) {
+
+                    $(window).dangerMessage({
+                        onShown: function () {
+                            //$('#loadingImage_DdslickRealizationRate').loadImager('removeLoadImage');
+                        }
+                    });
+                    $(window).dangerMessage('show', window.lang.translate('Realization Rate data not found...'), window.lang.translate('Realization Rate data not found...'));
+                },
+                onSuccess: function (event, data) {
+                    //var data = $.parseJSON(data);
+                    return data;
+                   
+
+                    //$("#loadingImage_DdslickRealizationRate").loadImager('removeLoadImage');
+                },
+                onErrorDataNull: function (event, data) {
+                    console.log("Error : " + event + " -data :" + data);
+                    $(window).dangerMessage({
+                        onShown: function () {
+                            //$('#loadingImage_DdslickRealizationRate').loadImager('removeLoadImage');
+                        }
+                    });
+                    $(window).dangerMessage('show', window.lang.translate('Realization Rate data not found...'), window.lang.translate('Realization Rate data not found...'));
+                },
+            })
+            ajax_DdslickRealizationRate.ajaxCallWidget('call');
+
+
+
+            /*$.ajax({
                 url: "https://js.devexpress.com/Demos/WidgetsGallery/data/orderItems",
                 dataType: "json",
                 data: args,
@@ -230,9 +268,9 @@
                 timeout: 5000
             });
 
-            return deferred.promise();
+            return deferred.promise();*/
         }
-    });*/
+    });
 
     // deal list grid
     var dealGridDataSource = {

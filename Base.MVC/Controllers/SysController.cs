@@ -29,6 +29,14 @@ namespace Base.MVC.Controllers
 
         public SysController(IDistributedCache distributedCache, IStringLocalizer localizer,
                               QueryCreater queryCreater)
+
+
+
+
+
+
+
+
         {
             _distributedCache = distributedCache;
             _localizer = localizer;
@@ -460,7 +468,7 @@ namespace Base.MVC.Controllers
                 // http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_sysaccbodydeff&language_code=en&name=denemeee&acc_body_type_id=1&pk=GsZVzEYe50uGgNM
                 //_hmacManager.test();
                 //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
-                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php" + queryStr, headers);
                 var data = response.Content.ReadAsStringAsync().Result;
                 return data.ToString();
             }
