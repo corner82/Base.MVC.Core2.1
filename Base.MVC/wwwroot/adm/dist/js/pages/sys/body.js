@@ -836,7 +836,94 @@ $(document).ready(function () {
                 }
             }
     
-        });   
+    });
+
+
+    $("#btn-bodyname-save").on("click", function (e) {
+        e.preventDefault();
+        alert("bodynam click");
+
+        var dd = $('#btn-bodyname-save').ajaxCallWidget({
+            proxy: '/Sys/SysInsertBody/',
+            //type: 'POST',
+            //proxy: '/Customer/DdslickGetAllCustomers',
+            type: "GET",
+            /*data: JSON.stringify({
+                language_code: $("#langCode").val(),
+                pk: "GsZVzEYe50uGgNM",
+                url: "pkCustomerDdList_infocustomer",
+                pkIdentity: $("#publicKey").val()
+            })*/
+            data: {
+                url: "pkInsertAct_sysaccbodydeff",
+                language_code: "en",
+               name: "denemegul1",
+                acc_body_type_id: 1,
+                pk: "GsZVzEYe50uGgNM"
+            },
+        });
+
+        dd.ajaxCallWidget({
+            onError: function (event, textStatus, errorThrown) {
+                dm.dangerMessage('resetOnShown');
+                dm.dangerMessage('show', 'Body Ekleme İşlemi Başarısız...',
+                    'body Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
+                console.error('"pkInsertAct_sysaccbodydeff" servis hatası->' + textStatus);
+                $("#loading-image-bodyname").loadImager('removeLoadImage');
+            },
+            onSuccess: function (event, data) {
+                console.log(data);
+
+                sm.successMessage({
+                    onShown: function (event, data) {
+                        $('#modelForm')[0].reset();
+
+                        $("#loading-image-bodyname").loadImager('removeLoadImage');
+
+                    }
+                });
+                sm.successMessage('show', 'Body Kayıt İşlemi Başarılı...',
+                    'Body kayıt işlemini gerçekleştirdiniz... ',
+                    data);
+                $("#loading-image-bodyname").loadImager('removeLoadImage');
+
+            },
+            onErrorDataNull: function (event, data) {
+                dm.dangerMessage('resetOnShown');
+                dm.dangerMessage('show', 'Body Kayıt İşlemi Başarısız...',
+                    'Body kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
+                console.error('"pkInsertAct_sysaccbodydeff" servis datası boştur!!');
+                $("#loading-image-bodyname").loadImager('removeLoadImage');
+            },
+            onErrorMessage: function (event, data) {
+                dm.dangerMessage('resetOnShown');
+                dm.dangerMessage('show', 'Body Kayıt İşlemi Başarısız...',
+                    'Body kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
+                console.error('"bodyname" servis datası boştur!!');
+                $("#loading-image-bodyname").loadImager('removeLoadImage');
+            },
+            onError23503: function (event, data) {
+                dm.dangerMessage('Error23503');
+                $("#loading-image-bodyname").loadImager('removeLoadImage');
+            },
+            onError23505: function (event, data) {
+                dm.dangerMessage({
+                    onShown: function (event, data) {
+                        $('#bodynameForm')[0].reset();
+                        $("#loading-image-bodyname").loadImager('removeLoadImage');
+                    }
+                });
+                dm.dangerMessage('show', 'Kayıt İşlemi Başarısız...',
+                    'Aynı isim ile Body kaydı yapılmıştır, yeni bir Body kaydı deneyiniz... ');
+                $("#loading-image-bodyname").loadImager('removeLoadImage');
+            }
+        })
+        dd.ajaxCallWidget('call');
+
+
+
+    })
+
 
  /**
  * Insert BodyName
@@ -856,7 +943,7 @@ $(document).ready(function () {
         //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_sysaccbodydeff&language_code=en&name=denemeee&acc_body_type_id=1&pk=GsZVzEYe50uGgNM
  
         var ajax_InsertBodyName = $('#ajaxACL-insertBodyName').ajaxCallWidget({
-            proxy: '/Sys/SysInsertBody',
+            proxy: '/Sys/SysInsertBody/',
             type: 'GET',
             data: {
                 url: "pkInsertAct_sysaccbodydeff",
@@ -867,7 +954,7 @@ $(document).ready(function () {
             },
         });
 
-        ajax_InsertBodyName.ajaxCall({
+        ajax_InsertBodyName.ajaxCallWidget({
             onError: function (event, textStatus, errorThrown) {
                 dm.dangerMessage('resetOnShown');
                 dm.dangerMessage('show', 'Body Ekleme İşlemi Başarısız...',
@@ -922,7 +1009,7 @@ $(document).ready(function () {
                 $("#loading-image-bodyname").loadImager('removeLoadImage');
             }
         })
-        ajax_InsertBodyName.ajaxCall('call');
+        ajax_InsertBodyName.ajaxCallWidget('call');
     }
 
     /**

@@ -173,11 +173,14 @@
             $(window).dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
         },
         onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
+            var data = $.parseJSON(data);
+            data.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
 
             $('#ddslickCustomer').ddslick({
                 //height: 150,
-                data: $.parseJSON(data),
+                data: data,
                 width: '100%',
 
                 onSelected: function (selectedData) {
@@ -234,7 +237,7 @@
             //alert("priority data found");
             var data = $.parseJSON(data);
             data.splice(0, 0,
-                { text: window.lang.translate('Please select'), value: -1, selected: false, description: "" }
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
             $('#ddslickPriority').ddslick({
                 //height: 150,
@@ -292,11 +295,14 @@
             $(window).dangerMessage('show', window.lang.translate('Realization Rate data not found...'), window.lang.translate('Realization Rate data not found...'));
         },
         onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
+            var data = $.parseJSON(data);
+            data.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
 
             $('#ddslickRealizationRate').ddslick({
                 //height: 150,
-                data: $.parseJSON(data),
+                data: data,
                 width: '100%',
 
                 onSelected: function (selectedData) {

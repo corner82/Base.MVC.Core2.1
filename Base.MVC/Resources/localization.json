@@ -9,6 +9,15 @@
     }
   },
   {
+    "Key": "Description",
+    "LocalizedValue": {
+      "de-DE": "Beschreibung",
+      "en-US": "Total count",
+      "af-ZA": "Beskrywing",
+      "tr-TR": "Tanımlama"
+    }
+  },
+  {
     "Key": "Total count",
     "LocalizedValue": {
       "de-DE": "Komplette anzahl",
@@ -96,6 +105,15 @@
       "en-US": "Add campaign",
       "af-ZA": "Voeg veldtog by",
       "tr-TR": "Kampanya ekle"
+    }
+  },
+  {
+    "Key": "Reset",
+    "LocalizedValue": {
+      "de-DE": "Zurücksetzen",
+      "en-US": "Reset",
+      "af-ZA": "Herstel",
+      "tr-TR": "Reset"
     }
   },
   {
