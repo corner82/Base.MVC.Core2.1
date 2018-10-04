@@ -22,7 +22,7 @@ $(document).ready(function () {
 * @since 10/09/2018
 */
 //to Buyback Tradeback Matrix form
-    $("#loading-image-bbInfo").loadImager();
+    $("#loadingImage_bbInfo").loadImager();
     $("#loadingImage_DdslickBbCustomerType").loadImager();
     $("#loadingImage_DdslickBbComfortSuper").loadImager();
     $("#loadingImage_DdslickBbOffRoad").loadImager();
@@ -31,7 +31,7 @@ $(document).ready(function () {
     $("#loadingImage_DdslickBbMileage").loadImager();
     $("#loadingImage_DdslickBbMonths").loadImager();
 
-    $("#loading-image-tbInfo").loadImager();
+    $("#loadingImage_tbInfo").loadImager();
     $("#loadingImage_DdslickTbCustomerType").loadImager();
     $("#loadingImage_DdslickTbComfortSuper").loadImager();
     $("#loadingImage_DdslickTbOffRoad").loadImager();
@@ -46,26 +46,6 @@ $(document).ready(function () {
 
     var langCode = $("#langCode").val();
     //alert(langCode);
-
-    var cbdata_country = [{}];
-
-    var cbdata_yesNo = [
-        {
-            text: window.lang.translate('Please select') + "...",
-            value: 0,
-            selected: true
-        },
-        {
-            text: "Yes",
-            value: 1,
-            selected: false
-        },
-        {
-            text: "No",
-            value: 2,
-            selected: false
-        }
-    ];
 
 //Buyback Dropdown Data
 
@@ -282,12 +262,8 @@ $(document).ready(function () {
     $("#loadingImage_DdslickBbComfortSuper").loadImager('appendImage');
 
     var ajaxACLResources_BbComfortSuper = $('#ajax_DdslickBbComfortSuper').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
+        proxy: '/Sys/SysYesNo/',
+        type: 'POST'
     });
 
     ajaxACLResources_BbComfortSuper.ajaxCallWidget({
@@ -300,9 +276,12 @@ $(document).ready(function () {
             });
             dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis bulunamamıştır...'));
         },
-        onSuccess: function (event, data) {
+        onSuccess: function (event, data_yesNo) {
             //var data = $.parseJSON(cbdata);
-
+            var cbdata_yesNo = $.parseJSON(data_yesNo);
+            cbdata_yesNo.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 2, selected: true, description: "" }
+            );
             $('#ddslickBbComfortSuper').ddslick({
                 //height: 150,
                 data: cbdata_yesNo,
@@ -387,12 +366,8 @@ $(document).ready(function () {
     $("#loadingImage_DdslickBbHydraulics").loadImager('appendImage');
 
     var ajaxACLResources_BbHydraulics = $('#ajax_DdslickBbHydraulics').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
+        proxy: '/Sys/SysYesNo/',
+        type: 'POST'
     });
 
     ajaxACLResources_BbHydraulics.ajaxCallWidget({
@@ -405,9 +380,12 @@ $(document).ready(function () {
             });
             dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis bulunamamıştır...'));
         },
-        onSuccess: function (event, data) {
+        onSuccess: function (event, data_yesNo) {
             //var data = $.parseJSON(cbdata);
-
+            var cbdata_yesNo = $.parseJSON(data_yesNo);
+            cbdata_yesNo.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 2, selected: true, description: "" }
+            );
             $('#ddslickBbHydraulics').ddslick({
                 //height: 150,
                 data: cbdata_yesNo,
@@ -651,12 +629,8 @@ $(document).ready(function () {
     $("#loadingImage_DdslickTbComfortSuper").loadImager('appendImage');
 
     var ajaxACLResources_TbComfortSuper = $('#ajax_DdslickTbComfortSuper').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
+        proxy: '/Sys/SysYesNo/',
+        type: 'POST'
     });
 
     ajaxACLResources_TbComfortSuper.ajaxCallWidget({
@@ -669,9 +643,12 @@ $(document).ready(function () {
             });
             dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis bulunamamıştır...'));
         },
-        onSuccess: function (event, data) {
+        onSuccess: function (event, data_yesNo) {
             //var data = $.parseJSON(cbdata);
-
+            var cbdata_yesNo = $.parseJSON(data_yesNo);
+            cbdata_yesNo.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 2, selected: true, description: "" }
+            );
             $('#ddslickTbComfortSuper').ddslick({
                 //height: 150,
                 data: cbdata_yesNo,
@@ -756,12 +733,8 @@ $(document).ready(function () {
     $("#loadingImage_DdslickTbHydraulics").loadImager('appendImage');
 
     var ajaxACLResources_TbHydraulics = $('#ajax_DdslickTbHydraulics').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
+        proxy: '/Sys/SysYesNo/',
+        type: 'POST'
     });
 
     ajaxACLResources_TbHydraulics.ajaxCallWidget({
@@ -774,9 +747,12 @@ $(document).ready(function () {
             });
             dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis bulunamamıştır...'));
         },
-        onSuccess: function (event, data) {
+        onSuccess: function (event, data_yesNo) {
             //var data = $.parseJSON(cbdata);
-
+            var cbdata_yesNo = $.parseJSON(data_yesNo);
+            cbdata_yesNo.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 2, selected: true, description: "" }
+            );
             $('#ddslickTbHydraulics').ddslick({
                 //height: 150,
                 data: cbdata_yesNo,
@@ -822,8 +798,9 @@ $(document).ready(function () {
             args.take = loadOptions.take || 12;
 
             $.ajax({
-                url: "https://js.devexpress.com/Demos/WidgetsGallery/data/orderItems",
+                url: '/BuybackTradeback/SysBbMatrix',
                 dataType: "json",
+                type: 'POST',
                 data: args,
                 success: function (result) {
                     deferred.resolve(result.items, { totalCount: result.totalCount });
@@ -837,6 +814,7 @@ $(document).ready(function () {
             return deferred.promise();
         }
     });
+
     var tradebackGrid = new DevExpress.data.CustomStore({
         load: function (loadOptions) {
             var deferred = $.Deferred(),
@@ -852,8 +830,9 @@ $(document).ready(function () {
             args.take = loadOptions.take || 12;
 
             $.ajax({
-                url: "https://js.devexpress.com/Demos/WidgetsGallery/data/orderItems",
+                url: '/BuybackTradeback/SysTbMatrix',
                 dataType: "json",
+                type: 'POST',
                 data: args,
                 success: function (result) {
                     deferred.resolve(result.items, { totalCount: result.totalCount });
@@ -892,7 +871,7 @@ $(document).ready(function () {
         },
         "export": {
             enabled: true,
-            fileName: "Orders"
+            fileName: "BuybackMatrix"
         },
         grouping: {
             contextMenuEnabled: true,
@@ -930,31 +909,31 @@ $(document).ready(function () {
         },
         columns: [{
             caption: window.lang.translate('Contract type') + "...",
-            dataField: "StoreState"
+            dataField: "contract_name"
         }, {
-            caption: window.lang.translate('Customer type') + "...",
-            dataField: "Employee"
+            caption: window.lang.translate('Customer type') + "...",//değişecek
+            dataField: "active"
         }, {
-            caption: window.lang.translate('ComfortSuper') + "...",
-            dataField: "StoreCity"
+            caption: window.lang.translate('ComfortSuper') + "...",//değişecek
+            dataField: "active"
         }, {
             caption: window.lang.translate('% Off road') + "...",
-            dataField: "Employee"
+            dataField: "terrain_name"
         }, {
             caption: window.lang.translate('Truck Type') + "...",
-            dataField: "StoreState"
+            dataField: "vahicle_description"
         }, {
-            caption: window.lang.translate('Hydraulics') + "...",
-            dataField: "StoreCity"
+            caption: window.lang.translate('Hydraulics') + "...",//değişecek
+            dataField: "active"
         }, {
             caption: window.lang.translate('Mileage per annum (km)') + "...",
-            dataField: "OrderNumber"
+            dataField: "mileage_type_name"
         }, {
             caption: window.lang.translate('Months') + "...",
-            dataField: "OrderNumber"
+            dataField: "month_name"
         }, {
             caption: window.lang.translate('Price') + "...",
-            dataField: "SaleAmount"
+            dataField: "price"
         }],
 
         onSelectionChanged: function (selectedItems) {
@@ -972,7 +951,7 @@ $(document).ready(function () {
         showColumnLines: true,
         showRowLines: true,
         showBorders: true,
-        dataSource: buybackGrid,
+        dataSource: tradebackGrid,
         columnHidingEnabled: true,
         selection: {
             mode: "single"
@@ -988,7 +967,7 @@ $(document).ready(function () {
         },
         "export": {
             enabled: true,
-            fileName: "Orders"
+            fileName: "TradebackMatrix"
         },
         grouping: {
             contextMenuEnabled: true,
@@ -1026,31 +1005,31 @@ $(document).ready(function () {
         },
         columns: [{
             caption: window.lang.translate('Contract type') + "...",
-            dataField: "StoreState"
+            dataField: "contract_name"
         }, {
-            caption: window.lang.translate('Customer type') + "...",
-            dataField: "Employee"
+            caption: window.lang.translate('Customer type') + "...",//değişecek
+            dataField: "active"
         }, {
-            caption: window.lang.translate('ComfortSuper') + "...",
-            dataField: "StoreCity"
+            caption: window.lang.translate('ComfortSuper') + "...",//değişecek
+            dataField: "active"
         }, {
             caption: window.lang.translate('% Off road') + "...",
-            dataField: "Employee"
+            dataField: "terrain_name"
         }, {
             caption: window.lang.translate('Truck Type') + "...",
-            dataField: "StoreState"
+            dataField: "vahicle_description"
         }, {
-            caption: window.lang.translate('Hydraulics') + "...",
-            dataField: "StoreCity"
+            caption: window.lang.translate('Hydraulics') + "...",//değişecek
+            dataField: "active"
         }, {
             caption: window.lang.translate('Mileage per annum (km)') + "...",
-            dataField: "OrderNumber"
+            dataField: "mileage_type_name"
         }, {
             caption: window.lang.translate('Months') + "...",
-            dataField: "OrderNumber"
+            dataField: "month_name"
         }, {
             caption: window.lang.translate('Price') + "...",
-            dataField: "SaleAmount"
+            dataField: "price"
         }],
 
         onSelectionChanged: function (selectedItems) {
@@ -1070,7 +1049,7 @@ $(document).ready(function () {
 
 
  /**
- * Buyback Tradeback Matrix
+ * Buyback Matrix
  * @author Ceydacan Seyrek
  * @since 10/09/2018
  */
@@ -1136,7 +1115,7 @@ $(document).ready(function () {
             onError23505: function (event, data) {
                 dm.dangerMessage({
                     onShown: function (event, data) {
-                        $("#loading-imagelocation").loadImager('removeLoadImage');
+                        $("#loadingImage_bbInfo").loadImager('removeLoadImage');
                     }
                 });
                 dm.dangerMessage('show', 'Buyback Tradeback Matrix İşlemi Başarısız...',
@@ -1147,7 +1126,7 @@ $(document).ready(function () {
         aj.ajaxCall('call');
     }
 /**
-* reset Buyback Tradeback Matrix Form
+* reset Buyback Matrix Form
 * @author Ceydacan Seyrek
 * @since 10/09/2018
 */
@@ -1174,7 +1153,7 @@ $(document).ready(function () {
 
 
 /**
-* insert Buyback Tradeback Matrix Wrapper
+* insert Buyback Matrix Wrapper
 * @author Ceydacan Seyrek
 * @since 10/09/2018
 */
@@ -1191,7 +1170,7 @@ $(document).ready(function () {
 
 
 /**
-* Fill Buyback Tradeback Matrix form
+* Fill Buyback Matrix form
 * @author Ceydacan Seyrek
 * @since 10/09/2018
 */
@@ -1200,19 +1179,244 @@ $(document).ready(function () {
         $("#loadingImage_bbInfo").loadImager('removeLoadImage');
         $("#loadingImage_bbInfo").loadImager('appendImage');
 
-        document.getElementById("txt-BbMatrix-price").value = data.SaleAmount;
+        document.getElementById("txt-BbMatrix-price").value = data.price;
 
         $("#loadingImage_bbInfo").loadImager('removeLoadImage');
         //$('#ddslickTonnage').ddslick('select', { index: 3 });        
-        $('#ddslickBbCustomerType').ddslick('select', { index: 1 });
-        $('#ddslickBbComfortSuper').ddslick('select', { index: 1 });
-        $('#ddslickBbOffRoad').ddslick('select', { index: 1 });
-        $('#ddslickBbTruckType').ddslick('select', { index: 1 });
-        $('#ddslickBbHydraulics').ddslick('select', { index: 1 });
-        $('#ddslickBbMileage').ddslick('select', { index: 1 });
-        $('#ddslickBbMonths').ddslick('select', { index: 1 });
+        $('#ddslickBbCustomerType').ddslick('selectByValue',
+            {
+                index: '' + data.customer_type_id + '',
+                text: '' + data.customer_type_name + ''
+            }
+        );
+        $('#ddslickBbComfortSuper').ddslick('selectByValue',
+            {
+                index: '' + data.comfort_super_id + '',
+                text: '' + data.comfort_super_name + ''
+            }
+        );
+        $('#ddslickBbOffRoad').ddslick('selectByValue',
+            {
+                index: '' + data.terrain_id + '',
+                text: '' + data.terrain_name + ''
+            }
+        );
+
+        $('#ddslickBbTruckType').ddslick('selectByValue',
+            {
+                index: '' + data.model_id + '',
+                text: '' + data.vahicle_description + ''
+            }
+        );
+        $('#ddslickBbHydraulics').ddslick('selectByValue',
+            {
+                index: '' + data.hydraulics + ''
+            });
+        $('#ddslickBbMileage').ddslick('selectByValue',
+            {
+                index: '' + data.mileage_id + '',
+                text: '' + data.mileage_type_name + ''
+            }
+        );
+        $('#ddslickBbMonths').ddslick('selectByValue',
+            {
+                index: '' + data.month_id + '',
+                text: '' + data.month_name + ''
+            }
+        );
+        return false;
+    }
+
+
+/**
+* Tradeback Matrix
+* @author Ceydacan Seyrek
+* @since 10/09/2018
+*/
+
+    window.inserttbMatrix = function () {
+        $("#loadingImage_tbInfo").loadImager('removeLoadImage');
+        $("#loadingImage_tbInfo").loadImager('appendImage');
+
+        // var cst_purchaselastupdate = $('#txt-location-name').val();
+
+        var aj = $(window).ajaxCall({
+            proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
+            data: {
+                url: 'pkInsert_sysbbInfo',
+
+                name: bbMatrix_name,
+                pk: $("#pk").val()
+            }
+        })
+        aj.ajaxCall({
+            onError: function (event, textStatus, errorThrown) {
+                dm.dangerMessage('resetOnShown');
+                dm.dangerMessage('show', 'Buyback Tradeback Matrix Ekleme İşlemi Başarısız...',
+                    'Buyback Tradeback Matrix Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
+                console.error('"pkInsert_sysbbInfo" servis hatası->' + textStatus);
+                $("#loadingImage_tbInfo").loadImager('removeLoadImage');
+            },
+            onSuccess: function (event, data) {
+                console.log(data);
+                var data = data;
+                sm.successMessage({
+                    onShown: function (event, data) {
+                        $('#tradebackbackInfoForm')[0].reset();
+
+                        $("#loadingImage_tbInfo").loadImager('removeLoadImage');
+
+                    }
+                });
+                sm.successMessage('show', 'Buyback Tradeback Matrix Kay�t ��lemi Ba�ar�l�...',
+                    'Buyback Tradeback Matrix kay�t i�lemini ger�ekle�tirdiniz... ',
+                    data);
+                $("#loadingImage_tbInfo").loadImager('removeLoadImage');
+
+            },
+            onErrorDataNull: function (event, data) {
+                dm.dangerMessage('resetOnShown');
+                dm.dangerMessage('show', 'Buyback Tradeback Matrix Kayıt İşlemi Başarısız...',
+                    'Buyback Tradeback Matrix kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
+                console.error('"pkInsert_sysbbInfo" servis datası boştur!!');
+                $("#loadingImage_tbInfo").loadImager('removeLoadImage');
+            },
+            onErrorMessage: function (event, data) {
+                dm.dangerMessage('resetOnShown');
+                dm.dangerMessage('show', 'Buyback Tradeback Matrix İşlemi Başarısız...',
+                    'Buyback Tradeback Matrix kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
+                console.error('"pkInsert_sysbbInfo" servis datası boştur!!');
+                $("#loadingImage_tbInfo").loadImager('removeLoadImage');
+            },
+            onError23503: function (event, data) {
+                dm.dangerMessage('Error23503');
+                $("#loadingImage_tbInfo").loadImager('removeLoadImage');
+            },
+            onError23505: function (event, data) {
+                dm.dangerMessage({
+                    onShown: function (event, data) {
+                        $("#loadingImage_tbInfo").loadImager('removeLoadImage');
+                    }
+                });
+                dm.dangerMessage('show', 'Buyback Tradeback Matrix İşlemi Başarısız...',
+                    'Aynı isim ile Buyback Tradeback Matrix  kaydı yapılmıştır, yeni bir Buyback Tradeback Matrix kaydı deneyiniz... ');
+                $("#loadingImage_tbInfo").loadImager('removeLoadImage');
+            }
+        })
+        aj.ajaxCall('call');
+    }
+/**
+* reset Tradeback Matrix Form
+* @author Ceydacan Seyrek
+* @since 10/09/2018
+*/
+
+    window.resetTbMatrixForm = function () {
+        $("#loadingImage_tbInfo").loadImager('removeLoadImage');
+        $("#loadingImage_tbInfo").loadImager('appendImage');
+
+        $('#tradebackInfoForm').validationEngine('hide');
+        //$('#ddslickTonnage').ddslick('select', { index: String(0) });
+        //$('#ddslickContractType').ddslick('select', { index: String(0) });
+        $('#ddslickTbCustomerType').ddslick('select', { index: String(0) });
+        $('#ddslickTbComfortSuper').ddslick('select', { index: String(0) });
+        $('#ddslickTbOffRoad').ddslick('select', { index: String(0) });
+        $('#ddslickTbTruckType').ddslick('select', { index: String(0) });
+        $('#ddslickTbHydraulics').ddslick('select', { index: String(0) });
+        $('#ddslickTbMileage').ddslick('select', { index: String(0) });
+        $('#ddslickTbMonths').ddslick('select', { index: String(0) });
+
+        $("#loadingImage_tbInfo").loadImager('removeLoadImage');
 
         return false;
     }
+
+
+/**
+* insert Tradeback Matrix Wrapper
+* @author Ceydacan Seyrek
+* @since 10/09/2018
+*/
+
+    window.insertTbMatrixWrapper = function (e) {
+        e.preventDefault();
+
+        if ($("#tradebackInfoForm").validationEngine('validate')) {
+
+            insertTbMatrix();
+        }
+        return false;
+    }
+
+
+/**
+* Fill Tradeback Matrix form
+* @author Ceydacan Seyrek
+* @since 10/09/2018
+*/
+
+    window.fillTbMatrixForm = function (data) {
+        $("#loadingImage_tbInfo").loadImager('removeLoadImage');
+        $("#loadingImage_tbInfo").loadImager('appendImage');
+
+        document.getElementById("txt-TbMatrix-price").value = data.price;
+
+
+        $("#loadingImage_tbInfo").loadImager('removeLoadImage');
+        //$('#ddslickTonnage').ddslick('select', { index: 3 });        
+        $('#ddslickTbCustomerType').ddslick('selectByValue',
+            {
+                index: '' + data.customer_type_id + '',
+                text: '' + data.customer_type_name + ''
+            }
+        );
+        $('#ddslickTbComfortSuper').ddslick('selectByValue',
+            {
+                index: '' + data.comfort_super_id + '',
+                text: '' + data.comfort_super_name + ''
+            }
+        );
+        $('#ddslickTbOffRoad').ddslick('selectByValue',
+            {
+                index: '' + data.terrain_id + '',
+                text: '' + data.terrain_name + ''
+            }
+        );
+
+        $('#ddslickTbTruckType').ddslick('selectByValue',
+            {
+                index: '' + data.model_id + '',
+                text: '' + data.vahicle_description + ''
+            }
+        );
+        $('#ddslickTbHydraulics').ddslick('selectByValue',
+            {
+                index: '' + data.hydraulics + ''
+            });
+        $('#ddslickTbMileage').ddslick('selectByValue',
+            {
+                index: '' + data.mileage_id + '',
+                text: '' + data.mileage_type_name + ''
+            }
+        )
+        $('#ddslickTbMonths').ddslick('selectByValue',
+            {
+                index: '' + data.month_id + '',
+                text: '' + data.month_name + ''
+            }
+        );
+
+        return false;
+    }
+
+
+
+
+
+
+
+
+
+
 });
 
