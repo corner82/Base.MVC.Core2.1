@@ -1116,12 +1116,37 @@ $(document).ready(function () {
         $("#loading-image-warranty").loadImager('appendImage');
 
         //$('#dropdownModel').ddslick('select', { index: data.vehicle_group_id });
-        $('#dropdownVhModel').ddslick('select', { index: data.vehicle_config_type_id });
+        $('#dropdownVhModel').ddslick('selectByValue',
+            {
+                index: '' + data.vehicle_config_type_id + '',
+                text: '' + data.vehicle_config_name + ''
+            }
+        );
         //$('#dropdownWrName').ddslick('select', { index: data.id });
-        $('#dropdownWrType').ddslick('select', { index: data.warranty_types_id });
-        $('#dropdownWrMil').ddslick('select', { index: 1 });//data.mileages1_id
-        $('#dropdownWrMonth').ddslick('select', { index: 1 });//data.months1_id 
-        $('#dropdownRm').ddslick('select', { index: 1 }); //data.ismaintenance
+        $('#dropdownWrType').ddslick('selectByValue',
+            {
+                index: '' + data.warranty_types_id + '',
+                text: '' + data.warranty_type_name + ''
+            }
+        );
+        $('#dropdownWrMil').ddslick('selectByValue',
+            {
+                index: '' + data.mileages1_id + '',
+                text: '' + data.maintenance + ''
+            }
+        );
+        $('#dropdownWrMonth').ddslick('selectByValue',
+            {
+                index: '' + data.months1_id + '',
+                text: '' + data.month_value + ''
+            }
+        );
+        $('#dropdownRm').ddslick('selectByValue',
+            {
+                index: '' + data.ismaintenance + '',
+                text: '' + data.maintenance + ''
+            }
+        );
         document.getElementById("txt-wrPrice-name").value = data.price_in_euros;
         document.getElementById("txt-wrName-VhType").value = data.vehicle_group;
         document.getElementById("txt-wrName-WrName").value = data.vehicle_group_name;
@@ -1187,7 +1212,12 @@ $(document).ready(function () {
         $("#loading-image-warrantyName").loadImager('removeLoadImage');
         $("#loading-image-warrantyName").loadImager('appendImage');
 
-        $('#dropdownModelName').ddslick('select', { index: data.vehicle_group_id  });
+        $('#dropdownModelName').ddslick('selectByValue',
+            {
+                index: '' + data.vehicle_group_id + '',
+                text: '' + data.name + ''
+            }
+        );
         document.getElementById("txt-wrName-name").value = data.name;
         document.getElementById("txt-wrName-VhType").value = data.vehicle_group_name;
         document.getElementById("txt-wrName-WrName").value = data.name;

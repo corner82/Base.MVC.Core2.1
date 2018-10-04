@@ -239,6 +239,51 @@ namespace Base.MVC.Controllers
             var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkTradebackMonthsDdList_sysmonths&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
+        }        
+        
+        /// <summary>
+        /// buyback matrix
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        //[SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysBbMatrix()
+        {
+            // buyback matrix
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillBuybackMatrixGridx_sysbuybackmatrix&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }        
+        
+        /// <summary>
+        /// tradeback matrix
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        //[SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysTbMatrix()
+        {
+            // tradeback matrix
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            //var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillBuybackTradeBackMatrixGridx_sysbuybackmatrix&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillBuybackMatrixGridx_sysbuybackmatrix&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
         }
 
 

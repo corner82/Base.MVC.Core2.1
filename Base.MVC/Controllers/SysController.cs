@@ -502,5 +502,28 @@ namespace Base.MVC.Controllers
             return data.ToString();
         }
 
+        /// <summary>
+        /// get Yes/No List
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        //[SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysYesNo()
+        {
+            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            var url = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=fillYesNoTypes_sysSpecificDefinitions&language_code=en&pk=GsZVzEYe50uGgNM";
+            var response = await HttpClientRequestFactory.Get(url, headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+
+        }
     }
 }
