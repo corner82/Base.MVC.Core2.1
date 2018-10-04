@@ -911,11 +911,11 @@ $(document).ready(function () {
             caption: window.lang.translate('Contract type') + "...",
             dataField: "contract_name"
         }, {
-            caption: window.lang.translate('Customer type') + "...",//değişecek
-            dataField: "active"
+            caption: window.lang.translate('Customer type') + "...",
+            dataField: "customer_type_name"
         }, {
-            caption: window.lang.translate('ComfortSuper') + "...",//değişecek
-            dataField: "active"
+            caption: window.lang.translate('ComfortSuper') + "...",
+            dataField: "comfort_super_name"
         }, {
             caption: window.lang.translate('% Off road') + "...",
             dataField: "terrain_name"
@@ -923,8 +923,8 @@ $(document).ready(function () {
             caption: window.lang.translate('Truck Type') + "...",
             dataField: "vahicle_description"
         }, {
-            caption: window.lang.translate('Hydraulics') + "...",//değişecek
-            dataField: "active"
+            caption: window.lang.translate('Hydraulics') + "...",
+            dataField: "hydraulics_name"
         }, {
             caption: window.lang.translate('Mileage per annum (km)') + "...",
             dataField: "mileage_type_name"
@@ -1007,11 +1007,11 @@ $(document).ready(function () {
             caption: window.lang.translate('Contract type') + "...",
             dataField: "contract_name"
         }, {
-            caption: window.lang.translate('Customer type') + "...",//değişecek
-            dataField: "active"
+            caption: window.lang.translate('Customer type') + "...",
+            dataField: "customer_type_name"
         }, {
-            caption: window.lang.translate('ComfortSuper') + "...",//değişecek
-            dataField: "active"
+            caption: window.lang.translate('ComfortSuper') + "...",
+            dataField: "comfort_super_name"
         }, {
             caption: window.lang.translate('% Off road') + "...",
             dataField: "terrain_name"
@@ -1019,8 +1019,8 @@ $(document).ready(function () {
             caption: window.lang.translate('Truck Type') + "...",
             dataField: "vahicle_description"
         }, {
-            caption: window.lang.translate('Hydraulics') + "...",//değişecek
-            dataField: "active"
+            caption: window.lang.translate('Hydraulics') + "...",
+            dataField: "hydraulics_name"
         }, {
             caption: window.lang.translate('Mileage per annum (km)') + "...",
             dataField: "mileage_type_name"
@@ -1210,7 +1210,8 @@ $(document).ready(function () {
         );
         $('#ddslickBbHydraulics').ddslick('selectByValue',
             {
-                index: '' + data.hydraulics + ''
+                index: '' + data.hydraulics + '',
+                text: '' + data.hydraulics_name + ''
             });
         $('#ddslickBbMileage').ddslick('selectByValue',
             {
@@ -1361,7 +1362,6 @@ $(document).ready(function () {
 
         document.getElementById("txt-TbMatrix-price").value = data.price;
 
-
         $("#loadingImage_tbInfo").loadImager('removeLoadImage');
         //$('#ddslickTonnage').ddslick('select', { index: 3 });        
         $('#ddslickTbCustomerType').ddslick('selectByValue',
@@ -1391,7 +1391,8 @@ $(document).ready(function () {
         );
         $('#ddslickTbHydraulics').ddslick('selectByValue',
             {
-                index: '' + data.hydraulics + ''
+                index: '' + data.hydraulics + '',
+                text: '' + data.hydraulics_name + ''
             });
         $('#ddslickTbMileage').ddslick('selectByValue',
             {
@@ -1408,15 +1409,6 @@ $(document).ready(function () {
 
         return false;
     }
-
-
-
-
-
-
-
-
-
 
 });
 
