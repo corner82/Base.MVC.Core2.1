@@ -936,10 +936,12 @@ $(document).ready(function () {
         $("#loading-image-bodyname").loadImager('removeLoadImage');
         $("#loading-image-bodyname").loadImager('appendImage');
 
-        //var bodyname = $('#txt-bodyname').val();
-        //var body_type_id = "1";
+        var bodyname = $('#txt-bodyname').val();
+        var ddData = $('#dropdownVehicleModel').data('ddslick');
+        var body_type_id = ddData.selectedData.value;
 
-        //alert(bodyname);
+        alert(bodyname);
+        alert(body_type_id);
         //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_sysaccbodydeff&language_code=en&name=denemeee&acc_body_type_id=1&pk=GsZVzEYe50uGgNM
  
         var ajax_InsertBodyName = $('#ajaxACL-insertBodyName').ajaxCallWidget({
@@ -948,8 +950,8 @@ $(document).ready(function () {
             data: {
                 url: "pkInsertAct_sysaccbodydeff",
                 language_code:"en",
-                name: "denemegul1",
-                acc_body_type_id: "1",
+                name: bodyname,
+                acc_body_type_id: body_type_id,
                 pk: "GsZVzEYe50uGgNM"
             },
         });

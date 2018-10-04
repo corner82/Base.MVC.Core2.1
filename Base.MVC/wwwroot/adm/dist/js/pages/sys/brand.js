@@ -196,7 +196,7 @@ $(document).ready(function () {
             },
             onSuccess: function (event, data) {
                 console.log(data);
-                var data = data;
+                
                 sm.successMessage({
                     onShown: function (event, data) {
                         $('#brandForm')[0].reset();

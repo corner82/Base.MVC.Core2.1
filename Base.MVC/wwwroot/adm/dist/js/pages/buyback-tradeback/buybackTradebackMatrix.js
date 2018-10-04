@@ -781,8 +781,9 @@ $(document).ready(function () {
 //Hydraulics End
 //Tradeback Dropdown Data End
 
-
     /* devexgrid */
+    DevExpress.localization.locale(langCode);
+    //Buyback Grid
     var buybackGrid = new DevExpress.data.CustomStore({
         load: function (loadOptions) {
             var deferred = $.Deferred(),
@@ -815,41 +816,6 @@ $(document).ready(function () {
         }
     });
 
-    var tradebackGrid = new DevExpress.data.CustomStore({
-        load: function (loadOptions) {
-            var deferred = $.Deferred(),
-                args = {};
-
-            if (loadOptions.sort) {
-                args.orderby = loadOptions.sort[0].selector;
-                if (loadOptions.sort[0].desc)
-                    args.orderby += " desc";
-            }
-
-            args.skip = loadOptions.skip || 0;
-            args.take = loadOptions.take || 12;
-
-            $.ajax({
-                url: '/BuybackTradeback/SysTbMatrix',
-                dataType: "json",
-                type: 'POST',
-                data: args,
-                success: function (result) {
-                    deferred.resolve(result.items, { totalCount: result.totalCount });
-                },
-                error: function () {
-                    deferred.reject("Data Loading Error");
-                },
-                timeout: 5000
-            });
-
-            return deferred.promise();
-        }
-    });
-
-    DevExpress.localization.locale(langCode);
-
-//Buyback Grid
     $("#gridContainer_bbMatrix").dxDataGrid({
 
         showColumnLines: true,
@@ -911,11 +877,11 @@ $(document).ready(function () {
             caption: window.lang.translate('Contract type') + "...",
             dataField: "contract_name"
         }, {
-            caption: window.lang.translate('Customer type') + "...",//değişecek
-            dataField: "active"
+            caption: window.lang.translate('Customer type') + "...",
+            dataField: "customer_type_name"
         }, {
-            caption: window.lang.translate('ComfortSuper') + "...",//değişecek
-            dataField: "active"
+            caption: window.lang.translate('ComfortSuper') + "...",
+            dataField: "comfort_super_name"
         }, {
             caption: window.lang.translate('% Off road') + "...",
             dataField: "terrain_name"
@@ -923,8 +889,8 @@ $(document).ready(function () {
             caption: window.lang.translate('Truck Type') + "...",
             dataField: "vahicle_description"
         }, {
-            caption: window.lang.translate('Hydraulics') + "...",//değişecek
-            dataField: "active"
+            caption: window.lang.translate('Hydraulics') + "...",
+            dataField: "hydraulics_name"
         }, {
             caption: window.lang.translate('Mileage per annum (km)') + "...",
             dataField: "mileage_type_name"
@@ -944,7 +910,38 @@ $(document).ready(function () {
         }
     });
 
-//Tradeback Grid
+    //Tradeback Grid
+    var tradebackGrid = new DevExpress.data.CustomStore({
+        load: function (loadOptions) {
+            var deferred = $.Deferred(),
+                args = {};
+
+            if (loadOptions.sort) {
+                args.orderby = loadOptions.sort[0].selector;
+                if (loadOptions.sort[0].desc)
+                    args.orderby += " desc";
+            }
+
+            args.skip = loadOptions.skip || 0;
+            args.take = loadOptions.take || 12;
+
+            $.ajax({
+                url: '/BuybackTradeback/SysTbMatrix',
+                dataType: "json",
+                type: 'POST',
+                data: args,
+                success: function (result) {
+                    deferred.resolve(result.items, { totalCount: result.totalCount });
+                },
+                error: function () {
+                    deferred.reject("Data Loading Error");
+                },
+                timeout: 5000
+            });
+
+            return deferred.promise();
+        }
+    });
 
     $("#gridContainer_tbMatrix").dxDataGrid({
 
@@ -967,7 +964,7 @@ $(document).ready(function () {
         },
         "export": {
             enabled: true,
-            fileName: "TradebackMatrix"
+            fileName: window.lang.translate('Tradeback List')
         },
         grouping: {
             contextMenuEnabled: true,
@@ -1007,11 +1004,11 @@ $(document).ready(function () {
             caption: window.lang.translate('Contract type') + "...",
             dataField: "contract_name"
         }, {
-            caption: window.lang.translate('Customer type') + "...",//değişecek
-            dataField: "active"
+            caption: window.lang.translate('Customer type') + "...",
+            dataField: "customer_type_name"
         }, {
-            caption: window.lang.translate('ComfortSuper') + "...",//değişecek
-            dataField: "active"
+            caption: window.lang.translate('ComfortSuper') + "...",
+            dataField: "comfort_super_name"
         }, {
             caption: window.lang.translate('% Off road') + "...",
             dataField: "terrain_name"
@@ -1019,8 +1016,8 @@ $(document).ready(function () {
             caption: window.lang.translate('Truck Type') + "...",
             dataField: "vahicle_description"
         }, {
-            caption: window.lang.translate('Hydraulics') + "...",//değişecek
-            dataField: "active"
+            caption: window.lang.translate('Hydraulics') + "...",
+            dataField: "hydraulics_name"
         }, {
             caption: window.lang.translate('Mileage per annum (km)') + "...",
             dataField: "mileage_type_name"
@@ -1040,12 +1037,279 @@ $(document).ready(function () {
         }
     });
 
-    function logEvent(eventName) {
-        var logList = $("#events ul"),
-            newItem = $("<li>", { text: eventName });
+//Buyback Grid
+    $('#buybackListRefresh').click(function () {
+    var buybackGrid = new DevExpress.data.CustomStore({
+        load: function (loadOptions) {
+            var deferred = $.Deferred(),
+                args = {};
 
-        logList.prepend(newItem);
-    }
+            if (loadOptions.sort) {
+                args.orderby = loadOptions.sort[0].selector;
+                if (loadOptions.sort[0].desc)
+                    args.orderby += " desc";
+            }
+
+            args.skip = loadOptions.skip || 0;
+            args.take = loadOptions.take || 12;
+
+            $.ajax({
+                url: '/BuybackTradeback/SysBbMatrix',
+                dataType: "json",
+                type: 'POST',
+                data: args,
+                success: function (result) {
+                    deferred.resolve(result.items, { totalCount: result.totalCount });
+                },
+                error: function () {
+                    deferred.reject("Data Loading Error");
+                },
+                timeout: 5000
+            });
+
+            return deferred.promise();
+        }
+    });
+
+    $("#gridContainer_bbMatrix").dxDataGrid({
+
+        showColumnLines: true,
+        showRowLines: true,
+        showBorders: true,
+        dataSource: buybackGrid,
+        columnHidingEnabled: true,
+        selection: {
+            mode: "single"
+        },
+        hoverStateEnabled: true,
+        editing: {
+            //mode: "batch"
+            mode: "form",
+            //allowAdding: true,
+            //allowUpdating: true,
+            allowDeleting: true,
+            useIcons: true
+        },
+        "export": {
+            enabled: true,
+            fileName: "BuybackMatrix"
+        },
+        grouping: {
+            contextMenuEnabled: true,
+            expandMode: "rowClick"
+        },
+        groupPanel: {
+            emptyPanelText: "Use the context menu of header columns to group data",
+            visible: true
+        },
+        pager: {
+            allowedPageSizes: [5, 8, 15, 30],
+            showInfo: true,
+            showNavigationButtons: true,
+            showPageSizeSelector: true,
+            visible: true
+        },
+        paging: {
+            pageSize: 8
+        },
+        filterRow: {
+            visible: true,
+            applyFilter: "auto"
+        },
+        searchPanel: {
+            visible: true,
+            width: 240,
+            placeholder: window.lang.translate('Search') + "...",
+        },
+        headerFilter: {
+            visible: true
+        },
+        columnChooser: {
+            enabled: true,
+            mode: "select"
+        },
+        columns: [{
+            caption: window.lang.translate('Contract type') + "...",
+            dataField: "contract_name"
+        }, {
+            caption: window.lang.translate('Customer type') + "...",
+            dataField: "customer_type_name"
+        }, {
+            caption: window.lang.translate('ComfortSuper') + "...",
+            dataField: "comfort_super_name"
+        }, {
+            caption: window.lang.translate('% Off road') + "...",
+            dataField: "terrain_name"
+        }, {
+            caption: window.lang.translate('Truck Type') + "...",
+            dataField: "vahicle_description"
+        }, {
+            caption: window.lang.translate('Hydraulics') + "...",
+            dataField: "hydraulics_name"
+        }, {
+            caption: window.lang.translate('Mileage per annum (km)') + "...",
+            dataField: "mileage_type_name"
+        }, {
+            caption: window.lang.translate('Months') + "...",
+            dataField: "month_name"
+        }, {
+            caption: window.lang.translate('Price') + "...",
+            dataField: "price"
+        }],
+
+        onSelectionChanged: function (selectedItems) {
+            var data = selectedItems.selectedRowsData[0];
+            if (data) {
+                fillBbMatrixForm(data);
+            }
+        }
+    });
+    });
+    
+
+//Buyback Grid End
+
+//Tradeback Grid
+    $('#tradebackListRefresh').click(function () {
+    var tradebackGrid = new DevExpress.data.CustomStore({
+        load: function (loadOptions) {
+            var deferred = $.Deferred(),
+                args = {};
+
+            if (loadOptions.sort) {
+                args.orderby = loadOptions.sort[0].selector;
+                if (loadOptions.sort[0].desc)
+                    args.orderby += " desc";
+            }
+
+            args.skip = loadOptions.skip || 0;
+            args.take = loadOptions.take || 12;
+
+            $.ajax({
+                url: '/BuybackTradeback/SysTbMatrix',
+                dataType: "json",
+                type: 'POST',
+                data: args,
+                success: function (result) {
+                    deferred.resolve(result.items, { totalCount: result.totalCount });
+                },
+                error: function () {
+                    deferred.reject("Data Loading Error");
+                },
+                timeout: 5000
+            });
+
+            return deferred.promise();
+        }
+    });
+
+    $("#gridContainer_tbMatrix").dxDataGrid({
+
+            showColumnLines: true,
+            showRowLines: true,
+            showBorders: true,
+            dataSource: tradebackGrid,
+            columnHidingEnabled: true,
+            selection: {
+                mode: "single"
+            },
+            hoverStateEnabled: true,
+            editing: {
+                //mode: "batch"
+                mode: "form",
+                //allowAdding: true,
+                //allowUpdating: true,
+                allowDeleting: true,
+                useIcons: true
+            },
+            "export": {
+                enabled: true,
+                fileName: window.lang.translate('Tradeback List')
+            },
+            grouping: {
+                contextMenuEnabled: true,
+                expandMode: "rowClick"
+            },
+            groupPanel: {
+                emptyPanelText: "Use the context menu of header columns to group data",
+                visible: true
+            },
+            pager: {
+                allowedPageSizes: [5, 8, 15, 30],
+                showInfo: true,
+                showNavigationButtons: true,
+                showPageSizeSelector: true,
+                visible: true
+            },
+            paging: {
+                pageSize: 8
+            },
+            filterRow: {
+                visible: true,
+                applyFilter: "auto"
+            },
+            searchPanel: {
+                visible: true,
+                width: 240,
+                placeholder: window.lang.translate('Search') + "...",
+            },
+            headerFilter: {
+                visible: true
+            },
+            columnChooser: {
+                enabled: true,
+                mode: "select"
+            },
+            columns: [{
+                caption: window.lang.translate('Contract type') + "...",
+                dataField: "contract_name"
+            }, {
+                caption: window.lang.translate('Customer type') + "...",
+                dataField: "customer_type_name"
+            }, {
+                caption: window.lang.translate('ComfortSuper') + "...",
+                dataField: "comfort_super_name"
+            }, {
+                caption: window.lang.translate('% Off road') + "...",
+                dataField: "terrain_name"
+            }, {
+                caption: window.lang.translate('Truck Type') + "...",
+                dataField: "vahicle_description"
+            }, {
+                caption: window.lang.translate('Hydraulics') + "...",
+                dataField: "hydraulics_name"
+            }, {
+                caption: window.lang.translate('Mileage per annum (km)') + "...",
+                dataField: "mileage_type_name"
+            }, {
+                caption: window.lang.translate('Months') + "...",
+                dataField: "month_name"
+            }, {
+                caption: window.lang.translate('Price') + "...",
+                dataField: "price"
+            }],
+
+            onSelectionChanged: function (selectedItems) {
+                var data = selectedItems.selectedRowsData[0];
+                if (data) {
+                    fillTbMatrixForm(data);
+                }
+            }
+        });
+    });
+
+    //$('#buybackListRefresh').click();
+
+    //$('#tradebackListRefresh').click();
+//Tradeback Grid End
+
+
+    //function logEvent(eventName) {
+    //    var logList = $("#events ul"),
+    //        newItem = $("<li>", { text: eventName });
+
+    //    logList.prepend(newItem);
+    //}
 
 
  /**
@@ -1210,7 +1474,8 @@ $(document).ready(function () {
         );
         $('#ddslickBbHydraulics').ddslick('selectByValue',
             {
-                index: '' + data.hydraulics + ''
+                index: '' + data.hydraulics + '',
+                text: '' + data.hydraulics_name + ''
             });
         $('#ddslickBbMileage').ddslick('selectByValue',
             {
@@ -1361,7 +1626,6 @@ $(document).ready(function () {
 
         document.getElementById("txt-TbMatrix-price").value = data.price;
 
-
         $("#loadingImage_tbInfo").loadImager('removeLoadImage');
         //$('#ddslickTonnage').ddslick('select', { index: 3 });        
         $('#ddslickTbCustomerType').ddslick('selectByValue',
@@ -1391,7 +1655,8 @@ $(document).ready(function () {
         );
         $('#ddslickTbHydraulics').ddslick('selectByValue',
             {
-                index: '' + data.hydraulics + ''
+                index: '' + data.hydraulics + '',
+                text: '' + data.hydraulics_name + ''
             });
         $('#ddslickTbMileage').ddslick('selectByValue',
             {
@@ -1408,15 +1673,6 @@ $(document).ready(function () {
 
         return false;
     }
-
-
-
-
-
-
-
-
-
 
 });
 

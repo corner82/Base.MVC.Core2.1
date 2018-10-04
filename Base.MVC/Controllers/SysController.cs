@@ -329,7 +329,7 @@ namespace Base.MVC.Controllers
 
                 //var url = "http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkCountryRegionsDdList_syscountryregions&language_code=en&pk=GsZVzEYe50uGgNM&country_id=" + country_id;
 
-                var url = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkCountryRegionsDdList_syscountryregions&language_code=en&pk=GsZVzEYe50uGgNM&" + queryStr;
+                var url = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php" + queryStr + "&url=pkCountryRegionsDdList_syscountryregions&language_code=en&pk=GsZVzEYe50uGgNM";
                 var response = await HttpClientRequestFactory.Get(url, headers);
                 var data = response.Content.ReadAsStringAsync().Result;
                 return data.ToString();
@@ -364,7 +364,7 @@ namespace Base.MVC.Controllers
                 //string path = Request.Path.ToString();
                 string queryStr = Request.QueryString.ToString();
 
-                var url = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkCityDdList_syscity&language_code=en&pk=GsZVzEYe50uGgNM&" + queryStr;
+                var url = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php" + queryStr + "&url=pkCityDdList_syscity&language_code=en&pk=GsZVzEYe50uGgNM";
 
                 var response = await HttpClientRequestFactory.Get(url, headers);
                 var data = response.Content.ReadAsStringAsync().Result;
@@ -465,6 +465,7 @@ namespace Base.MVC.Controllers
                 string path = Request.Path.ToString();
                 string queryStr = Request.QueryString.ToString();
 
+                // http://proxy.mansis.co.za:18443/SlimProxyBoot.php?
                 // http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_sysaccbodydeff&language_code=en&name=denemeee&acc_body_type_id=1&pk=GsZVzEYe50uGgNM
                 //_hmacManager.test();
                 //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
