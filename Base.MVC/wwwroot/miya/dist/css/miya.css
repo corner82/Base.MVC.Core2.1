@@ -17,6 +17,10 @@
     height: 100%;
 }
 
+.position-relative {
+    position : relative;
+}
+
 .offline-load-imager .overlay
  {
     z-index: 1200;

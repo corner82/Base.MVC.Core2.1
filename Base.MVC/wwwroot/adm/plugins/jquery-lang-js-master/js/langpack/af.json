@@ -1,8 +1,11 @@
 {
   "token": {
+    "Transaction successful": "Transaksie suksesvol",
+    "Unsuccessful transaction": "Onsuksesvolle transaksie",
     "Search": "Soek",
     "Please select": "Kies asseblief",
     "Please select service": "Kies asseblief diens",
+    "Please select vehicle type": "Kies asseblief voertuig tipe",
     "Main navigation": "Hoofnavigasie",
     "Send": "Stuur",
     "message": "Boodskap",

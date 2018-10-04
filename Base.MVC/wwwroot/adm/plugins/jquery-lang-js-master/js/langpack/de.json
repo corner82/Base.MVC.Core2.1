@@ -1,8 +1,11 @@
 {
   "token": {
+    "Transaction successful": "Transaktion erfolgreich",
+    "Unsuccessful transaction": "Erfolglose Transaktion",
     "Search": "Suche",
     "Please select": "Bitte auswählen",
     "Please select service": "Bitte wählen sie den service",
+    "Please select vehicle type": "Bitte wählen Sie den fahrzeugtyp",
     "Main navigation": "Hauptnavigation",
     "Send": "Senden",
     "message": "Botschaft",

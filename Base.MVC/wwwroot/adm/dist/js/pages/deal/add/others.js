@@ -1,6 +1,8 @@
 ﻿$(document).ready(function () {
 
+    
 
+    var dealID;
 
    /* $.ajax({
         url: '/Home/IndexGet',
@@ -180,7 +182,8 @@
         }
     });
     //tab 2_1 side bar panel left toggle
-    $("#toggle_CampaignAsider").on("click", function () {
+    $("#toggle_CampaignAsider").on("click", function (e) {
+        e.preventDefault();
         // $(".sidebar.left").sidebar().trigger("sidebar:open");
         //alert('test');
         
@@ -194,38 +197,252 @@
     });
 
 
-    $("#addDeal").validationEngine();
-    // add deal button event handler
+//----------------------------------add  deal begin-------------------------------------------------
+
+    /**
+     * loading image for add deal process
+     * */
+    $('#tab_DealAttr').loadImager(); 
+
+    /**
+     * add deal form reset
+     * @author Mustafa Zeynel Dağlı
+     * */
+    var resetDealAddForm = function () {
+        $('#addDealForm').validationEngine('hide');
+        $('#addDealForm')[0].reset(); 
+        $('#ddslickCustomer').ddslick("select", { index: '0' });
+        $('#ddslickPriority').ddslick("select", { index: '0' });
+        $('#ddslickRealizationRate').ddslick("select", { index: '0' });
+       /* $('#dropdownLicenseResult').ddslick('selectByValue',
+            { index: '0' }*/
+    }
+
+    /**
+     * add deal form validation engine activated
+     * @author Mustafa Zeynel Dağlı
+     * */
+    $("#addDealForm").validationEngine();
+
+    /**
+     * add deal click event handler
+     * @author Mustafa Zeynel Dağlı
+     * @todo deal id js değişkene atılacak
+     * @ajax call değişkeni standart lokal değişken yapılacak
+     * */
     $("#add_deal").on("click", function (e) {
         e.preventDefault();
-        alert('onclick event');
-        var ddData = $('#ddslickCustomer').data('ddslick');
+        $('#tab_DealAttr').loadImager('removeLoadImage');
+        $("#tab_DealAttr").loadImager('appendImage');
+
+        var ddDataCustomer = $('#ddslickCustomer').data('ddslick');
+        var ddDataPriority = $('#ddslickPriority').data('ddslick');
+        var ddDataRealizationRate = $('#ddslickRealizationRate').data('ddslick');
         
-        console.log(ddData);
-        alert(ddData.selectedData.value);
-        if (!ddData.selectedData.value > 0) {
+        if (!ddDataCustomer.selectedData.value > 0) {
             wm.warningMessage('resetOnShown');
-            wm.warningMessage('show', window.lang.translate("Please select customer"), window.lang.translate("Please select customer"));
+            wm.warningMessage('show', window.lang.translate("Please select customer"),
+                window.lang.translate("Please select customer"));
+            $('#tab_DealAttr').loadImager('removeLoadImage');
             return false;
         }
-       
+
+        var ajax_DdslickCustomer = $('#ajax_DdslickCustomer').ajaxCallWidget({
+            proxy: '/Deal/AddDealProxyService',
+            type: "POST",
+            data: JSON.stringify({
+                language_code: $("#langCode").val(),
+                pk: "GsZVzEYe50uGgNM",
+                url: "pkInsertAct_infoproject",
+                pkIdentity: $("#publicKey").val(),
+                customer_id: ddDataCustomer.selectedData.value,
+                is_house_deal: 0,
+                probability_id: ddDataPriority.selectedData.value,
+                reliability_id: ddDataRealizationRate.selectedData.value,
+                description: $("#description").val(),
+                discount_rate: $("#description").val()
+
+            })
+
+        });
+        ajax_DdslickCustomer.ajaxCallWidget({
+            onError: function (event, textStatus, errorThrown) {
+
+                $(window).dangerMessage({
+                    onShown: function () {
+                        $('#tab_DealAttr').loadImager('removeLoadImage');
+                    }
+                });
+                $(window).dangerMessage('resetOnShown');
+                $(window).dangerMessage('show', window.lang.translate('Unsuccessful transaction'),
+                                                window.lang.translate('Unsuccessful transaction'));
+                resetDealAddForm();
+            },
+            onSuccess: function (event, data) {
+
+                sm.successMessage('show', window.lang.translate('Transaction successful'),
+                                          window.lang.translate('Transaction successful'),
+                                          data);
+                $("#tab_DealAttr").loadImager('removeLoadImage');
+                //dealID = data.
+                //console.log(dealID);
+                resetDealAddForm();
+            },
+            onErrorDataNull: function (event, data) {
+                //console.log("Error : " + event + " -data :" + data);
+                $(window).dangerMessage({
+                    onShown: function () {
+                        $('#tab_DealAttr').loadImager('removeLoadImage');
+                    }
+                });
+                $(window).dangerMessage('show', window.lang.translate('Unsuccessful transaction'),
+                    window.lang.translate('Unsuccessful transaction'));
+                resetDealAddForm();
+            },
+        })
+        ajax_DdslickCustomer.ajaxCallWidget('call');
         return false;
-
-
-
-
     })
 
     // add deal reset
     $("#add_deal_reset").on("click", function (e) {
         e.preventDefault();
-        alert("deal reset");
-       // e.preventDefault();
-        //$('#aclRoleForm').validationEngine('hide');
+        resetDealAddForm();
+        return false;
+    })
+
+//----------------------------------add  deal end-------------------------------------------------
+
+
+//----------------------------------add vehicle type to deal begin-------------------------------------------------
+
+    /**
+     * loading image for add vehicle type process
+     * */
+    $('#tab_VehicleType').loadImager();
+
+    /**
+     * add deal form reset
+     * @author Mustafa Zeynel Dağlı
+     * */
+    var resetVehicleTypeAddDealForm = function () {
+        $('#addVehicleTypeForm').validationEngine('hide');
+        $('#addVehicleTypeForm')[0].reset();
+        $('#ddslickVehicleType').ddslick("select", { index: '0' });
+
+    }
+
+    /**
+     * add vehicle type form validation engine activated
+     * @author Mustafa Zeynel Dağlı
+     * */
+    $("#addVehicleTypeForm").validationEngine();
+
+    /**
+     * add deal click event handler
+     * @author Mustafa Zeynel Dağlı
+     * @todo deal is js lokal değişkenden alınacak
+     * */
+    $("#add_vehicleType").on("click", function (e) {
+        e.preventDefault();
+        $('#tab_VehicleType').loadImager('removeLoadImage');
+        $("#tab_VehicleType").loadImager('appendImage');
+
+        var ddDataVehicleType = $('#ddslickVehicleType').data('ddslick');
+        if (!ddDataVehicleType.selectedData.value > 0) {
+            wm.warningMessage('resetOnShown');
+            wm.warningMessage('show', window.lang.translate("Please select vehicle type"),
+                window.lang.translate("Please select vehicle type"));
+            $('#tab_VehicleType').loadImager('removeLoadImage');
+            return false;
+        }
+
+        var ajax = $('#ajax_DdslickVehicleType').ajaxCallWidget({
+            proxy: '/Deal/AddVehicleTypeProxyService',
+            type: "POST",
+            data: JSON.stringify({
+                language_code: $("#langCode").val(),
+                pk: "GsZVzEYe50uGgNM",
+                url: "pkInsertAct_infoprojectvehiclemodels",
+                pkIdentity: $("#publicKey").val(),
+                project_id: 1,
+                is_house_deal: 0,
+                vehicle_gt_model_id: ddDataVehicleType.selectedData.value,
+                quantity: $("#quantity").val(),
+                delivery_date: "10/10/2018",
+            })
+
+        });
+        ajax.ajaxCallWidget({
+            onError: function (event, textStatus, errorThrown) {
+
+                $(window).dangerMessage({
+                    onShown: function () {
+                        $('#tab_VehicleType').loadImager('removeLoadImage');
+                    }
+                });
+                $(window).dangerMessage('resetOnShown');
+                $(window).dangerMessage('show', window.lang.translate('Unsuccessful transaction'),
+                    window.lang.translate('Unsuccessful transaction'));
+                resetVehicleTypeAddDealForm();
+            },
+            onSuccess: function (event, data) {
+                var data = $.parseJSON(data);
+                console.log(data);
+                console.log(data.found);
+                alert(data.found);
+                
+                if (data.found === 'true') {
+                    $(window).successMessage('resetOnShown');
+                    sm.successMessage('show', window.lang.translate('Transaction successful'),
+                                              window.lang.translate('Transaction successful'),
+                                              data);
+                } else {
+                    $(window).dangerMessage('resetOnShown');
+                    $(window).dangerMessage('show', window.lang.translate('Unsuccessful transaction'),
+                        window.lang.translate('Unsuccessful transaction'));
+                }
+                
+                $("#tab_VehicleType").loadImager('removeLoadImage');
+                //dealID = data.
+                //console.log(dealID);
+                resetVehicleTypeAddDealForm();
+            },
+            onError23505: function (event, data) {
+                $(window).dangerMessage('resetOnShown');
+                $(window).dangerMessage('show', window.lang.translate('Unsuccessful transaction'),
+                    window.lang.translate('Unsuccessful transaction'));
+                $("#tab_VehicleType").loadImager('removeLoadImage');
+                //dealID = data.
+                //console.log(dealID);
+                resetVehicleTypeAddDealForm();
+                
+            },
+            onErrorDataNull: function (event, data) {
+                //console.log("Error : " + event + " -data :" + data);
+                $(window).dangerMessage('resetOnShown');
+                $(window).dangerMessage({
+                    onShown: function () {
+                        $('#tab_VehicleType').loadImager('removeLoadImage');
+                    }
+                });
+                $(window).dangerMessage('show', window.lang.translate('Unsuccessful transaction'),
+                                                window.lang.translate('Unsuccessful transaction'));
+                resetVehicleTypeAddDealForm();
+            },
+        })
+        ajax.ajaxCallWidget('call');
+        return false;
+    })
+
+    // add deal reset
+    $("#add_vehicleType_reset").on("click", function (e) {
+        e.preventDefault();
+        resetDealAddForm();
         return false;
     })
     
-
+//----------------------------------add vehicle type to deal end-------------------------------------------------
 
     
 

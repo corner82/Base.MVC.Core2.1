@@ -1,8 +1,11 @@
 {
   "token": {
+    "Transaction successful": "Kayıt işlemi  başarılı",
+    "Unsuccessful transaction": "Kayıt işlemi  başarısız",
     "Search": "Ara",
     "Please select": "Lütfen seçiniz",
     "Please select service": "Lütfen servis seçiniz",
+    "Please select vehicle type": "Lütfen araç tipi seçiniz",
     "Main navigation": "Ana Menü",
     "Send": "Gönder",
     "message": "mesaj",

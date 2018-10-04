@@ -32,7 +32,7 @@
     </li>-->
         <li class="pull-left header" ><i class="fa fa-th"></i>@Localizer["Deal"]</li>
     </ul>
-    <div class="tab-content">
+    <div class="tab-content " >
         <div class="tab-pane" id="tab_TradeBack" style="padding: 21px 20px 65px 20px;">
             <div class="row">
                 <div class="col-md-6 ">
@@ -242,161 +242,172 @@
                 <button class="btn btn-default pull-right" id="tab_next_2" style="margin-top: 20px;margin-right: 10px;" ><i class="fa fa-plus"></i>  Add</button>
             </div>
         </div><!-- /.tab-pane -->
-        <div class="tab-pane " id="tab_VehicleType">
-            <div class="row">
-                <div class="col-md-6 ">
-                    <div class="form-group">
-                        <label >@Localizer["Vehicle type"]</label>
-                        <div class="" id="ajax_DdslickVehicleType">
-                            <div id="loadingImage_DdslickVehicleType" class="input-group zeyn-load-imager">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-copyright"></i>
-                                </div>
-                                <div id="ddslickVehicleType"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label >@Localizer["Date"]</label>
-                        <div class="" >
-                            <div  class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </div>
-                                <input class="datepicker form-control" data-date-format="mm/dd/yyyy">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <!--<div class="form-group">
-                        <label >Realization rate</label>
-
-                        <div class="" id="ajax_DdslickRealizationRate2">
-                            <div id="loadingImage_DdslickRealizationRate2" class="input-group zeyn-load-imager">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-copyright"></i>
-                                </div>
-                                <div id="ddslickRealizationRate2"></div>
-                            </div>
-                        </div>
-                    </div>-->
-                    <div class="form-group">
-                        <label >@Localizer["Total count"]</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                <i class="fa fa-mail-forward"></i>
-                            </div>
-                            <input type="text" class="form-control" placeholder="total count">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12 ">
-                    <div class="form-group">
-                        <label >Deal vehicle types</label>
-                        <div class="">
-                            <div id="loadingImage_TagCabinDealVehicles" class="input-group zeyn-load-imager">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-hand-o-right"></i>
-                                </div>
-                                <div style="margin-bottom: -10px;width:96%" class="tag-container">
-                                    <ul id="tagcabin_DealVehicles" class="tag-box"></ul>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="row">
-                <button class="btn btn-default pull-right" id="tab_next_2" style="margin-top: 20px;margin-right: 10px;" ><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp; Add</button>
-                
-            </div>
-
-        </div><!-- /.tab-pane -->
-        <form id="addDeal">
-            <div class="tab-pane active" id="tab_DealAttr">
+        <div class="tab-pane zeyn-load-imager position-relative" id="tab_VehicleType">
+            <form id="addVehicleTypeForm">
                 <div class="row">
                     <div class="col-md-6 ">
-
                         <div class="form-group">
-                            <label>@Localizer["Customer"]</label>
-                            <div class="" id="ajax_DdslickCustomer">
-                                <div id="loadingImage_DdslickCustomer" class="input-group zeyn-load-imager">
+                            <label>@Localizer["Vehicle type"]</label>
+                            <div class="" id="ajax_DdslickVehicleType">
+                                <div id="loadingImage_DdslickVehicleType" class="input-group zeyn-load-imager">
                                     <div class="input-group-addon">
                                         <i class="fa fa-copyright"></i>
                                     </div>
-                                    <div id="ddslickCustomer"></div>
+                                    <div id="ddslickVehicleType"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>@Localizer["Priority"]</label>
-                            <div class="" id="ajax_DdslickPriority">
-                                <div id="loadingImage_DdslickPriority" class="input-group zeyn-load-imager">
+                            <label>@Localizer["Date"]</label>
+                            <div class="">
+                                <div class="input-group">
                                     <div class="input-group-addon">
-                                        <i class="fa fa-copyright"></i>
+                                        <i class="fa fa-calendar"></i>
                                     </div>
-                                    <div id="ddslickPriority"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>@Localizer["Realization rate"]</label>
-
-                            <div class="" id="ajax_DdslickRealizationRate">
-                                <div id="loadingImage_DdslickRealizationRate" class="input-group zeyn-load-imager">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-copyright"></i>
-                                    </div>
-                                    <div id="ddslickRealizationRate"></div>
+                                    <input class="datepicker form-control" data-date-format="mm/dd/yyyy">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label>@Localizer["Discount rate"]</label>
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-mail-forward"></i>
-                                </div>
-                                <input type="text" class="form-control" placeholder="@Localizer["Discount rate"]">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>
-                                @Localizer["House deal"]
-                                <div class="icheckbox_minimal-blue checked" aria-checked="false" aria-disabled="false" style="position: relative;">
-                                    <input type="checkbox" class="minimal" checked="" style="position: absolute; opacity: 0;">
-                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                    </ins>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <label>@Localizer["Description"]</label>
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-mail-forward"></i>
-                                </div>
-                                <textarea class="form-control" placeholder="@Localizer["Description"]" ></textarea>
-                                
-                            </div>
-                        </div>
+                        <!--<div class="form-group">
+                <label >Realization rate</label>
 
+                <div class="" id="ajax_DdslickRealizationRate2">
+                    <div id="loadingImage_DdslickRealizationRate2" class="input-group zeyn-load-imager">
+                        <div class="input-group-addon">
+                            <i class="fa fa-copyright"></i>
+                        </div>
+                        <div id="ddslickRealizationRate2"></div>
+                    </div>
+                </div>
+            </div>-->
+                        <div class="form-group">
+                            <label>@Localizer["Total count"]</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <input id="quantity" type="text" class="form-control" placeholder="total count">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
-                    <button class="btn btn-default pull-right" id="add_deal_reset" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-minus"></i>&nbsp;&nbsp;&nbsp;@Localizer["Reset"]</button>
-                    <button class="btn btn-default pull-right" id="toggle_CampaignAsider" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp; @Localizer["Add campaign"]</button>
-                    <button class="btn btn-default pull-right" id="add_deal" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp; @Localizer["Save"]</button>
-                </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 ">
+                        <div class="form-group">
+                            <label>Deal vehicle types</label>
+                            <div class="">
+                                <div id="loadingImage_TagCabinDealVehicles" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-hand-o-right"></i>
+                                    </div>
+                                    <div style="margin-bottom: -10px;width:96%" class="tag-container">
+                                        <ul id="tagcabin_DealVehicles" class="tag-box"></ul>
+                                    </div>
+                                </div>
 
-            </div><!-- /.tab-pane -->
-        </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <button class="btn btn-default pull-right" id="add_vehicleType_reset" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-minus"></i>&nbsp;&nbsp;&nbsp;@Localizer["Reset"]</button>
+                    <button class="btn btn-default pull-right" id="add_vehicleType" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;@Localizer["Save"]</button>
+
+                </div>
+            </form>
+        </div><!-- /.tab-pane -->
+        
+        <div class="tab-pane active zeyn-load-imager position-relative" id="tab_DealAttr"  >
+                <form id="addDealForm">
+
+                    <div class="row ">
+                        <!--<div class="zeyn-load-imager" id="loadingImage_tabDealAdd">-->
+                        <div class="col-md-6 ">
+
+                            <div class="form-group">
+                                <label>@Localizer["Customer"]</label>
+                                <div class="" id="ajax_DdslickCustomer">
+                                    <div id="loadingImage_DdslickCustomer" class="input-group zeyn-load-imager">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-copyright"></i>
+                                        </div>
+                                        <div id="ddslickCustomer"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>@Localizer["Priority"]</label>
+                                <div class="" id="ajax_DdslickPriority">
+                                    <div id="loadingImage_DdslickPriority" class="input-group zeyn-load-imager">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-copyright"></i>
+                                        </div>
+                                        <div id="ddslickPriority"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>@Localizer["Realization rate"]</label>
+
+                                <div class="" id="ajax_DdslickRealizationRate">
+                                    <div id="loadingImage_DdslickRealizationRate" class="input-group zeyn-load-imager">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-copyright"></i>
+                                        </div>
+                                        <div id="ddslickRealizationRate"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>@Localizer["Discount rate"]</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-mail-forward"></i>
+                                    </div>
+                                    <input id="discount_rate" type="text" class="form-control" placeholder="@Localizer["Discount rate"]">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    @Localizer["House deal"]
+                                    <div class="icheckbox_minimal-blue " aria-checked="false" aria-disabled="true" style="position: relative;">
+                                        <input type="checkbox" class="minimal" checked="" style="position: absolute; opacity: 0;">
+                                        <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                        </ins>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label>@Localizer["Description"]</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-mail-forward"></i>
+                                    </div>
+                                    <textarea id="Description" class="form-control" placeholder="@Localizer["Description"]"></textarea>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--</div>-->
+                    </div>
+                    <div class="row">
+                        <button class="btn btn-default pull-right" id="add_deal_reset" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-minus"></i>&nbsp;&nbsp;&nbsp;@Localizer["Reset"]</button>
+                        <button class="btn btn-default pull-right" id="toggle_CampaignAsider" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;@Localizer["Add campaign"]</button>
+                        <button class="btn btn-default pull-right" id="add_deal" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;@Localizer["Save"]</button>
+                    </div>
+
+
+
+
+
+                </form>
+</div><!-- /.tab-pane -->
+        
     </div><!-- /.tab-content -->
 </div>

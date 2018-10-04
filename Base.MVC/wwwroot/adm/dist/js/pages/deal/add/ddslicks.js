@@ -336,7 +336,7 @@
     var ddslickVehicleTypeData = [
         {
             text: 'Please select',
-            value: -1,
+            value: 0,
             selected: true
         },
         {

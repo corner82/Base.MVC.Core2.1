@@ -11,6 +11,9 @@ using Base.Filters.Auth.Hmac;
 using Base.Filters.Log.RabbitMQ;
 using Base.Filters.Session;
 using Newtonsoft.Json;
+using Base.MVC.Models.HttpRequest.Deal;
+using Base.Core.Utills.Url;
+using Base.Core.Http.HttpRequest.Concrete;
 
 namespace Base.MVC.Controllers
 {
@@ -18,9 +21,13 @@ namespace Base.MVC.Controllers
     {
 
         private readonly IDistributedCache _distributedCache;
-        public DealController(IDistributedCache distributedCache)
+        private QueryCreater _queryCreater;
+
+        public DealController(IDistributedCache distributedCache,
+                              QueryCreater queryCreater)
         {
             _distributedCache = distributedCache;
+            _queryCreater = queryCreater;
         }
        
 
@@ -41,7 +48,68 @@ namespace Base.MVC.Controllers
             return View();
         }
 
-        
+        /// <summary>
+        /// add deal 
+        /// Mustafa Zeynel
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        //[AjaxSessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> AddDealProxyService([FromBody] DealModel dealModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(dealModel);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                //var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?"+ queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model satate is not valid");
+            }
+            
+        }
+
+        /// <summary>
+        /// add vehicle type
+        /// Mustafa Zeynel
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        //[AjaxSessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> AddVehicleTypeProxyService([FromBody] VehicleTypeModel vehicleTypeModel)
+        {
+            if(ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(vehicleTypeModel);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model satate is not valid");
+            }
+
+        }
+
+
 
     }
 }
