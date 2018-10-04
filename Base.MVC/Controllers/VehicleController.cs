@@ -405,7 +405,7 @@ namespace Base.MVC.Controllers
                 //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_sysvehicles&description=aracdescriptioni&factorymodel_name=xcv&gfz=ggttrr&ckdcbu_type_id=1&vehicle_gt_model_id=2&model_variant_id=1&config_type_id=2&cap_type_id=3&vehicle_app_type_id=1&kpnumber_id=5&btsbto_type_id=1&roadtype_id=2&pk=GsZVzEYe50uGgNM
                 //_hmacManager.test();
                 //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
-                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php" + queryStr, headers);
                 var data = response.Content.ReadAsStringAsync().Result;
                 return data.ToString();
             }

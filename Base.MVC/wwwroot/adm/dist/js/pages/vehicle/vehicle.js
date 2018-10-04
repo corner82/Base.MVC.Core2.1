@@ -1374,6 +1374,8 @@ $(document).ready(function () {
         var gfz = $('#txt-gfz').val();
         var gfz_vehicletype = $('#txt-gfz-vehicletype').val();
 
+        alert("insertVehicle");
+
         var ajax_GetVehicleInsert = $(ajax_FormVehicle).ajaxCallWidget({
             proxy: '/Vehicle/SysInsertVehicle',
             type: 'GET',
@@ -1397,7 +1399,7 @@ $(document).ready(function () {
             },
         });
 
-        ajax_GetVehicleInsert.ajaxCall({
+        ajax_GetVehicleInsert.ajaxCallWidget({
             onError: function (event, textStatus, errorThrown) {
                 dm.dangerMessage('resetOnShown');
                 dm.dangerMessage('show', 'vehicle Ekleme İşlemi Başarısız...',
@@ -1452,7 +1454,7 @@ $(document).ready(function () {
                 $("#loadingImage_FormVehicle").loadImager('removeLoadImage');
             }
         })
-        ajax_GetVehicleInsert.ajaxCall('call');
+        ajax_GetVehicleInsert.ajaxCallWidget('call');
     }
  /**
  * reset vehicle Form

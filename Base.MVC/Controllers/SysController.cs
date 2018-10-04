@@ -457,6 +457,7 @@ namespace Base.MVC.Controllers
                 string path = Request.Path.ToString();
                 string queryStr = Request.QueryString.ToString();
 
+                // http://proxy.mansis.co.za:18443/SlimProxyBoot.php?
                 // http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_sysaccbodydeff&language_code=en&name=denemeee&acc_body_type_id=1&pk=GsZVzEYe50uGgNM
                 //_hmacManager.test();
                 //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
