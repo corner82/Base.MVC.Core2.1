@@ -299,8 +299,6 @@ namespace Base.MVC.Controllers
         [HttpGet]
         public async Task<string> InsertActSysWarranties()
         {
-            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
-
             if (ModelState.IsValid)
             {
                 var headers = new Dictionary<string, string>();
@@ -314,13 +312,10 @@ namespace Base.MVC.Controllers
                 string path = Request.Path.ToString();
                 string queryStr = Request.QueryString.ToString();
 
-                //queryStr = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_syswarranties&pk=GsZVzEYe50uGgNM" + queryStr;
                 //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_syswarranties&name=dennee&vehicle_group_id=8&pk=GsZVzEYe50uGgNM
-                
                 //_hmacManager.test();
                 //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
-                //var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" & queryStr, headers);
-                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php" + queryStr, headers);
                 var data = response.Content.ReadAsStringAsync().Result;
                 return data.ToString();
             }
