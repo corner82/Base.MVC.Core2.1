@@ -2,6 +2,8 @@
   "token": {
     "Transaction successful": "Transaksie suksesvol",
     "Unsuccessful transaction": "Onsuksesvolle transaksie",
+    "Data already created, edit your data": "Data wat reeds geskep is, wysig jou data",
+    "Service URL not found, please report error": "Diens-URL nie gevind nie, rapporteer asseblief erro",
     "Search": "Soek",
     "Please select": "Kies asseblief",
     "Please select service": "Kies asseblief diens",

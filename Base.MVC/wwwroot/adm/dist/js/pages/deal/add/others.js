@@ -357,7 +357,13 @@
             return false;
         }
 
-        var ajax = $('#ajax_DdslickVehicleType').ajaxCallWidget({
+        var ajax = $('#add_vehicleType').ajaxCallWidget({
+            failureLoadImage : true,
+            loadingImageID: "tab_VehicleType",
+            triggerSuccessAuto : true,
+            transactionSuccessText: window.lang.translate('Transaction successful'),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
             proxy: '/Deal/AddVehicleTypeProxyService',
             type: "POST",
             data: JSON.stringify({
@@ -365,7 +371,7 @@
                 pk: "GsZVzEYe50uGgNM",
                 url: "pkInsertAct_infoprojectvehiclemodels",
                 pkIdentity: $("#publicKey").val(),
-                project_id: 1,
+                project_id: 2,
                 is_house_deal: 0,
                 vehicle_gt_model_id: ddDataVehicleType.selectedData.value,
                 quantity: $("#quantity").val(),
@@ -374,60 +380,7 @@
 
         });
         ajax.ajaxCallWidget({
-            onError: function (event, textStatus, errorThrown) {
-
-                $(window).dangerMessage({
-                    onShown: function () {
-                        $('#tab_VehicleType').loadImager('removeLoadImage');
-                    }
-                });
-                $(window).dangerMessage('resetOnShown');
-                $(window).dangerMessage('show', window.lang.translate('Unsuccessful transaction'),
-                    window.lang.translate('Unsuccessful transaction'));
-                resetVehicleTypeAddDealForm();
-            },
-            onSuccess: function (event, data) {
-                var data = $.parseJSON(data);
-                console.log(data);
-                console.log(data.found);
-                alert(data.found);
-                
-                if (data.found === 'true') {
-                    $(window).successMessage('resetOnShown');
-                    sm.successMessage('show', window.lang.translate('Transaction successful'),
-                                              window.lang.translate('Transaction successful'),
-                                              data);
-                } else {
-                    $(window).dangerMessage('resetOnShown');
-                    $(window).dangerMessage('show', window.lang.translate('Unsuccessful transaction'),
-                        window.lang.translate('Unsuccessful transaction'));
-                }
-                
-                $("#tab_VehicleType").loadImager('removeLoadImage');
-                //dealID = data.
-                //console.log(dealID);
-                resetVehicleTypeAddDealForm();
-            },
-            onError23505: function (event, data) {
-                $(window).dangerMessage('resetOnShown');
-                $(window).dangerMessage('show', window.lang.translate('Unsuccessful transaction'),
-                    window.lang.translate('Unsuccessful transaction'));
-                $("#tab_VehicleType").loadImager('removeLoadImage');
-                //dealID = data.
-                //console.log(dealID);
-                resetVehicleTypeAddDealForm();
-                
-            },
-            onErrorDataNull: function (event, data) {
-                //console.log("Error : " + event + " -data :" + data);
-                $(window).dangerMessage('resetOnShown');
-                $(window).dangerMessage({
-                    onShown: function () {
-                        $('#tab_VehicleType').loadImager('removeLoadImage');
-                    }
-                });
-                $(window).dangerMessage('show', window.lang.translate('Unsuccessful transaction'),
-                                                window.lang.translate('Unsuccessful transaction'));
+            onReset: function (event, data) {
                 resetVehicleTypeAddDealForm();
             },
         })

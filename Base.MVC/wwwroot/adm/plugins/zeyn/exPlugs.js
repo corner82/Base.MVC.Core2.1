@@ -1571,17 +1571,115 @@
             contentType: 'application/json',
             headers : null,
             async: true,
+            numericValueOutofRangeFailureText: 'SQL syntax html decode hatası',
+            sqlSyntaxDecodeFailureText: 'SQL syntax html decode hatası',
+            dateFormatFailureText: 'Datetime format hatası',
+            divisionByZeroFailureText: '0 bölünme hatası',
+            columnSizeFailureText: 'Veri izin verilenden büyük',
+            foregnKeyExistsText: 'Foreign key kıstlaması',
+            dataAlreadyExistsText: 'Eşleşen kayıt var',
+            transactionFailureText: 'Servis linki bulunamamıştır, hata bildiriniz',
+            transactionSuccessText: 'Kayıt işlemi  başarılı',
+            triggerSuccessAuto: false,
+            failureLoadImage : false,
+            loadingImageID : null,
             outbounds: function (e) {
                 /*alert('outbounds example ajax call widget');
                 alert(window.lang.translate('piece'));*/
+            },
+            onError23505: function (e, data) {
+                $(e.target).ajaxCallWidget("evaluateDataErrors" ,e, data);
+            },
+            onError23503: function (e, data) {
+                $(e.target).ajaxCallWidget("evaluateDataErrors", e, data);
+            },
+            onError22001: function (e, data) {
+                $(e.target).ajaxCallWidget("evaluateDataErrors", e, data);
+            },
+            onError22012: function (e, data) {
+                $(e.target).ajaxCallWidget("evaluateDataErrors", e, data);
+            },
+            onError22007: function (e, data) {
+                $(e.target).ajaxCallWidget("evaluateDataErrors", e, data);
+            },
+            onError22005: function (e, data) {
+                $(e.target).ajaxCallWidget("evaluateDataErrors", e, data);
+            },
+            onError22003: function (e, data) {
+                $(e.target).ajaxCallWidget("evaluateDataErrors", e, data);
+            },
+            onErrorDataNull: function (e, data) {
+                $(e.target).ajaxCallWidget("evaluateDataErrors", e, data);
+            },
+            onError: function (e, data) {
+                $(e.target).ajaxCallWidget("evaluateDataErrorsWithLoadingImageControl", e, data);
+            },
+            onSuccess: function (e, data) {
+                $(e.target).ajaxCallWidget("evaluateSuccessMessage", e, data);
+            },
+            
+        },
+
+        /**
+         * evaluate error events
+         * @returns {null}
+         * @since 05/10/2018
+         */
+        evaluateSuccessMessage: function (e, data) {
+            if (this.options.triggerSuccessAuto == true) {
+                if ($(window).successMessage) {
+                    $(window).successMessage('resetOnShown');
+                    $(window).successMessage('show', data.text,
+                        data.text,
+                        data);
+                }
+                if (data.imageLoadingID != null) {
+                    if ($("#" + data.imageLoadingID).loadImager()) {
+                        $("#" + data.imageLoadingID).loadImager('removeLoadImage');
+                    }
+                }
             }
         },
+
         /**
-         * private constructor method for jquery widget
+         * evaluate error events
          * @returns {null}
+         * @since 05/10/2018
          */
-        _create: function () {
+        evaluateDataErrors: function (e, data) {
+            if ($(window).dangerMessage) {
+                $(window).dangerMessage('resetOnShown');
+                $(window).dangerMessage('show', data.text,
+                    data.text);
+            }
+            if (data.imageLoadingID != null) {
+                if ($("#" + data.imageLoadingID).loadImager()) {
+                    $("#" + data.imageLoadingID).loadImager('removeLoadImage');
+                }
+            }
         },
+
+        /**
+         * evaluate error events
+         * @returns {null}
+         * @since 05/10/2018
+         */
+        evaluateDataErrorsWithLoadingImageControl: function (e, data) {
+            if ($(window).dangerMessage) {
+                $(window).dangerMessage('resetOnShown');
+                $(window).dangerMessage('show', data.text,
+                    data.text);
+            }
+            if (data.imageLoadingID != null) {
+                if (data.failureLoadImage == true) {
+                    if ($("#" + data.imageLoadingID).loadImager()) {
+                        $("#" + data.imageLoadingID).loadImager('removeLoadImage');
+                    }
+                }
+            }
+        },
+        
+
         /**
          * make ajax call
          * @returns {null}
@@ -1597,38 +1695,108 @@
                 headers: this.options.headers,
                 async: this.options.async,
                 success: function (data, textStatus, jqXHR) {
-                    //console.log(data);
-                    /*var arr = $.makeArray(data);
-                    console.log(arr);
-                    console.log(arr.length);
-                    console.log(arr[0]);*/
+                    //var arr = $.makeArray(data);
                     var jsonString = JSON.stringify(data);
-                    //console.log(jsonString);
-
                     if (data.length !== 0) {
                         if (data.found) {
-                            self._trigger('onSuccess', event, jsonString);
-                            //self._trigger('outbounds');
+                            self._trigger('onSuccess', event, {
+                                text: self.options.transactionSuccessText,
+                                imageLoadingID: self.options.loadingImageID
+                            });
+                            self._trigger('onReset', event, jsonString);
                         } else if (data.errorInfo == 23505) {
-                            self._trigger('onError23505', event, jsonString);
+                            self._trigger('onError23505', event, {
+                                text: self.options.dataAlreadyExistsText,
+                                imageLoadingID: self.options.loadingImageID
+                            });
+                            self._trigger('onReset', event, jsonString);
                         } else if (data.errorInfo == 23503) {
-                            self._trigger('onError23503', event, jsonString);
+                            self._trigger('onError23503', event, {
+                                text: self.options.foregnKeyExistsText,
+                                imageLoadingID: self.options.loadingImageID
+                            });
+                            self._trigger('onReset', event, jsonString);
                         } else if (data.errorInfo == 22001) {
-                            self._trigger('onError22001', event, jsonString);
-                        } else {
+                            self._trigger('onError22001', event, {
+                                text: self.options.columnSizeFailureText,
+                                imageLoadingID: self.options.loadingImageID
+                            });
+                            self._trigger('onReset', event, jsonString);
+                        } else if (data.errorInfo == 22012) {
+                            self._trigger('onError22012', event, {
+                                text: self.options.divisionByZeroFailureText,
+                                imageLoadingID: self.options.loadingImageID
+                            });
+                            self._trigger('onReset', event, jsonString);
+                        } else if (data.errorInfo == 22007) {
+                            self._trigger('onError22007', event, {
+                                text: self.options.dateFormatFailureText,
+                                imageLoadingID: self.options.loadingImageID
+                            });
+                            self._trigger('onReset', event, jsonString);
+                        } else if (data.errorInfo == 22005) {
+                            self._trigger('onError22005', event, {
+                                text: self.options.sqlSyntaxDecodeFailureText,
+                                imageLoadingID: self.options.loadingImageID
+                            });
+                            self._trigger('onReset', event, jsonString);
+                        } else if (data.errorInfo == 22003) {
+                            self._trigger('onError22003', event, {
+                                text: self.options.numericValueOutofRangeFailureText,
+                                imageLoadingID: self.options.loadingImageID
+                            });
+                            self._trigger('onReset', event, jsonString);
+                        }
+                        else if (data.errorInfo == 22003) {
+                            self._trigger('onError22003', event, {
+                                text: self.options.numericValueOutofRangeFailureText,
+                                imageLoadingID: self.options.loadingImageID
+                            });
+                            self._trigger('onReset', event, jsonString);
+                        }
+
+                        else {
                             self._trigger('onSuccess', event, jsonString);
                         }
 
                     } else {
-                        self._trigger('onErrorDataNull');
-
+                        self._trigger('onErrorDataNull', event, {
+                            text: self.options.transactionFailureText,
+                            imageLoadingID: self.options.loadingImageID
+                                                                });
+                        self._trigger('onReset', event, jsonString);
                     }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    self._trigger('onError', event, textStatus, errorThrown);
-                    self._trigger('outbounds');
+                    self._trigger('onError', event, {
+                        status: textStatus,
+                        error: errorThrown,
+                        text: self.options.transactionFailureText,
+                        imageLoadingID: self.options.loadingImageID,
+                        failureLoadImage: self.options.failureLoadImage,
+                    });
+                    self._trigger('onReset', event, {
+                        status: textStatus,
+                        error: errorThrown,
+                        text: self.options.transactionFailureText,
+                    });
+                    //self._trigger('outbounds');
                 }
             });
+        },
+
+        /**
+         * private constructor method for jquery widget
+         * @returns {null}
+         */
+        _create: function () {
+        },
+
+        /**
+         * private constructor method for jquery widget
+         * @returns {null}
+         */
+        _init: function () {
         },
 
     });
