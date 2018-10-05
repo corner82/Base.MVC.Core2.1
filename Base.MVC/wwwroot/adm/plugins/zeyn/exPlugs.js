@@ -1571,6 +1571,7 @@
             contentType: 'application/json',
             headers : null,
             async: true,
+            dataModelCorruptFailureText: 'Data model kontrol ediniz, eksik data gönderilmiştir',
             numericValueOutofRangeFailureText: 'SQL syntax html decode hatası',
             sqlSyntaxDecodeFailureText: 'SQL syntax html decode hatası',
             dateFormatFailureText: 'Datetime format hatası',
@@ -1586,6 +1587,9 @@
             outbounds: function (e) {
                 /*alert('outbounds example ajax call widget');
                 alert(window.lang.translate('piece'));*/
+            },
+            onError99999: function (e, data) {
+                $(e.target).ajaxCallWidget("evaluateDataErrors", e, data);
             },
             onError23505: function (e, data) {
                 $(e.target).ajaxCallWidget("evaluateDataErrors" ,e, data);
@@ -1705,6 +1709,12 @@
                             });
                             self._trigger('onReset', event, jsonString);
                             self._trigger('onAfterSuccess', event, jsonString);
+                        } else if (data.errorInfo == 99999) {
+                            self._trigger('onError99999', event, {
+                                text: self.options.dataModelCorruptFailureText,
+                                imageLoadingID: self.options.loadingImageID
+                            });
+                            self._trigger('onReset', event, jsonString);
                         } else if (data.errorInfo == 23505) {
                             self._trigger('onError23505', event, {
                                 text: self.options.dataAlreadyExistsText,
