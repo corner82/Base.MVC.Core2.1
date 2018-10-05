@@ -502,17 +502,20 @@ $(document).ready(function () {
 
                         cellTemplate: function (container, options) {
                             var fieldHtml;
-                            
+                            var branch_id = options.data.id;
+
                             if (options.data.active === 1) {
                                 //active
-                                $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
-                                    dm.dangerMessage('show', window.lang.translate('dangerMessage...'), window.lang.translate('dangerMessage...'));
+                                $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
+                                    activepasiveBranch(branch_id);
+                                    dm.successMessage('show', window.lang.translate('Active success message...'), window.lang.translate('Active success message...'));
                                 }).appendTo(container);
                             } else if (options.data.active === 0) {
                                 
                                 //pasive
-                                $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
-                                    dm.dangerMessage('show', window.lang.translate('dangerMessage...'), window.lang.translate('dangerMessage...'));
+                                $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
+                                    activepasiveBranch(branch_id);
+                                    dm.successMessage('show', window.lang.translate('Pasive success message...'), window.lang.translate('Pasive success message...'));
                                 }).appendTo(container);
                             }
 
@@ -824,6 +827,59 @@ $(document).ready(function () {
         ajax_deletebranchlist.ajaxCallWidget('call');
 
        
+    }
+
+
+    window.activepasiveBranch = function (branch_id) {
+        $("#loading-image-branchgrid").loadImager('removeLoadImage');
+        $("#loading-image-branchgrid").loadImager('appendImage');
+
+        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateMakeActiveOrPassive_sysbranchesdealersdeff&id=29&pk=GsZVzEYe50uGgNM
+
+        var ajax_activepasivebranchlist = $('#ajaxACL-branchlist').ajaxCallWidget({
+            proxy: '/Sys/SysActivePasiveBranch',
+            data: JSON.stringify({
+                id: branch_id,
+                pk: "GsZVzEYe50uGgNM",
+                url: "pkUpdateMakeActiveOrPassive_sysbranchesdealersdeff"
+            }),
+            type: "POST"
+
+        });
+        ajax_activepasivebranchlist.ajaxCallWidget({
+            onError: function (event, textStatus, errorThrown) {
+
+                $(window).dangerMessage({
+                    onShown: function () {
+                        $('#loading-image-branchgrid').loadImager('removeLoadImage');
+                    }
+                });
+                $(window).dangerMessage('show', window.lang.translate('yyyyyyyyyyyyyyyy...'), window.lang.translate('yyyyyyyyyyyyyyyyyyyy...'));
+            },
+            onSuccess: function (event, data) {
+                var data = $.parseJSON(data);
+                
+                //grid refresh
+                //$('#branchdealerList').click();
+                $("#gridContainer_branch").dxDataGrid("instance").refresh();
+
+                $("#loading-image-branchgrid").loadImager('removeLoadImage');
+                //$(window).successMessage('show', window.lang.translate('Active/Pasive Ok.'), window.lang.translate('Active/Pasive Ok.'));
+        
+            },
+            onErrorDataNull: function (event, data) {
+                console.log("Error : " + event + " -data :" + data);
+                $(window).dangerMessage({
+                    onShown: function () {
+                        $('#loading-image-branchgrid').loadImager('removeLoadImage');
+                    }
+                });
+                $(window).dangerMessage('show', window.lang.translate('xxxxxxxxxxx'), window.lang.translate('xxxxxxxxxxxxxxxxxx...'));
+            },
+        })
+        ajax_activepasivebranchlist.ajaxCallWidget('call');
+
+
     }
 });
 
