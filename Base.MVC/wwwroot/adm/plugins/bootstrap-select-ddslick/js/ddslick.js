@@ -262,7 +262,8 @@
             imagePosition: "left",
             showSelectedHTML: true,
             clickOffToClose: true,
-            search : false,
+            search: false,
+            searchText: 'Ara',
             searchTextClass : 'search-text',
             searchTemplate : '<div  class="form-group" style="margin-bottom:0px;margin-left:-4px;margin-top:10px;" >\n\
                                 <div class="col-sm-10">\n\
@@ -270,7 +271,7 @@
                                         <div class="input-group-addon">\n\
                                             <i class="fa  fa-search-plus"></i>\n\
                                         </div>\n\
-                                        <input  class="form-control {searchTextClass}"  type="text" value="Ara"  />\n\
+                                        <input  class="form-control {searchTextClass}"  type="text" value="{searchText}"  />\n\
                                     </div>\n\
                                 </div>\n\
                             </div>',
@@ -375,6 +376,7 @@
                 */
                 if(b.search) {
                     searchTemplate = b.searchTemplate;
+                    searchTemplate = searchTemplate.replace("{searchText}", b.searchText);
                     searchTemplate = searchTemplate.replace("{searchTextClass}", b.searchTextClass);
                 }
                 
