@@ -1704,6 +1704,7 @@
                                 imageLoadingID: self.options.loadingImageID
                             });
                             self._trigger('onReset', event, jsonString);
+                            self._trigger('onAfterSuccess', event, jsonString);
                         } else if (data.errorInfo == 23505) {
                             self._trigger('onError23505', event, {
                                 text: self.options.dataAlreadyExistsText,
