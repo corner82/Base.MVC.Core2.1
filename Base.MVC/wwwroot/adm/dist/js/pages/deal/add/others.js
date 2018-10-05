@@ -386,8 +386,8 @@
                     window.lang.translate('Unsuccessful transaction'));
                 resetVehicleTypeAddDealForm();
             },
-            onSuccess: function (event, data) {
-                var data = $.parseJSON(data);
+            onSuccess: function (event, mydata) {
+                var data = $.parseJSON(mydata);
                 console.log(data);
                 console.log(data.found);
                 alert(data.found);

@@ -265,13 +265,53 @@ namespace Base.MVC.Controllers
             return data.ToString();
         }
 
-        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateMakeActiveOrPassive_sysbranchesdealersdeff&id=29&pk=GsZVzEYe50uGgNM
+        /// <summary>
+        /// Insert BranchDealer
+        ///Gül Özdemir
+        /// </summary>
+        ///
+        ///http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_sysbranchesdealersdeff&name=asd&branch_no=ZZ55&address1=213123%20street&address2=no%2011&address3=etlik&postalcode=06010&country_id=107&country_region_id=9&city_id=158&sis_department_id=45&pk=GsZVzEYe50uGgNM
+        /// <returns></returns>
+        //[SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpGet]
+        public async Task<string> SysInsertBranch()
+        {
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+
+                var encodedURL = Request.GetEncodedUrl();
+                var pathAndQuery = Request.GetEncodedPathAndQuery();
+                var displayURL = Request.GetDisplayUrl();
+                string path = Request.Path.ToString();
+                string queryStr = Request.QueryString.ToString();
+
+                // http://proxy.mansis.co.za:18443/SlimProxyBoot.php?
+                // http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_sysaccbodydeff&language_code=en&name=denemeee&acc_body_type_id=1&pk=GsZVzEYe50uGgNM
+                //_hmacManager.test();
+                //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model satate is not valid");
+            }
+
+        }
 
         /// <summary>
         /// Active/Pasive BranchDealer
         ///Gül Özdemir
         /// </summary>
         /// 
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateMakeActiveOrPassive_sysbranchesdealersdeff&id=29&pk=GsZVzEYe50uGgNM
         /// <returns></returns>
         //[AjaxSessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]

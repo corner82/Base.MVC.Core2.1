@@ -598,85 +598,7 @@ $(document).ready(function () {
 
     $('#branchdealerList').click();
 
-    /**
- * insertBranch
- * @returns {undefined}
- * @author Gül Özdemir
- * @since 03/09/2018
- */
-
-    window.insertBranch = function () {
-        $("#loading-image-branch").loadImager('removeLoadImage');
-        $("#loading-image-branch").loadImager('appendImage');
-
-        var branch_name = $('#txt-branch-name').val();
-
-        var aj = $(window).ajaxCall({
-            proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
-            data: {
-                url: 'pkInsert_sysbranch',
-                
-                name: branch_name,
-                pk: $("#pk").val()
-            }
-        })
-        aj.ajaxCall({
-            onError: function (event, textStatus, errorThrown) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Branch Ekleme İşlemi Başarısız...',
-                    'Branch Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
-                console.error('"pkInsert_sysCustomerInfo" servis hatası->' + textStatus);
-                $("#loading-image-branch").loadImager('removeLoadImage');
-            },
-            onSuccess: function (event, data) {
-                console.log(data);
-                //var mydata = data;
-                sm.successMessage({
-                    onShown: function (event, data) {
-                        $('#branchForm')[0].reset();
-
-                        $("#loading-image-branch").loadImager('removeLoadImage');
-
-                    }
-                });
-                sm.successMessage('show', 'Branch Kayıt İşlemi Başarılı...',
-                    'Branch kayıt işlemini gerçekleştirdiniz... ',
-                    data);
-                $("#loading-image-branch").loadImager('removeLoadImage');
-
-            },
-            onErrorDataNull: function (event, data) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Branch Kayıt İşlemi Başarısız...',
-                    'Branch kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysBranch" servis datası boştur!!');
-                $("#loading-image-branch").loadImager('removeLoadImage');
-            },
-            onErrorMessage: function (event, data) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Branch Kayıt İşlemi Başarısız...',
-                    'Branch kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysBranch" servis datası boştur!!');
-                $("#loading-image-branch").loadImager('removeLoadImage');
-            },
-            onError23503: function (event, data) {
-                dm.dangerMessage('Error23503');
-                $("#loading-image-branch").loadImager('removeLoadImage');
-            },
-            onError23505: function (event, data) {
-                dm.dangerMessage({
-                    onShown: function (event, data) {
-                        $('#branchForm')[0].reset();
-                        $("#loading-image-branch").loadImager('removeLoadImage');
-                    }
-                });
-                dm.dangerMessage('show', 'Kayıt İşlemi Başarısız...',
-                    'Aynı isim ile Marka kaydı yapılmıştır, yeni bir Marka kaydı deneyiniz... ');
-                $("#loading-image-branch").loadImager('removeLoadImage');
-            }
-        })
-        aj.ajaxCall('call');
-    }
+  
  /**
  * reset Branch Form
  * @returns {undefined}
@@ -699,24 +621,141 @@ $(document).ready(function () {
         return false;
     }
 
+ /**
+ * insert Branch Form
+ * @returns {undefined}
+ * @author Gül Özdemir
+ * @since 03/09/2018
+ */
 
-    /**
-    * insert Branch Wrapper
-    * @returns {Boolean}
-    * @author Gül Özdemir
-    * @since 03/09/2018
-    */
-
-    window.insertBranchWrapper = function (e) {
+    $("#btn-branch-save").on("click", function (e) {
         e.preventDefault();
-
+        //alert("geldim click");
         if ($("#branchForm").validationEngine('validate')) {
 
-            insertBranch();
-        }
-        return false;
-    }
+            $("#loading-image-branch").loadImager('removeLoadImage');
+            $("#loading-image-branch").loadImager('appendImage');
 
+            var branchName = $('#txt-branchname').val();
+            //txt-embrace-no
+            var branchEmbraceNo = $('#txt-embrace-no').val();
+            var address1 = $('#txt-branch-address1').val();
+            var address2 = $('#txt-branch-address2').val();
+            var address3 = $('#txt-branch-address3').val();
+            //txt-location-ptcode
+            var postalCode = $('#txt-location-ptcode').val();
+
+            var ddData_nMANBranchOffice = $('#dropdownMANBranchOffice').data('ddslick');
+            var sisDepartmentId = ddData_nMANBranchOffice.selectedData.value;
+
+            sisDepartmentId = 45;
+
+            var ddData_Country = $('#dropdownCountry').data('ddslick');
+            var countryId = ddData_Country.selectedData.value;
+
+            var ddData_Province = $('#dropdownProvince').data('ddslick');
+            var provinceId = ddData_Province.selectedData.value;
+
+            var ddData_City = $('#dropdownCity').data('ddslick');
+            var cityId = ddData_City.selectedData.value;
+
+            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?
+            //url = pkInsertAct_sysbranchesdealersdeff & 
+            //name = asd & 
+            //branch_no = ZZ55 & 
+            //address1 = 213123 % 20street & 
+            //address2 = no % 2011 & 
+            //address3 = etlik & 
+            //postalcode = 06010 & 
+            //country_id = 107 & 
+            //country_region_id = 9 & 
+            //city_id = 158 & 
+            //sis_department_id = 45 & 
+            //pk = GsZVzEYe50uGgNM
+
+            var dd = $('#btn-branch-save').ajaxCallWidget({
+                proxy: '/Sys/SysInsertBranch/',
+                type: "GET",
+                data: {
+                    url: "pkInsertAct_sysbranchesdealersdeff",
+                    name: branchName,
+                    branch_no: branchEmbraceNo,
+                    address1: address1,
+                    address2: address2,
+                    address3: address3,
+                    postalcode: postalCode,
+                    country_id: countryId,
+                    country_region_id: provinceId,
+                    city_id: cityId,
+                    sis_department_id: sisDepartmentId,
+                    pk: "GsZVzEYe50uGgNM"
+                },
+            });
+
+            dd.ajaxCallWidget({
+                onError: function (event, textStatus, errorThrown) {
+                    dm.dangerMessage('resetOnShown');
+                    dm.dangerMessage('show', 'branch Ekleme İşlemi Başarısız...',
+                        'branch Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
+                    console.error('"pkInsertAct_sysaccbodydeff" servis hatası->' + textStatus);
+                    $("#loading-image-branch").loadImager('removeLoadImage');
+            },
+            onSuccess: function (event, data) {
+                console.log(data);
+
+                sm.successMessage({
+                    onShown: function (event, data) {
+                        $('#branchForm')[0].reset();
+
+                        $("#loading-image-branch").loadImager('removeLoadImage');
+
+                        }
+                    });
+                    sm.successMessage('show', 'branch Kayıt İşlemi Başarılı...',
+                        'branch kayıt işlemini gerçekleştirdiniz... ',
+                        data);
+
+                    $("#gridContainer_branch").dxDataGrid("instance").refresh();
+
+                    $("#loading-image-branch").loadImager('removeLoadImage');
+
+
+                },
+                onErrorDataNull: function (event, data) {
+                    dm.dangerMessage('resetOnShown');
+                    dm.dangerMessage('show', 'branch Kayıt İşlemi Başarısız...',
+                        'branch kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
+                    console.error('"pkInsertAct_sysaccbranchdeff" servis datası boştur!!');
+                    $("#loading-image-branch").loadImager('removeLoadImage');
+                },
+                onErrorMessage: function (event, data) {
+                    dm.dangerMessage('resetOnShown');
+                    dm.dangerMessage('show', 'branch Kayıt İşlemi Başarısız...',
+                            'branch kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
+                    console.error('"branch" servis datası boştur!!');
+                    $("#loading-image-branch").loadImager('removeLoadImage');
+                },
+                onError23503: function (event, data) {
+                    dm.dangerMessage('Error23503');
+                    $("#loading-image-branch").loadImager('removeLoadImage');
+                },
+                onError23505: function (event, data) {
+                    dm.dangerMessage({
+                       onShown: function (event, data) {
+                            $('#branch')[0].reset();
+                            $("#loading-image-branch").loadImager('removeLoadImage');
+                        }
+                    });
+                    dm.dangerMessage('show', 'Kayıt İşlemi Başarısız...',
+                      'Aynı isim ile branch kaydı yapılmıştır, yeni bir Body kaydı deneyiniz... ');
+                    $("#loading-image-branch").loadImager('removeLoadImage');
+                }
+            })
+            dd.ajaxCallWidget('call');
+
+        }
+
+    })
 
     /**
     * Fill Branch form
@@ -805,8 +844,8 @@ $(document).ready(function () {
                 });
                 $(window).dangerMessage('show', window.lang.translate('yyyyyyyyyyyyyyyy...'), window.lang.translate('yyyyyyyyyyyyyyyyyyyy...'));
             },
-            onSuccess: function (event, data) {
-                var data = $.parseJSON(data);
+            onSuccess: function (event, mydata) {
+                var data = $.parseJSON(mydata);
 
                 //grid refresh
                 //$('#branchdealerList').click();
@@ -856,8 +895,8 @@ $(document).ready(function () {
                 });
                 $(window).dangerMessage('show', window.lang.translate('yyyyyyyyyyyyyyyy...'), window.lang.translate('yyyyyyyyyyyyyyyyyyyy...'));
             },
-            onSuccess: function (event, data) {
-                var data = $.parseJSON(data);
+            onSuccess: function (event, mydata) {
+                var data = $.parseJSON(mydata);
                 
                 //grid refresh
                 //$('#branchdealerList').click();

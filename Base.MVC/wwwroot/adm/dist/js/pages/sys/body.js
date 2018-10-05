@@ -841,7 +841,7 @@ $(document).ready(function () {
 
     $("#btn-bodyname-save").on("click", function (e) {
         e.preventDefault();
-        alert("bodynam click");
+        //alert("bodynam click");
 
         var dd = $('#btn-bodyname-save').ajaxCallWidget({
             proxy: '/Sys/SysInsertBody/',
