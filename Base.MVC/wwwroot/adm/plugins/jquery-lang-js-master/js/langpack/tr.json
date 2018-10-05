@@ -2,6 +2,8 @@
   "token": {
     "Transaction successful": "Kayıt işlemi  başarılı",
     "Unsuccessful transaction": "Kayıt işlemi  başarısız",
+    "Data already created, edit your data": "Eşleşen kayıt var, verileri gözden geçirin",
+    "Service URL not found, please report error": "Servis linki bulunamamıştır, , hata bildiriniz",
     "Search": "Ara",
     "Please select": "Lütfen seçiniz",
     "Please select service": "Lütfen servis seçiniz",

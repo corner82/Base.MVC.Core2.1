@@ -2,6 +2,8 @@
   "token": {
     "Transaction successful": "Transaktion erfolgreich",
     "Unsuccessful transaction": "Erfolglose Transaktion",
+    "Data already created, edit your data": "Daten bereits erstellt, bearbeiten Sie Ihre Daten",
+    "Service URL not found, please report error": "Service-URL nicht gefunden, bitte melden Sie esro",
     "Search": "Suche",
     "Please select": "Bitte auswählen",
     "Please select service": "Bitte wählen sie den service",
