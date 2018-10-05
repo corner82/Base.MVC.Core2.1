@@ -30,13 +30,6 @@ namespace Base.MVC.Controllers
         public SysController(IDistributedCache distributedCache, IStringLocalizer localizer,
                               QueryCreater queryCreater)
 
-
-
-
-
-
-
-
         {
             _distributedCache = distributedCache;
             _localizer = localizer;
@@ -250,6 +243,27 @@ namespace Base.MVC.Controllers
             return data.ToString();
         }
 
+        /// <summary>
+        /// Delete BranchDealer
+        ///Gül Özdemir
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        //[AjaxSessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysDeleteBranch([FromBody] DeletePostModel deleteModel)
+        {
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            string queryStr = _queryCreater.GetQueryStringFromObject(deleteModel);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
 
         //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
@@ -515,7 +529,6 @@ namespace Base.MVC.Controllers
         [HttpPost]
         public async Task<string> SysYesNo()
         {
-            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
             var headers = new Dictionary<string, string>();
             var tokenGenerated = HttpContext.Session.GetHmacToken();
             headers.Add("X-Hmac", tokenGenerated);
@@ -526,5 +539,30 @@ namespace Base.MVC.Controllers
             return data.ToString();
 
         }
+
+        /// <summary>
+        /// get Branch/Dealer List
+        /// Gül Özdemir
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        //[SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysBranchDealerGridList()
+        {
+            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            var url = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillBranchesDealersDeffGridx_sysbranchesdealersdeff&page=&rows=&sort=&order=&language_code=en&project_id=1&pk=GsZVzEYe50uGgNM";
+            var response = await HttpClientRequestFactory.Get(url, headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
     }
+
+
 }

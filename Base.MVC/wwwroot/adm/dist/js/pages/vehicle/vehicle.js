@@ -1091,7 +1091,7 @@ $(document).ready(function () {
                     error: function () {
                         deferred.reject("Data Loading Error");
                     },
-                    timeout: 5000
+                    timeout: 10000
                 });
 
                 return deferred.promise();

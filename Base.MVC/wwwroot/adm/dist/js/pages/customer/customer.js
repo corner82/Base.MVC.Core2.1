@@ -186,8 +186,11 @@
                 //height: 150,
                 data: cbdata_country,
                 width: '100%',
-
+                search: true,
                 onSelected: function (selectedData) {
+
+                    $('#dropdownProvince').ddslick('destroy');
+
                     if (selectedData.selectedData.value > 0) {
                         //var provinceInfo = new ProvinceInfo;
                         //provinceInfo.country_id = selectedData.selectedData.value;
@@ -226,8 +229,11 @@
                                     //height: 150,
                                     data: cbdata_province,
                                     width: '100%',
-
+                                    search: true,
                                     onSelected: function (selectedData) {
+
+                                        $('#dropdownCity').ddslick('destroy');
+
                                         if (selectedData.selectedData.value > 0) {
                                             var province_id = selectedData.selectedData.value;
                                             //province_id = "1";
@@ -257,11 +263,11 @@
                                                 },
                                                 onSuccess: function (event, datacity) {
                                                     var cbdata_city = $.parseJSON(datacity);
-
+           
                                                     $('#dropdownCity').ddslick({
                                                         data: cbdata_city,
                                                         width: '100%',
-
+                                                        search: true,
                                                         onSelected: function (selectedData) {
                                                             if (selectedData.selectedData.value > 0) {
 

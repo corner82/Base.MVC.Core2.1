@@ -167,6 +167,9 @@
                 width: '100%',
 
                 onSelected: function (selectedData) {
+
+                    $('#dropdownRegion').ddslick('destroy');
+
                     if (selectedData.selectedData.value > 0) {
                         var country_id = selectedData.selectedData.value;
                         //region
@@ -205,6 +208,9 @@
                                     width: '100%',
                                     
                                     onSelected: function (selectedData) {
+
+                                        $('#dropdownCity').ddslick('destroy');
+
                                         if (selectedData.selectedData.value > 0) {
                                             var region_id = selectedData.selectedData.value;
                                             //city
@@ -443,7 +449,7 @@
                     error: function () {
                         deferred.reject("Data Loading Error");
                     },
-                    timeout: 5000
+                    timeout: 10000
                 });
 
                 return deferred.promise();

@@ -169,8 +169,12 @@ $(document).ready(function () {
                 //height: 150,
                 data: cbdata_country,
                 width: '100%',
-
+                search: true,
+                searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
+
+                    $('#dropdownProvince').ddslick('destroy');
+
                     if (selectedData.selectedData.value > 0) {
                         //var provinceInfo = new ProvinceInfo;
                         //provinceInfo.country_id = selectedData.selectedData.value;
@@ -204,13 +208,17 @@ $(document).ready(function () {
                                 var cbdata_province = $.parseJSON(dataprovince);
 
                                 //alert(cbdata_province);
-
+                                
                                 $('#dropdownProvince').ddslick({
                                     //height: 150,
                                     data: cbdata_province,
                                     width: '100%',
-
+                                    search: true,
+                                    searchText: window.lang.translate('Search'),
                                     onSelected: function (selectedData) {
+
+                                        $('#dropdownCity').ddslick('destroy');
+
                                         if (selectedData.selectedData.value > 0) {
                                             var province_id = selectedData.selectedData.value;
                                             //province_id = "1";
@@ -240,11 +248,12 @@ $(document).ready(function () {
                                                 },
                                                 onSuccess: function (event, datacity) {
                                                     var cbdata_city = $.parseJSON(datacity);
-
+                                                    
                                                     $('#dropdownCity').ddslick({
                                                         data: cbdata_city,
                                                         width: '100%',
-
+                                                        search: true,
+                                                        searchText: window.lang.translate('Search'),
                                                         onSelected: function (selectedData) {
                                                             //if (selectedData.selectedData.value > 0) {
 
@@ -306,149 +315,285 @@ $(document).ready(function () {
     })
     ajaxACLResources_country.ajaxCallWidget('call');
 
-    /* devexgrid */
-    var orders = new DevExpress.data.CustomStore({
-        load: function (loadOptions) {
-            var deferred = $.Deferred(),
-                args = {};
 
-            if (loadOptions.sort) {
-                args.orderby = loadOptions.sort[0].selector;
-                if (loadOptions.sort[0].desc)
-                    args.orderby += " desc";
+    /**
+*.branch/dealer List Refresh
+* @returns 
+* @author Gül Özdemir
+* @since 03/09/2018
+*/
+
+    $('#branchdealerList').click(function () {
+
+        /* devexgrid */
+        var branchdealer_data = new DevExpress.data.CustomStore({
+            load: function (loadOptions) {
+                var deferred = $.Deferred(),
+                    args = {};
+
+                if (loadOptions.sort) {
+                    args.orderby = loadOptions.sort[0].selector;
+                    if (loadOptions.sort[0].desc)
+                        args.orderby += " desc";
+                }
+
+                args.skip = loadOptions.skip || 0;
+                args.take = loadOptions.take || 12;
+
+                $.ajax({
+                    url: '/Sys/SysBranchDealerGridList',
+                    dataType: "json",
+                    data: args,
+                    type: 'POST',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                    },
+                    error: function () {
+                        deferred.reject("Data Loading Error");
+                    },
+                    timeout: 10000
+                });
+
+                return deferred.promise();
             }
+        });
 
-            args.skip = loadOptions.skip || 0;
-            args.take = loadOptions.take || 12;
+        DevExpress.localization.locale(langCode);
 
-            $.ajax({
-                url: "https://js.devexpress.com/Demos/WidgetsGallery/data/orderItems",
-                dataType: "json",
-                data: args,
-                success: function (result) {
-                    deferred.resolve(result.items, { totalCount: result.totalCount });
+        $(function () {
+            $("#gridContainer_branch").dxDataGrid({
+
+                showColumnLines: true,
+
+                showRowLines: true,
+
+                showBorders: true,
+
+                dataSource: branchdealer_data,
+
+                columnHidingEnabled: true,
+
+                selection: {
+                    mode: "single"
                 },
-                error: function () {
-                    deferred.reject("Data Loading Error");
+
+                hoverStateEnabled: true,
+
+                editing: {
+                    //mode: "batch"
+                    mode: "form",
+                    //allowAdding: true,
+                    //allowUpdating: true,
+                    allowDeleting: true,
+                    useIcons: true
                 },
-                timeout: 5000
+
+                "export": {
+                    enabled: true,
+                    fileName: window.lang.translate('Branch/DealerList')
+                },
+
+                grouping: {
+                    contextMenuEnabled: true,
+                    expandMode: "rowClick"
+                },
+
+                groupPanel: {
+                    emptyPanelText: window.lang.translate('Use the context menu of header columns to group data'),
+                    visible: true
+                },
+
+                pager: {
+                    allowedPageSizes: [5, 8, 15, 30],
+                    showInfo: true,
+                    showNavigationButtons: true,
+                    showPageSizeSelector: true,
+                    visible: true
+                },
+
+                paging: {
+                    pageSize: 8
+                },
+                OnCellPrepared: function (options) {
+
+                    var fieldData = options.value;
+                    fieldHtml = "";
+
+                    fieldHtml = fieldData.value;
+                    options.cellElement.html(fieldHtml);
+
+                },
+
+                filterRow: {
+                    visible: true,
+                    applyFilter: "auto"
+                },
+
+                searchPanel: {
+                    visible: true,
+                    width: 240,
+                    placeholder: window.lang.translate('Search') + "...",
+                },
+
+                headerFilter: {
+                    visible: true
+                },
+
+                columnChooser: {
+                    enabled: true,
+                    mode: "select"
+                },
+
+                //{"id":"14","apid":14,
+                //"name": "asd,",
+                //"branch_no": "e345fert", 
+                //"address1": "213123 street", "address2": "no 11", "address3": "etlik", "postalcode": "06010", 
+                //"country_name": "South Africa", "region_name": "Eastern Cape", "city_name": "Graaff-Reinet", 
+                //"departman_name": "Middelburg", "country_id": 107, "country_region_id": 9, "city_id": 158, "sis_department_id": 45, "op_username": "mustafa.zeynel.admin@ostim.com.tr", 
+                //"state_active": "Active", "date_saved": "2018-10-04 16:41:42", "date_modified": null, "language_code": "en", 
+                //"active": 0, "op_user_id": 16, "language_id": "385", "language_name": "English"
+
+                columns: [//"active",
+                    //{
+                    //    dataField: "active",
+                    //    dataType: "boolean",
+                    //    width: 110
+                    //},
+
+                /*
+                 $("<div id='reportdelete' />").dxButton({
+                                    icon: 'trash',
+                                    onClick: function (e) {
+                                         var grid = $("#gridContainer").dxDataGrid("instance");
+                                        var rowIndex = options.rowIndex;
+                                        $.ajax({.......,
+                                               success: function(result){
+                                                // send a custom request here
+                                                $("#gridContainer").dxDataGrid("instance").refresh(); // rebind the grid
+                                        })
+                                    }
+}).appendTo(container);
+                 */
+                 /*   {
+                        caption: window.lang.translate('Delete'),
+                        width: 40,
+                        alignment: 'center',
+
+                        cellTemplate: function (container, options) {
+                            
+                            var branch_id = options.data.id;
+
+                            $("<div id='reportdelete' />").dxButton({
+                                icon: 'trash',
+                                onClick: function (e) {
+                                    deleteBranch(branch_id);
+
+                                }
+                            }).appendTo(container);
+
+                        }
+
+                    },
+                */
+                    {
+                        caption: window.lang.translate('Active/Pasive'),
+                        width: 40,
+                        alignment: 'center',
+
+                        cellTemplate: function (container, options) {
+                            var fieldHtml;
+                            
+                            if (options.data.active === 1) {
+                                //active
+                                $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
+                                    dm.dangerMessage('show', window.lang.translate('dangerMessage...'), window.lang.translate('dangerMessage...'));
+                                }).appendTo(container);
+                            } else if (options.data.active === 0) {
+                                
+                                //pasive
+                                $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
+                                    dm.dangerMessage('show', window.lang.translate('dangerMessage...'), window.lang.translate('dangerMessage...'));
+                                }).appendTo(container);
+                            }
+
+                            //$('<img />').addClass('dx-link').attr('src', "/adm/dist/img/icons.png").on('click', function () {
+                            //    dm.dangerMessage('show', window.lang.translate('dangerMessage...'), window.lang.translate('dangerMessage...'));
+                            //}).appendTo(container); 
+
+                        }
+
+                        //dataField: "active"
+                    }, {
+                        caption: window.lang.translate('MAN Branch/Dealer office'),
+                        dataField: "departman_name"
+                    }, {
+                        caption: window.lang.translate('Branch/Dealer name'),
+                        dataField: "name"
+                    }, {
+                        caption: window.lang.translate('Branch/Dealer no'),
+                        dataField: "branch_no"
+                    }, {
+                        caption: window.lang.translate('Address 1'),
+                        dataField: "address1"
+                    }, {
+                        caption: window.lang.translate('Address 2'),
+                        dataField: "address2"
+                    }, {
+                        caption: window.lang.translate('Address 3'),
+                        dataField: "address3"
+                    }, {
+                        caption: window.lang.translate('Postal code'),
+                        dataField: "postalcode"
+                    }, {
+                        caption: window.lang.translate('Country'),
+                        dataField: "country_name"
+                    }, {
+                        caption: window.lang.translate('Province'),
+                        dataField: "region_name"
+                    }, {
+                        caption: window.lang.translate('City'),
+                        dataField: "city_name"
+                    }
+
+                    //{
+                    //    caption: "Active/Passive",
+                    //    //dataField: "active",
+                    //    //dataType: "boolean"
+                    //}
+                ],
+
+                rowPrepared: function (rowElement, rowInfo) {
+                    return false;
+                    //if (rowInfo.data.key === 1)
+                    //    rowElement.css('background', 'green');
+                    //else if (rowInfo.data.key === 0)
+                    //    rowElement.css('background', 'yellow');
+
+                },
+                onSelectionChanged: function (selectedItems) {
+                    var data = selectedItems.selectedRowsData[0];
+                    if (data) {
+                        fillBranchForm(data);
+                    }
+                },
+
+                onRowRemoving: function (e) {
+                    //e.cancel = true;
+                    //Confirmasyon ile silme düzenlenecek...
+                    var branch_id = e.key.id;
+                    deleteBranch(branch_id);
+
+                },
+                onRowRemoved: function (e) {
+                    
+                },
+
             });
-
-            return deferred.promise();
-        }
-    });
-
-    DevExpress.localization.locale(langCode);
-
-
-    $("#gridContainer_branch").dxDataGrid({
-
-        showColumnLines: true,
-
-        showRowLines: true,
-
-        showBorders: true,
-
-        dataSource: orders,
-
-        columnHidingEnabled: true,
-
-        selection: {
-            mode: "single"
-        },
-
-        hoverStateEnabled: true,
-
-        editing: {
-            //mode: "batch"
-            mode: "form",
-            allowAdding: true,
-            allowUpdating: true,
-            allowDeleting: true,
-            useIcons: true
-        },
-
-        "export": {
-            enabled: true,
-            fileName: "Branchs"
-        },
-
-        grouping: {
-            contextMenuEnabled: true,
-            expandMode: "rowClick"
-        },
-
-        groupPanel: {
-            emptyPanelText: window.lang.translate('Use the context menu of header columns to group data'),
-            visible: true
-        },
-
-        pager: {
-            allowedPageSizes: [5, 8, 15, 30],
-            showInfo: true,
-            showNavigationButtons: true,
-            showPageSizeSelector: true,
-            visible: true
-        },
-
-        paging: {
-            pageSize: 8
-        },
-
-        filterRow: {
-            visible: true,
-            applyFilter: "auto"
-        },
-
-        searchPanel: {
-            visible: true,
-            width: 240,
-            placeholder: window.lang.translate('Search') + "...",
-        },
-
-        headerFilter: {
-            visible: true
-        },
-
-        columnChooser: {
-            enabled: true,
-            mode: "select"
-        },
-
-        columns: [{
-            caption: "Branch",
-            dataField: "StoreCity"
-            },
-            {
-            caption:"Active/Passive",     
-            //dataField: "active",
-            dataType: "boolean"
-            }
-        ],
-
-        rowPrepared: function (rowElement, rowInfo) {
-            if (rowInfo.data.key === 1)
-                rowElement.css('background', 'green');
-            else if (rowInfo.data.key === 0)
-                rowElement.css('background', 'yellow');
-            
-        },
-        onSelectionChanged: function (selectedItems) {
-            var data = selectedItems.selectedRowsData[0];
-            if (data) {
-                fillBranchForm(data);
-            }
-        }
-
-    });
+        });
+    })
     
-    function logEvent(eventName) {
-         var logList = $("#events ul"),
-             newItem = $("<li>", { text: eventName });
 
-         logList.prepend(newItem);
-     }
-
+    $('#branchdealerList').click();
 
     /**
  * insertBranch
@@ -577,27 +722,108 @@ $(document).ready(function () {
     * @since 03/09/2018
     */
 
+        //{"id":"14","apid":14,
+        //"name": "asd,",
+        //"branch_no": "e345fert", 
+        //"address1": "213123 street", "address2": "no 11", "address3": "etlik", "postalcode": "06010", 
+        //"country_name": "South Africa", "region_name": "Eastern Cape", "city_name": "Graaff-Reinet", 
+        //"departman_name": "Middelburg", "country_id": 107, "country_region_id": 9, "city_id": 158, "sis_department_id": 45, "op_username": "mustafa.zeynel.admin@ostim.com.tr", 
+        //"state_active": "Active", "date_saved": "2018-10-04 16:41:42", "date_modified": null, "language_code": "en", 
+        //"active": 0, "op_user_id": 16, "language_id": "385", "language_name": "English"
+
     window.fillBranchForm = function (data) {
         $("#loading-image-branch").loadImager('removeLoadImage');
         $("#loading-image-branch").loadImager('appendImage');
 
-        document.getElementById("txt-branch-name").value = data.Employee;
-        document.getElementById("txt-embrace-no").value = data.Employee;
-        document.getElementById("txt-branch-address").value = data.Employee;
+        document.getElementById("txt-branch-name").value = data.name;
+        document.getElementById("txt-embrace-no").value = data.branch_no;
+        document.getElementById("txt-branch-address1").value = data.address1;
+        document.getElementById("txt-branch-address2").value = data.address2;
+        document.getElementById("txt-branch-address3").value = data.address3;
+        document.getElementById("txt-location-ptcode").value = data.postalcode;
         //active
         //checkbox-branch-active
 
-        $('#dropdownMANBranchOffice').ddslick('select', { index: 1 });
-        //country name
-        $('#dropdownCountry').ddslick('select', { index: 1 });
-        //city
-        $('#dropdownCity').ddslick('select', { index: 1 });
-        //province
-        $('#dropdownProvince').ddslick('select', { index: 1 });
+        //$('#dropdownMANBranchOffice').ddslick('select', { index: 1 });
+        $('#dropdownMANBranchOffice').ddslick('selectByValue',
+            {
+                index: '' + data.sis_department_id + '',
+                text: '' + data.departman_name + ''
+            }
+        );
+
+        $('#dropdownCountry').ddslick('selectByValue',
+            {
+                index: '' + data.country_id + '',
+                text: '' + data.country_name + ''
+            }
+        );
+        $('#dropdownProvince').ddslick('selectByValue',
+            {
+                index: '' + data.region_id + '',
+                text: '' + data.region_name + ''
+            }
+        );
+        $('#dropdownCity').ddslick('selectByValue',
+            {
+                index: '' + data.city_id + '',
+                text: '' + data.city_name + ''
+            }
+        );
 
         $("#loading-image-branch").loadImager('removeLoadImage');
 
         return false;
+    }
+
+    window.deleteBranch = function (branch_id) {
+        $("#loading-image-branchgrid").loadImager('removeLoadImage');
+        $("#loading-image-branchgrid").loadImager('appendImage');
+
+        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_sysbranchesdealersdeff&id=29&pk=GsZVzEYe50uGgNM
+
+        var ajax_deletebranchlist = $('#ajaxACL-branchlist').ajaxCallWidget({
+            proxy: '/Sys/SysDeleteBranch',
+            data: JSON.stringify({
+                id: branch_id,
+                pk: "GsZVzEYe50uGgNM",
+                url: "pkDeletedAct_sysbranchesdealersdeff"           
+            }),
+            type: "POST"
+
+        });
+        ajax_deletebranchlist.ajaxCallWidget({
+            onError: function (event, textStatus, errorThrown) {
+
+                $(window).dangerMessage({
+                    onShown: function () {
+                        $('#loading-image-branchgrid').loadImager('removeLoadImage');
+                    }
+                });
+                $(window).dangerMessage('show', window.lang.translate('yyyyyyyyyyyyyyyy...'), window.lang.translate('yyyyyyyyyyyyyyyyyyyy...'));
+            },
+            onSuccess: function (event, data) {
+                var data = $.parseJSON(data);
+
+                //grid refresh
+                //$('#branchdealerList').click();
+                $("#gridContainer_branch").dxDataGrid("instance").refresh();
+
+                $("#loading-image-branchgrid").loadImager('removeLoadImage');
+            },
+            onErrorDataNull: function (event, data) {
+                console.log("Error : " + event + " -data :" + data);
+                $(window).dangerMessage({
+                    onShown: function () {
+                        $('#loading-image-branchgrid').loadImager('removeLoadImage');
+                    }
+                });
+                $(window).dangerMessage('show', window.lang.translate('xxxxxxxxxxx'), window.lang.translate('xxxxxxxxxxxxxxxxxx...'));
+            },
+        })
+        ajax_deletebranchlist.ajaxCallWidget('call');
+
+       
     }
 });
 
