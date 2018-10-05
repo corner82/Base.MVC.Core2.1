@@ -54,222 +54,221 @@
                             <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
                         </div>
                     </div>
-                    <div class="box-body">
+                    <div class="box-body" id="ajax_FormWr">
+                                <div class="nav-tabs-custom" id="warranty_tab">
+                                    <ul class="nav nav-tabs pull-right">
+                                        <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true"><span lang="en">Warranty name identification</span></a></li>
+                                        <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false" class="disable" disabled=""><span lang="en">Warranty information</span></a></li>
 
-                        <div class="nav-tabs-custom" id="warranty_tab">
-                            <ul class="nav nav-tabs pull-right">
-                                <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true"><span lang="en">Warranty name identification</span></a></li>
-                                <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false" class="disable" disabled=""><span lang="en">Warranty information</span></a></li>
+                                        <li class="pull-left header"><i class="fa fa-th"></i></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="tab_1">
+                                                <form id='warrantyNameForm' method="get">
+                                                    <div class="row" id="loading-image-warrantyName">
+                                                        <div class="col-md-6" id="ajaxACL-insertwarrantyName">
+                                                            <div class="form-group">
+                                                                <label><span lang="en">Vehicle type name</span></label>
 
-                                <li class="pull-left header"><i class="fa fa-th"></i></li>
-                            </ul>
-                            <div class="tab-content">
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="tab_1">
-                                        <form id='warrantyNameForm' method="get">
-                                            <div class="row" id="loading-image-warrantyName">
-                                                <div class="col-md-6" id="ajaxACL-insertwarrantyName">
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Vehicle type name</span></label>
-
-                                                        <div class="" id="ajaxACL-modelName">
-                                                            <div id="loading-image-modelName" class="input-group zeyn-load-imager">
-                                                                <div class="input-group-addon">
-                                                                    <i class="fa fa-truck"></i>
+                                                                <div class="" id="ajaxACL-modelName">
+                                                                    <div id="loading-image-modelName" class="input-group zeyn-load-imager">
+                                                                        <div class="input-group-addon">
+                                                                            <i class="fa fa-truck"></i>
+                                                                        </div>
+                                                                        <div id="dropdownModelName" class="form-control validate[required]"></div>
+                                                                    </div>
                                                                 </div>
-                                                                <div id="dropdownModelName" class="form-control validate[required]"></div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label><span lang="en">Warranty name</span></label>
+                                                                <div class="input-group">
+                                                                    <div class="input-group-addon">
+                                                                        <i class="fa fa-copyright"></i>
+                                                                    </div>
+                                                                    <input type="text" class="form-control validate[required]" placeholder="Warranty Name" id="txt-wrName-name">
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <!-- /.col -->
+
+                                                        <div class="col-md-6">
+                                                        </div>
+
+                                                        <!-- /.col -->
+                                                    </div>
+
+                                                    <div class="box-footer">
+                                                        <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-clear" onclick="resetwarrantyNameForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                                        <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-save" onclick="insertwarrantyNameWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                                    </div>
+
+                                                    <div class="box box-info">
+                                                        <div class="box-header">
+                                                            <i class="fa fa-comments-o"></i>
+                                                            <h3 class="box-title"><span lang="en">Warranty name list</span></h3>
+
+                                                            <div class="box-tools pull-right">
+                                                                <button class="btn bg-teal btn-sm btn-small-miya" data-widget="refresh" id="wrNameListRefresh"><i class="fa fa-refresh"></i></button>
+                                                                <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                                                <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Warranty name</span></label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-copyright"></i>
-                                                            </div>
-                                                            <input type="text" class="form-control validate[required]" placeholder="Warranty Name" id="txt-wrName-name">
+                                                        <div class="box-body" id="loading-image-warrantyNameGrid">
+                                                            <div id="gridContainer_warrantyName"></div>
                                                         </div>
                                                     </div>
-
-                                                </div>
-                                                <!-- /.col -->
-
-                                                <div class="col-md-6">
-                                                </div>
-
-                                                <!-- /.col -->
+                                                </form>
                                             </div>
 
-                                            <div class="box-footer">
-                                                <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-clear" onclick="resetwarrantyNameForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                                <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-save" onclick="insertwarrantyNameWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
-                                            </div>
-
-                                            <div class="box box-info">
-                                                <div class="box-header">
-                                                    <i class="fa fa-comments-o"></i>
-                                                    <h3 class="box-title"><span lang="en">Warranty name list</span></h3>
-
-                                                    <div class="box-tools pull-right">
-                                                        <button class="btn bg-teal btn-sm btn-small-miya" data-widget="refresh" id="wrNameListRefresh"><i class="fa fa-refresh"></i></button>
-                                                        <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                                        <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
-                                                    </div>
-                                                </div>
-                                                <div class="box-body" id="loading-image-warrantyNameGrid">
-                                                    <div id="gridContainer_warrantyName"></div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-
-                                    <div class="tab-pane" id="tab_2">
-                                        <form id='warrantyForm' method="get">
-                                            <div class="col-md-12">
-                                                <div class="row" id="loading-image-wrUnique">
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Warranty unique code</span></label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-copyright"></i>
+                                            <div class="tab-pane" id="tab_2">
+                                                <form id='warrantyForm' method="get">
+                                                    <div class="col-md-12">
+                                                        <div class="row" id="loading-image-wrUnique">
+                                                            <div class="form-group">
+                                                                <label><span lang="en">Warranty unique code</span></label>
+                                                                <div class="input-group">
+                                                                    <div class="input-group-addon">
+                                                                        <i class="fa fa-copyright"></i>
+                                                                    </div>
+                                                                    <input type="text" class="form-control validate[required]" placeholder="Warranty Unique Code" id="txt-wrUnique-name" disabled>
+                                                                </div>
                                                             </div>
-                                                            <input type="text" class="form-control validate[required]" placeholder="Warranty Unique Code" id="txt-wrUnique-name" disabled>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label><span lang="en">Vehicle type name</span></label>
-                                                    <div class="" id="ajaxACL-model">
-                                                        <div id="loading-image-model" class="input-group zeyn-load-imager">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-truck"></i>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Vehicle type name</span></label>
+                                                            <div class="" id="ajaxACL-model">
+                                                                <div id="loading-image-model" class="input-group zeyn-load-imager">
+                                                                    <div class="input-group-addon">
+                                                                        <i class="fa fa-truck"></i>
+                                                                    </div>
+                                                                    <input type="text" class="form-control validate[required]" placeholder="Vehicle Type" id="txt-wrName-VhType" disabled>
+                                                                    @*<div id="dropdownModel" class="form-control validate[required]"></div>*@
+                                                                </div>
                                                             </div>
-                                                            <input type="text" class="form-control validate[required]" placeholder="Vehicle Type" id="txt-wrName-VhType" disabled>
-                                                            @*<div id="dropdownModel" class="form-control validate[required]"></div>*@
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label><span lang="en">Vehicle model name</span></label>
-                                                    <div class="" id="ajaxACL-vhModel">
-                                                        <div id="loading-image-vhModel" class="input-group zeyn-load-imager">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-truck"></i>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Vehicle model name</span></label>
+                                                            <div class="" id="ajaxACL-vhModel">
+                                                                <div id="loading-image-vhModel" class="input-group zeyn-load-imager">
+                                                                    <div class="input-group-addon">
+                                                                        <i class="fa fa-truck"></i>
+                                                                    </div>
+                                                                    <div id="dropdownVhModel" class="form-control validate[required]"></div>
+                                                                </div>
                                                             </div>
-                                                            <div id="dropdownVhModel" class="form-control validate[required]"></div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label><span lang="en">Warranty Name:</span></label>
-                                                    <div class="" id="ajaxACL-wrName">
-                                                        <div id="loading-image-wrName" class="input-group zeyn-load-imager">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-truck"></i>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Warranty Name:</span></label>
+                                                            <div class="" id="ajaxACL-wrName">
+                                                                <div id="loading-image-wrName" class="input-group zeyn-load-imager">
+                                                                    <div class="input-group-addon">
+                                                                        <i class="fa fa-truck"></i>
+                                                                    </div>
+                                                                    <input type="text" class="form-control validate[required]" placeholder="Warranty Name" id="txt-wrName-WrName" disabled>
+                                                                    @*<div id="dropdownWrName" class="form-control validate[required]"></div>*@
+                                                                </div>
                                                             </div>
-                                                            <input type="text" class="form-control validate[required]" placeholder="Warranty Name" id="txt-wrName-WrName" disabled>
-                                                            @*<div id="dropdownWrName" class="form-control validate[required]"></div>*@
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label><span lang="en">Warranty type</span></label>
-                                                    <div class="" id="ajaxACL-wrType">
-                                                        <div id="loading-image-wrType" class="input-group zeyn-load-imager">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-truck"></i>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Warranty type</span></label>
+                                                            <div class="" id="ajaxACL-wrType">
+                                                                <div id="loading-image-wrType" class="input-group zeyn-load-imager">
+                                                                    <div class="input-group-addon">
+                                                                        <i class="fa fa-truck"></i>
+                                                                    </div>
+                                                                    <div id="dropdownWrType" class="form-control validate[required]"></div>
+                                                                </div>
                                                             </div>
-                                                            <div id="dropdownWrType" class="form-control validate[required]"></div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <!-- /.col -->
+                                                    <!-- /.col -->
 
-                                            <div class="col-md-6">
+                                                    <div class="col-md-6">
 
-                                                <div class="form-group">
-                                                    <label><span lang="en">Warranty mileage</span></label>
-                                                    <div class="" id="ajaxACL-wrMil">
-                                                        <div id="loading-image-wrMil" class="input-group zeyn-load-imager">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-truck"></i>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Warranty mileage</span></label>
+                                                            <div class="" id="ajaxACL-wrMil">
+                                                                <div id="loading-image-wrMil" class="input-group zeyn-load-imager">
+                                                                    <div class="input-group-addon">
+                                                                        <i class="fa fa-truck"></i>
+                                                                    </div>
+                                                                    <div id="dropdownWrMil" class="form-control validate[required]"></div>
+                                                                </div>
                                                             </div>
-                                                            <div id="dropdownWrMil" class="form-control validate[required]"></div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label><span lang="en">Warranty month</span></label>
-                                                    <div class="" id="ajaxACL-wrMonth">
-                                                        <div id="loading-image-wrMonth" class="input-group zeyn-load-imager">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-truck"></i>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Warranty month</span></label>
+                                                            <div class="" id="ajaxACL-wrMonth">
+                                                                <div id="loading-image-wrMonth" class="input-group zeyn-load-imager">
+                                                                    <div class="input-group-addon">
+                                                                        <i class="fa fa-truck"></i>
+                                                                    </div>
+                                                                    <div id="dropdownWrMonth" class="form-control validate[required]"></div>
+                                                                </div>
                                                             </div>
-                                                            <div id="dropdownWrMonth" class="form-control validate[required]"></div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label><span lang="en">Repair&maintenance</span></label>
-                                                    <div class="" id="ajaxACL-rm">
-                                                        <div id="loading-image-rm" class="input-group zeyn-load-imager">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-truck"></i>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Repair&maintenance</span></label>
+                                                            <div class="" id="ajaxACL-rm">
+                                                                <div id="loading-image-rm" class="input-group zeyn-load-imager">
+                                                                    <div class="input-group-addon">
+                                                                        <i class="fa fa-truck"></i>
+                                                                    </div>
+                                                                    <div id="dropdownRm" class="form-control validate[required]"></div>
+                                                                </div>
                                                             </div>
-                                                            <div id="dropdownRm" class="form-control validate[required]"></div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Warranty price</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-copyright"></i>
+                                                                </div>
+                                                                <input type="number" class="form-control validate[required]" placeholder="Warranty Price" id="txt-wrPrice-name">
+                                                            </div>
+                                                            <label><span lang="en">Warranty Package Price must be in Euros</span></label>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label><span lang="en">Warranty price</span></label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-copyright"></i>
-                                                        </div>
-                                                        <input type="number" class="form-control validate[required]" placeholder="Warranty Price" id="txt-wrPrice-name">
+                                                    <!-- /.col -->
+
+                                                    <div class="box-footer">
+                                                        <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-clear" onclick="resetwarrantyForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                                        <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-save" onclick="insertwarrantyWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
                                                     </div>
-                                                    <label><span lang="en">Warranty Package Price must be in Euros</span></label>
+
+                                                </form>
+
+                                                <div class="box box-info">
+                                                    <div class="box-header">
+                                                        <i class="fa fa-comments-o"></i>
+                                                        <h3 class="box-title"><span lang="en">Warranty list</span></h3>
+
+                                                        <div class="box-tools pull-right">
+                                                            <button class="btn bg-teal btn-sm btn-small-miya" data-widget="refresh" id="warrantyListRefresh"><i class="fa fa-refresh"></i></button>
+                                                            <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                                            <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="box-body" id="loading-image-warrantyGrid">
+                                                        <div id="gridContainer_warranty"></div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <!-- /.col -->
 
-                                            <div class="box-footer">
-                                                <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-clear" onclick="resetwarrantyForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                                <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-save" onclick="insertwarrantyWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
-                                            </div>
-
-                                        </form>
-
-                                        <div class="box box-info">
-                                            <div class="box-header">
-                                                <i class="fa fa-comments-o"></i>
-                                                <h3 class="box-title"><span lang="en">Warranty list</span></h3>
-
-                                                <div class="box-tools pull-right">
-                                                    <button class="btn bg-teal btn-sm btn-small-miya" data-widget="refresh" id="warrantyListRefresh"><i class="fa fa-refresh"></i></button>
-                                                    <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                                    <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
-                                                </div>
-                                            </div>
-                                            <div class="box-body" id="loading-image-warrantyGrid">
-                                                <div id="gridContainer_warranty"></div>
                                             </div>
                                         </div>
+
 
                                     </div>
                                 </div>
 
 
-                            </div>
                         </div>
 
-
-                    </div>
-
-            </section><!-- /.Left col -->
+</section><!-- /.Left col -->
 
         </div><!-- /.row (main row) -->
 

@@ -56,9 +56,6 @@ $(document).ready(function () {
     $('#warrantyForm').validationEngine();
     $('#warrantyNameForm').validationEngine();
 
-    var cbdata_model = [{}];
-    var cbdata_vhmodel = [{}];
-
     var cbdataWrRM = [
         {
             text: window.lang.translate('Please select') + "...",
@@ -130,128 +127,6 @@ $(document).ready(function () {
     ajaxACLResources_modelName.ajaxCallWidget('call');
 //Model End
 
-
-//model
-//    $('#loading-image-model').loadImager('removeLoadImage');
-//    $("#loading-image-model").loadImager('appendImage');
-
-//    $('#loading-image-wrName').loadImager('removeLoadImage');
-//    $("#loading-image-wrName").loadImager('appendImage');
-
-//    var ajaxACLResources_model = $('#ajaxACL-model').ajaxCallWidget({
-//        proxy: '/Warranty/Sysvehiclegroups',
-//        data: {
-//            url: '1',
-//            //pk: $("#pk").val()
-//            dataType: 'json'
-//        }
-
-//    });
-
-//    ajaxACLResources_model.ajaxCallWidget({
-//        onError: function (event, textStatus, errorThrown) {
-
-//            dm.dangerMessage({
-//                onShown: function () {
-//                    $('#loading-image-model').loadImager('removeLoadImage');
-//                }
-//            });
-//            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamýþtýr...'), window.lang.translate('Servis  bulunamamýþtýr...'));
-//        },
-//        onSuccess: function (event, cbdata_vehicletype) {
-//            //var data = $.parseJSON(cbdata);
-//            var cbdata_vehicletype = $.parseJSON(cbdata_vehicletype);
-//            cbdata_vehicletype.splice(0, 0,
-//                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-//            );
-//            $('#dropdownModel').ddslick({
-//                //height: 150,
-//                data: cbdata_vehicletype,
-//                width: '100%',
-
-//                onSelected: function (selectedData) {
-//                            //$('#dropdownWrName').ddslick('select', { index: String(0) });
-//                    if (selectedData.selectedData.value > 0) {
-//                        VhType = selectedData.selectedData.text;
-//                        //VhTypeId = "vehicle_group_id=2";
-//                        ModelId = selectedData.selectedData.value;
-
-//                       //wrname
-//                        $('#loading-image-wrName').loadImager('removeLoadImage');
-//                        $("#loading-image-wrName").loadImager('appendImage');
-//                        var ajaxACLResources_wrName = $('#ajaxACL-wrName').ajaxCallWidget({
-//                            proxy: '/Warranty/SysWarrantyNameFilter',//'/Warranty/Syswarranties',
-//                            headers: {
-//                                "vehicle_group_id": ModelId//"vehicle_group_id=" + ModelId
-//                            },
-//                            type: 'POST',
-//                        });
-
-//                        ajaxACLResources_wrName.ajaxCallWidget({
-//                            onError: function (event, textStatus, errorThrown) {
-
-//                                dm.dangerMessage({
-//                                    onShown: function () {
-//                                        $('#loading-image-wrName').loadImager('removeLoadImage');
-//                                    }
-//                                });
-//                                dm.dangerMessage('show', window.lang.translate('Servis  bulunamamýþtýr...'), window.lang.translate('Servis  bulunamamýþtýr...'));
-//                            },
-//                            onSuccess: function (event, cbdata_wrName) {
-//                                //var data = $.parseJSON(cbdata);
-//                                var cbdataWrName = $.parseJSON(cbdata_wrName);
-//                                cbdataWrName.splice(0, 0,
-//                                    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-//                                );
-//                                $('#dropdownWrName').ddslick({
-//                                    //height: 150,
-//                                    data: cbdataWrName,
-//                                    width: '100%',
-
-//                                    onSelected: function (selectedData) {
-//                                        if (selectedData.selectedData.value > 0) {
-
-//                                        }
-//                                    }
-//                                });
-
-//                                $("#loading-image-wrName").loadImager('removeLoadImage');
-//                            },
-//                            onErrorDataNull: function (event, data) {
-//                                console.log("Error : " + event + " -data :" + data);
-//                                dm.dangerMessage({
-//                                    onShown: function () {
-//                                        $('#loading-image-wrName').loadImager('removeLoadImage');
-//                                    }
-//                                });
-//                                dm.dangerMessage('show', window.lang.translate('wrName bulunamamýþtýr...'), window.lang.translate('wrName  bulunamamýþtýr...'));
-//                            },
-//                        })
-//                        ajaxACLResources_wrName.ajaxCallWidget('call');
-////vh Name End
-//                    }
-//                    else {
-//                        VhType = "";
-//                    }
-//                    document.getElementById("txt-wrUnique-name").value = VhType + Model + Mil1 + Mil2 + WrType + WrRM;
-//                }
-//            });
-
-//            $("#loading-image-model").loadImager('removeLoadImage');
-//        },
-//        onErrorDataNull: function (event, data) {
-//            console.log("Error : " + event + " -data :" + data);
-//            dm.dangerMessage({
-//                onShown: function () {
-//                    $('#loading-image-model').loadImager('removeLoadImage');
-//                }
-//            });
-//            dm.dangerMessage('show', window.lang.translate('model bulunamamýþtýr...'), window.lang.translate('model  bulunamamýþtýr...'));
-//        },
-//    })
-//    ajaxACLResources_model.ajaxCallWidget('call');
-//Model End
-
     //Vh model
     $('#loading-image-vhModel').loadImager('removeLoadImage');
     $("#loading-image-vhModel").loadImager('appendImage');
@@ -308,65 +183,6 @@ $(document).ready(function () {
     })
     ajaxACLResources_vhModel.ajaxCallWidget('call');
 
-
-//vh Model End
-
-//    //wrName 
-//    $('#loading-image-wrName').loadImager('removeLoadImage');
-//    $("#loading-image-wrName").loadImager('appendImage');
-
-//    var ajaxACLResources_wrName = $('#ajaxACL-wrName').ajaxCallWidget({
-//        proxy: '/Warranty/SysWarrantyNameFilter',//'/Warranty/Syswarranties',
-//        //data: {
-
-//        //    //test : "test string",
-//        //}
-//        type: 'POST',
-//        data: JSON.stringify(ModelId)
-//    });
-
-//    ajaxACLResources_wrName.ajaxCallWidget({
-//        onError: function (event, textStatus, errorThrown) {
-
-//            dm.dangerMessage({
-//                onShown: function () {
-//                    $('#loading-image-wrName').loadImager('removeLoadImage');
-//                }
-//            });
-//            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamýþtýr...'), window.lang.translate('Servis  bulunamamýþtýr...'));
-//        },
-//        onSuccess: function (event, cbdata_wrName) {
-//            //var data = $.parseJSON(cbdata);
-//            var cbdataWrName = $.parseJSON(cbdata_wrName);
-//            cbdataWrName.splice(0, 0,
-//                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-//            );
-//            $('#dropdownWrName').ddslick({
-//                //height: 150,
-//                data: cbdataWrName,
-//                width: '100%',
-
-//                onSelected: function (selectedData) {
-//                    if (selectedData.selectedData.value > 0) {
-
-//                    }
-//                }
-//            });
-
-//            $("#loading-image-wrName").loadImager('removeLoadImage');
-//        },
-//        onErrorDataNull: function (event, data) {
-//            console.log("Error : " + event + " -data :" + data);
-//            dm.dangerMessage({
-//                onShown: function () {
-//                    $('#loading-image-wrName').loadImager('removeLoadImage');
-//                }
-//            });
-//            dm.dangerMessage('show', window.lang.translate('wrName bulunamamýþtýr...'), window.lang.translate('wrName  bulunamamýþtýr...'));
-//        },
-//    })
-//    ajaxACLResources_wrName.ajaxCallWidget('call');
-////vh Name End
 
     //wrType
     $('#loading-image-wrType').loadImager('removeLoadImage');
@@ -541,12 +357,8 @@ $(document).ready(function () {
     $("#loading-image-rm").loadImager('appendImage');
 
     var ajaxACLResources_rm = $('#ajaxACL-rm').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
+        proxy: '/Sys/SysYesNo',
+        type: 'POST'
     });
 
     ajaxACLResources_rm.ajaxCallWidget({
@@ -559,9 +371,12 @@ $(document).ready(function () {
             });
             dm.dangerMessage('show', window.lang.translate('Servis  bulunamamýþtýr...'), window.lang.translate('Servis  bulunamamýþtýr...'));
         },
-        onSuccess: function (event, data) {
+        onSuccess: function(event, dataWrRM) {
             //var data = $.parseJSON(cbdata);
-
+            var cbdataWrRM = $.parseJSON(dataWrRM);
+            cbdataWrRM.splice(2, 2,
+                { text: window.lang.translate('Please select'), value: 2, selected: true, description: "" }
+            );
             $('#dropdownRm').ddslick({
                 //height: 150,
                 data: cbdataWrRM,
@@ -594,7 +409,11 @@ $(document).ready(function () {
 //rm End
 
     /* devexgrid */
-    //warranty name
+    DevExpress.localization.locale(langCode);
+
+
+    //warranty name   wrNameListRefresh
+    $('#wrNameListRefresh').click(function() {
     var wrname = new DevExpress.data.CustomStore({
         load: function (loadOptions) {
             var deferred = $.Deferred(),
@@ -627,7 +446,81 @@ $(document).ready(function () {
         }
     });
 
-    //warranty matrix
+    $("#gridContainer_warrantyName").dxDataGrid({
+        showColumnLines: true,
+        showRowLines: true,
+        showBorders: true,
+        dataSource: wrname,
+        columnHidingEnabled: true,
+        selection: {
+            mode: "single"
+        },
+        hoverStateEnabled: true,
+        editing: {
+            //mode: "batch"
+            mode: "form",
+            //allowAdding: true,
+            //allowUpdating: true,
+            allowDeleting: true,
+            useIcons: true
+        },
+        "export": {
+            enabled: true,
+            fileName: "Orders"
+        },
+        grouping: {
+            contextMenuEnabled: true,
+            expandMode: "rowClick"
+        },
+        groupPanel: {
+            emptyPanelText: "Use the context menu of header columns to group data",
+            visible: true
+        },
+        pager: {
+            allowedPageSizes: [5, 8, 15, 30],
+            showInfo: true,
+            showNavigationButtons: true,
+            showPageSizeSelector: true,
+            visible: true
+        },
+        paging: {
+            pageSize: 8
+        },
+        filterRow: {
+            visible: true,
+            applyFilter: "auto"
+        },
+        searchPanel: {
+            visible: true,
+            width: 240,
+            placeholder: window.lang.translate('Search') + "...",
+        },
+        headerFilter: {
+            visible: true
+        },
+        columnChooser: {
+            enabled: true,
+            mode: "select"
+        },
+        columns: [{
+            caption: window.lang.translate('Vehicle model name') + "...",
+            dataField: "vehicle_group_name"//"StoreCity"
+        }, {
+            caption: window.lang.translate('Warranty name') + "...",
+            dataField: "name"//"StoreState"
+        }],
+
+        onSelectionChanged: function(selectedItems) {
+            var data = selectedItems.selectedRowsData[0];
+            if (data) {
+                fillwarrantyNameForm(data);
+            }
+        }
+    });
+    });
+
+    $('#warrantyListRefresh').click(function() {
+    //warranty matrix  warrantyListRefresh
     var wrmatrix = new DevExpress.data.CustomStore({
         load: function (loadOptions) {
             var deferred = $.Deferred(),
@@ -660,27 +553,16 @@ $(document).ready(function () {
         }
     });
 
-    DevExpress.localization.locale(langCode);
-
-
     $("#gridContainer_warranty").dxDataGrid({
-
         showColumnLines: true,
-
         showRowLines: true,
-
         showBorders: true,
-
         dataSource: wrmatrix,
-
         columnHidingEnabled: true,
-
         selection: {
             mode: "single"
         },
-
         hoverStateEnabled: true,
-
         editing: {
             //mode: "batch"
             mode: "form",
@@ -689,22 +571,18 @@ $(document).ready(function () {
             allowDeleting: true,
             useIcons: true
         },
-
         "export": {
             enabled: true,
             fileName: "Orders"
         },
-
         grouping: {
             contextMenuEnabled: true,
             expandMode: "rowClick"
         },
-
         groupPanel: {
             emptyPanelText: "Use the context menu of header columns to group data",
             visible: true
         },
-
         pager: {
             allowedPageSizes: [5, 8, 15, 30],
             showInfo: true,
@@ -712,31 +590,25 @@ $(document).ready(function () {
             showPageSizeSelector: true,
             visible: true
         },
-
         paging: {
             pageSize: 8
         },
-
         filterRow: {
             visible: true,
             applyFilter: "auto"
         },
-
         searchPanel: {
             visible: true,
             width: 240,
             placeholder: window.lang.translate('Search') + "...",
         },
-
         headerFilter: {
             visible: true
         },
-
         columnChooser: {
             enabled: true,
             mode: "select"
         },
-
         columns: [{
             caption: window.lang.translate('Warranty unique code') + "...",
             dataField: "name"
@@ -765,107 +637,18 @@ $(document).ready(function () {
             caption: window.lang.translate('Repair&maintenance') + "...",
             dataField: "maintenance" 
         }],
-
         onSelectionChanged: function (selectedItems) {
             var data = selectedItems.selectedRowsData[0];
             if (data) {
                 fillwarrantyForm(data);
             }
         }
-
+    });
     });
 
+    $('#wrNameListRefresh').click();
+    $('#warrantyListRefresh').click();
 
-    $("#gridContainer_warrantyName").dxDataGrid({
-
-        showColumnLines: true,
-
-        showRowLines: true,
-
-        showBorders: true,
-
-        dataSource: wrname,
-
-        columnHidingEnabled: true,
-
-        selection: {
-            mode: "single"
-        },
-
-        hoverStateEnabled: true,
-
-        editing: {
-            //mode: "batch"
-            mode: "form",
-            //allowAdding: true,
-            //allowUpdating: true,
-            allowDeleting: true,
-            useIcons: true
-        },
-
-        "export": {
-            enabled: true,
-            fileName: "Orders"
-        },
-
-        grouping: {
-            contextMenuEnabled: true,
-            expandMode: "rowClick"
-        },
-
-        groupPanel: {
-            emptyPanelText: "Use the context menu of header columns to group data",
-            visible: true
-        },
-
-        pager: {
-            allowedPageSizes: [5, 8, 15, 30],
-            showInfo: true,
-            showNavigationButtons: true,
-            showPageSizeSelector: true,
-            visible: true
-        },
-
-        paging: {
-            pageSize: 8
-        },
-
-        filterRow: {
-            visible: true,
-            applyFilter: "auto"
-        },
-
-        searchPanel: {
-            visible: true,
-            width: 240,
-            placeholder: window.lang.translate('Search') + "...",
-        },
-
-        headerFilter: {
-            visible: true
-        },
-
-        columnChooser: {
-            enabled: true,
-            mode: "select"
-        },
-
-        columns: [{
-            caption: window.lang.translate('Vehicle model name') + "...",
-            dataField: "vehicle_group_name"//"StoreCity"
-        }, {
-            caption: window.lang.translate('Warranty name') + "...",
-            dataField: "name"//"StoreState"
-        }],
-
-        onSelectionChanged: function (selectedItems) {
-            var data = selectedItems.selectedRowsData[0];
-            if (data) {
-                fillwarrantyNameForm(data);
-            }
-        }
-
-    });
 
     function logEvent(eventName) {
         var logList = $("#events ul"),
@@ -874,20 +657,6 @@ $(document).ready(function () {
         logList.prepend(newItem);
     }
 
-
-
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-        var target = $(e.target).attr("href") // activated tab
-
-        if (target == "#tab_1") {
-            //alert("#tab_1");
-        }
-        if (target == "#tab_2") {
-            // grid refresh olmasý gerektiði için kullanýldý.
-            $(gridContainer_warranty).dxDataGrid("updateDimensions");
-            //alert("#tab_2");
-        }
-    });
 
     /**
  * insertwarranty
@@ -988,17 +757,18 @@ $(document).ready(function () {
 
         var warrantyName = $('#txt-model-name').val();
 
-        var ajax_InsertWarrantyName = $(ajaxAC-insertwarrantyName).ajaxCallWidget({
+        var ajax_InsertWarrantyName = $(ajax_FormWr).ajaxCallWidget({
             proxy: '/Warranty/InsertActSysWarranties',
             type: 'GET',
             data: {
-                //missing brackets
+                //url=pkInsertAct_syswarranties&name=dennee &vehicle_group_id=8 &pk=GsZVzEYe50uGgNM
                 url: "pkInsertAct_syswarranties",
-                name: warrantyName,
-                vehicle_group_id: vehicle_group_id,
+                name: "ceyda", //warrantyName,
+                vehicle_group_id: "8",//vehicle_group_id,
                 pk: "GsZVzEYe50uGgNM"
             },
         });
+
 
         ajax_InsertWarrantyName.ajaxCall({
             onError: function (event, textStatus, errorThrown) {
@@ -1013,7 +783,7 @@ $(document).ready(function () {
                 var data = data;
                 sm.successMessage({
                     onShown: function (event, data) {
-                        $('#modelForm')[0].reset();
+                        $('#warrantyNameForm')[0].reset();
 
                         $("#loading-image-warrantyName").loadImager('removeLoadImage');
 

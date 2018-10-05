@@ -157,13 +157,14 @@
         onSuccess: function (event, datacountry) {
             //var data = $.parseJSON(cbdata);
             var cbdata_country = $.parseJSON(datacountry);
-            cbdata_country.splice(0, 0,
-                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-            );
+            //cbdata_country.splice(0, 0,
+            //    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            //);
             $('#dropdownCountry').ddslick({
                 //height: 150,
                 data: cbdata_country,
                 search: true,
+                searchText: window.lang.translate('Search'),
                 width: '100%',
 
                 onSelected: function (selectedData) {
@@ -174,11 +175,11 @@
                         $("#loading-image-region").loadImager('appendImage');
 
                         var ajaxACLResources_region = $('#ajaxACL-region').ajaxCallWidget({
-                            proxy: '/Sys/SysRegionFilter/',
-                            headers: {
-                                "country_id": country_id
+                            proxy: '/Sys/SysCountryRegions',
+                            type: 'GET',
+                            data: {
+                                "country_id": country_id //country_id,                              
                             },
-                            type: 'POST'
                         });
 
                         ajaxACLResources_region.ajaxCallWidget({
@@ -194,30 +195,31 @@
                             onSuccess: function (event, dataregion) {
                                 //var data = $.parseJSON(cbdata);
                                 var cbdata_region = $.parseJSON(dataregion);
-                                cbdata_region.splice(0, 0,
-                                    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-                                );
-
+                                //cbdata_region.splice(0, 0,
+                                //    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                                //);
+                                $('#dropdownRegion').ddslick('destroy');
                                 $('#dropdownRegion').ddslick({
                                     //height: 150,
                                     data: cbdata_region,
                                     search: true,
+                                    searchText: window.lang.translate('Search'),
                                     width: '100%',
                                     
                                     onSelected: function (selectedData) {
                                         if (selectedData.selectedData.value > 0) {
                                             var region_id = selectedData.selectedData.value;
-                                            //city
+                 //city
                                             $('#loading-image-city').loadImager('removeLoadImage');
                                             $("#loading-image-city").loadImager('appendImage');
 
                                             var ajaxACLResources_city = $('#ajaxACL-city').ajaxCallWidget({
-                                                proxy: '/Sys/SysCityFilter/',
-                                                headers: {
-                                                    "country_id": country_id,
-                                                    "region_id": region_id
+                                                proxy: '/Sys/SysCity',
+                                                type: 'GET',
+                                                data: {
+                                                    "country_id": country_id,  //country_id, 
+                                                    "region_id": region_id     //province_id 
                                                 },
-                                                type: 'POST'
 
                                             });
 
@@ -234,13 +236,15 @@
                                                 onSuccess: function (event, data_city) {
                                                     //var data = $.parseJSON(cbdata);
                                                     var cbdata_city = $.parseJSON(data_city);
-                                                    cbdata_city.splice(0, 0,
-                                                        { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-                                                    );
+                                                    //cbdata_city.splice(0, 0,
+                                                    //    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                                                    //);
+                                                    $('#dropdownCity').ddslick('destroy');
                                                     $('#dropdownCity').ddslick({
                                                         //height: 150,
                                                         data: cbdata_city,
                                                         search: true,
+                                                        searchText: window.lang.translate('Search'),
                                                         width: '100%',
                                                         onSelected: function (selectedData) {
                                                             //if (selectedData.selectedData.value > 0) {
@@ -285,6 +289,7 @@
     //end region
                     }
                 }
+                
             });
 
             $("#loading-image-country").loadImager('removeLoadImage');
@@ -848,36 +853,45 @@
     //Training info Form
     window.fillTrainingInfoForm = function (data) {
 
-        $("#loading-image-truser").loadImager('removeLoadImage');
-        $("#loading-image-truser").loadImager('appendImage');
+        //$("#loading-image-truser").loadImager('removeLoadImage');
+        //$("#loading-image-truser").loadImager('appendImage');
 
         //$('#dropdownTrName').ddslick('select', { index: 2 });
-        //$('#dropdownTrainer').ddslick('select', { index: 2 });
+        //$('#dropdownTrainer').ddslick('selectByValue',
+        //    {
+        //        index: '' + data.user_id + '',
+        //        text: '' + data.name_surname + ''
+        //    }
+        //);
         $('#dropdownCountry').ddslick('selectByValue',
             {
                 index: '' + data.country_id + '',
                 text: '' + data.country_name + ''
             }
         );
-        $('#dropdownRegion').ddslick('selectByValue',
-            {
-                index: '' + data.region_id + '',
-                text: '' + data.region_name + ''
-            }
-        );
+
+        //$('#dropdownRegion').ddslick('selectByValue',
+        //    {
+        //        index: '' + data.region_id + '',
+        //        text: '' + data.region_name + ''
+        //    }
+        //);
+
         //$('#dropdownCity').ddslick('selectByValue',
         //    {
         //        index: '' + data.city_id + '',
         //        text: '' + data.city_name + ''
         //    }
         //);
-        //document.getElementById("txt-TrAdr-name").value = data.name;
+        document.getElementById("txt-TrAdr1-name").value = data.address1;
+        document.getElementById("txt-TrAdr2-name").value = data.address2;
+        document.getElementById("txt-TrAdr3-name").value = data.address3;
         document.getElementById("txt-PtCode-name").value = data.postalcode;
         document.getElementById("txt-Explanation-name").value = data.description;
         document.getElementById("start-datepicker").value = data.edu_start_date;
         document.getElementById("end-datepicker").value = data.edu_end_date;
         document.getElementById("txt-Grade-name").value = data.education_value;
-        $("#loading-image-truser").loadImager('removeLoadImage');
+        //$("#loading-image-truser").loadImager('removeLoadImage');
 
         return false;
     }
