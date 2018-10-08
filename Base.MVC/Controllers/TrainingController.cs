@@ -11,22 +11,26 @@ using Base.Filters.Auth.Hmac;
 using Base.Filters.Log.RabbitMQ;
 using Base.Filters.Session;
 using Newtonsoft.Json;
-using Base.Core.Http.HttpRequest.Concrete;
-using Base.MVC.Models.HttpRequest;
-using Microsoft.AspNetCore.Http.Extensions;
 using Base.Core.Utills.Url;
-using Microsoft.Extensions.Localization;
+using Base.Core.Http.HttpRequest.Concrete;
+using Microsoft.AspNetCore.Http.Extensions;
+using Base.MVC.Models.HttpRequest;
+using Base.MVC.Models.HttpRequest.Training;
 
 namespace Base.MVC.Controllers
 {
     public class TrainingController : Controller
     {
-
         private readonly IDistributedCache _distributedCache;
-        public TrainingController(IDistributedCache distributedCache)
+        private QueryCreater _queryCreater;
+
+        public TrainingController(IDistributedCache distributedCache,
+                              QueryCreater queryCreater)
         {
             _distributedCache = distributedCache;
+            _queryCreater = queryCreater;
         }
+
         public IActionResult Index()
         {
             return View();
@@ -229,6 +233,129 @@ namespace Base.MVC.Controllers
                 var response = await HttpClientRequestFactory.Get(url, headers);
                 var data = response.Content.ReadAsStringAsync().Result;
                 return data.ToString();
+        }
+
+        /// <summary>
+        /// insert training form --- Not: insert etmedi AddTrainingName kullandım...
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        //[SessionTimeOut]
+        //[ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        //[ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        //[HttpGet]
+        //public async Task<string> SysInsertTraining()
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var headers = new Dictionary<string, string>();
+        //        var tokenGenerated = HttpContext.Session.GetHmacToken();
+        //        headers.Add("X-Hmac", tokenGenerated);
+        //        headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+
+        //        var encodedURL = Request.GetEncodedUrl();
+        //        var pathAndQuery = Request.GetEncodedPathAndQuery();
+        //        var displayURL = Request.GetDisplayUrl();
+        //        string path = Request.Path.ToString();
+        //        string queryStr = Request.QueryString.ToString();
+
+        //        // http://proxy.mansis.co.za:18443/SlimProxyBoot.php?
+        //        // http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_syseducationdefinitions&name=aracdescriptioni&pk=GsZVzEYe50uGgNM
+        //        //_hmacManager.test();
+        //        //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
+        //        var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+        //        var data = response.Content.ReadAsStringAsync().Result;
+        //        return data.ToString();
+        //    }
+        //    else
+        //    {
+        //        throw new Exception("Model state is not valid");
+        //    }
+
+        //}
+
+        /// <summary>
+        /// add training name
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        //[AjaxSessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> AddTrainingName([FromBody] TrainingName trainingname)
+        {
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(trainingname);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model satate is not valid");
+            }
+
+        }        
+        
+        /// <summary>
+        /// add training info
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        //[AjaxSessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> AddTrainingInfo([FromBody] TrainingInfo traininginfo)
+        {
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(traininginfo);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model satate is not valid");
+            }
+
+        }
+
+        /// <summary>
+        /// Active/Pasive Training Name
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// 
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateMakeActiveOrPassive_syseducationdefinitions&id=29&pk=GsZVzEYe50uGgNM
+        /// <returns></returns>
+        //[AjaxSessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysActivePasiveTrName([FromBody] ActivePasivePostModel deleteModel)
+        {
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            string queryStr = _queryCreater.GetQueryStringFromObject(deleteModel);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
         }
 
     }
