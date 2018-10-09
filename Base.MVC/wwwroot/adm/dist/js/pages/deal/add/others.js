@@ -1,83 +1,7 @@
-﻿$$(document).ready(function () {
-
+﻿$(document).ready(function () {
 
 
     var dealID;
-
-    /* $.ajax({
-         url: '/Home/IndexGet',
-         type: 'POST',
-         data: JSON.stringify({
-             //missing brackets
-                 Address1: '423 Judy Road',
-                 Address2: '1001',
-                 City: 'New York',
-                 State: 'NY',
-                 ZipCode: '10301',
-                 Country: "USA"
-         }),
-         contentType: 'application/json; charset=utf-8',
-         success: function (data) {
-             alert(data.success);
-         },
-         error: function () {
-             alert("error");
-         }
-     });*/
-
-    var ajax_PostObjectTypeParameter = $(window).ajaxCallWidget({
-        proxy: '/Home/IndexPostObjectParameter',
-        type: 'POST',
-        data: JSON.stringify({
-            //missing brackets
-            Address1: '423 Judy Road',
-            Address2: '1001',
-            City: 'New York',
-            State: 'NY',
-            ZipCode: '10301',
-            Country: "USA"
-        }),
-    });
-    ajax_PostObjectTypeParameter.ajaxCallWidget('call');
-
-
-    var ajax_PostPrimitiveTypeParameterFromHeader = $(window).ajaxCallWidget({
-        proxy: '/Home/IndexPostPrimitiveTypeParameterFromHeader',
-        headers: {
-            "myFirstHeader": "first value",
-            "MySecondHeader": "second value"
-        },
-        type: 'POST',
-    });
-    ajax_PostPrimitiveTypeParameterFromHeader.ajaxCallWidget('call');
-
-    var ajax_PostPrimitiveTypeParameter = $(window).ajaxCallWidget({
-        proxy: '/Home/IndexPostPrimitiveTypeParameter',
-        //contentType: "application/x-www-form-urlencoded",
-        type: 'POST',
-        //dataType: '*/*',
-        //data: "addressInfo=test",
-        data: JSON.stringify("www test")
-    });
-    ajax_PostPrimitiveTypeParameter.ajaxCallWidget('call');
-
-    var ajax_GetObjectTypeParameter = $(window).ajaxCallWidget({
-        proxy: '/Home/IndexGetObjectParameter',
-        type: 'GET',
-        data: {
-            //missing brackets
-            Address1: '423 Judy Road',
-            Address2: '1001',
-            City: 'New York',
-            State: 'NY',
-            ZipCode: '10301',
-            Country: "USA"
-        },
-    });
-    ajax_GetObjectTypeParameter.ajaxCallWidget('call');
-
-
-
 
     var sm = $(window).successMessage();
     var dm = $(window).dangerMessage();
@@ -87,18 +11,15 @@
         actionButtonLabel: 'İşleme devam et'
     });
 
-    //offline loading-image
-    //$("#offlineWrapperImager").loadImager();
-    // offline up event handler
-    /* Offline.on("up", function () {
-         $("#offlineWrapperImager").loadImager('removeLoadImage');
-     });*/
-    // offline down event handler
-    /*Offline.on("down", function () {
-        $("#offlineWrapperImager").loadImager('appendImage');
-    });*/
+    // only add deal tab is enabled 
+    $("#deal_hidden").organizeTabs({ tabID: "deals_tab" });
 
-    // $.getScript({ url: "loadingImages.js", cache: true });
+    /*$("#deal_hidden").organizeTabs('disableAllTabs');
+    $("#deal_hidden").organizeTabs('enableTabByOrder', '3');*/
+    $("#deal_hidden").organizeTabs('disableAllTabsButOne');
+
+
+
 
     //Make the dashboard widgets sortable Using jquery UI
     $(".connectedSortable").sortable({
@@ -239,68 +160,59 @@
         var ddDataPriority = $('#ddslickPriority').data('ddslick');
         var ddDataRealizationRate = $('#ddslickRealizationRate').data('ddslick');
 
-        if (!ddDataCustomer.selectedData.value > 0) {
-            wm.warningMessage('resetOnShown');
-            wm.warningMessage('show', window.lang.translate("Please select customer"),
-                window.lang.translate("Please select customer"));
-            $('#tab_DealAttr').loadImager('removeLoadImage');
-            return false;
-        }
+        if ($("#addDealForm").validationEngine("validate")) {
+            if (!ddDataCustomer.selectedData.value > 0) {
+                wm.warningMessage('resetOnShown');
+                wm.warningMessage('show', window.lang.translate("Please select customer"),
+                    window.lang.translate("Please select customer"));
+                $('#tab_DealAttr').loadImager('removeLoadImage');
+                return false;
+            }
+            var ajax_DdslickCustomer = $('#add_deal').ajaxCallWidget({
+                proxy: '/Deal/AddDealProxyService',
+                type: "POST",
+                triggerSuccessAuto: true,
+                transactionSuccessText: window.lang.translate('Transaction successful'),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                loadingImageID: "tab_DealAttr",
+                data: JSON.stringify({
+                    language_code: $("#langCode").val(),
+                    pk: "GsZVzEYe50uGgNM",
+                    deal_name: $("#deal_name").val(),
+                    url: "pkInsertAct_infoproject",
+                    pkIdentity: $("#publicKey").val(),
+                    customer_id: ddDataCustomer.selectedData.value,
+                    is_house_deal: 0,
+                    probability_id: ddDataPriority.selectedData.value,
+                    reliability_id: ddDataRealizationRate.selectedData.value,
+                    description: $("#description").val(),
+                    discount_rate: $("#description").val()
+                })
 
-        var ajax_DdslickCustomer = $('#ajax_DdslickCustomer').ajaxCallWidget({
-            proxy: '/Deal/AddDealProxyService',
-            type: "POST",
-            data: JSON.stringify({
-                language_code: $("#langCode").val(),
-                pk: "GsZVzEYe50uGgNM",
-                url: "pkInsertAct_infoproject",
-                pkIdentity: $("#publicKey").val(),
-                customer_id: ddDataCustomer.selectedData.value,
-                is_house_deal: 0,
-                probability_id: ddDataPriority.selectedData.value,
-                reliability_id: ddDataRealizationRate.selectedData.value,
-                description: $("#description").val(),
-                discount_rate: $("#description").val()
+            });
+            ajax_DdslickCustomer.ajaxCallWidget({
+                onAfterSuccess: function (event, data) {
+                    var data = $.parseJSON(data);
+                    alert(data.lastInsertId);
+                    $("#deal_hidden").deal({ dealID: data.lastInsertId })
+                    console.log($("#deal_hidden").deal("option", "dealID"));
+                    //alert($("#deal_hidden").deal("option", "dealID"));
+
+                    $("#deal_hidden").organizeTabs("enableAllTabs");
+                },
+                onReset: function () {
+                    resetDealAddForm();
+                }
 
             })
+            ajax_DdslickCustomer.ajaxCallWidget('call');
+            return false;
+        } else {
+            $('#tab_DealAttr').loadImager('removeLoadImage');
+        }
 
-        });
-        ajax_DdslickCustomer.ajaxCallWidget({
-            onError: function (event, textStatus, errorThrown) {
 
-                $(window).dangerMessage({
-                    onShown: function () {
-                        $('#tab_DealAttr').loadImager('removeLoadImage');
-                    }
-                });
-                $(window).dangerMessage('resetOnShown');
-                $(window).dangerMessage('show', window.lang.translate('Unsuccessful transaction'),
-                                                window.lang.translate('Unsuccessful transaction'));
-                resetDealAddForm();
-            },
-            onSuccess: function (event, data) {
-
-                sm.successMessage('show', window.lang.translate('Transaction successful'),
-                                          window.lang.translate('Transaction successful'),
-                                          data);
-                $("#tab_DealAttr").loadImager('removeLoadImage');
-                //dealID = data.
-                //console.log(dealID);
-                resetDealAddForm();
-            },
-            onErrorDataNull: function (event, data) {
-                //console.log("Error : " + event + " -data :" + data);
-                $(window).dangerMessage({
-                    onShown: function () {
-                        $('#tab_DealAttr').loadImager('removeLoadImage');
-                    }
-                });
-                $(window).dangerMessage('show', window.lang.translate('Unsuccessful transaction'),
-                    window.lang.translate('Unsuccessful transaction'));
-                resetDealAddForm();
-            },
-        })
-        ajax_DdslickCustomer.ajaxCallWidget('call');
         return false;
     })
 
@@ -322,7 +234,7 @@
     $('#tab_VehicleType').loadImager();
 
     /**
-     * add deal form reset
+     * add deal form vehicle type reset
      * @author Mustafa Zeynel Dağlı
      * */
     var resetVehicleTypeAddDealForm = function () {
@@ -371,7 +283,7 @@
                 pk: "GsZVzEYe50uGgNM",
                 url: "pkInsertAct_infoprojectvehiclemodels",
                 pkIdentity: $("#publicKey").val(),
-                project_id: 2,
+                project_id: 1,
                 is_house_deal: 0,
                 vehicle_gt_model_id: ddDataVehicleType.selectedData.value,
                 quantity: $("#quantity").val(),
