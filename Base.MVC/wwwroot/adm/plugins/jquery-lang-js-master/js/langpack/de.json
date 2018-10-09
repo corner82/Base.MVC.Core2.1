@@ -1,5 +1,6 @@
 {
   "token": {
+    "No data returned from service": "Keine Daten vom Dienst zurückgegeben",
     "Transaction successful": "Transaktion erfolgreich",
     "Unsuccessful transaction": "Erfolglose Transaktion",
     "Data already created, edit your data": "Daten bereits erstellt, bearbeiten Sie Ihre Daten",

@@ -20,6 +20,7 @@
     $("#loading-image-trInfo").loadImager();
     //to Training Ident grid loading-image
     $("#loading-image-trInfoGrid").loadImager();
+    $("#loading-image-trNameGrid").loadImager();
 
     /*
     * Training Info Tab LoadImager
@@ -392,6 +393,15 @@
         paging: {
             pageSize: 8
         },
+        OnCellPrepared: function (options) {
+
+            var fieldData = options.value;
+            fieldHtml = "";
+
+            fieldHtml = fieldData.value;
+            options.cellElement.html(fieldHtml);
+
+        },
         filterRow: {
             visible: true,
             applyFilter: "auto"
@@ -410,19 +420,55 @@
         },
         columns: [{
             caption: window.lang.translate('Training name') + "...",
-            dataField: "name"
+            dataField: "name",
+            encodeHtml: false
         }, {
             caption: window.lang.translate('Active/Passive') + "...",
-            dataField: "state_active"
-        }],
+            dataField: "state_active",
+            encodeHtml: false
+        },{
+            caption: window.lang.translate('Active/Pasive'),
+            width: 40,
+            alignment: 'center',
+            encodeHtml: false,
+
+            cellTemplate: function (container, options) {
+                var fieldHtml;
+                var trName_id = options.data.id;
+
+                if (options.data.active === 1) {
+                    //active
+                    $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
+                        activepasiveTrName(trName_id);
+                        dm.successMessage('show', window.lang.translate('Active success message...'), window.lang.translate('Active success message...'));
+                    }).appendTo(container);
+                } else if (options.data.active === 0) {
+                    //pasive
+                    $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
+                        activepasiveTrName(trName_id);
+                        dm.successMessage('show', window.lang.translate('Pasive success message...'), window.lang.translate('Pasive success message...'));
+                    }).appendTo(container);
+                }
+            }
+            //dataField: "active"
+            }],
 
         onSelectionChanged: function (selectedItems) {
             var data = selectedItems.selectedRowsData[0];
             if (data) {
-
                 fillTrainingIdentForm(data);
             }
-        }
+        },
+        onRowRemoving: function (e) {
+            //e.cancel = true;
+            //Confirmasyon ile silme düzenlenecek...
+            var trName_id = e.key.id;
+            deleteTrName(trName_id);
+
+        },
+        onRowRemoved: function (e) {
+
+        },
         });
     });
 
@@ -503,6 +549,15 @@
         paging: {
             pageSize: 8
         },
+        OnCellPrepared: function (options) {
+
+            var fieldData = options.value;
+            fieldHtml = "";
+
+            fieldHtml = fieldData.value;
+            options.cellElement.html(fieldHtml);
+
+        },
         filterRow: {
             visible: true,
             applyFilter: "auto"
@@ -521,38 +576,49 @@
         },
         columns: [{
             caption: window.lang.translate('Training Name') + "...",
+            encodeHtml: false,
             dataField: "name"
         }, {
             caption: window.lang.translate('Trainer') + "...",
+            encodeHtml: false,
             dataField: "name_surname"
         }, {
             caption: window.lang.translate('Training City') + "...",
+            encodeHtml: false,
             dataField: "city_name"
         }, {
             caption: window.lang.translate('Training Address') + "1...",
+            encodeHtml: false,
             dataField: "address1"
         }, {
             caption: window.lang.translate('Training Address') + "2...",
+            encodeHtml: false,
             dataField: "address2"
         }, {
             caption: window.lang.translate('Training Address') + "3...",
+            encodeHtml: false,
             dataField: "address3"
         }, {
             caption: window.lang.translate('Postal Code') + "...",
+            encodeHtml: false,
             dataField: "postalcode"
         }, {
             caption: window.lang.translate('Explanation') + "...",
+            encodeHtml: false,
             dataField: "description"
         }, {
             caption: window.lang.translate('Training start date') + "...",
+            encodeHtml: false,
             dataField: "edu_start_date",
             dataType: "date"
         }, {
             caption: window.lang.translate('Training end date') + "...",
+            encodeHtml: false,
             dataField: "edu_end_date",
             dataType: "date"
         }, {
-            caption:window.lang.translate('Grade') + "...",
+            caption: window.lang.translate('Grade') + "...",
+            encodeHtml: false,
             dataField: "education_value"
         }],
 
@@ -575,7 +641,17 @@
                 //$(".employeeNotes").text(data.Notes);
                 //$(".employeePhoto").attr("src", data.Picture);
             }
-        }
+        },
+        onRowRemoving: function (e) {
+            //e.cancel = true;
+            //Confirmasyon ile silme düzenlenecek...
+            var trInfo_id = e.key.id;
+            deleteTrInfo(trInfo_id);
+
+        },
+        onRowRemoved: function (e) {
+
+        },
     });
 
     });
@@ -584,143 +660,77 @@
 
     $('#trListRefresh').click();
 
-    //function logEvent(eventName) {
-    //    var logList = $("#events ul"),
-    //        newItem = $("<li>", { text: eventName });
-
-    //    logList.prepend(newItem);
-    //}
-
-    /**
-    * insert training name Wrapper
-    * @returns {Boolean}
-    * @since 29/08/2018
-    */
-
-    window.insertTrainingIdentWrapper = function (e) {
-        //e.preventDefault();
-
-        if ($("#trainingIdentForm").validationEngine('validate')) {
-
-            insertTrainingName();
-        }
-        return false;
-    }
+/////////////////////Training Name/////////////////////
 
     /**
     * insert traning name
     * @returns {undefined}
     * @since 29/08/2018
     */
+    $("#btn-trName-save").on("click", function (e) {
+        e.preventDefault();
+        //alert("geldim click");
+        if ($("#trainingIdentForm").validationEngine('validate')) {
 
-    window.insertTrainingName = function () {
+            //window.insertTrainingName = function () {
 
-        $("#loading-image-trInfo").loadImager('removeLoadImage');
-        $("#loading-image-trInfo").loadImager('appendImage');
+            $("#loading-image-trInfo").loadImager('removeLoadImage');
+            $("#loading-image-trInfo").loadImager('appendImage');
 
-        //var cst_name = $('#txt-trn-name').val();
+            var trainingname = $('#txt-trn-name').val();
+            //if (!ddDataVehicleType.selectedData.value > 0) {
+            //    wm.warningMessage('resetOnShown');
+            //    wm.warningMessage('show', window.lang.translate("Please select vehicle type"),
+            //        window.lang.translate("Please select vehicle type"));
+            //    $('#tab_VehicleType').loadImager('removeLoadImage');
+            //    return false;
+            //}
+            //alert(trainingname);
 
-        var aj = $(window).ajaxCall({
-            proxy: 'https://jsonplaceholder.typicode.com/todos/',
-            data: {
-                url: '1'
-                //url: 'pkInsert_sysCustomerInfo',
-                //name: cst_name,
-                //country_id: country_id,
-                //city_id: city_id,
-                //pk: $("#pk").val()
-            }
-        })
-        aj.ajaxCall({
-            onError: function (event, textStatus, errorThrown) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Müşteri Ekleme İşlemi Başarısız...',
-                    'Müşteri Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
-                console.error('"pkInsert_sysCustomerInfo" servis hatası->' + textStatus);
-                $("#loading-image-trInfo").loadImager('removeLoadImage');
-            },
-            onSuccess: function (event, data) {
-                console.log(data);
-                sm.successMessage({
-                    onShown: function (event, data) {
-                        $('#trainingIdentForm')[0].reset();
+            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php? url= pkInsertAct_syseducationdefinitions &name=aracdescriptioni &pk=GsZVzEYe50uGgNM
 
-                        $("#loading-image-trInfo").loadImager('removeLoadImage');
+            var ajax_InsertTrainingName = $('#ajaxACL-insertTrainingName').ajaxCallWidget({
+                failureLoadImage: true,
+                loadingImageID: "loading-image-trInfo",
+                triggerSuccessAuto: true,
+                transactionSuccessText: window.lang.translate('Transaction successful'),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
 
-                        $("#loading-image-trInfoGrid").loadImager('removeLoadImage');
-                        $("#loading-image-trInfoGrid").loadImager('appendImage');
-
-                        $('#gridContainer_trainingName').refresh();   //test edilecek!
-
-                        $("#loading-image-trInfoGrid").loadImager('removeLoadImage');
-
-                        /*
-                         * devex grid refresh yapılacak
-                         * 
-                         * 
-                        $('#gridContainer_trainingName').datagrid({
-                            queryParams: {
-                                pk: $('#pk').val(),
-                                subject: 'datagrid',
-                                url: 'pkFillPrivilegesList_sysAclPrivilege',
-                                sort: 'id',
-                                order: 'desc',
-                            },
-                        });
-                        $('#tt_grid_dynamic').datagrid('enableFilter');
-                        $('#tt_grid_dynamic').datagrid('reload');
-                        */
-                    }
-                });
-                sm.successMessage('show', 'Müşteri Kayıt İşlemi Başarılı...',
-                    'Müşteri kayıt işlemini gerçekleştirdiniz... ',
-                    data);
-                $("#loading-image-trInfo").loadImager('removeLoadImage');
-
-            },
-            onErrorDataNull: function (event, data) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Müşteri Kayıt İşlemi Başarısız...',
-                    'Müşteri kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysCustomerInfo" servis datası boştur!!');
-                $("#loading-image-trInfo").loadImager('removeLoadImage');
-            },
-            onErrorMessage: function (event, data) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Müşteri Kayıt İşlemi Başarısız...',
-                    'Müşteri kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysCustomerInfo" servis datası boştur!!');
-                $("#loading-image-trInfo").loadImager('removeLoadImage');
-            },
-            onError23503: function (event, data) {
-                dm.dangerMessage('Error23503');
-                $("#loading-image-trInfo").loadImager('removeLoadImage');
-            },
-            onError23505: function (event, data) {
-                dm.dangerMessage({
-                    onShown: function (event, data) {
-                        $('#trainingIdentForm')[0].reset();
-                        $("#loading-image-trInfo").loadImager('removeLoadImage');
-                    }
-                });
-                dm.dangerMessage('show', 'ACL Yetki Kayıt İşlemi Başarısız...',
-                    'Aynı isim ile Müşteri  kaydı yapılmıştır, yeni bir Müşteri kaydı deneyiniz... ');
-                $("#loading-image-trInfo").loadImager('removeLoadImage');
-            }
-        })
-        aj.ajaxCall('call');
-
-    }
+                proxy: '/Training/AddTrainingName',
+                type: 'POST',
+                data: JSON.stringify({
+                    url: "pkInsertAct_syseducationdefinitions",
+                    name: trainingname,
+                    pk: "GsZVzEYe50uGgNM",
+                })
+            });
+            ajax_InsertTrainingName.ajaxCallWidget({
+                onReset: function (event, data) {
+                    resetTrainingIdentForm();
+                },
+            })
+            ajax_InsertTrainingName.ajaxCallWidget('call');
+            return false;
+        }
+    })
 
     /*
-    * reset button function for Training insert form
+    * reset button function for Training name form
     * @returns null
     * @since 29/08/2018
     */
-    window.resetTrainingIdentForm = function () {
+    $("#btn-trName-clear").on("click", function (e) {
+        e.preventDefault();
+        resetTrainingIdentForm();
+        return false;
+    })
+
+    var resetTrainingIdentForm = function () {
         $("#loading-image-trInfo").loadImager('removeLoadImage');
         $("#loading-image-trInfo").loadImager('appendImage');
 
+        $('#trainingIdentForm')[0].reset(); 
         $('#trainingIdentForm').validationEngine('hide');
 
         $("#loading-image-trInfo").loadImager('removeLoadImage');
@@ -731,33 +741,132 @@
         return false;
     }
 
+
+    //ActivePasive Training Name
+
+    window.activepasiveTrName = function (trName_id) {
+        $("#loading-image-trNameGrid").loadImager('removeLoadImage');
+        $("#loading-image-trNameGrid").loadImager('appendImage');
+
+        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateMakeActiveOrPassive_syseducationdefinitions&id=29&pk=GsZVzEYe50uGgNM
+
+        var ajax_activepasiveTrNamelist = $('#ajaxACL-trNameList').ajaxCallWidget({
+            proxy: '/Training/SysActivePasiveTrName',
+            data: JSON.stringify({
+                id: trName_id,
+                pk: "GsZVzEYe50uGgNM",
+                url: "pkUpdateMakeActiveOrPassive_syseducationdefinitions"
+            }),
+            type: "POST"
+
+        });
+
+        ajax_activepasiveTrNamelist.ajaxCallWidget({
+            onError: function (event, textStatus, errorThrown) {
+
+                $(window).dangerMessage({
+                    onShown: function () {
+                        $('#loading-image-trNameGrid').loadImager('removeLoadImage');
+                    }
+                });
+                $(window).dangerMessage('show', window.lang.translate('yyyyyyyyyyyyyyyy...'), window.lang.translate('yyyyyyyyyyyyyyyyyyyy...'));
+            },
+            onSuccess: function (event, mydata) {
+                //var data = $.parseJSON(mydata);
+
+                //grid refresh
+                $('#trNameListRefresh').click();
+                //$('#branchdealerList').click();
+                //$("#gridContainer_trainingName").dxDataGrid("instance").refresh();
+
+                //$("#loading-image-trNameGrid").loadImager('removeLoadImage');
+                //$(window).successMessage('show', window.lang.translate('Active/Pasive Ok.'), window.lang.translate('Active/Pasive Ok.'));
+
+            },
+            onErrorDataNull: function (event, data) {
+                console.log("Error : " + event + " -data :" + data);
+                $(window).dangerMessage({
+                    onShown: function () {
+                        $('#loading-image-trNameGrid').loadImager('removeLoadImage');
+                    }
+                });
+                $(window).dangerMessage('show', window.lang.translate('xxxxxxxxxxx'), window.lang.translate('xxxxxxxxxxxxxxxxxx...'));
+            },
+        })
+        ajax_activepasiveTrNamelist.ajaxCallWidget('call');
+    }
+
+    //Training Name Delete
+    window.deleteTrName = function (trName_id) {
+        $("#loading-image-trInfoGrid").loadImager('removeLoadImage');
+        $("#loading-image-trInfoGrid").loadImager('appendImage');
+
+        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_syseducationdefinitions&id=3&pk=GsZVzEYe50uGgNM
+
+        var ajax_deleteTrName = $('#ajaxACL-trNameList').ajaxCallWidget({
+            proxy: '/Training/SysDeleteTrName',
+            data: JSON.stringify({
+                id: trName_id,
+                pk: "GsZVzEYe50uGgNM",
+                url: "pkDeletedAct_syseducationdefinitions"
+            }),
+            type: "POST"
+
+        });
+        ajax_deleteTrName.ajaxCallWidget({
+            onError: function (event, textStatus, errorThrown) {
+
+                $(window).dangerMessage({
+                    onShown: function () {
+                        $('#loading-image-trInfoGrid').loadImager('removeLoadImage');
+                    }
+                });
+                $(window).dangerMessage('show', window.lang.translate('yyyyyyyyyyyyyyyy...'), window.lang.translate('yyyyyyyyyyyyyyyyyyyy...'));
+            },
+            onSuccess: function (event, mydata) {
+                //var data = $.parseJSON(mydata);
+
+                //grid refresh
+                //$('#branchdealerList').click();
+                $('#trNameListRefresh').click();
+                //$("#gridContainer_branch").dxDataGrid("instance").refresh();
+
+                $("#loading-image-trInfoGrid").loadImager('removeLoadImage');
+            },
+            onErrorDataNull: function (event, data) {
+                console.log("Error : " + event + " -data :" + data);
+                $(window).dangerMessage({
+                    onShown: function () {
+                        $('#loading-image-trInfoGrid').loadImager('removeLoadImage');
+                    }
+                });
+                $(window).dangerMessage('show', window.lang.translate('xxxxxxxxxxx'), window.lang.translate('xxxxxxxxxxxxxxxxxx...'));
+            },
+        })
+        ajax_deleteTrName.ajaxCallWidget('call');
+
+    }
+
+    var trNameId = '';
+
+
+    //Fill Training Name
     window.fillTrainingIdentForm = function (data) {
         $("#loading-image-trInfo").loadImager('removeLoadImage');
         $("#loading-image-trInfo").loadImager('appendImage');
-
         document.getElementById("txt-trn-name").value = data.name;
+        //var trnametest = data.name;
+        //var test = unescape(trnametest);
+        //document.getElementById("txt-trn-name").value = test;
         document.getElementById("txt-training-trName").value = data.name;
-
+        trNameId = data.id;
         $("#loading-image-trInfo").loadImager('removeLoadImage');
         $("#training_tab").organizeTabs('enableAllTabs');
         return false;
     }
 
-    /**
-    * insert Training info Wrapper
-    * @returns {Boolean}
-    * @since 29/08/2018
-    */
 
-    window.insertTrainingInfoWrapper = function (e) {
-        e.preventDefault();
-
-        if ($("#trainingInfoForm").validationEngine('validate')) {
-
-            insertTrainingInfo();
-        }
-        return false;
-    }
+/////////////////////Training Info/////////////////////
 
     /**
      * insert Training Info
@@ -765,98 +874,161 @@
      * @since 07/08/2018
      */
 
-    window.insertTrainingInfo = function () {
+    $("#btn-trInfo-save").on("click", function (e) {
+        e.preventDefault();
+        //alert("geldim click");
+        if ($("#trainingInfoForm").validationEngine('validate')) {
+
+            //window.insertTrainingInfo = function () {
+            $("#loading-image-truser").loadImager('removeLoadImage');
+            $("#loading-image-truser").loadImager('appendImage');
+
+
+            var ddDataUser = $('#dropdownTrainer').data('ddslick');
+            var user_id = ddDataUser.selectedData.value;
+
+            var ddDataCity = $('#dropdownCity').data('ddslick');
+            var city_id = ddDataCity.selectedData.value;
+
+            var address1 = $('#txt-TrAdr1-name').val();
+            var address2 = $('#txt-TrAdr2-name').val();
+            var address3 = $('#txt-TrAdr3-name').val();
+            var postalcode = $('#txt-PtCode-name').val();
+            var description = $('#txt-Explanation-name').val();
+            var education_value = $('#txt-Grade-name').val();
+            var edu_start_date = "11/10/2018"; //$('#start-datepicker').val(),
+            var eduEndDate = "11/10/2018"; //$('#end-datepicker').val(),
+
+            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url= pkInsertAct_syseducationssalesman &=asd%20sok &address2=no%2011 &address3=dai%205 &postalcode=061010
+            //& description=asdaasdasdasd &education_definition_id=1 &user_id=1 & city_id=1 &education_value=10 &edu_start_date=11/10/2018 &$eduEndDate=12/10/2018 &pk=GsZVzEYe50uGgN
+
+            var ajax_InsertTrainingInfo = $('#ajaxACL-insertTrainingInfo').ajaxCallWidget({
+                failureLoadImage: true,
+                loadingImageID: "loading-image-truser",
+                triggerSuccessAuto: true,
+                transactionSuccessText: window.lang.translate('Transaction successful'),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+
+                proxy: '/Training/AddTrainingInfo',
+                type: 'POST',
+                data: JSON.stringify({
+                    url: "pkInsertAct_syseducationssalesman",
+                    address1: address1, //$('#txt-TrAdr1-name').val(),
+                    address2: address2, //$('#txt-TrAdr2-name').val(),
+                    address3: address3, //$('#txt-TrAdr3-name').val(),
+                    postalcode: postalcode, //$('#txt-PtCode-name').val(),
+                    description: description, //$('#txt-Explanation-name').val(),
+                    education_definition_id: trNameId,
+                    user_id: user_id, //ddDataUser.selectedData.value,
+                    city_id: city_id,//ddDataCity.selectedData.value,
+                    education_value: education_value,// $('#txt-Grade-name').val(),
+                    edu_start_date: edu_start_date, //"10/10/2018", //$('#start-datepicker').val(),
+                    eduEndDate: eduEndDate,//"10/10/2018", //$('#end-datepicker').val(),
+                    pk: "GsZVzEYe50uGgNM"
+                })
+            });
+
+            ajax_InsertTrainingInfo.ajaxCallWidget({
+                onReset: function (event, data) {
+                    resetTrainingIdentForm();
+                },
+            })
+
+            ajax_InsertTrainingInfo.ajaxCallWidget('call');
+            return false;
+
+
+            //ajax_InsertTrainingInfo.ajaxCallWidget({
+            //    onError: function (event, textStatus, errorThrown) {
+            //        dm.dangerMessage('resetOnShown');
+            //        dm.dangerMessage('show', 'training Ekleme İşlemi Başarısız...',
+            //            'training Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
+            //        console.error('"pkInsertAct_syseducationdefinitions" servis hatası->' + textStatus);
+            //        $("#loading-image-truser").loadImager('removeLoadImage');
+            //    },
+            //    onSuccess: function (event, data) {
+            //        console.log(data);
+
+            //        sm.successMessage({
+            //            onShown: function (event, data) {
+            //                //$('#trainingInfoForm')[0].reset();
+
+            //                $("#loading-image-truser").loadImager('removeLoadImage');
+
+            //            }
+            //        });
+            //        sm.successMessage('show', 'training Kayıt İşlemi Başarılı...',
+            //            'training kayıt işlemini gerçekleştirdiniz... ',
+            //            data);
+            //        $("#loading-image-truser").loadImager('removeLoadImage');
+
+            //    },
+            //    onErrorDataNull: function (event, data) {
+            //        dm.dangerMessage('resetOnShown');
+            //        dm.dangerMessage('show', 'training Kayıt İşlemi Başarısız...',
+            //            'training kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
+            //        console.error('"pkInsertAct_syseducationdefinitions" servis datası boştur!!');
+            //        $("#loading-image-truser").loadImager('removeLoadImage');
+            //    },
+            //    onErrorMessage: function (event, data) {
+            //        dm.dangerMessage('resetOnShown');
+            //        dm.dangerMessage('show', 'training Kayıt İşlemi Başarısız...',
+            //            'training kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
+            //        console.error('"trainingname" servis datası boştur!!');
+            //        $("#loading-image-truser").loadImager('removeLoadImage');
+            //    },
+            //    onError23503: function (event, data) {
+            //        dm.dangerMessage('Error23503');
+            //        $("#loading-image-truser").loadImager('removeLoadImage');
+            //    },
+            //    onError23505: function (event, data) {
+            //        dm.dangerMessage({
+            //            onShown: function (event, data) {
+            //                $('#trainingInfoForm')[0].reset();
+            //                $("#loading-image-truser").loadImager('removeLoadImage');
+            //            }
+            //        });
+            //        dm.dangerMessage('show', 'Kayıt İşlemi Başarısız...',
+            //            'Aynı isim ile training kaydı yapılmıştır, yeni bir training kaydı deneyiniz... ');
+            //        $("#loading-image-truser").loadImager('removeLoadImage');
+            //    }
+            //})
+            //ajax_InsertTrainingInfo.ajaxCallWidget('call');
+        }
+    })
+
+     /*
+    * reset button function for Training info form
+    * @returns null
+    * @since 29/08/2018
+    */
+
+    $("#btn-trInfo-clear").on("click", function (e) {
+        e.preventDefault();
+        resetTraningInfoForm();
+        return false;
+    })
+
+    var resetTraningInfoForm = function () {
         $("#loading-image-truser").loadImager('removeLoadImage');
         $("#loading-image-truser").loadImager('appendImage');
 
-        //training id alınacak
-       // var cst_id = 1;
-
-        var aj = $(window).ajaxCall({
-            proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
-            data: {
-                url: 'pkInsert_sysCustomerPurchase',
-                cst_id: cst_id,
-                pk: $("#pk").val()
-            }
-        })
-        aj.ajaxCall({
-            onError: function (event, textStatus, errorThrown) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Müşteri Kontak Kişi Ekleme İşlemi Başarısız...',
-                    'Müşteri Kontak Kişi Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
-                console.error('"pkInsert_sysCustomerInfo" servis hatası->' + textStatus);
-                $("#loading-image-truser").loadImager('removeLoadImage');
-            },
-            onSuccess: function (event, data) {
-                console.log(data);
-                
-                sm.successMessage({
-                    onShown: function (event, data) {
-                        $('#trainingInfoForm')[0].reset();
-
-                        $("#loading-image-truser").loadImager('removeLoadImage');
-
-                    }
-                });
-                sm.successMessage('show', 'Müşteri Kontak Kişi Kayıt İşlemi Başarılı...',
-                    'Müşteri Kontak Kişi kayıt işlemini gerçekleştirdiniz... ',
-                    data);
-                $("#loading-image-truser").loadImager('removeLoadImage');
-
-            },
-            onErrorDataNull: function (event, data) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Müşteri Kontak Kişi Kayıt İşlemi Başarısız...',
-                    'Müşteri Kontak Kişi kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysCustomerContactPerson" servis datası boştur!!');
-                $("#loading-image-truser").loadImager('removeLoadImage');
-            },
-            onErrorMessage: function (event, data) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Müşteri Kontak Kişi Kayıt İşlemi Başarısız...',
-                    'Müşteri Kontak Kişi kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysCustomerContactPerson" servis datası boştur!!');
-                $("#loading-image-truser").loadImager('removeLoadImage');
-            },
-            onError23503: function (event, data) {
-                dm.dangerMessage('Error23503');
-                $("#loading-image-truser").loadImager('removeLoadImage');
-            },
-            onError23505: function (event, data) {
-                dm.dangerMessage({
-                    onShown: function (event, data) {
-                        $('#trainingInfoForm')[0].reset();
-                        $("#loading-image-truser").loadImager('removeLoadImage');
-                    }
-                });
-                dm.dangerMessage('show', 'Kayıt İşlemi Başarısız...',
-                    'Aynı isim ile Müşteri Kontak Kişi kaydı yapılmıştır, yeni bir Müşteri Kontak Kişi kaydı deneyiniz... ');
-                $("#loading-image-truser").loadImager('removeLoadImage');
-            }
-        })
-        aj.ajaxCall('call');
-    }
-
-    //training info
-    window.resetTraningInfoForm = function () {
-        $("#loading-image-truser").loadImager('removeLoadImage');
-        $("#loading-image-truser").loadImager('appendImage');
-
+        $('#trainingInfoForm')[0].reset(); 
         $('#trainingInfoForm').validationEngine('hide');
 
         //$('#dropdownTrName').ddslick('select', { index: String(0) });
         $('#dropdownTrainer').ddslick('select', { index: String(0) });
         $('#dropdownCountry').ddslick('select', { index: String(0) });
-        $('#dropdownRegion').ddslick('select', { index: String(0) });
-        $('#dropdownCity').ddslick('select', { index: String(0) });
+        //$('#dropdownRegion').ddslick('select', { index: String(0) });
+        //$('#dropdownCity').ddslick('select', { index: String(0) });
 
         $("#loading-image-truser").loadImager('removeLoadImage');
         $("#training_tab").organizeTabs('activatePrevTab');
         return false;
     }
 
-    //Training info Form
+    //Fill Training info Form 
     window.fillTrainingInfoForm = function (data) {
 
         //$("#loading-image-truser").loadImager('removeLoadImage');
@@ -901,5 +1073,59 @@
 
         return false;
     }
+
+    //Training Info Delete
+    window.deleteTrInfo = function (trInfo_id) {
+        $("#loading-image-trInfoGrid").loadImager('removeLoadImage');
+        $("#loading-image-trInfoGrid").loadImager('appendImage');
+
+        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_syseducationssalesman&id=8&pk=GsZVzEYe50uGgNM
+
+        var ajax_deleteTrInfo = $('#ajaxACL-trInfoList').ajaxCallWidget({
+            proxy: '/Training/SysDeleteTrInfo',
+            data: JSON.stringify({
+                id: trInfo_id,
+                pk: "GsZVzEYe50uGgNM",
+                url: "pkDeletedAct_syseducationssalesman"
+            }),
+            type: "POST"
+
+        });
+
+        ajax_deleteTrInfo.ajaxCallWidget({
+            onError: function (event, textStatus, errorThrown) {
+
+                $(window).dangerMessage({
+                    onShown: function () {
+                        $('#loading-image-trInfoGrid').loadImager('removeLoadImage');
+                    }
+                });
+                $(window).dangerMessage('show', window.lang.translate('yyyyyyyyyyyyyyyy...'), window.lang.translate('yyyyyyyyyyyyyyyyyyyy...'));
+            },
+            onSuccess: function (event, mydata) {
+                //var data = $.parseJSON(mydata);
+
+                //grid refresh
+                //$('#branchdealerList').click();
+                $('#trListRefresh').click();
+                //$("#gridContainer_branch").dxDataGrid("instance").refresh();
+
+                $("#loading-image-trInfoGrid").loadImager('removeLoadImage');
+            },
+            onErrorDataNull: function (event, data) {
+                console.log("Error : " + event + " -data :" + data);
+                $(window).dangerMessage({
+                    onShown: function () {
+                        $('#loading-image-trInfoGrid').loadImager('removeLoadImage');
+                    }
+                });
+                $(window).dangerMessage('show', window.lang.translate('xxxxxxxxxxx'), window.lang.translate('xxxxxxxxxxxxxxxxxx...'));
+            },
+        })
+        ajax_deleteTrInfo.ajaxCallWidget('call');
+
+}
+
+
 });
 

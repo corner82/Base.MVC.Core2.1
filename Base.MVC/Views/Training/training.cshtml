@@ -66,7 +66,7 @@
                                 <div class="tab-pane active" id="tab_1">
                                     <form id='trainingIdentForm' method="get">
                                         <div class="row" id="loading-image-trInfo">
-                                            <div class="col-md-6">
+                                            <div class="col-md-6" id="ajaxACL-insertTrainingName">
                                                 <div class="form-group">
                                                     <label><span lang="en">Training name</span></label>
                                                     <div class="input-group">
@@ -85,10 +85,10 @@
                                             <!-- /.col -->
                                         </div>
                                         <div class="box-footer">
-                                            <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-clear" onclick="resetTrainingIdentForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                            <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-save" onclick="insertTrainingIdentWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                            <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-trName-clear">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                            <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-trName-save">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
                                         </div>
-                                        <div class="box box-info">
+                                        <div class="box box-info" id="ajaxACL-trNameList">
                                             <div class="box-header">
                                                 <i class="fa fa-comments-o"></i>
                                                 <h3 class="box-title"><span lang="en">Training name list</span></h3>
@@ -99,7 +99,7 @@
                                                     <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
                                                 </div>
                                             </div>
-                                            <div class="box-body" id="loading-image-trInfoGrid">
+                                            <div class="box-body" id="loading-image-trNameGrid">
                                                 <div id="gridContainer_trainingName"></div>
                                             </div>
                                         </div>
@@ -111,7 +111,7 @@
                                     <!-- Training Info form -->
                                     <form id='trainingInfoForm' method="get">
                                         <div class="row" id="loading-image-truser">
-                                            <div class="col-md-6">
+                                            <div class="col-md-6" id="ajaxACL-insertTrainingInfo">
                                                 <div class="form-group">
                                                     <label><span lang="en">Training name</span></label>
                                                     <div class="" id="ajaxACL-trName">
@@ -253,12 +253,12 @@
                                             <!-- /.col -->
                                         </div>
                                         <div class="box-footer">
-                                            <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-clear" onclick="resetTraningInfoForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                            <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-save" onclick="insertTrainingInfoWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                            <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-trInfo-clear">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                            <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-trInfo-save">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
                                         </div>
                                     </form>
                                     <!-- Devex datagrid -->
-                                    <div class="box box-info">
+                                    <div class="box box-info" id="ajaxACL-trInfoList">
                                         <div class="box-header">
                                             <i class="fa fa-comments-o"></i>
                                             <h3 class="box-title"><span lang="en">Training list info</span></h3>

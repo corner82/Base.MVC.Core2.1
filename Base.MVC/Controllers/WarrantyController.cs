@@ -11,21 +11,24 @@ using Base.Filters.Auth.Hmac;
 using Base.Filters.Log.RabbitMQ;
 using Base.Filters.Session;
 using Newtonsoft.Json;
+using Base.Core.Utills.Url;
 using Base.Core.Http.HttpRequest.Concrete;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Http.Extensions;
+using Base.MVC.Models.HttpRequest;
+using Base.MVC.Models.HttpRequest.Warranty;
 
 namespace Base.MVC.Controllers
 {
     public class WarrantyController : Controller
     {
-
         private readonly IDistributedCache _distributedCache;
-        public WarrantyController(IDistributedCache distributedCache)
+        private QueryCreater _queryCreater;
+
+        public WarrantyController(IDistributedCache distributedCache,
+                              QueryCreater queryCreater)
         {
             _distributedCache = distributedCache;
+            _queryCreater = queryCreater;
         }
         public IActionResult Index()
         {
@@ -279,7 +282,7 @@ namespace Base.MVC.Controllers
             }
             else
             {
-                throw new Exception("Model satate is not valid");
+                throw new Exception("Model state is not valid");
             }
 
         }
@@ -321,9 +324,83 @@ namespace Base.MVC.Controllers
             }
             else
             {
-                throw new Exception("Model satate is not valid");
+                throw new Exception("Model state is not valid");
             }
 
+        }
+
+        /// <summary>
+        /// add warranty name
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_syswarranties&name=dennee&vehicle_group_id=8&pk=GsZVzEYe50uGgNM
+        /// <returns></returns>
+        //[AjaxSessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> AddWarrantyName([FromBody] WarrantyName warrantyname)
+        {
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(warrantyname);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model state is not valid");
+            }
+
+        }
+
+        /// <summary>
+        /// Active/Pasive Warranty Name
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateMakeActiveOrPassive_syswarranties&id=29&pk=GsZVzEYe50uGgNM
+        /// <returns></returns>
+        //[AjaxSessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysActivePasiveWrName([FromBody] ActivePasivePostModel deleteModel)
+        {
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            string queryStr = _queryCreater.GetQueryStringFromObject(deleteModel);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
+
+        /// <summary>
+        /// Delete Warranty Name
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_sysvehiclemodelvariants&id=9&pk=GsZVzEYe50uGgNM
+        /// <returns></returns>
+        //[AjaxSessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysDeleteWrName([FromBody] DeletePostModel deleteModel)
+        {
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            string queryStr = _queryCreater.GetQueryStringFromObject(deleteModel);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
         }
 
     }
