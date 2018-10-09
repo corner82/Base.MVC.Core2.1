@@ -128,53 +128,32 @@
     $('#customerPurchaseForm').validationEngine();
     $('#customerContactPersonForm').validationEngine();
 
-
     /*
-    var cbdata_province = [
-        {
-            text: 'Please Select xxx...',
-            value: 1,
-            selected: true
-        }
-    ];
-
-    $('#dropdownProvince').ddslick({
-        //height: 150,
-        data: cbdata_province,
-        width: '100%',
-    });
-    
-    var cbdata_city = [
-        {
-            text: 'Please Select xxx...',
-            value: 1,
-            selected: true
-        }
-    ];
-
-    $('#dropdownCity').ddslick({
-        //height: 150,
-        data: cbdata_city,
-        width: '100%',
-    });
-*/
-    $('#loading-image-country').loadImager('removeLoadImage');
-    $("#loading-image-country").loadImager('appendImage');  
+    * 
+    * Country, Province, City ddSlick
+    * Gül Özdemir
+    * 09/10/2018
+    */
 
     var ajaxACLResources_country = $('#ajaxACL-country').ajaxCallWidget({
-        proxy: '/Sys/SysCountrys/',
-        type: 'POST',
-     });
-
+        failureLoadImage: true,
+        loadingImageID: "loading-image-country",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Sys/SysCountrys',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkCountryDdList_syscountrys",
+            //pkIdentity: $("#publicKey").val()
+        })
+    });
     ajaxACLResources_country.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-country').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
+        onReset: function (event, data) {
+            //resetVehicleTypeAddDealForm();
         },
         onSuccess: function (event, datacountry) {
             var cbdata_country = $.parseJSON(datacountry);
@@ -183,266 +162,125 @@
             );
 
             $('#dropdownCountry').ddslick({
-                //height: 150,
                 data: cbdata_country,
                 width: '100%',
                 search: true,
+                searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
 
                     $('#dropdownProvince').ddslick('destroy');
 
                     if (selectedData.selectedData.value > 0) {
-                        //var provinceInfo = new ProvinceInfo;
-                        //provinceInfo.country_id = selectedData.selectedData.value;
-                        var country_id = selectedData.selectedData.value;
-                        //country_id = "107";
-                        //////////////////////////////////////////////////////////
-                        //alert(country_id);
 
-                        $('#loading-image-province').loadImager('removeLoadImage');
-                        $("#loading-image-province").loadImager('appendImage');  
+                        var countryId = selectedData.selectedData.value;
 
                         var ajaxACLResources_getprovince = $('#ajaxACL-province').ajaxCallWidget({
+                            failureLoadImage: true,
+                            loadingImageID: "loading-image-province",
+                            triggerSuccessAuto: true,
+                            transactionSuccessText: window.lang.translate('Transaction successful'),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
                             proxy: '/Sys/SysCountryRegions',
-                            type: 'GET',
-                            data: {
-                                "country_id": country_id //country_id,                              
-                            },
+                            type: "POST",
+                            data: JSON.stringify({
+                                language_code: $("#langCode").val(),
+                                pk: "GsZVzEYe50uGgNM",
+                                url: "pkCountryDdList_syscountrys",
+                                country_id: countryId
+                                //pkIdentity: $("#publicKey").val()
+                            })
                         });
 
+                        //province
                         ajaxACLResources_getprovince.ajaxCallWidget({
-                            onError: function (event, textStatus, errorThrown) {
+                            onReset: function (event, data) {
 
-                                dm.dangerMessage({
-                                    onShown: function () {
-                                        $('#loading-image-province').loadImager('removeLoadImage');
-                                    }
-                                });
-                                dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
                             },
                             onSuccess: function (event, dataprovince) {
                                 var cbdata_province = $.parseJSON(dataprovince);
-
-                                //alert(cbdata_province);
+                                cbdata_province.splice(0, 0,
+                                    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                                );
 
                                 $('#dropdownProvince').ddslick({
-                                    //height: 150,
                                     data: cbdata_province,
                                     width: '100%',
                                     search: true,
+                                    searchText: window.lang.translate('Search'),
                                     onSelected: function (selectedData) {
 
                                         $('#dropdownCity').ddslick('destroy');
 
                                         if (selectedData.selectedData.value > 0) {
-                                            var province_id = selectedData.selectedData.value;
-                                            //province_id = "1";
-                                            //******************************************
 
-                                            $('#loading-image-city').loadImager('removeLoadImage');
-                                            $("#loading-image-city").loadImager('appendImage');
-
+                                            var provinceId = selectedData.selectedData.value;
+                                            //city
                                             var ajaxACLResources_getcity = $('#ajaxACL-city').ajaxCallWidget({
+                                                failureLoadImage: true,
+                                                loadingImageID: "loading-image-city",
+                                                triggerSuccessAuto: true,
+                                                transactionSuccessText: window.lang.translate('Transaction successful'),
+                                                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                                                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
                                                 proxy: '/Sys/SysCity',
-                                                type: 'GET',
-                                                data: {
-                                                    "country_id": country_id,  //country_id, 
-                                                    "region_id": province_id     //province_id 
-                                                },
+                                                type: "POST",
+                                                data: JSON.stringify({
+                                                    language_code: $("#langCode").val(),
+                                                    pk: "GsZVzEYe50uGgNM",
+                                                    url: "pkCountryDdList_syscountrys",
+                                                    country_id: countryId,
+                                                    region_id: provinceId
+                                                    //pkIdentity: $("#publicKey").val()
+                                                })
                                             });
 
-                                            ajaxACLResources_getcity.ajaxCallWidget({
-                                                onError: function (event, textStatus, errorThrown) {
 
-                                                    dm.dangerMessage({
-                                                        onShown: function () {
-                                                            $('#loading-image-city').loadImager('removeLoadImage');
-                                                        }
-                                                    });
-                                                    dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
+                                            ajaxACLResources_getcity.ajaxCallWidget({
+                                                onReset: function (event, data) {
+
                                                 },
                                                 onSuccess: function (event, datacity) {
                                                     var cbdata_city = $.parseJSON(datacity);
-           
+                                                    cbdata_city.splice(0, 0,
+                                                        { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                                                    );
+
                                                     $('#dropdownCity').ddslick({
                                                         data: cbdata_city,
                                                         width: '100%',
                                                         search: true,
-                                                        onSelected: function (selectedData) {
-                                                            if (selectedData.selectedData.value > 0) {
+                                                        searchText: window.lang.translate('Search'),
 
-
-                                                            }
-                                                        }
-                                                    });
-
-                                                    $("#loading-image-city").loadImager('removeLoadImage');
+                                                    })
                                                 },
-                                                onErrorDataNull: function (event, data) {
-                                                    console.log("Error : " + event + " -data :" + data);
-                                                    dm.dangerMessage({
-                                                        onShown: function () {
-                                                            $('#loading-image-city').loadImager('removeLoadImage');
-                                                        }
-                                                    });
-                                                    dm.dangerMessage('show', window.lang.translate('City not found...'), window.lang.translate('Bölge  bulunamamıştır...'));
-                                                },
+                                                onAfterSuccess: function (event, data) {
+                                                    $('#loading-image-city').loadImager('removeLoadImage');
+                                                }
                                             })
                                             ajaxACLResources_getcity.ajaxCallWidget('call');
-                                            //******************************************
+                                            //city bitti
                                         }
                                     }
-                                });
-
-                                $("#loading-image-province").loadImager('removeLoadImage');
+                                })
                             },
-                            onErrorDataNull: function (event, data) {
-                                console.log("Error : " + event + " -data :" + data);
-                                dm.dangerMessage({
-                                    onShown: function () {
-                                        $('#loading-image-province').loadImager('removeLoadImage');
-                                    }
-                                });
-                                dm.dangerMessage('show', window.lang.translate('Bölge bulunamamıştır...'), window.lang.translate('Bölge  bulunamamıştır...'));
-                            },
+                            onAfterSuccess: function (event, data) {
+                                $('#loading-image-province').loadImager('removeLoadImage');
+                            }
                         })
                         ajaxACLResources_getprovince.ajaxCallWidget('call');
-
-                       
-                        //////////////////////////////////////////////////////////
-
+                        //province bitti
                     }
                 }
-            });
-
-            $("#loading-image-country").loadImager('removeLoadImage');
+            })
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-country').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Ülke bulunamamıştır...'), window.lang.translate('Ülke  bulunamamıştır...'));
-        },
+        onAfterSuccess: function (event, data) {
+            $('#loading-image-country').loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_country.ajaxCallWidget('call');
 
-    var cbdata_province_ = [
-        {
-            text: 'Search...',
-            value: 1,
-            selected: true
-        },
-        {
-            text: "Western Cape",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "Northern Cape",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "North West",
-            value: 4,
-            selected: false
-        },
-        {
-            text: "Mpumalanga",
-            value: 5,
-            selected: false
-        },
-        {
-            text: "Free State",
-            value: 6,
-            selected: false
-        },
-        {
-            text: "KwaZulu - Natal",
-            value: 6,
-            selected: false
-        },
-        {
-            text: "Gauteng",
-            value: 6,
-            selected: false
-        },
-        {
-            text: "Limpopo",
-            value: 6,
-            selected: false
-        },
-    ];
-    var cbdata_city = [
-        {
-            text: 'Search...',
-            value: 1,
-            selected: true
-        },
-        {
-            text: "Bellville",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "Cape Town",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "Constantia",
-            value: 4,
-            selected: false
-        },
-        {
-            text: 'George',
-            value: 5,
-            selected: false
-        },
-        {
-            text: "Hopefield",
-            value: 6,
-            selected: false
-        },
-        {
-            text: "Oudtshoorn",
-            value: 7,
-            selected: false
-        },
-        {
-            text: "Paarl",
-            value: 8,
-            selected: false
-        },
-        {
-            text: 'Simon’s Town',
-            value: 9,
-            selected: false
-        },
-        {
-            text: "Stellenbosch",
-            value: 10,
-            selected: false
-        },
-        {
-            text: "Swellendam",
-            value: 11,
-            selected: false
-        },
-        {
-            text: "Worcester",
-            value: 12,
-            selected: false
-        },
-        {
-            text: "Vredenburg",
-            value: 13,
-            selected: false
-        }
-    ];
+
     var cbdata = [
         {
             text: 'Search...',
@@ -511,111 +349,6 @@
         }
     ];
 
-/*
-    $('#loading-image-province').loadImager('removeLoadImage');
-    $("#loading-image-province").loadImager('appendImage');
-
-    var ajaxACLResources_province = $('#ajaxACL-province').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
-    });
-
-    ajaxACLResources_province.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-province').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
-        },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-            cbdata_province.splice(0, 0,
-                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-            );
-            $('#dropdownProvince').ddslick({
-                //height: 150,
-                data: cbdata_province,
-                width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loading-image-province").loadImager('removeLoadImage');
-        },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-province').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Bölge bulunamamıştır...'), window.lang.translate('Bölge  bulunamamıştır...'));
-        },
-    })
-    ajaxACLResources_province.ajaxCallWidget('call');
-
-
-    $('#loading-image-city').loadImager('removeLoadImage');
-    $("#loading-image-city").loadImager('appendImage');  
-
-    var ajaxACLResources_city = $('#ajaxACL-city').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-    });
-
-    ajaxACLResources_city.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-city').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Activity'), 'Servis  bulunamamıştır...');
-        },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
-            $('#dropdownCity').ddslick({
-                //height: 150,
-                data: cbdata_city,
-                width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loading-image-city").loadImager('removeLoadImage');
-        },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-city').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Rol bulunamamıştır...'), 'Rol  bulunamamıştır...');
-        },
-    })
-    ajaxACLResources_city.ajaxCallWidget('call');
-*/
     $('#loading-image-reliabilityrate').loadImager('removeLoadImage');
     $("#loading-image-reliabilityrate").loadImager('appendImage');
 
@@ -785,6 +518,12 @@
     var ajaxACLResources_customergroup = $('#ajaxACL-customergroup').ajaxCallWidget({
         proxy: '/Sys/SysCountrys/',
         type: 'POST',
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkCountryDdList_syscountrys",
+            pkIdentity: $("#publicKey").val()
+        })
     });
 
     ajaxACLResources_customergroup.ajaxCallWidget({

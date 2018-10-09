@@ -142,7 +142,13 @@
 
     var ajaxACLResources_country = $('#ajaxACL-country').ajaxCallWidget({
         proxy: '/Sys/SysCountrys/',
-        type: 'POST'
+        type: 'POST',
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkCountryDdList_syscountrys",
+            pkIdentity: $("#publicKey").val()
+        }),
     });
 
     ajaxACLResources_country.ajaxCallWidget({

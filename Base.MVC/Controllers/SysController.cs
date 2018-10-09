@@ -355,18 +355,17 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> SysCountrys()
+        public async Task<string> SysCountrys([FromBody] DefaultPostModel postModel)
         {
-            //Vehicle  type for deal buybacks
             var headers = new Dictionary<string, string>();
             var tokenGenerated = HttpContext.Session.GetHmacToken();
             headers.Add("X-Hmac", tokenGenerated);
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkCountryDdList_syscountrys&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            string queryStr = _queryCreater.GetQueryStringFromObject(postModel);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
-
 
         /// <summary>
         /// get Province List (ddslick dropdown)
@@ -378,32 +377,24 @@ namespace Base.MVC.Controllers
         //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
-        [HttpGet]
-        public async Task<string> SysCountryRegions()
+        [HttpPost]
+        public async Task<string> SysCountryRegions([FromBody] ProvincePostModel postModel)
         {
-            if (ModelState.IsValid)
-            {
+           if (ModelState.IsValid)
+           {
                 var headers = new Dictionary<string, string>();
                 var tokenGenerated = HttpContext.Session.GetHmacToken();
                 headers.Add("X-Hmac", tokenGenerated);
                 headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-
-                //var pathAndQuery = Request.GetEncodedPathAndQuery();
-                //var displayURL = Request.GetDisplayUrl();
-                //string path = Request.Path.ToString();
-                string queryStr = Request.QueryString.ToString();
-
-                //var url = "http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?url=pkCountryRegionsDdList_syscountryregions&language_code=en&pk=GsZVzEYe50uGgNM&country_id=" + country_id;
-
-                var url = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php" + queryStr + "&url=pkCountryRegionsDdList_syscountryregions&language_code=en&pk=GsZVzEYe50uGgNM";
-                var response = await HttpClientRequestFactory.Get(url, headers);
+                string queryStr = _queryCreater.GetQueryStringFromObject(postModel);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
                 var data = response.Content.ReadAsStringAsync().Result;
                 return data.ToString();
             }
-            else
-            {
-                throw new Exception("Model satate is not valid");
-            }
+           else
+           {
+               throw new Exception("Model satate is not valid");
+           }
         }
 
         /// <summary>
@@ -415,8 +406,8 @@ namespace Base.MVC.Controllers
         //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
-        [HttpGet]
-        public async Task<string> SysCity()
+        [HttpPost]
+        public async Task<string> SysCity([FromBody] CityPostModel postModel)
         {
             if (ModelState.IsValid)
             {
@@ -424,196 +415,213 @@ namespace Base.MVC.Controllers
                 var tokenGenerated = HttpContext.Session.GetHmacToken();
                 headers.Add("X-Hmac", tokenGenerated);
                 headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-
-                //var pathAndQuery = Request.GetEncodedPathAndQuery();
-                //var displayURL = Request.GetDisplayUrl();
-                //string path = Request.Path.ToString();
-                string queryStr = Request.QueryString.ToString();
-
-                var url = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php" + queryStr + "&url=pkCityDdList_syscity&language_code=en&pk=GsZVzEYe50uGgNM";
-
-                var response = await HttpClientRequestFactory.Get(url, headers);
+                string queryStr = _queryCreater.GetQueryStringFromObject(postModel);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
                 var data = response.Content.ReadAsStringAsync().Result;
                 return data.ToString();
             }
             else
             {
-                throw new Exception("Model satate is not valid");
+               throw new Exception("Model satate is not valid");
             }
         }
 
-        /// <summary>
-        /// get Province List (Country Filter)
-        /// Ceydacan Seyrek
-        /// </summary>
-        /// 
-        /// <returns></returns>
-        //[SessionTimeOut]
-        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
-        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
-        [HttpPost]
-        public async Task<string> SysRegionFilter([FromHeader] string country_id)
-        {
-            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
-            if (ModelState.IsValid)
-            {
-                var headers = new Dictionary<string, string>();
-                var tokenGenerated = HttpContext.Session.GetHmacToken();
-                headers.Add("X-Hmac", tokenGenerated);
-                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-                var url = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkCountryRegionsDdList_syscountryregions&language_code=en&pk=GsZVzEYe50uGgNM&country_id=" + country_id;
-                //&country_id=107
-                var response = await HttpClientRequestFactory.Get(url, headers);
-                var data = response.Content.ReadAsStringAsync().Result;
-                return data.ToString();
-            }
-            else
-            {
-                throw new Exception("Model state is not valid");
-            }
+       /// <summary>
+       /// get Province List (Country Filter)
+       /// Ceydacan Seyrek
+       /// </summary>
+       /// 
+       /// <returns></returns>
+       //[SessionTimeOut]
+       [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+       [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+       [HttpPost]
+       public async Task<string> SysRegionFilter([FromHeader] string country_id)
+       {
+           // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
+           if (ModelState.IsValid)
+           {
+               var headers = new Dictionary<string, string>();
+               var tokenGenerated = HttpContext.Session.GetHmacToken();
+               headers.Add("X-Hmac", tokenGenerated);
+               headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+               var url = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkCountryRegionsDdList_syscountryregions&language_code=en&pk=GsZVzEYe50uGgNM&country_id=" + country_id;
+               //&country_id=107
+               var response = await HttpClientRequestFactory.Get(url, headers);
+               var data = response.Content.ReadAsStringAsync().Result;
+               return data.ToString();
+           }
+           else
+           {
+               throw new Exception("Model state is not valid");
+           }
 
-        }
+       }
 
-        /// <summary>
-        /// get City List (Province Filter)
-        /// Ceydacan Seyrek
-        /// </summary>
-        /// 
-        /// <returns></returns>
-        //[SessionTimeOut]
-        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
-        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
-        [HttpPost]
-        public async Task<string> SysCityFilter([FromHeader] string country_id, [FromHeader] string region_id)
-        {
-            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
-            if (ModelState.IsValid)
-            {
-                var headers = new Dictionary<string, string>();
-                var tokenGenerated = HttpContext.Session.GetHmacToken();
-                headers.Add("X-Hmac", tokenGenerated);
-                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-                var url = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkCityDdList_syscity&language_code=en&pk=GsZVzEYe50uGgNM&country_id=" + country_id + "&region_id=" + region_id;
-                //&country_id=107&region_id=1
-                var response = await HttpClientRequestFactory.Get(url, headers);
-                var data = response.Content.ReadAsStringAsync().Result;
-                return data.ToString();
-            }
-            else
-            {
-                throw new Exception("Model state is not valid");
-            }
+       /// <summary>
+       /// get City List (Province Filter)
+       /// Ceydacan Seyrek
+       /// </summary>
+       /// 
+       /// <returns></returns>
+       //[SessionTimeOut]
+       [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+       [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+       [HttpPost]
+       public async Task<string> SysCityFilter([FromHeader] string country_id, [FromHeader] string region_id)
+       {
+           // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
+           if (ModelState.IsValid)
+           {
+               var headers = new Dictionary<string, string>();
+               var tokenGenerated = HttpContext.Session.GetHmacToken();
+               headers.Add("X-Hmac", tokenGenerated);
+               headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+               var url = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkCityDdList_syscity&language_code=en&pk=GsZVzEYe50uGgNM&country_id=" + country_id + "&region_id=" + region_id;
+               //&country_id=107&region_id=1
+               var response = await HttpClientRequestFactory.Get(url, headers);
+               var data = response.Content.ReadAsStringAsync().Result;
+               return data.ToString();
+           }
+           else
+           {
+               throw new Exception("Model state is not valid");
+           }
 
-        }
+       }
 
-        /// <summary>
-        /// insert Body form
-        /// Gül Özdemir
-        /// </summary>
-        /// 
-        /// <returns></returns>
-        //[SessionTimeOut]
-        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
-        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
-        [HttpGet]
-        public async Task<string> SysInsertBody()
-        {
-            if (ModelState.IsValid)
-            {
-                var headers = new Dictionary<string, string>();
-                var tokenGenerated = HttpContext.Session.GetHmacToken();
-                headers.Add("X-Hmac", tokenGenerated);
-                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+       /// <summary>
+       /// insert Body form
+       /// Gül Özdemir
+       /// </summary>
+       /// 
+       /// <returns></returns>
+       //[SessionTimeOut]
+       [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+       [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+       [HttpGet]
+       public async Task<string> SysInsertBody()
+       {
+           if (ModelState.IsValid)
+           {
+               var headers = new Dictionary<string, string>();
+               var tokenGenerated = HttpContext.Session.GetHmacToken();
+               headers.Add("X-Hmac", tokenGenerated);
+               headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
 
-                var encodedURL = Request.GetEncodedUrl();
-                var pathAndQuery = Request.GetEncodedPathAndQuery();
-                var displayURL = Request.GetDisplayUrl();
-                string path = Request.Path.ToString();
-                string queryStr = Request.QueryString.ToString();
+               var encodedURL = Request.GetEncodedUrl();
+               var pathAndQuery = Request.GetEncodedPathAndQuery();
+               var displayURL = Request.GetDisplayUrl();
+               string path = Request.Path.ToString();
+               string queryStr = Request.QueryString.ToString();
 
-                // http://proxy.mansis.co.za:18443/SlimProxyBoot.php?
-                // http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_sysaccbodydeff&language_code=en&name=denemeee&acc_body_type_id=1&pk=GsZVzEYe50uGgNM
-                //_hmacManager.test();
-                //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
-                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php" + queryStr, headers);
-                var data = response.Content.ReadAsStringAsync().Result;
-                return data.ToString();
-            }
-            else
-            {
-                throw new Exception("Model satate is not valid");
-            }
+               // http://proxy.mansis.co.za:18443/SlimProxyBoot.php?
+               // http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_sysaccbodydeff&language_code=en&name=denemeee&acc_body_type_id=1&pk=GsZVzEYe50uGgNM
+               //_hmacManager.test();
+               //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
+               var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php" + queryStr, headers);
+               var data = response.Content.ReadAsStringAsync().Result;
+               return data.ToString();
+           }
+           else
+           {
+               throw new Exception("Model satate is not valid");
+           }
 
-        }
+       }
 
-        /// <summary>
-        /// get body List
-        /// Gül Özdemir
-        /// </summary>
-        /// 
-        /// <returns></returns>
-        //[SessionTimeOut]
-        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
-        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
-        [HttpPost]
-        public async Task<string> SysBodyGridList()
-        {
-            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
-            var headers = new Dictionary<string, string>();
-            var tokenGenerated = HttpContext.Session.GetHmacToken();
-            headers.Add("X-Hmac", tokenGenerated);
-            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            var url = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillAccBodyDeffGridx_sysaccbodydeff&id=1&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM";
-            var response = await HttpClientRequestFactory.Get(url, headers);
-            var data = response.Content.ReadAsStringAsync().Result;
-            return data.ToString();
-        }
+       /// <summary>
+       /// get body List
+       /// Gül Özdemir
+       /// </summary>
+       /// 
+       /// <returns></returns>
+       //[SessionTimeOut]
+       [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+       [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+       [HttpPost]
+       public async Task<string> SysBodyGridList()
+       {
+           // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
+           var headers = new Dictionary<string, string>();
+           var tokenGenerated = HttpContext.Session.GetHmacToken();
+           headers.Add("X-Hmac", tokenGenerated);
+           headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+           var url = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillAccBodyDeffGridx_sysaccbodydeff&id=1&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM";
+           var response = await HttpClientRequestFactory.Get(url, headers);
+           var data = response.Content.ReadAsStringAsync().Result;
+           return data.ToString();
+       }
 
-        /// <summary>
-        /// get Yes/No List
-        /// Ceydacan Seyrek
-        /// </summary>
-        /// 
-        /// <returns></returns>
-        //[SessionTimeOut]
-        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
-        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
-        [HttpPost]
-        public async Task<string> SysYesNo()
-        {
-            var headers = new Dictionary<string, string>();
-            var tokenGenerated = HttpContext.Session.GetHmacToken();
-            headers.Add("X-Hmac", tokenGenerated);
-            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            var url = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=fillYesNoTypes_sysSpecificDefinitions&language_code=en&pk=GsZVzEYe50uGgNM";
-            var response = await HttpClientRequestFactory.Get(url, headers);
-            var data = response.Content.ReadAsStringAsync().Result;
-            return data.ToString();
+       /// <summary>
+       /// get Yes/No List
+       /// Ceydacan Seyrek
+       /// </summary>
+       /// 
+       /// <returns></returns>
+       //[SessionTimeOut]
+       [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+       [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+       [HttpPost]
+       public async Task<string> SysYesNo()
+       {
+           var headers = new Dictionary<string, string>();
+           var tokenGenerated = HttpContext.Session.GetHmacToken();
+           headers.Add("X-Hmac", tokenGenerated);
+           headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+           var url = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=fillYesNoTypes_sysSpecificDefinitions&language_code=en&pk=GsZVzEYe50uGgNM";
+           var response = await HttpClientRequestFactory.Get(url, headers);
+           var data = response.Content.ReadAsStringAsync().Result;
+           return data.ToString();
 
-        }
+       }
 
-        /// <summary>
-        /// get Branch/Dealer List
-        /// Gül Özdemir
-        /// </summary>
-        /// 
-        /// <returns></returns>
-        //[SessionTimeOut]
-        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
-        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
-        [HttpPost]
-        public async Task<string> SysBranchDealerGridList()
-        {
-            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
-            var headers = new Dictionary<string, string>();
-            var tokenGenerated = HttpContext.Session.GetHmacToken();
-            headers.Add("X-Hmac", tokenGenerated);
-            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            var url = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillBranchesDealersDeffGridx_sysbranchesdealersdeff&page=&rows=&sort=&order=&language_code=en&project_id=1&pk=GsZVzEYe50uGgNM";
-            var response = await HttpClientRequestFactory.Get(url, headers);
-            var data = response.Content.ReadAsStringAsync().Result;
-            return data.ToString();
-        }
+       /// <summary>
+       /// get Branch/Dealer List
+       /// Gül Özdemir
+       /// </summary>
+       /// 
+       /// <returns></returns>
+       //[SessionTimeOut]
+       [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+       [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+       [HttpPost]
+       public async Task<string> SysBranchDealerGridList([FromBody] DefaultPostModelGridList gridModel)
+       {
+           if (ModelState.IsValid)
+           {
+               var headers = new Dictionary<string, string>();
+               var tokenGenerated = HttpContext.Session.GetHmacToken();
+               headers.Add("X-Hmac", tokenGenerated);
+               headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+               string queryStr = _queryCreater.GetQueryStringFromObject(gridModel);
+               var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+               var data = response.Content.ReadAsStringAsync().Result;
+               return data.ToString();
+           }
+           else
+           {
+               throw new Exception("Model satate is not valid");
+           }
+
+       }
+       /*
+       [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+       [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+       [HttpPost]
+       public async Task<string> SysBranchDealerGridList()
+       {
+           // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
+           var headers = new Dictionary<string, string>();
+           var tokenGenerated = HttpContext.Session.GetHmacToken();
+           headers.Add("X-Hmac", tokenGenerated);
+           headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+           var url = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillBranchesDealersDeffGridx_sysbranchesdealersdeff&page=&rows=&sort=&order=&language_code=en&project_id=1&pk=GsZVzEYe50uGgNM";
+           var response = await HttpClientRequestFactory.Get(url, headers);
+           var data = response.Content.ReadAsStringAsync().Result;
+           return data.ToString();
+       }
+       */
 
         /// <summary>
         /// get Branch/Dealer Man Office tree List
