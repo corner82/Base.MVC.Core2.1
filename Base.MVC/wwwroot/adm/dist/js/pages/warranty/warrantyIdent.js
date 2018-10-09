@@ -483,6 +483,15 @@ $(document).ready(function () {
             showPageSizeSelector: true,
             visible: true
         },
+        OnCellPrepared: function (options) {
+
+            var fieldData = options.value;
+            fieldHtml = "";
+
+            fieldHtml = fieldData.value;
+            options.cellElement.html(fieldHtml);
+
+        },
         paging: {
             pageSize: 8
         },
@@ -504,10 +513,37 @@ $(document).ready(function () {
         },
         columns: [{
             caption: window.lang.translate('Vehicle model name') + "...",
-            dataField: "vehicle_group_name"//"StoreCity"
+            encodeHtml: false,
+            dataField: "vehicle_group_name"
         }, {
             caption: window.lang.translate('Warranty name') + "...",
-            dataField: "name"//"StoreState"
+            encodeHtml: false,
+            dataField: "name"
+        }, {
+            caption: window.lang.translate('Active/Pasive'),
+            width: 40,
+            alignment: 'center',
+            encodeHtml: false,
+
+            cellTemplate: function (container, options) {
+                var fieldHtml;
+                var wrName_id = options.data.id;
+
+                if (options.data.active === 1) {
+                    //active
+                    $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
+                        activepasiveWrName(wrName_id);
+                        dm.successMessage('show', window.lang.translate('Active success message...'), window.lang.translate('Active success message...'));
+                    }).appendTo(container);
+                } else if (options.data.active === 0) {
+                    //pasive
+                    $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
+                        activepasiveWrName(wrName_id);
+                        dm.successMessage('show', window.lang.translate('Pasive success message...'), window.lang.translate('Pasive success message...'));
+                    }).appendTo(container);
+                }
+            }
+            //dataField: "active"
         }],
 
         onSelectionChanged: function(selectedItems) {
@@ -515,7 +551,17 @@ $(document).ready(function () {
             if (data) {
                 fillwarrantyNameForm(data);
             }
-        }
+        },
+        onRowRemoving: function (e) {
+            //e.cancel = true;
+            //Confirmasyon ile silme düzenlenecek...
+            var wrInfo_id = e.key.id;
+            deleteWrInfo(wrInfo_id);
+
+        },
+        onRowRemoved: function (e) {
+
+        },
     });
     });
 
@@ -590,6 +636,15 @@ $(document).ready(function () {
             showPageSizeSelector: true,
             visible: true
         },
+        OnCellPrepared: function (options) {
+
+            var fieldData = options.value;
+            fieldHtml = "";
+
+            fieldHtml = fieldData.value;
+            options.cellElement.html(fieldHtml);
+
+        },
         paging: {
             pageSize: 8
         },
@@ -649,15 +704,24 @@ $(document).ready(function () {
     $('#wrNameListRefresh').click();
     $('#warrantyListRefresh').click();
 
+/////////////////////////Warranty Info//////////////////////////////
 
-    function logEvent(eventName) {
-        var logList = $("#events ul"),
-            newItem = $("<li>", { text: eventName });
+/**
+* insert warranty Wrapper
+* @returns {Boolean}
+* @author Ceydacan Seyrek
+* @since 14/08/2018
+*/
 
-        logList.prepend(newItem);
+    window.insertwarrantyWrapper = function (e) {
+        e.preventDefault();
+
+        if ($("#warrantyForm").validationEngine('validate')) {
+
+            insertwarranty();
+        }
+        return false;
     }
-
-
     /**
  * insertwarranty
  * @returns {undefined}
@@ -738,103 +802,13 @@ $(document).ready(function () {
         aj.ajaxCall('call');
     }
 
- /**
- * insertwarrantyName
- * @returns {undefined}
- * @author Ceydacan Seyrek
- * @since 14/08/2018
- */
 
-    window.insertwarrantyName = function () {
-
-        alert("geldim 3");
-
-        $("#loading-image-warrantyName").loadImager('removeLoadImage');
-        $("#loading-image-warrantyName").loadImager('appendImage');
-
-        var ddData = $('#dropdownModelName').data('ddslick');
-        vehicle_group_id = ddData.selectedData.value;
-
-        var warrantyName = $('#txt-model-name').val();
-
-        var ajax_InsertWarrantyName = $(ajax_FormWr).ajaxCallWidget({
-            proxy: '/Warranty/InsertActSysWarranties',
-            type: 'GET',
-            data: {
-                //url=pkInsertAct_syswarranties&name=dennee &vehicle_group_id=8 &pk=GsZVzEYe50uGgNM
-                url: "pkInsertAct_syswarranties",
-                name: "ceyda", //warrantyName,
-                vehicle_group_id: "8",//vehicle_group_id,
-                pk: "GsZVzEYe50uGgNM"
-            },
-        });
-
-
-        ajax_InsertWarrantyName.ajaxCall({
-            onError: function (event, textStatus, errorThrown) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Garanti Ekleme Ýþlemi Baþarýsýz...',
-                    'Garanti Ekleme Ýþlemi Baþarýsýz..., sistem yöneticisi ile temasa geçiniz... ')
-                console.error('"pkInsert_sysCustomerInfo" servis hatasý->' + textStatus);
-                $("#loading-image-warrantyName").loadImager('removeLoadImage');
-            },
-            onSuccess: function (event, data) {
-                console.log(data);
-                var data = data;
-                sm.successMessage({
-                    onShown: function (event, data) {
-                        $('#warrantyNameForm')[0].reset();
-
-                        $("#loading-image-warrantyName").loadImager('removeLoadImage');
-
-                    }
-                });
-                sm.successMessage('show', 'Garanti Kayýt Ýþlemi Baþarýlý...',
-                    'Garanti kayýt iþlemini gerçekleþtirdiniz... ',
-                    data);
-                $("#loading-image-warrantyName").loadImager('removeLoadImage');
-
-            },
-            onErrorDataNull: function (event, data) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Garanti Kayýt Ýþlemi Baþarýsýz...',
-                    'Garanti kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysCustomerContactPerson" servis datasý boþtur!!');
-                $("#loading-image-warrantyName").loadImager('removeLoadImage');
-            },
-            onErrorMessage: function (event, data) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Garanti Kayýt Ýþlemi Baþarýsýz...',
-                    'Garanti kayýt iþlemi baþarýsýz, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysCustomerContactPerson" servis datasý boþtur!!');
-                $("#loading-image-warrantyName").loadImager('removeLoadImage');
-            },
-            onError23503: function (event, data) {
-                dm.dangerMessage('Error23503');
-                $("#loading-image-warrantyName").loadImager('removeLoadImage');
-            },
-            onError23505: function (event, data) {
-                dm.dangerMessage({
-                    onShown: function (event, data) {
-                        $('#warrantyNameForm')[0].reset();
-                        $("#loading-image-warrantyName").loadImager('removeLoadImage');
-                    }
-                });
-                dm.dangerMessage('show', 'Kayýt Ýþlemi Baþarýsýz...',
-                    'Ayný isim ile Garanti kaydý yapýlmýþtýr, yeni bir Garanti kaydý deneyiniz... ');
-                $("#loading-image-warrantyName").loadImager('removeLoadImage');
-            }
-        })
-        ajax_InsertWarrantyName.ajaxCall('call');
-    }
-
-
-    /**
-    * reset model Form
-    * @returns {undefined}
-    * @author Ceydacan Seyrek
-    * @since 14/08/2018
-    */
+/**
+* reset model Form
+* @returns {undefined}
+* @author Ceydacan Seyrek
+* @since 14/08/2018
+*/
 
     window.resetwarrantyForm = function (data) {
         $("#loading-image-warranty").loadImager('removeLoadImage');
@@ -855,31 +829,12 @@ $(document).ready(function () {
         return false;
     }
 
-
-    /**
-    * insert warranty Wrapper
-    * @returns {Boolean}
-    * @author Ceydacan Seyrek
-    * @since 14/08/2018
-    */
-
-    window.insertwarrantyWrapper = function (e) {
-        e.preventDefault();
-
-        if ($("#warrantyForm").validationEngine('validate')) {
-
-            insertwarranty();
-        }
-        return false;
-    }
-
-
-    /**
-    * Fill model form
-    * @returns {Boolean}
-    * @author Ceydacan Seyrek
-    * @since 14/08/2018
-    */
+/**
+* Fill model form
+* @returns {Boolean}
+* @author Ceydacan Seyrek
+* @since 14/08/2018
+*/
 
     window.fillwarrantyForm = function (data) {
         $("#loading-image-warranty").loadImager('removeLoadImage');
@@ -925,58 +880,61 @@ $(document).ready(function () {
         return false;
     }
 
+
+/////////////////////////Warranty Name//////////////////////////////
     /**
-  * reset model Form
-  * @returns {undefined}
-  * @author Ceydacan Seyrek
-  * @since 14/08/2018
-  */
-
-    window.resetwarrantyNameForm = function () {
-        $("#loading-image-warrantyName").loadImager('removeLoadImage');
-        $("#loading-image-warrantyName").loadImager('appendImage');
-
-        $('#warrantyNameForm').validationEngine('hide');
-        //$('#dropdownModelName').ddslick('select', { index: String(0) });
-
-        $("#loading-image-warrantyName").loadImager('removeLoadImage');
-
-        //tab_disable();
-        return false;
-    }
-
-
-    /**
-    * insert warranty name Wrapper
-    * @returns {Boolean}
-    * @author Ceydacan Seyrek
-    * @since 14/08/2018
-    */
-
-
-    window.insertwarrantyNameWrapper = function (e) {
-        alert("geldim 1");
-        insertwarrantyName();
-        alert("bitti");
+   * insert traning name
+   * @returns {undefined}
+   * @since 29/08/2018
+   */
+    $("#btn-warrantyName-save").on("click", function (e) {
         e.preventDefault();
-
-        console.log("geldim 1")
-
+        //alert("geldim click");
         if ($("#warrantyNameForm").validationEngine('validate')) {
-            alert("geldim 2");
-            console.log("geldim 2")
-            insertwarrantyName();
+            //window.insertwarrantyName = function () {
+
+            $("#loading-image-warrantyName").loadImager('removeLoadImage');
+            $("#loading-image-warrantyName").loadImager('appendImage');
+
+            var ddData = $('#dropdownModelName').data('ddslick');
+            var vehicle_group_id = ddData.selectedData.value;
+
+            var warrantyName = $('#txt-wrName-name').val();
+
+            // http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_syswarranties&name=dennee&vehicle_group_id=8&pk=GsZVzEYe50uGgNM
+            var ajax_InsertWarrantyName = $('#ajaxACL-insertwarrantyName').ajaxCallWidget({
+                failureLoadImage: true,
+                loadingImageID: "loading-image-warrantyName",
+                triggerSuccessAuto: true,
+                transactionSuccessText: window.lang.translate('Transaction successful'),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+
+                proxy: '/Warranty/AddWarrantyName',
+                type: 'POST',
+                data: JSON.stringify({
+                    url: "pkInsertAct_syswarranties",
+                    name: warrantyName,
+                    vehicle_group_id: vehicle_group_id,
+                    pk: "GsZVzEYe50uGgNM"
+                })
+            });
+            ajax_InsertWarrantyName.ajaxCallWidget({
+                onReset: function (event, data) {
+                    resetwarrantyNameForm();
+                },
+            })
+            ajax_InsertWarrantyName.ajaxCallWidget('call');
+            return false;
         }
-        return false;
-    }
+    })
 
-
-    /**
-    * Fill model form
-    * @returns {Boolean}
-    * @author Ceydacan Seyrek
-    * @since 14/08/2018
-    */
+/**
+* Fill model form
+* @returns {Boolean}
+* @author Ceydacan Seyrek
+* @since 14/08/2018
+*/
 
     window.fillwarrantyNameForm = function (data) {
         $("#loading-image-warrantyName").loadImager('removeLoadImage');
@@ -998,6 +956,139 @@ $(document).ready(function () {
         $("#warranty_tab").organizeTabs('enableAllTabs');
         //tab_active();
         return false;
+    }
+
+/**
+* reset model Form
+* @returns {undefined}
+* @author Ceydacan Seyrek
+* @since 14/08/2018
+*/
+    $("#btn-warrantyName-clear").on("click", function (e) {
+        e.preventDefault();
+        resetwarrantyNameForm();
+        return false;
+    })
+
+    var resetwarrantyNameForm = function () {
+        $("#loading-image-warrantyName").loadImager('removeLoadImage');
+        $("#loading-image-warrantyName").loadImager('appendImage');
+
+        $('#warrantyNameForm')[0].reset();
+        $('#warrantyNameForm').validationEngine('hide');
+        $('#dropdownModelName').ddslick('select', { index: String(0) });
+
+        $("#loading-image-warrantyName").loadImager('removeLoadImage');
+
+        //tab_disable();
+        return false;
+    }
+
+//ActivePasive Warranty Name
+
+    window.activepasiveWrName = function (wrName_id) {
+        $("#loading-image-warrantyNameGrid").loadImager('removeLoadImage');
+        $("#loading-image-warrantyNameGrid").loadImager('appendImage');
+
+        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateMakeActiveOrPassive_syswarranties&id=29&pk=GsZVzEYe50uGgNM
+
+        var ajax_activepasiveWrNamelist = $('#ajaxACL-wrNameList').ajaxCallWidget({
+            proxy: '/Warranty/SysActivePasiveWrName',
+            data: JSON.stringify({
+                id: wrName_id,
+                pk: "GsZVzEYe50uGgNM",
+                url: "pkUpdateMakeActiveOrPassive_syswarranties"
+            }),
+            type: "POST"
+
+        });
+
+        ajax_activepasiveWrNamelist.ajaxCallWidget({
+            onError: function (event, textStatus, errorThrown) {
+
+                $(window).dangerMessage({
+                    onShown: function () {
+                        $('#loading-image-warrantyNameGrid').loadImager('removeLoadImage');
+                    }
+                });
+                $(window).dangerMessage('show', window.lang.translate('yyyyyyyyyyyyyyyy...'), window.lang.translate('yyyyyyyyyyyyyyyyyyyy...'));
+            },
+            onSuccess: function (event, mydata) {
+                //var data = $.parseJSON(mydata);
+
+                //grid refresh
+                $('#wrNameListRefresh').click();
+                //$('#branchdealerList').click();
+                //$("#gridContainer_trainingName").dxDataGrid("instance").refresh();
+
+                //$("#loading-image-trNameGrid").loadImager('removeLoadImage');
+                //$(window).successMessage('show', window.lang.translate('Active/Pasive Ok.'), window.lang.translate('Active/Pasive Ok.'));
+
+            },
+            onErrorDataNull: function (event, data) {
+                console.log("Error : " + event + " -data :" + data);
+                $(window).dangerMessage({
+                    onShown: function () {
+                        $('#loading-image-warrantyNameGrid').loadImager('removeLoadImage');
+                    }
+                });
+                $(window).dangerMessage('show', window.lang.translate('xxxxxxxxxxx'), window.lang.translate('xxxxxxxxxxxxxxxxxx...'));
+            },
+        })
+        ajax_activepasiveWrNamelist.ajaxCallWidget('call');
+    }
+
+
+//Warranty Name Delete
+    window.deleteWrInfo = function (wrInfo_id) {
+        $("#loading-image-warrantyNameGrid").loadImager('removeLoadImage');
+        $("#loading-image-warrantyNameGrid").loadImager('appendImage');
+
+        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_syswarranties&id=9&pk=GsZVzEYe50uGgNM
+
+        var ajax_deleteWrInfo = $('#ajaxACL-wrNameList').ajaxCallWidget({
+            proxy: '/Warranty/SysDeleteWrName',
+            data: JSON.stringify({
+                id: wrInfo_id,
+                pk: "GsZVzEYe50uGgNM",
+                url: "pkDeletedAct_syswarranties"
+            }),
+            type: "POST"
+
+        });
+
+        ajax_deleteWrInfo.ajaxCallWidget({
+            onError: function (event, textStatus, errorThrown) {
+
+                $(window).dangerMessage({
+                    onShown: function () {
+                        $('#loading-image-warrantyNameGrid').loadImager('removeLoadImage');
+                    }
+                });
+                $(window).dangerMessage('show', window.lang.translate('yyyyyyyyyyyyyyyy...'), window.lang.translate('yyyyyyyyyyyyyyyyyyyy...'));
+            },
+            onSuccess: function (event, mydata) {
+                //var data = $.parseJSON(mydata);
+
+                //grid refresh
+                //$('#branchdealerList').click();
+                $('#trListRefresh').click();
+                //$("#gridContainer_branch").dxDataGrid("instance").refresh();
+
+                $("#loading-image-warrantyNameGrid").loadImager('removeLoadImage');
+            },
+            onErrorDataNull: function (event, data) {
+                console.log("Error : " + event + " -data :" + data);
+                $(window).dangerMessage({
+                    onShown: function () {
+                        $('#loading-image-warrantyNameGrid').loadImager('removeLoadImage');
+                    }
+                });
+                $(window).dangerMessage('show', window.lang.translate('xxxxxxxxxxx'), window.lang.translate('xxxxxxxxxxxxxxxxxx...'));
+            },
+        })
+        ajax_deleteWrInfo.ajaxCallWidget('call');
+
     }
 });
 
