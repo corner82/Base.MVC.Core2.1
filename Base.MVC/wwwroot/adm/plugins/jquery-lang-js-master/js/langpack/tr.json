@@ -1,5 +1,6 @@
 {
   "token": {
+    "Use the context menu of header columns to group data": "Verileri gruplmak için kolonlar menüsünü kullanınız",
     "No data returned from service": "Servis veri bulamamıştır, veri güncelliğini kontrol ediniz",
     "Transaction successful": "Kayıt işlemi  başarılı",
     "Unsuccessful transaction": "Kayıt işlemi  başarısız",
