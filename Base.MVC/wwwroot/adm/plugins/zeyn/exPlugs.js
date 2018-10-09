@@ -1711,8 +1711,8 @@
                                 text: self.options.transactionSuccessText,
                                 imageLoadingID: self.options.loadingImageID
                             });
-                            self._trigger('onReset', event, jsonString);
                             self._trigger('onAfterSuccess', event, jsonString);
+                            self._trigger('onReset', event, jsonString);
                         } else if (data.errorInfo == 99999) {
                             self._trigger('onError99999', event, {
                                 text: self.options.dataModelCorruptFailureText,

@@ -202,8 +202,12 @@
 
     //tradeBack tab form elements end
 
-    /* devexgrid */
-    var deals = new DevExpress.data.CustomStore({
+    /* 
+     * deal grid data source
+     * @author Mustafa Zeynel dağlı
+     * @since 09/10/2018
+     * */
+    var deals_grid_datasource = new DevExpress.data.CustomStore({
         load: function (loadOptions) {
             var deferred = $.Deferred(),
                 args = {};
@@ -217,60 +221,35 @@
             args.skip = loadOptions.skip || 0;
             args.take = loadOptions.take || 12;
 
-
-            var ajax_DdslickRealizationRate = $('#gridContainer_vehicle').ajaxCallWidget({
-                proxy: 'https://js.devexpress.com/Demos/WidgetsGallery/data/orderItems',
-                data: args,
-                type: "POST"
-
-            });
-            ajax_DdslickRealizationRate.ajaxCallWidget({
-                onError: function (event, textStatus, errorThrown) {
-
-                    $(window).dangerMessage({
-                        onShown: function () {
-                            //$('#loadingImage_DdslickRealizationRate').loadImager('removeLoadImage');
-                        }
-                    });
-                    $(window).dangerMessage('show', window.lang.translate('Realization Rate data not found...'), window.lang.translate('Realization Rate data not found...'));
-                },
-                onSuccess: function (event, data) {
-                    //var data = $.parseJSON(data);
-                    return data;
-                   
-
-                    //$("#loadingImage_DdslickRealizationRate").loadImager('removeLoadImage');
-                },
-                onErrorDataNull: function (event, data) {
-                    console.log("Error : " + event + " -data :" + data);
-                    $(window).dangerMessage({
-                        onShown: function () {
-                            //$('#loadingImage_DdslickRealizationRate').loadImager('removeLoadImage');
-                        }
-                    });
-                    $(window).dangerMessage('show', window.lang.translate('Realization Rate data not found...'), window.lang.translate('Realization Rate data not found...'));
-                },
-            })
-            ajax_DdslickRealizationRate.ajaxCallWidget('call');
-
-
-
-            /*$.ajax({
-                url: "https://js.devexpress.com/Demos/WidgetsGallery/data/orderItems",
+            $.ajax({
+                url: '/Deal/GetDealListProxyService',
                 dataType: "json",
-                data: args,
+                data: JSON.stringify({
+                    language_code: $("#langCode").val(),
+                    pk: "GsZVzEYe50uGgNM",
+                    url: "pkFillProjectGridx_infoproject",
+                    pkIdentity: $("#publicKey").val(),
+                    //project_id: dealID,
+                    page: "",
+                    rows: "",
+                    sort: "",
+                    order: "",
+                }),
+                type: 'POST',
+                contentType: 'application/json',
                 success: function (result) {
                     deferred.resolve(result.items, { totalCount: result.totalCount });
                 },
                 error: function () {
                     deferred.reject("Data Loading Error");
                 },
-                timeout: 5000
+                timeout: 10000
             });
 
-            return deferred.promise();*/
+            return deferred.promise();
         }
     });
+
 
     // deal list grid
     var dealGridDataSource = {
@@ -290,14 +269,20 @@
             { "OrderNumber": 38775, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Harv Mudd", "OrderDate": "2013/12/15" }]
         }
     };
-    //DevExpress.localization.locale("en");
+
+     /* 
+     * deal grid 
+     * @author Mustafa Zeynel dağlı
+     * @since 09/10/2018
+     * */
+    DevExpress.localization.locale($("#langCode").val());
     $("#gridContainer_vehicle").dxDataGrid({
         showColumnLines: true,
         showRowLines: true,
         rowAlternationEnabled: true,
         showBorders: true,
-        // dataSource: orders,
-        dataSource: dealGridDataSource,
+        //dataSource: dealGridDataSource,
+        dataSource: deals_grid_datasource,
         columnHidingEnabled: true,
         editing: {
             //mode: "batch"
@@ -316,7 +301,7 @@
             expandMode: "rowClick"
         },
         groupPanel: {
-            emptyPanelText: "Use the context menu of header columns to group data",
+            emptyPanelText: window.lang.translate("Use the context menu of header columns to group data"),
             visible: true
         },
         pager: {
@@ -336,7 +321,7 @@
         searchPanel: {
             visible: true,
             width: 240,
-            placeholder: "Search..."
+            placeholder: window.lang.translate("Search")
         },
         headerFilter: {
             visible: true
@@ -347,13 +332,13 @@
         },
         columns: [{
             allowGrouping: false,
-            dataField: "OrderNumber",
+            dataField: "discount_rate",
             caption: "Invoice Number",
             width: 130
         }, {
             caption: "City",
-            dataField: "StoreCity"
-        }, {
+            dataField: "date_saved"
+        }, /*{
             caption: "Salesman",
             dataField: "Salesman"
         },
@@ -364,7 +349,8 @@
         }, {
             dataField: "Customer",
 
-        }],
+            }*/
+        ],
         customizeColumns: function (columns) {
             //columns[5].format = { type: "currency", currency: "EUR" };
         },
