@@ -1,29 +1,29 @@
-﻿$(document).ready(function () {
+﻿$$(document).ready(function () {
 
-    
+
 
     var dealID;
 
-   /* $.ajax({
-        url: '/Home/IndexGet',
-        type: 'POST',
-        data: JSON.stringify({
-            //missing brackets
-                Address1: '423 Judy Road',
-                Address2: '1001',
-                City: 'New York',
-                State: 'NY',
-                ZipCode: '10301',
-                Country: "USA"
-        }),
-        contentType: 'application/json; charset=utf-8',
-        success: function (data) {
-            alert(data.success);
-        },
-        error: function () {
-            alert("error");
-        }
-    });*/
+    /* $.ajax({
+         url: '/Home/IndexGet',
+         type: 'POST',
+         data: JSON.stringify({
+             //missing brackets
+                 Address1: '423 Judy Road',
+                 Address2: '1001',
+                 City: 'New York',
+                 State: 'NY',
+                 ZipCode: '10301',
+                 Country: "USA"
+         }),
+         contentType: 'application/json; charset=utf-8',
+         success: function (data) {
+             alert(data.success);
+         },
+         error: function () {
+             alert("error");
+         }
+     });*/
 
     var ajax_PostObjectTypeParameter = $(window).ajaxCallWidget({
         proxy: '/Home/IndexPostObjectParameter',
@@ -76,7 +76,7 @@
     });
     ajax_GetObjectTypeParameter.ajaxCallWidget('call');
 
-    
+
 
 
     var sm = $(window).successMessage();
@@ -90,24 +90,24 @@
     //offline loading-image
     //$("#offlineWrapperImager").loadImager();
     // offline up event handler
-   /* Offline.on("up", function () {
-        $("#offlineWrapperImager").loadImager('removeLoadImage');
-    });*/
+    /* Offline.on("up", function () {
+         $("#offlineWrapperImager").loadImager('removeLoadImage');
+     });*/
     // offline down event handler
     /*Offline.on("down", function () {
         $("#offlineWrapperImager").loadImager('appendImage');
     });*/
 
-   // $.getScript({ url: "loadingImages.js", cache: true });
-    
-  //Make the dashboard widgets sortable Using jquery UI
-  $(".connectedSortable").sortable({
-    placeholder: "sort-highlight",
-    connectWith: ".connectedSortable",
-    handle: ".box-header, .nav-tabs",
-    forcePlaceholderSize: true,
-    zIndex: 999999
-  });
+    // $.getScript({ url: "loadingImages.js", cache: true });
+
+    //Make the dashboard widgets sortable Using jquery UI
+    $(".connectedSortable").sortable({
+        placeholder: "sort-highlight",
+        connectWith: ".connectedSortable",
+        handle: ".box-header, .nav-tabs",
+        forcePlaceholderSize: true,
+        zIndex: 999999
+    });
     $(".connectedSortable .box-header, .connectedSortable .nav-tabs-custom").css("cursor", "move");
 
     $(document).click(function (event) {
@@ -129,7 +129,7 @@
             socket.emit('send message', 'click message');
             //$messageBox.val('');
         })*/
-        var msg = '{ "UserName" : "' + localStorage.getItem('userName') + '","Host" : "localhost:3000","Action": "' + $("#requestUriRegulated").val() + '","Controller":"' + $("#requestUriRegulated").val() + '","Port":"3000","UserAgent":"Chrome","UserIP":"127.0.0.1","Method":"Demo","SessionID": "' + localStorage.getItem('sessionID')+'","UserToken":"ssssss","UserPublicKey":"' + $("#publicKey").val() +'"}';
+        var msg = '{ "UserName" : "' + localStorage.getItem('userName') + '","Host" : "localhost:3000","Action": "' + $("#requestUriRegulated").val() + '","Controller":"' + $("#requestUriRegulated").val() + '","Port":"3000","UserAgent":"Chrome","UserIP":"127.0.0.1","Method":"Demo","SessionID": "' + localStorage.getItem('sessionID') + '","UserToken":"ssssss","UserPublicKey":"' + $("#publicKey").val() + '"}';
         //socket.emit('send message', 'click message');
         //socket.emit('send message', msg);
 
@@ -137,13 +137,13 @@
             $('.panel-body').append(data + '<br/>');
         })*/
     });
-  
-  //jQuery UI sortable for the todo list
-  $(".todo-list").sortable({
-    placeholder: "sort-highlight",
-    handle: ".handle",
-    forcePlaceholderSize: true,
-    zIndex: 999999
+
+    //jQuery UI sortable for the todo list
+    $(".todo-list").sortable({
+        placeholder: "sort-highlight",
+        handle: ".handle",
+        forcePlaceholderSize: true,
+        zIndex: 999999
     });
 
     // vehicle type date picker
@@ -186,9 +186,9 @@
         e.preventDefault();
         // $(".sidebar.left").sidebar().trigger("sidebar:open");
         //alert('test');
-        
+
         //alert($(this).offset().top);
-        $('#campaignAddAside').asideRight('setFromTop', (parseFloat($(this).offset().top))-500);
+        $('#campaignAddAside').asideRight('setFromTop', (parseFloat($(this).offset().top)) - 500);
         $('#campaignAddAside').asideRight('toggle');
     });
 
@@ -197,12 +197,12 @@
     });
 
 
-//----------------------------------add  deal begin-------------------------------------------------
+    //----------------------------------add  deal begin-------------------------------------------------
 
     /**
      * loading image for add deal process
      * */
-    $('#tab_DealAttr').loadImager(); 
+    $('#tab_DealAttr').loadImager();
 
     /**
      * add deal form reset
@@ -210,12 +210,12 @@
      * */
     var resetDealAddForm = function () {
         $('#addDealForm').validationEngine('hide');
-        $('#addDealForm')[0].reset(); 
+        $('#addDealForm')[0].reset();
         $('#ddslickCustomer').ddslick("select", { index: '0' });
         $('#ddslickPriority').ddslick("select", { index: '0' });
         $('#ddslickRealizationRate').ddslick("select", { index: '0' });
-       /* $('#dropdownLicenseResult').ddslick('selectByValue',
-            { index: '0' }*/
+        /* $('#dropdownLicenseResult').ddslick('selectByValue',
+             { index: '0' }*/
     }
 
     /**
@@ -238,7 +238,7 @@
         var ddDataCustomer = $('#ddslickCustomer').data('ddslick');
         var ddDataPriority = $('#ddslickPriority').data('ddslick');
         var ddDataRealizationRate = $('#ddslickRealizationRate').data('ddslick');
-        
+
         if (!ddDataCustomer.selectedData.value > 0) {
             wm.warningMessage('resetOnShown');
             wm.warningMessage('show', window.lang.translate("Please select customer"),
@@ -311,10 +311,10 @@
         return false;
     })
 
-//----------------------------------add  deal end-------------------------------------------------
+    //----------------------------------add  deal end-------------------------------------------------
 
 
-//----------------------------------add vehicle type to deal begin-------------------------------------------------
+    //----------------------------------add vehicle type to deal begin-------------------------------------------------
 
     /**
      * loading image for add vehicle type process
@@ -358,9 +358,9 @@
         }
 
         var ajax = $('#add_vehicleType').ajaxCallWidget({
-            failureLoadImage : true,
+            failureLoadImage: true,
             loadingImageID: "tab_VehicleType",
-            triggerSuccessAuto : true,
+            triggerSuccessAuto: true,
             transactionSuccessText: window.lang.translate('Transaction successful'),
             transactionFailureText: window.lang.translate("Service URL not found, please report error"),
             dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
@@ -394,10 +394,10 @@
         resetDealAddForm();
         return false;
     })
-    
-//----------------------------------add vehicle type to deal end-------------------------------------------------
 
-    
+    //----------------------------------add vehicle type to deal end-------------------------------------------------
+
+
 
 
 });
