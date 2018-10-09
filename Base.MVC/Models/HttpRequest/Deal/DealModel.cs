@@ -15,5 +15,6 @@ namespace Base.MVC.Models.HttpRequest.Deal
         public int reliability_id { get; set; }
         public int discount_rate { get; set; }
         public string url { get; set; }
+        public string deal_name { get; set; }
     }
 }

@@ -13,7 +13,8 @@
 
 
 <div class="nav-tabs-custom">
-    <ul class="nav nav-tabs pull-right" id="attached_deals_tab">
+    <input type="hidden" id="deal_hidden" />
+    <ul class="nav nav-tabs pull-right" id="deals_tab">
         <li class="nav-item"><a href="#tab_TradeBack" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Trade Back</a></li>
         <li class="nav-item"><a href="#tab_BuyBack" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Buy back</a></li>
         <li class=" nav-item"><a href="#tab_VehicleType" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Add vehicle type</a></li>
@@ -326,7 +327,15 @@
                     <div class="row ">
                         <!--<div class="zeyn-load-imager" id="loadingImage_tabDealAdd">-->
                         <div class="col-md-6 ">
-
+                            <div class="form-group">
+                                <label>@Localizer["Deal name"]</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-mail-forward"></i>
+                                    </div>
+                                    <input id="deal_name" type="text" class="form-control validate[required]" placeholder="@Localizer["Deal name"]">
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label>@Localizer["Customer"]</label>
                                 <div class="" id="ajax_DdslickCustomer">
@@ -397,14 +406,14 @@
                         <!--</div>-->
                     </div>
                     <div class="row">
-                        <button class="btn btn-default pull-right" id="add_deal_reset" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-minus"></i>&nbsp;&nbsp;&nbsp;@Localizer["Reset"]</button>
-                        <button class="btn btn-default pull-right" id="toggle_CampaignAsider" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;@Localizer["Add campaign"]</button>
-                        <button class="btn btn-default pull-right" id="add_deal" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;@Localizer["Save"]</button>
+                        <!--<button class="btn btn-default pull-right" id="add_deal_reset" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-minus"></i>&nbsp;&nbsp;&nbsp;@Localizer["Reset"]</button>-->
+                        <button type="submit" class="btn btn-primary btn-md pull-right " style="margin-right:10px;margin-top:20px;" id="add_deal_reset">&nbsp;<i class="fa fa-minus"></i>&nbsp;&nbsp;@Localizer["Reset"]&nbsp;&nbsp;</button>
+                        <!--<button class="btn btn-default pull-right" id="toggle_CampaignAsider" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;@Localizer["Add campaign"]</button>-->
+                        <button type="button" class="btn btn-primary btn-md pull-right " style="margin-right:10px;margin-top:20px;" id="toggle_CampaignAsider">&nbsp;<i class="fa fa-feed"></i>&nbsp;&nbsp;@Localizer["Add campaign"]&nbsp;&nbsp;</button>
+                        <!-- <button class="btn btn-default pull-right" id="add_deal" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;@Localizer["Save"]</button>-->
+                        <button type="submit" class="btn btn-primary btn-md pull-right " style="margin-right:10px;margin-top:20px;" id="add_deal">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;@Localizer["Save"]&nbsp;&nbsp;</button>
+                        <!--<input type="submit" class="btn btn-default pull-right" id="add_deal" value="@Localizer["Save"]" /> -->
                     </div>
-
-
-
-
 
                 </form>
 </div><!-- /.tab-pane -->
