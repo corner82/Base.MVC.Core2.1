@@ -7,6 +7,14 @@ $(document).ready(function () {
 
     "use strict";
 
+    //var selectedNode;
+    //var selectedRoot;
+    //var selectedItem;
+
+    var selectedMANBranchId;
+    var selectedMANBranchName;
+
+
     var sm = $(window).successMessage();
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
@@ -36,6 +44,95 @@ $(document).ready(function () {
 
 
     $('#branchForm').validationEngine();
+
+ /**
+ * easyui tree extend for 'unselect' event
+ * @author Mustafa Zeynel Dağlı
+ * @since 04/04/2016
+ */
+    $.extend($.fn.tree.methods, {
+        unselect: function (jq, target) {
+            return jq.each(function () {
+                var opts = $('#tree_manbranchoffice').tree('options');
+                $(target).removeClass('tree-node-selected');
+                if (opts.onUnselect) {
+                    opts.onUnselect.call('#tree_manbranchoffice', $('#tree_manbranchoffice').tree('getNode', target));
+                }
+            });
+        }
+    });
+
+/*
+* 
+* manbranchoffice tree
+* Gül Özdemir
+* 05/10/2018
+ * 
+*/
+    
+    $('#loading-image-manbranchoffice').loadImager('removeLoadImage');
+    $("#loading-image-manbranchoffice").loadImager('appendImage');
+
+    $('#tree_manbranchoffice').tree({
+        animate: true,
+        checkbox: false,
+        cascadeCheck: false,
+        lines: true,
+        method: 'GET',
+        url: '/Sys/SysBranchDealerManOfficeTreeList',
+        formatter: function (node) {
+            var s = node.text;
+            var id = node.id;
+            //s += '  (' + node.attributes.name_tr + ')';
+            return s;
+        },
+        onLoadSuccess: function (node, data) { 
+            $.parser.parse($(this));
+            $('#loading-image-manbranchoffice').loadImager('removeLoadImage');
+        },
+        onLoadError: function () {
+            alert("tree error on load");
+        },
+
+        onClick: function (node) {
+            selectedNode = node;
+            selectedRoot = $(this).tree('getRoot', node.target);
+            selectedItem = $(this).tree('getData', node.target);
+
+            console.log(selectedItem);
+            //console.log(selectedItem.id);
+            //console.log(selectedItem.text);
+
+            selectedMANBranchId = selectedItem.id;
+            selectedMANBranchName = selectedItem.text;
+        },
+ 
+    })
+
+
+/*
+    $('#tree_manbranchoffice').tree({
+        url: 'http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillDepartmentsTree_syssisdepartments&language_code=' + $("#langCode").val() + '&pk=GsZVzEYe50uGgNM',
+        //data: mytreetestdata,
+        method: 'get',
+        animate: true,
+        checkbox: false,
+        cascadeCheck: false,
+        lines: true,
+        onLoadSuccess: function (node, data) {
+            $('#loading-image-manbranchoffice').loadImager('removeLoadImage');
+        },
+        onLoadError: function () {
+            alert("tree error");
+        },
+        formatter: function (node) {
+            var s = node.text;
+            var id = node.id;
+            s += '  (' + node.attributes.name_tr + ')';
+            return s;
+        }
+    });
+
 
     var cbdata_manbranchoffice = [
         {
@@ -111,7 +208,7 @@ $(document).ready(function () {
         },
     })
     ajaxACLResources_manbranchoffice.ajaxCallWidget('call');
-
+*/
 /*
     var cbdata_country = [
         {
@@ -630,13 +727,14 @@ $(document).ready(function () {
 
     $("#btn-branch-save").on("click", function (e) {
         e.preventDefault();
-        //alert("geldim click");
+        
         if ($("#branchForm").validationEngine('validate')) {
 
             $("#loading-image-branch").loadImager('removeLoadImage');
             $("#loading-image-branch").loadImager('appendImage');
 
-            var branchName = $('#txt-branchname').val();
+            var branchName = $('#txt-branch-name').val();
+            alert(branchName);
             //txt-embrace-no
             var branchEmbraceNo = $('#txt-embrace-no').val();
             var address1 = $('#txt-branch-address1').val();
@@ -645,10 +743,11 @@ $(document).ready(function () {
             //txt-location-ptcode
             var postalCode = $('#txt-location-ptcode').val();
 
-            var ddData_nMANBranchOffice = $('#dropdownMANBranchOffice').data('ddslick');
-            var sisDepartmentId = ddData_nMANBranchOffice.selectedData.value;
+            //var ddData_nMANBranchOffice = $('#dropdownMANBranchOffice').data('ddslick');
+            //var sisDepartmentId = ddData_nMANBranchOffice.selectedData.value;
+            //geçici
+            //sisDepartmentId = 45;
 
-            sisDepartmentId = 45;
 
             var ddData_Country = $('#dropdownCountry').data('ddslick');
             var countryId = ddData_Country.selectedData.value;
@@ -659,24 +758,16 @@ $(document).ready(function () {
             var ddData_City = $('#dropdownCity').data('ddslick');
             var cityId = ddData_City.selectedData.value;
 
-            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?
-            //url = pkInsertAct_sysbranchesdealersdeff & 
-            //name = asd & 
-            //branch_no = ZZ55 & 
-            //address1 = 213123 % 20street & 
-            //address2 = no % 2011 & 
-            //address3 = etlik & 
-            //postalcode = 06010 & 
-            //country_id = 107 & 
-            //country_region_id = 9 & 
-            //city_id = 158 & 
-            //sis_department_id = 45 & 
-            //pk = GsZVzEYe50uGgNM
-
-            var dd = $('#btn-branch-save').ajaxCallWidget({
-                proxy: '/Sys/SysInsertBranch/',
-                type: "GET",
-                data: {
+            var ajax = $('#ajaxACL-branch').ajaxCallWidget({
+                failureLoadImage: true,
+                loadingImageID: "loading-image-branch",
+                triggerSuccessAuto: true,
+                transactionSuccessText: window.lang.translate('Transaction successful'),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                proxy: '/Sys/SysInsertBranch',
+                type: "POST",
+                data: JSON.stringify({
                     url: "pkInsertAct_sysbranchesdealersdeff",
                     name: branchName,
                     branch_no: branchEmbraceNo,
@@ -689,72 +780,17 @@ $(document).ready(function () {
                     city_id: cityId,
                     sis_department_id: sisDepartmentId,
                     pk: "GsZVzEYe50uGgNM"
-                },
+                })
+
             });
-
-            dd.ajaxCallWidget({
-                onError: function (event, textStatus, errorThrown) {
-                    dm.dangerMessage('resetOnShown');
-                    dm.dangerMessage('show', 'branch Ekleme İşlemi Başarısız...',
-                        'branch Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
-                    console.error('"pkInsertAct_sysaccbodydeff" servis hatası->' + textStatus);
-                    $("#loading-image-branch").loadImager('removeLoadImage');
-            },
-            onSuccess: function (event, data) {
-                console.log(data);
-
-                sm.successMessage({
-                    onShown: function (event, data) {
-                        $('#branchForm')[0].reset();
-
-                        $("#loading-image-branch").loadImager('removeLoadImage');
-
-                        }
-                    });
-                    sm.successMessage('show', 'branch Kayıt İşlemi Başarılı...',
-                        'branch kayıt işlemini gerçekleştirdiniz... ',
-                        data);
-
+            ajax.ajaxCallWidget({
+                onReset: function (event, data) {
                     $("#gridContainer_branch").dxDataGrid("instance").refresh();
-
-                    $("#loading-image-branch").loadImager('removeLoadImage');
-
-
                 },
-                onErrorDataNull: function (event, data) {
-                    dm.dangerMessage('resetOnShown');
-                    dm.dangerMessage('show', 'branch Kayıt İşlemi Başarısız...',
-                        'branch kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
-                    console.error('"pkInsertAct_sysaccbranchdeff" servis datası boştur!!');
-                    $("#loading-image-branch").loadImager('removeLoadImage');
-                },
-                onErrorMessage: function (event, data) {
-                    dm.dangerMessage('resetOnShown');
-                    dm.dangerMessage('show', 'branch Kayıt İşlemi Başarısız...',
-                            'branch kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
-                    console.error('"branch" servis datası boştur!!');
-                    $("#loading-image-branch").loadImager('removeLoadImage');
-                },
-                onError23503: function (event, data) {
-                    dm.dangerMessage('Error23503');
-                    $("#loading-image-branch").loadImager('removeLoadImage');
-                },
-                onError23505: function (event, data) {
-                    dm.dangerMessage({
-                       onShown: function (event, data) {
-                            $('#branch')[0].reset();
-                            $("#loading-image-branch").loadImager('removeLoadImage');
-                        }
-                    });
-                    dm.dangerMessage('show', 'Kayıt İşlemi Başarısız...',
-                      'Aynı isim ile branch kaydı yapılmıştır, yeni bir Body kaydı deneyiniz... ');
-                    $("#loading-image-branch").loadImager('removeLoadImage');
-                }
             })
-            dd.ajaxCallWidget('call');
-
+            ajax.ajaxCallWidget('call');
+            return false;
         }
-
     })
 
     /**
