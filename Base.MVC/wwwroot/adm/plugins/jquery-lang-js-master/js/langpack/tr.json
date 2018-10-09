@@ -1,5 +1,6 @@
 {
   "token": {
+    "No data returned from service": "Servis veri bulamamıştır, veri güncelliğini kontrol ediniz",
     "Transaction successful": "Kayıt işlemi  başarılı",
     "Unsuccessful transaction": "Kayıt işlemi  başarısız",
     "Data already created, edit your data": "Eşleşen kayıt var, verileri gözden geçirin",

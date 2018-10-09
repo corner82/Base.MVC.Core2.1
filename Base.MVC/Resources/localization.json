@@ -180,6 +180,15 @@
     }
   },
   {
+    "Key": "Deal name",
+    "LocalizedValue": {
+      "de-DE": "Deal-Name",
+      "en-US": "Deal name",
+      "af-ZA": "Hanteer naam",
+      "tr-TR": "Sözleşme adı"
+    }
+  },
+  {
     "Key": "Dashboard",
     "LocalizedValue": {
       "de-DE": "Bonjour Dashboard",

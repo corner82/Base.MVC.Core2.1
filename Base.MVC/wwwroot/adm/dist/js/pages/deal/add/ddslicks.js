@@ -154,6 +154,8 @@
     var ajax_DdslickCustomer = $('#ajax_DdslickCustomer').ajaxCallWidget({
         proxy: '/Customer/DdslickGetAllCustomers',
         type: "POST",
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        noDataFailureText: window.lang.translate("No data returned from service"),
         data: JSON.stringify({
             language_code: $("#langCode").val(),
             pk: "GsZVzEYe50uGgNM",
@@ -163,15 +165,6 @@
 
     });
     ajax_DdslickCustomer.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            $(window).dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickCustomer').loadImager('removeLoadImage');
-                }
-            });
-            $(window).dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
-        },
         onSuccess: function (event, data) {
             var data = $.parseJSON(data);
             data.splice(0, 0,
@@ -192,7 +185,7 @@
 
             $("#loadingImage_DdslickCustomer").loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
+        /*onErrorDataNull: function (event, data) {
             console.log("Error : " + event + " -data :" + data);
             $(window).dangerMessage({
                 onShown: function () {
@@ -200,7 +193,7 @@
                 }
             });
             $(window).dangerMessage('show', window.lang.translate('vehiclekittype bulunamamıştır...'), window.lang.translate('vehiclekittype  bulunamamıştır...'));
-        },
+        },*/
     })
     ajax_DdslickCustomer.ajaxCallWidget('call');
 

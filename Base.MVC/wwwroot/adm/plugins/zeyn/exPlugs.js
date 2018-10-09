@@ -1551,6 +1551,7 @@
     * ajax wrapper class for widget calls
     * @author Mustafa Zeynle Dağlı
     * @since 12/04/2016
+    * @modified 05/10/2018
     */
     $.widget("sanalfabrika.ajaxCallWidget", {
         /**
@@ -1580,8 +1581,10 @@
             foregnKeyExistsText: 'Foreign key kıstlaması',
             dataAlreadyExistsText: 'Eşleşen kayıt var',
             transactionFailureText: 'Servis linki bulunamamıştır, hata bildiriniz',
+            noDataFailureText: 'Servis veri bulamamıştır, veri güncelliğini kontrol ediniz',
             transactionSuccessText: 'Kayıt işlemi  başarılı',
             triggerSuccessAuto: false,
+            triggerFailureAuto: false,
             failureLoadImage : false,
             loadingImageID : null,
             outbounds: function (e) {
@@ -1625,9 +1628,10 @@
         },
 
         /**
-         * evaluate error events
+         * evaluate success events
          * @returns {null}
          * @since 05/10/2018
+         * 
          */
         evaluateSuccessMessage: function (e, data) {
             if (this.options.triggerSuccessAuto == true) {
@@ -1664,7 +1668,7 @@
         },
 
         /**
-         * evaluate error events
+         * evaluate error events with loading image control
          * @returns {null}
          * @since 05/10/2018
          */
@@ -1716,7 +1720,7 @@
                             });
                             self._trigger('onReset', event, jsonString);
                         } else if (data.errorInfo == 23505) {
-                            self._trigger('onError23505', event, {
+                            self._trigger('onError'+23505, event, {
                                 text: self.options.dataAlreadyExistsText,
                                 imageLoadingID: self.options.loadingImageID
                             });
@@ -1767,12 +1771,13 @@
                         }
 
                         else {
+                            
                             self._trigger('onSuccess', event, jsonString);
                         }
 
                     } else {
                         self._trigger('onErrorDataNull', event, {
-                            text: self.options.transactionFailureText,
+                            text: self.options.noDataFailureText,
                             imageLoadingID: self.options.loadingImageID
                                                                 });
                         self._trigger('onReset', event, jsonString);
@@ -1791,7 +1796,6 @@
                         error: errorThrown,
                         text: self.options.transactionFailureText,
                     });
-                    //self._trigger('outbounds');
                 }
             });
         },
