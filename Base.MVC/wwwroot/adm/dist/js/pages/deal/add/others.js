@@ -11,11 +11,12 @@
         actionButtonLabel: 'İşleme devam et'
     });
 
-    // only add deal tab is enabled 
+    /**
+     * only add deal tab is active at the beginning
+     *  @author Mustafa Zeynel Dağlı
+     *  @since 08/10/2018
+     * */
     $("#deal_hidden").organizeTabs({ tabID: "deals_tab" });
-
-    /*$("#deal_hidden").organizeTabs('disableAllTabs');
-    $("#deal_hidden").organizeTabs('enableTabByOrder', '3');*/
     $("#deal_hidden").organizeTabs('disableAllTabsButOne');
 
 
@@ -74,35 +75,44 @@
     });
 
 
-    // deal campaign asider 
+
+    //----------------------------------add  deal campaign begin-------------------------------------------------
+
+    /**
+     * add campaign to deal asider opening
+     * @author Mustafa Zeynel Dağlı
+     * @since 08/10/2018
+     * */
     $('#campaignAddAside').asideRight({
         width: "900"
     });
+
+    /**
+     * add campaiggn asider events
+     * @author Mustafa Zeynel Dağlı
+     * @since 08/10/2018
+     * */
     $('#campaignAddAside').asideRight({
+        onClosed: function (event, element) {
+            //alert('onclosed event right slider');
+        },
+        onClosing: function (event, element) {
+            //alert('onclosing event right slider');
+        },
+        onOpened: function (event, element) {
+            //alert('onopened event right slider');
+        },
         onOpening: function (event, element) {
             //console.log(element);
             //alert('onopening event right slider');
         }
     });
 
-    $('#campaignAddAside').asideRight({
-        onOpened: function (event, element) {
-            //alert('onopened event right slider');
-        }
-    });
-
-    $('#campaignAddAside').asideRight({
-        onClosing: function (event, element) {
-            //alert('onclosing event right slider');
-        }
-    });
-
-    $('#campaignAddAside').asideRight({
-        onClosed: function (event, element) {
-            //alert('onclosed event right slider');
-        }
-    });
-    //tab 2_1 side bar panel left toggle
+    /**
+     * add campaign asider opening
+     * @author Mustafa Zeynel Dağlı
+     * @since 08/10/2018
+     * */
     $("#toggle_CampaignAsider").on("click", function (e) {
         e.preventDefault();
         // $(".sidebar.left").sidebar().trigger("sidebar:open");
@@ -113,9 +123,16 @@
         $('#campaignAddAside').asideRight('toggle');
     });
 
+    /**
+     * add campaign asider closing
+     * @author Mustafa Zeynel Dağlı
+     * @since 08/10/2018
+     * */
     $("#toggle_closeCampaignAside").on("click", function () {
         $('#campaignAddAside').asideRight('toggle');
     });
+
+    //----------------------------------add  deal campaign end-------------------------------------------------
 
 
     //----------------------------------add  deal begin-------------------------------------------------
@@ -194,12 +211,13 @@
             ajax_DdslickCustomer.ajaxCallWidget({
                 onAfterSuccess: function (event, data) {
                     var data = $.parseJSON(data);
-                    alert(data.lastInsertId);
+                    //alert(data.lastInsertId);
                     $("#deal_hidden").deal({ dealID: data.lastInsertId })
-                    console.log($("#deal_hidden").deal("option", "dealID"));
+                    //console.log($("#deal_hidden").deal("option", "dealID"));
                     //alert($("#deal_hidden").deal("option", "dealID"));
 
                     $("#deal_hidden").organizeTabs("enableAllTabs");
+                    $("#gridContainer_vehicle").dxDataGrid("instance").refresh();
                 },
                 onReset: function () {
                     resetDealAddForm();
@@ -269,6 +287,18 @@
             return false;
         }
 
+        var dealID = null;
+        if ($("#deal_hidden").deal()) {
+            dealID = $("#deal_hidden").deal("getDealID");
+        }
+        if (dealID == null || dealID == "" || dealID <= 0) {
+            wm.warningMessage('resetOnShown');
+            wm.warningMessage('show', "Please select deal",
+                "Please select deal");
+            $('#tab_VehicleType').loadImager('removeLoadImage');
+            return false;
+        }
+
         var ajax = $('#add_vehicleType').ajaxCallWidget({
             failureLoadImage: true,
             loadingImageID: "tab_VehicleType",
@@ -283,7 +313,7 @@
                 pk: "GsZVzEYe50uGgNM",
                 url: "pkInsertAct_infoprojectvehiclemodels",
                 pkIdentity: $("#publicKey").val(),
-                project_id: 1,
+                project_id: dealID,
                 is_house_deal: 0,
                 vehicle_gt_model_id: ddDataVehicleType.selectedData.value,
                 quantity: $("#quantity").val(),
@@ -295,6 +325,10 @@
             onReset: function (event, data) {
                 resetVehicleTypeAddDealForm();
             },
+            onAfterSuccess: function (event, data) {
+                $("#deal_hidden").deal("addVehicleType", { vehicleType: ddDataVehicleType.selectedData.value, count: $("#quantity").val() });
+                console.log($("#deal_hidden").deal("option", "dealID"));
+            }
         })
         ajax.ajaxCallWidget('call');
         return false;
