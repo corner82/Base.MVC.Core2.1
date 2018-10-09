@@ -13,22 +13,22 @@
 
     // only add deal tab is enabled 
     $("#deal_hidden").organizeTabs({ tabID: "deals_tab" });
-    
+
     /*$("#deal_hidden").organizeTabs('disableAllTabs');
     $("#deal_hidden").organizeTabs('enableTabByOrder', '3');*/
     $("#deal_hidden").organizeTabs('disableAllTabsButOne');
-    
 
-    
-    
-  //Make the dashboard widgets sortable Using jquery UI
-  $(".connectedSortable").sortable({
-    placeholder: "sort-highlight",
-    connectWith: ".connectedSortable",
-    handle: ".box-header, .nav-tabs",
-    forcePlaceholderSize: true,
-    zIndex: 999999
-  });
+
+
+
+    //Make the dashboard widgets sortable Using jquery UI
+    $(".connectedSortable").sortable({
+        placeholder: "sort-highlight",
+        connectWith: ".connectedSortable",
+        handle: ".box-header, .nav-tabs",
+        forcePlaceholderSize: true,
+        zIndex: 999999
+    });
     $(".connectedSortable .box-header, .connectedSortable .nav-tabs-custom").css("cursor", "move");
 
     $(document).click(function (event) {
@@ -50,7 +50,7 @@
             socket.emit('send message', 'click message');
             //$messageBox.val('');
         })*/
-        var msg = '{ "UserName" : "' + localStorage.getItem('userName') + '","Host" : "localhost:3000","Action": "' + $("#requestUriRegulated").val() + '","Controller":"' + $("#requestUriRegulated").val() + '","Port":"3000","UserAgent":"Chrome","UserIP":"127.0.0.1","Method":"Demo","SessionID": "' + localStorage.getItem('sessionID')+'","UserToken":"ssssss","UserPublicKey":"' + $("#publicKey").val() +'"}';
+        var msg = '{ "UserName" : "' + localStorage.getItem('userName') + '","Host" : "localhost:3000","Action": "' + $("#requestUriRegulated").val() + '","Controller":"' + $("#requestUriRegulated").val() + '","Port":"3000","UserAgent":"Chrome","UserIP":"127.0.0.1","Method":"Demo","SessionID": "' + localStorage.getItem('sessionID') + '","UserToken":"ssssss","UserPublicKey":"' + $("#publicKey").val() + '"}';
         //socket.emit('send message', 'click message');
         //socket.emit('send message', msg);
 
@@ -58,13 +58,13 @@
             $('.panel-body').append(data + '<br/>');
         })*/
     });
-  
-  //jQuery UI sortable for the todo list
-  $(".todo-list").sortable({
-    placeholder: "sort-highlight",
-    handle: ".handle",
-    forcePlaceholderSize: true,
-    zIndex: 999999
+
+    //jQuery UI sortable for the todo list
+    $(".todo-list").sortable({
+        placeholder: "sort-highlight",
+        handle: ".handle",
+        forcePlaceholderSize: true,
+        zIndex: 999999
     });
 
     // vehicle type date picker
@@ -107,9 +107,9 @@
         e.preventDefault();
         // $(".sidebar.left").sidebar().trigger("sidebar:open");
         //alert('test');
-        
+
         //alert($(this).offset().top);
-        $('#campaignAddAside').asideRight('setFromTop', (parseFloat($(this).offset().top))-500);
+        $('#campaignAddAside').asideRight('setFromTop', (parseFloat($(this).offset().top)) - 500);
         $('#campaignAddAside').asideRight('toggle');
     });
 
@@ -118,12 +118,12 @@
     });
 
 
-//----------------------------------add  deal begin-------------------------------------------------
+    //----------------------------------add  deal begin-------------------------------------------------
 
     /**
      * loading image for add deal process
      * */
-    $('#tab_DealAttr').loadImager(); 
+    $('#tab_DealAttr').loadImager();
 
     /**
      * add deal form reset
@@ -131,12 +131,12 @@
      * */
     var resetDealAddForm = function () {
         $('#addDealForm').validationEngine('hide');
-        $('#addDealForm')[0].reset(); 
+        $('#addDealForm')[0].reset();
         $('#ddslickCustomer').ddslick("select", { index: '0' });
         $('#ddslickPriority').ddslick("select", { index: '0' });
         $('#ddslickRealizationRate').ddslick("select", { index: '0' });
-       /* $('#dropdownLicenseResult').ddslick('selectByValue',
-            { index: '0' }*/
+        /* $('#dropdownLicenseResult').ddslick('selectByValue',
+             { index: '0' }*/
     }
 
     /**
@@ -179,7 +179,7 @@
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
-                    deal_name : $("#deal_name").val(),
+                    deal_name: $("#deal_name").val(),
                     url: "pkInsertAct_infoproject",
                     pkIdentity: $("#publicKey").val(),
                     customer_id: ddDataCustomer.selectedData.value,
@@ -200,7 +200,7 @@
                     //alert($("#deal_hidden").deal("option", "dealID"));
 
                     $("#deal_hidden").organizeTabs("enableAllTabs");
-                }, 
+                },
                 onReset: function () {
                     resetDealAddForm();
                 }
@@ -223,10 +223,10 @@
         return false;
     })
 
-//----------------------------------add  deal end-------------------------------------------------
+    //----------------------------------add  deal end-------------------------------------------------
 
 
-//----------------------------------add vehicle type to deal begin-------------------------------------------------
+    //----------------------------------add vehicle type to deal begin-------------------------------------------------
 
     /**
      * loading image for add vehicle type process
@@ -270,9 +270,9 @@
         }
 
         var ajax = $('#add_vehicleType').ajaxCallWidget({
-            failureLoadImage : true,
+            failureLoadImage: true,
             loadingImageID: "tab_VehicleType",
-            triggerSuccessAuto : true,
+            triggerSuccessAuto: true,
             transactionSuccessText: window.lang.translate('Transaction successful'),
             transactionFailureText: window.lang.translate("Service URL not found, please report error"),
             dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
@@ -306,10 +306,10 @@
         resetDealAddForm();
         return false;
     })
-    
-//----------------------------------add vehicle type to deal end-------------------------------------------------
 
-    
+    //----------------------------------add vehicle type to deal end-------------------------------------------------
+
+
 
 
 });
