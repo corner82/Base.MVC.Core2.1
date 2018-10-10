@@ -427,15 +427,15 @@ $(document).ready(function () {
                             if (options.data.active === 1) {
                                 //active
                                 $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
-                                    activepasiveBranch(branch_id);
-                                    dm.successMessage('show', window.lang.translate('Active success message...'), window.lang.translate('Active success message...'));
+                                    activepasiveBranch(branch_id, options.data.active);
+
                                 }).appendTo(container);
                             } else if (options.data.active === 0) {
                                 
                                 //pasive
                                 $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
-                                    activepasiveBranch(branch_id);
-                                    dm.successMessage('show', window.lang.translate('Pasive success message...'), window.lang.translate('Pasive success message...'));
+                                    activepasiveBranch(branch_id, options.data.active);
+
                                 }).appendTo(container);
                             }
 
@@ -565,7 +565,7 @@ $(document).ready(function () {
             $("#loading-image-branch").loadImager('appendImage');
 
             var branchName = $('#txt-branch-name').val();
-            alert(branchName);
+            //alert(branchName);
             //txt-embrace-no
             var branchEmbraceNo = $('#txt-embrace-no').val();
             var address1 = $('#txt-branch-address1').val();
@@ -610,8 +610,11 @@ $(document).ready(function () {
             });
             ajax.ajaxCallWidget({
                 onReset: function (event, data) {
-                    $("#gridContainer_branch").dxDataGrid("instance").refresh();
+                    
                 },
+                onAfterSuccess: function (event, data) {
+                    $("#gridContainer_branch").dxDataGrid("instance").refresh();
+                }
             })
             ajax.ajaxCallWidget('call');
             return false;
@@ -679,103 +682,44 @@ $(document).ready(function () {
         return false;
     }
 
-    window.deleteBranch = function (branch_id) {
-        $("#loading-image-branchgrid").loadImager('removeLoadImage');
-        $("#loading-image-branchgrid").loadImager('appendImage');
 
-        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_sysbranchesdealersdeff&id=29&pk=GsZVzEYe50uGgNM
+    window.activepasiveBranch = function (branch_id, active) {
 
-        var ajax_deletebranchlist = $('#ajaxACL-branchlist').ajaxCallWidget({
-            proxy: '/Sys/SysDeleteBranch',
-            data: JSON.stringify({
-                id: branch_id,
-                pk: "GsZVzEYe50uGgNM",
-                url: "pkDeletedAct_sysbranchesdealersdeff"           
-            }),
-            type: "POST"
+        var transactionSuccessMessage;
 
-        });
-        ajax_deletebranchlist.ajaxCallWidget({
-            onError: function (event, textStatus, errorThrown) {
-
-                $(window).dangerMessage({
-                    onShown: function () {
-                        $('#loading-image-branchgrid').loadImager('removeLoadImage');
-                    }
-                });
-                $(window).dangerMessage('show', window.lang.translate('yyyyyyyyyyyyyyyy...'), window.lang.translate('yyyyyyyyyyyyyyyyyyyy...'));
-            },
-            onSuccess: function (event, mydata) {
-
-                $("#gridContainer_branch").dxDataGrid("instance").refresh();
-
-                $("#loading-image-branchgrid").loadImager('removeLoadImage');
-            },
-            onErrorDataNull: function (event, data) {
-                console.log("Error : " + event + " -data :" + data);
-                $(window).dangerMessage({
-                    onShown: function () {
-                        $('#loading-image-branchgrid').loadImager('removeLoadImage');
-                    }
-                });
-                $(window).dangerMessage('show', window.lang.translate('xxxxxxxxxxx'), window.lang.translate('xxxxxxxxxxxxxxxxxx...'));
-            },
-        })
-        ajax_deletebranchlist.ajaxCallWidget('call');
-
-       
-    }
-
-
-    window.activepasiveBranch = function (branch_id) {
-        $("#loading-image-branchgrid").loadImager('removeLoadImage');
-        $("#loading-image-branchgrid").loadImager('appendImage');
-
-        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateMakeActiveOrPassive_sysbranchesdealersdeff&id=29&pk=GsZVzEYe50uGgNM
+        if (active === 1) {
+            //active
+            transactionSuccessMessage = window.lang.translate('Active successful');
+        } else {
+            //pasive
+            transactionSuccessMessage = window.lang.translate('Pasive successful');
+        }
 
         var ajax_activepasivebranchlist = $('#ajaxACL-branchlist').ajaxCallWidget({
+            failureLoadImage: true,
+            loadingImageID: "loading-image-branchgrid",
+            triggerSuccessAuto: true,
+            transactionSuccessText: transactionSuccessMessage,
+            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
             proxy: '/Sys/SysActivePasiveBranch',
+            type: "POST",
             data: JSON.stringify({
                 id: branch_id,
                 pk: "GsZVzEYe50uGgNM",
                 url: "pkUpdateMakeActiveOrPassive_sysbranchesdealersdeff"
             }),
-            type: "POST"
 
         });
         ajax_activepasivebranchlist.ajaxCallWidget({
-            onError: function (event, textStatus, errorThrown) {
-
-                $(window).dangerMessage({
-                    onShown: function () {
-                        $('#loading-image-branchgrid').loadImager('removeLoadImage');
-                    }
-                });
-                $(window).dangerMessage('show', window.lang.translate('yyyyyyyyyyyyyyyy...'), window.lang.translate('yyyyyyyyyyyyyyyyyyyy...'));
-            },
-            onSuccess: function (event, mydata) {
-                var data = $.parseJSON(mydata);
+            onReset: function (event, data) {
                 
-                //grid refresh
-                //$('#branchdealerList').click();
+            },
+            onAfterSuccess: function (event, data) {
                 $("#gridContainer_branch").dxDataGrid("instance").refresh();
-
-                $("#loading-image-branchgrid").loadImager('removeLoadImage');
-                //$(window).successMessage('show', window.lang.translate('Active/Pasive Ok.'), window.lang.translate('Active/Pasive Ok.'));
-        
-            },
-            onErrorDataNull: function (event, data) {
-                console.log("Error : " + event + " -data :" + data);
-                $(window).dangerMessage({
-                    onShown: function () {
-                        $('#loading-image-branchgrid').loadImager('removeLoadImage');
-                    }
-                });
-                $(window).dangerMessage('show', window.lang.translate('xxxxxxxxxxx'), window.lang.translate('xxxxxxxxxxxxxxxxxx...'));
-            },
+            }
         })
-        ajax_activepasivebranchlist.ajaxCallWidget('call');
-
+        ajax_activepasivebranchlist.ajaxCallWidget('call');     
 
     }
 });
