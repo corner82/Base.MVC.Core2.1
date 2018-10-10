@@ -149,19 +149,23 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> SysTrainingDefGrid()
+        public async Task<string> SysTrainingDefGrid([FromBody] TrainingNameGrid gridModel)
         {
-            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
-
-            var headers = new Dictionary<string, string>();
-            var tokenGenerated = HttpContext.Session.GetHmacToken();
-            headers.Add("X-Hmac", tokenGenerated);
-            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            //_hmacManager.test();
-            //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
-            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillEducationDefinitionsGridx_syseducationdefinitions&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM", headers);
-            var data = response.Content.ReadAsStringAsync().Result;
-            return data.ToString();
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(gridModel);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model state is not valid");
+            }
         }
 
         /// <summary>
@@ -222,17 +226,24 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> SysTraningSalesmanGrid()
+        public async Task<string> SysTraningSalesmanGrid([FromBody] DefaultPostModelGridList gridModel)
         {
-            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
+            if (ModelState.IsValid)
+            {
                 var headers = new Dictionary<string, string>();
                 var tokenGenerated = HttpContext.Session.GetHmacToken();
                 headers.Add("X-Hmac", tokenGenerated);
                 headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-                var url = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillEducationsSalesmanGridx_syseducationssalesman&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM";
-                var response = await HttpClientRequestFactory.Get(url, headers);
+                string queryStr = _queryCreater.GetQueryStringFromObject(gridModel);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
                 var data = response.Content.ReadAsStringAsync().Result;
                 return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model state is not valid");
+            }
+
         }
 
         /// <summary>

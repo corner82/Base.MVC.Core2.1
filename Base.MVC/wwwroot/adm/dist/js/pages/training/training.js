@@ -36,6 +36,8 @@
     $("#loading-image-city").loadImager();
 
     var langCode = $("#langCode").val();
+    var TrainingNameID;
+    var TrainingInfoID;
     //alert(langCode);
 
     /*
@@ -336,6 +338,7 @@
 
     $('#trNameListRefresh').click(function () {
     //Training Name Grid
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillEducationDefinitionsGridx_syseducationdefinitions&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
     var trainingDef = new DevExpress.data.CustomStore({
         load: function (loadOptions) {
             var deferred = $.Deferred(),
@@ -353,18 +356,51 @@
             $.ajax({
                 url: '/Training/SysTrainingDefGrid',
                 dataType: "json",
-                data: args,
+                data: JSON.stringify({
+                    language_code: $("#langCode").val(),
+                    pk: "GsZVzEYe50uGgNM",
+                    url: "pkFillEducationDefinitionsGridx_syseducationdefinitions",
+                    pkIdentity: $("#publicKey").val(),
+                    page: "",
+                    rows: "",
+                    sort: "",
+                    order: "", //args.orderby,
+                    skip: args.skip,
+                    take: args.take
+                }),
                 type: 'POST',
+                contentType: 'application/json',
                 success: function (result) {
                     deferred.resolve(result.items, { totalCount: result.totalCount });
                 },
                 error: function () {
                     deferred.reject("Data Loading Error");
                 },
-                timeout: 5000
+                timeout: 10000
             });
-
             return deferred.promise();
+        },
+        remove: function (key) {
+            var deferred = $.Deferred();
+
+            return $.ajax({
+                url: '/Training/SysDeleteTrName',
+                dataType: "json",
+                data: JSON.stringify({
+                    id: TrainingNameID,
+                    pk: "GsZVzEYe50uGgNM",
+                    url: "pkDeletedAct_syseducationdefinitions"
+                }),
+                type: 'POST',
+                contentType: 'application/json',
+                success: function (result) {
+                    deferred.resolve(result.items, { totalCount: result.totalCount });
+                },
+                error: function () {
+                    deferred.reject("Data remove Error");
+                },
+                timeout: 10000
+            });
         }
     });
     //Traning name Grid
@@ -455,13 +491,13 @@
                 if (options.data.active === 1) {
                     //active
                     $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
-                        activepasiveTrName(trName_id);
+                        activepasiveTrName(trName_id, options.data.active);
                         dm.successMessage('show', window.lang.translate('Active success message...'), window.lang.translate('Active success message...'));
                     }).appendTo(container);
                 } else if (options.data.active === 0) {
                     //pasive
                     $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
-                        activepasiveTrName(trName_id);
+                        activepasiveTrName(trName_id, options.data.active);
                         dm.successMessage('show', window.lang.translate('Pasive success message...'), window.lang.translate('Pasive success message...'));
                     }).appendTo(container);
                 }
@@ -472,24 +508,23 @@
         onSelectionChanged: function (selectedItems) {
             var data = selectedItems.selectedRowsData[0];
             if (data) {
+                TrainingNameID = data.id;
                 fillTrainingIdentForm(data);
             }
         },
         onRowRemoving: function (e) {
-            //e.cancel = true;
-            //Confirmasyon ile silme düzenlenecek...
-            var trName_id = e.key.id;
-            deleteTrName(trName_id);
-
+             TrainingNameID = e.key.id;
+            //deleteTrName(trName_id);
         },
         onRowRemoved: function (e) {
-
+            $("#gridContainer_trainingName").dxDataGrid("instance").refresh();
         },
-        });
     });
+});
 
     $('#trListRefresh').click(function () {
     //Traning Info grid
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillEducationsSalesmanGridx_syseducationssalesman&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
     var trainingSalesman = new DevExpress.data.CustomStore({
             load: function (loadOptions) {
                 var deferred = $.Deferred(),
@@ -506,20 +541,53 @@
 
                 $.ajax({
                     url: '/Training/SysTraningSalesmanGrid',
-                    dataType: "json",
-                    type: 'POST',
-                    data: args,
-                    success: function (result) {
-                        deferred.resolve(result.items, { totalCount: result.totalCount });
-                    },
-                    error: function () {
-                        deferred.reject("Data Loading Error");
-                    },
-                    timeout: 10000
-                });
+                dataType: "json",
+                data: JSON.stringify({
+                    language_code: $("#langCode").val(),
+                    pk: "GsZVzEYe50uGgNM",
+                    url: "pkFillEducationsSalesmanGridx_syseducationssalesman",
+                    pkIdentity: $("#publicKey").val(),
+                    page: "",
+                    rows: "",
+                    sort: "",
+                    order: "", //args.orderby,
+                    skip: args.skip,
+                    take: args.take
+                }),
+                type: 'POST',
+                contentType: 'application/json',
+                success: function (result) {
+                    deferred.resolve(result.items, { totalCount: result.totalCount });
+                },
+                error: function () {
+                    deferred.reject("Data Loading Error");
+                },
+                timeout: 10000
+            });
+            return deferred.promise();
+        },
+        remove: function (key) {
+            var deferred = $.Deferred();
 
-                return deferred.promise();
-            }
+            return $.ajax({
+                url: '/Training/SysDeleteTrInfo',
+                dataType: "json",
+                data: JSON.stringify({
+                    id: TrainingNameID,
+                    pk: "GsZVzEYe50uGgNM",
+                    url: "pkDeletedAct_syseducationssalesman"
+                }),
+                type: 'POST',
+                contentType: 'application/json',
+                success: function (result) {
+                    deferred.resolve(result.items, { totalCount: result.totalCount });
+                },
+                error: function () {
+                    deferred.reject("Data remove Error");
+                },
+                timeout: 10000
+            });
+        }
         });
 
     //Training List Info dxDataGrid
@@ -651,13 +719,13 @@
                 if (options.data.active === 1) {
                     //active
                     $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
-                        activepasiveTrInfo(trInfo_id);
+                        activepasiveTrInfo(trInfo_id, options.data.active);
                         dm.successMessage('show', window.lang.translate('Active success message...'), window.lang.translate('Active success message...'));
                     }).appendTo(container);
                 } else if (options.data.active === 0) {
                     //pasive
                     $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
-                        activepasiveTrInfo(trInfo_id);
+                        activepasiveTrInfo(trInfo_id, options.data.active);
                         dm.successMessage('show', window.lang.translate('Pasive success message...'), window.lang.translate('Pasive success message...'));
                     }).appendTo(container);
                 }
@@ -677,23 +745,16 @@
         onSelectionChanged: function (selectedItems) {
             var data = selectedItems.selectedRowsData[0];
             if (data) {
-
+                TrainingInfoID = data.id;
                 fillTrainingInfoForm(data);
-               
-                //alert("gridContainer_trainingName - onSelectionChanged :" + data);
-                //$(".employeeNotes").text(data.Notes);
-                //$(".employeePhoto").attr("src", data.Picture);
             }
         },
         onRowRemoving: function (e) {
-            //e.cancel = true;
-            //Confirmasyon ile silme düzenlenecek...
             var trInfo_id = e.key.id;
-            deleteTrInfo(trInfo_id);
-
+           // deleteTrInfo(trInfo_id);
         },
         onRowRemoved: function (e) {
-
+            $("#gridContainer_trainingInfo").dxDataGrid("instance").refresh();
         },
     });
 
@@ -788,107 +849,74 @@
 
     //ActivePasive Training Name
 
-    window.activepasiveTrName = function (trName_id) {
-        $("#loading-image-trNameGrid").loadImager('removeLoadImage');
-        $("#loading-image-trNameGrid").loadImager('appendImage');
+    window.activepasiveTrName = function (trName_id, active) {
 
+        var transactionSuccessMessage;
+
+        if (active === 1) {
+            //active
+            transactionSuccessMessage = window.lang.translate('Active successful');
+        } else {
+            //pasive
+            transactionSuccessMessage = window.lang.translate('Pasive successful');
+        }
         //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateMakeActiveOrPassive_syseducationdefinitions&id=29&pk=GsZVzEYe50uGgNM
-
-        var ajax_activepasiveTrNamelist = $('#ajaxACL-trNameList').ajaxCallWidget({
+        var ajax_activepasiveTrName = $('#ajaxACL-trNameList').ajaxCallWidget({
+            failureLoadImage: true,
+            loadingImageID: "loading-image-trNameGrid",
+            triggerSuccessAuto: true,
+            transactionSuccessText: transactionSuccessMessage,
+            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
             proxy: '/Training/SysActivePasiveTrName',
+            type: "POST",
             data: JSON.stringify({
                 id: trName_id,
                 pk: "GsZVzEYe50uGgNM",
                 url: "pkUpdateMakeActiveOrPassive_syseducationdefinitions"
             }),
-            type: "POST"
 
         });
-
-        ajax_activepasiveTrNamelist.ajaxCallWidget({
-            onError: function (event, textStatus, errorThrown) {
-
-                $(window).dangerMessage({
-                    onShown: function () {
-                        $('#loading-image-trNameGrid').loadImager('removeLoadImage');
-                    }
-                });
-                $(window).dangerMessage('show', window.lang.translate('yyyyyyyyyyyyyyyy...'), window.lang.translate('yyyyyyyyyyyyyyyyyyyy...'));
-            },
-            onSuccess: function (event, mydata) {
-                //var data = $.parseJSON(mydata);
-
-                //grid refresh
-                $('#trNameListRefresh').click();
-                //$('#branchdealerList').click();
-                //$("#gridContainer_trainingName").dxDataGrid("instance").refresh();
-
-                //$("#loading-image-trNameGrid").loadImager('removeLoadImage');
-                //$(window).successMessage('show', window.lang.translate('Active/Pasive Ok.'), window.lang.translate('Active/Pasive Ok.'));
+        ajax_activepasiveTrName.ajaxCallWidget({
+            onReset: function (event, data) {
 
             },
-            onErrorDataNull: function (event, data) {
-                console.log("Error : " + event + " -data :" + data);
-                $(window).dangerMessage({
-                    onShown: function () {
-                        $('#loading-image-trNameGrid').loadImager('removeLoadImage');
-                    }
-                });
-                $(window).dangerMessage('show', window.lang.translate('xxxxxxxxxxx'), window.lang.translate('xxxxxxxxxxxxxxxxxx...'));
-            },
+            onAfterSuccess: function (event, data) {
+                $("#gridContainer_trainingName").dxDataGrid("instance").refresh();
+            }
         })
-        ajax_activepasiveTrNamelist.ajaxCallWidget('call');
+        ajax_activepasiveTrName.ajaxCallWidget('call');  
     }
 
     //Training Name Delete
     window.deleteTrName = function (trName_id) {
-        $("#loading-image-trInfoGrid").loadImager('removeLoadImage');
-        $("#loading-image-trInfoGrid").loadImager('appendImage');
-
         //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_syseducationdefinitions&id=3&pk=GsZVzEYe50uGgNM
 
         var ajax_deleteTrName = $('#ajaxACL-trNameList').ajaxCallWidget({
+            failureLoadImage: true,
+            loadingImageID: "loading-image-trNameGrid",
+            triggerSuccessAuto: true,
+            transactionSuccessText: transactionSuccessMessage,
+            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
             proxy: '/Training/SysDeleteTrName',
+            type: "POST",
             data: JSON.stringify({
                 id: trName_id,
                 pk: "GsZVzEYe50uGgNM",
                 url: "pkDeletedAct_syseducationdefinitions"
             }),
-            type: "POST"
 
         });
         ajax_deleteTrName.ajaxCallWidget({
-            onError: function (event, textStatus, errorThrown) {
+            onReset: function (event, data) {
 
-                $(window).dangerMessage({
-                    onShown: function () {
-                        $('#loading-image-trInfoGrid').loadImager('removeLoadImage');
-                    }
-                });
-                $(window).dangerMessage('show', window.lang.translate('yyyyyyyyyyyyyyyy...'), window.lang.translate('yyyyyyyyyyyyyyyyyyyy...'));
             },
-            onSuccess: function (event, mydata) {
-                //var data = $.parseJSON(mydata);
-
-                //grid refresh
-                //$('#branchdealerList').click();
-                $('#trNameListRefresh').click();
-                //$("#gridContainer_branch").dxDataGrid("instance").refresh();
-
-                $("#loading-image-trInfoGrid").loadImager('removeLoadImage');
-            },
-            onErrorDataNull: function (event, data) {
-                console.log("Error : " + event + " -data :" + data);
-                $(window).dangerMessage({
-                    onShown: function () {
-                        $('#loading-image-trInfoGrid').loadImager('removeLoadImage');
-                    }
-                });
-                $(window).dangerMessage('show', window.lang.translate('xxxxxxxxxxx'), window.lang.translate('xxxxxxxxxxxxxxxxxx...'));
-            },
+            onAfterSuccess: function (event, data) {
+                $("#gridContainer_trainingName").dxDataGrid("instance").refresh();
+            }
         })
-        ajax_deleteTrName.ajaxCallWidget('call');
-        $('#trNameListRefresh').click();
+        ajax_deleteTrName.ajaxCallWidget('call'); 
     }
 
     var trNameId = '';
@@ -940,8 +968,8 @@
             var postalcode = $('#txt-PtCode-name').val();
             var description = $('#txt-Explanation-name').val();
             var education_value = $('#txt-Grade-name').val();
-            var edu_start_date = "11/10/2018"; //$('#start-datepicker').val(),
-            var eduEndDate = "11/10/2018"; //$('#end-datepicker').val(),
+            var edu_start_date = $('#start-datepicker').val();
+            var eduEndDate = $('#end-datepicker').val();
 
             //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url= pkInsertAct_syseducationssalesman &=asd%20sok &address2=no%2011 &address3=dai%205 &postalcode=061010
             //& description=asdaasdasdasd &education_definition_id=1 &user_id=1 & city_id=1 &education_value=10 &edu_start_date=11/10/2018 &$eduEndDate=12/10/2018 &pk=GsZVzEYe50uGgN
@@ -980,9 +1008,10 @@
             })
 
             ajax_InsertTrainingInfo.ajaxCallWidget('call');
-            $('#trListRefresh').click();
+
             return false;
         }
+        $('#trListRefresh').click();
     })
 
      /*
@@ -1063,110 +1092,77 @@
 
     //Training Info Delete
     window.deleteTrInfo = function (trInfo_id) {
-        $("#loading-image-trInfoGrid").loadImager('removeLoadImage');
-        $("#loading-image-trInfoGrid").loadImager('appendImage');
-
         //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_syseducationssalesman&id=8&pk=GsZVzEYe50uGgNM
 
         var ajax_deleteTrInfo = $('#ajaxACL-trInfoList').ajaxCallWidget({
+            failureLoadImage: true,
+            loadingImageID: "loading-image-trInfoGrid",
+            triggerSuccessAuto: true,
+            transactionSuccessText: transactionSuccessMessage,
+            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
             proxy: '/Training/SysDeleteTrInfo',
+            type: "POST",
             data: JSON.stringify({
                 id: trInfo_id,
                 pk: "GsZVzEYe50uGgNM",
                 url: "pkDeletedAct_syseducationssalesman"
             }),
-            type: "POST"
 
         });
-
         ajax_deleteTrInfo.ajaxCallWidget({
-            onError: function (event, textStatus, errorThrown) {
+            onReset: function (event, data) {
 
-                $(window).dangerMessage({
-                    onShown: function () {
-                        $('#loading-image-trInfoGrid').loadImager('removeLoadImage');
-                    }
-                });
-                $(window).dangerMessage('show', window.lang.translate('yyyyyyyyyyyyyyyy...'), window.lang.translate('yyyyyyyyyyyyyyyyyyyy...'));
             },
-            onSuccess: function (event, mydata) {
-                //var data = $.parseJSON(mydata);
-
-                //grid refresh
-                //$('#branchdealerList').click();
-                $('#trListRefresh').click();
-                //$("#gridContainer_branch").dxDataGrid("instance").refresh();
-
-                $("#loading-image-trInfoGrid").loadImager('removeLoadImage');
-            },
-            onErrorDataNull: function (event, data) {
-                console.log("Error : " + event + " -data :" + data);
-                $(window).dangerMessage({
-                    onShown: function () {
-                        $('#loading-image-trInfoGrid').loadImager('removeLoadImage');
-                    }
-                });
-                $(window).dangerMessage('show', window.lang.translate('xxxxxxxxxxx'), window.lang.translate('xxxxxxxxxxxxxxxxxx...'));
-            },
+            onAfterSuccess: function (event, data) {
+                $("#gridContainer_trainingName").dxDataGrid("instance").refresh();
+            }
         })
-        ajax_deleteTrInfo.ajaxCallWidget('call');
-        $('#trListRefresh').click();
+        ajax_deleteTrInfo.ajaxCallWidget('call'); 
     }
 
     //ActivePasive Training Info
 
-    window.activepasiveTrInfo = function (trInfo_id) {
-        $("#loading-image-trInfoGrid").loadImager('removeLoadImage');
-        $("#loading-image-trInfoGrid").loadImager('appendImage');
+    window.activepasiveTrInfo = function (trInfo_id, active) {
+
+        var transactionSuccessMessage;
+
+        if (active === 1) {
+            //active
+            transactionSuccessMessage = window.lang.translate('Active successful');
+        } else {
+            //pasive
+            transactionSuccessMessage = window.lang.translate('Pasive successful');
+        }
 
         //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateMakeActiveOrPassive_syseducationssalesman&id=29&pk=GsZVzEYe50uGgNM
-
         var ajax_activepasiveTrInfolist = $('#ajaxACL-trInfoList').ajaxCallWidget({
-            proxy: '/Training/SysActivePasiveTrName',
+            failureLoadImage: true,
+            loadingImageID: "loading-image-trInfoGrid",
+            triggerSuccessAuto: true,
+            transactionSuccessText: transactionSuccessMessage,
+            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            proxy: '/Training/SysDeleteTrInfo',
+            type: "POST",
             data: JSON.stringify({
                 id: trInfo_id,
                 pk: "GsZVzEYe50uGgNM",
                 url: "pkUpdateMakeActiveOrPassive_syseducationssalesman"
             }),
-            type: "POST"
 
         });
-
         ajax_activepasiveTrInfolist.ajaxCallWidget({
-            onError: function (event, textStatus, errorThrown) {
-
-                $(window).dangerMessage({
-                    onShown: function () {
-                        $('#loading-image-trInfoGrid').loadImager('removeLoadImage');
-                    }
-                });
-                $(window).dangerMessage('show', window.lang.translate('yyyyyyyyyyyyyyyy...'), window.lang.translate('yyyyyyyyyyyyyyyyyyyy...'));
-            },
-            onSuccess: function (event, mydata) {
-                //var data = $.parseJSON(mydata);
-
-                //grid refresh
-                $('#trNameListRefresh').click();
-                //$('#branchdealerList').click();
-                //$("#gridContainer_trainingName").dxDataGrid("instance").refresh();
-
-                //$("#loading-image-trNameGrid").loadImager('removeLoadImage');
-                //$(window).successMessage('show', window.lang.translate('Active/Pasive Ok.'), window.lang.translate('Active/Pasive Ok.'));
+            onReset: function (event, data) {
 
             },
-            onErrorDataNull: function (event, data) {
-                console.log("Error : " + event + " -data :" + data);
-                $(window).dangerMessage({
-                    onShown: function () {
-                        $('#loading-image-trInfoGrid').loadImager('removeLoadImage');
-                    }
-                });
-                $(window).dangerMessage('show', window.lang.translate('xxxxxxxxxxx'), window.lang.translate('xxxxxxxxxxxxxxxxxx...'));
-            },
+            onAfterSuccess: function (event, data) {
+                $("#gridContainer_trainingName").dxDataGrid("instance").refresh();
+            }
         })
-        ajax_activepasiveTrInfolist.ajaxCallWidget('call');
+        ajax_activepasiveTrInfolist.ajaxCallWidget('call');  
     }
 
-
 });
+
 

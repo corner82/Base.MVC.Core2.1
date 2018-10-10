@@ -670,7 +670,7 @@ $(document).ready(function () {
         columns: [{
             caption: window.lang.translate('Warranty unique code') + "...",
             encodeHtml: false,
-            dataField: "name"
+            dataField: "unique_code"
         }, {
             caption: window.lang.translate('Vehicle type name') + "...",
             encodeHtml: false,
@@ -1067,7 +1067,6 @@ var warrantyNameId = "";
         })
         ajax_activepasiveWrNamelist.ajaxCallWidget('call');
     }
-
 
 //Warranty Name Delete
     window.deleteWrInfo = function (wrInfo_id) {
