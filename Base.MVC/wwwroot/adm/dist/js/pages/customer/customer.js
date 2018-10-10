@@ -186,7 +186,7 @@
                             data: JSON.stringify({
                                 language_code: $("#langCode").val(),
                                 pk: "GsZVzEYe50uGgNM",
-                                url: "pkCountryDdList_syscountrys",
+                                url: "pkCountryRegionsDdList_syscountryregions",
                                 country_id: countryId
                                 //pkIdentity: $("#publicKey").val()
                             })
@@ -228,7 +228,7 @@
                                                 data: JSON.stringify({
                                                     language_code: $("#langCode").val(),
                                                     pk: "GsZVzEYe50uGgNM",
-                                                    url: "pkCountryDdList_syscountrys",
+                                                    url: "pkCityDdList_syscity",
                                                     country_id: countryId,
                                                     region_id: provinceId
                                                     //pkIdentity: $("#publicKey").val()
