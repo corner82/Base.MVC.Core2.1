@@ -10,7 +10,7 @@ $(document).ready(function () {
     //var selectedNode;
     //var selectedRoot;
     //var selectedItem;
-
+    var selectedBranchId;
     var selectedMANBranchId;
     var selectedMANBranchName;
     
@@ -294,6 +294,28 @@ $(document).ready(function () {
                 });
 
                 return deferred.promise();
+            },
+            remove: function (key) {
+                var deferred = $.Deferred();
+
+                return $.ajax({
+                    url: '/Sys/SysDeleteBranch',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        id: selectedBranchId,
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkDeletedAct_sysbranchesdealersdeff"
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                    },
+                    error: function () {
+                        deferred.reject("Data remove Error");
+                    },
+                    timeout: 10000
+                });
             }
         });
 
@@ -393,23 +415,7 @@ $(document).ready(function () {
                 //"active": 0, "op_user_id": 16, "language_id": "385", "language_name": "English"
 
                 columns: [
-
-                /*
-                 $("<div id='reportdelete' />").dxButton({
-                                    icon: 'trash',
-                                    onClick: function (e) {
-                                         var grid = $("#gridContainer").dxDataGrid("instance");
-                                        var rowIndex = options.rowIndex;
-                                        $.ajax({.......,
-                                               success: function(result){
-                                                // send a custom request here
-                                                $("#gridContainer").dxDataGrid("instance").refresh(); // rebind the grid
-                                        })
-                                    }
-}).appendTo(container);
-                 */
-                 
-                    {
+                     {
                         caption: window.lang.translate('Active/Pasive'),
                         width: 40,
                         alignment: 'center',
@@ -439,7 +445,6 @@ $(document).ready(function () {
 
                         }
 
-                        //dataField: "active"
                     }, {
                         caption: window.lang.translate('MAN Branch/Dealer office'),
                         dataField: "departman_name",
@@ -500,25 +505,14 @@ $(document).ready(function () {
                 onSelectionChanged: function (selectedItems) {
                     var data = selectedItems.selectedRowsData[0];
                     if (data) {
+                        selectedBranchId = data.branch_id;
                         fillBranchForm(data);
                     }
                 },
 
                 onRowRemoving: function (e) {
-
-                    $(function (confirmed) {
-                        if (confirmed) {
-                            //Delete Yes
-                            e.Cancel = true;
-                            var branch_id = e.key.id;
-                            deleteBranch(branch_id);
-
-                        }
-                        else {
-                            //Delete No
-
-                        }
-                    })
+                    selectedBranchId = e.key.id;
+                    //alert(selectedBranchId);
                 },
 
                 onRowRemoved: function (e) {
