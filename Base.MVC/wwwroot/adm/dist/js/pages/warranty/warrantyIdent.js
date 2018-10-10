@@ -46,35 +46,17 @@ $(document).ready(function () {
     var VhTypeId = ""; 
 
     var langCode = $("#langCode").val();
-   
+    var warrantyNameID;
+    var warrantyInfoID;
 
     var tabOrganizer = $("#warranty_tab").organizeTabs({ tabID: "warranty_tab" });
 
     $("#warranty_tab").organizeTabs('disableAllTabs');
 
-
     $('#warrantyForm').validationEngine();
     $('#warrantyNameForm').validationEngine();
 
-    var cbdataWrRM = [
-        {
-            text: window.lang.translate('Please select') + "...",
-            value: 3,
-            selected: true
-        },
-        {
-            text: "Yes",
-            value: 1,
-            selected: false
-        },
-        {
-            text: "No",
-            value: 0,
-            selected: false
-        },
-    ];
-
-    //model
+//model
     $('#loading-image-modelName').loadImager('removeLoadImage');
     $("#loading-image-modelName").loadImager('appendImage');
 
@@ -127,7 +109,7 @@ $(document).ready(function () {
     ajaxACLResources_modelName.ajaxCallWidget('call');
 //Model End
 
-    //Vh model
+//Config type
     $('#loading-image-vhModel').loadImager('removeLoadImage');
     $("#loading-image-vhModel").loadImager('appendImage');
 
@@ -182,9 +164,9 @@ $(document).ready(function () {
         },
     })
     ajaxACLResources_vhModel.ajaxCallWidget('call');
+//Config type End
 
-
-    //wrType
+//wrType
     $('#loading-image-wrType').loadImager('removeLoadImage');
     $("#loading-image-wrType").loadImager('appendImage');
 
@@ -240,7 +222,7 @@ $(document).ready(function () {
     ajaxACLResources_wrType.ajaxCallWidget('call');
 //wrType End
 
-    //wrMil
+//wrMil
     $('#loading-image-wrMil').loadImager('removeLoadImage');
     $("#loading-image-wrMil").loadImager('appendImage');
 
@@ -296,7 +278,7 @@ $(document).ready(function () {
     ajaxACLResources_wrMil.ajaxCallWidget('call');
 //wrMil End
 
-    //wrMonth
+//wrMonth
     $('#loading-image-wrMonth').loadImager('removeLoadImage');
     $("#loading-image-wrMonth").loadImager('appendImage');
 
@@ -352,7 +334,7 @@ $(document).ready(function () {
     ajaxACLResources_wrMonth.ajaxCallWidget('call');
 //wrMonth End
 
-    //rm
+//rm
     $('#loading-image-rm').loadImager('removeLoadImage');
     $("#loading-image-rm").loadImager('appendImage');
 
@@ -427,22 +409,55 @@ $(document).ready(function () {
 
             args.skip = loadOptions.skip || 0;
             args.take = loadOptions.take || 12;
-
+//http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillWarrantiesGridx_syswarranties&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
             $.ajax({
                 url: '/Warranty/SysWarrantiesGrid',
                 dataType: "json",
+                data: JSON.stringify({
+                    language_code: $("#langCode").val(),
+                    pk: "GsZVzEYe50uGgNM",
+                    url: "pkFillWarrantiesGridx_syswarranties",
+                    pkIdentity: $("#publicKey").val(),
+                    page: "",
+                    rows: "",
+                    sort: "",
+                    order: "", //args.orderby,
+                    skip: args.skip,
+                    take: args.take
+                }),
                 type: 'POST',
-                data: args,
+                contentType: 'application/json',
                 success: function (result) {
                     deferred.resolve(result.items, { totalCount: result.totalCount });
                 },
                 error: function () {
                     deferred.reject("Data Loading Error");
                 },
-                timeout: 15000
+                timeout: 10000
             });
-
             return deferred.promise();
+        },
+        remove: function (key) {
+            var deferred = $.Deferred();
+            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_syswarranties&id=9&pk=GsZVzEYe50uGgNM
+            return $.ajax({
+                url: '/Warranty/SysDeleteWarranty',
+                dataType: "json",
+                data: JSON.stringify({
+                    id: warrantyNameID,
+                    pk: "GsZVzEYe50uGgNM",
+                    url: "pkDeletedAct_syswarranties"
+                }),
+                type: 'POST',
+                contentType: 'application/json',
+                success: function (result) {
+                    deferred.resolve(result.items, { totalCount: result.totalCount });
+                },
+                error: function () {
+                    deferred.reject("Data remove Error");
+                },
+                timeout: 10000
+            });
         }
     });
 
@@ -484,13 +499,12 @@ $(document).ready(function () {
             visible: true
         },
         OnCellPrepared: function (options) {
-
             var fieldData = options.value;
             fieldHtml = "";
 
             fieldHtml = fieldData.value;
             options.cellElement.html(fieldHtml);
-
+            options.cellElement.html(fieldHtml);
         },
         paging: {
             pageSize: 8
@@ -512,15 +526,7 @@ $(document).ready(function () {
             mode: "select"
         },
         columns: [{
-            caption: window.lang.translate('Vehicle model name') + "...",
-            encodeHtml: false,
-            dataField: "vehicle_group_name"
-        }, {
-            caption: window.lang.translate('Warranty name') + "...",
-            encodeHtml: false,
-            dataField: "name"
-        }, {
-            caption: window.lang.translate('Active/Pasive'),
+            caption: window.lang.translate('Active/Passive'),
             width: 40,
             alignment: 'center',
             encodeHtml: false,
@@ -532,35 +538,39 @@ $(document).ready(function () {
                 if (options.data.active === 1) {
                     //active
                     $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
-                        activepasiveWrName(wrName_id);
+                        activepasiveWrName(wrName_id, options.data.active);
                         dm.successMessage('show', window.lang.translate('Active success message...'), window.lang.translate('Active success message...'));
                     }).appendTo(container);
                 } else if (options.data.active === 0) {
                     //pasive
                     $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
-                        activepasiveWrName(wrName_id);
+                        activepasiveWrName(wrName_id, options.data.active);
                         dm.successMessage('show', window.lang.translate('Pasive success message...'), window.lang.translate('Pasive success message...'));
                     }).appendTo(container);
                 }
             }
-            //dataField: "active"
+        }, {
+            caption: window.lang.translate('Vehicle model name') + "...",
+            encodeHtml: false,
+            dataField: "vehicle_group_name"
+        }, {
+            caption: window.lang.translate('Warranty name') + "...",
+            encodeHtml: false,
+            dataField: "name"
         }],
 
         onSelectionChanged: function(selectedItems) {
             var data = selectedItems.selectedRowsData[0];
             if (data) {
+                warrantyNameID = data.id;
                 fillwarrantyNameForm(data);
             }
         },
         onRowRemoving: function (e) {
-            //e.cancel = true;
-            //Confirmasyon ile silme düzenlenecek...
-            var wrInfo_id = e.key.id;
-            deleteWrInfo(wrInfo_id);
-
+            warrantyNameID = e.key.id;
         },
         onRowRemoved: function (e) {
-
+            $("#gridContainer_warrantyName").dxDataGrid("instance").refresh();
         },
     });
     });
@@ -911,11 +921,11 @@ $(document).ready(function () {
 
 
 /////////////////////////Warranty Name//////////////////////////////
-    /**
-   * insert traning name
-   * @returns {undefined}
-   * @since 29/08/2018
-   */
+/**
+* insert traning name
+* @returns {undefined}
+* @since 29/08/2018
+*/
     $("#btn-warrantyName-save").on("click", function (e) {
         e.preventDefault();
         //alert("geldim click");
@@ -1016,108 +1026,45 @@ var warrantyNameId = "";
 
 //ActivePasive Warranty Name
 
-    window.activepasiveWrName = function (wrName_id) {
-        $("#loading-image-warrantyNameGrid").loadImager('removeLoadImage');
-        $("#loading-image-warrantyNameGrid").loadImager('appendImage');
+    window.activepasiveWrName = function (wrName_id, active) {
+
+        var transactionSuccessMessage;
+
+        if (active === 1) {
+            //active
+            transactionSuccessMessage = window.lang.translate('Active successful');
+        } else {
+            //pasive
+            transactionSuccessMessage = window.lang.translate('Pasive successful');
+        }
 
         //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateMakeActiveOrPassive_syswarranties&id=29&pk=GsZVzEYe50uGgNM
-
-        var ajax_activepasiveWrNamelist = $('#ajaxACL-wrNameList').ajaxCallWidget({
+        var ajax_activepasiveWrName = $('#ajaxACL-wrNameList').ajaxCallWidget({
+            failureLoadImage: true,
+            loadingImageID: "loading-image-warrantyNameGrid",
+            triggerSuccessAuto: true,
+            transactionSuccessText: transactionSuccessMessage,
+            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
             proxy: '/Warranty/SysActivePasiveWrName',
+            type: "POST",
             data: JSON.stringify({
                 id: wrName_id,
                 pk: "GsZVzEYe50uGgNM",
                 url: "pkUpdateMakeActiveOrPassive_syswarranties"
             }),
-            type: "POST"
 
         });
-
-        ajax_activepasiveWrNamelist.ajaxCallWidget({
-            onError: function (event, textStatus, errorThrown) {
-
-                $(window).dangerMessage({
-                    onShown: function () {
-                        $('#loading-image-warrantyNameGrid').loadImager('removeLoadImage');
-                    }
-                });
-                $(window).dangerMessage('show', window.lang.translate('yyyyyyyyyyyyyyyy...'), window.lang.translate('yyyyyyyyyyyyyyyyyyyy...'));
-            },
-            onSuccess: function (event, mydata) {
-                //var data = $.parseJSON(mydata);
-
-                //grid refresh
-                $('#wrNameListRefresh').click();
-                //$('#branchdealerList').click();
-                //$("#gridContainer_trainingName").dxDataGrid("instance").refresh();
-
-                //$("#loading-image-trNameGrid").loadImager('removeLoadImage');
-                //$(window).successMessage('show', window.lang.translate('Active/Pasive Ok.'), window.lang.translate('Active/Pasive Ok.'));
+        ajax_activepasiveWrName.ajaxCallWidget({
+            onReset: function (event, data) {
 
             },
-            onErrorDataNull: function (event, data) {
-                console.log("Error : " + event + " -data :" + data);
-                $(window).dangerMessage({
-                    onShown: function () {
-                        $('#loading-image-warrantyNameGrid').loadImager('removeLoadImage');
-                    }
-                });
-                $(window).dangerMessage('show', window.lang.translate('xxxxxxxxxxx'), window.lang.translate('xxxxxxxxxxxxxxxxxx...'));
-            },
+            onAfterSuccess: function (event, data) {
+                $("#gridContainer_trainingName").dxDataGrid("instance").refresh();
+            }
         })
-        ajax_activepasiveWrNamelist.ajaxCallWidget('call');
+        ajax_activepasiveWrName.ajaxCallWidget('call');
     }
 
-//Warranty Name Delete
-    window.deleteWrInfo = function (wrInfo_id) {
-        $("#loading-image-warrantyNameGrid").loadImager('removeLoadImage');
-        $("#loading-image-warrantyNameGrid").loadImager('appendImage');
-
-        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_syswarranties&id=9&pk=GsZVzEYe50uGgNM
-
-        var ajax_deleteWrInfo = $('#ajaxACL-wrNameList').ajaxCallWidget({
-            proxy: '/Warranty/SysDeleteWrName',
-            data: JSON.stringify({
-                id: wrInfo_id,
-                pk: "GsZVzEYe50uGgNM",
-                url: "pkDeletedAct_syswarranties"
-            }),
-            type: "POST"
-
-        });
-
-        ajax_deleteWrInfo.ajaxCallWidget({
-            onError: function (event, textStatus, errorThrown) {
-
-                $(window).dangerMessage({
-                    onShown: function () {
-                        $('#loading-image-warrantyNameGrid').loadImager('removeLoadImage');
-                    }
-                });
-                $(window).dangerMessage('show', window.lang.translate('yyyyyyyyyyyyyyyy...'), window.lang.translate('yyyyyyyyyyyyyyyyyyyy...'));
-            },
-            onSuccess: function (event, mydata) {
-                //var data = $.parseJSON(mydata);
-
-                //grid refresh
-                //$('#branchdealerList').click();
-                $('#trListRefresh').click();
-                //$("#gridContainer_branch").dxDataGrid("instance").refresh();
-
-                $("#loading-image-warrantyNameGrid").loadImager('removeLoadImage');
-            },
-            onErrorDataNull: function (event, data) {
-                console.log("Error : " + event + " -data :" + data);
-                $(window).dangerMessage({
-                    onShown: function () {
-                        $('#loading-image-warrantyNameGrid').loadImager('removeLoadImage');
-                    }
-                });
-                $(window).dangerMessage('show', window.lang.translate('xxxxxxxxxxx'), window.lang.translate('xxxxxxxxxxxxxxxxxx...'));
-            },
-        })
-        ajax_deleteWrInfo.ajaxCallWidget('call');
-
-    }
 });
 

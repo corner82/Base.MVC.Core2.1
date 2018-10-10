@@ -661,6 +661,30 @@
             autoWidth: false
         },
         columns: [{
+            caption: window.lang.translate('Active/Passive'),
+            width: 40,
+            alignment: 'center',
+            encodeHtml: false,
+
+            cellTemplate: function (container, options) {
+                var fieldHtml;
+                var trInfo_id = options.data.id;
+
+                if (options.data.active === 1) {
+                    //active
+                    $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
+                        activepasiveTrInfo(trInfo_id, options.data.active);
+                        dm.successMessage('show', window.lang.translate('Active success message...'), window.lang.translate('Active success message...'));
+                    }).appendTo(container);
+                } else if (options.data.active === 0) {
+                    //pasive
+                    $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
+                        activepasiveTrInfo(trInfo_id, options.data.active);
+                        dm.successMessage('show', window.lang.translate('Pasive success message...'), window.lang.translate('Pasive success message...'));
+                    }).appendTo(container);
+                }
+            }
+        },{
             caption: window.lang.translate('Training Name') + "...",
             encodeHtml: false,
             dataField: "name"
@@ -706,31 +730,6 @@
             caption: window.lang.translate('Grade') + "...",
             encodeHtml: false,
             dataField: "education_value"
-        }, {
-            caption: window.lang.translate('Active/Passive'),
-            width: 40,
-            alignment: 'center',
-            encodeHtml: false,
-
-            cellTemplate: function (container, options) {
-                var fieldHtml;
-                var trInfo_id = options.data.id;
-
-                if (options.data.active === 1) {
-                    //active
-                    $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
-                        activepasiveTrInfo(trInfo_id, options.data.active);
-                        dm.successMessage('show', window.lang.translate('Active success message...'), window.lang.translate('Active success message...'));
-                    }).appendTo(container);
-                } else if (options.data.active === 0) {
-                    //pasive
-                    $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
-                        activepasiveTrInfo(trInfo_id, options.data.active);
-                        dm.successMessage('show', window.lang.translate('Pasive success message...'), window.lang.translate('Pasive success message...'));
-                    }).appendTo(container);
-                }
-            }
-            //dataField: "active"
         }],
 
         onRowRemoving: function (e) {
@@ -886,6 +885,7 @@
             }
         })
         ajax_activepasiveTrName.ajaxCallWidget('call');  
+        $('#trListRefresh').click();
     }
 
     var trNameId = '';

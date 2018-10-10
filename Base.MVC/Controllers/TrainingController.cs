@@ -247,46 +247,6 @@ namespace Base.MVC.Controllers
         }
 
         /// <summary>
-        /// insert training form --- Not: insert etmedi AddTrainingName kullandım...
-        /// Ceydacan Seyrek
-        /// </summary>
-        /// 
-        /// <returns></returns>
-        //[SessionTimeOut]
-        //[ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
-        //[ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
-        //[HttpGet]
-        //public async Task<string> SysInsertTraining()
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var headers = new Dictionary<string, string>();
-        //        var tokenGenerated = HttpContext.Session.GetHmacToken();
-        //        headers.Add("X-Hmac", tokenGenerated);
-        //        headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-
-        //        var encodedURL = Request.GetEncodedUrl();
-        //        var pathAndQuery = Request.GetEncodedPathAndQuery();
-        //        var displayURL = Request.GetDisplayUrl();
-        //        string path = Request.Path.ToString();
-        //        string queryStr = Request.QueryString.ToString();
-
-        //        // http://proxy.mansis.co.za:18443/SlimProxyBoot.php?
-        //        // http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_syseducationdefinitions&name=aracdescriptioni&pk=GsZVzEYe50uGgNM
-        //        //_hmacManager.test();
-        //        //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
-        //        var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
-        //        var data = response.Content.ReadAsStringAsync().Result;
-        //        return data.ToString();
-        //    }
-        //    else
-        //    {
-        //        throw new Exception("Model state is not valid");
-        //    }
-
-        //}
-
-        /// <summary>
         /// add training name
         /// Ceydacan Seyrek
         /// </summary>
@@ -357,13 +317,13 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> SysActivePasiveTrName([FromBody] ActivePasivePostModel deleteModel)
+        public async Task<string> SysActivePasiveTrName([FromBody] ActivePasivePostModel activeModel)
         {
             var headers = new Dictionary<string, string>();
             var tokenGenerated = HttpContext.Session.GetHmacToken();
             headers.Add("X-Hmac", tokenGenerated);
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            string queryStr = _queryCreater.GetQueryStringFromObject(deleteModel);
+            string queryStr = _queryCreater.GetQueryStringFromObject(activeModel);
             var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
@@ -392,7 +352,7 @@ namespace Base.MVC.Controllers
         }
 
         /// <summary>
-        /// Delete traning Name
+        /// Delete traning Info
         ///Ceydacan Seyrek
         /// </summary>
         /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_syseducationssalesman&id=8&pk=GsZVzEYe50uGgNM

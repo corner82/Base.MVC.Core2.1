@@ -214,19 +214,24 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> SysWarrantiesGrid()
+        public async Task<string> SysWarrantiesGrid([FromBody] DefaultPostModelGridList gridModel)
         {
-            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(gridModel);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model state is not valid");
+            }
 
-            var headers = new Dictionary<string, string>();
-            var tokenGenerated = HttpContext.Session.GetHmacToken();
-            headers.Add("X-Hmac", tokenGenerated);
-            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            //_hmacManager.test();
-            //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
-            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillWarrantiesGridx_syswarranties&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM", headers);
-            var data = response.Content.ReadAsStringAsync().Result;
-            return data.ToString();
         }
 
         /// <summary>
@@ -235,7 +240,7 @@ namespace Base.MVC.Controllers
         /// </summary>
         /// 
         /// <returns></returns>
-        //[SessionTimeOut]
+            //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
@@ -286,7 +291,6 @@ namespace Base.MVC.Controllers
             }
 
         }
-
 
         /// <summary>
         /// get Warranty Name Insert
@@ -431,6 +435,28 @@ namespace Base.MVC.Controllers
                 throw new Exception("Model state is not valid");
             }
 
+        }
+
+        /// <summary>
+        /// Delete warranty
+        ///Ceydacan Seyrek
+        /// </summary>
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_syseducationssalesman&id=8&pk=GsZVzEYe50uGgNM
+        /// <returns></returns>
+        //[AjaxSessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysDeleteWarranty([FromBody] DeletePostModel deleteModel)
+        {
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            string queryStr = _queryCreater.GetQueryStringFromObject(deleteModel);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
         }
     }
 }
