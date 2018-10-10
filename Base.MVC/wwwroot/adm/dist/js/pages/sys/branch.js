@@ -13,7 +13,7 @@ $(document).ready(function () {
 
     var selectedMANBranchId;
     var selectedMANBranchName;
-
+    
 
     var sm = $(window).successMessage();
     var dm = $(window).dangerMessage();
@@ -76,9 +76,9 @@ $(document).ready(function () {
         },
 
         onClick: function (node) {
-            selectedNode = node;
-            selectedRoot = $(this).tree('getRoot', node.target);
-            selectedItem = $(this).tree('getData', node.target);
+            //selectedNode = node;
+            //selectedRoot = $(this).tree('getRoot', node.target);
+            var selectedItem = $(this).tree('getData', node.target);
 
             console.log(selectedItem);
             //console.log(selectedItem.id);
@@ -149,7 +149,7 @@ $(document).ready(function () {
                             data: JSON.stringify({
                                 language_code: $("#langCode").val(),
                                 pk: "GsZVzEYe50uGgNM",
-                                url: "pkCountryDdList_syscountrys",
+                                url: "pkCountryRegionsDdList_syscountryregions",
                                 country_id: countryId
                                 //pkIdentity: $("#publicKey").val()
                             })
@@ -191,7 +191,7 @@ $(document).ready(function () {
                                                 data: JSON.stringify({
                                                     language_code: $("#langCode").val(),
                                                     pk: "GsZVzEYe50uGgNM",
-                                                    url: "pkCountryDdList_syscountrys",
+                                                    url: "pkCityDdList_syscity",
                                                     country_id: countryId,
                                                     region_id: provinceId
                                                     //pkIdentity: $("#publicKey").val()
@@ -505,14 +505,24 @@ $(document).ready(function () {
                 },
 
                 onRowRemoving: function (e) {
-                    //e.cancel = true;
-                    //Confirmasyon ile silme düzenlenecek...
-                    var branch_id = e.key.id;
-                    deleteBranch(branch_id);
 
+                    $(function (confirmed) {
+                        if (confirmed) {
+                            //Delete Yes
+                            e.Cancel = true;
+                            var branch_id = e.key.id;
+                            deleteBranch(branch_id);
+
+                        }
+                        else {
+                            //Delete No
+
+                        }
+                    })
                 },
+
                 onRowRemoved: function (e) {
-                    
+                    $("#gridContainer_branch").dxDataGrid("instance").refresh();
                 },
 
             });
@@ -570,12 +580,6 @@ $(document).ready(function () {
             //txt-location-ptcode
             var postalCode = $('#txt-location-ptcode').val();
 
-            //var ddData_nMANBranchOffice = $('#dropdownMANBranchOffice').data('ddslick');
-            //var sisDepartmentId = ddData_nMANBranchOffice.selectedData.value;
-            //geçici
-            //sisDepartmentId = 45;
-
-
             var ddData_Country = $('#dropdownCountry').data('ddslick');
             var countryId = ddData_Country.selectedData.value;
 
@@ -605,7 +609,7 @@ $(document).ready(function () {
                     country_id: countryId,
                     country_region_id: provinceId,
                     city_id: cityId,
-                    sis_department_id: sisDepartmentId,
+                    sis_department_id: selectedMANBranchId,
                     pk: "GsZVzEYe50uGgNM"
                 })
 
@@ -708,10 +712,7 @@ $(document).ready(function () {
                 $(window).dangerMessage('show', window.lang.translate('yyyyyyyyyyyyyyyy...'), window.lang.translate('yyyyyyyyyyyyyyyyyyyy...'));
             },
             onSuccess: function (event, mydata) {
-                var data = $.parseJSON(mydata);
 
-                //grid refresh
-                //$('#branchdealerList').click();
                 $("#gridContainer_branch").dxDataGrid("instance").refresh();
 
                 $("#loading-image-branchgrid").loadImager('removeLoadImage');
