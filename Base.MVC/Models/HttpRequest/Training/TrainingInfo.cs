@@ -18,7 +18,7 @@ namespace Base.MVC.Models.HttpRequest.Training
         public string city_id { get; set; }//int
         public string education_value { get; set; }//int
         public string edu_start_date { get; set; } //DateTime
-        public string eduEndDate { get; set; }//DateTime
+        public string edu_end_date { get; set; }//DateTime
         public string pk { get; set; }
 
     }

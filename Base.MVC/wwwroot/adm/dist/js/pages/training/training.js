@@ -570,10 +570,10 @@
             var deferred = $.Deferred();
 
             return $.ajax({
-                url: '/Training/SysDeleteTrInfo',
+                url: '/Training/SysDeleteTrName',
                 dataType: "json",
                 data: JSON.stringify({
-                    id: TrainingNameID,
+                    id: TrainingInfoID,
                     pk: "GsZVzEYe50uGgNM",
                     url: "pkDeletedAct_syseducationssalesman"
                 }),
@@ -588,7 +588,7 @@
                 timeout: 10000
             });
         }
-        });
+    });
 
     //Training List Info dxDataGrid
     $("#gridContainer_trainingInfo").dxDataGrid({
@@ -750,7 +750,7 @@
             }
         },
         onRowRemoving: function (e) {
-            var trInfo_id = e.key.id;
+            TrainingInfoID = e.key.id;
            // deleteTrInfo(trInfo_id);
         },
         onRowRemoved: function (e) {
@@ -888,40 +888,7 @@
         ajax_activepasiveTrName.ajaxCallWidget('call');  
     }
 
-    //Training Name Delete
-    window.deleteTrName = function (trName_id) {
-        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_syseducationdefinitions&id=3&pk=GsZVzEYe50uGgNM
-
-        var ajax_deleteTrName = $('#ajaxACL-trNameList').ajaxCallWidget({
-            failureLoadImage: true,
-            loadingImageID: "loading-image-trNameGrid",
-            triggerSuccessAuto: true,
-            transactionSuccessText: transactionSuccessMessage,
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-            proxy: '/Training/SysDeleteTrName',
-            type: "POST",
-            data: JSON.stringify({
-                id: trName_id,
-                pk: "GsZVzEYe50uGgNM",
-                url: "pkDeletedAct_syseducationdefinitions"
-            }),
-
-        });
-        ajax_deleteTrName.ajaxCallWidget({
-            onReset: function (event, data) {
-
-            },
-            onAfterSuccess: function (event, data) {
-                $("#gridContainer_trainingName").dxDataGrid("instance").refresh();
-            }
-        })
-        ajax_deleteTrName.ajaxCallWidget('call'); 
-    }
-
     var trNameId = '';
-
-
     //Fill Training Name
     window.fillTrainingIdentForm = function (data) {
         $("#loading-image-trInfo").loadImager('removeLoadImage');
@@ -969,7 +936,7 @@
             var description = $('#txt-Explanation-name').val();
             var education_value = $('#txt-Grade-name').val();
             var edu_start_date = $('#start-datepicker').val();
-            var eduEndDate = $('#end-datepicker').val();
+            var edu_end_date = $('#end-datepicker').val();
 
             //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url= pkInsertAct_syseducationssalesman &=asd%20sok &address2=no%2011 &address3=dai%205 &postalcode=061010
             //& description=asdaasdasdasd &education_definition_id=1 &user_id=1 & city_id=1 &education_value=10 &edu_start_date=11/10/2018 &$eduEndDate=12/10/2018 &pk=GsZVzEYe50uGgN
@@ -996,7 +963,7 @@
                     city_id: city_id,//ddDataCity.selectedData.value,
                     education_value: education_value,// $('#txt-Grade-name').val(),
                     edu_start_date: edu_start_date, //"10/10/2018", //$('#start-datepicker').val(),
-                    eduEndDate: eduEndDate,//"10/10/2018", //$('#end-datepicker').val(),
+                    edu_end_date: edu_end_date,//"10/10/2018", //$('#end-datepicker').val(),
                     pk: "GsZVzEYe50uGgNM"
                 })
             });
@@ -1088,37 +1055,6 @@
         //$("#loading-image-truser").loadImager('removeLoadImage');
 
         return false;
-    }
-
-    //Training Info Delete
-    window.deleteTrInfo = function (trInfo_id) {
-        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_syseducationssalesman&id=8&pk=GsZVzEYe50uGgNM
-
-        var ajax_deleteTrInfo = $('#ajaxACL-trInfoList').ajaxCallWidget({
-            failureLoadImage: true,
-            loadingImageID: "loading-image-trInfoGrid",
-            triggerSuccessAuto: true,
-            transactionSuccessText: transactionSuccessMessage,
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-            proxy: '/Training/SysDeleteTrInfo',
-            type: "POST",
-            data: JSON.stringify({
-                id: trInfo_id,
-                pk: "GsZVzEYe50uGgNM",
-                url: "pkDeletedAct_syseducationssalesman"
-            }),
-
-        });
-        ajax_deleteTrInfo.ajaxCallWidget({
-            onReset: function (event, data) {
-
-            },
-            onAfterSuccess: function (event, data) {
-                $("#gridContainer_trainingName").dxDataGrid("instance").refresh();
-            }
-        })
-        ajax_deleteTrInfo.ajaxCallWidget('call'); 
     }
 
     //ActivePasive Training Info
