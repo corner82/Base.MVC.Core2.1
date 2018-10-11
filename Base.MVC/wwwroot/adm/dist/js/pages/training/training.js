@@ -97,55 +97,51 @@
     
 
     //trainee
-    $('#loading-image-trainer').loadImager('removeLoadImage');
-    $("#loading-image-trainer").loadImager('appendImage');
-
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkSalesmanDdList_infoUsers&language_code=en&pk=GsZVzEYe50uGgNM
     var ajaxACLResources_trainer = $('#ajaxACL-trainer').ajaxCallWidget({
-        proxy: '/Training/SysSalesman/',
-        type: 'POST'
+        failureLoadImage: true,
+        loadingImageID: "loading-image-trainer",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkSalesmanDdList_infoUsers",
+            pkIdentity: $("#publicKey").val()
+        })
     });
 
     ajaxACLResources_trainer.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
+        onReset: function (event, data) {
 
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-trainer').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
         },
-        onSuccess: function (event, data_trainer) {
-            //var data = $.parseJSON(cbdata);
-            var cbdata_trainer = $.parseJSON(data_trainer);
-            cbdata_trainer.splice(0, 0,
+        onSuccess: function (event, datacity) {
+
+            var cbdata_city = $.parseJSON(datacity);
+            cbdata_city.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
+
             $('#dropdownTrainer').ddslick({
-                //height: 150,
-                data: cbdata_trainer,
+                data: cbdata_city,
                 width: '100%',
-
-                onSelected: function (selectedData) {
-                    //if (selectedData.selectedData.value > 0) {
-
-                    //}
-                }
-            });
-
-            $("#loading-image-trainer").loadImager('removeLoadImage');
+                //search: true,
+                //searchText: window.lang.translate('Search'),
+            })
+            $('#loading-image-trainer').loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-trainer').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'trainer not show...', 'trainer not show...');
-        },
+        onAfterSuccess: function (event, data) {
+            $('#loading-image-trainer').loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_trainer.ajaxCallWidget('call');
+
+
+
     //end trainee
 
     //country --> province --> city
@@ -482,13 +478,13 @@
                     //active
                     $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
                         activepasiveTrName(trName_id, options.data.active);
-                        dm.successMessage('show', window.lang.translate('Active success message...'), window.lang.translate('Active success message...'));
+                        //dm.successMessage('show', window.lang.translate('Active success message...'), window.lang.translate('Active success message...'));
                     }).appendTo(container);
                 } else if (options.data.active === 0) {
                     //pasive
                     $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
                         activepasiveTrName(trName_id, options.data.active);
-                        dm.successMessage('show', window.lang.translate('Pasive success message...'), window.lang.translate('Pasive success message...'));
+                        //dm.successMessage('show', window.lang.translate('Pasive success message...'), window.lang.translate('Pasive success message...'));
                     }).appendTo(container);
                 }
             }
@@ -664,13 +660,13 @@
                     //active
                     $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
                         activepasiveTrInfo(trInfo_id, options.data.active);
-                        dm.successMessage('show', window.lang.translate('Active success message...'), window.lang.translate('Active success message...'));
+                        //dm.successMessage('show', window.lang.translate('Active success message...'), window.lang.translate('Active success message...'));
                     }).appendTo(container);
                 } else if (options.data.active === 0) {
                     //pasive
                     $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
                         activepasiveTrInfo(trInfo_id, options.data.active);
-                        dm.successMessage('show', window.lang.translate('Pasive success message...'), window.lang.translate('Pasive success message...'));
+                        //dm.successMessage('show', window.lang.translate('Pasive success message...'), window.lang.translate('Pasive success message...'));
                     }).appendTo(container);
                 }
             }
@@ -855,7 +851,7 @@
             failureLoadImage: true,
             loadingImageID: "loading-image-trNameGrid",
             triggerSuccessAuto: true,
-            transactionSuccessText: transactionSuccessMessage,
+            transactionSuccessText: window.lang.translate('Transaction successful'),
             transactionFailureText: window.lang.translate("Service URL not found, please report error"),
             dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
             proxy: '/Training/SysActivePasiveTrName',
@@ -873,6 +869,7 @@
             },
             onAfterSuccess: function (event, data) {
                 $("#gridContainer_trainingName").dxDataGrid("instance").refresh();
+                //$('#trListRefresh').click();
             }
         })
         ajax_activepasiveTrName.ajaxCallWidget('call');  
@@ -880,14 +877,16 @@
     }
 
     var trNameId = '';
-    //Fill Training Name
+    /**
+     * Fill Training Name
+     * @returns {undefined}
+     * @since 07/08/2018
+     */
+
     window.fillTrainingIdentForm = function (data) {
         $("#loading-image-trInfo").loadImager('removeLoadImage');
         $("#loading-image-trInfo").loadImager('appendImage');
         document.getElementById("txt-trn-name").value = data.name;
-        //var trnametest = data.name;
-        //var test = unescape(trnametest);
-        //document.getElementById("txt-trn-name").value = test;
         document.getElementById("txt-training-trName").value = data.name;
         trNameId = data.id;
         $("#loading-image-trInfo").loadImager('removeLoadImage');
@@ -958,18 +957,15 @@
                     pk: "GsZVzEYe50uGgNM"
                 })
             });
-
             ajax_InsertTrainingInfo.ajaxCallWidget({
                 onReset: function (event, data) {
-                    resetTrainingIdentForm();
+                    resetTraningInfoForm();
                 },
             })
-
             ajax_InsertTrainingInfo.ajaxCallWidget('call');
-
+            $('#trListRefresh').click();
             return false;
         }
-        $('#trListRefresh').click();
     })
 
      /*
@@ -999,7 +995,6 @@
 
         ddslick_cityId = 0;
         ddslick_city_name = "";
-        $('#dropdownCountry').ddslick('destroy');
         $('#dropdownProvince').ddslick('destroy');
         $('#dropdownCity').ddslick('destroy');
         //$('#dropdownTrName').ddslick('select', { index: String(0) });
@@ -1074,7 +1069,7 @@
             failureLoadImage: true,
             loadingImageID: "loading-image-trInfoGrid",
             triggerSuccessAuto: true,
-            transactionSuccessText: transactionSuccessMessage,
+            transactionSuccessText: window.lang.translate('Transaction successful'),
             transactionFailureText: window.lang.translate("Service URL not found, please report error"),
             dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
             proxy: '/Training/SysDeleteTrInfo',

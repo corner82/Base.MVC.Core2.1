@@ -133,9 +133,9 @@ $(document).ready(function () {
         onSuccess: function (event, cbdata_Model) {
             //var data = $.parseJSON(cbdata);
             var cbdataModel = $.parseJSON(cbdata_Model);
-            //cbdataModel.splice(0, 0,
-            //    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-            //);
+            cbdataModel.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#dropdownModel').ddslick({
                 //height: 150,
                 data: cbdataModel,
@@ -205,18 +205,6 @@ $(document).ready(function () {
                             },
                         })
                         ajaxACLResources_wrName.ajaxCallWidget('call');
-
-
-
-
-
-
-
-
-
-
-
-
                        
                     }
                     else {
@@ -1018,9 +1006,9 @@ $(document).ready(function () {
         $("#loading-image-warranty").loadImager('appendImage');
 
         $('#warrantyForm').validationEngine('hide');
-        //$('#dropdownModel').ddslick('select', { index: String(0) });
+        $('#dropdownModel').ddslick('select', { index: String(0) });
         $('#dropdownVhModel').ddslick('select', { index: String(0) });
-        //$('#dropdownWrName').ddslick('select', { index: String(0) });
+        $('#dropdownWrName').ddslick('select', { index: String(0) });
         $('#dropdownWrType').ddslick('select', { index: String(0) });
         $('#dropdownWrMil').ddslick('select', { index: String(0) });
         $('#dropdownWrMonth').ddslick('select', { index: String(0) });
@@ -1043,7 +1031,7 @@ $(document).ready(function () {
         $("#loading-image-warranty").loadImager('removeLoadImage');
         $("#loading-image-warranty").loadImager('appendImage');
 
-        //$('#dropdownModel').ddslick('select', { index: data.vehicle_group_id });
+        $('#dropdownModel').ddslick('select', { index: data.vehicle_group_id });
         $('#dropdownVhModel').ddslick('selectByValue',
             {
                 index: '' + data.vehicle_config_type_id + '',
