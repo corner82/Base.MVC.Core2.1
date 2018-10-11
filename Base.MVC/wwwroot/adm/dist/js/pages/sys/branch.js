@@ -13,7 +13,15 @@ $(document).ready(function () {
     var selectedBranchId;
     var selectedMANBranchId;
     var selectedMANBranchName;
-    
+    var filldropdown = false;
+
+    var ddslick_countryId = 0;
+    var ddslick_country_name = "";
+    var ddslick_provinceId = 0;
+    var ddslick_province_name = "";
+    var ddslick_cityId = 0;
+    var ddslick_city_name = "";
+
 
     var sm = $(window).successMessage();
     var dm = $(window).dangerMessage();
@@ -21,6 +29,20 @@ $(document).ready(function () {
     var wcm = $(window).warningComplexMessage({
         denyButtonLabel: 'Vazgeç',
         actionButtonLabel: 'İşleme devam et'
+    });
+
+
+ 
+    $.extend($.fn.tree.methods,{
+            unselect: function(jq,target){
+		return jq.each(function(){
+			var opts = $(this).tree('options');
+        $(target).removeClass('tree-node-selected');
+			if (opts.onUnselect){
+            opts.onUnselect.call(this, $(this).tree('getNode', target));
+        }
+        });
+        }
     });
 
 
@@ -91,6 +113,7 @@ $(document).ready(function () {
     })
 
 
+
 /*
 * 
 * Country, Province, City ddSlick
@@ -130,12 +153,12 @@ $(document).ready(function () {
                 search: true,
                 searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
-
+                    
                     $('#dropdownProvince').ddslick('destroy');
 
                     if (selectedData.selectedData.value > 0) {
 
-                        var countryId = selectedData.selectedData.value;
+                        ddslick_countryId = selectedData.selectedData.value;
 
                         var ajaxACLResources_getprovince = $('#ajaxACL-province').ajaxCallWidget({
                             failureLoadImage: true,
@@ -150,21 +173,22 @@ $(document).ready(function () {
                                 language_code: $("#langCode").val(),
                                 pk: "GsZVzEYe50uGgNM",
                                 url: "pkCountryRegionsDdList_syscountryregions",
-                                country_id: countryId
+                                country_id: ddslick_countryId
                                 //pkIdentity: $("#publicKey").val()
                             })
                         });
-
+                        
                         //province
                         ajaxACLResources_getprovince.ajaxCallWidget({
                             onReset: function (event, data) {
                                 
                             },
                             onSuccess: function (event, dataprovince) {
+                                
                                 var cbdata_province = $.parseJSON(dataprovince);
                                 cbdata_province.splice(0, 0,
                                     { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-                                );
+                                );                                
 
                                 $('#dropdownProvince').ddslick({
                                     data: cbdata_province,
@@ -176,8 +200,8 @@ $(document).ready(function () {
                                         $('#dropdownCity').ddslick('destroy');
 
                                         if (selectedData.selectedData.value > 0) {
+                                            ddslick_provinceId = selectedData.selectedData.value;
 
-                                            var provinceId = selectedData.selectedData.value;
                                             //city
                                             var ajaxACLResources_getcity = $('#ajaxACL-city').ajaxCallWidget({
                                                 failureLoadImage: true,
@@ -192,18 +216,18 @@ $(document).ready(function () {
                                                     language_code: $("#langCode").val(),
                                                     pk: "GsZVzEYe50uGgNM",
                                                     url: "pkCityDdList_syscity",
-                                                    country_id: countryId,
-                                                    region_id: provinceId
+                                                    country_id: ddslick_countryId,
+                                                    region_id: ddslick_provinceId
                                                     //pkIdentity: $("#publicKey").val()
                                                 })
                                             });
-                                            
                                             
                                             ajaxACLResources_getcity.ajaxCallWidget({
                                                 onReset: function (event, data) {
 
                                                 },
                                                 onSuccess: function (event, datacity) {
+
                                                     var cbdata_city = $.parseJSON(datacity);
                                                     cbdata_city.splice(0, 0,
                                                         { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
@@ -214,8 +238,18 @@ $(document).ready(function () {
                                                         width: '100%',
                                                         search: true,
                                                         searchText: window.lang.translate('Search'),
-                                                        
+                                                        //defaultSelectedIndex: ddslick_cityId, //$("#dropdownCity li:has(.dd-option-text:contains('" + ddslick_city_name + "'))").index()
+
                                                     })
+                                                    if (filldropdown === true){
+                                                        $('#dropdownCity').ddslick('selectByValue',
+                                                        {
+                                                            index: '' + ddslick_cityId + '',
+                                                            value: '' + ddslick_city_name + ''
+                                                        });
+                                                        filldropdown = false;
+                                                    }
+                                                    $('#loading-image-city').loadImager('removeLoadImage');
                                                 },
                                                 onAfterSuccess: function (event, data) {
                                                     $('#loading-image-city').loadImager('removeLoadImage');
@@ -226,23 +260,38 @@ $(document).ready(function () {
                                         }
                                     }
                                 })
+                                if (filldropdown === true) {
+                                    $('#dropdownProvince').ddslick('selectByValue',
+                                        {
+                                            index: '' + ddslick_provinceId + '',
+                                            value: '' + ddslick_province_name + ''
+                                        }
+                                    );
+                                }
+                                $('#loading-image-province').loadImager('removeLoadImage');
                             },
+                            
                             onAfterSuccess: function (event, data) {
+                                //alert('geldim AfterSuccess province');
+
                                 $('#loading-image-province').loadImager('removeLoadImage');
                             }
                         })
                         ajaxACLResources_getprovince.ajaxCallWidget('call');
                         //province bitti
+
+
                     }
                 }
             })
         },
         onAfterSuccess: function (event, data) {
+            //alert('geldim AfterSuccess country');
             $('#loading-image-country').loadImager('removeLoadImage');
         }
     })
     ajaxACLResources_country.ajaxCallWidget('call');
-    
+
 /**
 *.branch/dealer List Refresh
 * @returns 
@@ -502,11 +551,14 @@ $(document).ready(function () {
                     //    rowElement.css('background', 'yellow');
 
                 },
+
                 onSelectionChanged: function (selectedItems) {
                     var data = selectedItems.selectedRowsData[0];
                     if (data) {
                         selectedBranchId = data.branch_id;
+                        filldropdown = true;
                         fillBranchForm(data);
+                        //filldropdown = false;
                     }
                 },
 
@@ -538,14 +590,29 @@ $(document).ready(function () {
         $("#loading-image-branch").loadImager('removeLoadImage');
         $("#loading-image-branch").loadImager('appendImage');
 
+        selectedBranchId = 0;
+
+        ddslick_countryId = 0;
+        ddslick_country_name = "";
+
+        ddslick_provinceId = 0;
+        ddslick_province_name = "";
+
+        ddslick_cityId = 0;
+        ddslick_city_name = "";
+
         $('#branchForm').validationEngine('hide');
-        $('#dropdownMANBranchOffice').ddslick('select', { index: String(0) });
+
         $('#dropdownCountry').ddslick('select', { index: String(0) });
-        $('#dropdownCity').ddslick('select', { index: String(0) });
-        $('#dropdownProvince').ddslick('select', { index: String(0) });
 
+        $('#dropdownProvince').ddslick('destroy');
+        $('#dropdownCity').ddslick('destroy');
+
+        var node = $('#tree_manbranchoffice').tree('getSelected');
+        if (node) {
+            $('#tree_manbranchoffice').tree('unselect', node.target);
+        }
         $("#loading-image-branch").loadImager('removeLoadImage');
-
         return false;
     }
 
@@ -583,6 +650,9 @@ $(document).ready(function () {
             var ddData_City = $('#dropdownCity').data('ddslick');
             var cityId = ddData_City.selectedData.value;
 
+            var selected = $('#tree_manbranchoffice').tree('getSelected');
+            var selectedManBranchId = selected.target;
+            
             var ajax = $('#ajaxACL-branch').ajaxCallWidget({
                 failureLoadImage: true,
                 loadingImageID: "loading-image-branch",
@@ -631,7 +701,7 @@ $(document).ready(function () {
         //{"id":"14","apid":14,
         //"name": "asd,",
         //"branch_no": "e345fert", 
-        //"address1": "213123 street", "address2": "no 11", "address3": "etlik", "postalcode": "06010", 
+        //"address1": "213123 street", "address2": "no 11", "address3": "etlik", "postalcode": "0601fillBranchForm0",
         //"country_name": "South Africa", "region_name": "Eastern Cape", "city_name": "Graaff-Reinet", 
         //"departman_name": "Middelburg", "country_id": 107, "country_region_id": 9, "city_id": 158, "sis_department_id": 45, "op_username": "mustafa.zeynel.admin@ostim.com.tr", 
         //"state_active": "Active", "date_saved": "2018-10-04 16:41:42", "date_modified": null, "language_code": "en", 
@@ -643,40 +713,43 @@ $(document).ready(function () {
 
         document.getElementById("txt-branch-name").value = data.name;
         document.getElementById("txt-embrace-no").value = data.branch_no;
+
         document.getElementById("txt-branch-address1").value = data.address1;
         document.getElementById("txt-branch-address2").value = data.address2;
         document.getElementById("txt-branch-address3").value = data.address3;
         document.getElementById("txt-location-ptcode").value = data.postalcode;
-        //active
-        //checkbox-branch-active
 
-        //$('#dropdownMANBranchOffice').ddslick('select', { index: 1 });
-        $('#dropdownMANBranchOffice').ddslick('selectByValue',
-            {
-                index: '' + data.sis_department_id + '',
-                text: '' + data.departman_name + ''
-            }
-        );
+        ddslick_countryId = data.country_id;
+        ddslick_country_name = data.country_name;
 
+        ddslick_provinceId = data.country_region_id;
+        ddslick_province_name = data.region_name;
+
+        ddslick_cityId = data.city_id;
+        ddslick_city_name = data.city_name;
+
+        
         $('#dropdownCountry').ddslick('selectByValue',
             {
                 index: '' + data.country_id + '',
-                text: '' + data.country_name + ''
+                value: '' + data.country_name + ''
             }
         );
-        $('#dropdownProvince').ddslick('selectByValue',
-            {
-                index: '' + data.region_id + '',
-                text: '' + data.region_name + ''
-            }
-        );
-        $('#dropdownCity').ddslick('selectByValue',
-            {
-                index: '' + data.city_id + '',
-                text: '' + data.city_name + ''
-            }
-        );
+      
+        //province ve city otomatik tetikleniyor.
 
+        //tree select
+        var node = $('#tree_manbranchoffice').tree('find', data.sis_department_id);
+        if (node) {
+            $('#tree_manbranchoffice').tree('select', node.target);
+            selectedMANBranchId = data.sis_department_id;
+        } else {
+            var node = $('#tree_manbranchoffice').tree('getSelected');
+            if (node) {
+                $('#tree_manbranchoffice').tree('unselect', node.target);
+            }
+        } 
+        
         $("#loading-image-branch").loadImager('removeLoadImage');
 
         return false;
