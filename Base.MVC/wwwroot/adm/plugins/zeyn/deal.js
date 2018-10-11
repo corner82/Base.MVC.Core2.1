@@ -28,9 +28,19 @@
          * @author Mustafa Zeynel Dağlı
          * @since 08/10/2018
          */
-        getDealID: function (top) {
+        getDealID: function () {
             var self = this;
             return self.options.dealID;
+        },
+
+        /**
+         * set deal id
+         * @author Mustafa Zeynel Dağlı
+         * @since 08/10/2018
+         */
+        setDealID: function (dealID) {
+            var self = this;
+            return self.options.dealID = dealID;
         },
 
         /**
@@ -38,8 +48,11 @@
          * @author Mustafa Zeynel Dağlı
          * @since 08/10/2018
          */
-        addBuyBack : function (top) {
-            
+        addBuyBack: function (buyBackData) {
+            var self = this;
+            var buyBacks = self.options.buyBacks;
+            buyBacks.push(buyBackData);
+            console.log(self.options.buyBackData);
         },
 
         /**
@@ -47,8 +60,11 @@
          * @author Mustafa Zeynel Dağlı
          * @since 08/10/2018
          */
-        addTradeBack: function (top) {
-
+        addTradeBack: function (tradeBackData) {
+            var self = this;
+            var tradeBacks = self.options.tradeBacks;
+            tradeBacks.push(tradeBackData);
+            console.log(self.options.tradeBacks);
         },
 
         /**
