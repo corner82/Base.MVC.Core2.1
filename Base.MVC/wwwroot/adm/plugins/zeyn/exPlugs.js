@@ -2395,16 +2395,51 @@
          */
         _create: function () {
             var self = this;
-            $('#'+self.options.tabID+' a').click(function (e) {
+
+
+            $('#' + self.options.tabID + '>li a').on('shown.bs.tab', function (event) {
+                //alert("onshown event triggered with id");
+                var hrefAtt = event.target.getAttribute('href');
+                hrefAtt = hrefAtt.slice(1);
+                //alert(hrefAtt);
+                var eventType = "onAfter" + hrefAtt;
+                self._trigger(eventType, event);
+
+            });
+
+            $('#'+self.options.tabID+' a').click(function (event) {
                 //alert('click tag');
                 if ($(this).hasClass("disabled")) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    e.stopImmediatePropagation();
+                    event.preventDefault();
+                    event.stopPropagation();
+                    event.stopImmediatePropagation();
                     return false;
 
                 }
             }); 
+        },
+
+        _init: function () {
+            var self = this;
+            /*$('.nav-tabs a').on('shown.bs.tab', function (event) {
+                alert("onshown event triggered");
+                /*var x = $(event.target).text();         // active tab
+                var y = $(event.relatedTarget).text();  // previous tab*/
+           /* });
+            $('#' + self.options.tabID +'>li a').on('shown.bs.tab', function (event) {
+                alert("onshown event triggered with id");
+                
+            });*/
+
+           /* $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                var hrefAtt = e.target.getAttribute('href');
+                hrefAtt = hrefAtt.slice(1);
+                alert(hrefAtt);
+                var eventType = "onAfter" + hrefAtt;
+                alert(e.target.getAttribute('href'));
+                self._trigger(eventType, event);
+                //self._trigger("onTest", event);
+            });*/
         },
 
         /**

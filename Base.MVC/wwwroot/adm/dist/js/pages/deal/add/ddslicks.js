@@ -421,52 +421,80 @@
      * @author Mustafa Zeynel Dağlı
      * @since 15/08/2018
      */
-    $('#loadingImage_DdslickVehicleTypeBuyBack').loadImager('removeLoadImage');
-    $("#loadingImage_DdslickVehicleTypeBuyBack").loadImager('appendImage');
-    var ajax_DdslickVehicleTypeBuyBack = $('#ajax_DdslickVehicleTypeBuyBack').ajaxCallWidget({
-        proxy: '/Vehicle/SysVehicleTypesForBuybackInDeal/',
-        type : 'POST'
+
+    $("#deal_hidden").organizeTabs({
+        onAftertab_BuyBack: function (e) {
+            //alert("onShowntab_BuyBack event triggered");
+
+            $('#loadingImage_DdslickVehicleTypeBuyBack').loadImager('removeLoadImage');
+            $("#loadingImage_DdslickVehicleTypeBuyBack").loadImager('appendImage');
+
+            if (parseInt($("#deal_hidden").deal("getDealID")) > 0) {
+                var ajax_DdslickVehicleTypeBuyBack = $('#ajax_DdslickVehicleTypeBuyBack').ajaxCallWidget({
+                    proxy: '/Deal/DdslickGetDealVehicleTypeProxyService/',
+                    data: JSON.stringify({
+                        url: "pkProjectVehicleModelsDdList_infoprojectvehiclemodels",
+                        language_code: $("#langCode").val(),
+                        pk: "GsZVzEYe50uGgNM",
+                        project_id: $("#deal_hidden").deal("getDealID"),
+                        pkIdentity: $("#publicKey").val(),
+                    }),
+                    type: 'POST'
+
+                });
+                ajax_DdslickVehicleTypeBuyBack.ajaxCallWidget({
+                    onError: function (event, textStatus, errorThrown) {
+
+                        $(window).dangerMessage({
+                            onShown: function () {
+                                $('#loadingImage_DdslickVehicleTypeBuyBack').loadImager('removeLoadImage');
+                            }
+                        });
+                        $(window).dangerMessage('show', window.lang.translate('Vehicle type data not found'), window.lang.translate('Vehiicle type data not found...'));
+                    },
+                    onSuccess: function (event, data) {
+                        var data = $.parseJSON(data);
+
+                        $('#ddslickVehicleTypeBuyBack').ddslick({
+                            //height: 150,
+                            //data: ddslickVehicleTypeDataBuyBack,
+                            data: data,
+                            width: '100%',
+
+                            onSelected: function (selectedData) {
+                                if (selectedData.selectedData.value > 0) {
+                                    //vehicleKitTypeForDefineFields(selectedData.selectedData.text);
+                                }
+                            }
+                        });
+
+                        $("#loadingImage_DdslickVehicleTypeBuyBack").loadImager('removeLoadImage');
+                    },
+                    onErrorDataNull: function (event, data) {
+                        console.log("Error : " + event + " -data :" + data);
+                        $(window).dangerMessage({
+                            onShown: function () {
+                                $('#loadingImage_DdslickVehicleTypeBuyBack').loadImager('removeLoadImage');
+                            }
+                        });
+                        $(window).dangerMessage('show', window.lang.translate('Vehicle Type data not found...'), window.lang.translate('Vehicle Type data not found...'));
+                    },
+                })
+                ajax_DdslickVehicleTypeBuyBack.ajaxCallWidget('call');
+            } else {
+                $(window).warningMessage('resetOnShown');
+                $(window).warningMessage('show', "Please select deal",
+                    "Please select deal");
+                // $('#loadingImage_DdslickVehicleTypeBuyBack').loadImager('removeLoadImage');
+            }
+
+
+        },
+
 
     });
-    ajax_DdslickVehicleTypeBuyBack.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
 
-            $(window).dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickVehicleTypeBuyBack').loadImager('removeLoadImage');
-                }
-            });
-            $(window).dangerMessage('show', window.lang.translate('Vehicle type data not found'), window.lang.translate('Vehiicle type data not found...'));
-        },
-        onSuccess: function (event, data) {
-            var data = $.parseJSON(data);
 
-            $('#ddslickVehicleTypeBuyBack').ddslick({
-                //height: 150,
-                //data: ddslickVehicleTypeDataBuyBack,
-                data: data,
-                width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-                        //vehicleKitTypeForDefineFields(selectedData.selectedData.text);
-                    }
-                }
-            });
-
-            $("#loadingImage_DdslickVehicleTypeBuyBack").loadImager('removeLoadImage');
-        },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            $(window).dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickVehicleTypeBuyBack').loadImager('removeLoadImage');
-                }
-            });
-            $(window).dangerMessage('show', window.lang.translate('Vehicle Type data not found...'), window.lang.translate('Vehicle Type data not found...'));
-        },
-    })
-    ajax_DdslickVehicleTypeBuyBack.ajaxCallWidget('call');
 
 
     /**
@@ -499,29 +527,28 @@
     $('#loadingImage_DdslickCustomerTypeBuyBack').loadImager('removeLoadImage');
     $("#loadingImage_DdslickCustomerTypeBuyBack").loadImager('appendImage');
     var ajax_DdslickCustomerTypeBuyBack = $('#ajax_DdslickCustomerTypeBuyBack').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
+        proxy: '/Customer/SysCustomerType',
+        type: "POST",
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        noDataFailureText: window.lang.translate("No data returned from service"),
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkCustomerTypesDdList_syscustomertypes",
+            pkIdentity: $("#publicKey").val()
+        })
 
     });
     ajax_DdslickCustomerTypeBuyBack.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            $(window).dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickCustomerTypeBuyBack').loadImager('removeLoadImage');
-                }
-            });
-            $(window).dangerMessage('show', window.lang.translate('Customer  type data not found...'), window.lang.translate('Customer type data not found...'));
-        },
         onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
+            var data = $.parseJSON(data);
+            data.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#ddslickCustomerTypeBuyBack').ddslick({
                 //height: 150,
-                data: ddslickCustomerTypeBuyBackData,
+                //data: ddslickCustomerTypeBuyBackData,
+                data: data,
                 width: '100%',
 
                 onSelected: function (selectedData) {
@@ -532,15 +559,6 @@
             });
 
             $("#loadingImage_DdslickCustomerTypeBuyBack").loadImager('removeLoadImage');
-        },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            $(window).dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickCustomerTypeBuyBack').loadImager('removeLoadImage');
-                }
-            });
-            $(window).dangerMessage('show', window.lang.translate('Customer Type data not found...'), window.lang.translate('Customer Type data not found...'));
         },
     })
     ajax_DdslickCustomerTypeBuyBack.ajaxCallWidget('call');
@@ -594,8 +612,10 @@
             $(window).dangerMessage('show', window.lang.translate('Truck  type data not found...'), window.lang.translate('Truck type data not found...'));
         },
         onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
+            var data = $.parseJSON(data);
+            data.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#ddslickTruckTypeBuyBack').ddslick({
                 //height: 150,
                 data: ddslickTruckTypeDataBuyBack,
@@ -967,11 +987,18 @@
     $('#loadingImage_DdslickCustomerTypeTradeBack').loadImager('removeLoadImage');
     $("#loadingImage_DdslickCustomerTypeTradeBack").loadImager('appendImage');
     var ajax_DdslickCustomerTypeTradeBack = $('#ajax_DdslickCustomerTypeTradeBack').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
+        proxy: '/Customer/SysCustomerType',
+        type: "POST",
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickTruckTypeTradeBack",
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        noDataFailureText: window.lang.translate("No data returned from service"),
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkCustomerTypesDdList_syscustomertypes",
+            pkIdentity: $("#publicKey").val()
+        })
 
     });
     ajax_DdslickCustomerTypeTradeBack.ajaxCallWidget({
@@ -985,11 +1012,13 @@
             $(window).dangerMessage('show', window.lang.translate('Customer  type data not found...'), window.lang.translate('Customer type data not found...'));
         },
         onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
+            var data = $.parseJSON(data);
+            data.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#ddslickCustomerTypeTradeBack').ddslick({
                 //height: 150,
-                data: ddslickCustomerTypeDataTradeBack,
+                data: data,
                 width: '100%',
 
                 onSelected: function (selectedData) {
@@ -1044,26 +1073,26 @@
     $('#loadingImage_DdslickTruckTypeTradeBack').loadImager('removeLoadImage');
     $("#loadingImage_DdslickTruckTypeTradeBack").loadImager('appendImage');
     var ajax_DdslickTruckTypeTradeBack = $('#ajax_DdslickTruckTypeTradeBack').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
+        proxy: '/Customer/SysCustomerType',
+        type: "POST",
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickTruckTypeTradeBack",
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        noDataFailureText: window.lang.translate("No data returned from service"),
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkCustomerTypesDdList_syscustomertypes",
+            pkIdentity: $("#publicKey").val()
+        })
 
     });
     ajax_DdslickTruckTypeTradeBack.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            $(window).dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickTruckTypeTradeBack').loadImager('removeLoadImage');
-                }
-            });
-            $(window).dangerMessage('show', window.lang.translate('Truck  type data not found...'), window.lang.translate('Truck type data not found...'));
-        },
         onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
+            var data = $.parseJSON(data);
+            data.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#ddslickTruckTypeTradeBack').ddslick({
                 //height: 150,
                 data: ddslickTruckTypeDataTradeBack,
@@ -1078,15 +1107,7 @@
 
             $("#loadingImage_DdslickTruckTypeTradeBack").loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            $(window).dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickTruckTypeTradeBack').loadImager('removeLoadImage');
-                }
-            });
-            $(window).dangerMessage('show', window.lang.translate('Truck Type data not found...'), window.lang.translate('Truck Type data not found...'));
-        },
+        
     })
     ajax_DdslickTruckTypeTradeBack.ajaxCallWidget('call');
 

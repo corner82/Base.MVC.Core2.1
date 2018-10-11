@@ -330,26 +330,33 @@
             enabled: true,
             mode: "select"
         },
-        columns: [{
+        columns: [
+        {
+        caption: "Deal name",
+        dataField: "deal_name"
+        },
+        {
+            caption: "Customer",
+            dataField: "registration_name"
+        },
+        /*{
             allowGrouping: false,
             dataField: "discount_rate",
-            caption: "Invoice Number",
+            caption: "Discount rate",
             width: 130
-        }, {
-            caption: "City",
-            dataField: "date_saved"
-        }, /*{
-            caption: "Salesman",
-            dataField: "Salesman"
-        },
-            "Employee",
+        },*/
         {
-            dataField: "OrderDate",
-            dataType: "date"
+            dataField: "state_active",
+            caption: "Active / Passive",
+        },
+        {
+            dataField: "date_saved",
+            dataType: "date",
+            caption: "Date",
         }, {
-            dataField: "Customer",
-
-            }*/
+            dataField: "reliability_name",
+            caption: "Reliability",
+            }
         ],
         customizeColumns: function (columns) {
             //columns[5].format = { type: "currency", currency: "EUR" };

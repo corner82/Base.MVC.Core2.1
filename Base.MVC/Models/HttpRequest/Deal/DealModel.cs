@@ -10,6 +10,7 @@ namespace Base.MVC.Models.HttpRequest.Deal
         public int customer_id { get; set; }
         public bool is_house_deal { get; set; }
         public string pk { get; set; }
+        public string pkIdentity { get; set; }
         public string description { get; set; }
         public int probability_id { get; set; }
         public int reliability_id { get; set; }
