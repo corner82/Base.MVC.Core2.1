@@ -999,6 +999,9 @@
 
         ddslick_cityId = 0;
         ddslick_city_name = "";
+        $('#dropdownCountry').ddslick('destroy');
+        $('#dropdownProvince').ddslick('destroy');
+        $('#dropdownCity').ddslick('destroy');
         //$('#dropdownTrName').ddslick('select', { index: String(0) });
         $('#dropdownTrainer').ddslick('select', { index: String(0) });
         //$('#dropdownCountry').ddslick('select', { index: String(0) });
