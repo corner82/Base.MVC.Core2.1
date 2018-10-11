@@ -531,6 +531,7 @@
         type: "POST",
         transactionFailureText: window.lang.translate("Service URL not found, please report error"),
         noDataFailureText: window.lang.translate("No data returned from service"),
+        loadingImageID: "loadingImage_DdslickCustomerTypeBuyBack",
         data: JSON.stringify({
             language_code: $("#langCode").val(),
             pk: "GsZVzEYe50uGgNM",
@@ -568,49 +569,24 @@
     * @author Mustafa Zeynel Dağlı
     * @since 15/08/2018
     */
-    var ddslickTruckTypeDataBuyBack = [
-        {
-            text: 'Please select',
-            value: -1,
-            selected: true
-        },
-        {
-            text: "TGS-26",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "TGS-16",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "TGX-16",
-            value: 3,
-            selected: false
-        },
-
-    ];
+    
     $('#loadingImage_DdslickTruckTypeBuyBack').loadImager('removeLoadImage');
     $("#loadingImage_DdslickTruckTypeBuyBack").loadImager('appendImage');
     var ajax_DdslickTruckTypeBuyBack = $('#ajax_DdslickTruckTypeBuyBack').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
+        proxy: '/Vehicle/SysVehicleGroups',
+        type: "POST",
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        noDataFailureText: window.lang.translate("No data returned from service"),
+        loadingImageID: "loadingImage_DdslickTruckTypeBuyBack",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkVehicleGroupsDdList_sysvehiclegroups",
+            pkIdentity: $("#publicKey").val()
+        })
 
     });
     ajax_DdslickTruckTypeBuyBack.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            $(window).dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickTruckTypeBuyBack').loadImager('removeLoadImage');
-                }
-            });
-            $(window).dangerMessage('show', window.lang.translate('Truck  type data not found...'), window.lang.translate('Truck type data not found...'));
-        },
         onSuccess: function (event, data) {
             var data = $.parseJSON(data);
             data.splice(0, 0,
@@ -618,7 +594,7 @@
             );
             $('#ddslickTruckTypeBuyBack').ddslick({
                 //height: 150,
-                data: ddslickTruckTypeDataBuyBack,
+                data: data,
                 width: '100%',
 
                 onSelected: function (selectedData) {
@@ -630,15 +606,6 @@
 
             $("#loadingImage_DdslickTruckTypeBuyBack").loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            $(window).dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickTruckTypeBuyBack').loadImager('removeLoadImage');
-                }
-            });
-            $(window).dangerMessage('show', window.lang.translate('Truck Type data not found...'), window.lang.translate('Truck Type data not found...'));
-        },
     })
     ajax_DdslickTruckTypeBuyBack.ajaxCallWidget('call');
 
@@ -647,52 +614,34 @@
     * @author Mustafa Zeynel Dağlı
     * @since 15/08/2018
     */
-    var ddslickTerrainTypeDataBuyBack = [
-        {
-            text: 'Please select',
-            value: -1,
-            selected: true
-        },
-        {
-            text: "Off Road",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "on Road",
-            value: 3,
-            selected: false
-        },
-
-    ];
+    
     $('#loadingImage_DdslickTerrainTypeBuyBack').loadImager('removeLoadImage');
     $("#loadingImage_DdslickTerrainTypeBuyBack").loadImager('appendImage');
     var ajax_DdslickTerrainTypeBuyBack = $('#ajax_DdslickTerrainTypeBuyBack').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
+        proxy: '/BuybackTradeback/SysBbTerrains',
+        type: "POST",
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickTerrainTypeTradeBack",
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        noDataFailureText: window.lang.translate("No data returned from service"),
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkCustomerTypesDdList_syscustomertypes",
+            pkIdentity: $("#publicKey").val()
+        })
 
     });
     ajax_DdslickTerrainTypeBuyBack.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            $(window).dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickTerrainTypeBuyBack').loadImager('removeLoadImage');
-                }
-            });
-            $(window).dangerMessage('show', window.lang.translate('Terrain  type data not found...'), window.lang.translate('Terrain type data not found...'));
-        },
         onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
+            var data = $.parseJSON(data);
+            data.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#ddslickTerrainTypeBuyBack').ddslick({
                 //height: 150,
-                data: ddslickTerrainTypeDataBuyBack,
+                data: data,
                 width: '100%',
-
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
                         //vehicleKitTypeForDefineFields(selectedData.selectedData.text);
@@ -701,15 +650,6 @@
             });
 
             $("#loadingImage_DdslickTerrainTypeBuyBack").loadImager('removeLoadImage');
-        },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            $(window).dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickTerrainTypeBuyBack').loadImager('removeLoadImage');
-                }
-            });
-            $(window).dangerMessage('show', window.lang.translate('Terrain Type data not found...'), window.lang.translate('Terrain Type data not found...'));
         },
     })
     ajax_DdslickTerrainTypeBuyBack.ajaxCallWidget('call');
@@ -990,7 +930,7 @@
         proxy: '/Customer/SysCustomerType',
         type: "POST",
         failureLoadImage: true,
-        loadingImageID: "loadingImage_DdslickTruckTypeTradeBack",
+        loadingImageID: "loadingImage_DdslickCustomerTypeTradeBack",
         transactionFailureText: window.lang.translate("Service URL not found, please report error"),
         noDataFailureText: window.lang.translate("No data returned from service"),
         data: JSON.stringify({
@@ -1047,33 +987,11 @@
     * @author Mustafa Zeynel Dağlı
     * @since 15/08/2018
     */
-    var ddslickTruckTypeDataTradeBack = [
-        {
-            text: 'Please select',
-            value: -1,
-            selected: true
-        },
-        {
-            text: "TGS-26",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "TGS-16",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "TGX-16",
-            value: 3,
-            selected: false
-        },
-
-    ];
+    
     $('#loadingImage_DdslickTruckTypeTradeBack').loadImager('removeLoadImage');
     $("#loadingImage_DdslickTruckTypeTradeBack").loadImager('appendImage');
     var ajax_DdslickTruckTypeTradeBack = $('#ajax_DdslickTruckTypeTradeBack').ajaxCallWidget({
-        proxy: '/Customer/SysCustomerType',
+        proxy: '/Vehicle/SysVehicleGroups',
         type: "POST",
         failureLoadImage: true,
         loadingImageID: "loadingImage_DdslickTruckTypeTradeBack",
@@ -1095,7 +1013,7 @@
             );
             $('#ddslickTruckTypeTradeBack').ddslick({
                 //height: 150,
-                data: ddslickTruckTypeDataTradeBack,
+                data: data,
                 width: '100%',
 
                 onSelected: function (selectedData) {
@@ -1116,50 +1034,33 @@
     * @author Mustafa Zeynel Dağlı
     * @since 15/08/2018
     */
-    var ddslickTerrainTypeDataTradeBack = [
-        {
-            text: 'Please select',
-            value: -1,
-            selected: true
-        },
-        {
-            text: "Off Road",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "on Road",
-            value: 3,
-            selected: false
-        },
-
-    ];
+    
     $('#loadingImage_DdslickTerrainTypeTradeBack').loadImager('removeLoadImage');
     $("#loadingImage_DdslickTerrainTypeTradeBack").loadImager('appendImage');
     var ajax_DdslickTerrainTypeTradeBack = $('#ajax_DdslickTerrainTypeTradeBack').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
+        proxy: '/BuybackTradeback/SysBbTerrains',
+        type: "POST",
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickTerrainTypeTradeBack",
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        noDataFailureText: window.lang.translate("No data returned from service"),
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkCustomerTypesDdList_syscustomertypes",
+            pkIdentity: $("#publicKey").val()
+        })
 
     });
     ajax_DdslickTerrainTypeTradeBack.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            $(window).dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickTerrainTypeTradeBack').loadImager('removeLoadImage');
-                }
-            });
-            $(window).dangerMessage('show', window.lang.translate('Terrain  type data not found...'), window.lang.translate('Terrain type data not found...'));
-        },
         onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
+            var data = $.parseJSON(data);
+            data.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#ddslickTerrainTypeTradeBack').ddslick({
                 //height: 150,
-                data: ddslickTerrainTypeDataTradeBack,
+                data: data,
                 width: '100%',
 
                 onSelected: function (selectedData) {
@@ -1171,15 +1072,6 @@
 
             $("#loadingImage_DdslickTerrainTypeTradeBack").loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            $(window).dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickTerrainTypeTradeBack').loadImager('removeLoadImage');
-                }
-            });
-            $(window).dangerMessage('show', window.lang.translate('Terrain Type data not found...'), window.lang.translate('Terrain Type data not found...'));
-        },
     })
     ajax_DdslickTerrainTypeTradeBack.ajaxCallWidget('call');
 
@@ -1188,32 +1080,22 @@
     * @author Mustafa Zeynel Dağlı
     * @since 15/08/2018
     */
-    var ddslickRepMainDataTradeBack = [
-        {
-            text: 'Comfort Super',
-            value: -1,
-            selected: true
-        },
-        {
-            text: "Comfort Mini",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "Comfort Detail",
-            value: 3,
-            selected: false
-        },
-
-    ];
+    
     $('#loadingImage_DdslickRepMainTradeBack').loadImager('removeLoadImage');
     $("#loadingImage_DdslickRepMainTradeBack").loadImager('appendImage');
     var ajax_DdslickRepMainTradeBack = $('#ajax_DdslickRepMainTradeBack').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
+        proxy: '/BuybackTradeback/SysBbTerrains',
+        type: "POST",
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickTerrainTypeTradeBack",
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        noDataFailureText: window.lang.translate("No data returned from service"),
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkCustomerTypesDdList_syscustomertypes",
+            pkIdentity: $("#publicKey").val()
+        })
 
     });
     ajax_DdslickRepMainTradeBack.ajaxCallWidget({

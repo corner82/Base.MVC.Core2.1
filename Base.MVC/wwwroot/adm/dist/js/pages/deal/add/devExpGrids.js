@@ -243,7 +243,7 @@
                 error: function () {
                     deferred.reject("Data Loading Error");
                 },
-                timeout: 10000
+                timeout: 30000
             });
 
             return deferred.promise();
@@ -294,7 +294,7 @@
         },
         "export": {
             enabled: true,
-            fileName: "Orders"
+            fileName: "Deals"
         },
         grouping: {
             contextMenuEnabled: true,

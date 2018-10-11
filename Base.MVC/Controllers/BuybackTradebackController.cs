@@ -15,7 +15,8 @@ using Base.Core.Http.HttpRequest.Concrete;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-
+using Base.MVC.Models.HttpRequest;
+using Base.Core.Utills.Url;
 
 namespace Base.MVC.Controllers
 {
@@ -23,9 +24,13 @@ namespace Base.MVC.Controllers
     {
 
         private readonly IDistributedCache _distributedCache;
-        public BuybackTradebackController(IDistributedCache distributedCache)
+        private QueryCreater _queryCreater;
+
+        public BuybackTradebackController(IDistributedCache distributedCache,
+                                          QueryCreater queryCreater)
         {
             _distributedCache = distributedCache;
+            _queryCreater = queryCreater;
         }
         public IActionResult Index()
         {
@@ -61,32 +66,6 @@ namespace Base.MVC.Controllers
             return View();
         }
 
-
-        /// <summary>
-        /// buyback tradeback vehicle groups
-        /// Ceydacan Seyrek
-        /// </summary>
-        /// 
-        /// <returns></returns>
-        //[SessionTimeOut]
-        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
-        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
-        [HttpPost]
-        public async Task<string> sysvehiclegroups()
-        {
-            // aşağıdaki blok self-signed cert kısmında ssl bağlantı sorunu çıkartıyor.
-
-            var headers = new Dictionary<string, string>();
-            var tokenGenerated = HttpContext.Session.GetHmacToken();
-            headers.Add("X-Hmac", tokenGenerated);
-            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            //_hmacManager.test();
-            //var response = await HttpClientRequestFactory.Get("http://localhost:58443/api/values/23", headers);
-            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkVehicleGroupsDdList_sysvehiclegroups&language_code=en&pk=GsZVzEYe50uGgNM", headers);
-            var data = response.Content.ReadAsStringAsync().Result;
-            return data.ToString();
-        }
-
         /// <summary>
         /// buyback tradeback contract type 
         /// Ceydacan Seyrek
@@ -119,14 +98,15 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> SysBbTerrains()
+        public async Task<string> SysBbTerrains([FromBody] DefaultPostModel postModel)
         {
             // buyback offroad
             var headers = new Dictionary<string, string>();
             var tokenGenerated = HttpContext.Session.GetHmacToken();
             headers.Add("X-Hmac", tokenGenerated);
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkTerrainsBuybackDdList_systerrains&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            string queryStr = _queryCreater.GetQueryStringFromObject(postModel);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
