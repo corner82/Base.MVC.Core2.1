@@ -2,6 +2,16 @@
 
     "use strict";
 
+    var filldropdown = false;
+
+    var ddslick_countryId = 0;
+    var ddslick_country_name = "";
+    var ddslick_provinceId = 0;
+    var ddslick_province_name = "";
+    var ddslick_cityId = 0;
+    var ddslick_city_name = "";
+
+
     var sm = $(window).successMessage();
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
@@ -32,7 +42,7 @@
     $("#loading-image-trName").loadImager();
     $("#loading-image-trainer").loadImager();
     $("#loading-image-country").loadImager();
-    $("#loading-image-region").loadImager();
+    $("#loading-image-province").loadImager();
     $("#loading-image-city").loadImager();
 
     var langCode = $("#langCode").val();
@@ -138,198 +148,178 @@
     ajaxACLResources_trainer.ajaxCallWidget('call');
     //end trainee
 
-    //country --> region--> city
-    $('#loading-image-country').loadImager('removeLoadImage');
-    $("#loading-image-country").loadImager('appendImage');
-
+    //country --> province --> city
     var ajaxACLResources_country = $('#ajaxACL-country').ajaxCallWidget({
-        proxy: '/Sys/SysCountrys/',
-        type: 'POST',
+        failureLoadImage: true,
+        loadingImageID: "loading-image-country",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Sys/SysCountrys',
+        type: "POST",
         data: JSON.stringify({
             language_code: $("#langCode").val(),
             pk: "GsZVzEYe50uGgNM",
             url: "pkCountryDdList_syscountrys",
             //pkIdentity: $("#publicKey").val()
-        }),
+        })
     });
-
     ajaxACLResources_country.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-country').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
+        onReset: function (event, data) {
+            //resetVehicleTypeAddDealForm();
         },
         onSuccess: function (event, datacountry) {
-            //var data = $.parseJSON(cbdata);
             var cbdata_country = $.parseJSON(datacountry);
-            //cbdata_country.splice(0, 0,
-            //    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-            //);
+            cbdata_country.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+
             $('#dropdownCountry').ddslick({
-                //height: 150,
                 data: cbdata_country,
+                width: '100%',
                 search: true,
                 searchText: window.lang.translate('Search'),
-                width: '100%',
-
                 onSelected: function (selectedData) {
 
-                    $('#dropdownRegion').ddslick('destroy');
+                    $('#dropdownProvince').ddslick('destroy');
 
                     if (selectedData.selectedData.value > 0) {
-                        var country_id = selectedData.selectedData.value;
-                        //region
-                        $('#loading-image-region').loadImager('removeLoadImage');
-                        $("#loading-image-region").loadImager('appendImage');
 
-                        var ajaxACLResources_region = $('#ajaxACL-region').ajaxCallWidget({
+                        ddslick_countryId = selectedData.selectedData.value;
+
+                        var ajaxACLResources_getprovince = $('#ajaxACL-province').ajaxCallWidget({
+                            failureLoadImage: true,
+                            loadingImageID: "loading-image-province",
+                            triggerSuccessAuto: true,
+                            transactionSuccessText: window.lang.translate('Transaction successful'),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
                             proxy: '/Sys/SysCountryRegions',
-                            type: 'POST',
+                            type: "POST",
                             data: JSON.stringify({
-                                //"country_id": country_id //country_id,url: pkCountryRegionsDdList_syscountryregions
-                                url: "pkCountryRegionsDdList_syscountryregions",
-                                country_id: country_id,
                                 language_code: $("#langCode").val(),
                                 pk: "GsZVzEYe50uGgNM",
+                                url: "pkCountryRegionsDdList_syscountryregions",
+                                country_id: ddslick_countryId
                                 //pkIdentity: $("#publicKey").val()
-                            }),
+                            })
                         });
 
-                        ajaxACLResources_region.ajaxCallWidget({
-                            onError: function (event, textStatus, errorThrown) {
+                        //province
+                        ajaxACLResources_getprovince.ajaxCallWidget({
+                            onReset: function (event, data) {
 
-                                dm.dangerMessage({
-                                    onShown: function () {
-                                        $('#loading-image-region').loadImager('removeLoadImage');
-                                    }
-                                });
-                                dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
                             },
-                            onSuccess: function (event, dataregion) {
-                                //var data = $.parseJSON(cbdata);
-                                var cbdata_region = $.parseJSON(dataregion);
-                                //cbdata_region.splice(0, 0,
-                                //    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-                                //);
-                                $('#dropdownRegion').ddslick('destroy');
-                                $('#dropdownRegion').ddslick({
-                                    //height: 150,
-                                    data: cbdata_region,
+                            onSuccess: function (event, dataprovince) {
+
+                                var cbdata_province = $.parseJSON(dataprovince);
+                                cbdata_province.splice(0, 0,
+                                    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                                );
+
+                                $('#dropdownProvince').ddslick({
+                                    data: cbdata_province,
+                                    width: '100%',
                                     search: true,
                                     searchText: window.lang.translate('Search'),
-                                    width: '100%',
-                                    
                                     onSelected: function (selectedData) {
 
                                         $('#dropdownCity').ddslick('destroy');
 
                                         if (selectedData.selectedData.value > 0) {
-                                            var region_id = selectedData.selectedData.value;
-                 //city
-                                            $('#loading-image-city').loadImager('removeLoadImage');
-                                            $("#loading-image-city").loadImager('appendImage');
+                                            ddslick_provinceId = selectedData.selectedData.value;
 
-                                            var ajaxACLResources_city = $('#ajaxACL-city').ajaxCallWidget({
+                                            //city
+                                            var ajaxACLResources_getcity = $('#ajaxACL-city').ajaxCallWidget({
+                                                failureLoadImage: true,
+                                                loadingImageID: "loading-image-city",
+                                                triggerSuccessAuto: true,
+                                                transactionSuccessText: window.lang.translate('Transaction successful'),
+                                                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                                                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
                                                 proxy: '/Sys/SysCity',
-                                                type: 'POST',
+                                                type: "POST",
                                                 data: JSON.stringify({
-                                                    //"country_id": country_id,  //country_id, 
-                                                    //"region_id": region_id     //province_id url: pkCityDdList_syscity
                                                     language_code: $("#langCode").val(),
                                                     pk: "GsZVzEYe50uGgNM",
                                                     url: "pkCityDdList_syscity",
-                                                    country_id: country_id,
-                                                    region_id: region_id,
+                                                    country_id: ddslick_countryId,
+                                                    region_id: ddslick_provinceId
                                                     //pkIdentity: $("#publicKey").val()
-                                                }),
+                                                })
                                             });
 
-                                            ajaxACLResources_city.ajaxCallWidget({
-                                                onError: function (event, textStatus, errorThrown) {
+                                            ajaxACLResources_getcity.ajaxCallWidget({
+                                                onReset: function (event, data) {
 
-                                                    dm.dangerMessage({
-                                                        onShown: function () {
-                                                            $('#loading-image-city').loadImager('removeLoadImage');
-                                                        }
-                                                    });
-                                                    dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
                                                 },
-                                                onSuccess: function (event, data_city) {
-                                                    //var data = $.parseJSON(cbdata);
-                                                    var cbdata_city = $.parseJSON(data_city);
-                                                    //cbdata_city.splice(0, 0,
-                                                    //    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-                                                    //);
-                                                    $('#dropdownCity').ddslick('destroy');
+                                                onSuccess: function (event, datacity) {
+
+                                                    var cbdata_city = $.parseJSON(datacity);
+                                                    cbdata_city.splice(0, 0,
+                                                        { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                                                    );
+
                                                     $('#dropdownCity').ddslick({
-                                                        //height: 150,
                                                         data: cbdata_city,
+                                                        width: '100%',
                                                         search: true,
                                                         searchText: window.lang.translate('Search'),
-                                                        width: '100%',
-                                                        onSelected: function (selectedData) {
-                                                            //if (selectedData.selectedData.value > 0) {
+                                                        //defaultSelectedIndex: ddslick_cityId, //$("#dropdownCity li:has(.dd-option-text:contains('" + ddslick_city_name + "'))").index()
 
-                                                            //}
-                                                        }
-                                                    });
-
-                                                    $("#loading-image-city").loadImager('removeLoadImage');
+                                                    })
+                                                    if (filldropdown === true) {
+                                                        $('#dropdownCity').ddslick('selectByValue',
+                                                            {
+                                                                index: '' + ddslick_cityId + '',
+                                                                value: '' + ddslick_city_name + ''
+                                                            });
+                                                        filldropdown = false;
+                                                    }
+                                                    $('#loading-image-city').loadImager('removeLoadImage');
                                                 },
-                                                onErrorDataNull: function (event, data) {
-                                                    console.log("Error : " + event + " -data :" + data);
-                                                    dm.dangerMessage({
-                                                        onShown: function () {
-                                                            $('#loading-image-city').loadImager('removeLoadImage');
-                                                        }
-                                                    });
-                                                    dm.dangerMessage('show', 'city not show...', 'city not show...');
-                                                },
+                                                onAfterSuccess: function (event, data) {
+                                                    $('#loading-image-city').loadImager('removeLoadImage');
+                                                }
                                             })
-                                            ajaxACLResources_city.ajaxCallWidget('call');
-    //end city
-
+                                            ajaxACLResources_getcity.ajaxCallWidget('call');
+                                            //city bitti
                                         }
                                     }
-                                });
-
-                                $("#loading-image-region").loadImager('removeLoadImage');
+                                })
+                                if (filldropdown === true) {
+                                    $('#dropdownProvince').ddslick('selectByValue',
+                                        {
+                                            index: '' + ddslick_provinceId + '',
+                                            value: '' + ddslick_province_name + ''
+                                        }
+                                    );
+                                }
+                                $('#loading-image-province').loadImager('removeLoadImage');
                             },
 
-                            onErrorDataNull: function (event, data) {
-                                console.log("Error : " + event + " -data :" + data);
-                                dm.dangerMessage({
-                                    onShown: function () {
-                                        $('#loading-image-region').loadImager('removeLoadImage');
-                                    }
-                                });
-                                dm.dangerMessage('show', 'region not show...', 'region not show...');
-                            },
+                            onAfterSuccess: function (event, data) {
+                                //alert('geldim AfterSuccess province');
+
+                                $('#loading-image-province').loadImager('removeLoadImage');
+                            }
                         })
-                        ajaxACLResources_region.ajaxCallWidget('call');
-    //end region
+                        ajaxACLResources_getprovince.ajaxCallWidget('call');
+                        //province bitti
+
+
                     }
                 }
-                
-            });
-
-            $("#loading-image-country").loadImager('removeLoadImage');
+            })
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-country').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'country not show...', 'country not show...');
-        },
+        onAfterSuccess: function (event, data) {
+            //alert('geldim AfterSuccess country');
+            $('#loading-image-country').loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_country.ajaxCallWidget('call');
+
     //end country
 
 
@@ -745,6 +735,7 @@
             var data = selectedItems.selectedRowsData[0];
             if (data) {
                 TrainingInfoID = data.id;
+                filldropdown = true;
                 fillTrainingInfoForm(data);
             }
         },
@@ -1000,9 +991,17 @@
         $('#trainingInfoForm')[0].reset(); 
         $('#trainingInfoForm').validationEngine('hide');
 
+        ddslick_countryId = 0;
+        ddslick_country_name = "";
+
+        ddslick_provinceId = 0;
+        ddslick_province_name = "";
+
+        ddslick_cityId = 0;
+        ddslick_city_name = "";
         //$('#dropdownTrName').ddslick('select', { index: String(0) });
         $('#dropdownTrainer').ddslick('select', { index: String(0) });
-        $('#dropdownCountry').ddslick('select', { index: String(0) });
+        //$('#dropdownCountry').ddslick('select', { index: String(0) });
         //$('#dropdownRegion').ddslick('select', { index: String(0) });
         //$('#dropdownCity').ddslick('select', { index: String(0) });
 
@@ -1018,12 +1017,21 @@
         //$("#loading-image-truser").loadImager('appendImage');
 
         //$('#dropdownTrName').ddslick('select', { index: 2 });
-        //$('#dropdownTrainer').ddslick('selectByValue',
-        //    {
-        //        index: '' + data.user_id + '',
-        //        text: '' + data.name_surname + ''
-        //    }
-        //);
+        $('#dropdownTrainer').ddslick('selectByValue',
+            {
+                index: '' + data.user_id + '',
+                text: '' + data.name_surname + ''
+            }
+        );
+
+        ddslick_countryId = data.country_id;
+        ddslick_country_name = data.country_name;
+
+        ddslick_provinceId = data.region_id;
+        ddslick_province_name = data.region_name;
+
+        ddslick_cityId = data.city_id;
+        ddslick_city_name = data.city_name;
         $('#dropdownCountry').ddslick('selectByValue',
             {
                 index: '' + data.country_id + '',
@@ -1031,19 +1039,6 @@
             }
         );
 
-        //$('#dropdownRegion').ddslick('selectByValue',
-        //    {
-        //        index: '' + data.region_id + '',
-        //        text: '' + data.region_name + ''
-        //    }
-        //);
-
-        //$('#dropdownCity').ddslick('selectByValue',
-        //    {
-        //        index: '' + data.city_id + '',
-        //        text: '' + data.city_name + ''
-        //    }
-        //);
         document.getElementById("txt-TrAdr1-name").value = data.address1;
         document.getElementById("txt-TrAdr2-name").value = data.address2;
         document.getElementById("txt-TrAdr3-name").value = data.address3;
