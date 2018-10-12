@@ -51,6 +51,14 @@ $(document).ready(function () {
     var warrantyInfoID;
     var vehicle_group_id;
 
+
+    var filldropdown = false;
+
+    var ddslick_modelId = 0;
+    var ddslick_model_name = "";
+    var ddslick_warrantyId = 0;
+    var ddslick_warranty_name = "";
+
     var tabOrganizer = $("#warranty_tab").organizeTabs({ tabID: "warranty_tab" });
 
     //$("#warranty_tab").organizeTabs('disableAllTabs');
@@ -112,119 +120,236 @@ $(document).ready(function () {
 //Model End
 
 //Model type(TGS,TGM...)
-    $('#loading-image-model').loadImager('removeLoadImage');
+    //$('#loading-image-model').loadImager('removeLoadImage');
+    //$("#loading-image-model").loadImager('appendImage');
+
+    //var ajaxACLResources_model = $('#ajaxACL-model').ajaxCallWidget({
+    //    proxy: '/Warranty/SysVehicleGroups',
+    //    type: 'POST'
+    //});
+
+    //ajaxACLResources_model.ajaxCallWidget({
+    //    onError: function (event, textStatus, errorThrown) {
+
+    //        dm.dangerMessage({
+    //            onShown: function () {
+    //                $('#loading-image-model').loadImager('removeLoadImage');
+    //            }
+    //        });
+    //        dm.dangerMessage('show', window.lang.translate('Servis  bulunamamýþtýr...'), window.lang.translate('Servis  bulunamamýþtýr...'));
+    //    },
+    //    onSuccess: function (event, cbdata_Model) {
+    //        //var data = $.parseJSON(cbdata);
+    //        var cbdataModel = $.parseJSON(cbdata_Model);
+    //        cbdataModel.splice(0, 0,
+    //            { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+    //        );
+    //        $('#dropdownModel').ddslick({
+    //            //height: 150,
+    //            data: cbdataModel,
+    //            width: '100%',
+
+    //            onSelected: function (selectedData) {
+    //                if (selectedData.selectedData.value > 0) {
+    //                    VhType = selectedData.selectedData.text;
+    //                    vehicle_group_id = selectedData.selectedData.value;
+
+
+    //                    $('#loading-image-wrName').loadImager('removeLoadImage');
+    //                    $("#loading-image-wrName").loadImager('appendImage');
+
+    //                    var ajaxACLResources_wrName = $('#ajaxACL-wrName').ajaxCallWidget({
+    //                        proxy: '/Warranty/SysWarranties',
+    //                        type: 'POST',
+    //                        data: JSON.stringify({
+    //                            language_code: $("#langCode").val(),
+    //                            pk: "GsZVzEYe50uGgNM",
+    //                            url: "pkWarrantiesParentsDdList_syswarranties",
+    //                            vehicle_group_id: vehicle_group_id,
+    //                            //pkIdentity: $("#publicKey").val()
+    //                        }),
+    //                    });
+
+    //                    ajaxACLResources_wrName.ajaxCallWidget({
+    //                        onError: function (event, textStatus, errorThrown) {
+
+    //                            dm.dangerMessage({
+    //                                onShown: function () {
+    //                                    $('#loading-image-wrName').loadImager('removeLoadImage');
+    //                                }
+    //                            });
+    //                            dm.dangerMessage('show', 'servis Bulunamamýþtýr...', 'Servis  bulunamamýþtýr...');
+    //                        },
+    //                        onSuccess: function (event, data_wrName) {
+    //                            //var data = $.parseJSON(cbdata);
+    //                            var cbdata_wrName = $.parseJSON(data_wrName);
+    //                            //cbdata_wrName.splice(0, 0,
+    //                            //    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+    //                            //);
+    //                            $('#dropdownWrName').ddslick('destroy');
+    //                            $('#dropdownWrName').ddslick({
+    //                                //height: 150,
+    //                                data: cbdata_wrName,
+    //                                //search: true,
+    //                                //searchText: window.lang.translate('Search'),
+    //                                width: '100%',
+    //                                onSelected: function (selectedData) {
+    //                                    //if (selectedData.selectedData.value > 0) {
+
+    //                                    //}
+    //                                }
+    //                            });
+
+    //                            $("#loading-image-wrName").loadImager('removeLoadImage');
+    //                        },
+    //                        onErrorDataNull: function (event, data) {
+    //                            console.log("Error : " + event + " -data :" + data);
+    //                            dm.dangerMessage({
+    //                                onShown: function () {
+    //                                    $('#loading-image-wrName').loadImager('removeLoadImage');
+    //                                }
+    //                            });
+    //                            dm.dangerMessage('show', 'wrName not show...', 'wrName not show...');
+    //                        },
+    //                    })
+    //                    ajaxACLResources_wrName.ajaxCallWidget('call');
+                       
+    //                }
+    //                else {
+    //                    VhType = "";
+    //                }
+    //                 document.getElementById("txt-wrUnique-name").value = VhType + Model + Mil1 + Mil2 + WrType + WrRM;
+    //            }
+    //        });
+
+    //        $("#loading-image-model").loadImager('removeLoadImage');
+    //    },
+    //    onErrorDataNull: function (event, data) {
+    //        console.log("Error : " + event + " -data :" + data);
+    //        dm.dangerMessage({
+    //            onShown: function () {
+    //                $('#loading-image-model').loadImager('removeLoadImage');
+    //            }
+    //        });
+    //        dm.dangerMessage('show', window.lang.translate('model bulunamamýþtýr...'), window.lang.translate('model  bulunamamýþtýr...'));
+    //    },
+    //})
+    //ajaxACLResources_model.ajaxCallWidget('call');
+
+    $("#loading-image-model").loadImager('removeLoadImage');
     $("#loading-image-model").loadImager('appendImage');
 
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkVehicleGroupsDdList_sysvehiclegroups&language_code=en&pk=GsZVzEYe50uGgNM
     var ajaxACLResources_model = $('#ajaxACL-model').ajaxCallWidget({
-        proxy: '/Warranty/SysVehicleGroups',
-        type: 'POST'
+        failureLoadImage: true,
+        loadingImageID: "loading-image-model",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Vehicle/SysVehicleGroups',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkVehicleGroupsDdList_sysvehiclegroups",
+            pkIdentity: $("#publicKey").val()
+        })
     });
 
     ajaxACLResources_model.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
+        onReset: function (event, data) {
 
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-model').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamýþtýr...'), window.lang.translate('Servis  bulunamamýþtýr...'));
         },
-        onSuccess: function (event, cbdata_Model) {
-            //var data = $.parseJSON(cbdata);
-            var cbdataModel = $.parseJSON(cbdata_Model);
-            cbdataModel.splice(0, 0,
+        onSuccess: function (event, datamodel) {
+
+            var cbdata_model = $.parseJSON(datamodel);
+            cbdata_model.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
-            $('#dropdownModel').ddslick({
-                //height: 150,
-                data: cbdataModel,
-                width: '100%',
 
+            $('#dropdownModel').ddslick({
+                data: cbdata_model,
+                width: '100%',
+                //search: true,
+                //searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
+
+                    $('#dropdownWrName').ddslick('destroy');
+
                     if (selectedData.selectedData.value > 0) {
                         VhType = selectedData.selectedData.text;
-                        vehicle_group_id = selectedData.selectedData.value;
+                        ddslick_modelId = selectedData.selectedData.value;
 
-
-                        $('#loading-image-wrName').loadImager('removeLoadImage');
+                        //Warranty
+                        $("#loading-image-wrName").loadImager('removeLoadImage');
                         $("#loading-image-wrName").loadImager('appendImage');
 
-                        var ajaxACLResources_wrName = $('#ajaxACL-wrName').ajaxCallWidget({
-                            proxy: '/Warranty/SysWarranties',
-                            type: 'POST',
+                        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkWarrantiesParentsDdList_syswarranties&vehicle_group_id=8&language_code=en&pk=GsZVzEYe50uGgNM
+                        var ajaxACLResources_vehicle = $('#ajaxACL-wrName').ajaxCallWidget({
+                            failureLoadImage: true,
+                            loadingImageID: "loading-image-wrName",
+                            triggerSuccessAuto: true,
+                            transactionSuccessText: window.lang.translate('Transaction successful'),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            proxy: '/Warranty/SysVehicleWarranty',
+                            type: "POST",
                             data: JSON.stringify({
                                 language_code: $("#langCode").val(),
                                 pk: "GsZVzEYe50uGgNM",
                                 url: "pkWarrantiesParentsDdList_syswarranties",
-                                vehicle_group_id: vehicle_group_id,
-                                //pkIdentity: $("#publicKey").val()
-                            }),
+                                vehicle_group_id: ddslick_modelId,
+                                pkIdentity: $("#publicKey").val()
+                            })
                         });
 
-                        ajaxACLResources_wrName.ajaxCallWidget({
-                            onError: function (event, textStatus, errorThrown) {
+                        ajaxACLResources_vehicle.ajaxCallWidget({
+                            onReset: function (event, data) {
 
-                                dm.dangerMessage({
-                                    onShown: function () {
-                                        $('#loading-image-wrName').loadImager('removeLoadImage');
-                                    }
-                                });
-                                dm.dangerMessage('show', 'servis Bulunamamýþtýr...', 'Servis  bulunamamýþtýr...');
                             },
-                            onSuccess: function (event, data_wrName) {
-                                //var data = $.parseJSON(cbdata);
-                                var cbdata_wrName = $.parseJSON(data_wrName);
-                                //cbdata_wrName.splice(0, 0,
-                                //    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-                                //);
-                                $('#dropdownWrName').ddslick('destroy');
+                            onSuccess: function (event, datawarranty) {
+
+                                var cbdata_warranty = $.parseJSON(datawarranty);
+                                cbdata_warranty.splice(0, 0,
+                                    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                                );
+
                                 $('#dropdownWrName').ddslick({
-                                    //height: 150,
-                                    data: cbdata_wrName,
+                                    data: cbdata_warranty,
+                                    width: '100%',
                                     //search: true,
                                     //searchText: window.lang.translate('Search'),
-                                    width: '100%',
-                                    onSelected: function (selectedData) {
-                                        //if (selectedData.selectedData.value > 0) {
-
-                                        //}
-                                    }
-                                });
-
-                                $("#loading-image-wrName").loadImager('removeLoadImage');
+                                })
+                                if (filldropdown === true) {
+                                    $('#dropdownWrName').ddslick('selectByValue',
+                                        {
+                                            index: '' + ddslick_warrantyId + '',
+                                            value: '' + ddslick_warranty_name + ''
+                                        });
+                                    filldropdown = false;
+                                }
+                                $('#loading-image-wrName').loadImager('removeLoadImage');
                             },
-                            onErrorDataNull: function (event, data) {
-                                console.log("Error : " + event + " -data :" + data);
-                                dm.dangerMessage({
-                                    onShown: function () {
-                                        $('#loading-image-wrName').loadImager('removeLoadImage');
-                                    }
-                                });
-                                dm.dangerMessage('show', 'wrName not show...', 'wrName not show...');
-                            },
+                            onAfterSuccess: function (event, data) {
+                                $('#loading-image-wrName').loadImager('removeLoadImage');
+                            }
                         })
-                        ajaxACLResources_wrName.ajaxCallWidget('call');
-                       
+                        ajaxACLResources_vehicle.ajaxCallWidget('call');
+                        //Warranty End
+
                     }
                     else {
                         VhType = "";
                     }
                      document.getElementById("txt-wrUnique-name").value = VhType + Model + Mil1 + Mil2 + WrType + WrRM;
                 }
-            });
-
-            $("#loading-image-model").loadImager('removeLoadImage');
+            })
+            $('#loading-image-model').loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-model').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('model bulunamamýþtýr...'), window.lang.translate('model  bulunamamýþtýr...'));
-        },
+        onAfterSuccess: function (event, data) {
+            $('#loading-image-model').loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_model.ajaxCallWidget('call');
 //Model type End

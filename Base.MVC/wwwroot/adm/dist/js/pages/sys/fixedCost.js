@@ -15,148 +15,242 @@ $(document).ready(function () {
         actionButtonLabel: 'İşleme devam et'
     });
 
-    var expText = "";
+//Loading image
+    $("#loadingImage_DdslickModel").loadImager();
+    $("#loadingImage_DdslickVehicle").loadImager();
+    $("#loadingImage_DdslickCurrency").loadImager();
+    $("#loadingImage_DdslickWarranty").loadImager();
 
-/*
-* Buyback Return LoadImager
-* @author Ceydacan Seyrek
-* @since 10/09/2018
-*/
-//to Buyback Return form
-    $("#loadingImage_BbReturnInfo").loadImager();
-    $("#loadingImage_DdslickReturn").loadImager();
+    var filldropdown = false;
 
+    var ddslick_modelId = 0;
+    var ddslick_model_name = "";
+    var ddslick_warrantyId = 0;
+    var ddslick_warranty_name = "";
+    var ddslick_vehicleId = 0;
+    var ddslick_vehicle_name = "";
 
-//to Buyback Return form grid loading-image
-    $("#loadingImage_DdslickBuybackReturnDealGrid").loadImager();
-    $("#loadingImage_DdslickBuybackVehicleList").loadImager();
+//Model Group --> warranty name --> Vehicle End Group
+    $("#loadingImage_DdslickModel").loadImager('removeLoadImage');
+    $("#loadingImage_DdslickModel").loadImager('appendImage');
 
-    var tab_active = function () {
-        //Update & View Mode
-        //enabled tabs
-
-        $("a[data-toggle='tab'").prop('disabled', false);
-        $("a[data-toggle='tab'").each(function () {
-            $(this).attr('href', $(this).prop('data-href')); // restore original href
-        });
-        $("a[data-toggle='tab'").removeClass('disabled-link');
-    }
-
-    var tab_disable = function () {
-        //Add new record
-        //tablar kapatılacak
-
-        $("a[data-toggle='tab'").prop('disabled', true);
-        $("a[data-toggle='tab'").each(function () {
-            $(this).prop('data-href', $(this).attr('href')); // hold you original href
-            $(this).attr('href', '#'); // clear href
-        });
-        $("a[data-toggle='tab'").addClass('disabled-link');
-
-    }
-
-    tab_disable();
-
-    $('#dealBuybackReturnForm').validationEngine();
-    $('#buybackReturnVehicleInfoForm').validationEngine();
-
-    var langCode = $("#langCode").val();
-    //alert(langCode);
-
-    var cbdata_country = [{}];
-
-//Return
-    var cbdata_return = [
-        {
-            text: window.lang.translate('Please select') + "...",
-            value: 1,
-            selected: true
-        },
-        {
-            text: "Yes, it will return",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "No customer wants extension",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "No, it won’t return",
-            value: 4,
-            selected: false
-        }
-    ];
-
-    $('#loadingImage_DdslickReturn').loadImager('removeLoadImage');
-    $("#loadingImage_DdslickReturn").loadImager('appendImage');
-
-    var ajaxACLResources_Return = $('#ajax_DdslickReturn').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkVehicleGroupsDdList_sysvehiclegroups&language_code=en&pk=GsZVzEYe50uGgNM
+    var ajaxACLResources_model = $('#ajax_DdslickModel').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickModel",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Vehicle/SysVehicleGroups',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkVehicleGroupsDdList_sysvehiclegroups",
+            pkIdentity: $("#publicKey").val()
+        })
     });
 
-    ajaxACLResources_Return.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
+    ajaxACLResources_model.ajaxCallWidget({
+        onReset: function (event, data) {
 
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickReturn').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis bulunamamıştır...'));
         },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
+        onSuccess: function (event, datamodel) {
 
-            $('#ddslickReturn').ddslick({
-                //height: 150,
-                data: cbdata_return,
+            var cbdata_model = $.parseJSON(datamodel);
+            cbdata_model.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+
+            $('#ddslickModel').ddslick({
+                data: cbdata_model,
                 width: '100%',
-
+                //search: true,
+                //searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
+
+                    $('#ddslickWarranty').ddslick('destroy');
+                    $('#ddslickVehicle').ddslick('destroy');
+
                     if (selectedData.selectedData.value > 0) {
-                        expText = selectedData.selectedData.text;
-                        if (expText == 'No, it won’t return') {
-                            document.getElementById("txt-bbreturn-explanation").disabled = false;
-                            document.getElementById("txt-bbreturn-file").disabled = true;
-                        }
-                        else if (expText == 'No customer wants extension') {
-                            document.getElementById("txt-bbreturn-explanation").disabled = false;
-                            document.getElementById("txt-bbreturn-file").disabled = true;
-                        }
-                        else if (expText == 'Yes, it will return') {
-                            document.getElementById("txt-bbreturn-explanation").disabled = true;
-                            document.getElementById("txt-bbreturn-file").disabled = false;
-                        }
-                        else {
-                            document.getElementById("txt-bbreturn-explanation").disabled = true;
-                            document.getElementById("txt-bbreturn-file").disabled = true;
-                        }
+                        ddslick_modelId = selectedData.selectedData.value;
+
+                        //Vehicle
+                        $("#loadingImage_DdslickVehicle").loadImager('removeLoadImage');
+                        $("#loadingImage_DdslickVehicle").loadImager('appendImage');
+
+                        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkVehiclesEndgroupsFixCostDdList_sysvehiclesendgroups&language_code=en&pk=GsZVzEYe50uGgNM&vehicle_groups_id=1
+                        var ajaxACLResources_vehicle = $('#ajax_DdslickVehicle').ajaxCallWidget({
+                            failureLoadImage: true,
+                            loadingImageID: "loadingImage_DdslickVehicle",
+                            triggerSuccessAuto: true,
+                            transactionSuccessText: window.lang.translate('Transaction successful'),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            proxy: '/Vehicle/SysVehicleEndGroup',
+                            type: "POST",
+                            data: JSON.stringify({
+                                language_code: $("#langCode").val(),
+                                pk: "GsZVzEYe50uGgNM",
+                                url: "pkVehiclesEndgroupsFixCostDdList_sysvehiclesendgroups",
+                                vehicle_group_id: ddslick_modelId,
+                                pkIdentity: $("#publicKey").val()
+                            })
+                        });
+
+                        ajaxACLResources_vehicle.ajaxCallWidget({
+                            onReset: function (event, data) {
+
+                            },
+                            onSuccess: function (event, datavehicle) {
+
+                                var cbdata_vehicle = $.parseJSON(datavehicle);
+                                cbdata_vehicle.splice(0, 0,
+                                    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                                );
+
+                                $('#ddslickVehicle').ddslick({
+                                    data: cbdata_vehicle,
+                                    width: '100%',
+                                    //search: true,
+                                    //searchText: window.lang.translate('Search'),
+                                })
+                                if (filldropdown === true) {
+                                    $('#ddslickVehicle').ddslick('selectByValue',
+                                        {
+                                            index: '' + ddslick_vehicleId + '',
+                                            value: '' + ddslick_vehicle_name + ''
+                                        });
+                                    filldropdown = false;
+                                }
+                                $('#loadingImage_DdslickVehicle').loadImager('removeLoadImage');
+                            },
+                            onAfterSuccess: function (event, data) {
+                                $('#loadingImage_DdslickVehicle').loadImager('removeLoadImage');
+                            }
+                        })
+                        ajaxACLResources_vehicle.ajaxCallWidget('call');
+//Vehicle End
+
+//Warranty
+                        $("#loadingImage_DdslickWarranty").loadImager('removeLoadImage');
+                        $("#loadingImage_DdslickWarranty").loadImager('appendImage');
+
+                        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkWarrantiesParentsDdList_syswarranties&vehicle_group_id=8&language_code=en&pk=GsZVzEYe50uGgNM
+                        var ajaxACLResources_vehicle = $('#ajax_DdslickWarranty').ajaxCallWidget({
+                            failureLoadImage: true,
+                            loadingImageID: "loadingImage_DdslickWarranty",
+                            triggerSuccessAuto: true,
+                            transactionSuccessText: window.lang.translate('Transaction successful'),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            proxy: '/Warranty/SysVehicleWarranty',
+                            type: "POST",
+                            data: JSON.stringify({
+                                language_code: $("#langCode").val(),
+                                pk: "GsZVzEYe50uGgNM",
+                                url: "pkWarrantiesParentsDdList_syswarranties",
+                                vehicle_group_id: ddslick_modelId,
+                                pkIdentity: $("#publicKey").val()
+                            })
+                        });
+
+                        ajaxACLResources_vehicle.ajaxCallWidget({
+                            onReset: function (event, data) {
+
+                            },
+                            onSuccess: function (event, datawarranty) {
+
+                                var cbdata_warranty = $.parseJSON(datawarranty);
+                                cbdata_warranty.splice(0, 0,
+                                    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                                );
+
+                                $('#ddslickWarranty').ddslick({
+                                    data: cbdata_warranty,
+                                    width: '100%',
+                                    //search: true,
+                                    //searchText: window.lang.translate('Search'),
+                                })
+                                if (filldropdown === true) {
+                                    $('#ddslickWarranty').ddslick('selectByValue',
+                                        {
+                                            index: '' + ddslick_warrantyId + '',
+                                            value: '' + ddslick_warranty_name + ''
+                                        });
+                                    filldropdown = false;
+                                }
+                                $('#loadingImage_DdslickWarranty').loadImager('removeLoadImage');
+                            },
+                            onAfterSuccess: function (event, data) {
+                                $('#loadingImage_DdslickWarranty').loadImager('removeLoadImage');
+                            }
+                        })
+                        ajaxACLResources_vehicle.ajaxCallWidget('call');
+//Warranty End
+
                     }
                 }
-            });
-
-            $("#loadingImage_DdslickReturn").loadImager('removeLoadImage');
+            })
+            $('#loadingImage_DdslickModel').loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickReturn').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Return bulunamamıştır...'), window.lang.translate('Return bulunamamıştır...'));
-        },
+        onAfterSuccess: function (event, data) {
+            $('#loadingImage_DdslickModel').loadImager('removeLoadImage');
+        }
     })
-    ajaxACLResources_Return.ajaxCallWidget('call');
-//Return End
+    ajaxACLResources_model.ajaxCallWidget('call');
+//Model Group --> warranty name --> Vehicle End Group End
 
+
+
+//Currency
+    $("#loadingImage_DdslickCurrency").loadImager('removeLoadImage');
+    $("#loadingImage_DdslickCurrency").loadImager('appendImage');
+
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups&language_code=en&pk=GsZVzEYe50uGgNM
+    var ajaxACLResources_currency = $('#ajax_DdslickCurrency').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickCurrency",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Vehicle/SysVehicleGroups',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
+
+    ajaxACLResources_currency.ajaxCallWidget({
+        onReset: function (event, data) {
+
+        },
+        onSuccess: function (event, datacurrency) {
+
+            var cbdata_currency = $.parseJSON(datacurrency);
+            cbdata_currency.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+
+            $('#ddslickCurrency').ddslick({
+                data: cbdata_currency,
+                width: '100%',
+                //search: true,
+                //searchText: window.lang.translate('Search'),
+            })
+            $('#loadingImage_DdslickCurrency').loadImager('removeLoadImage');
+        },
+        onAfterSuccess: function (event, data) {
+            $('#loadingImage_DdslickCurrency').loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_currency.ajaxCallWidget('call');
+    //Currency End
 
 
     /* devexgrid */
@@ -194,7 +288,7 @@ $(document).ready(function () {
     DevExpress.localization.locale(langCode);
 
 
-    $("#gridContainer_buybackDealList").dxDataGrid({
+    $("#gridContainer_fixedCostList").dxDataGrid({
 
         showColumnLines: true,
 
@@ -282,114 +376,6 @@ $(document).ready(function () {
             }
         }
     });
-
-    $("#gridContainer_buybackVehicleList").dxDataGrid({
-
-        showColumnLines: true,
-
-        showRowLines: true,
-
-        showBorders: true,
-
-        dataSource: orders,
-
-        columnHidingEnabled: true,
-
-        selection: {
-            mode: "single"
-        },
-
-        hoverStateEnabled: true,
-
-        editing: {
-            //mode: "batch"
-            mode: "form",
-            allowAdding: true,
-            allowUpdating: true,
-            allowDeleting: true,
-            useIcons: true
-        },
-
-        "export": {
-            enabled: true,
-            fileName: "buybackVehicle"
-        },
-
-        grouping: {
-            contextMenuEnabled: true,
-            expandMode: "rowClick"
-        },
-
-        groupPanel: {
-            emptyPanelText: "Use the context menu of header columns to group data",
-            visible: true
-        },
-
-        pager: {
-            allowedPageSizes: [5, 8, 15, 30],
-            showInfo: true,
-            showNavigationButtons: true,
-            showPageSizeSelector: true,
-            visible: true
-        },
-
-        paging: {
-            pageSize: 8
-        },
-
-        filterRow: {
-            visible: true,
-            applyFilter: "auto"
-        },
-
-        searchPanel: {
-            visible: true,
-            width: 240,
-            placeholder: window.lang.translate('Search') + "...",
-        },
-
-        headerFilter: {
-            visible: true
-        },
-
-        columnChooser: {
-            enabled: true,
-            mode: "select"
-        },
-
-        columns: [{
-            caption: window.lang.translate('Deal Number') + "...",
-            dataField: "SaleAmount"
-        }, {
-            caption: window.lang.translate('Deal date') + "...",
-                dataField: "OrderDate"
-        }, {
-            caption: window.lang.translate('Vehicle return date') + "...",
-                dataField: "OrderDate"
-            }, {
-            caption: window.lang.translate('Vehicle') + "...",
-                //dataField: "WAGP21ZZ2FT022928"
-            data: "WAGP21ZZ2FT022928"
-        }, {
-            name: 'Vehicle return',
-            caption: "Vehicle return",
-            //dataField: "active",
-            dataType: "boolean"
-        }],
-        onSelectionChanged: function (selectedItems) {
-            var data = selectedItems.selectedRowsData[0];
-            if (data) {
-                fillVehicleBuybackForm(data);
-            }
-        }
-    });
-
-    function logEvent(eventName) {
-        var logList = $("#events ul"),
-            newItem = $("<li>", { text: eventName });
-
-        logList.prepend(newItem);
-    }
 
 
  /**

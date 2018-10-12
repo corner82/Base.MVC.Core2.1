@@ -47,7 +47,7 @@
                 <div class="box box-info">
                     <div class="box-header">
                         <i class="fa fa-comments-o"></i>
-                        <h3 class="box-title"><span lang="en">Buyback vehicle return form</span></h3>
+                        <h3 class="box-title"><span lang="en">Fixed cost form</span></h3>
 
                         <div class="box-tools pull-right">
                             <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -55,130 +55,120 @@
                         </div>
                     </div>
                     <div class="box-body">
-
-                        <div class="nav-tabs-custom">
-                            <ul class="nav nav-tabs pull-right">
-                                <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true"><span lang="en">Buyback deal list</span></a></li>
-                                <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false" class="disable" disabled=""><span lang="en">Buyback deal detail information</span></a></li>
-
-                                <li class="pull-left header"><i class="fa fa-th"></i></li>
-                            </ul>
-                            <div class="tab-content">
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="tab_1">
-                                        <form id='dealBuybackReturnForm' method="get">
-                                            <div class="box box-info">
-                                                <div class="box-body" id="loadingImage_DdslickBuybackReturnDealGrid">
-                                                    <div id="gridContainer_buybackDealList"></div>
+                        <form id='FixedCostForm' method="get">
+                            <div class="row" id="loadingImage_FixedCost">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label><span lang="en">Model group</span></label>
+                                        <div class="" id="ajax_DdslickModel">
+                                            <div id="loadingImage_DdslickModel" class="input-group zeyn-load-imager">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
                                                 </div>
+                                                <div id="ddslickModel" class="form-control"></div>
                                             </div>
-                                        </form>
+                                        </div>
                                     </div>
-
-                                    <div class="tab-pane" id="tab_2">
-                                        <form id='buybackReturnVehicleInfoForm' method="get">
-                                            <div class="row" id="loadingImage_BbReturnInfo">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Deal number</span></label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-copyright"></i>
-                                                            </div>
-                                                            <input type="text" class="form-control validate[required]" placeholder="Deal number" id="txt-bbreturn-dealNo" disabled>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Deal date</span></label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-copyright"></i>
-                                                            </div>
-                                                            <input type="text" class="form-control validate[required]" placeholder="Deal date" id="txt-bbreturn-dealDate" disabled>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Vehicle</span></label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-copyright"></i>
-                                                            </div>
-                                                            <input type="text" class="form-control validate[required]" placeholder="Deal date" id="txt-bbreturn-vehicle" disabled>
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <div class="input-group">
-                                                            <label><span lang="en">All veicle return</span></label><br>
-                                                            <input type="radio" name="rd-bbreturn-allReturn" value="yes"><span lang="en">Yes</span><br>
-                                                            <input type="radio" name="rd-bbreturn-allReturn" value="no"><span lang="en">No</span><br>
-                                                            <input type="radio" name="rd-bbreturn-allReturn" value="other"><span lang="en"> Other</span>
-                                                        </div>
-                                                    </div>
-
-
+                                    <div class="form-group">
+                                        <label><span lang="en">Vehicle</span></label>
+                                        <div class="" id="ajax_DdslickVehicle">
+                                            <div id="loadingImage_DdslickVehicle" class="input-group zeyn-load-imager">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
                                                 </div>
-                                                <!-- /.col -->
-
-                                                <div class="col-md-6">
-
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Vehicle return</span></label>
-                                                        <div class="" id="ajax_DdslickReturn">
-                                                            <div id="loadingImage_DdslickReturn" class="input-group zeyn-load-imager">
-                                                                <div class="input-group-addon">
-                                                                    <i class="fa fa-copyright"></i>
-                                                                </div>
-                                                                <div id="ddslickReturn" class="form-control"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Explanation</span></label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-map-pin"></i>
-                                                            </div>
-                                                            <input type="text" class="form-control validate[required]" placeholder="Explanation" id="txt-bbreturn-explanation">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Attachment</span></label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-map-pin"></i>
-                                                            </div>
-                                                            <input type="file" class="form-control validate[required]" placeholder="file upload" id="txt-bbreturn-file" lang="en">
-                                                        </div>
-                                                    </div>
-
-                                                </div><!-- /.col -->
+                                                <div id="ddslickVehicle" class="form-control"></div>
                                             </div>
-
-                                            <div class="box-footer">
-                                                <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-clear" onclick="resetBbreturnForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                                <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-save" onclick="insertBbreturnWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>
+                                            All vehicle :
+                                            <div class="icheckbox_minimal-blue " aria-checked="false" aria-disabled="true" style="position: relative;">
+                                                <input type="checkbox" class="minimal" checked="" style="position: absolute; opacity: 0;">
+                                                <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                                </ins>
                                             </div>
-
-                                            <div class="box box-info">
-                                                <div class="box-header">
-                                                    <i class="fa fa-comments-o"></i>
-                                                    <h3 class="box-title"><span lang="en">BuyBack vehicle list</span></h3>
-
-                                                    <div class="box-tools pull-right">
-                                                        <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                                        <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
-                                                    </div>
-                                                </div>
-
-                                                <div class="box-body" id="loadingImage_DdslickBuybackVehicleList">
-                                                    <div id="gridContainer_buybackVehicleList"></div>
-                                                </div>
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span lang="en">Fixed cost name</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-user"></i>
                                             </div>
-                                        </form>
+                                            <input type="text" class="form-control validate[required]" placeholder="Fied Cost Name" id="txt-fc-name">
+                                        </div>
                                     </div>
                                 </div>
+                                <!-- /.col -->
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label><span lang="en">Currency</span></label>
+                                        <div class="" id="ajax_DdslickCurrency">
+                                            <div id="loadingImage_DdslickCurrency" class="input-group zeyn-load-imager">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <div id="ddslickCurrency" class="form-control"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span lang="en">Fixed cost price</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-user"></i>
+                                            </div>
+                                            <input type="number" class="form-control validate[required]" placeholder="Fixed Cost Price" id="txt-fc-price">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label><span lang="en">Fixed cost start date</span></label>
+
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input type="text" class="form-control pull-right" name="Start-datepicker" id="start-datepicker" placeholder="Start Date">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span lang="en">Select warranty</span></label>
+                                        <div class="" id="ajax_DdslickWarranty">
+                                            <div id="loadingImage_DdslickWarranty" class="input-group zeyn-load-imager">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <div id="ddslickWarranty" class="form-control"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- /.col -->
                             </div>
-                        </div>
+
+                            <div class="box-footer">
+                                <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-clear" onclick="resetBbreturnForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-save" onclick="insertBbreturnWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                            </div>
+
+                            <div class="box box-info">
+                                <div class="box-header">
+                                    <i class="fa fa-comments-o"></i>
+                                    <h3 class="box-title"><span lang="en">Fixed cost list</span></h3>
+
+                                    <div class="box-tools pull-right">
+                                        <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                        <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                                    </div>
+                                </div>
+
+                                <div class="box-body" id="loadingImage_DdslickFixedCostList">
+                                    <div id="gridContainer_fixedCostList"></div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
@@ -227,7 +217,13 @@
 
     <script>
         $(document).ready(function () {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_minimal',
+                radioClass: 'iradio_minimal'
+            });
+            $("input").iCheck('uncheck');
 
+            $("#langCode").jsLangMaster();
 
         });
     </script>

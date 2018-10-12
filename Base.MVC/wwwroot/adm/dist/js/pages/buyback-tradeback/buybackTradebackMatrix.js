@@ -14,8 +14,7 @@ $(document).ready(function () {
         denyButtonLabel: 'Vazgeç',
         actionButtonLabel: 'İşleme devam et'
     });
-
-    var contractType = "";
+   
     var buybackId;
     var tradebackId;
 /*
@@ -921,9 +920,6 @@ $(document).ready(function () {
                 }
             }
         }, {
-            caption: window.lang.translate('Contract type') + "...",
-            dataField: "contract_name"
-        }, {
             caption: window.lang.translate('Customer type') + "...",
             dataField: "customer_type_name"
         }, {
@@ -1114,9 +1110,6 @@ $(document).ready(function () {
                     }).appendTo(container);
                 }
             }
-        }, {
-            caption: window.lang.translate('Contract type') + "...",
-            dataField: "contract_name"
         }, {
             caption: window.lang.translate('Customer type') + "...",
             dataField: "customer_type_name"
@@ -1317,9 +1310,6 @@ $(document).ready(function () {
                     }).appendTo(container);
                 }
             }
-        }, {
-            caption: window.lang.translate('Contract type') + "...",
-            dataField: "contract_name"
         }, {
             caption: window.lang.translate('Customer type') + "...",
             dataField: "customer_type_name"
@@ -1525,9 +1515,6 @@ $(document).ready(function () {
                     }
                 }
             }, {
-                caption: window.lang.translate('Contract type') + "...",
-                dataField: "contract_name"
-            }, {
                 caption: window.lang.translate('Customer type') + "...",
                 dataField: "customer_type_name"
             }, {
@@ -1648,7 +1635,7 @@ $(document).ready(function () {
 
             var price = $('#txt-BbMatrix-price').val();
 
-            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?urlpkInsertTBAct_sysbuybackmatrix
+            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertBBAct_sysbuybackmatrix
             //& model_id=2 +
             //& buyback_type_id=2 
             //& terrain_id=2 +
@@ -1659,6 +1646,8 @@ $(document).ready(function () {
             //comfort_super_id 
             //hydraulics
             //customer_type_id 
+
+            //& model_id=3 & terrain_id=2 & month_id=35 & mileage_id=38 & price=500000 & comfort_super_id=0 & hydraulics=0 & customer_type_id=1 & pk=GsZVzEYe50uGgNM
 
             var ajax_InsertMatrix = $('#ajaxACL-insertBuyback').ajaxCallWidget({
                 failureLoadImage: true,
@@ -1689,6 +1678,7 @@ $(document).ready(function () {
                 },
             })
             ajax_InsertMatrix.ajaxCallWidget('call');
+            $("#gridContainer_bbMatrix").dxDataGrid("instance").refresh();
            // $('#buybackListRefresh').click();
             return false;
         }
