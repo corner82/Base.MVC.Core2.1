@@ -149,16 +149,17 @@
                             </div>
 
                             <div class="box-footer">
-                                <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-clear" onclick="resetBbreturnForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-save" onclick="insertBbreturnWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-fixedCost-clear" >&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-fixedCost-save" >&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
                             </div>
 
-                            <div class="box box-info">
+                            <div class="box box-info" id="ajaxACL-fixedCostList">
                                 <div class="box-header">
                                     <i class="fa fa-comments-o"></i>
                                     <h3 class="box-title"><span lang="en">Fixed cost list</span></h3>
 
                                     <div class="box-tools pull-right">
+                                        <button class="btn bg-teal btn-sm btn-small-miya" data-widget="refresh" id="fcListRefresh"><i class="fa fa-refresh"></i></button>
                                         <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                         <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
                                     </div>

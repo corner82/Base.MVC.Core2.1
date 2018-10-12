@@ -1674,7 +1674,7 @@ $(document).ready(function () {
             });
             ajax_InsertMatrix.ajaxCallWidget({
                 onReset: function (event, data) {
-                    resetBbMatrixForm();
+                    //resetBbMatrixForm();
                 },
             })
             ajax_InsertMatrix.ajaxCallWidget('call');
@@ -1870,11 +1870,11 @@ $(document).ready(function () {
             });
             ajax_InsertMatrix.ajaxCallWidget({
                 onReset: function (event, data) {
-                    resetTbMatrixForm();
+                    //resetTbMatrixForm();
                 },
             })
             ajax_InsertMatrix.ajaxCallWidget('call');
-            // $('#buybackListRefresh').click();
+             $('#tradebackListRefresh').click();
             return false;
         }
     })
