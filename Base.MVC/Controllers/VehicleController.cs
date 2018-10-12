@@ -121,6 +121,29 @@ namespace Base.MVC.Controllers
         }
 
         /// <summary>
+        /// get vehicle group types
+        /// Gül Özdemir
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        //[SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysVehicleGroupTypes([FromBody] VehicleGroupsPostModel postModel)
+        {
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            string queryStr = _queryCreater.GetQueryStringFromObject(postModel);
+            //url=pkVehicleGroupTypesDdList_sysvehiclegrouptypes&vehicle_groups_id=1&language_code=en&pk=GsZVzEYe50uGgNM
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
+
+        /// <summary>
         /// get vehicle grup tonaj models
         /// Vehicle Model Tonaj (CLA, TGM, TGS)
         /// Gül Özdemir
@@ -131,7 +154,7 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> SysVehicleGTModels([FromBody] DefaultPostModel postModel)
+        public async Task<string> SysVehicleGTModels([FromBody] VehicleGroupTypePostModel postModel)
         {
             var headers = new Dictionary<string, string>();
             var tokenGenerated = HttpContext.Session.GetHmacToken();
@@ -139,6 +162,8 @@ namespace Base.MVC.Controllers
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
             string queryStr = _queryCreater.GetQueryStringFromObject(postModel);
             //url = pkVehicleGtModelsDdList_sysvehiclegtmodels & language_code = en & pk = GsZVzEYe50uGgNM
+            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkVehicleGtModelsDdList_sysvehiclegtmodels&language_code=en&vehicle_group_types_id=4&pk=GsZVzEYe50uGgNM
+            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkVehicleGtModelsDdList_sysvehiclegtmodels&language_code=en&vehicle_group_type_id=4&pk=GsZVzEYe50uGgNM&pkIdentity=859d49d3-7e7a-41d3-b1d6-c26440c6f91f&
             var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
@@ -237,28 +262,6 @@ namespace Base.MVC.Controllers
             return data.ToString();
         }
 
-        /// <summary>
-        /// get vehicle group types
-        /// Gül Özdemir
-        /// </summary>
-        /// 
-        /// <returns></returns>
-        //[SessionTimeOut]
-        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
-        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
-        [HttpPost]
-        public async Task<string> SysVehicleGroupTypes([FromBody] DefaultPostModel postModel)
-        {
-            var headers = new Dictionary<string, string>();
-            var tokenGenerated = HttpContext.Session.GetHmacToken();
-            headers.Add("X-Hmac", tokenGenerated);
-            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            string queryStr = _queryCreater.GetQueryStringFromObject(postModel);
-            //url=pkVehicleGroupTypesDdList_sysvehiclegrouptypes&language_code=en&pk=GsZVzEYe50uGgNM
-            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
-            var data = response.Content.ReadAsStringAsync().Result;
-            return data.ToString();
-        }
 
         /// <summary>
         /// get vehicle model variant
