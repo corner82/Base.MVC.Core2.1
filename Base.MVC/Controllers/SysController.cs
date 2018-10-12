@@ -332,7 +332,7 @@ namespace Base.MVC.Controllers
         }
 
         /// <summary>
-        /// Active/Pasive BranchDealer
+        /// Active/Passive BranchDealer
         ///Gül Özdemir
         /// </summary>
         /// 
@@ -342,17 +342,20 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> SysActivePasiveBranch([FromBody] ActivePasivePostModel deleteModel)
+        public async Task<string> SysActivePassiveBranch([FromBody] ActivePassivePostModel activepassiveModel)
         {
             var headers = new Dictionary<string, string>();
             var tokenGenerated = HttpContext.Session.GetHmacToken();
             headers.Add("X-Hmac", tokenGenerated);
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            string queryStr = _queryCreater.GetQueryStringFromObject(deleteModel);
+            string queryStr = _queryCreater.GetQueryStringFromObject(activepassiveModel);
             var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
+
+
+
         //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]

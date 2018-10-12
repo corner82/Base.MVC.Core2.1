@@ -276,7 +276,53 @@ $(document).ready(function () {
     ajaxACLResources_vehiclemodel.ajaxCallWidget('call');
 
     /////////////////////////////////////////////////////////////////////////
-   
+//http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkHorsePowerDdList_syshorsepower&language_code=en&project_id=1&pk=GsZVzEYe50uGgNM
+//HorsePower
+    var ajaxACLResources_vehiclehorsepower = $('#ajax_DdslickHorsepower').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickHorsepower",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Vehicle/SysVehicleHorsepower/',
+        type: 'POST',
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkHorsePowerDdList_syshorsepower",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
+    ajaxACLResources_vehiclehorsepower.ajaxCallWidget({
+        onSuccess: function (event, datahorsepower) {
+            var cbdata_horsepower = $.parseJSON(datahorsepower);
+            cbdata_horsepower.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+            $('#ddslickHorsepower').ddslick({
+                data: cbdata_horsepower,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+                        //alert(selectedData.selectedData.text);
+                        
+                    }
+
+                }
+            });
+
+            $("#loadingImage_DdslickHorsepower").loadImager('removeLoadImage');
+        },
+        onReset: function (event, data) {
+
+        },
+        onAfterSuccess: function (event, data) {
+            $("#loadingImage_DdslickHorsepower").loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_vehiclehorsepower.ajaxCallWidget('call');
 /*
     //LMC6, LN62
     var cbdata_type = [
@@ -1382,8 +1428,8 @@ $(document).ready(function () {
             editing: {
                 //mode: "batch"
                 mode: "form",
-                allowAdding: true,
-                allowUpdating: true,
+                //allowAdding: true,
+                //allowUpdating: true,
                 allowDeleting: true,
                 useIcons: true
             },
@@ -1452,7 +1498,38 @@ $(document).ready(function () {
             //}]
             //}
 
-            columns: [{
+            columns: [
+            {
+                caption: window.lang.translate('Active/Passive'),
+                width: 40,
+                alignment: 'center',
+
+                cellTemplate: function (container, options) {
+                    var fieldHtml;
+                    var vehicle_id = options.data.id;
+
+                    if (options.data.active === 1) {
+                        //active
+                        $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
+                            activepassiveVehicle(vehicle_id, options.data.active);
+
+                        }).appendTo(container);
+                    } else if (options.data.active === 0) {
+
+                        //pasive
+                        $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
+                            activepassiveVehicle(vehicle_id, options.data.active);
+
+                        }).appendTo(container);
+                    }
+
+                    //$('<img />').addClass('dx-link').attr('src', "/adm/dist/img/icons.png").on('click', function () {
+                    //    dm.dangerMessage('show', window.lang.translate('dangerMessage...'), window.lang.translate('dangerMessage...'));
+                    //}).appendTo(container); 
+
+                }
+
+            },{
                 caption: window.lang.translate('Vehicle name'),
                 dataField: "factorymodel_name"
             }, {
@@ -1930,6 +2007,46 @@ $(document).ready(function () {
         }
     }
 
+
+    window.activepassiveVehicle = function (vehicle_id, active) {
+
+        var transactionSuccessMessage;
+
+        if (active === 1) {
+            //active
+            transactionSuccessMessage = window.lang.translate('Active successful');
+        } else {
+            //pasive
+            transactionSuccessMessage = window.lang.translate('Passive successful');
+        }
+
+        var ajax_activepassivevehiclelist = $('#ajaxACL-vehiclelist').ajaxCallWidget({
+            failureLoadImage: true,
+            loadingImageID: "loading-image-vehiclegrid",
+            triggerSuccessAuto: true,
+            transactionSuccessText: transactionSuccessMessage,
+            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            proxy: '/Vehicle/SysActivePassiveVehicle',
+            type: "POST",
+            data: JSON.stringify({
+                id: vehicle_id,
+                pk: "GsZVzEYe50uGgNM",
+                url: "pkUpdateMakeActiveOrPassive_sysvehicles"
+            }),
+
+        });
+        ajax_activepassivevehiclelist.ajaxCallWidget({
+            onReset: function (event, data) {
+
+            },
+            onAfterSuccess: function (event, data) {
+                $("#gridContainer_vehicle").dxDataGrid("instance").refresh();
+            }
+        })
+        ajax_activepassivevehiclelist.ajaxCallWidget('call');
+
+    }
 
 });
 

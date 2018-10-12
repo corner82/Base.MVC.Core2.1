@@ -409,7 +409,7 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> SysActivePasiveWrName([FromBody] ActivePasivePostModel deleteModel)
+        public async Task<string> SysActivePasiveWrName([FromBody] ActivePassivePostModel deleteModel)
         {
             var headers = new Dictionary<string, string>();
             var tokenGenerated = HttpContext.Session.GetHmacToken();

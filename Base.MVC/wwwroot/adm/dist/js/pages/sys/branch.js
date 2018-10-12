@@ -480,7 +480,7 @@ $(document).ready(function () {
 
                 columns: [
                      {
-                        caption: window.lang.translate('Active/Pasive'),
+                        caption: window.lang.translate('Active/Passive'),
                         width: 40,
                         alignment: 'center',
 
@@ -491,14 +491,14 @@ $(document).ready(function () {
                             if (options.data.active === 1) {
                                 //active
                                 $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
-                                    activepasiveBranch(branch_id, options.data.active);
+                                    activepassiveBranch(branch_id, options.data.active);
 
                                 }).appendTo(container);
                             } else if (options.data.active === 0) {
                                 
-                                //pasive
+                                //passive
                                 $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
-                                    activepasiveBranch(branch_id, options.data.active);
+                                    activepassiveBranch(branch_id, options.data.active);
 
                                 }).appendTo(container);
                             }
@@ -844,7 +844,7 @@ $(document).ready(function () {
     }
 
 
-    window.activepasiveBranch = function (branch_id, active) {
+    window.activepassiveBranch = function (branch_id, active) {
 
         var transactionSuccessMessage;
 
@@ -852,18 +852,18 @@ $(document).ready(function () {
             //active
             transactionSuccessMessage = window.lang.translate('Active successful');
         } else {
-            //pasive
-            transactionSuccessMessage = window.lang.translate('Pasive successful');
+            //passive
+            transactionSuccessMessage = window.lang.translate('Passive successful');
         }
 
-        var ajax_activepasivebranchlist = $('#ajaxACL-branchlist').ajaxCallWidget({
+        var ajax_activepassivebranchlist = $('#ajaxACL-branchlist').ajaxCallWidget({
             failureLoadImage: true,
             loadingImageID: "loading-image-branchgrid",
             triggerSuccessAuto: true,
             transactionSuccessText: transactionSuccessMessage,
             transactionFailureText: window.lang.translate("Service URL not found, please report error"),
             dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-            proxy: '/Sys/SysActivePasiveBranch',
+            proxy: '/Sys/SysActivePassiveBranch',
             type: "POST",
             data: JSON.stringify({
                 id: branch_id,
@@ -872,7 +872,7 @@ $(document).ready(function () {
             }),
 
         });
-        ajax_activepasivebranchlist.ajaxCallWidget({
+        ajax_activepassivebranchlist.ajaxCallWidget({
             onReset: function (event, data) {
                 
             },
@@ -880,7 +880,7 @@ $(document).ready(function () {
                 $("#gridContainer_branch").dxDataGrid("instance").refresh();
             }
         })
-        ajax_activepasivebranchlist.ajaxCallWidget('call');     
+        ajax_activepassivebranchlist.ajaxCallWidget('call');     
 
     }
 });

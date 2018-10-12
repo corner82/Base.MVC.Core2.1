@@ -169,6 +169,32 @@ namespace Base.MVC.Controllers
             return data.ToString();
         }
 
+
+        /// <summary>
+        /// Horsepower
+        /// Gül Özdemir
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        //[SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysVehicleHorsepower([FromBody] DefaultPostModel postModel)
+        {
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            string queryStr = _queryCreater.GetQueryStringFromObject(postModel);
+            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkHorsePowerDdList_syshorsepower&language_code=en&project_id=1&pk=GsZVzEYe50uGgNM
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
+
+
+
         /// <summary>
         /// get vehicle config types
         /// Gül Özdemir
@@ -400,6 +426,30 @@ namespace Base.MVC.Controllers
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
             var url = "http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillVehiclesGridx_sysvehicles&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM";
             var response = await HttpClientRequestFactory.Get(url, headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
+
+
+        /// <summary>
+        /// Active/Passive BranchDealer
+        ///Gül Özdemir
+        /// </summary>
+        /// 
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateMakeActiveOrPassive_sysbranchesdealersdeff&id=29&pk=GsZVzEYe50uGgNM
+        /// <returns></returns>
+        //[AjaxSessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysActivePasiveVehicle([FromBody] ActivePassivePostModel activepassiveModel)
+        {
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            string queryStr = _queryCreater.GetQueryStringFromObject(activepassiveModel);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }

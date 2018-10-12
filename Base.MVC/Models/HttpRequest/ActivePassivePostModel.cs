@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Base.MVC.Models.HttpRequest
 {
-    public class ActivePasivePostModel
+    public class ActivePassivePostModel
     {
         public string id { get; set; }
         public string pk { get; set; }
