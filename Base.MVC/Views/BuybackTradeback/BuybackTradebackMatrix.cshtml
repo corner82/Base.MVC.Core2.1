@@ -66,7 +66,7 @@
                                 <div class="tab-pane active" id="tab_1">
                                     <form id='buybackInfoForm' method="get">
                                         <div class="row" id="loadingImage_bbInfo">
-                                            <div class="col-md-6">
+                                            <div class="col-md-6" id="ajaxACL-insertBuyback">
                                                 <div class="form-group">
                                                     <label><span lang="en">Customer type</span></label>
                                                     <div class="" id="ajax_DdslickBbCustomerType">
@@ -159,10 +159,10 @@
                                             </div><!-- /.col -->
                                         </div>
                                         <div class="box-footer">
-                                            <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-bbMatrix-clear" onclick="resetBbMatrixForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                            <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-bbMatrix-save" onclick="insertBbMatrixWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                            <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-bbMatrix-clear">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                            <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-bbMatrix-save">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
                                         </div>
-                                        <div class="box box-info">
+                                        <div class="box box-info" id="ajaxACL-buybackList">
                                             <div class="box-header">
                                                 <i class="fa fa-comments-o"></i>
                                                 <h3 class="box-title"><span lang="en">BuyBack list</span></h3>
@@ -184,7 +184,7 @@
                                 <div class="tab-pane" id="tab_2">
                                     <form id='tradebackInfoForm' method="get">
                                         <div class="row" id="loadingImage_tbInfo">
-                                            <div class="col-md-6">
+                                            <div class="col-md-6" id="ajaxACL-insertTradeback">
                                                 <div class="form-group">
                                                     <label><span lang="en">Customer type</span></label>
                                                     <div class="" id="ajax_DdslickTbCustomerType">
@@ -278,10 +278,10 @@
                                             </div><!-- /.col -->
                                         </div>
                                         <div class="box-footer">
-                                            <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-clear" onclick="resetTbMatrixForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                            <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-vehicle-save" onclick="insertTbMatrixWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                            <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-tbMatrix-clear" >&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                            <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-tbMatrix-save" >&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
                                         </div>
-                                        <div class="box box-info">
+                                        <div class="box box-info"  id="ajaxACL-tradebackList">
                                             <div class="box-header">
                                                 <i class="fa fa-comments-o"></i>
                                                 <h3 class="box-title"><span lang="en">TradeBack list</span></h3>

@@ -16,6 +16,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Base.MVC.Models.HttpRequest;
+using Base.MVC.Models.HttpRequest.BuybackTradeback;
 using Base.Core.Utills.Url;
 
 namespace Base.MVC.Controllers
@@ -107,28 +108,6 @@ namespace Base.MVC.Controllers
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
             string queryStr = _queryCreater.GetQueryStringFromObject(postModel);
             var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
-            var data = response.Content.ReadAsStringAsync().Result;
-            return data.ToString();
-        }
-
-        /// <summary>
-        /// tradeback off road 
-        /// Ceydacan Seyrek
-        /// </summary>
-        /// 
-        /// <returns></returns>
-        //[SessionTimeOut]
-        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
-        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
-        [HttpPost]
-        public async Task<string> SysTbTerrains()
-        {
-            // tradeback off road 
-            var headers = new Dictionary<string, string>();
-            var tokenGenerated = HttpContext.Session.GetHmacToken();
-            headers.Add("X-Hmac", tokenGenerated);
-            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkTerrainsTradebackDdList_systerrains&language_code=en&pk=GsZVzEYe50uGgNM", headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
@@ -231,17 +210,24 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> SysBbMatrix()
+        public async Task<string> SysBbMatrixGrid([FromBody] DefaultPostModelGridList gridModel)
         {
-            // buyback matrix
-            var headers = new Dictionary<string, string>();
-            var tokenGenerated = HttpContext.Session.GetHmacToken();
-            headers.Add("X-Hmac", tokenGenerated);
-            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillBuybackMatrixGridx_sysbuybackmatrix&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM", headers);
-            var data = response.Content.ReadAsStringAsync().Result;
-            return data.ToString();
-        }        
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(gridModel);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model state is not valid");
+            }
+        }
         
         /// <summary>
         /// tradeback matrix
@@ -253,19 +239,76 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> SysTbMatrix()
+        public async Task<string> SysTbMatrixGrid([FromBody] DefaultPostModelGridList gridModel)
         {
-            // tradeback matrix
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(gridModel);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model state is not valid");
+            }
+        }
+
+        /// <summary>
+        /// Delete buyback or tradeback
+        ///Ceydacan Seyrek
+        /// </summary>
+        ///
+        /// <returns></returns>
+        //[AjaxSessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysDeleteBbTb([FromBody] DeletePostModel deleteModel)
+        {
             var headers = new Dictionary<string, string>();
             var tokenGenerated = HttpContext.Session.GetHmacToken();
             headers.Add("X-Hmac", tokenGenerated);
             headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillTradebackMatrixGridx_sysbuybackmatrix&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM", headers);
+            string queryStr = _queryCreater.GetQueryStringFromObject(deleteModel);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
         }
 
+        /// <summary>
+        /// add matrix
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        //[AjaxSessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> AddMatrix([FromBody] Matrix matrix)
+        {
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(matrix);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model state is not valid");
+            }
 
+        }
 
     }
 }

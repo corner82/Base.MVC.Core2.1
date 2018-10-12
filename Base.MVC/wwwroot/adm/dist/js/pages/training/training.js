@@ -873,7 +873,7 @@
             }
         })
         ajax_activepasiveTrName.ajaxCallWidget('call');  
-        $('#trListRefresh').click();
+        $('#trNameListRefresh').click();
     }
 
     var trNameId = '';
@@ -1090,6 +1090,7 @@
             }
         })
         ajax_activepasiveTrInfolist.ajaxCallWidget('call');  
+        $('#trListRefresh').click();
     }
 
 });

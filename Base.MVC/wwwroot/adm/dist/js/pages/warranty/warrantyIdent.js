@@ -662,13 +662,13 @@ $(document).ready(function () {
                     //active
                     $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
                         activepasiveWrName(wrName_id, options.data.active);
-                        dm.successMessage('show', window.lang.translate('Active success message...'), window.lang.translate('Active success message...'));
+                        //dm.successMessage('show', window.lang.translate('Active success message...'), window.lang.translate('Active success message...'));
                     }).appendTo(container);
                 } else if (options.data.active === 0) {
                     //pasive
                     $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
                         activepasiveWrName(wrName_id, options.data.active);
-                        dm.successMessage('show', window.lang.translate('Pasive success message...'), window.lang.translate('Pasive success message...'));
+                        //dm.successMessage('show', window.lang.translate('Pasive success message...'), window.lang.translate('Pasive success message...'));
                     }).appendTo(container);
                 }
             }
@@ -845,13 +845,13 @@ $(document).ready(function () {
                     //active
                     $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
                         activepasiveWrMatrix(wrMatrix_id, options.data.active);
-                        dm.successMessage('show', window.lang.translate('Active success message...'), window.lang.translate('Active success message...'));
+                       // dm.successMessage('show', window.lang.translate('Active success message...'), window.lang.translate('Active success message...'));
                     }).appendTo(container);
                 } else if (options.data.active === 0) {
                     //pasive
                     $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
                         activepasiveWrMatrix(wrMatrix_id, options.data.active);
-                        dm.successMessage('show', window.lang.translate('Pasive success message...'), window.lang.translate('Pasive success message...'));
+                        //dm.successMessage('show', window.lang.translate('Pasive success message...'), window.lang.translate('Pasive success message...'));
                     }).appendTo(container);
                 }
             }
@@ -952,15 +952,16 @@ $(document).ready(function () {
             var price_in_euros = $('#txt-wrPrice-name').val();
 
             //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_syswarrantymatrix
-            //& warranty_id=1 
-            //& vehicle_config_type_id=8
-            //& months1_id=22
-            //& mileages1_id=5 
-            //& warranty_types_id=1 
-            //& ismaintenance=1 
-            //& unique_code=asdasdasd 
-            //& price_in_euros=56 
+            //& warranty_id=6 
+            //& vehicle_config_type_id=2
+            //& months1_id=4
+            //& mileages1_id=9 
+            //& warranty_types_id=6
+            //& ismaintenance=1
+            //& unique_code=XHCV4X4400000KM24MONTHSDrivelineNo
+            //& price_in_euros=10000.0000 
             //& pk=GsZVzEYe50uGgNM
+
             var ajax_InsertWarrantyInfo = $('#ajaxACL-insertwarrantyName').ajaxCallWidget({
                 failureLoadImage: true,
                 loadingImageID: "loading-image-warranty",
@@ -990,6 +991,7 @@ $(document).ready(function () {
                 },
             })
             ajax_InsertWarrantyInfo.ajaxCallWidget('call');
+            $('#warrantyListRefresh').click();
             return false;
         }
     })
@@ -1122,8 +1124,11 @@ $(document).ready(function () {
                 $("#gridContainer_warranty").dxDataGrid("instance").refresh();
             }
         })
-            ajax_activepasiveWrMatrix.ajaxCallWidget('call');
+        ajax_activepasiveWrMatrix.ajaxCallWidget('call');
+        $('#warrantyListRefresh').click();
     }
+
+
 
 /////////////////////////Warranty Name//////////////////////////////
 /**
@@ -1265,12 +1270,11 @@ var warrantyNameId = "";
 
             },
             onAfterSuccess: function (event, data) {
-                //$("#gridContainer_warantyName").dxDataGrid("instance").refresh();
-                $('#wrNameListRefresh').click();
+                $("#gridContainer_warantyName").dxDataGrid("instance").refresh();
             }
         })
         ajax_activepasiveWrName.ajaxCallWidget('call');
+        $('#wrNameListRefresh').click();
     }
 
 });
-
