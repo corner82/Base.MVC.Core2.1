@@ -27,12 +27,11 @@ $(document).ready(function () {
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
     var wcm = $(window).warningComplexMessage({
-        denyButtonLabel: 'Vazgeç',
-        actionButtonLabel: 'İşleme devam et'
+        denyButtonLabel: window.lang.translate('Cancel'),
+        actionButtonLabel: window.lang.translate('Continue')
     });
 
-
- 
+ //tree extend method
     $.extend($.fn.tree.methods,{
             unselect: function(jq,target){
 		return jq.each(function(){
@@ -45,7 +44,23 @@ $(document).ready(function () {
         }
     });
 
-
+//tree extend method
+    $.extend($.fn.tree.methods, {
+        getRoot: function (jq, nodeEl) {
+            if (nodeEl) {
+                var target = nodeEl;
+                var p = jq.tree('getParent', target);
+                while (p) {
+                    target = p.target;
+                    p = jq.tree('getParent', p.target);
+                }
+                return jq.tree('getNode', target);
+            } else {
+                var roots = jq.tree('getRoots');
+                return roots.length ? roots[0] : null;
+            }
+        }
+    })
     /*
     * Branch LoadImager
     * @author Gül Özdemir
@@ -363,7 +378,7 @@ $(document).ready(function () {
                     error: function () {
                         deferred.reject("Data remove Error");
                     },
-                    timeout: 10000
+                    timeout: 30000
                 });
             }
         });
@@ -612,12 +627,13 @@ $(document).ready(function () {
         if (node) {
             $('#tree_manbranchoffice').tree('unselect', node.target);
         }
+        $('#tree_manbranchoffice').tree('collapseAll');
         $("#loading-image-branch").loadImager('removeLoadImage');
         return false;
     }
 
  /**
- * insert Branch Form
+ * insert / Update Branch Form
  * @returns {undefined}
  * @author Gül Özdemir
  * @since 03/09/2018
@@ -650,45 +666,100 @@ $(document).ready(function () {
             var ddData_City = $('#dropdownCity').data('ddslick');
             var cityId = ddData_City.selectedData.value;
 
-            var selected = $('#tree_manbranchoffice').tree('getSelected');
-            var selectedManBranchId = selected.target;
-            
-            var ajax = $('#ajaxACL-branch').ajaxCallWidget({
-                failureLoadImage: true,
-                loadingImageID: "loading-image-branch",
-                triggerSuccessAuto: true,
-                transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-                proxy: '/Sys/SysInsertBranch',
-                type: "POST",
-                data: JSON.stringify({
-                    url: "pkInsertAct_sysbranchesdealersdeff",
-                    name: branchName,
-                    branch_no: branchEmbraceNo,
-                    address1: address1,
-                    address2: address2,
-                    address3: address3,
-                    postalcode: postalCode,
-                    country_id: countryId,
-                    country_region_id: provinceId,
-                    city_id: cityId,
-                    sis_department_id: selectedMANBranchId,
-                    pk: "GsZVzEYe50uGgNM"
-                })
+            var selectedManBranchId = 0;
+            var node = $('#tree_manbranchoffice').tree('getSelected');
+            if (node) {
+                selectedManBranchId = node.target;
+            }
 
-            });
-            ajax.ajaxCallWidget({
-                onReset: function (event, data) {
-                    
-                },
-                onAfterSuccess: function (event, data) {
-                    $("#gridContainer_branch").dxDataGrid("instance").refresh();
-                }
-            })
-            ajax.ajaxCallWidget('call');
-            return false;
+            alert(selectedBranchId); 
+            var ajax;
+            if (selectedBranchId === 0) {
+                alert("yeni kayıt");
+                //Yeni kayıt
+                ajax = $('#ajaxACL-branch').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loading-image-branch",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    proxy: '/Sys/SysInsertBranch',
+                    type: "POST",
+                    data: JSON.stringify({
+                        url: "pkInsertAct_sysbranchesdealersdeff",
+                        name: branchName,
+                        branch_no: branchEmbraceNo,
+                        address1: address1,
+                        address2: address2,
+                        address3: address3,
+                        postalcode: postalCode,
+                        country_id: countryId,
+                        country_region_id: provinceId,
+                        city_id: cityId,
+                        sis_department_id: selectedMANBranchId,
+                        pk: "GsZVzEYe50uGgNM"
+                    })
+                });
+
+                ajax.ajaxCallWidget({
+                    onReset: function (event, data) {
+
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_branch").dxDataGrid("instance").refresh();
+                    }
+                })
+                ajax.ajaxCallWidget('call');
+
+            } else {
+                //update
+                alert("update");
+
+                wcm.warningComplexMessage({
+                    onConfirm: function (event, data) {
+                        ajax = $('#ajaxACL-branch').ajaxCallWidget({
+                            failureLoadImage: true,
+                            loadingImageID: "loading-image-branch",
+                            triggerSuccessAuto: true,
+                            transactionSuccessText: window.lang.translate('Transaction successful'),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            proxy: '/Sys/SysUpdateBranch',
+                            type: "POST",
+                            data: JSON.stringify({
+                                id: selectedBranchId,
+                                url: "pkUpdateAct_sysbranchesdealersdeff",
+                                name: branchName,
+                                branch_no: branchEmbraceNo,
+                                address1: address1,
+                                address2: address2,
+                                address3: address3,
+                                postalcode: postalCode,
+                                country_id: countryId,
+                                country_region_id: provinceId,
+                                city_id: cityId,
+                                sis_department_id: selectedMANBranchId,
+                                pk: "GsZVzEYe50uGgNM"
+                            })
+                        });
+
+                        ajax.ajaxCallWidget({
+                            onReset: function (event, data) {
+
+                            },
+                            onAfterSuccess: function (event, data) {
+                                $("#gridContainer_branch").dxDataGrid("instance").refresh();
+                            }
+                        })
+                        ajax.ajaxCallWidget('call');
+                    }
+                });
+                wcm.warningComplexMessage('show', 'Branch is update! Are you ok?','Branch is update! Are you sure?');
+            }
         }
+        return false;
+            
     })
 
     /**
@@ -711,6 +782,8 @@ $(document).ready(function () {
         $("#loading-image-branch").loadImager('removeLoadImage');
         $("#loading-image-branch").loadImager('appendImage');
 
+        selectedBranchId = data.id;
+
         document.getElementById("txt-branch-name").value = data.name;
         document.getElementById("txt-embrace-no").value = data.branch_no;
 
@@ -727,7 +800,6 @@ $(document).ready(function () {
 
         ddslick_cityId = data.city_id;
         ddslick_city_name = data.city_name;
-
         
         $('#dropdownCountry').ddslick('selectByValue',
             {
@@ -739,10 +811,26 @@ $(document).ready(function () {
         //province ve city otomatik tetikleniyor.
 
         //tree select
+        //$('#tree_manbranchoffice').tree('expandAll');
         var node = $('#tree_manbranchoffice').tree('find', data.sis_department_id);
+        //alert(data.sis_department_id);
         if (node) {
+            //alert("buldum");
+
+            var parentnode = $('#tree_manbranchoffice').tree('getParent', node.target);
+            //alert(parentnode);
+
+            var lastparentnode;
+            while (parentnode) {
+                //alert(parentnode.target);
+                $('#tree_manbranchoffice').tree('expand', parentnode.target);
+                lastparentnode = parentnode;
+                parentnode = $('#tree_manbranchoffice').tree('getParent', lastparentnode.target);
+            }
+
             $('#tree_manbranchoffice').tree('select', node.target);
             selectedMANBranchId = data.sis_department_id;
+
         } else {
             var node = $('#tree_manbranchoffice').tree('getSelected');
             if (node) {

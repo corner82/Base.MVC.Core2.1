@@ -295,6 +295,37 @@ namespace Base.MVC.Controllers
 
         }
 
+
+        /// <summary>
+        /// Update BranchDealer
+        /// Gül Özdemir
+        /// </summary>
+        ///
+        ///http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateAct_sysbranchesdealersdeff&name=asd&branch_no=ZZ55&address1=213123%20street&address2=no%2011&address3=etlik&postalcode=06010&country_id=107&country_region_id=9&city_id=158&sis_department_id=45&pk=GsZVzEYe50uGgNM&id=1
+        /// <returns></returns>
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysUpdateBranch([FromBody] BranchUpdateModel branchModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(branchModel);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model satate is not valid");
+            }
+
+        }
+
         /// <summary>
         /// Active/Pasive BranchDealer
         ///Gül Özdemir

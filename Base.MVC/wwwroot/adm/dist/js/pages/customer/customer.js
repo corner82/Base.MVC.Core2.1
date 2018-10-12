@@ -11,6 +11,16 @@
     });
 
 
+    var selectedCustomerId;
+    var filldropdown = false;
+
+    var ddslick_countryId = 0;
+    var ddslick_country_name = "";
+    var ddslick_provinceId = 0;
+    var ddslick_province_name = "";
+    var ddslick_cityId = 0;
+    var ddslick_city_name = "";
+
     /*
     * Customer Info Tab LoadImager
     * @author Gül Özdemir
@@ -129,11 +139,11 @@
     $('#customerContactPersonForm').validationEngine();
 
     /*
-    * 
-    * Country, Province, City ddSlick
-    * Gül Özdemir
-    * 09/10/2018
-    */
+   * 
+   * Country, Province, City ddSlick
+   * Gül Özdemir
+   * 09/10/2018
+   */
 
     var ajaxACLResources_country = $('#ajaxACL-country').ajaxCallWidget({
         failureLoadImage: true,
@@ -172,7 +182,7 @@
 
                     if (selectedData.selectedData.value > 0) {
 
-                        var countryId = selectedData.selectedData.value;
+                        ddslick_countryId = selectedData.selectedData.value;
 
                         var ajaxACLResources_getprovince = $('#ajaxACL-province').ajaxCallWidget({
                             failureLoadImage: true,
@@ -187,7 +197,7 @@
                                 language_code: $("#langCode").val(),
                                 pk: "GsZVzEYe50uGgNM",
                                 url: "pkCountryRegionsDdList_syscountryregions",
-                                country_id: countryId
+                                country_id: ddslick_countryId
                                 //pkIdentity: $("#publicKey").val()
                             })
                         });
@@ -198,6 +208,7 @@
 
                             },
                             onSuccess: function (event, dataprovince) {
+
                                 var cbdata_province = $.parseJSON(dataprovince);
                                 cbdata_province.splice(0, 0,
                                     { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
@@ -213,8 +224,8 @@
                                         $('#dropdownCity').ddslick('destroy');
 
                                         if (selectedData.selectedData.value > 0) {
+                                            ddslick_provinceId = selectedData.selectedData.value;
 
-                                            var provinceId = selectedData.selectedData.value;
                                             //city
                                             var ajaxACLResources_getcity = $('#ajaxACL-city').ajaxCallWidget({
                                                 failureLoadImage: true,
@@ -229,18 +240,18 @@
                                                     language_code: $("#langCode").val(),
                                                     pk: "GsZVzEYe50uGgNM",
                                                     url: "pkCityDdList_syscity",
-                                                    country_id: countryId,
-                                                    region_id: provinceId
+                                                    country_id: ddslick_countryId,
+                                                    region_id: ddslick_provinceId
                                                     //pkIdentity: $("#publicKey").val()
                                                 })
                                             });
-
 
                                             ajaxACLResources_getcity.ajaxCallWidget({
                                                 onReset: function (event, data) {
 
                                                 },
                                                 onSuccess: function (event, datacity) {
+
                                                     var cbdata_city = $.parseJSON(datacity);
                                                     cbdata_city.splice(0, 0,
                                                         { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
@@ -251,8 +262,18 @@
                                                         width: '100%',
                                                         search: true,
                                                         searchText: window.lang.translate('Search'),
+                                                        //defaultSelectedIndex: ddslick_cityId, //$("#dropdownCity li:has(.dd-option-text:contains('" + ddslick_city_name + "'))").index()
 
                                                     })
+                                                    if (filldropdown === true) {
+                                                        $('#dropdownCity').ddslick('selectByValue',
+                                                            {
+                                                                index: '' + ddslick_cityId + '',
+                                                                value: '' + ddslick_city_name + ''
+                                                            });
+                                                        filldropdown = false;
+                                                    }
+                                                    $('#loading-image-city').loadImager('removeLoadImage');
                                                 },
                                                 onAfterSuccess: function (event, data) {
                                                     $('#loading-image-city').loadImager('removeLoadImage');
@@ -263,18 +284,33 @@
                                         }
                                     }
                                 })
+                                if (filldropdown === true) {
+                                    $('#dropdownProvince').ddslick('selectByValue',
+                                        {
+                                            index: '' + ddslick_provinceId + '',
+                                            value: '' + ddslick_province_name + ''
+                                        }
+                                    );
+                                }
+                                $('#loading-image-province').loadImager('removeLoadImage');
                             },
+
                             onAfterSuccess: function (event, data) {
+                                //alert('geldim AfterSuccess province');
+
                                 $('#loading-image-province').loadImager('removeLoadImage');
                             }
                         })
                         ajaxACLResources_getprovince.ajaxCallWidget('call');
                         //province bitti
+
+
                     }
                 }
             })
         },
         onAfterSuccess: function (event, data) {
+            //alert('geldim AfterSuccess country');
             $('#loading-image-country').loadImager('removeLoadImage');
         }
     })
