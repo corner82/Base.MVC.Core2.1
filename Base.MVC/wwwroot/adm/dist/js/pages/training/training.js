@@ -914,9 +914,23 @@
 
 
             var ddDataUser = $('#dropdownTrainer').data('ddslick');
+            if (!ddDataUser.selectedData.value > 0) {
+                wm.warningMessage('resetOnShown');
+                wm.warningMessage('show', window.lang.translate("Please select salesman"),
+                    window.lang.translate("Please select salesman"));
+                $('#loading-image-truser').loadImager('removeLoadImage');
+                return false;
+            }
             var user_id = ddDataUser.selectedData.value;
 
             var ddDataCity = $('#dropdownCity').data('ddslick');
+            if (!ddDataCity.selectedData.value > 0) {
+                wm.warningMessage('resetOnShown');
+                wm.warningMessage('show', window.lang.translate("Please select City"),
+                    window.lang.translate("Please select City"));
+                $('#loading-image-truser').loadImager('removeLoadImage');
+                return false;
+            }
             var city_id = ddDataCity.selectedData.value;
 
             var address1 = $('#txt-TrAdr1-name').val();

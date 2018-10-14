@@ -1,10 +1,9 @@
-﻿/*
-* Fixed Cost Form
-* @author Ceydacan Seyrek
-* @since 12/10/2018
-*/
+﻿///*
+//* Fixed Cost Form
+//* @author Ceydacan Seyrek
+//* @since 12/10/2018
+//*/
 $(document).ready(function () {
-
     "use strict";
 
     var sm = $(window).successMessage();
@@ -15,7 +14,7 @@ $(document).ready(function () {
         actionButtonLabel: 'İşleme devam et'
     });
 
-//Loading image
+    //Loading image
     $("#loadingImage_DdslickModel").loadImager();
     $("#loadingImage_DdslickVehicle").loadImager();
     $("#loadingImage_DdslickCurrency").loadImager();
@@ -31,7 +30,7 @@ $(document).ready(function () {
     var ddslick_vehicle_name = "";
     var fixedCostId;
 
-//Model Group --> warranty name --> Vehicle End Group
+    //Model Group --> warranty name --> Vehicle End Group
     $("#loadingImage_DdslickModel").loadImager('removeLoadImage');
     $("#loadingImage_DdslickModel").loadImager('appendImage');
 
@@ -132,9 +131,9 @@ $(document).ready(function () {
                             }
                         })
                         ajaxACLResources_vehicle.ajaxCallWidget('call');
-//Vehicle End
+                        //Vehicle End
 
-//Warranty
+                        //Warranty
                         $("#loadingImage_DdslickWarranty").loadImager('removeLoadImage');
                         $("#loadingImage_DdslickWarranty").loadImager('appendImage');
 
@@ -189,7 +188,7 @@ $(document).ready(function () {
                             }
                         })
                         ajaxACLResources_vehicle.ajaxCallWidget('call');
-//Warranty End
+                        //Warranty End
 
                     }
                 }
@@ -201,15 +200,15 @@ $(document).ready(function () {
         }
     })
     ajaxACLResources_model.ajaxCallWidget('call');
-//Model Group --> warranty name --> Vehicle End Group End
+    //Model Group --> warranty name --> Vehicle End Group End
 
 
 
-//Currency
+    //Currency
     $("#loadingImage_DdslickCurrency").loadImager('removeLoadImage');
     $("#loadingImage_DdslickCurrency").loadImager('appendImage');
 
-    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups&language_code=en&pk=GsZVzEYe50uGgNM
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkCurrencyTypesDdList_syscurrencytypes&language_code=en&pk=GsZVzEYe50uGgNM
     var ajaxACLResources_currency = $('#ajax_DdslickCurrency').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loadingImage_DdslickCurrency",
@@ -217,12 +216,12 @@ $(document).ready(function () {
         transactionSuccessText: window.lang.translate('Transaction successful'),
         transactionFailureText: window.lang.translate("Service URL not found, please report error"),
         dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-        proxy: '/Vehicle/SysVehicleGroups',
+        proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
         data: JSON.stringify({
             language_code: $("#langCode").val(),
             pk: "GsZVzEYe50uGgNM",
-            url: "pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups",
+            url: "pkCurrencyTypesDdList_syscurrencytypes",
             pkIdentity: $("#publicKey").val()
         })
     });
@@ -257,6 +256,9 @@ $(document).ready(function () {
     /* devexgrid */
 
     $('#fcListRefresh').click(function () {
+        $("#gridContainer_fixedCostList").dxDataGrid("instance").refresh();
+    });
+
         //Traning Info grid
         //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillEducationsSalesmanGridx_syseducationssalesman&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
         var fixedCost = new DevExpress.data.CustomStore({
@@ -464,17 +466,17 @@ $(document).ready(function () {
             },
         });
 
-    });
+    //});
 
-   //$('#fcListRefresh').click();
+    //$('#fcListRefresh').click();
 
 
 
-/**
-* insert Fixed Cost
-* @author Ceydacan Seyrek
-* @since 12/10/2018
-*/
+    /**
+    * insert Fixed Cost
+    * @author Ceydacan Seyrek
+    * @since 12/10/2018
+    */
 
     $("#btn-fixedCost-save").on("click", function (e) {
         e.preventDefault();
@@ -491,7 +493,7 @@ $(document).ready(function () {
 
             var ddDataVhc = $('#ddslickVehicle').data('ddslick');
             var vhc_id = ddDataVhc.selectedData.value;
-            
+
             var ddDataCry = $('#ddslickCurrency').data('ddslick');
             var cry_id = ddDataCry.selectedData.value;
 
@@ -541,11 +543,11 @@ $(document).ready(function () {
         }
     })
 
-/**
-* reset Buyback Return Form
-* @author Ceydacan Seyrek
-* @since 12/10/2018
-*/
+    /**
+    * reset Fixed Cost Form
+    * @author Ceydacan Seyrek
+    * @since 12/10/2018
+    */
 
     $("#btn-fixedCost-clear").on("click", function (e) {
         e.preventDefault();
@@ -568,11 +570,11 @@ $(document).ready(function () {
         return false;
     }
 
-/**
-* Fill Buyback Return form
-* @author Ceydacan Seyrek
-* @since 12/10/2018
-*/
+    /**
+    * Fill Fixed Cost form
+    * @author Ceydacan Seyrek
+    * @since 12/10/2018
+    */
 
     window.fillFixedCost = function (data) {
         $("#loadingImage_FixedCost").loadImager('removeLoadImage');
@@ -581,7 +583,7 @@ $(document).ready(function () {
         //document.getElementById("txt-bbreturn-price").value = data.SaleAmount;
         document.getElementById("txt-fc-name").value = data.SaleAmount;
         document.getElementById("txt-fc-price").value = data.OrderDate;
-        
+
         ddslick_vehicleId = data.country_id;
         ddslick_vehicle_name = data.country_name;
 
@@ -590,7 +592,7 @@ $(document).ready(function () {
 
         ddslick_modelId = data.city_id;
         ddslick_model_name = data.city_name;
-        
+
         $('#ddslickModel').ddslick('selectByValue',
             {
                 index: '' + data.country_id + '',
@@ -608,6 +610,49 @@ $(document).ready(function () {
         $("#loadingImage_FixedCost").loadImager('removeLoadImage');
 
         return false;
+    }
+
+//ActivePasive Fixed Cost Info
+
+    window.activepasivefcInfo = function (fcInfo_id, active) {
+
+        var transactionSuccessMessage;
+
+        if (active === 1) {
+            //active
+            transactionSuccessMessage = window.lang.translate('Active successful');
+        } else {
+            //pasive
+            transactionSuccessMessage = window.lang.translate('Pasive successful');
+        }
+
+        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateMakeActiveOrPassive_syseducationssalesman&id=29&pk=GsZVzEYe50uGgNM
+        var ajax_activepasiveTrInfolist = $('#ajaxACL-fixedCostList').ajaxCallWidget({
+            failureLoadImage: true,
+            loadingImageID: "loadingImage_DdslickFixedCostList",
+            triggerSuccessAuto: true,
+            transactionSuccessText: window.lang.translate('Transaction successful'),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            proxy: '/Training/SysDeleteTrInfo',
+            type: "POST",
+            data: JSON.stringify({
+                id: fcInfo_id,
+                pk: "GsZVzEYe50uGgNM",
+                url: "pkUpdateMakeActiveOrPassive_syseducationssalesman"
+            }),
+
+        });
+        ajax_activepasiveTrInfolist.ajaxCallWidget({
+            onReset: function (event, data) {
+
+            },
+            onAfterSuccess: function (event, data) {
+                $("#gridContainer_fixedCostList").dxDataGrid("instance").refresh();
+            }
+        })
+        ajax_activepasiveTrInfolist.ajaxCallWidget('call');
+        //$('#trListRefresh').click();
     }
 
 });
