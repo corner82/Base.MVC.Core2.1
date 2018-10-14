@@ -140,11 +140,9 @@
     })
     ajaxACLResources_trainer.ajaxCallWidget('call');
 
+//end trainee
 
-
-    //end trainee
-
-    //country --> province --> city
+//country --> province --> city
     var ajaxACLResources_country = $('#ajaxACL-country').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loading-image-country",
