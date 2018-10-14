@@ -101,6 +101,9 @@
     <Content Update="Views\Sys\FixedCost.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Sys\PriceListHos.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Training\Training.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
