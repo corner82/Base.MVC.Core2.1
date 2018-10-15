@@ -28,7 +28,7 @@
 
     });
     //var testArr = ['text', 'value'];
-    tagBuilderDealVehicles.tagCabin('addTags', JSON.stringify(tagdata)/*, testArr*/);
+    //tagBuilderDealVehicles.tagCabin('addTags', JSON.stringify(tagdata)/*, testArr*/);
 
     //add vehicle type tab form elements end
 

@@ -20,9 +20,61 @@
             { "OrderNumber": "R38775", "Customer": "R35703", "Salesman": "R35709", "Employee": "Harv Mudd", "OrderDate": "2013/12/15" }]
         }
     };
-    //DevExpress.localization.locale("en");
-    //alert($('#langCode').val());
-    //alert(window.lang.translate("Search"));
+
+
+
+    /* 
+     * deal grid data source
+     * @author Mustafa Zeynel dağlı
+     * @since 12/10/2018
+     * */
+    var buybackMatrix_grid_datasource = new DevExpress.data.CustomStore({
+        load: function (loadOptions) {
+            var deferred = $.Deferred(),
+                args = {};
+
+            if (loadOptions.sort) {
+                args.orderby = loadOptions.sort[0].selector;
+                if (loadOptions.sort[0].desc)
+                    args.orderby += " desc";
+            }
+
+            args.skip = loadOptions.skip || 0;
+            args.take = loadOptions.take || 12;
+
+            $.ajax({
+                url: '/Deal/GetDealBuyBackListProxyService',
+                dataType: "json",
+                data: JSON.stringify({
+                    language_code: $("#langCode").val(),
+                    pk: "GsZVzEYe50uGgNM",
+                    url: "pkFillBuybackMatrixGridx_sysbuybackmatrix",
+                    pkIdentity: $("#publicKey").val(),
+                    //project_id: dealID,
+                    page: "",
+                    rows: "",
+                    sort: "",
+                    order: "",
+                    terrain_id:1,
+                    comfort_super_id :1,
+                    hydraulics :2 ,
+                    customer_type_id :1, 
+                    model_id : 1,
+                }),
+                type: 'POST',
+                contentType: 'application/json',
+                success: function (result) {
+                    deferred.resolve(result.items, { totalCount: result.totalCount });
+                },
+                error: function () {
+                    deferred.reject("Data Loading Error");
+                },
+                timeout: 30000
+            });
+
+            return deferred.promise();
+        }
+    });
     DevExpress.localization.locale($('#langCode').val());
     $("#gridContainer_BuyBack").dxDataGrid({
         showColumnLines: true,
@@ -30,7 +82,7 @@
         rowAlternationEnabled: true,
         showBorders: true,
         // dataSource: orders,
-        dataSource: buyBackGridDataSource,
+        dataSource: buybackMatrix_grid_datasource,
         columnHidingEnabled: false,
         editing: {
             //mode: "batch"
@@ -81,17 +133,17 @@
         },
         columns: [{
             allowGrouping: false,
-            dataField: "OrderNumber",
-            caption: "32 Mon.",
+            dataField: "buyback_type_name",
+            caption: "Buyback",
             //width: 130
         },
         {
-            caption: "36 Mon.",
-            dataField: "Customer"
+            caption: "comfort_super_name",
+            dataField: "Comfort Super"
         },
         {
-            caption: "42 Mon.",
-            dataField: "Salesman"
+            caption: "mileage_type_name",
+            dataField: "Mileage"
         }
         ],
         customizeColumns: function (columns) {

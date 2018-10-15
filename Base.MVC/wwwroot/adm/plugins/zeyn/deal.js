@@ -72,11 +72,22 @@
          * @author Mustafa Zeynel Dağlı
          * @since 09/10/2018
          */
-        addVehicleType: function (vehicleTypeData) {
+        addVehicleType : function (vehicleTypeData) {
             var self = this;
             var vehicleTypes = self.options.vehicleTypes;
             vehicleTypes.push(vehicleTypeData);
             console.log(self.options.vehicleTypes);
+        },
+
+        /**
+         * get vehicle types from deal
+         * @author Mustafa Zeynel Dağlı
+         * @since 12/10/2018
+         */
+        getVehicleTypes : function (vehicleTypeData) {
+            var self = this;
+            var vehicleTypes = self.options.vehicleTypes;
+            return vehicleTypes;
         },
 
     });

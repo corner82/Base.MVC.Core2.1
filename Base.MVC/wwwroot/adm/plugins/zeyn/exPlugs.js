@@ -1584,7 +1584,7 @@
             noDataFailureText: 'Servis veri bulamamıştır, veri güncelliğini kontrol ediniz',
             transactionSuccessText: 'Kayıt işlemi  başarılı',
             triggerSuccessAuto: false,
-            triggerFailureAuto: false,
+            triggerFailureAuto: true,
             failureLoadImage : false,
             loadingImageID : null,
             outbounds: function (e) {
@@ -1655,14 +1655,16 @@
          * @since 05/10/2018
          */
         evaluateDataErrors: function (e, data) {
-            if ($(window).dangerMessage) {
-                $(window).dangerMessage('resetOnShown');
-                $(window).dangerMessage('show', data.text,
-                    data.text);
-            }
-            if (data.imageLoadingID != null) {
-                if ($("#" + data.imageLoadingID).loadImager()) {
-                    $("#" + data.imageLoadingID).loadImager('removeLoadImage');
+            if (this.options.triggerFailureAuto == true) {
+                if ($(window).dangerMessage) {
+                    $(window).dangerMessage('resetOnShown');
+                    $(window).dangerMessage('show', data.text,
+                        data.text);
+                }
+                if (data.imageLoadingID != null) {
+                    if ($("#" + data.imageLoadingID).loadImager()) {
+                        $("#" + data.imageLoadingID).loadImager('removeLoadImage');
+                    }
                 }
             }
         },
@@ -1673,15 +1675,17 @@
          * @since 05/10/2018
          */
         evaluateDataErrorsWithLoadingImageControl: function (e, data) {
-            if ($(window).dangerMessage) {
-                $(window).dangerMessage('resetOnShown');
-                $(window).dangerMessage('show', data.text,
-                    data.text);
-            }
-            if (data.imageLoadingID != null) {
-                if (data.failureLoadImage == true) {
-                    if ($("#" + data.imageLoadingID).loadImager()) {
-                        $("#" + data.imageLoadingID).loadImager('removeLoadImage');
+            if (this.options.triggerFailureAuto == true) {
+                if ($(window).dangerMessage) {
+                    $(window).dangerMessage('resetOnShown');
+                    $(window).dangerMessage('show', data.text,
+                        data.text);
+                }
+                if (data.imageLoadingID != null) {
+                    if (data.failureLoadImage == true) {
+                        if ($("#" + data.imageLoadingID).loadImager()) {
+                            $("#" + data.imageLoadingID).loadImager('removeLoadImage');
+                        }
                     }
                 }
             }

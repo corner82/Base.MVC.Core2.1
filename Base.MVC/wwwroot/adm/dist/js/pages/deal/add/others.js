@@ -217,11 +217,14 @@
                     //console.log($("#deal_hidden").deal("option", "dealID"));
                     //alert($("#deal_hidden").deal("option", "dealID"));
 
+                    $("#update_deal").removeClass("hidden");
+                    $("#add_deal").addClass("hidden");
+
                     $("#deal_hidden").organizeTabs("enableAllTabs");
                     $("#gridContainer_vehicle").dxDataGrid("instance").refresh();
                 },
                 onReset: function () {
-                    resetDealAddForm();
+                    //resetDealAddForm();
                 }
 
             })
@@ -283,7 +286,7 @@
         if (!ddDataVehicleType.selectedData.value > 0) {
             wm.warningMessage('resetOnShown');
             wm.warningMessage('show', window.lang.translate("Please select vehicle type"),
-                window.lang.translate("Please select vehicle type"));
+                                      window.lang.translate("Please select vehicle type"));
             $('#tab_VehicleType').loadImager('removeLoadImage');
             return false;
         }
@@ -295,7 +298,18 @@
         if (dealID == null || dealID == "" || dealID <= 0) {
             wm.warningMessage('resetOnShown');
             wm.warningMessage('show', "Please select deal",
-                "Please select deal");
+                                       "Please select deal");
+            $('#tab_VehicleType').loadImager('removeLoadImage');
+            return false;
+        }
+
+        alert(ddDataVehicleType.selectedData.value);
+        if ($("#tagcabin_DealVehicles").tagCabin('findSpecificTags', ddDataVehicleType.selectedData.value, 'data-attribute') != true) {
+            /*tagBuilderChemicalPropGroup.tagCabin('addTagManuallyDataAttr', selectedItem.value,
+                selectedItem.text,*/
+            wm.warningMessage('resetOnShown');
+            wm.warningMessage('show', "Please select another vehicle type",
+                "Please select another vehicle type");
             $('#tab_VehicleType').loadImager('removeLoadImage');
             return false;
         }
@@ -328,6 +342,19 @@
             },
             onAfterSuccess: function (event, data) {
                 $("#deal_hidden").deal("addVehicleType", { vehicleType: ddDataVehicleType.selectedData.value, count: $("#quantity").val() });
+                $("#tagcabin_DealVehicles").tagCabin('addTagManuallyDataAttr', ddDataVehicleType.selectedData.value,
+                    ddDataVehicleType.selectedData.text+" / "+$("#quantity").val(),
+
+                );
+
+                /*var tagBuilderChemicalPropGroup = $('#chemical-property-group-cabin').tagCabin({
+                    tagCopy: false,
+                    tagDeletable: true,
+                    tagDeletableAll: false,
+                    tagBox: $('.tag-container-chemical-property-group').find('ul'),
+
+                });*/
+
                 console.log($("#deal_hidden").deal("option", "dealID"));
             }
         })
@@ -382,6 +409,16 @@
         e.preventDefault();
         $('#tab_BuyBack').loadImager('removeLoadImage');
         $("#tab_BuyBack").loadImager('appendImage');
+
+
+        var ddDataDealVehicleType = $('#ddslickDealVehicleTypeBuyBack').data('ddslick');
+        if (!ddDataDealVehicleType.selectedData.value > 0) {
+            wm.warningMessage('resetOnShown');
+            wm.warningMessage('show', window.lang.translate("Please select vehicle type"),
+                window.lang.translate("Please select vehicle type"));
+            $('#tab_BuyBack').loadImager('removeLoadImage');
+            return false;
+        }
 
         var ddDataVehicleType = $('#ddslickVehicleTypeBuyBack').data('ddslick');
         if (!ddDataVehicleType.selectedData.value > 0) {
@@ -461,11 +498,18 @@
             data: JSON.stringify({
                 language_code: $("#langCode").val(),
                 pk: "GsZVzEYe50uGgNM",
-                url: "pkInsertAct_infoprojectvehiclemodels",
+                url: "pkInsertAct_infoprojectbuybacks",
                 pkIdentity: $("#publicKey").val(),
                 project_id: dealID,
                 is_house_deal: 0,
-                vehicle_gt_model_id: ddDataVehicleType.selectedData.value,
+                vehicles_endgroup_id : ddDataVehicleType.selectedData.value,
+                vehicles_trade_id : ddDataVehicleType.selectedData.value,
+                customer_type_id: ddDataCustomerType.selectedData.value,
+                comfort_super_id : ddDataVehicleType.selectedData.value,
+                terrain_id : ddDataVehicleType.selectedData.value,
+                vehicle_group_id : ddDataVehicleType.selectedData.value,
+                hydraulics_id : ddDataVehicleType.selectedData.value,
+                buyback_matrix_id : 1,
                 quantity: $("#quantity").val(),
                 delivery_date: "10/10/2018",
             })

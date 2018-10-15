@@ -117,6 +117,15 @@
     }
   },
   {
+    "Key": "Update",
+    "LocalizedValue": {
+      "de-DE": "Aktualisieren",
+      "en-US": "Update",
+      "af-ZA": "Opdateer",
+      "tr-TR": "Güncelle"
+    }
+  },
+  {
     "Key": "Save",
     "LocalizedValue": {
       "de-DE": "Sparen",
