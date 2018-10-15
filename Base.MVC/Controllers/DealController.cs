@@ -200,7 +200,7 @@ namespace Base.MVC.Controllers
         }
 
         /// <summary>
-        /// get deal list for salesman
+        /// get buyback matrix for salesman
         /// Mustafa Zeynel
         /// </summary>
         /// 
@@ -209,7 +209,36 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> GetDealBuyBackListProxyService([FromBody] DefaultPostModelGridList gridModel)
+        public async Task<string> GetDealBuyBackListProxyService([FromBody] DealBuyBackMatrixGridModel gridModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(gridModel);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model satate is not valid");
+            }
+        }
+
+        /// <summary>
+        /// get deal tardeback matrix  for salesman
+        /// Mustafa Zeynel
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        //[AjaxSessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> GetDealTradeBackListProxyService([FromBody] DealBuyBackMatrixGridModel gridModel)
         {
             if (ModelState.IsValid)
             {
