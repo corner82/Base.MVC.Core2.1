@@ -280,7 +280,7 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> SysInsertBranch([FromBody] BranchPostModel branchModel)
+        public async Task<string> SysInsertBranch([FromBody] CustomerPostModel branchModel)
         {
             if (ModelState.IsValid)
             {
@@ -311,7 +311,7 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> SysUpdateBranch([FromBody] BranchUpdateModel branchModel)
+        public async Task<string> SysUpdateBranch([FromBody] CustomerUpdateModel branchModel)
         {
             if (ModelState.IsValid)
             {
@@ -354,7 +354,35 @@ namespace Base.MVC.Controllers
             return data.ToString();
         }
 
+        /// <summary>
+        /// get Branch/Dealer List
+        /// Gül Özdemir
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        //[SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysBranchDealerGridList([FromBody] DefaultPostModelGridList gridModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(gridModel);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model satate is not valid");
+            }
 
+        }
 
         //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
@@ -615,35 +643,7 @@ namespace Base.MVC.Controllers
 
        }
 
-       /// <summary>
-       /// get Branch/Dealer List
-       /// Gül Özdemir
-       /// </summary>
-       /// 
-       /// <returns></returns>
-       //[SessionTimeOut]
-       [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
-       [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
-       [HttpPost]
-       public async Task<string> SysBranchDealerGridList([FromBody] DefaultPostModelGridList gridModel)
-       {
-           if (ModelState.IsValid)
-           {
-               var headers = new Dictionary<string, string>();
-               var tokenGenerated = HttpContext.Session.GetHmacToken();
-               headers.Add("X-Hmac", tokenGenerated);
-               headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-               string queryStr = _queryCreater.GetQueryStringFromObject(gridModel);
-               var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
-               var data = response.Content.ReadAsStringAsync().Result;
-               return data.ToString();
-           }
-           else
-           {
-               throw new Exception("Model satate is not valid");
-           }
 
-       }
        /*
        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]

@@ -71,6 +71,7 @@
                                         <div class="row" id="loading-image-cstInfo">
                                             <div class="col-md-6">
 
+
                                                 <div class="form-group">
                                                     <label><span lang="en">Customer name</span></label>
                                                     <div class="input-group">
@@ -92,12 +93,22 @@
                                                 </div>
 
                                                 <div class="form-group">
+                                                    <label><span lang="en">Customer trading name</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Customer trading name" id="txt-cst-tradingname">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
                                                     <label><span lang="en">Country</span></label>
 
                                                     <div class="" id="ajaxACL-country">
                                                         <div id="loading-image-country" class="input-group zeyn-load-imager">
                                                             <div class="input-group-addon">
-                                                                <i class="fa fa-copyright"></i>
+                                                                <i class="fa fa-map"></i>
                                                             </div>
                                                             <div id="dropdownCountry" class="form-control"></div>
                                                         </div>
@@ -110,7 +121,7 @@
                                                     <div class="" id="ajaxACL-province">
                                                         <div id="loading-image-province" class="input-group zeyn-load-imager">
                                                             <div class="input-group-addon">
-                                                                <i class="fa fa-copyright"></i>
+                                                                <i class="fa fa-map"></i>
                                                             </div>
                                                             <div id="dropdownProvince" class="form-control"></div>
                                                         </div>
@@ -123,14 +134,52 @@
                                                     <div class="" id="ajaxACL-city">
                                                         <div id="loading-image-city" class="input-group zeyn-load-imager">
                                                             <div class="input-group-addon">
-                                                                <i class="fa fa-copyright"></i>
+                                                                <i class="fa fa-map"></i>
                                                             </div>
                                                             <div id="dropdownCity" class="form-control"></div>
                                                         </div>
                                                     </div>
                                                 </div>
 
+                                                <div class="form-group">
+                                                    <label><span lang="en">Postal address 1</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-map"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Postal address 1" name="txt-cst-address1" id="txt-cst-address1">
+                                                    </div>
+                                                </div>
 
+                                                <div class="form-group">
+                                                    <label><span lang="en">Postal address 2</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-map"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Postal address 2" name="txt-cst-address2" id="txt-cst-address2">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">Postal address 3</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-map"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Postal address 3" name="txt-cst-address3" id="txt-cst-address3">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">Postal code</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-map-pin"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Postal Code" id="txt-cst-ptcode">
+                                                    </div>
+                                                </div>
 
                                                 <div class="form-group">
                                                     <label><span lang="en">Phone number</span></label>
@@ -163,35 +212,39 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label><span lang="en">Reliability rate</span></label>
-                                                    <div class="" id="ajaxACL-reliabilityrate">
-                                                        <div id="loading-image-reliabilityrate" class="input-group zeyn-load-imager">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-copyright"></i>
-                                                            </div>
-                                                            <div id="dropdownReliabilityRate" class="form-control"></div>
+                                                    <label><span lang="en">VAT number</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
                                                         </div>
-
+                                                        <input type="text" class="form-control" placeholder="VAT number" name="txt-cst-vatnumber" id="txt-cst-vatnumber">
                                                     </div>
                                                 </div>
 
+                                                <div class="form-group">
+                                                    <label><span lang="en">Company registration number</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Registration number" name="txt-cst-regnumber" id="txt-cst-regnumber">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">Company registration date</span></label>
+
+                                                    <div class="input-group date">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control pull-right" name="registration-datepicker" id="registration-datepicker">
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <!-- /.col -->
                                             <div class="col-md-6">
-
-                                                <div class="form-group">
-                                                    <label><span lang="en">Sector</span></label>
-                                                    <div class="" id="ajaxACL-sector">
-                                                        <div id="loading-image-sector" class="input-group zeyn-load-imager">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-copyright"></i>
-                                                            </div>
-                                                            <div id="dropdownSector" class="form-control"></div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
 
                                                 <div class="form-group">
                                                     <label><span lang="en">Segment</span></label>
@@ -208,49 +261,53 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label><span lang="en">Customer group</span></label>
-                                                    <div class="" id="ajaxACL-customergroup">
-                                                        <div id="loading-image-customergroup" class="input-group zeyn-load-imager">
+                                                    <label><span lang="en">Sector</span></label>
+                                                    <div class="" id="ajaxACL-sector">
+                                                        <div id="loading-image-sector" class="input-group zeyn-load-imager">
                                                             <div class="input-group-addon">
                                                                 <i class="fa fa-copyright"></i>
                                                             </div>
-                                                            <div id="dropdownCustomerGroup" class="form-control"></div>
+                                                            <div id="dropdownSector" class="form-control"></div>
                                                         </div>
 
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label><span lang="en">VAT number</span></label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-user"></i>
+                                                    <label><span lang="en">Credibility</span></label>
+                                                    <div class="" id="ajaxACL-credibility">
+                                                        <div id="loading-image-credibility" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownCredibility" class="form-control"></div>
                                                         </div>
-                                                        <input type="text" class="form-control" placeholder="VAT number" name="txt-cst-vatnumber" id="txt-cst-vatnumber">
+
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label><span lang="en">Registration number</span></label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-user"></i>
+                                                    <label><span lang="en">Customer category</span></label>
+                                                    <div class="" id="ajaxACL-customercategory">
+                                                        <div id="loading-image-customercategory" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownCustomerCategory" class="form-control"></div>
                                                         </div>
-                                                        <input type="text" class="form-control" placeholder="Registration number" name="txt-cst-regnumber" id="txt-cst-regnumber">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label><span lang="en">Registration date</span></label>
-
-                                                    <div class="input-group date">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-calendar"></i>
+                                                    <label><span lang="en">Customer application type</span></label>
+                                                    <div class="" id="ajaxACL-applicationtype">
+                                                        <div id="loading-image-applicationtype" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownApplicationType" class="form-control"></div>
                                                         </div>
-                                                        <input type="text" class="form-control pull-right" name="registration-datepicker" id="registration-datepicker">
                                                     </div>
-
-                                                    <!-- /.input group -->
                                                 </div>
 
                                                 <div class="form-group">
@@ -262,7 +319,6 @@
                                                             </div>
                                                             <div id="dropdownTotalVehicles" class="form-control"></div>
                                                         </div>
-
                                                     </div>
                                                 </div>
 
@@ -290,6 +346,45 @@
                                                     </div>
                                                 </div>
 
+                                                <div class="form-group">
+                                                    <label><span lang="en">Order management embrace number</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-copyright"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Order management embrace number" name="txt-cst-ordermanagement-embno" id="txt-cst-ordermanagement-embno">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">TopUsed embrace number</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-copyright"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="TopUsed embrace number" name="txt-cst-topused-embno" id="txt-cst-topused-embno">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">Centurion embrace number</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-copyright"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Centurion embrace number" name="txt-cst-centurion-embno" id="txt-cst-centurion-embno">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label><span lang="en">Other embrace number</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-copyright"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Other embrace number" name="txt-cst-other-embno" id="txt-cst-other-embno">
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <!-- /.col -->
@@ -619,12 +714,13 @@
             <!-- Left col -->
             <section class="col-lg-12 connectedSortable">
 
-                <div class="box box-info">
+                <div class="box box-info" id="ajaxACL-customerlist">
                     <div class="box-header">
                         <i class="fa fa-comments-o"></i>
                         <h3 class="box-title"><span lang="en">Customer list</span></h3>
 
                         <div class="box-tools pull-right">
+                            <button class="btn bg-teal btn-sm btn-small-miya" data-widget="refresh" id="customerList"><i class="fa fa-refresh"></i></button>
                             <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
                             <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
                         </div>

@@ -11,7 +11,7 @@
     });
 
 
-    var selectedCustomerId;
+    var selectedCustomerId = 0;
     var filldropdown = false;
 
     var ddslick_countryId = 0;
@@ -39,7 +39,10 @@
     $("#loading-image-totalvehicles").loadImager();
     $("#loading-image-totalemployees").loadImager();
     $("#loading-image-annuelrevenue").loadImager();
-
+    $("#loading-image-credibility").loadImager();
+    $("#loading-image-customercategory").loadImager();
+    $("#loading-image-applicationtype").loadImager();
+    $("#loading-image-turnoverrate").loadImager();
     //to customer info grid loading-image
     $("#loading-image-cstInfoGrid").loadImager();
     /*
@@ -139,11 +142,11 @@
     $('#customerContactPersonForm').validationEngine();
 
     /*
-   * 
-   * Country, Province, City ddSlick
-   * Gül Özdemir
-   * 09/10/2018
-   */
+    * 
+    * Country, Province, City ddSlick
+    * Gül Özdemir
+    * 09/10/2018
+    */
 
     var ajaxACLResources_country = $('#ajaxACL-country').ajaxCallWidget({
         failureLoadImage: true,
@@ -163,7 +166,7 @@
     });
     ajaxACLResources_country.ajaxCallWidget({
         onReset: function (event, data) {
-            //resetVehicleTypeAddDealForm();
+
         },
         onSuccess: function (event, datacountry) {
             var cbdata_country = $.parseJSON(datacountry);
@@ -317,207 +320,26 @@
     ajaxACLResources_country.ajaxCallWidget('call');
 
 
-    var cbdata = [
-        {
-            text: 'Search...',
-            value: 1,
-            selected: true
-        },
-        {
-            text: "Bellville",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "Cape Town",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "Constantia",
-            value: 4,
-            selected: false
-        },
-        {
-            text: 'George',
-            value: 5,
-            selected: false
-        },
-        {
-            text: "Hopefield",
-            value: 6,
-            selected: false
-        },
-        {
-            text: "Oudtshoorn",
-            value: 7,
-            selected: false
-        },
-        {
-            text: "Paarl",
-            value: 8,
-            selected: false
-        },
-        {
-            text: 'Simon’s Town',
-            value: 9,
-            selected: false
-        },
-        {
-            text: "Stellenbosch",
-            value: 10,
-            selected: false
-        },
-        {
-            text: "Swellendam",
-            value: 11,
-            selected: false
-        },
-        {
-            text: "Worcester",
-            value: 12,
-            selected: false
-        },
-        {
-            text: "Vredenburg",
-            value: 13,
-            selected: false
-        }
-    ];
 
-    $('#loading-image-reliabilityrate').loadImager('removeLoadImage');
-    $("#loading-image-reliabilityrate").loadImager('appendImage');
-
-    var ajaxACLResources_reliabilityRate = $('#ajaxACL-reliabilityrate').ajaxCallWidget({
-        proxy: '/Customer/SysCustomerReliability/',
-        type: 'POST',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
-    });
-
-    ajaxACLResources_reliabilityRate.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-reliabilityrate').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'Servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
-        },
-        onSuccess: function (event, datareliability) {
-            var cbdata_reliability = $.parseJSON(datareliability);
-            cbdata_reliability.splice(0, 0,
-                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-            );
-
-            $('#dropdownReliabilityRate').ddslick({
-                //height: 150,
-                data: cbdata_reliability,
-                width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loading-image-reliabilityrate").loadImager('removeLoadImage');
-        },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-reliabilityrate').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'Rol Bulunamamıştır...', 'Rol  bulunamamıştır...');
-        },
-    })
-    ajaxACLResources_reliabilityRate.ajaxCallWidget('call');
-
-
-
-    $('#loading-image-sector').loadImager('removeLoadImage');
-    $("#loading-image-sector").loadImager('appendImage');
-
-    var ajaxACLResources_sector = $('#ajaxACL-sector').ajaxCallWidget({
-        proxy: '/Customer/SysCustomerSectorTypes/',
-        type: 'POST',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
-    });
-
-    ajaxACLResources_sector.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-sector').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
-        },
-        onSuccess: function (event, datasector) {
-            var cbdata_sector = $.parseJSON(datasector);
-            cbdata_sector.splice(0, 0,
-                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-            );
-            $('#dropdownSector').ddslick({
-                data: cbdata_sector,
-                width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loading-image-sector").loadImager('removeLoadImage');
-        },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-sector').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'Rol Bulunamamıştır...', 'Rol  bulunamamıştır...');
-        },
-    })
-    ajaxACLResources_sector.ajaxCallWidget('call');
-
-
-    $('#loading-image-segment').loadImager('removeLoadImage');
-    $("#loading-image-segment").loadImager('appendImage');
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Segment
     var ajaxACLResources_segment = $('#ajaxACL-segment').ajaxCallWidget({
-        proxy: '/Customer/SysCustomerSegmentTypes/',
+        failureLoadImage: true,
+        loadingImageID: "loading-image-segment",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Customer/SysCustomerSegmentTypes',
         type: 'POST',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkCustomerSegmentTypesDdList_syscustomersegmenttypes",
+            pkIdentity: $("#publicKey").val()
+        })
     });
-
     ajaxACLResources_segment.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-segment').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
-        },
         onSuccess: function (event, datasegment) {
             var cbdata_segment = $.parseJSON(datasegment);
             cbdata_segment.splice(0, 0,
@@ -529,201 +351,339 @@
 
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
+                        //alert(selectedData.selectedData.text);
 
                     }
+
                 }
             });
 
             $("#loading-image-segment").loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-segment').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'Rol Bulunamamıştır...', 'Rol  bulunamamıştır...');
+        onReset: function (event, data) {
+
         },
+        onAfterSuccess: function (event, data) {
+            $("#loading-image-segment").loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_segment.ajaxCallWidget('call');
 
-    $('#loading-image-customergroup').loadImager('removeLoadImage');
-    $("#loading-image-customergroup").loadImager('appendImage');
-
-    var ajaxACLResources_customergroup = $('#ajaxACL-customergroup').ajaxCallWidget({
-        proxy: '/Sys/SysCountrys/',
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Sector
+    var ajaxACLResources_sector = $('#ajaxACL-sector').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loading-image-sector",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Customer/SysCustomerSectorTypes',
         type: 'POST',
         data: JSON.stringify({
             language_code: $("#langCode").val(),
             pk: "GsZVzEYe50uGgNM",
-            url: "pkCountryDdList_syscountrys",
+            url: "pkCustomerSectorTypesDdList_syscustomersectortypes",
             pkIdentity: $("#publicKey").val()
         })
     });
-
-    ajaxACLResources_customergroup.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-customergroup').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
-        },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
-            $('#dropdownCustomerGroup').ddslick({
-                //height: 150,
-                data: cbdata,
+    ajaxACLResources_sector.ajaxCallWidget({
+        onSuccess: function (event, datasector) {
+            var cbdata_sector = $.parseJSON(datasector);
+            cbdata_sector.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+            $('#dropdownSector').ddslick({
+                data: cbdata_sector,
                 width: '100%',
 
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
+                        //alert(selectedData.selectedData.text);
+
+                    }
+
+                }
+            });
+
+            $("#loading-image-sector").loadImager('removeLoadImage');
+        },
+        onReset: function (event, data) {
+
+        },
+        onAfterSuccess: function (event, data) {
+            $("#loading-image-sector").loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_sector.ajaxCallWidget('call');
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+//credibility
+    var ajaxACLResources_credibility = $('#ajaxACL-credibility').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loading-image-credibility",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Customer/SysCustomerCredibility',
+        type: 'POST',
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkCustomerReliabilityDdList_syscustomerreliability",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
+    ajaxACLResources_credibility.ajaxCallWidget({
+        onSuccess: function (event, datacredibility) {
+            var cbdata_credibility = $.parseJSON(datacredibility);
+            cbdata_credibility.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+            $('#dropdownCredibility').ddslick({
+                data: cbdata_credibility,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+                        //alert(selectedData.selectedData.text);
+
+                    }
+
+                }
+            });
+
+            $("#loading-image-credibility").loadImager('removeLoadImage');
+        },
+        onReset: function (event, data) {
+
+        },
+        onAfterSuccess: function (event, data) {
+            $("#loading-image-credibility").loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_credibility.ajaxCallWidget('call');
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+//customercategory
+
+    var ajaxACLResources_customercategory = $('#ajaxACL-customercategory').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loading-image-customercategory",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Customer/SysCustomerCategories',
+        type: 'POST',
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkCustomerCategoriesDdList_syscustomercategories",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
+    ajaxACLResources_customercategory.ajaxCallWidget({
+        onSuccess: function (event, datacustomercategory) {
+            var cbdata_customercategory = $.parseJSON(datacustomercategory);
+            cbdata_customercategory.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+            $('#dropdownCustomerCategory').ddslick({
+                data: cbdata_customercategory,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+                        //alert(selectedData.selectedData.text);
 
                     }
                 }
             });
 
-            $("#loading-image-customergroup").loadImager('removeLoadImage');
+            $("#loading-image-customercategory").loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-customergroup').loadImager('removeLoadImage');
+        onReset: function (event, data) {
+
+        },
+        onAfterSuccess: function (event, data) {
+            $("#loading-image-customercategory").loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_customercategory.ajaxCallWidget('call');
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+//customer Application Type
+
+    var ajaxACLResources_applicationtype = $('#ajaxACL-applicationtype').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loading-image-applicationtype",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Customer/SysCustomerApplicationType',
+        type: 'POST',
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkCustomerApplicationMainTypesDdList_syscustomerapplicationtypes",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
+    ajaxACLResources_applicationtype.ajaxCallWidget({
+        onSuccess: function (event, dataapplicationtype) {
+            var cbdata_applicationtype = $.parseJSON(dataapplicationtype);
+            cbdata_applicationtype.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+            $('#dropdownApplicationType').ddslick({
+                data: cbdata_applicationtype,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+                        //alert(selectedData.selectedData.text);
+
+                    }
+
                 }
             });
-            dm.dangerMessage('show', 'Rol Bulunamamıştır...', 'Rol  bulunamamıştır...');
-        },
-    })
-    ajaxACLResources_customergroup.ajaxCallWidget('call');
 
-    $('#loading-image-totalvehicles').loadImager('removeLoadImage');
-    $("#loading-image-totalvehicles").loadImager('appendImage');
+            $("#loading-image-applicationtype").loadImager('removeLoadImage');
+        },
+        onReset: function (event, data) {
+
+        },
+        onAfterSuccess: function (event, data) {
+            $("#loading-image-applicationtype").loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_applicationtype.ajaxCallWidget('call');
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+//totalvehicles
 
     var ajaxACLResources_totalvehicles = $('#ajaxACL-totalvehicles').ajaxCallWidget({
-        proxy: '/Sys/SysCountrys/',
+        failureLoadImage: true,
+        loadingImageID: "loading-image-totalvehicles",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Customer/SysCustomerTotalVehicles',
         type: 'POST',
-
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkNumericalRangesVeichlesDdList_sysnumericalranges",
+            pkIdentity: $("#publicKey").val()
+        })
     });
-
     ajaxACLResources_totalvehicles.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-totalvehicles').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
-        },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
+        onSuccess: function (event, datatotalvehicles) {
+            var cbdata_customertotalvehicles = $.parseJSON(datatotalvehicles);
+            cbdata_customertotalvehicles.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#dropdownTotalVehicles').ddslick({
-                //height: 150,
-                data: cbdata,
+                data: cbdata_customertotalvehicles,
                 width: '100%',
 
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
+                        //alert(selectedData.selectedData.text);
 
                     }
+
                 }
             });
 
             $("#loading-image-totalvehicles").loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-totalvehicles').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'Rol Bulunamamıştır...', 'Rol  bulunamamıştır...');
+        onReset: function (event, data) {
+
         },
+        onAfterSuccess: function (event, data) {
+            $("#loading-image-totalvehicles").loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_totalvehicles.ajaxCallWidget('call');
 
-    $('#loading-image-totalemployees').loadImager('removeLoadImage');
-    $("#loading-image-totalemployees").loadImager('appendImage');
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //totalvehicles
 
     var ajaxACLResources_totalemployees = $('#ajaxACL-totalemployees').ajaxCallWidget({
-        proxy: '/Sys/SysCountrys/',
+        failureLoadImage: true,
+        loadingImageID: "loading-image-totalemployes",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Customer/SysCustomerTotalEmployes',
         type: 'POST',
-        //data: {
-        //    url: '1'
-        //    //pk: $("#pk").val()
-        //}
-
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkNumericalRangesEmployeesDdList_sysnumericalranges",
+            pkIdentity: $("#publicKey").val()
+        })
     });
-
     ajaxACLResources_totalemployees.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-totalemployees').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
-        },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
+        onSuccess: function (event, datatotalemployes) {
+            var cbdata_customertotalemployes = $.parseJSON(datatotalemployes);
+            cbdata_customertotalemployes.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#dropdownTotalEmployees').ddslick({
-                //height: 150,
-                data: cbdata,
+                data: cbdata_customertotalemployes,
                 width: '100%',
 
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
+                        //alert(selectedData.selectedData.text);
 
                     }
+
                 }
             });
 
-            $("#loading-image-totalemployees").loadImager('removeLoadImage');
+            $("#loading-image-totalemployes").loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-totalemployees').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'Rol Bulunamamıştır...', 'Rol  bulunamamıştır...');
+        onReset: function (event, data) {
+
         },
+        onAfterSuccess: function (event, data) {
+            $("#loading-image-totalemployes").loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_totalemployees.ajaxCallWidget('call');
 
-    $('#loading-image-annuelrevenue').loadImager('removeLoadImage');
-    $("#loading-image-annuelrevenue").loadImager('appendImage');
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //annuelrevenue
 
     var ajaxACLResources_annuelrevenue = $('#ajaxACL-annuelrevenue').ajaxCallWidget({
-        proxy: '/Customer/SysCustomerAnnualRevenue/',
+        failureLoadImage: true,
+        loadingImageID: "loading-image-annuelrevenue",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Customer/SysCustomerAnnualRevenue',
         type: 'POST',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkCustomerTurnoverRatesDdList_syscustomerturnoverrates",
+            pkIdentity: $("#publicKey").val()
+        })
     });
-
     ajaxACLResources_annuelrevenue.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-annuelrevenue').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
-        },
         onSuccess: function (event, dataannuelrevenue) {
             var cbdata_annuelrevenue = $.parseJSON(dataannuelrevenue);
             cbdata_annuelrevenue.splice(0, 0,
@@ -735,27 +695,28 @@
 
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
+                        //alert(selectedData.selectedData.text);
 
                     }
+
                 }
             });
 
             $("#loading-image-annuelrevenue").loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-annuelrevenue').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'Rol Bulunamamıştır...', 'Rol  bulunamamıştır...');
+        onReset: function (event, data) {
+
         },
+        onAfterSuccess: function (event, data) {
+            $("#loading-image-annuelrevenue").loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_annuelrevenue.ajaxCallWidget('call');
 
-    /* Purchase Plans loading services */
 
+
+    /* Purchase Plans loading services */
+/*
     $('#loading-image-lastpurchasedbrand').loadImager('removeLoadImage');
     $("#loading-image-lastpurchasedbrand").loadImager('appendImage');
 
@@ -1261,12 +1222,13 @@
     })
     ajaxACLResources_role.ajaxCallWidget('call');
 
-
+*/
     /**
  * Product Interest dropdown prepared
  * @type @call;$@call;ajaxCallWidget
  * @since 30/05/2018
  */
+/*
     $('#loading-image-productinterest').loadImager('removeLoadImage');
     $("#loading-image-productinterest").loadImager('appendImage');
 
@@ -1522,165 +1484,396 @@
         },
     })
     ajaxACLResources_brand.ajaxCallWidget('call');
+*/
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/* devexgrid */
 
+    $('#customerList').click(function () {
+    
+        var customer_data = new DevExpress.data.CustomStore({
+            load: function (loadOptions) {
+                var deferred = $.Deferred(),
+                    args = {};
 
-    /* devexgrid */
-    var orders = new DevExpress.data.CustomStore({
-        load: function (loadOptions) {
-            var deferred = $.Deferred(),
-                args = {};
+                if (loadOptions.sort) {
+                    args.orderby = loadOptions.sort[0].selector;
+                    if (loadOptions.sort[0].desc)
+                        args.orderby += " desc";
+                }
 
-            if (loadOptions.sort) {
-                args.orderby = loadOptions.sort[0].selector;
-                if (loadOptions.sort[0].desc)
-                    args.orderby += " desc";
+                args.skip = loadOptions.skip || 0;
+                args.take = loadOptions.take || 12;
+
+                $.ajax({
+                    url: '/Customer/CustomerGridList',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        language_code: $("#langCode").val(),
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkFillCustomerGridx_infocustomer",
+                        pkIdentity: $("#publicKey").val(),
+                        page: "",
+                        rows: "",
+                        sort: "",
+                        order: "", //args.orderby,
+                        skip: args.skip,
+                        take: args.take
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                    },
+                    error: function () {
+                        deferred.reject("Data Loading Error");
+                    },
+                    timeout: 30000
+                });
+
+                return deferred.promise();
+            },
+            remove: function (key) {
+                var deferred = $.Deferred();
+
+                return $.ajax({
+                    url: '/Customer/DeleteCustomer',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        id: selectedCustomerId,
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkDeletedAct_infocustomer"
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                    },
+                    error: function () {
+                        deferred.reject("Data remove Error");
+                    },
+                    timeout: 30000
+                });
             }
+        });
 
-            args.skip = loadOptions.skip || 0;
-            args.take = loadOptions.take || 12;
+        DevExpress.localization.locale(langCode);
 
-            $.ajax({
-                url: "https://js.devexpress.com/Demos/WidgetsGallery/data/orderItems",
-                dataType: "json",
-                data: args,
-                success: function (result) {
-                    deferred.resolve(result.items, { totalCount: result.totalCount });
+        $(function () {
+            $("#gridContainer_customer").dxDataGrid({
+
+                showColumnLines: true,
+
+                showRowLines: true,
+
+                showBorders: true,
+
+                dataSource: customer_data,
+
+                columnHidingEnabled: true,
+
+                selection: {
+                    mode: "single"
                 },
-                error: function () {
-                    deferred.reject("Data Loading Error");
+
+                hoverStateEnabled: true,
+
+                editing: {
+                    //mode: "batch"
+                    mode: "form",
+                    //allowAdding: true,
+                    //allowUpdating: true,
+                    allowDeleting: true,
+                    useIcons: true
                 },
-                timeout: 5000
+
+                "export": {
+                    enabled: true,
+                    fileName: window.lang.translate('CustomerList')
+                },
+
+                grouping: {
+                    contextMenuEnabled: true,
+                    expandMode: "rowClick"
+                },
+
+                groupPanel: {
+                    emptyPanelText: window.lang.translate('Use the context menu of header columns to group data'),
+                    visible: true
+                },
+
+                pager: {
+                    allowedPageSizes: [5, 8, 15, 30],
+                    showInfo: true,
+                    showNavigationButtons: true,
+                    showPageSizeSelector: true,
+                    visible: true
+                },
+
+                paging: {
+                    pageSize: 8
+                },
+                OnCellPrepared: function (options) {
+
+                    var fieldData = options.value;
+                    fieldHtml = "";
+
+                    fieldHtml = fieldData.value;
+                    options.cellElement.html(fieldHtml);
+
+                },
+
+                filterRow: {
+                    visible: true,
+                    applyFilter: "auto"
+                },
+
+                searchPanel: {
+                    visible: true,
+                    width: 240,
+                    placeholder: window.lang.translate('Search') + "...",
+                },
+
+                headerFilter: {
+                    visible: true
+                },
+
+                columnChooser: {
+                    enabled: true,
+                    mode: "select"
+                },
+
+                // {"id":"2","apid":2,
+                //"cust_sis_key": "1716068406394007398",
+                //"registration_name": "TIREPOINT (PTY) LTD", 
+                //"trading_name": "",
+                //"name_short":"TIREPOINT ",
+                //"embrace_customer_no": "31000663",
+                //"tu_emb_customer_no": "", 
+                //"ce_emb_customer_no": "",
+                //"other_emb_customer_no":"",
+                //"www": "",
+                //"email":"",
+                //"vatnumber": "", 
+                //"registration_number": "", 
+                //"registration_date": null, 
+                //"ne_count_type_id": 16,
+                //"numberofemployees":"51-100",
+                //"nv_count_type_id": 23, 
+                //"numberofvehicles": "21-50",
+                //"customer_category_id":2,
+                //"customer_category_name":"DTRK",
+                //"reliability_id": 2, 
+                //"reliability_name": "Low", 
+                //"turnover_rate_id": 1,
+                //"turnover_rate_name":"1 - 100.000",
+                //"sector_type_id": 1, 
+                //"sector_type_name": "General", 
+                //"application_type_id": 2,
+                //"application_type_name":"General Distribution",
+                //"segment_type_id": 1, 
+                //"segment_type_name": "Long Haul",
+                //"is_bo_confirm":0,
+                //"firm_country_id": 107,
+                //"firm_country_name": "G\u00fcney Afrika", 
+                //"address1": "", 
+                //"address2": "", 
+                //"address3": "",
+                //"postalcode":"",
+                //"country_id": 107,
+                //"country_name": "G\u00fcney Afrika", 
+                //"city_id": 0, 
+                //"city_name": "", 
+                //"region_id": null, 
+                //"region": "",
+                // "op_username":"admin@gmail.com",
+ 
+                columns: [
+                    {
+                        caption: window.lang.translate('Active/Passive'),
+                        width: 40,
+                        alignment: 'center',
+
+                        cellTemplate: function (container, options) {
+                            var fieldHtml;
+                            var customer_id = options.data.id;
+
+                            if (options.data.active === 1) {
+                                //active
+                                $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
+                                    activepassiveCustomer(customer_id, options.data.active);
+
+                                }).appendTo(container);
+                            } else if (options.data.active === 0) {
+
+                                //passive
+                                $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
+                                    activepassiveCustomer(customer_id, options.data.active);
+
+                                }).appendTo(container);
+                            }
+
+                            //$('<img />').addClass('dx-link').attr('src', "/adm/dist/img/icons.png").on('click', function () {
+                            //    dm.dangerMessage('show', window.lang.translate('dangerMessage...'), window.lang.translate('dangerMessage...'));
+                            //}).appendTo(container); 
+
+                        }
+
+                    }, {
+                        caption: window.lang.translate('Customer name'),
+                        dataField: "registration_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Cust. short name'),
+                        dataField: "name_short",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Cust. trading name'),
+                        dataField: "trading_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Embrace customer no'),
+                        dataField: "embrace_customer_no",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Country'),
+                        dataField: "country_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Province'),
+                        dataField: "region_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('City'),
+                        dataField: "city_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Address 1'),
+                        dataField: "address1",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Address 2'),
+                        dataField: "address2",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Address 3'),
+                        dataField: "address3",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Postal code'),
+                        dataField: "postalcode",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('E-mail'),
+                        dataField: "email",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Web site'),
+                        dataField: "www",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('VAT number'),
+                        dataField: "vatnumber",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Registration number'),
+                        dataField: "registration_number",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Registration date'),
+                        dataField: "registration_date",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Segment'),
+                        dataField: "segment_type_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Sector'),
+                        dataField: "sector_type_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Total number of vehicles'),
+                        dataField: "numberofvehicles",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Total number of employees'),
+                        dataField: "numberofemployees",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Customer category'),
+                        dataField: "customer_category_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Customer credibility'),
+                        dataField: "reliability_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Application type'),
+                        dataField: "application_type_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Turnover rate'),
+                        dataField: "turnover_rate_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Oder management embrace no'),
+                        dataField: "om_emb_customer_no",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('TopUsed embrace no'),
+                        dataField: "tu_emb_customer_no",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Centurion embrace no'),
+                        dataField: "ce_emb_customer_no",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Other embrace no'),
+                        dataField: "other_emb_customer_no",
+                    },
+                    //{
+                    //    caption: "Active/Passive",
+                    //    //dataField: "active",
+                    //    //dataType: "boolean"
+                    //}
+                ],
+
+                rowPrepared: function (rowElement, rowInfo) {
+                    return false;
+                    //if (rowInfo.data.key === 1)
+                    //    rowElement.css('background', 'green');
+                    //else if (rowInfo.data.key === 0)
+                    //    rowElement.css('background', 'yellow');
+
+                },
+
+                onSelectionChanged: function (selectedItems) {
+                    var data = selectedItems.selectedRowsData[0];
+                    if (data) {
+                        selectedCustomerId = data.id;
+                        filldropdown = true;
+                        fillCustomerInfoForm(data);
+                        //filldropdown = false;
+                    }
+                },
+
+                onRowRemoving: function (e) {
+                    selectedCustomerId = e.key.id;
+                    //alert(selectedBranchId);
+                },
+
+                onRowRemoved: function (e) {
+                    $("#gridContainer_customer").dxDataGrid("instance").refresh();
+                },
+
             });
+        });
+    })
 
-            return deferred.promise();
-        }
-    });
-
-    DevExpress.localization.locale(langCode);
+    $('#customerList').click();
 
 
-    $("#gridContainer_customer").dxDataGrid({
-
-        showColumnLines: true,
-
-        showRowLines: true,
-
-        showBorders: true,
-
-        dataSource: orders,
-
-        columnHidingEnabled: true,
-
-        selection: {
-            mode: "single"
-        },
-
-        hoverStateEnabled: true,
-
-        editing: {
-            //mode: "batch"
-            mode: "row",
-            //allowAdding: true,
-            //allowUpdating: true,
-            allowDeleting: true,
-            useIcons: true
-        },
-
-        "export": {
-            enabled: true,
-            fileName: window.lang.translate('Customer list')
-        },
-
-        grouping: {
-            contextMenuEnabled: true,
-            expandMode: "rowClick"
-        },
-
-        groupPanel: {
-            emptyPanelText: window.lang.translate('Use the context menu of header columns to group data'),
-            visible: true
-        },
-
-        pager: {
-            allowedPageSizes: [5, 8, 15, 30],
-            showInfo: true,
-            showNavigationButtons: true,
-            showPageSizeSelector: true,
-            visible: true
-        },
-
-        paging: {
-            pageSize: 8
-        },
-
-        filterRow: {
-            visible: true,
-            applyFilter: "auto"
-        },
-
-        searchPanel: {
-            visible: true,
-            width: 240,
-            placeholder: window.lang.translate('Search') + "...",
-        },
-
-        headerFilter: {
-            visible: true
-        },
-
-        columnChooser: {
-            enabled: true,
-            mode: "select"
-        },
-
-        columns: [{
-            allowGrouping: false,
-            dataField: "OrderNumber",
-            caption: window.lang.translate('Country') + "...",
-            width: 130
-        }, {
-            caption: window.lang.translate('State') + "...",
-            dataField: "StoreState"
-        }, {
-            caption: window.lang.translate('City') + "...",
-            dataField: "StoreCity"
-        }, 
-        "Employee", {
-            dataField: "OrderDate",
-            dataType: "date"
-        }, {
-            dataField: "SaleAmount", 
-                
-         }],
-
-        customizeColumns: function (columns) {
-            columns[5].format = { type: "currency", currency: "EUR" };
-        },
-
-        summary: {
-            totalItems: [{
-                column: "OrderNumber",
-                summaryType: "count"
-            }, {
-                column: "SaleAmount",
-                summaryType: "sum",
-                valueFormat: "currency"
-            }]
-        },
-
-        onSelectionChanged: function (selectedItems) {
-            var data = selectedItems.selectedRowsData[0];
-            if (data) {
-
-                fillCustomerInfoForm(data);
-
-                //alert("gridContainer_customer - onSelectionChanged :" + data);
-                //$(".employeeNotes").text(data.Notes);
-                //$(".employeePhoto").attr("src", data.Picture);
-            }
-        }
-
-    });
+/*
+//////////////////////////////////////////////////////////////////////////////////////////////
 
     $("#gridContainer_contactaddress").dxDataGrid({
 
@@ -2212,13 +2405,28 @@
     });
 
 
-
+*/
     /**
     * insert CustomerInfo Wrapper
     * @returns {Boolean}
     * @since 02/08/2018
     */
-
+/*
+ * 
+ * {"id":"2","apid":2,"cust_sis_key":"1716068406394007398","registration_name":"TIREPOINT (PTY) LTD","trading_name":"",
+ * "name_short":"TIREPOINT ","embrace_customer_no":"31000663","tu_emb_customer_no":"","ce_emb_customer_no":"",
+ * "other_emb_customer_no":"","www":"","vatnumber":"","registration_number":"","registration_date":null,"ne_count_type_id":16,
+ * "numberofemployees":"51-100","nv_count_type_id":23,"numberofvehicles":"21-50",
+ * "customer_category_id":2,
+ * "customer_category_name":"DTRK","reliability_id":2,"reliability_name":"Low","turnover_rate_id":1,
+ * "turnover_rate_name":"1 - 100.000","sector_type_id":1,"sector_type_name":"General","application_type_id":2,
+ * "application_type_name":"General Distribution","segment_type_id":1,"segment_type_name":"Long Haul",
+ * "is_bo_confirm":0,"firm_country_id":107,"firm_country_name":"G\u00fcney Afrika","address1":"","address2":"","address3":"",
+ * "postalcode":"","country_id":107,"country_name":"G\u00fcney Afrika","city_id":0,"city_name":"","region_id":null,"region":"",
+ * "op_username":"admin@gmail.com","state_active":"Active","date_saved":"2018-09-27 12:23:04","date_modified":null,
+ * "language_code":"en","active":0,"op_user_id":0,"language_id":"385","language_name":"English"}
+ * 
+ * /
     window.insertCustomerInfoWrapper = function (e) {
         //e.preventDefault();
         
@@ -2229,113 +2437,208 @@
         return false;
     }
 
-    /**
-    * insert CustomerInfo
-    * @returns {undefined}
-    * @since 02/08/2018
-    */
+ /**
+ * insert / Update Branch Form
+ * @returns {undefined}
+ * @author Gül Özdemir
+ * @since 03/09/2018
+ */
 
-    window.insertCustomerInfo = function () {
+    $("#btn-customer-save").on("click", function (e) {
+        e.preventDefault();
 
-        $("#loading-image-cstInfo").loadImager('removeLoadImage');
-        $("#loading-image-cstInfo").loadImager('appendImage');
+        if ($("#customerInfoForm").validationEngine('validate')) {
 
-        var cst_name = $('#txt-cst-name').val();
+            $("#loading-image-cstInfo").loadImager('removeLoadImage');
+            $("#loading-image-cstInfo").loadImager('appendImage');
 
-        var ddData_country = $('#dropdownCountry').data('ddslick')
-        var country_id = ddData_country.selectedData.value;
+            var customerName = $('#txt-cst-name').val();
+            var customerShortName = $('#txt-cst-name').val();
+            var customerTradingName = $('#txt-cst-name').val();
+            //alert(branchName);
+            //txt-embrace-no
+            //var branchEmbraceNo = $('#txt-embrace-no').val();
+            var address1 = $('#txt-cst-address1').val();
+            var address2 = $('#txt-cst-address2').val();
+            var address3 = $('#txt-cst-address3').val();
+            //txt-location-ptcode
+            var postalCode = $('#txt-cst-ptcode').val();
 
-        var ddData_state = $('#dropdownState').data('ddslick')
-        var state_id = ddData_state.selectedData.value;
+            var ddData_Country = $('#dropdownCountry').data('ddslick');
+            var countryId = ddData_Country.selectedData.value;
 
-        var ddData_city = $('#dropdownCity').data('ddslick')
-        var city_id = ddData_city.selectedData.value;
+            var ddData_Province = $('#dropdownProvince').data('ddslick');
+            var provinceId = ddData_Province.selectedData.value;
 
-        var aj = $(window).ajaxCall({
-            proxy: '/Sys/SysCountrys/',
-            type: 'POST',
-        })
-        aj.ajaxCall({
-            onError: function (event, textStatus, errorThrown) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Müşteri Ekleme İşlemi Başarısız...',
-                    'Müşteri Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
-                console.error('"pkInsert_sysCustomerInfo" servis hatası->' + textStatus);
-                $("#loading-image-cstInfo").loadImager('removeLoadImage');
-            },
-            onSuccess: function (event, data) {
-                console.log(data);
-                var data = data;
-                sm.successMessage({
-                    onShown: function (event, data) {
-                        $('#customerInfoForm')[0].reset();
+            var ddData_City = $('#dropdownCity').data('ddslick');
+            var cityId = ddData_City.selectedData.value;
 
+            var email = $('#txt-cst-email').val();
+            var phone = $('#txt-cst-phone').val();
+            var website = $('#txt-cst-website').val();
+            var vatNumber = $('#txt-cst-vatnumber').val();
+            var regNumber = $('#txt-cst-regnumber').val();
+            var regDate = $('#registration-datepicker').val();
+
+            var ddData_Segment = $('#dropdownSegment').data('ddslick');
+            var segmentId = ddData_Segment.selectedData.value;
+
+            var ddData_Sector = $('#dropdownSector').data('ddslick');
+            var sectorId = ddData_Sector.selectedData.value;
+
+            var ddData_AppType = $('#dropdownApplicationType').data('ddslick');
+            var applicationId = ddData_AppType.selectedData.value;
+
+            var ddData_AnnuelRevenue = $('#dropdowAnnnuelRevenue').data('ddslick');
+            var annuelRevenueId = ddData_AnnuelRevenue.selectedData.value;
+
+            var ddData_Credibility = $('#dropdowCredibility').data('ddslick');
+            var credibilityId = ddData_Credibility.selectedData.value;
+
+            var ddData_CstCategory = $('#dropdownCustomerCategory').data('ddslick');
+            var customercategoryId = ddData_CstCategory.selectedData.value;
+
+            var ddData_TotalEmployees = $('#dropdownTotalEmployees').data('ddslick');
+            var totalemployeesId = ddData_TotalEmployees.selectedData.value;
+
+            var ddData_TotalVehicles = $('#dropdownTotalVehicles').data('ddslick');
+            var totalvehicleId = ddData_TotalEmployees.selectedData.value;
+
+
+            var omEmbraceNo = $('#txt-cst-ordermanagement-embno').val();
+            var tuEmbraceNo = $('#txt-cst-topused-embno').val();
+            var ceEmbraceNo = $('#txt-cst-centurion-embno').val();
+            var otherEmbraceNo = $('#txt-cst-other-embno').val();
+
+            alert(selectedCustomerId);
+
+            var ajax;
+            if (selectedCustomerId === 0) {
+                alert("yeni kayıt");
+                //Yeni kayıt
+                ajax = $('#ajaxACL-customer').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loading-image-cstInfo",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    proxy: '/Customer/InsertCustomer',
+                    type: "POST",
+                    data: JSON.stringify({
+                        url: "pkInsertAct_infocustomer",
+                        registration_name: customerName,
+                        name_short: customerShortName,
+                        trading_name: customerTradingName,
+                        address1: address1,
+                        address2: address2,
+                        address3: address3,
+                        postalcode: postalCode,
+                        country_id: countryId,
+                        country2_id: 0,
+                        country_region_id: provinceId,
+                        city_id: cityId,
+                        email: email,
+                        phonenumber: phone,
+                        www: website,
+                        vatnumber: vatNumber,
+                        registration_number : regNumber,
+                        registration_date : regDate,
+                        segment_type_id : segmentId,
+                        sector_type_id : sectorId,
+                        application_type_id : applicationId,
+                        turnover_rate_id : annuelRevenueId,
+                        reliabilityId : credibilityId,
+                        customer_category_id : customercategoryId,
+                        ne_count_type_id : totalemployeesId,
+                        nv_count_type_id : totalvehicleId,
+                        embrace_customer_no : omEmbraceNo,
+                        tu_emb_customer_no : tuEmbraceNo,
+                        ce_emb_customer_no : ceEmbraceNo,
+                        other_emb_customer_no : otherEmbraceNo,
+                        pk: "GsZVzEYe50uGgNM"
+                    })
+                });
+
+                ajax.ajaxCallWidget({
+                    onReset: function (event, data) {
+
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_customer").dxDataGrid("instance").refresh();
                         $("#loading-image-cstInfo").loadImager('removeLoadImage');
+                    }
+                })
+                ajax.ajaxCallWidget('call');
 
-                        $("#loading-image-cstInfoGrid").loadImager('removeLoadImage');
-                        $("#loading-image-cstInfoGrid").loadImager('appendImage');
+            } else {
+                //update
+                alert("update");
 
-                        $('#gridContainer_customer').refresh();   //test edilecek!
-
-                        $("#loading-image-cstInfoGrid").loadImager('removeLoadImage');
-
-                        /*
-                         * devex grid refresh yapılacak
-                         * 
-                         * 
-                        $('#gridContainer_customer').datagrid({
-                            queryParams: {
-                                pk: $('#pk').val(),
-                                subject: 'datagrid',
-                                url: 'pkFillPrivilegesList_sysAclPrivilege',
-                                sort: 'id',
-                                order: 'desc',
-                            },
+                wcm.warningComplexMessage({
+                    onConfirm: function (event, data) {
+                        ajax = $('#ajaxACL-customer').ajaxCallWidget({
+                            failureLoadImage: true,
+                            loadingImageID: "loading-image-cstinfo",
+                            triggerSuccessAuto: true,
+                            transactionSuccessText: window.lang.translate('Transaction successful'),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            proxy: '/Customer/UpdateCustomer',
+                            type: "POST",
+                            data: JSON.stringify({
+                                id: selectedCustomerId,
+                                url: "pkUpdateAct_infocustomer",
+                                registration_name: customerName,
+                                name_short: customerShortName,
+                                trading_name: customerTradingName,
+                                address1: address1,
+                                address2: address2,
+                                address3: address3,
+                                postalcode: postalCode,
+                                country_id: countryId,
+                                country2_id: 0,
+                                country_region_id: provinceId,
+                                city_id: cityId,
+                                email: email,
+                                phonenumber: phone,
+                                www: website,
+                                vatnumber: vatNumber,
+                                registration_number: regNumber,
+                                registration_date: regDate,
+                                segment_type_id: segmentId,
+                                sector_type_id: sectorId,
+                                application_type_id: applicationId,
+                                turnover_rate_id: annuelRevenueId,
+                                reliabilityId: credibilityId,
+                                customer_category_id: customercategoryId,
+                                ne_count_type_id: totalemployeesId,
+                                nv_count_type_id: totalvehicleId,
+                                embrace_customer_no: omEmbraceNo,
+                                tu_emb_customer_no: tuEmbraceNo,
+                                ce_emb_customer_no: ceEmbraceNo,
+                                other_emb_customer_no: otherEmbraceNo,
+                                pk: "GsZVzEYe50uGgNM"
+                            })
                         });
-                        $('#tt_grid_dynamic').datagrid('enableFilter');
-                        $('#tt_grid_dynamic').datagrid('reload');
-                        */
-                    }
-                });
-                sm.successMessage('show', 'Müşteri Kayıt İşlemi Başarılı...',
-                    'Müşteri kayıt işlemini gerçekleştirdiniz... ',
-                    data);
-                $("#loading-image-cstInfo").loadImager('removeLoadImage');
 
-            },
-            onErrorDataNull: function (event, data) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Müşteri Kayıt İşlemi Başarısız...',
-                    'Müşteri kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysCustomerInfo" servis datası boştur!!');
-                $("#loading-image-cstInfo").loadImager('removeLoadImage');
-            },
-            onErrorMessage: function (event, data) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Müşteri Kayıt İşlemi Başarısız...',
-                    'Müşteri kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysCustomerInfo" servis datası boştur!!');
-                $("#loading-image-cstInfo").loadImager('removeLoadImage');
-            },
-            onError23503: function (event, data) {
-                dm.dangerMessage('Error23503');
-                $("#loading-image-cstInfo").loadImager('removeLoadImage');
-            },
-            onError23505: function (event, data) {
-                dm.dangerMessage({
-                    onShown: function (event, data) {
-                        $('#customerInfoForm')[0].reset();
-                        $("#loading-image-cstInfo").loadImager('removeLoadImage');
+                        ajax.ajaxCallWidget({
+                            onReset: function (event, data) {
+
+                            },
+                            onAfterSuccess: function (event, data) {
+                                $("#gridContainer_branch").dxDataGrid("instance").refresh();
+                            }
+                        })
+                        ajax.ajaxCallWidget('call');
                     }
                 });
-                dm.dangerMessage('show', 'ACL Yetki Kayıt İşlemi Başarısız...',
-                    'Aynı isim ile Müşteri  kaydı yapılmıştır, yeni bir Müşteri kaydı deneyiniz... ');
-                $("#loading-image-cstInfo").loadImager('removeLoadImage');
+                wcm.warningComplexMessage('show', 'Branch is update! Are you ok?', 'Branch is update! Are you sure?');
             }
-        })
-        aj.ajaxCall('call');
-    }
+        }
+        return false;
 
+    })
 
     /**
     * reset button function for Customer Info insert form
@@ -2346,19 +2649,34 @@
         $("#loading-image-cstInfo").loadImager('removeLoadImage');
         $("#loading-image-cstInfo").loadImager('appendImage');
 
+        selectedCustomerId = 0;
+
+        ddslick_countryId = 0;
+        ddslick_country_name = "";
+
+        ddslick_provinceId = 0;
+        ddslick_province_name = "";
+
+        ddslick_cityId = 0;
+        ddslick_city_name = "";
+
+
         $('#customerInfoForm').validationEngine('hide');
         
         $('#dropdownCountry').ddslick('select', { index: String(0) });
-        $('#dropdownState').ddslick('select', { index: String(0) });
-        $('#dropdownCity').ddslick('select', { index: String(0) });
-        $('#dropdownSector').ddslick('select', { index: String(0) });
+        $('#dropdownProvince').ddslick('destroy');
+        $('#dropdownCity').ddslick('destroy');
+
         $('#dropdownSegment').ddslick('select', { index: String(0) });
-        $('#dropdownReliabilityRate').ddslick('select', { index: String(0) });
-        $('#dropdownCustomerGroup').ddslick('select', { index: String(0) });
+        $('#dropdownSector').ddslick('select', { index: String(0) });
+
+        $('#dropdownCredibility').ddslick('select', { index: String(0) });
+        $('#dropdownApplicationType').ddslick('select', { index: String(0) });
+        $('#dropdownCustomerCategory').ddslick('select', { index: String(0) });
         $('#dropdownTotalVehicles').ddslick('select', { index: String(0) });
         $('#dropdownTotalEmployees').ddslick('select', { index: String(0) });
         $('#dropdownAnnuelRevenue').ddslick('select', { index: String(0) });
-        
+
         $("#loading-image-cstInfo").loadImager('removeLoadImage');
     
         //yeni kayda açık, tablar kapatılıyor
@@ -2372,30 +2690,183 @@
         $("#loading-image-cstInfo").loadImager('removeLoadImage');
         $("#loading-image-cstInfo").loadImager('appendImage');
 
-        document.getElementById("txt-cst-name").value = data.Employee;
-        document.getElementById("txt-cst-email").value = data.Employee;
-        document.getElementById("txt-cst-website").value = data.Employee;
-        document.getElementById("txt-cst-phone").value = data.Employee;
-        document.getElementById("txt-cst-vatnumber").value = data.Employee;
-        document.getElementById("txt-cst-regnumber").value = data.Employee;
+        selectedCustomerId = data.id;
 
-        document.getElementById("registration-datepicker").value = Date();
-        
-        $('#dropdownCountry').ddslick('select', { index: 3 });
-        $('#dropdownState').ddslick('select', { index: 2 });
-        $('#dropdownCity').ddslick('select', { index: 2 });
-        $('#dropdownSector').ddslick('select', { index: 3 });
-        $('#dropdownSegment').ddslick('select', { index: 2 });
-        $('#dropdownReliabilityRate').ddslick('select', { index: 3 });
-        $('#dropdownCustomerGroup').ddslick('select', { index: 2 });
-        $('#dropdownTotalVehicles').ddslick('select', { index: 3 });
-        $('#dropdownTotalEmployees').ddslick('select', { index: 2 });
-        $('#dropdownAnnuelRevenue').ddslick('select', { index: 2 });
-        
-        //document.getElementById("dropdownCity").SelectedIndex = 2; //data.cityId;
-        //document.getElementById("dropdownSector").value = data.sectorId;
-        //document.getElementById("dropdownSegment").value = data.segmentId;
-        
+                //"is_bo_confirm":0, //backoffice confirmasyon onayı
+        if (data.registration_name) {
+            document.getElementById("txt-cst-name").value = data.registration_name;
+        } else {
+            document.getElementById("txt-cst-name").value = "";
+        }
+
+        if (data.name_short) {
+            document.getElementById("txt-cst-sname").value = data.name_short;
+        } else {
+            document.getElementById("txt-cst-sname").value = "";
+        }
+
+        if (data.trading_name) {
+            document.getElementById("txt-cst-tradingname").value = data.trading_name;
+        } else {
+            document.getElementById("txt-cst-tradingname").value = "";
+        }
+
+        if (data.address1) {
+            document.getElementById("txt-cst-address1").value = data.address1;
+        } else {
+            document.getElementById("txt-cst-address1").value = "";
+        }
+
+        if (data.address2) {
+            document.getElementById("txt-cst-address2").value = data.address2;
+        } else {
+            document.getElementById("txt-cst-address2").value = "";
+        }
+
+        if (data.address3) {
+            document.getElementById("txt-cst-address3").value = data.address3;
+        } else {
+            document.getElementById("txt-cst-address3").value = "";
+        }
+
+        if (data.postalcode) {
+            document.getElementById("txt-cst-ptcode").value = data.postalcode;
+        } else {
+            document.getElementById("txt-cst-ptcode").value = "";
+        }
+
+        if (data.email) {
+            document.getElementById("txt-cst-email").value = data.email;
+        } else {
+            document.getElementById("txt-cst-email").value = "";
+        }
+
+        if (data.www) {
+            document.getElementById("txt-cst-website").value = data.www;
+        } else {
+            document.getElementById("txt-cst-website").value = "";
+        }
+
+        if (data.phonenumber) {
+            document.getElementById("txt-cst-phone").value = data.phonenumber;
+        } else {
+            document.getElementById("txt-cst-phone").value = "";
+        }
+
+        if (data.vatnumber) {
+            document.getElementById("txt-cst-vatnumber").value = data.vatnumber;
+        } else {
+            document.getElementById("txt-cst-vatnumber").value = "";
+        }
+
+        if (data.registration_number) {
+            document.getElementById("txt-cst-regnumber").value = data.registration_number;
+        } else {
+            document.getElementById("txt-cst-regnumber").value = "";
+        }
+
+        if (data.registration_date) {
+            document.getElementById("registration-datepicker").value = data.registration_date;
+        } else {
+            document.getElementById("registration-datepicker").value = "";
+        }
+
+        if (data.embrace_customer_no) {
+            document.getElementById("txt-cst-ordermanagement-embno").value = data.embrace_customer_no;
+        } else {
+            document.getElementById("txt-cst-ordermanagement-embno").value = "";
+        }
+
+        if (data.tu_emb_customer_no) {
+            document.getElementById("txt-cst-topused-embno").value = data.tu_emb_customer_no;
+        } else {
+            document.getElementById("txt-cst-topused-embno").value = "";
+        }
+
+        if (data.ce_emb_customer_no) {
+            document.getElementById("txt-cst-centurion-embno").value = data.ce_emb_customer_no;
+        } else {
+            document.getElementById("txt-cst-centurion-embno").value = "";
+        }
+
+        if (data.ce_emb_customer_no) {
+            document.getElementById("txt-cst-other-embno").value = data.other_emb_customer_no;
+        } else {
+            document.getElementById("txt-cst-other-embno").value = "";
+        }
+
+        ddslick_countryId = data.country_id;
+        ddslick_country_name = data.country_name;
+
+        ddslick_provinceId = data.region_id;
+        ddslick_province_name = data.region;
+
+        ddslick_cityId = data.city_id;
+        ddslick_city_name = data.city_name;
+
+        $('#dropdownCountry').ddslick('selectByValue',
+            {
+                index: '' + data.country_id + '',
+                value: '' + data.country_name + ''
+            }
+        );
+
+        $('#dropdownSegment').ddslick('selectByValue',
+            {
+                index: '' + data.segment_type_id + '',
+                value: '' + data.segment_type_name + ''
+            }
+        );
+
+        $('#dropdownSector').ddslick('selectByValue',
+            {
+                index: '' + data.sector_type_id + '',
+                value: '' + data.sector_type_name + ''
+            }
+        );
+
+        $('#dropdownApplicationType').ddslick('selectByValue',
+            {
+                index: '' + data.application_type_id + '',
+                value: '' + data.application_type_name + ''
+            }
+        );
+
+        $('#dropdownCredibility').ddslick('selectByValue',
+            {
+                index: '' + data.reliability_id + '',
+                value: '' + data.reliability_name + ''
+            }
+        );
+
+        $('#dropdownCustomerCategory').ddslick('selectByValue',
+            {
+                index: '' + data.customer_category_id + '',
+                value: '' + data.customer_category_name + ''
+            }
+        );
+
+        $('#dropdownTotalEmployees').ddslick('selectByValue',
+            {
+                index: '' + data.ne_count_type_id + '',
+                value: '' + data.numberofemployees + ''
+            }
+        );
+
+        $('#dropdownTotalVehicles').ddslick('selectByValue',
+            {
+                index: '' + data.nv_count_type_id + '',
+                value: '' + data.numberofvehicles + ''
+            }
+        );
+
+        $('#dropdownAnnuelRevenue').ddslick('selectByValue',
+            {
+                index: '' + data.turnover_rate_id + '',
+                value: '' + data.turnover_rate_name + ''
+            }
+        );
+
         $("#loading-image-cstInfo").loadImager('removeLoadImage');
         tab_active();
 
@@ -2721,6 +3192,47 @@
         
 
         return false;
+    }
+
+    window.activepassiveCustomer = function (customer_id, active) {
+
+        var transactionSuccessMessage;
+
+        if (active === 1) {
+            //active
+            transactionSuccessMessage = window.lang.translate('Active successful');
+        } else {
+            //passive
+            transactionSuccessMessage = window.lang.translate('Passive successful');
+        }
+
+        var ajax_activepassivecustomerlist = $('#ajaxACL-customerlist').ajaxCallWidget({
+            failureLoadImage: true,
+            loadingImageID: "loading-image-cstInfoGrid",
+            triggerSuccessAuto: true,
+            transactionSuccessText: transactionSuccessMessage,
+            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            proxy: '/Customer/ActivePassiveCustomer',
+            type: "POST",
+            data: JSON.stringify({
+                id: customer_id,
+                pk: "GsZVzEYe50uGgNM",
+                url: "pkUpdateMakeActiveOrPassive_infocustomer"
+            }),
+
+        });
+        ajax_activepassivecustomerlist.ajaxCallWidget({
+            onReset: function (event, data) {
+
+            },
+            onAfterSuccess: function (event, data) {
+                $("#gridContainer_customer").dxDataGrid("instance").refresh();
+                $("#loading-image-cstInfoGrid").loadImager('removeLoadImage');
+            }
+        })
+        ajax_activepassivecustomerlist.ajaxCallWidget('call');
+
     }
 });
 

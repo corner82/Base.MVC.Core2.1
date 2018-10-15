@@ -154,7 +154,7 @@ $(document).ready(function () {
     });
     ajaxACLResources_country.ajaxCallWidget({
         onReset: function (event, data) {
-            //resetVehicleTypeAddDealForm();
+            
         },
         onSuccess: function (event, datacountry) {
             var cbdata_country = $.parseJSON(datacountry);
@@ -354,7 +354,7 @@ $(document).ready(function () {
                     error: function () {
                         deferred.reject("Data Loading Error");
                     },
-                    timeout: 10000
+                    timeout: 30000
                 });
 
                 return deferred.promise();
@@ -570,7 +570,7 @@ $(document).ready(function () {
                 onSelectionChanged: function (selectedItems) {
                     var data = selectedItems.selectedRowsData[0];
                     if (data) {
-                        selectedBranchId = data.branch_id;
+                        selectedBranchId = data.id;
                         filldropdown = true;
                         fillBranchForm(data);
                         //filldropdown = false;
@@ -708,6 +708,7 @@ $(document).ready(function () {
                     },
                     onAfterSuccess: function (event, data) {
                         $("#gridContainer_branch").dxDataGrid("instance").refresh();
+                        $("#loading-image-branch").loadImager('removeLoadImage');
                     }
                 })
                 ajax.ajaxCallWidget('call');
@@ -878,6 +879,7 @@ $(document).ready(function () {
             },
             onAfterSuccess: function (event, data) {
                 $("#gridContainer_branch").dxDataGrid("instance").refresh();
+                $("#loading-image-branchgrid").loadImager('removeLoadImage');
             }
         })
         ajax_activepassivebranchlist.ajaxCallWidget('call');     
