@@ -21,8 +21,6 @@
         }
     };
 
-
-
     /* 
      * deal grid data source
      * @author Mustafa Zeynel dağlı
@@ -42,6 +40,12 @@
             args.skip = loadOptions.skip || 0;
             args.take = loadOptions.take || 12;
 
+            var customerType = getSelectedCustomerType("ddslickCustomerTypeBuyBack");
+            var terrainType = getSelectedTerrainType("ddslickTerrainTypeBuyBack");
+            var repmainType = getSelectedRepMainType("ddslickRepMainBuyBack");
+            var hydraType = getSelectedHydraType("ddslickHydraBuyBack");
+            var vehicleType = getSelectedDDslickValueOrDefaultVal("ddslickDealVehicleTypeBuyBack");
+
             $.ajax({
                 url: '/Deal/GetDealBuyBackListProxyService',
                 dataType: "json",
@@ -55,11 +59,20 @@
                     rows: "",
                     sort: "",
                     order: "",
-                    terrain_id:1,
-                    comfort_super_id :1,
-                    hydraulics :2 ,
-                    customer_type_id :1, 
-                    model_id : 1,
+                    terrain_id: parseInt(terrainType),
+                    comfort_super_id: parseInt(repmainType),
+                    hydraulics: parseInt(hydraType),
+                    customer_type_id: parseInt(customerType),
+                    model_id: parseInt(vehicleType),
+                    /*terrain_id: 3,
+                    comfort_super_id: 1,
+                    hydraulics: 2,
+                    customer_type_id: 1, */
+                    /*terrain_id: ddDataTerrainType.selectedData.value,
+                    comfort_super_id: ddDataRepMainType.selectedData.value,
+                    hydraulics: ddDataHydraType.selectedData.value,
+                    customer_type_id: parseInt(ddDataCustomerType.selectedData.value), */
+                    
                 }),
                 type: 'POST',
                 contentType: 'application/json',
@@ -131,20 +144,33 @@
             enabled: true,
             mode: "select"
         },
-        columns: [{
-            allowGrouping: false,
-            dataField: "buyback_type_name",
-            caption: "Buyback",
-            //width: 130
+        columns: [ 
+        {
+            //allowGrouping: false,
+            caption: "Vehicle",
+            dataField: "vahicle_description"
         },
         {
-            caption: "comfort_super_name",
-            dataField: "Comfort Super"
+            caption: "Comfort Super",
+            dataField: "comfort_super_name"
         },
         {
-            caption: "mileage_type_name",
-            dataField: "Mileage"
+            caption: "Mileage",
+            dataField: "mileage_type_name"
+        },
+        {
+            caption: "Terrain",
+            dataField: "terrain_name"
+        },
+        {
+            caption: "Month",
+            dataField: "month_name"
+        },
+        {
+            caption: "Price",
+            dataField: "price"
         }
+
         ],
         customizeColumns: function (columns) {
             //columns[5].format = { type: "currency", currency: "EUR" };
@@ -156,33 +182,68 @@
     //buyBack tab form elements end
 
     //tradeBack tab form elements begin
+    var tradebackMatrix_grid_datasource = new DevExpress.data.CustomStore({
+        load: function (loadOptions) {
+            var deferred = $.Deferred(),
+                args = {};
 
-    // tradeback list grid
-    var tradeBackGridDataSource = {
-        store: {
-            type: 'array',
-            data: [{ "OrderNumber": "R35703", "Customer": "R35703", "Salesman": "R35709", "Employee": "Harv Mudd", "OrderDate": "2013/11/12" },
-            { "OrderNumber": "R35706", "Customer": "R35703", "Salesman": "R35709", "Employee": "Harv Mudd", "OrderDate": "2013/11/14" },
-            { "OrderNumber": "R35709", "Customer": "R35703", "Salesman": "R35709", "Employee": "Harv Mudd", "OrderDate": "2013/11/18" },
-            { "OrderNumber": "R35711", "Customer": "R35703", "Salesman": "R35709", "Employee": "Jim Packard", "OrderDate": "2013/11/22" },
-            { "OrderNumber": "R35714", "Customer": "R35703", "Salesman": "R35709", "Employee": "Harv Mudd", "OrderDate": "2013/11/30" },
-            { "OrderNumber": "R35789", "Customer": "R35703", "Salesman": "R35709", "Employee": "Clark Morgan", "OrderDate": "2013/12/01" },
-            { "OrderNumber": "R35983", "Customer": "R35703", "Salesman": "R35709", "Employee": "Todd Hoffman", "OrderDate": "2013/12/03" },
-            { "OrderNumber": "R36488", "Customer": "R35703", "Salesman": "R35709", "Employee": "Todd Hoffman", "OrderDate": "2013/12/05" },
-            { "OrderNumber": "R36987", "Customer": "R35703", "Salesman": "R35709", "Employee": "Clark Morgan", "OrderDate": "2013/12/07" },
-            { "OrderNumber": "R37642", "Customer": "R35703", "Salesman": "R35709", "Employee": "Clark Morgan", "OrderDate": "2013/12/08" },
-            { "OrderNumber": "R38466", "Customer": "R35703", "Salesman": "R35709", "Employee": "Harv Mudd", "OrderDate": "2013/12/10" },
-            { "OrderNumber": "R38775", "Customer": "R35703", "Salesman": "R35709", "Employee": "Harv Mudd", "OrderDate": "2013/12/15" }]
+            if (loadOptions.sort) {
+                args.orderby = loadOptions.sort[0].selector;
+                if (loadOptions.sort[0].desc)
+                    args.orderby += " desc";
+            }
+
+            args.skip = loadOptions.skip || 0;
+            args.take = loadOptions.take || 12;
+
+            var customerType = getSelectedCustomerType("ddslickCustomerTypeBuyBack");
+            var terrainType = getSelectedTerrainType("ddslickTerrainTypeBuyBack");
+            var repmainType = getSelectedRepMainType("ddslickRepMainBuyBack");
+            var hydraType = getSelectedHydraType("ddslickHydraBuyBack");
+            var vehicleType = getSelectedDDslickValueOrDefaultVal("ddslickDealVehicleTypeBuyBack");
+
+            $.ajax({
+                url: '/Deal/GetDealTradeBackListProxyService',
+                dataType: "json",
+                data: JSON.stringify({
+                    language_code: $("#langCode").val(),
+                    pk: "GsZVzEYe50uGgNM",
+                    url: "pkFillTradebackMatrixGridx_sysbuybackmatrix",
+                    pkIdentity: $("#publicKey").val(),
+                    //project_id: dealID,
+                    page: "",
+                    rows: "",
+                    sort: "",
+                    order: "",
+                    terrain_id: parseInt(terrainType),
+                    comfort_super_id: parseInt(repmainType),
+                    hydraulics: parseInt(hydraType),
+                    customer_type_id: parseInt(customerType),
+                    model_id: parseInt(vehicleType),
+                    
+                }),
+                type: 'POST',
+                contentType: 'application/json',
+                success: function (result) {
+                    deferred.resolve(result.items, { totalCount: result.totalCount });
+                },
+                error: function () {
+                    deferred.reject("Data Loading Error");
+                },
+                timeout: 30000
+            });
+
+            return deferred.promise();
         }
-    };
-    //DevExpress.localization.locale("en");
+    });
+    DevExpress.localization.locale($('#langCode').val());
     $("#gridContainer_TradeBack").dxDataGrid({
         showColumnLines: true,
         showRowLines: true,
         rowAlternationEnabled: true,
         showBorders: true,
         // dataSource: orders,
-        dataSource: tradeBackGridDataSource,
+        dataSource: buybackMatrix_grid_datasource,
         columnHidingEnabled: false,
         editing: {
             //mode: "batch"
@@ -230,20 +291,33 @@
             enabled: true,
             mode: "select"
         },
-        columns: [{
-            allowGrouping: false,
-            dataField: "OrderNumber",
-            caption: "32 Mon.",
-            //width: 130
-        },
-        {
-            caption: "36 Mon.",
-            dataField: "Customer"
-        },
-        {
-            caption: "42 Mon.",
-            dataField: "Salesman"
-        }
+        columns: [
+            {
+                //allowGrouping: false,
+                caption: "Vehicle",
+                dataField: "vahicle_description"
+            },
+            {
+                caption: "Comfort Super",
+                dataField: "comfort_super_name"
+            },
+            {
+                caption: "Mileage",
+                dataField: "mileage_type_name"
+            },
+            {
+                caption: "Terrain",
+                dataField: "terrain_name"
+            },
+            {
+                caption: "Month",
+                dataField: "month_name"
+            },
+            {
+                caption: "Price",
+                dataField: "price"
+            }
+
         ],
         customizeColumns: function (columns) {
             //columns[5].format = { type: "currency", currency: "EUR" };
@@ -425,6 +499,79 @@
         }
 
     });
+
+    var getSelectedDDslickValueOrDefaultVal = function (id) {
+        var customerType;
+        var ddDataCustomerType = $('#' + id + '').data("ddslick")
+        if (ddDataCustomerType) {
+            if (ddDataCustomerType.selectedData.value < 0) {
+                customerType = 0;
+            } else {
+                customerType = ddDataCustomerType.selectedData.value;
+            }
+        } else {
+            customerType = 0;
+        }
+        return customerType;
+    }
+
+
+    var getSelectedCustomerType = function(id) {
+        var customerType;
+        var ddDataCustomerType = $('#'+id+'').data("ddslick")
+        if (ddDataCustomerType) {
+            if (ddDataCustomerType.selectedData.value < 0) {
+                customerType = 0;
+            } else {
+                customerType = ddDataCustomerType.selectedData.value;
+            }
+        } else {
+            customerType = 0;
+        }
+        return customerType;
+    }
+    var getSelectedTerrainType = function (id) {
+        var terrainType;
+        var ddDataTerrainType = $('#'+id+'').data("ddslick")
+        if (ddDataTerrainType) {
+            if (ddDataTerrainType.selectedData.value < 0) {
+                terrainType = 0;
+            } else {
+                terrainType = ddDataTerrainType.selectedData.value;
+            }
+        } else {
+            terrainType = 0;
+        }
+        return terrainType;
+    }
+    var getSelectedRepMainType = function (id) {
+        var repmainType;
+        var ddDataRepMainType = $('#'+id+'').data("ddslick")
+        if (ddDataRepMainType) {
+            if (ddDataRepMainType.selectedData.value < 0) {
+                repmainType = 0;
+            } else {
+                repmainType = ddDataRepMainType.selectedData.value;
+            }
+        } else {
+            repmainType = 0;
+        }
+        return repmainType;
+    }
+    var getSelectedHydraType = function (id) {
+        var hydraType;
+        var ddDataHydraType = $('#'+id+'').data("ddslick")
+        if (ddDataHydraType) {
+            if (ddDataHydraType.selectedData.value < 0) {
+                hydraType = 0;
+            } else {
+                hydraType = ddDataHydraType.selectedData.value;
+            }
+        } else {
+            hydraType = 0;
+        }
+        return hydraType;
+    }
 
 
 });

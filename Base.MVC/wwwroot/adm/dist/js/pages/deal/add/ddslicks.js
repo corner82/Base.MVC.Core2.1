@@ -189,6 +189,9 @@
                 ajax_DdslickVehicleTypeBuyBack.ajaxCallWidget({
                     onSuccess: function (event, data) {
                         var data = $.parseJSON(data);
+                        data.splice(0, 0,
+                            { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                        );
                         $('#ddslickDealVehicleTypeBuyBack').ddslick({
                             data: data,
                             width: '100%',
@@ -200,7 +203,7 @@
                         });
                         $("#loadingImage_DdslickDealVehicleTypeBuyBack").loadImager('removeLoadImage');
                         $('#ddslickDealVehicleTypeBuyBack').ddslick({
-                            data: ddslickVehicleTypeDataTradeBack,
+                            data: data,
                             width: '100%',
                             onSelected: function (selectedData) {
                                 if (selectedData.selectedData.value > 0) {
@@ -256,8 +259,11 @@
                 ajax_DdslickVehicleTypeTradeBack.ajaxCallWidget({
                     onSuccess: function (event, data) {
                         var data = $.parseJSON(data);
+                        data.splice(0, 0,
+                            { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                        );
                         $('#ddslickDealVehicleTypeTradeBack').ddslick({
-                            data: ddslickVehicleTypeDataTradeBack,
+                            data: data,
                             width: '100%',
                             onSelected: function (selectedData) {
                                 if (selectedData.selectedData.value > 0) {
@@ -270,13 +276,13 @@
                 })
                 ajax_DdslickVehicleTypeTradeBack.ajaxCallWidget('call');
             } else {
-                $('#tab_TradeBack').loadImager('removeLoadImage');
-                $('#tab_TradeBack').loadImager('appendImage');
+                /*$('#tab_TradeBack').loadImager('removeLoadImage');
+                $('#tab_TradeBack').loadImager('appendImage');*/
 
                 $(window).warningMessage('resetOnShown');
                 $(window).warningMessage('show', "Please select deal",
                     "Please select deal");
-                // $('#loadingImage_DdslickVehicleTypeBuyBack').loadImager('removeLoadImage');
+                 $('#loadingImage_DdslickVehicleTypeBuyBack').loadImager('removeLoadImage');
             }
 
 
@@ -552,11 +558,12 @@
         })
 
     });
+    var selectedContCustomerTypeBuyBack = false;
     ajax_DdslickCustomerTypeBuyBack.ajaxCallWidget({
         onSuccess: function (event, data) {
             var data = $.parseJSON(data);
             data.splice(0, 0,
-                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                { text: window.lang.translate('Please select'), value: 0, selected: true, description: "" }
             );
             $('#ddslickCustomerTypeBuyBack').ddslick({
                 //height: 150,
@@ -565,9 +572,46 @@
                 width: '100%',
 
                 onSelected: function (selectedData) {
+                    if (selectedContCustomerTypeBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
+                    selectedContCustomerTypeBuyBack = true;
                     if (selectedData.selectedData.value > 0) {
-                        alert('selected customer  type')
-                        //vehicleKitTypeForDefineFields(selectedData.selectedData.text);
+                        /*var instance = $("#gridContainer_BuyBack").dxDataGrid("instance");
+                        instance.option({
+                            //dataSource: [],
+                            showSubmenuMode: {
+                                name: 'onClick'
+                            },
+                            columns: [
+                                {
+                                    //allowGrouping: false,
+                                    caption: "Vehicle zeynel",
+                                    dataField: "vahicle_description"
+                                },
+                                {
+                                    caption: "Comfort Super",
+                                    dataField: "comfort_super_name"
+                                },
+                                {
+                                    caption: "Mileage",
+                                    dataField: "mileage_type_name"
+                                },
+                                {
+                                    caption: "Terrain",
+                                    dataField: "terrain_name"
+                                },
+                                {
+                                    caption: "Month",
+                                    dataField: "month_name"
+                                },
+                                {
+                                    caption: "Price",
+                                    dataField: "price"
+                                }
+
+                            ],
+
+                        });*/
+                        
                     }
                 }
             });
@@ -582,7 +626,7 @@
     * @author Mustafa Zeynel Dağlı
     * @since 15/08/2018
     */
-    $('#loadingImage_DdslickTruckTypeBuyBack').loadImager('removeLoadImage');
+    /*$('#loadingImage_DdslickTruckTypeBuyBack').loadImager('removeLoadImage');
     $("#loadingImage_DdslickTruckTypeBuyBack").loadImager('appendImage');
     var ajax_DdslickTruckTypeBuyBack = $('#ajax_DdslickTruckTypeBuyBack').ajaxCallWidget({
         proxy: '/Vehicle/SysVehicleGroups',
@@ -619,7 +663,7 @@
             $("#loadingImage_DdslickTruckTypeBuyBack").loadImager('removeLoadImage');
         },
     })
-    ajax_DdslickTruckTypeBuyBack.ajaxCallWidget('call');
+    ajax_DdslickTruckTypeBuyBack.ajaxCallWidget('call');*/
 
     /**
     * ddslick terrain type (buyback) dropdown 
@@ -628,6 +672,7 @@
     */
     $('#loadingImage_DdslickTerrainTypeBuyBack').loadImager('removeLoadImage');
     $("#loadingImage_DdslickTerrainTypeBuyBack").loadImager('appendImage');
+    var selectedContTerrainTypeBuyBack = false;
     var ajax_DdslickTerrainTypeBuyBack = $('#ajax_DdslickTerrainTypeBuyBack').ajaxCallWidget({
         proxy: '/BuybackTradeback/SysBbTerrains',
         type: "POST",
@@ -638,7 +683,7 @@
         data: JSON.stringify({
             language_code: $("#langCode").val(),
             pk: "GsZVzEYe50uGgNM",
-            url: "pkCustomerTypesDdList_syscustomertypes",
+            url: "pkTerrainsBuybackDdList_systerrains",
             pkIdentity: $("#publicKey").val()
         })
 
@@ -654,8 +699,10 @@
                 data: data,
                 width: '100%',
                 onSelected: function (selectedData) {
+                    if (selectedContTerrainTypeBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
+                    selectedContTerrainTypeBuyBack = true;
                     if (selectedData.selectedData.value > 0) {
-                        //vehicleKitTypeForDefineFields(selectedData.selectedData.text);
+                        $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
                     }
                 }
             });
@@ -690,14 +737,17 @@
     ];
     $('#loadingImage_DdslickRepMainBuyBack').loadImager('removeLoadImage');
     $("#loadingImage_DdslickRepMainBuyBack").loadImager('appendImage');
+    var selectedContRepMainBuyBack = false;
     $('#ddslickRepMainBuyBack').ddslick({
         //height: 150,
         data: ddslickRepMainDataBuyBack,
         width: '100%',
 
         onSelected: function (selectedData) {
+            if (selectedContRepMainBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
+            selectedContRepMainBuyBack = true;
             if (selectedData.selectedData.value > 0) {
-                //vehicleKitTypeForDefineFields(selectedData.selectedData.text);
+                $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
             }
         }
     });
@@ -728,14 +778,17 @@
     ];
     $('#loadingImage_DdslickHydraBuyBack').loadImager('removeLoadImage');
     $("#loadingImage_DdslickHydraBuyBack").loadImager('appendImage');
+    var selectedContHydraBuyBack
     $('#ddslickHydraBuyBack').ddslick({
         //height: 150,
         data: ddslickHydraDataBuyBack,
         width: '100%',
 
         onSelected: function (selectedData) {
+            if (selectedContHydraBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
+            selectedContHydraBuyBack = true;
             if (selectedData.selectedData.value > 0) {
-                //vehicleKitTypeForDefineFields(selectedData.selectedData.text);
+                $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
             }
         }
     });
@@ -920,8 +973,8 @@
             selected: false
         },
     ];
-    $('#loadingImage_DdslickRepMainTradeBack').loadImager('removeLoadImage');
-    $("#loadingImage_DdslickRepMainTradeBack").loadImager('appendImage');
+    /*$('#loadingImage_DdslickRepMainTradeBack').loadImager('removeLoadImage');
+    $("#loadingImage_DdslickRepMainTradeBack").loadImager('appendImage');*/
     $('#ddslickRepMainTradeBack').ddslick({
         //height: 150,
         data: ddslickRepMainDataTradeBack,
