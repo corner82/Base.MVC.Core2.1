@@ -144,6 +144,19 @@
             enabled: true,
             mode: "select"
         },
+        selection: {
+            mode: "single"
+        },
+        onSelectionChanged: function (selectedItems) {
+            var data = selectedItems.selectedRowsData[0];
+            console.log(data);
+            /*if (data) {
+                selectedBranchId = data.id;
+                filldropdown = true;
+                fillBranchForm(data);
+                //filldropdown = false;
+            }*/
+        },
         columns: [ 
         {
             //allowGrouping: false,
@@ -196,11 +209,11 @@
             args.skip = loadOptions.skip || 0;
             args.take = loadOptions.take || 12;
 
-            var customerType = getSelectedCustomerType("ddslickCustomerTypeBuyBack");
-            var terrainType = getSelectedTerrainType("ddslickTerrainTypeBuyBack");
-            var repmainType = getSelectedRepMainType("ddslickRepMainBuyBack");
-            var hydraType = getSelectedHydraType("ddslickHydraBuyBack");
-            var vehicleType = getSelectedDDslickValueOrDefaultVal("ddslickDealVehicleTypeBuyBack");
+            var customerType = getSelectedCustomerType("ddslickCustomerTypeTradeBack");
+            var terrainType = getSelectedTerrainType("ddslickTerrainTypeTradeBack");
+            var repmainType = getSelectedRepMainType("ddslickRepMainTradeBack");
+            var hydraType = getSelectedHydraType("ddslickHydraTradeBack");
+            var vehicleType = getSelectedDDslickValueOrDefaultVal("ddslickDealVehicleTypeTradeBack");
 
             $.ajax({
                 url: '/Deal/GetDealTradeBackListProxyService',
@@ -220,6 +233,7 @@
                     hydraulics: parseInt(hydraType),
                     customer_type_id: parseInt(customerType),
                     model_id: parseInt(vehicleType),
+                    //model_id: 1,
                     
                 }),
                 type: 'POST',
@@ -243,7 +257,7 @@
         rowAlternationEnabled: true,
         showBorders: true,
         // dataSource: orders,
-        dataSource: buybackMatrix_grid_datasource,
+        dataSource: tradebackMatrix_grid_datasource,
         columnHidingEnabled: false,
         editing: {
             //mode: "batch"
@@ -255,7 +269,7 @@
         },
         "export": {
             enabled: true,
-            fileName: "Orders"
+            fileName: "TradeBackMatrix"
         },
         grouping: {
             contextMenuEnabled: true,

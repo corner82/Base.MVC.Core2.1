@@ -583,14 +583,31 @@
         $('#tab_TradeBack').loadImager('removeLoadImage');
         $("#tab_TradeBack").loadImager('appendImage');
 
-        var ddDataVehicleType = $('#ddslickVehicleTypeTradeBack').data('ddslick');
-        if (!ddDataVehicleType.selectedData.value > 0) {
+        var ddDataVehicleType = $('#ddslickDealVehicleTypeTradeBack').data('ddslick');
+        //alert($('#ddslickVehicleTypeTradeBack').ddslick("instance"));
+        //alert(ddDataVehicleType);
+        //alert($('#ddslickVehicleTypeTradeBack').length);
+        //console.log(jQuery.type(ddDataVehicleType));
+        if (typeof ddDataVehicleType != "undefined") {
+            //alert("dene1");
+            if (ddDataVehicleType.selectedData.value <= 0) {
+                wm.warningMessage('resetOnShown');
+                wm.warningMessage('show', window.lang.translate("Please select vehicle type"),
+                    window.lang.translate("Please select vehicle type"));
+                $('#tab_TradeBack').loadImager('removeLoadImage');
+                return false;
+            } else {
+
+            }
+        } else {
+            //alert("dene2");
             wm.warningMessage('resetOnShown');
             wm.warningMessage('show', window.lang.translate("Please select vehicle type"),
                 window.lang.translate("Please select vehicle type"));
             $('#tab_TradeBack').loadImager('removeLoadImage');
             return false;
         }
+        
 
         var ddDataCustomerType = $('#ddslickCustomerTypeTradeBack').data('ddslick');
         if (!ddDataCustomerType.selectedData.value > 0) {
@@ -601,14 +618,14 @@
             return false;
         }
 
-        var ddDataTruckType = $('#ddslickTruckTypeTradeBack').data('ddslick');
+        /*var ddDataTruckType = $('#ddslickTruckTypeTradeBack').data('ddslick');
         if (!ddDataTruckType.selectedData.value > 0) {
             wm.warningMessage('resetOnShown');
             wm.warningMessage('show', window.lang.translate("Please select truck type"),
                 window.lang.translate("Please select truck type"));
             $('#tab_TradeBack').loadImager('removeLoadImage');
             return false;
-        }
+        }*/
 
         var ddDataTerrainType = $('#ddslickTerrainTypeTradeBack').data('ddslick');
         if (!ddDataTerrainType.selectedData.value > 0) {

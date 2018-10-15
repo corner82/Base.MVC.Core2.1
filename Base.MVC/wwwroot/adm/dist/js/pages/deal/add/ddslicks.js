@@ -158,7 +158,7 @@
      */
     $("#deal_hidden").organizeTabs({
         onAftertab_BuyBack: function (e) {
-
+            alert("test 3");
             $('#loadingImage_DdslickDealVehicleTypeBuyBack').loadImager('removeLoadImage');
             $("#loadingImage_DdslickDealVehicleTypeBuyBack").loadImager('appendImage');
             if (parseInt($("#deal_hidden").deal("getDealID")) > 0) {
@@ -175,13 +175,18 @@
                     return false;
                 }
 
-                var ajax_DdslickVehicleTypeBuyBack = $('#ajax_DdslickVehicleTypeBuyBack').ajaxCallWidget({
+                var ajax_DdslickVehicleTypeBuyBack = $('#ajax_DdslickDealVehicleTypeBuyBack').ajaxCallWidget({
                     proxy: '/Deal/DdslickGetDealVehicleTypeProxyService/',
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    noDataFailureText: window.lang.translate("No data returned from service"),
+                    loadingImageID: "loadingImage_DdslickDealVehicleTypeBuyBack",
                     data: JSON.stringify({
-                        url: "pkProjectVehicleModelsDdList_infoprojectvehiclemodels",
+                        //url: "pkProjectVehicleModelsDdList_infoprojectvehiclemodels",
+                        url: "pkProjectVehicleModelsTradeDdList_infoprojectbuybacks",
                         language_code: $("#langCode").val(),
                         pk: "GsZVzEYe50uGgNM",
-                        project_id: $("#deal_hidden").deal("getDealID"),
+                        //project_id: $("#deal_hidden").deal("getDealID"),
+                        project_id: 1,
                         pkIdentity: $("#publicKey").val(),
                     }),
                     type: 'POST'
@@ -202,18 +207,10 @@
                             }
                         });
                         $("#loadingImage_DdslickDealVehicleTypeBuyBack").loadImager('removeLoadImage');
-                        $('#ddslickDealVehicleTypeBuyBack').ddslick({
-                            data: data,
-                            width: '100%',
-                            onSelected: function (selectedData) {
-                                if (selectedData.selectedData.value > 0) {
-                                    //vehicleKitTypeForDefineFields(selectedData.selectedData.text);
-                                }
-                            }
-                        });
-                        $("#loadingImage_DdslickDealVehicleTypeBuyBack").loadImager('removeLoadImage');
+
                     },
-                })
+                });
+                alert("test 2");
                 ajax_DdslickVehicleTypeBuyBack.ajaxCallWidget('call');
             } else {
                 /*$('#tab_BuyBack').loadImager('removeLoadImage');
@@ -236,8 +233,8 @@
                 var vehicleTypes = $("#deal_hidden").deal("getVehicleTypes");
                 if (vehicleTypes.length == 0) {
 
-                    $('#tab_TradeBack').loadImager('removeLoadImage');
-                    $('#tab_TradeBack').loadImager('appendImage');
+                    /*$('#tab_TradeBack').loadImager('removeLoadImage');
+                    $('#tab_TradeBack').loadImager('appendImage');*/
 
                     $(window).warningMessage('resetOnShown');
                     $(window).warningMessage('show', "You must add at least one vehicle type to deal",
@@ -247,11 +244,16 @@
 
                 var ajax_DdslickVehicleTypeTradeBack = $('#ajax_DdslickDealVehicleTypeTradeBack').ajaxCallWidget({
                     proxy: '/Deal/DdslickGetDealVehicleTypeProxyService/',
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    noDataFailureText: window.lang.translate("No data returned from service"),
+                    loadingImageID: "loadingImage_DdslickDealVehicleTypeTradeBack",
                     data: JSON.stringify({
-                        url: "pkProjectVehicleModelsDdList_infoprojectvehiclemodels",
+                        //url: "pkProjectVehicleModelsDdList_infoprojectvehiclemodels",
+                        url: "pkProjectVehicleModelsTradeDdList_infoprojecttradeback",
                         language_code: $("#langCode").val(),
                         pk: "GsZVzEYe50uGgNM",
-                        project_id: $("#deal_hidden").deal("getDealID"),
+                        //project_id: $("#deal_hidden").deal("getDealID"),
+                        project_id : 1,
                         pkIdentity: $("#publicKey").val(),
                     }),
                     type: 'POST'
@@ -293,8 +295,8 @@
                 //alert("deal id > 0");
                 
             } else {
-                $('#tab_VehicleType').loadImager('removeLoadImage');
-                $('#tab_VehicleType').loadImager('appendImage');
+                /*$('#tab_VehicleType').loadImager('removeLoadImage');
+                $('#tab_VehicleType').loadImager('appendImage');*/
                 //alert("deal id < 0");
                 $(window).warningMessage('resetOnShown');
                 $(window).warningMessage('show', "Please select deal",
@@ -677,7 +679,7 @@
         proxy: '/BuybackTradeback/SysBbTerrains',
         type: "POST",
         failureLoadImage: true,
-        loadingImageID: "loadingImage_DdslickTerrainTypeTradeBack",
+        loadingImageID: "loadingImage_DdslickTerrainTypeBuyBack",
         transactionFailureText: window.lang.translate("Service URL not found, please report error"),
         noDataFailureText: window.lang.translate("No data returned from service"),
         data: JSON.stringify({
@@ -804,6 +806,7 @@
    */
     $('#loadingImage_DdslickCustomerTypeTradeBack').loadImager('removeLoadImage');
     $("#loadingImage_DdslickCustomerTypeTradeBack").loadImager('appendImage');
+    selectedContCustomerTypeTradeBack = false;
     var ajax_DdslickCustomerTypeTradeBack = $('#ajax_DdslickCustomerTypeTradeBack').ajaxCallWidget({
         proxy: '/Customer/SysCustomerType',
         type: "POST",
@@ -840,8 +843,10 @@
                 width: '100%',
 
                 onSelected: function (selectedData) {
+                    if (selectedContCustomerTypeTradeBack == true) $("#gridContainer_TradeBack").dxDataGrid("instance").refresh();
+                    selectedContCustomerTypeTradeBack = true;
                     if (selectedData.selectedData.value > 0) {
-                        //vehicleKitTypeForDefineFields(selectedData.selectedData.text);
+                        $("#gridContainer_TradeBack").dxDataGrid("instance").refresh();
                     }
                 }
             });
@@ -867,6 +872,7 @@
     */
     $('#loadingImage_DdslickTruckTypeTradeBack').loadImager('removeLoadImage');
     $("#loadingImage_DdslickTruckTypeTradeBack").loadImager('appendImage');
+    selectedContTruckTypeTradeBack = false;
     var ajax_DdslickTruckTypeTradeBack = $('#ajax_DdslickTruckTypeTradeBack').ajaxCallWidget({
         proxy: '/Vehicle/SysVehicleGroups',
         type: "POST",
@@ -894,8 +900,10 @@
                 width: '100%',
 
                 onSelected: function (selectedData) {
+                    if (selectedContTruckTypeBuyBack == true) $("#gridContainer_TradeBack").dxDataGrid("instance").refresh();
+                    selectedContTruckTypeBuyBack = true;
                     if (selectedData.selectedData.value > 0) {
-                        //vehicleKitTypeForDefineFields(selectedData.selectedData.text);
+                        $("#gridContainer_TradeBack").dxDataGrid("instance").refresh();
                     }
                 }
             });
@@ -913,6 +921,7 @@
     */
     $('#loadingImage_DdslickTerrainTypeTradeBack').loadImager('removeLoadImage');
     $("#loadingImage_DdslickTerrainTypeTradeBack").loadImager('appendImage');
+    var selectedContTerrainTypeTradeBack = false
     var ajax_DdslickTerrainTypeTradeBack = $('#ajax_DdslickTerrainTypeTradeBack').ajaxCallWidget({
         proxy: '/BuybackTradeback/SysBbTerrains',
         type: "POST",
@@ -923,7 +932,7 @@
         data: JSON.stringify({
             language_code: $("#langCode").val(),
             pk: "GsZVzEYe50uGgNM",
-            url: "pkCustomerTypesDdList_syscustomertypes",
+            url: "pkTerrainsTradebackDdList_systerrains",
             pkIdentity: $("#publicKey").val()
         })
 
@@ -940,8 +949,10 @@
                 width: '100%',
 
                 onSelected: function (selectedData) {
+                    if (selectedContTerrainTypeTradeBack == true) $("#gridContainer_TradeBack").dxDataGrid("instance").refresh();
+                    selectedContTerrainTypeTradeBack = true;
                     if (selectedData.selectedData.value > 0) {
-                        //vehicleKitTypeForDefineFields(selectedData.selectedData.text);
+                        $("#gridContainer_TradeBack").dxDataGrid("instance").refresh();
                     }
                 }
             });
@@ -973,18 +984,22 @@
             selected: false
         },
     ];
-    /*$('#loadingImage_DdslickRepMainTradeBack').loadImager('removeLoadImage');
-    $("#loadingImage_DdslickRepMainTradeBack").loadImager('appendImage');*/
+    $('#loadingImage_DdslickRepMainTradeBack').loadImager('removeLoadImage');
+    $("#loadingImage_DdslickRepMainTradeBack").loadImager('appendImage');
+    var selectedContRepMainTypeTradeBack = false;
     $('#ddslickRepMainTradeBack').ddslick({
         //height: 150,
         data: ddslickRepMainDataTradeBack,
         width: '100%',
         onSelected: function (selectedData) {
+            if (selectedContRepMainTypeTradeBack == true) $("#gridContainer_TradeBack").dxDataGrid("instance").refresh();
+            selectedContRepMainTypeTradeBack = true;
             if (selectedData.selectedData.value > 0) {
-                //vehicleKitTypeForDefineFields(selectedData.selectedData.text);
+                $("#gridContainer_TradeBack").dxDataGrid("instance").refresh();
             }
         }
     });
+    $('#loadingImage_DdslickRepMainTradeBack').loadImager('removeLoadImage');
 
     /**
    * ddslick hydraulics (tradeback) dropdown 
@@ -1011,14 +1026,17 @@
     ];
     $('#loadingImage_DdslickHydraTradeBack').loadImager('removeLoadImage');
     $("#loadingImage_DdslickHydraTradeBack").loadImager('appendImage');
+    var selectedContHydraTypeTradeBack = false;
     $('#ddslickHydraTradeBack').ddslick({
         //height: 150,
         data: ddslickHydraDataTradeBack,
         width: '100%',
 
         onSelected: function (selectedData) {
+            if (selectedContHydraTypeTradeBack == true) $("#gridContainer_TradeBack").dxDataGrid("instance").refresh();
+            selectedContHydraTypeTradeBack = true;
             if (selectedData.selectedData.value > 0) {
-                //vehicleKitTypeForDefineFields(selectedData.selectedData.text);
+                $("#gridContainer_TradeBack").dxDataGrid("instance").refresh();
             }
         }
     });
