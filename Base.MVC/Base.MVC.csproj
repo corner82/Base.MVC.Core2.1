@@ -74,9 +74,6 @@
     <Content Update="Views\Sys\AccessoryFeatureName.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Views\Sys\FixedCost.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
     <Content Update="Views\Sys\Province.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -99,6 +96,12 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Sys\BuybackTerrain.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Sys\FixedCost.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Sys\PriceListHos.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Training\Training.cshtml">

@@ -204,6 +204,11 @@ namespace Base.MVC.Controllers
             return View();
         }
 
+        public async Task<IActionResult> PriceListHos()
+        {
+            return View();
+        }
+
         /// <summary>
         /// get priority for deal buyback vehicle types
         /// Mustafa Zeynel Dağlı

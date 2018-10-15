@@ -16,6 +16,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Base.MVC.Models.HttpRequest;
+using Base.MVC.Models.HttpRequest.Vehicle;
 using Base.Core.Utills.Url;
 using Microsoft.AspNetCore.Http.Extensions;
 
@@ -520,7 +521,27 @@ namespace Base.MVC.Controllers
 
         }
 
-
+        /// <summary>
+        ///Vehichle End Group Filter
+        ///Ceydacan Seyrek
+        /// </summary>
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkWarrantiesParentsDdList_syswarranties&vehicle_group_id=8&language_code=en&pk=GsZVzEYe50uGgNM
+        /// <returns></returns>
+        //[AjaxSessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysVehicleEndGroup([FromBody] VehicleEndGroup vhend)
+        {
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            string queryStr = _queryCreater.GetQueryStringFromObject(vhend);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
 
     }
 }

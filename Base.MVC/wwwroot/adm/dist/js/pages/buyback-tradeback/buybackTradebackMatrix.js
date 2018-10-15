@@ -14,8 +14,7 @@ $(document).ready(function () {
         denyButtonLabel: 'Vazgeç',
         actionButtonLabel: 'İşleme devam et'
     });
-
-    var contractType = "";
+   
     var buybackId;
     var tradebackId;
 /*
@@ -101,55 +100,50 @@ $(document).ready(function () {
 //Off Road End
 
 //Mil
-    $('#loadingImage_DdslickBbMileage').loadImager('removeLoadImage');
-    $("#loadingImage_DdslickBbMileage").loadImager('appendImage');
-
+    $('#ajaxACLResources_BbMileage').loadImager('removeLoadImage');
+    $("#ajaxACLResources_BbMileage").loadImager('appendImage');
+  
     var ajaxACLResources_BbMileage = $('#ajax_DdslickBbMileage').ajaxCallWidget({
-        proxy: '/BuybackTradeback/SysBbMileages/',
-        type: 'POST'
-    })
+        failureLoadImage: true,
+        loadingImageID: "ajaxACLResources_BbMileage",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkMileagesBuybackDdList_sysmileages",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
 
     ajaxACLResources_BbMileage.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
+        onReset: function (event, data) {
 
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickBbMileage').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis bulunamamıştır...'));
         },
         onSuccess: function (event, cbdata_mil) {
-            //var data = $.parseJSON(cbdata);
+
             var cbdata_mileage = $.parseJSON(cbdata_mil);
             cbdata_mileage.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
             $('#ddslickBbMileage').ddslick({
-                //height: 150,
                 data: cbdata_mileage,
                 width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loadingImage_DdslickBbMileage").loadImager('removeLoadImage');
+                //search: true,
+                //searchText: window.lang.translate('Search'),
+            })
+            $('#ajaxACLResources_BbMileage').loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickBbMileage').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Mileage bulunamamıştır...'), window.lang.translate('Mileage bulunamamıştır...'));
-        },
+        onAfterSuccess: function (event, data) {
+            $('#ajaxACLResources_BbMileage').loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_BbMileage.ajaxCallWidget('call');
+
 //Mil End
 
 //Month
@@ -157,19 +151,25 @@ $(document).ready(function () {
     $("#loadingImage_DdslickBbMonths").loadImager('appendImage');
 
     var ajaxACLResources_BbMonths = $('#ajax_DdslickBbMonths').ajaxCallWidget({
-        proxy: '/BuybackTradeback/SysBbMonths/',
-        type: 'POST'
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickBbMonths",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkBuybackMonthsDdList_sysmonths",
+            pkIdentity: $("#publicKey").val()
+        })
     });
 
     ajaxACLResources_BbMonths.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
+        onReset: function (event, data) {
 
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickBbMonths').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis bulunamamıştır...'));
         },
         onSuccess: function (event, cbdata_month) {
             //var data = $.parseJSON(cbdata);
@@ -181,25 +181,14 @@ $(document).ready(function () {
                 //height: 150,
                 data: cbdata_months,
                 width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loadingImage_DdslickBbMonths").loadImager('removeLoadImage');
+                //search: true,
+                //searchText: window.lang.translate('Search'),
+            })
+            $('#loadingImage_DdslickBbMonths').loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickBbMonths').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Months bulunamamıştır...'), window.lang.translate('Months bulunamamıştır...'));
-        },
+        onAfterSuccess: function (event, data) {
+            $('#loadingImage_DdslickBbMonths').loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_BbMonths.ajaxCallWidget('call');
 //Month End
@@ -208,7 +197,7 @@ $(document).ready(function () {
     $('#loadingImage_DdslickBbCustomerType').loadImager('removeLoadImage');
     $("#loadingImage_DdslickBbCustomerType").loadImager('appendImage');
 
-    var ajaxACLResources_BbOffRoad = $('#ajax_DdslickBbCustomerType').ajaxCallWidget({
+    var ajaxACLResources_BbCustomerType = $('#ajax_DdslickBbCustomerType').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loadingImage_DdslickBbCustomerType",
         triggerSuccessAuto: true,
@@ -225,7 +214,7 @@ $(document).ready(function () {
         })
     });
 
-    ajaxACLResources_BbOffRoad.ajaxCallWidget({
+    ajaxACLResources_BbCustomerType.ajaxCallWidget({
         onReset: function (event, data) {
 
         },
@@ -248,7 +237,7 @@ $(document).ready(function () {
             $('#loadingImage_DdslickBbCustomerType').loadImager('removeLoadImage');
         }
     })
-    ajaxACLResources_BbOffRoad.ajaxCallWidget('call');
+    ajaxACLResources_BbCustomerType.ajaxCallWidget('call');
 
 //Customer Type End
 
@@ -257,19 +246,25 @@ $(document).ready(function () {
     $("#loadingImage_DdslickBbComfortSuper").loadImager('appendImage');
 
     var ajaxACLResources_BbComfortSuper = $('#ajax_DdslickBbComfortSuper').ajaxCallWidget({
-        proxy: '/Sys/SysYesNo/',
-        type: 'POST'
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickBbComfortSuper",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "fillYesNoTypes_sysSpecificDefinitions",
+            pkIdentity: $("#publicKey").val()
+        })
     });
 
     ajaxACLResources_BbComfortSuper.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
+        onReset: function (event, data) {
 
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickBbComfortSuper').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis bulunamamıştır...'));
         },
         onSuccess: function (event, data_yesNo) {
             //var data = $.parseJSON(cbdata);
@@ -281,25 +276,14 @@ $(document).ready(function () {
                 //height: 150,
                 data: cbdata_yesNo,
                 width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loadingImage_DdslickBbComfortSuper").loadImager('removeLoadImage');
+                //search: true,
+                //searchText: window.lang.translate('Search'),
+            })
+            $('#loadingImage_DdslickBbComfortSuper').loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickBbComfortSuper').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('ComfortSuper bulunamamıştır...'), window.lang.translate('ComfortSuper bulunamamıştır...'));
-        },
+        onAfterSuccess: function (event, data) {
+            $('#loadingImage_DdslickBbComfortSuper').loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_BbComfortSuper.ajaxCallWidget('call');
 //ComfortSuper End
@@ -354,6 +338,7 @@ $(document).ready(function () {
         },
     })
     ajaxACLResources_BbTruckType.ajaxCallWidget('call');
+
 //TruckType End
 
 //Hydraulics
@@ -361,19 +346,25 @@ $(document).ready(function () {
     $("#loadingImage_DdslickBbHydraulics").loadImager('appendImage');
 
     var ajaxACLResources_BbHydraulics = $('#ajax_DdslickBbHydraulics').ajaxCallWidget({
-        proxy: '/Sys/SysYesNo/',
-        type: 'POST'
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickBbHydraulics",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "fillYesNoTypes_sysSpecificDefinitions",
+            pkIdentity: $("#publicKey").val()
+        })
     });
 
     ajaxACLResources_BbHydraulics.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
+        onReset: function (event, data) {
 
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_BbDdslickHydraulics').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis bulunamamıştır...'));
         },
         onSuccess: function (event, data_yesNo) {
             //var data = $.parseJSON(cbdata);
@@ -385,25 +376,14 @@ $(document).ready(function () {
                 //height: 150,
                 data: cbdata_yesNo,
                 width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loadingImage_DdslickBbHydraulics").loadImager('removeLoadImage');
+                //search: true,
+                //searchText: window.lang.translate('Search'),
+            })
+            $('#loadingImage_DdslickBbHydraulics').loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickBbHydraulics').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Hydraulics bulunamamıştır...'), window.lang.translate('Hydraulics bulunamamıştır...'));
-        },
+        onAfterSuccess: function (event, data) {
+            $('#loadingImage_DdslickBbHydraulics').loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_BbHydraulics.ajaxCallWidget('call');
 //Hydraulics End
@@ -465,49 +445,43 @@ $(document).ready(function () {
     $("#loadingImage_DdslickTbMileage").loadImager('appendImage');
 
     var ajaxACLResources_TbMileage = $('#ajax_DdslickTbMileage').ajaxCallWidget({
-        proxy: '/BuybackTradeback/SysTbMileages/',
-        type: 'POST'
-    })
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickTbMileage",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkMileagesTradebackDdList_sysmileages",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
 
     ajaxACLResources_TbMileage.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
+        onReset: function (event, data) {
 
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickTbMileage').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis bulunamamıştır...'));
         },
         onSuccess: function (event, cbdata_mil) {
-            //var data = $.parseJSON(cbdata);
+
             var cbdata_mileage = $.parseJSON(cbdata_mil);
             cbdata_mileage.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
             $('#ddslickTbMileage').ddslick({
-                //height: 150,
                 data: cbdata_mileage,
                 width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loadingImage_DdslickTbMileage").loadImager('removeLoadImage');
+                //search: true,
+                //searchText: window.lang.translate('Search'),
+            })
+            $('#loadingImage_DdslickTbMileage').loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickTbMileage').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Mileage bulunamamıştır...'), window.lang.translate('Mileage bulunamamıştır...'));
-        },
+        onAfterSuccess: function (event, data) {
+            $('#loadingImage_DdslickTbMileage').loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_TbMileage.ajaxCallWidget('call');
 //Mil End
@@ -517,19 +491,25 @@ $(document).ready(function () {
     $("#loadingImage_DdslickTbMonths").loadImager('appendImage');
 
     var ajaxACLResources_TbMonths = $('#ajax_DdslickTbMonths').ajaxCallWidget({
-        proxy: '/BuybackTradeback/SysTbMonths/',
-        type: 'POST'
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickTbMonths",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkTradebackMonthsDdList_sysmonths",
+            pkIdentity: $("#publicKey").val()
+        })
     });
 
     ajaxACLResources_TbMonths.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
+        onReset: function (event, data) {
 
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickTbMonths').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis bulunamamıştır...'));
         },
         onSuccess: function (event, cbdata_month) {
             //var data = $.parseJSON(cbdata);
@@ -541,25 +521,14 @@ $(document).ready(function () {
                 //height: 150,
                 data: cbdata_months,
                 width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loadingImage_DdslickTbMonths").loadImager('removeLoadImage');
+                //search: true,
+                //searchText: window.lang.translate('Search'),
+            })
+            $('#loadingImage_DdslickTbMonths').loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickTbMonths').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Months bulunamamıştır...'), window.lang.translate('Months bulunamamıştır...'));
-        },
+        onAfterSuccess: function (event, data) {
+            $('#loadingImage_DdslickTbMonths').loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_TbMonths.ajaxCallWidget('call');
 //Month End
@@ -616,19 +585,25 @@ $(document).ready(function () {
     $("#loadingImage_DdslickTbComfortSuper").loadImager('appendImage');
 
     var ajaxACLResources_TbComfortSuper = $('#ajax_DdslickTbComfortSuper').ajaxCallWidget({
-        proxy: '/Sys/SysYesNo/',
-        type: 'POST'
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickTbComfortSuper",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "fillYesNoTypes_sysSpecificDefinitions",
+            pkIdentity: $("#publicKey").val()
+        })
     });
 
     ajaxACLResources_TbComfortSuper.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
+        onReset: function (event, data) {
 
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickTbComfortSuper').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis bulunamamıştır...'));
         },
         onSuccess: function (event, data_yesNo) {
             //var data = $.parseJSON(cbdata);
@@ -640,25 +615,14 @@ $(document).ready(function () {
                 //height: 150,
                 data: cbdata_yesNo,
                 width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loadingImage_DdslickTbComfortSuper").loadImager('removeLoadImage');
+                //search: true,
+                //searchText: window.lang.translate('Search'),
+            })
+            $('#loadingImage_DdslickTbComfortSuper').loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickTbComfortSuper').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('ComfortSuper bulunamamıştır...'), window.lang.translate('ComfortSuper bulunamamıştır...'));
-        },
+        onAfterSuccess: function (event, data) {
+            $('#loadingImage_DdslickTbComfortSuper').loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_TbComfortSuper.ajaxCallWidget('call');
 //ComfortSuper End
@@ -720,19 +684,25 @@ $(document).ready(function () {
     $("#loadingImage_DdslickTbHydraulics").loadImager('appendImage');
 
     var ajaxACLResources_TbHydraulics = $('#ajax_DdslickTbHydraulics').ajaxCallWidget({
-        proxy: '/Sys/SysYesNo/',
-        type: 'POST'
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickTbHydraulics",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "fillYesNoTypes_sysSpecificDefinitions",
+            pkIdentity: $("#publicKey").val()
+        })
     });
 
     ajaxACLResources_TbHydraulics.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
+        onReset: function (event, data) {
 
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_TbDdslickHydraulics').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis bulunamamıştır...'));
         },
         onSuccess: function (event, data_yesNo) {
             //var data = $.parseJSON(cbdata);
@@ -744,27 +714,16 @@ $(document).ready(function () {
                 //height: 150,
                 data: cbdata_yesNo,
                 width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loadingImage_DdslickTbHydraulics").loadImager('removeLoadImage');
+                //search: true,
+                //searchText: window.lang.translate('Search'),
+            })
+            $('#loadingImage_DdslickTbHydraulics').loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickTbHydraulics').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Hydraulics bulunamamıştır...'), window.lang.translate('Hydraulics bulunamamıştır...'));
-        },
+        onAfterSuccess: function (event, data) {
+            $('#loadingImage_DdslickTbHydraulics').loadImager('removeLoadImage');
+        }
     })
-    ajaxACLResources_TbHydraulics.ajaxCallWidget('call');
+    ajaxACLResources_TbHydraulics.ajaxCallWidget('call')
 //Hydraulics End
 //Tradeback Dropdown Data End
 
@@ -920,9 +879,6 @@ $(document).ready(function () {
                     }).appendTo(container);
                 }
             }
-        }, {
-            caption: window.lang.translate('Contract type') + "...",
-            dataField: "contract_name"
         }, {
             caption: window.lang.translate('Customer type') + "...",
             dataField: "customer_type_name"
@@ -1114,9 +1070,6 @@ $(document).ready(function () {
                     }).appendTo(container);
                 }
             }
-        }, {
-            caption: window.lang.translate('Contract type') + "...",
-            dataField: "contract_name"
         }, {
             caption: window.lang.translate('Customer type') + "...",
             dataField: "customer_type_name"
@@ -1317,9 +1270,6 @@ $(document).ready(function () {
                     }).appendTo(container);
                 }
             }
-        }, {
-            caption: window.lang.translate('Contract type') + "...",
-            dataField: "contract_name"
         }, {
             caption: window.lang.translate('Customer type') + "...",
             dataField: "customer_type_name"
@@ -1525,9 +1475,6 @@ $(document).ready(function () {
                     }
                 }
             }, {
-                caption: window.lang.translate('Contract type') + "...",
-                dataField: "contract_name"
-            }, {
                 caption: window.lang.translate('Customer type') + "...",
                 dataField: "customer_type_name"
             }, {
@@ -1572,9 +1519,6 @@ $(document).ready(function () {
     //$('#buybackListRefresh').click();
     //$('#tradebackListRefresh').click();
 
-
-
-
     ///////////////////////BUYBACK MATRİS /////////////////////
 
 /**
@@ -1608,7 +1552,6 @@ $(document).ready(function () {
 
         return false;
     }
-
 
 /**
 * insert Buyback Matrix Wrapper
@@ -1648,7 +1591,7 @@ $(document).ready(function () {
 
             var price = $('#txt-BbMatrix-price').val();
 
-            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?urlpkInsertTBAct_sysbuybackmatrix
+            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertBBAct_sysbuybackmatrix
             //& model_id=2 +
             //& buyback_type_id=2 
             //& terrain_id=2 +
@@ -1659,6 +1602,8 @@ $(document).ready(function () {
             //comfort_super_id 
             //hydraulics
             //customer_type_id 
+
+            //& model_id=3 & terrain_id=2 & month_id=35 & mileage_id=38 & price=500000 & comfort_super_id=0 & hydraulics=0 & customer_type_id=1 & pk=GsZVzEYe50uGgNM
 
             var ajax_InsertMatrix = $('#ajaxACL-insertBuyback').ajaxCallWidget({
                 failureLoadImage: true,
@@ -1685,16 +1630,15 @@ $(document).ready(function () {
             });
             ajax_InsertMatrix.ajaxCallWidget({
                 onReset: function (event, data) {
-                    resetBbMatrixForm();
+                    //resetBbMatrixForm();
                 },
             })
             ajax_InsertMatrix.ajaxCallWidget('call');
+            $("#gridContainer_bbMatrix").dxDataGrid("instance").refresh();
            // $('#buybackListRefresh').click();
             return false;
         }
     })
-
-
 
 /**
 * Fill Buyback Matrix form
@@ -1754,7 +1698,6 @@ $(document).ready(function () {
         return false;
     }
 
-
 /**
 * activa passive Buyback Matrix form
 * @author Ceydacan Seyrek
@@ -1801,7 +1744,6 @@ $(document).ready(function () {
         ajax_activepasiveBuyback.ajaxCallWidget('call');
         $('#buybackListRefresh').click();
     }
-
 
     ///////////////////////TRADEBACK MATRİS /////////////////////
 
@@ -1880,11 +1822,11 @@ $(document).ready(function () {
             });
             ajax_InsertMatrix.ajaxCallWidget({
                 onReset: function (event, data) {
-                    resetTbMatrixForm();
+                    //resetTbMatrixForm();
                 },
             })
             ajax_InsertMatrix.ajaxCallWidget('call');
-            // $('#buybackListRefresh').click();
+             $('#tradebackListRefresh').click();
             return false;
         }
     })

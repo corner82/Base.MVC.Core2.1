@@ -51,6 +51,14 @@ $(document).ready(function () {
     var warrantyInfoID;
     var vehicle_group_id;
 
+
+    var filldropdown = false;
+
+    var ddslick_modelId = 0;
+    var ddslick_model_name = "";
+    var ddslick_warrantyId = 0;
+    var ddslick_warranty_name = "";
+
     var tabOrganizer = $("#warranty_tab").organizeTabs({ tabID: "warranty_tab" });
 
     //$("#warranty_tab").organizeTabs('disableAllTabs');
@@ -63,168 +71,165 @@ $(document).ready(function () {
     $("#loading-image-modelName").loadImager('appendImage');
 
     var ajaxACLResources_modelName = $('#ajaxACL-modelName').ajaxCallWidget({
-        proxy: '/Warranty/SysVehicleGroups',
-        type: 'POST'
+        failureLoadImage: true,
+        loadingImageID: "loading-image-modelName",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Vehicle/SysVehicleGroups',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkVehicleGroupsDdList_sysvehiclegroups",
+            pkIdentity: $("#publicKey").val()
+        })
     });
 
     ajaxACLResources_modelName.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
+        onReset: function (event, data) {
 
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-modelName').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamýþtýr...'), window.lang.translate('Servis  bulunamamýþtýr...'));
         },
-        onSuccess: function (event, cbdata_vehicletype) {
-            //var data = $.parseJSON(cbdata);
-            var cbdata = $.parseJSON(cbdata_vehicletype);
-            cbdata.splice(0, 0,
+        onSuccess: function (event, datamodelname) {
+
+            var cbdata_modelname = $.parseJSON(datamodelname);
+            cbdata_modelname.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
+
             $('#dropdownModelName').ddslick({
-                //height: 150,
-                data: cbdata,
+                data: cbdata_modelname,
                 width: '100%',
-
+                //search: true,
+                //searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
                 }
-
-            });
-
-            $("#loading-image-modelName").loadImager('removeLoadImage');
+            })
+            $('#loading-image-modelName').loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-modelName').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('model bulunamamýþtýr...'), window.lang.translate('model  bulunamamýþtýr...'));
-        },
+        onAfterSuccess: function (event, data) {
+            $('#loading-image-modelName').loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_modelName.ajaxCallWidget('call');
 //Model End
 
 //Model type(TGS,TGM...)
-    $('#loading-image-model').loadImager('removeLoadImage');
+    $("#loading-image-model").loadImager('removeLoadImage');
     $("#loading-image-model").loadImager('appendImage');
 
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkVehicleGroupsDdList_sysvehiclegroups&language_code=en&pk=GsZVzEYe50uGgNM
     var ajaxACLResources_model = $('#ajaxACL-model').ajaxCallWidget({
-        proxy: '/Warranty/SysVehicleGroups',
-        type: 'POST'
+        failureLoadImage: true,
+        loadingImageID: "loading-image-model",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Vehicle/SysVehicleGroups',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkVehicleGroupsDdList_sysvehiclegroups",
+            pkIdentity: $("#publicKey").val()
+        })
     });
 
     ajaxACLResources_model.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
+        onReset: function (event, data) {
 
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-model').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamýþtýr...'), window.lang.translate('Servis  bulunamamýþtýr...'));
         },
-        onSuccess: function (event, cbdata_Model) {
-            //var data = $.parseJSON(cbdata);
-            var cbdataModel = $.parseJSON(cbdata_Model);
-            cbdataModel.splice(0, 0,
+        onSuccess: function (event, datamodel) {
+
+            var cbdata_model = $.parseJSON(datamodel);
+            cbdata_model.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
-            $('#dropdownModel').ddslick({
-                //height: 150,
-                data: cbdataModel,
-                width: '100%',
 
+            $('#dropdownModel').ddslick({
+                data: cbdata_model,
+                width: '100%',
+                //search: true,
+                //searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
+
+                    $('#dropdownWrName').ddslick('destroy');
+
                     if (selectedData.selectedData.value > 0) {
                         VhType = selectedData.selectedData.text;
-                        vehicle_group_id = selectedData.selectedData.value;
+                        ddslick_modelId = selectedData.selectedData.value;
 
-
-                        $('#loading-image-wrName').loadImager('removeLoadImage');
+                        //Warranty
+                        $("#loading-image-wrName").loadImager('removeLoadImage');
                         $("#loading-image-wrName").loadImager('appendImage');
 
-                        var ajaxACLResources_wrName = $('#ajaxACL-wrName').ajaxCallWidget({
-                            proxy: '/Warranty/SysWarranties',
-                            type: 'POST',
+                        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkWarrantiesParentsDdList_syswarranties&vehicle_group_id=8&language_code=en&pk=GsZVzEYe50uGgNM
+                        var ajaxACLResources_vehicle = $('#ajaxACL-wrName').ajaxCallWidget({
+                            failureLoadImage: true,
+                            loadingImageID: "loading-image-wrName",
+                            triggerSuccessAuto: true,
+                            transactionSuccessText: window.lang.translate('Transaction successful'),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            proxy: '/Warranty/SysVehicleWarranty',
+                            type: "POST",
                             data: JSON.stringify({
                                 language_code: $("#langCode").val(),
                                 pk: "GsZVzEYe50uGgNM",
                                 url: "pkWarrantiesParentsDdList_syswarranties",
-                                vehicle_group_id: vehicle_group_id,
-                                //pkIdentity: $("#publicKey").val()
-                            }),
+                                vehicle_group_id: ddslick_modelId,
+                                pkIdentity: $("#publicKey").val()
+                            })
                         });
 
-                        ajaxACLResources_wrName.ajaxCallWidget({
-                            onError: function (event, textStatus, errorThrown) {
+                        ajaxACLResources_vehicle.ajaxCallWidget({
+                            onReset: function (event, data) {
 
-                                dm.dangerMessage({
-                                    onShown: function () {
-                                        $('#loading-image-wrName').loadImager('removeLoadImage');
-                                    }
-                                });
-                                dm.dangerMessage('show', 'servis Bulunamamýþtýr...', 'Servis  bulunamamýþtýr...');
                             },
-                            onSuccess: function (event, data_wrName) {
-                                //var data = $.parseJSON(cbdata);
-                                var cbdata_wrName = $.parseJSON(data_wrName);
-                                //cbdata_wrName.splice(0, 0,
-                                //    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-                                //);
-                                $('#dropdownWrName').ddslick('destroy');
+                            onSuccess: function (event, datawarranty) {
+
+                                var cbdata_warranty = $.parseJSON(datawarranty);
+                                cbdata_warranty.splice(0, 0,
+                                    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                                );
+
                                 $('#dropdownWrName').ddslick({
-                                    //height: 150,
-                                    data: cbdata_wrName,
+                                    data: cbdata_warranty,
+                                    width: '100%',
                                     //search: true,
                                     //searchText: window.lang.translate('Search'),
-                                    width: '100%',
-                                    onSelected: function (selectedData) {
-                                        //if (selectedData.selectedData.value > 0) {
-
-                                        //}
-                                    }
-                                });
-
-                                $("#loading-image-wrName").loadImager('removeLoadImage');
+                                })
+                                if (filldropdown === true) {
+                                    $('#dropdownWrName').ddslick('selectByValue',
+                                        {
+                                            index: '' + ddslick_warrantyId + '',
+                                            value: '' + ddslick_warranty_name + ''
+                                        });
+                                    filldropdown = false;
+                                }
+                                $('#loading-image-wrName').loadImager('removeLoadImage');
                             },
-                            onErrorDataNull: function (event, data) {
-                                console.log("Error : " + event + " -data :" + data);
-                                dm.dangerMessage({
-                                    onShown: function () {
-                                        $('#loading-image-wrName').loadImager('removeLoadImage');
-                                    }
-                                });
-                                dm.dangerMessage('show', 'wrName not show...', 'wrName not show...');
-                            },
+                            onAfterSuccess: function (event, data) {
+                                $('#loading-image-wrName').loadImager('removeLoadImage');
+                            }
                         })
-                        ajaxACLResources_wrName.ajaxCallWidget('call');
-                       
+                        ajaxACLResources_vehicle.ajaxCallWidget('call');
+                        //Warranty End
+
                     }
                     else {
                         VhType = "";
                     }
                      document.getElementById("txt-wrUnique-name").value = VhType + Model + Mil1 + Mil2 + WrType + WrRM;
                 }
-            });
-
-            $("#loading-image-model").loadImager('removeLoadImage');
+            })
+            $('#loading-image-model').loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-model').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('model bulunamamýþtýr...'), window.lang.translate('model  bulunamamýþtýr...'));
-        },
+        onAfterSuccess: function (event, data) {
+            $('#loading-image-model').loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_model.ajaxCallWidget('call');
 //Model type End
@@ -234,53 +239,53 @@ $(document).ready(function () {
     $("#loading-image-vhModel").loadImager('appendImage');
 
     var ajaxACLResources_vhModel = $('#ajaxACL-vhModel').ajaxCallWidget({
-        proxy: '/Warranty/SysVehicleConfigTypes',
-        type: 'POST'
+        failureLoadImage: true,
+        loadingImageID: "loading-image-vhModel",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkVehicleConfigTypesDdList_sysvehicleconfigtypes",
+            pkIdentity: $("#publicKey").val()
+        })
     });
 
     ajaxACLResources_vhModel.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
+        onReset: function (event, data) {
 
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-vhModel').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamýþtýr...'), window.lang.translate('Servis  bulunamamýþtýr...'));
         },
-        onSuccess: function (event, cbdata_vehicleModel) {
-            //var data = $.parseJSON(cbdata);
-            var cbdataVm = $.parseJSON(cbdata_vehicleModel);
-            cbdataVm.splice(0, 0,
+        onSuccess: function (event, datavhModel) {
+
+            var cbdata_vhModel = $.parseJSON(datavhModel);
+            cbdata_vhModel.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
-            $('#dropdownVhModel').ddslick({
-                //height: 150,
-                data: cbdataVm,
-                width: '100%',
 
-                 onSelected: function (selectedData) {
+            $('#dropdownVhModel').ddslick({
+                data: cbdata_vhModel,
+                width: '100%',
+                //search: true,
+                //searchText: window.lang.translate('Search'),
+                onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
                         Model = selectedData.selectedData.text;
                     }
                     else {
                         Model = "";
                     }
-                     document.getElementById("txt-wrUnique-name").value = VhType + Model + Mil1 + Mil2 + WrType + WrRM;
+                    document.getElementById("txt-wrUnique-name").value = VhType + Model + Mil1 + Mil2 + WrType + WrRM;
                 }
-            });
-
-            $("#loading-image-vhModel").loadImager('removeLoadImage');
+            })
+            $('#loading-image-vhModel').loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-vhModel').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('whModel bulunamamýþtýr...'), window.lang.translate('whModel  bulunamamýþtýr...'));
-        },
+        onAfterSuccess: function (event, data) {
+            $('#loading-image-vhModel').loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_vhModel.ajaxCallWidget('call');
 //Config type End
@@ -291,87 +296,38 @@ $(document).ready(function () {
     $("#loading-image-wrType").loadImager('appendImage');
 
     var ajaxACLResources_wrType = $('#ajaxACL-wrType').ajaxCallWidget({
-        proxy: '/Warranty/SysWarrantyTypes',
-        type: 'POST'
+        failureLoadImage: true,
+        loadingImageID: "loading-image-wrType",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkWarrantyTypesDdList_syswarrantytypes",
+            pkIdentity: $("#publicKey").val()
+        })
     });
 
     ajaxACLResources_wrType.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
+        onReset: function (event, data) {
 
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-wrType').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamýþtýr...' ), window.lang.translate('Servis  bulunamamýþtýr...'));
         },
-        onSuccess: function (event, cbdata_wrType) {
-            //var data = $.parseJSON(cbdata);
-            var cbdataWrType = $.parseJSON(cbdata_wrType);
-            cbdataWrType.splice(0, 0,
+        onSuccess: function (event, datawrType) {
+
+            var cbdata_wrType = $.parseJSON(datawrType);
+            cbdata_wrType.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
+
             $('#dropdownWrType').ddslick({
-                //height: 150,
-                data: cbdataWrType,
+                data: cbdata_wrType,
                 width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-                        WrType = selectedData.selectedData.text;
-                    }
-                    else {
-                        WrType = "";
-                    }
-                    document.getElementById("txt-wrUnique-name").value = VhType + Model + Mil1 + Mil2 + WrType + WrRM;
-                }
-            });
-
-            $("#loading-image-wrType").loadImager('removeLoadImage');
-        },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-wrType').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('wrName bulunamamýþtýr...'), window.lang.translate('wrName  bulunamamýþtýr...'));
-        },
-    })
-    ajaxACLResources_wrType.ajaxCallWidget('call');
-//wrType End
-
-//wrMil
-    $('#loading-image-wrMil').loadImager('removeLoadImage');
-    $("#loading-image-wrMil").loadImager('appendImage');
-
-    var ajaxACLResources_wrMil = $('#ajaxACL-wrMil').ajaxCallWidget({
-        proxy: '/Warranty/SysMileages',
-        type: 'POST'
-    });
-
-    ajaxACLResources_wrMil.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-wrMil').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamýþtýr...'), window.lang.translate('Servis  bulunamamýþtýr...'));
-        },
-        onSuccess: function (event, cbdata_wrMil) {
-            //var data = $.parseJSON(cbdata);
-            var cbdata_wrMil = $.parseJSON(cbdata_wrMil);
-            cbdata_wrMil.splice(0, 0,
-                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-            );
-            $('#dropdownWrMil').ddslick({
-                //height: 150,
-                data: cbdata_wrMil,
-                width: '100%',
-
+                //search: true,
+                //searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
                         Mil1 = selectedData.selectedData.text + "KM";
@@ -381,19 +337,68 @@ $(document).ready(function () {
                     }
                     document.getElementById("txt-wrUnique-name").value = VhType + Model + Mil1 + Mil2 + WrType + WrRM;
                 }
-            });
+            })
+            $('#loading-image-wrType').loadImager('removeLoadImage');
+        },
+        onAfterSuccess: function (event, data) {
+            $('#loading-image-wrType').loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_wrType.ajaxCallWidget('call');
+//wrType End
 
-            $("#loading-image-wrMil").loadImager('removeLoadImage');
+//wrMil
+    $('#loading-image-wrMil').loadImager('removeLoadImage');
+    $("#loading-image-wrMil").loadImager('appendImage');
+
+    var ajaxACLResources_wrMil = $('#ajaxACL-wrMil').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loading-image-wrMil",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkMileagesWarrantyDdList_sysmileages",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
+
+    ajaxACLResources_wrMil.ajaxCallWidget({
+        onReset: function (event, data) {
+
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-wrMil').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('wrName bulunamamýþtýr...'), window.lang.translate('wrName  bulunamamýþtýr...'));
+        onSuccess: function (event, datawrMil) {
+
+            var cbdata_wrMil = $.parseJSON(datawrMil);
+            cbdata_wrMil.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+
+            $('#dropdownWrMil').ddslick({
+                data: cbdata_wrMil,
+                width: '100%',
+                //search: true,
+                //searchText: window.lang.translate('Search'),
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+                        Mil1 = selectedData.selectedData.text + "KM";
+                    }
+                    else {
+                        Mil1 = "";
+                    }
+                    document.getElementById("txt-wrUnique-name").value = VhType + Model + Mil1 + Mil2 + WrType + WrRM;
+                    }
+                })
+            $('#loading-image-wrMil').loadImager('removeLoadImage');
         },
+        onAfterSuccess: function (event, data) {
+            $('#loading-image-wrMil').loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_wrMil.ajaxCallWidget('call');
 //wrMil End
@@ -403,31 +408,38 @@ $(document).ready(function () {
     $("#loading-image-wrMonth").loadImager('appendImage');
 
     var ajaxACLResources_wrMonth = $('#ajaxACL-wrMonth').ajaxCallWidget({
-        proxy: '/Warranty/SysMonths',
-        type: 'POST'
+        failureLoadImage: true,
+        loadingImageID: "loading-image-wrMonth",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkMileagesWarrantyDdList_sysmileages",
+            pkIdentity: $("#publicKey").val()
+        })
     });
 
     ajaxACLResources_wrMonth.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
+        onReset: function (event, data) {
 
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-wrMonth').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamýþtýr...'), window.lang.translate('Servis  bulunamamýþtýr...'));
         },
-        onSuccess: function (event, cbdata_wrMonth) {
-            //var data = $.parseJSON(cbdata);
-            var cbdata_wrMonth = $.parseJSON(cbdata_wrMonth);
+        onSuccess: function (event, datawrMonth) {
+
+            var cbdata_wrMonth = $.parseJSON(datawrMonth);
             cbdata_wrMonth.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
+
             $('#dropdownWrMonth').ddslick({
-                //height: 150,
                 data: cbdata_wrMonth,
                 width: '100%',
-
+                //search: true,
+                //searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
                         Mil2 = selectedData.selectedData.text + "MONTHS";
@@ -437,19 +449,12 @@ $(document).ready(function () {
                     }
                     document.getElementById("txt-wrUnique-name").value = VhType + Model + Mil1 + Mil2 + WrType + WrRM;
                 }
-            });
-
-            $("#loading-image-wrMonth").loadImager('removeLoadImage');
+            })
+            $('#loading-image-wrMonth').loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-wrMonth').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('wrName bulunamamýþtýr...'), window.lang.translate('wrName  bulunamamýþtýr...'));
-        },
+        onAfterSuccess: function (event, data) {
+            $('#loading-image-wrMonth').loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_wrMonth.ajaxCallWidget('call');
 //wrMonth End
@@ -459,33 +464,40 @@ $(document).ready(function () {
     $("#loading-image-rm").loadImager('appendImage');
 
     var ajaxACLResources_rm = $('#ajaxACL-rm').ajaxCallWidget({
-        proxy: '/Sys/SysYesNo',
-        type: 'POST'
+        failureLoadImage: true,
+        loadingImageID: "loading-image-rm",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "fillYesNoTypes_sysSpecificDefinitions",
+            pkIdentity: $("#publicKey").val()
+        })
     });
 
     ajaxACLResources_rm.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
+        onReset: function (event, data) {
 
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-rm').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamýþtýr...'), window.lang.translate('Servis  bulunamamýþtýr...'));
         },
-        onSuccess: function(event, dataWrRM) {
-            //var data = $.parseJSON(cbdata);
-            var cbdataWrRM = $.parseJSON(dataWrRM);
-            cbdataWrRM.splice(2, 2,
-                { text: window.lang.translate('Please select'), value: 2, selected: true, description: "" }
-            );
-            $('#dropdownRm').ddslick({
-                //height: 150,
-                data: cbdataWrRM,
-                width: '100%',
+        onSuccess: function (event, datarm) {
 
+            var cbdata_rm = $.parseJSON(datarm);
+            cbdata_rm.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+
+            $('#dropdownRm').ddslick({
+                data: cbdata_rm,
+                width: '100%',
+                //search: true,
+                //searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value <2) {
+                    if (selectedData.selectedData.value < 2) {
                         WrRM = selectedData.selectedData.text;
                     }
                     else {
@@ -493,21 +505,16 @@ $(document).ready(function () {
                     }
                     document.getElementById("txt-wrUnique-name").value = VhType + Model + Mil1 + Mil2 + WrType + WrRM;
                 }
-            });
-
-            $("#loading-image-rm").loadImager('removeLoadImage');
+            })
+            $('#loading-image-rm').loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-rm').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('wrName bulunamamýþtýr...'), window.lang.translate('wrName  bulunamamýþtýr...'));
-        },
+        onAfterSuccess: function (event, data) {
+            $('#loading-image-rm').loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_rm.ajaxCallWidget('call');
+
+
 //rm End
 
     /* devexgrid */
@@ -686,6 +693,7 @@ $(document).ready(function () {
             var data = selectedItems.selectedRowsData[0];
             if (data) {
                 warrantyNameID = data.id;
+                filldropdown = true;
                 fillwarrantyNameForm(data);
             }
         },
@@ -1010,7 +1018,8 @@ $(document).ready(function () {
         $('#warrantyForm').validationEngine('hide');
         $('#dropdownModel').ddslick('select', { index: String(0) });
         $('#dropdownVhModel').ddslick('select', { index: String(0) });
-        $('#dropdownWrName').ddslick('select', { index: String(0) });
+        ddslick_warrantyId = 0;
+        ddslick_warranty_name = "";
         $('#dropdownWrType').ddslick('select', { index: String(0) });
         $('#dropdownWrMil').ddslick('select', { index: String(0) });
         $('#dropdownWrMonth').ddslick('select', { index: String(0) });
@@ -1071,12 +1080,9 @@ $(document).ready(function () {
                 text: '' + data.vehicle_group + ''
             }
         );
-        //$('#dropdownWrName').ddslick('selectByValue',
-        //    {
-        //        index: '' + data.warranty_type_id + '',
-        //        text: '' + data.warranty_type_name + ''
-        //    }
-        //);
+        ddslick_warrantyId = data.vehicle_group_id;
+        ddslick_warranty_name = data.vehicle_group_name;
+
         document.getElementById("txt-wrPrice-name").value = data.price_in_euros;
         //document.getElementById("txt-wrName-VhType").value = data.vehicle_group_id;
         //document.getElementById("txt-wrName-WrName").value = data.vehicle_group_name;
