@@ -464,7 +464,7 @@ $(document).ready(function () {
             }, {
                 caption: window.lang.translate('Fixed cost name') + "...",
                 encodeHtml: false,
-                    dataField: "name"
+                dataField: "name"
             }, {
                 caption: window.lang.translate('Fixed cost price') + "...",
                 encodeHtml: false,
@@ -476,7 +476,8 @@ $(document).ready(function () {
             }, {
                 caption: window.lang.translate('Fixed cost start date') + "...",
                 encodeHtml: false,
-                dataField: "start_date"
+                dataField: "start_date",
+                dataType: "date"
             }, {
                 caption: window.lang.translate('Warranty') + "...",
                 encodeHtml: false,
