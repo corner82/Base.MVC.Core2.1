@@ -136,124 +136,51 @@ $(document).ready(function () {
     //Quota Year End
 
     //Quota Month
-    var cbdata_quotaMonth = [
-        {
-            text: window.lang.translate('Please select') + "...",
-            value: 0,
-            selected: true
-        },
-        {
-            text: "January",
-            value: 1,
-            selected: false
-        },
-        {
-            text: "February",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "March",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "April",
-            value: 4,
-            selected: false
-        },
-        {
-            text: "May",
-            value: 5,
-            selected: false
-        },
-        {
-            text: "June",
-            value: 6,
-            selected: false
-        },
-        {
-            text: "July",
-            value: 7,
-            selected: false
-        },
-        {
-            text: "August",
-            value: 8,
-            selected: false
-        },
-        {
-            text: "September",
-            value: 9,
-            selected: false
-        },
-        {
-            text: "October",
-            value: 10,
-            selected: false
-        },
-        {
-            text: "November",
-            value: 11,
-            selected: false
-        },
-        {
-            text: "December",
-            value: 12,
-            selected: false
-        }
-    ];
-
     $('#loadingImage_DdslickQuotaMonth').loadImager('removeLoadImage');
     $("#loadingImage_DdslickQuotaMonth").loadImager('appendImage');
-
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkJustMonthsDdList_sysmonths&language_code=en&pk=GsZVzEYe50uGgNM
     var ajaxACLResources_QuotaMonth = $('#ajax_DdslickQuotaMonth').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickQuotaMonth",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkJustMonthsDdList_sysmonths",
+            pkIdentity: $("#publicKey").val()
+        })
     });
 
     ajaxACLResources_QuotaMonth.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
+        onReset: function (event, data) {
 
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickQuotaMonth').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
         },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
+        onSuccess: function (event, dataquotayear) {
+
+            var cbdata_quotayear = $.parseJSON(dataquotayear);
+            cbdata_quotayear.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
 
             $('#ddslickQuotaMonth').ddslick({
-                //height: 150,
-                data: cbdata_quotaMonth,
+                data: cbdata_quotayear,
                 width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loadingImage_DdslickQuotaMonth").loadImager('removeLoadImage');
+                //search: true,
+                //searchText: window.lang.translate('Search'),
+            })
+            $('#loadingImage_DdslickQuotaMonth').loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickQuotaMonth').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Quota Month bulunamamıştır...'), window.lang.translate('Quota Month  bulunamamıştır...'));
-        },
+        onAfterSuccess: function (event, data) {
+            $('#loadingImage_DdslickQuotaMonth').loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_QuotaMonth.ajaxCallWidget('call');
+
     //Quota Month End
 
 //Quota Type
@@ -478,7 +405,7 @@ DevExpress.localization.locale(langCode);
                 encodeHtml: false
             }, {
                 caption: window.lang.translate('Quota month') + "...",
-                dataField: "month_value",
+                dataField: "month_name",
                 encodeHtml: false
             }, {
                 caption: window.lang.translate('Quota limit') + "...",
@@ -547,7 +474,7 @@ DevExpress.localization.locale(langCode);
                 $('#loadingImage_DdslickQuotaYear').loadImager('removeLoadImage');
                 return false;
             }
-            var year = ddDataQuotayear.selectedData.text;
+            var year = ddDataQuotayear.selectedData.value;
 
             var ddDataQuotamonth = $('#ddslickQuotaMonth').data('ddslick');
             if (!ddDataQuotamonth.selectedData.value > 0) {
