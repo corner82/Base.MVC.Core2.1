@@ -210,6 +210,16 @@ namespace Base.MVC.Controllers
             return View();
         }
 
+        public async Task<IActionResult> YearlyQuota()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> MonthlyQuota()
+        {
+            return View();
+        }
+
         /// <summary>
         /// get priority for deal buyback vehicle types
         /// Mustafa Zeynel Dağlı
@@ -286,7 +296,7 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> SysInsertBranch([FromBody] CustomerPostModel branchModel)
+        public async Task<string> SysInsertBranch([FromBody] BranchPostModel branchModel)
         {
             if (ModelState.IsValid)
             {
@@ -804,6 +814,139 @@ namespace Base.MVC.Controllers
 
         }
 
+        /// <summary>
+        /// get yearly quota grid 
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillQuotasMatrixGridx_syssisquotasmatrix&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
+        /// <returns></returns>
+        //[SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysYearlyQuotaGrid([FromBody] DefaultPostModelGridList gridModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(gridModel);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model state is not valid");
+            }
+
+        }
+
+        /// <summary>
+        /// Delete yearly quota
+        ///Ceydacan Seyrek
+        /// </summary>
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_syssisquotasmatrix&id=33&pk=GsZVzEYe50uGgNM
+        /// <returns></returns>
+        //[AjaxSessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysDeleteYearlyQuota([FromBody] DeletePostModel deleteModel)
+        {
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            string queryStr = _queryCreater.GetQueryStringFromObject(deleteModel);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
+
+        /// <summary>
+        /// active passive yearly quota
+        ///Ceydacan Seyrek
+        /// </summary>
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateMakeActiveOrPassive_syssisquotasmatrix&id=29&pk=GsZVzEYe50uGgNM
+        /// <returns></returns>
+        //[AjaxSessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysActivePassiveYearlyQuota([FromBody] DeletePostModel deleteModel)
+        {
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            string queryStr = _queryCreater.GetQueryStringFromObject(deleteModel);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
+
+        /// <summary>
+        /// add yearly quota
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_syssisquotasmatrix&sis_quota_id=1&year=2017&value=150&pk=GsZVzEYe50uGgNM
+        /// <returns></returns>
+        //[AjaxSessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> AddYearlyQuota([FromBody] YearlyQuota yearlyquota)
+        {
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(yearlyquota);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model state is not valid");
+            }
+
+        }
+
+        /// <summary>
+        /// add monthly quota
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_syssismonthlyquotas&sis_quota_id=1&model_id=2&year=2018&month_id=12&quantity=12&pk=GsZVzEYe50uGgNM
+        /// <returns></returns>
+        //[AjaxSessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> AddMonthlyQuota([FromBody] MonthlyQuota monthlyquota)
+        {
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(monthlyquota);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model state is not valid");
+            }
+
+        }
     }
 
 

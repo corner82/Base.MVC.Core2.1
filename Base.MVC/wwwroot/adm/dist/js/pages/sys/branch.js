@@ -10,7 +10,7 @@ $(document).ready(function () {
     //var selectedNode;
     //var selectedRoot;
     //var selectedItem;
-    var selectedBranchId;
+    var selectedBranchId = 0;
     var selectedMANBranchId;
     var selectedMANBranchName;
     var filldropdown = false;
@@ -672,10 +672,10 @@ $(document).ready(function () {
                 selectedManBranchId = node.target;
             }
 
-            alert(selectedBranchId); 
+            //alert(selectedBranchId); 
             var ajax;
             if (selectedBranchId === 0) {
-                alert("yeni kayıt");
+                //alert("yeni kayıt");
                 //Yeni kayıt
                 ajax = $('#ajaxACL-branch').ajaxCallWidget({
                     failureLoadImage: true,
@@ -751,6 +751,7 @@ $(document).ready(function () {
                             },
                             onAfterSuccess: function (event, data) {
                                 $("#gridContainer_branch").dxDataGrid("instance").refresh();
+                                $("#loading-image-branch").loadImager('removeLoadImage');
                             }
                         })
                         ajax.ajaxCallWidget('call');
@@ -804,8 +805,8 @@ $(document).ready(function () {
         
         $('#dropdownCountry').ddslick('selectByValue',
             {
-                index: '' + data.country_id + '',
-                value: '' + data.country_name + ''
+                index: data.country_id,
+                value: data.country_name
             }
         );
       
