@@ -209,7 +209,13 @@ namespace Base.MVC.Controllers
         {
             return View();
         }
+
         public async Task<IActionResult> YearlyQuota()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> MonthlyQuota()
         {
             return View();
         }
@@ -883,7 +889,7 @@ namespace Base.MVC.Controllers
         }
 
         /// <summary>
-        /// add Fixed Cost
+        /// add yearly quota
         /// Ceydacan Seyrek
         /// </summary>
         /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_syssisquotasmatrix&sis_quota_id=1&year=2017&value=150&pk=GsZVzEYe50uGgNM
@@ -912,6 +918,35 @@ namespace Base.MVC.Controllers
 
         }
 
+        /// <summary>
+        /// add monthly quota
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_syssismonthlyquotas&sis_quota_id=1&model_id=2&year=2018&month_id=12&quantity=12&pk=GsZVzEYe50uGgNM
+        /// <returns></returns>
+        //[AjaxSessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> AddMonthlyQuota([FromBody] MonthlyQuota monthlyquota)
+        {
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(monthlyquota);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model state is not valid");
+            }
+
+        }
     }
 
 
