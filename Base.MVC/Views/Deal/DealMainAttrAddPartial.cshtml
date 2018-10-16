@@ -36,8 +36,254 @@
     </ul>
     <div class="tab-content ">
 
+        <div class="tab-pane zeyn-load-imager position-relative" id="tab_Body" style="padding: 21px 20px 65px 20px;">
+            <form id="addBodyForm">
+                <div class="row">
+                    <div class="col-md-6 ">
 
-        
+                        <div class="form-group">
+                            <label>Body type</label>
+                            <div class="" id="ajax_DdslickAddBodyType">
+                                <div id="loadingImage_DdslickAddBodyType" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickAddBodyType"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Vehicle group</label>
+                            <div class="" id="ajax_DdslickVehicleGroupsBody">
+                                <div id="loadingImage_DdslickVehicleGroupsBody" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickVehicleGroupsBody"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Vehicle type</label>
+                            <div class="" id="ajax_DdslickDealVehicleTypeBody">
+                                <div id="loadingImage_DdslickDealVehicleTypeBody" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickDealVehicleTypeBody"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Terrain</label>
+                            <div class="" id="ajax_DdslickTerrainTypeBody">
+                                <div id="loadingImage_DdslickTerrainTypeBody" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickTerrainTypeBody"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="form-group">
+        <label>Truck type</label>
+        <div class="" id="ajax_DdslickTruckTypeTradeBack">
+            <div id="loadingImage_DdslickTruckTypeTradeBack" class="input-group zeyn-load-imager">
+                <div class="input-group-addon">
+                    <i class="fa fa-copyright"></i>
+                </div>
+                <div id="ddslickTruckTypeTradeBack"></div>
+            </div>
+        </div>
+    </div>-->
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>R&M</label>
+
+                            <div class="" id="ajax_DdslickRepMainBody">
+                                <div id="loadingImage_DdslickRepMainBody" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickRepMainBody"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Hydraulics</label>
+                            <div class="" id="ajax_DdslickHydraBody">
+                                <div id="loadingImage_DdslickHydraBody" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickHydraBody"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>@Localizer["Quantity"]</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <input id="quantity_body" type="text" class="form-control" placeholder="@Localizer["Quantity"]">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 ">
+
+                        <div id="gridContainer_Body"></div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 ">
+                        <div class="form-group">
+                            <label>Deal tradeback</label>
+                            <div class="">
+                                <div id="loadingImage_TagCabinDealBodies" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-hand-o-right"></i>
+                                    </div>
+                                    <div style="margin-bottom: -10px;width:96%" class="tag-container-bodies">
+                                        <ul id="tagcabin_DealBodies" class="tag-box"></ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <!--<button class="btn btn-default pull-right" id="tab_next_2" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>  Add</button>-->
+                    <button type="submit" class="btn btn-primary btn-md pull-right " style="margin-right:10px;margin-top:20px;" id="add_body">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;@Localizer["Save"]&nbsp;&nbsp;</button>
+                </div>
+            </form>
+        </div><!-- /.tab-pane -->
+
+
+        <div class="tab-pane zeyn-load-imager position-relative" id="tab_TradeBack" style="padding: 21px 20px 65px 20px;">
+            <form id="addTradeBackForm">
+                <div class="row">
+                    <div class="col-md-6 ">
+
+                        <div class="form-group">
+                            <label>Vehicle type</label>
+                            <div class="" id="ajax_DdslickDealVehicleTypeTradeBack">
+                                <div id="loadingImage_DdslickDealVehicleTypeTradeBack" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickDealVehicleTypeTradeBack"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Customer type</label>
+                            <div class="" id="ajax_DdslickCustomerTypeTradeBack">
+                                <div id="loadingImage_DdslickCustomerTypeTradeBack" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickCustomerTypeTradeBack"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Terrain</label>
+                            <div class="" id="ajax_DdslickTerrainTypeTradeBack">
+                                <div id="loadingImage_DdslickTerrainTypeTradeBack" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickTerrainTypeTradeBack"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="form-group">
+                        <label>Truck type</label>
+                        <div class="" id="ajax_DdslickTruckTypeTradeBack">
+                            <div id="loadingImage_DdslickTruckTypeTradeBack" class="input-group zeyn-load-imager">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-copyright"></i>
+                                </div>
+                                <div id="ddslickTruckTypeTradeBack"></div>
+                            </div>
+                        </div>
+                    </div>-->
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>R&M</label>
+
+                            <div class="" id="ajax_DdslickRepMainTradeBack">
+                                <div id="loadingImage_DdslickRepMainTradeBack" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickRepMainTradeBack"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Hydraulics</label>
+                            <div class="" id="ajax_DdslickHydraTradeBack">
+                                <div id="loadingImage_DdslickHydraTradeBack" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickHydraTradeBack"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>@Localizer["Quantity"]</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <input id="quantity_tradeback" type="text" class="form-control" placeholder="@Localizer["Quantity"]">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 ">
+
+                        <div id="gridContainer_TradeBack"></div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 ">
+                        <div class="form-group">
+                            <label>Deal tradeback</label>
+                            <div class="">
+                                <div id="loadingImage_TagCabinDealTradeBacks" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-hand-o-right"></i>
+                                    </div>
+                                    <div style="margin-bottom: -10px;width:96%" class="tag-container-tradebacks">
+                                        <ul id="tagcabin_DealTradeBacks" class="tag-box"></ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <!--<button class="btn btn-default pull-right" id="tab_next_2" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>  Add</button>-->
+                    <button type="submit" class="btn btn-primary btn-md pull-right " style="margin-right:10px;margin-top:20px;" id="add_tradeBack">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;@Localizer["Save"]&nbsp;&nbsp;</button>
+                </div>
+            </form>
+        </div><!-- /.tab-pane -->
         <div class="tab-pane zeyn-load-imager position-relative" id="tab_BuyBack" style="padding: 21px 20px 65px 20px;">
             <form id="addBuyBackForm">
                 <div class="row">

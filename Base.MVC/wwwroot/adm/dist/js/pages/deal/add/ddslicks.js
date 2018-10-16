@@ -150,6 +150,27 @@
     */
     $('#loadingImage_DdslickCampaigns').loadImager();
 
+    /**
+    * ddslick add bdy type load imager
+    * @author Mustafa Zeynel Dağlı
+    * @since 16/10/2018
+    */
+    $('#loadingImage_DdslickAddBodyType').loadImager();
+
+    /**
+    * ddslick vehicle group load imager (body)
+    * @author Mustafa Zeynel Dağlı
+    * @since 16/10/2018
+    */
+    $('#loadingImage_DdslickVehicleGroupsBody').loadImager();
+
+    /**
+    * ddslick deal vehicle type load imager (body)
+    * @author Mustafa Zeynel Dağlı
+    * @since 16/10/2018
+    */
+    $('#loadingImage_DdslickDealVehicleTypeBody').loadImager();
+
 
     /**
      * tab organizer events attached
@@ -291,6 +312,20 @@
             }
 
 
+        },
+        onAftertab_Body: function (e) {
+            $('#tab_Body').loadImager('removeLoadImage');
+            if (parseInt($("#deal_hidden").deal("getDealID")) > 0) {
+                //alert("deal id > 0");
+
+            } else {
+                /*$('#tab_VehicleType').loadImager('removeLoadImage');
+                $('#tab_VehicleType').loadImager('appendImage');*/
+                //alert("deal id < 0");
+                $(window).warningMessage('resetOnShown');
+                $(window).warningMessage('show', "Please select deal",
+                    "Please select deal");
+            }
         },
         onAftertab_VehicleType: function (e) {
             $('#tab_VehicleType').loadImager('removeLoadImage');
@@ -1046,6 +1081,232 @@
     $("#loadingImage_DdslickHydraTradeBack").loadImager('removeLoadImage');
 
     //TradeBack tab form elements end
+
+
+    //Body tab form elements begin
+
+    /**
+    * ddslick add body types (body) dropdown 
+    * @author Mustafa Zeynel Dağlı
+    * @since 16/10/2018
+    */
+    var ddslickAddBodyTypeData = [
+        {
+            text: 'Please select',
+            value: 0,
+            selected: true
+        },
+        {
+            text: "Body Feature",
+            value: 1,
+            selected: false
+        },
+        {
+            text: "Body Extras",
+            value: 2,
+            selected: false
+        },
+
+    ];
+    $('#loadingImage_DdslickAddBodyType').loadImager('removeLoadImage');
+    $("#loadingImage_DdslickAddBodyType").loadImager('appendImage');
+    $('#ddslickAddBodyType').ddslick({
+        //height: 150,
+        data: ddslickAddBodyTypeData,
+        //data: data,
+        width: '100%',
+        onSelected: function (selectedData) {
+            /*if (selectedContCustomerTypeBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
+            selectedContCustomerTypeBuyBack = true;*/
+            if (selectedData.selectedData.value > 0) {
+            }
+        }
+    });
+    $('#loadingImage_DdslickAddBodyType').loadImager('removeLoadImage');
+
+    
+
+    /**
+    * ddslick vehicle groups (body) dropdown 
+    * @author Mustafa Zeynel Dağlı
+    * @since 16/10/2018
+    */
+    $('#loadingImage_DdslickVehicleGroupsBody').loadImager('removeLoadImage');
+    $("#loadingImage_DdslickVehicleGroupsBody").loadImager('appendImage');
+    //var selectedContTerrainTypeBuyBack = false;
+    var ajax_DdslickVehicleGroupsBody = $('#ajax_DdslickVehicleGroupsBody').ajaxCallWidget({
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickVehicleGroupsBody",
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        noDataFailureText: window.lang.translate("No data returned from service"),
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkVehicleGroupsDdList_sysvehiclegroups",
+            pkIdentity: $("#publicKey").val()
+        })
+
+    });
+    ajax_DdslickVehicleGroupsBody.ajaxCallWidget({
+        onSuccess: function (event, data) {
+            var data = $.parseJSON(data);
+            data.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+            $('#ddslickVehicleGroupsBody').ddslick({
+                //height: 150,
+                data: data,
+                width: '100%',
+                onSelected: function (selectedData) {
+                    /*if (selectedContTerrainTypeBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
+                    selectedContTerrainTypeBuyBack = true;*/
+                    if (selectedData.selectedData.value > 0) {
+                        getDealVehicleTypeDdslick();
+                    }
+                }
+            });
+
+            $("#loadingImage_DdslickTerrainTypeBuyBack").loadImager('removeLoadImage');
+        },
+    })
+    ajax_DdslickVehicleGroupsBody.ajaxCallWidget('call');
+
+    /**
+   * ddslick deal vehicle type dropdown (body)
+   * @author Mustafa Zeynel Dağlı
+   * @since 16/08/2018
+   */
+    var ddslickDealVehicleTypeBodyData = [
+        {
+            text: 'Please select',
+            value: 0,
+            selected: true
+        },
+    ];
+    $('#loadingImage_DdslickDealVehicleTypeBody').loadImager('removeLoadImage');
+    $("#loadingImage_DdslickDealVehicleTypeBody").loadImager('appendImage');
+    var selectedContRepMainBuyBack = false;
+    $('#ddslickDealVehicleTypeBody').ddslick({
+        //height: 150,
+        data: ddslickDealVehicleTypeBodyData,
+        width: '100%',
+        onSelected: function (selectedData) {
+            /*if (selectedContRepMainBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
+            selectedContRepMainBuyBack = true;*/
+            if (selectedData.selectedData.value > 0) {
+                //$("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
+                
+            }
+        }
+    });
+    $("#loadingImage_DdslickDealVehicleTypeBody").loadImager('removeLoadImage');
+
+    /**
+   * ddslick deal vehicle type dropdown function (body)
+   * @author Mustafa Zeynel Dağlı
+   * @since 16/08/2018
+   */
+    var getDealVehicleTypeDdslick = function () {
+        if (parseInt($("#deal_hidden").deal("getDealID")) > 0) {
+            $('#loadingImage_DdslickDealVehicleTypeBody').loadImager('removeLoadImage');
+            $("#loadingImage_DdslickDealVehicleTypeBody").loadImager('appendImage');
+            var ddDataVehicleGroupsBody = $('#ddslickVehicleGroupsBody').data("ddslick");
+            var ajax_DdslickDealVehicleTypeBody = $('#ajax_DdslickDealVehicleTypeBody').ajaxCallWidget({
+                proxy: '/Deal/DdslickGetDealVehicleTypeProxyService',
+                type: "POST",
+                failureLoadImage: true,
+                loadingImageID: "loadingImage_DdslickDealVehicleTypeBody",
+                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                noDataFailureText: window.lang.translate("No data returned from service"),
+                data: JSON.stringify({
+                    language_code: $("#langCode").val(),
+                    pk: "GsZVzEYe50uGgNM",
+                    url: "pkVehicleGroupsDdList_sysvehiclegroups",
+                    pkIdentity: $("#publicKey").val(),
+                    project_id: parseInt($("#deal_hidden").deal("getDealID")),
+                    vehicle_groups_id: parseInt(ddDataVehicleGroupsBody.selectedData.value)
+                })
+
+            });
+            ajax_DdslickDealVehicleTypeBody.ajaxCallWidget({
+                onSuccess: function (event, data) {
+                    var data = $.parseJSON(data);
+                    data.splice(0, 0,
+                        { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                    );
+                    $('#ddslickDealVehicleTypeBody').ddslick({
+                        //height: 150,
+                        data: data,
+                        width: '100%',
+                        onSelected: function (selectedData) {
+                            if (selectedData.selectedData.value > 0) {
+                                //vehicleKitTypeForDefineFields(selectedData.selectedData.text);
+                            }
+                        }
+                    });
+                    $("#loadingImage_DdslickDealVehicleTypeBody").loadImager('removeLoadImage');
+                },
+            })
+            ajax_DdslickDealVehicleTypeBody.ajaxCallWidget('call');
+        } else {
+            /*$('#tab_VehicleType').loadImager('removeLoadImage');
+            $('#tab_VehicleType').loadImager('appendImage');*/
+            //alert("deal id < 0");
+            $(window).warningMessage('resetOnShown');
+            $(window).warningMessage('show', "Please select deal",
+                "Please select deal");
+        }
+
+        
+    };
+
+
+    /**
+   * ddslick hydraulics (buyback) dropdown 
+   * @author Mustafa Zeynel Dağlı
+   * @since 15/08/2018
+   */
+    var ddslickHydraDataBuyBack = [
+        {
+            text: 'Please select',
+            value: 0,
+            selected: true
+        },
+        {
+            text: "Yes",
+            value: 1,
+            selected: false
+        },
+        {
+            text: "No",
+            value: 2,
+            selected: false
+        },
+
+    ];
+    $('#loadingImage_DdslickHydraBuyBack').loadImager('removeLoadImage');
+    $("#loadingImage_DdslickHydraBuyBack").loadImager('appendImage');
+    var selectedContHydraBuyBack
+    $('#ddslickHydraBuyBack').ddslick({
+        //height: 150,
+        data: ddslickHydraDataBuyBack,
+        width: '100%',
+
+        onSelected: function (selectedData) {
+            if (selectedContHydraBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
+            selectedContHydraBuyBack = true;
+            if (selectedData.selectedData.value > 0) {
+                $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
+            }
+        }
+    });
+    $("#loadingImage_DdslickHydraBuyBack").loadImager('removeLoadImage');
+
+    //BuyBack tab form elements end
+
+
 
 
     //add deal-campaign aside tab form elements begin

@@ -35,9 +35,7 @@ namespace Base.MVC.Controllers
         [SessionTimeOut]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         public async Task<IActionResult> Add()
-
         {
-
             var user = HttpContext.Session.Get<SessionUserModel>("CurrentUser");
             var ff = JsonConvert.SerializeObject(user);
             _distributedCache.SetString("userTestObj", JsonConvert.SerializeObject(user));
@@ -168,8 +166,6 @@ namespace Base.MVC.Controllers
             }
         }
 
-       
-
         /// <summary>
         /// get deal list for salesman
         /// Mustafa Zeynel
@@ -258,7 +254,7 @@ namespace Base.MVC.Controllers
         }
 
         /// <summary>
-        /// add vehicle type
+        /// get vehicle type ddslick
         /// Mustafa Zeynel
         /// </summary>
         /// 
@@ -286,8 +282,6 @@ namespace Base.MVC.Controllers
             }
 
         }
-
-
 
     }
 }
