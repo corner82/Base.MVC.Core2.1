@@ -218,6 +218,26 @@ $(document).ready(function () {
                         ajaxACLResources_vehicle.ajaxCallWidget('call');
                         //Warranty End
 
+                        //if (selectedData.selectedData.value = 1) {
+                        //    var instance = $("#gridContainer_warranty").dxDataGrid("instance");
+                        //    instance.option({
+                        //        dataSource: wrname,
+                        //        showSubmenuMode: {
+                        //            name: 'onClick'
+                        //        },
+                        //        columns: [
+                        //        {
+                        //                caption: window.lang.translate('Vehicle model name') + "...",
+                        //                encodeHtml: false,
+                        //                dataField: "vehicle_group_name"
+                        //            }, {
+                        //                caption: window.lang.translate('Warranty name') + "...",
+                        //                encodeHtml: false,
+                        //                dataField: "name"
+                        //            }],
+
+                        //    });
+                        //}
                     }
                     else {
                         VhType = "";
@@ -519,7 +539,6 @@ $(document).ready(function () {
 
     /* devexgrid */
     DevExpress.localization.locale(langCode);
-
 
     //warranty name   wrNameListRefresh
     $('#wrNameListRefresh').click(function() {
@@ -1042,7 +1061,19 @@ $(document).ready(function () {
         $("#loading-image-warranty").loadImager('removeLoadImage');
         $("#loading-image-warranty").loadImager('appendImage');
 
-        $('#dropdownModel').ddslick('select', { index: data.vehicle_group_id });
+        ddslick_modelId = data.vehicle_group_id;
+        ddslick_model_name = data.vehicle_group;
+
+        ddslick_warrantyId = data.apid;
+        ddslick_warranty_name = data.vehicle_group_name;
+
+        $('#dropdownModel').ddslick('selectByValue',
+            {
+                index: '' + data.vehicle_group_id + '',
+                text: '' + data.vehicle_group + ''
+            }
+        );
+
         $('#dropdownVhModel').ddslick('selectByValue',
             {
                 index: '' + data.vehicle_config_type_id + '',
@@ -1080,8 +1111,7 @@ $(document).ready(function () {
                 text: '' + data.vehicle_group + ''
             }
         );
-        ddslick_warrantyId = data.vehicle_group_id;
-        ddslick_warranty_name = data.vehicle_group_name;
+
 
         document.getElementById("txt-wrPrice-name").value = data.price_in_euros;
         //document.getElementById("txt-wrName-VhType").value = data.vehicle_group_id;

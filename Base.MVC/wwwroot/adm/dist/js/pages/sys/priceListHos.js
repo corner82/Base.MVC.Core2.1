@@ -340,7 +340,7 @@
             //mode: "batch"
             mode: "row",
             //allowAdding: true,
-            //allowUpdating: true,
+            allowUpdating: true,
             allowDeleting: true,
             useIcons: true
         },

@@ -223,7 +223,13 @@
 
     <script>
         $(document).ready(function () {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_minimal',
+                radioClass: 'iradio_minimal'
+            });
+            $("input").iCheck('uncheck');
 
+            $("#langCode").jsLangMaster();
 
         });
     </script>

@@ -14,7 +14,21 @@ $(document).ready(function () {
         actionButtonLabel: 'İşleme devam et'
     });
 
+/*
+* datepicker format
+* @author Ceydacan Seyrek
+* @since 29/08/2016
+*/
+    $('#start-datepicker').datepicker({
+        //autoclose: true,
+        locale: langCode,
+        format: 'yyyy/mm/dd'
+    });
+
+
     //Loading image
+    $("#loadingImage_FixedCost").loadImager();
+
     $("#loadingImage_DdslickModel").loadImager();
     $("#loadingImage_DdslickVehicle").loadImager();
     $("#loadingImage_DdslickCurrency").loadImager();
@@ -233,9 +247,9 @@ $(document).ready(function () {
         onSuccess: function (event, datacurrency) {
 
             var cbdata_currency = $.parseJSON(datacurrency);
-            cbdata_currency.splice(0, 0,
-                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-            );
+            //cbdata_currency.splice(0, 0,
+            //    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            //);
 
             $('#ddslickCurrency').ddslick({
                 data: cbdata_currency,
@@ -259,8 +273,8 @@ $(document).ready(function () {
         $("#gridContainer_fixedCostList").dxDataGrid("instance").refresh();
     });
 
-        //Traning Info grid
-        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillEducationsSalesmanGridx_syseducationssalesman&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
+        //Fixed Cost grid
+        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFixedSalesCostsGridx_sysfixedsalescosts&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
         var fixedCost = new DevExpress.data.CustomStore({
             load: function (loadOptions) {
                 var deferred = $.Deferred(),
@@ -276,12 +290,12 @@ $(document).ready(function () {
                 args.take = loadOptions.take || 12;
 
                 $.ajax({
-                    url: '/Training/SysTraningSalesmanGrid',
+                    url: '/Sys/SysFixedSalesCostsGrid',
                     dataType: "json",
                     data: JSON.stringify({
                         language_code: $("#langCode").val(),
                         pk: "GsZVzEYe50uGgNM",
-                        url: "pkFillEducationsSalesmanGridx_syseducationssalesman",
+                        url: "pkFixedSalesCostsGridx_sysfixedsalescosts",
                         pkIdentity: $("#publicKey").val(),
                         page: "",
                         rows: "",
@@ -304,14 +318,14 @@ $(document).ready(function () {
             },
             remove: function (key) {
                 var deferred = $.Deferred();
-
+                //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_sysfixedsalescosts&id=33&pk=GsZVzEYe50uGgNM
                 return $.ajax({
-                    url: '/Training/SysDeleteTrName',
+                    url: '/Sys/SysDeleteFixedCost',
                     dataType: "json",
                     data: JSON.stringify({
                         id: fixedCostId,
                         pk: "GsZVzEYe50uGgNM",
-                        url: "pkDeletedAct_syseducationssalesman"
+                        url: "pkDeletedAct_sysfixedsalescosts"
                     }),
                     type: 'POST',
                     contentType: 'application/json',
@@ -326,7 +340,7 @@ $(document).ready(function () {
             }
         });
 
-        //Training List Info dxDataGrid
+        //Fixed Cost Info dxDataGrid
         $("#gridContainer_fixedCostList").dxDataGrid({
 
             showColumnLines: true,
@@ -423,31 +437,51 @@ $(document).ready(function () {
             }, {
                 caption: window.lang.translate('Model group') + "...",
                 encodeHtml: false,
-                dataField: "name"
+                dataField: "vehicle_gruop_name"
             }, {
                 caption: window.lang.translate('Vehicle') + "...",
                 encodeHtml: false,
-                dataField: "name_surname"
+                    dataField: "model_description"
+            }, {
+                caption: window.lang.translate('All Vehicle'),
+                width: 40,
+                alignment: 'center',
+                encodeHtml: false,
+
+                cellTemplate: function (container, options) {
+                    var fieldHtml;
+                    var fcInfo_id = options.data.id;
+
+                    if (options.data.is_all_vehicle === 1) {
+                        //active
+                        $('<div />').addClass('dx-link').attr('class', "fa fa-check").on('click', function () {
+                           // activepasivefcInfo(fcInfo_id, options.data.active);
+                            //dm.successMessage('show', window.lang.translate('Active success message...'), window.lang.translate('Active success message...'));
+                        }).appendTo(container);
+                    }
+                }
+               
             }, {
                 caption: window.lang.translate('Fixed cost name') + "...",
                 encodeHtml: false,
-                dataField: "city_name"
+                dataField: "name"
             }, {
                 caption: window.lang.translate('Fixed cost price') + "...",
                 encodeHtml: false,
-                dataField: "address1"
+                dataField: "vvalue"
             }, {
                 caption: window.lang.translate('Currency') + "...",
                 encodeHtml: false,
-                dataField: "address2"
+                dataField: "currency_name"
             }, {
                 caption: window.lang.translate('Fixed cost start date') + "...",
                 encodeHtml: false,
-                dataField: "address3"
+                dataField: "start_date",
+                dataType: "date"
             }, {
                 caption: window.lang.translate('Warranty') + "...",
                 encodeHtml: false,
-                dataField: "postalcode"
+                dataField: "warranty_matrix_name"
             }],
 
             onSelectionChanged: function (selectedItems) {
@@ -464,13 +498,11 @@ $(document).ready(function () {
             onRowRemoved: function (e) {
                 $("#gridContainer_fixedCostList").dxDataGrid("instance").refresh();
             },
-        });
+    });
 
     //});
 
     //$('#fcListRefresh').click();
-
-
 
     /**
     * insert Fixed Cost
@@ -489,29 +521,49 @@ $(document).ready(function () {
 
 
             var ddDataModel = $('#ddslickModel').data('ddslick');
-            var model_id = ddDataModel.selectedData.value;
+            var model_id;
+            if (ddDataModel.selectedData.value > 0) {
+                model_id = ddDataModel.selectedData.value;
+            }
 
             var ddDataVhc = $('#ddslickVehicle').data('ddslick');
-            var vhc_id = ddDataVhc.selectedData.value;
+            var vhc_id ;
+            if (ddDataVhc.selectedData.value > 0) {
+                vhc_id = ddDataVhc.selectedData.value;
+            }
 
             var ddDataCry = $('#ddslickCurrency').data('ddslick');
-            var cry_id = ddDataCry.selectedData.value;
+            var cry_id;
+            if (ddDataCry.selectedData.value > 0) {
+                cry_id = ddDataCry.selectedData.value;
+            }
 
             var ddDataWr = $('#ddslickWarranty').data('ddslick');
-            var wr_id = ddDataWr.selectedData.value;
-            var wr_name = ddDataWr.selectedData.text;
+            var wr_id ;
+            if (ddDataWr.selectedData.value > 0) {
+                wr_id = ddDataWr.selectedData.value;
+            }
 
             var price = $('#txt-fc-price').val();
             var fc_name = $('#txt-fc-name').val();
 
-            var fc_name_wr = fc_name + ' ' + wr_name;
             var start_date = $('#start-datepicker').val();
 
+            var is_all_vehicle = 2;
 
-            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url= pkInsertAct_syseducationssalesman &=asd%20sok &address2=no%2011 &address3=dai%205 &postalcode=061010
-            //& description=asdaasdasdasd &education_definition_id=1 &user_id=1 & city_id=1 &education_value=10 &edu_start_date=11/10/2018 &$eduEndDate=12/10/2018 &pk=GsZVzEYe50uGgN
+            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?
+            //url=pkInsertAct_sysfixedsalescosts
+            //&name=gitgel%20cost
+            //&vehicle_gruop_id=1--
+            //&vehicle_second_group_id=--
+            //&vvalue=1111=&--
+            //currency_type_id=16--
+            //&start_date=2018-10-10--
+            //&is_all_vehicle=1--
+            //warranty_matrix_id=--
+            //&pk=GsZVzEYe50uGgNM--
 
-            var ajax_InsertTrainingInfo = $('#ajaxACL-insertTrainingInfo').ajaxCallWidget({
+            var ajax_InsertFixedCost = $('#ajaxACL-fixedCostList').ajaxCallWidget({
                 failureLoadImage: true,
                 loadingImageID: "loadingImage_FixedCost",
                 triggerSuccessAuto: true,
@@ -519,26 +571,32 @@ $(document).ready(function () {
                 transactionFailureText: window.lang.translate("Service URL not found, please report error"),
                 dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
 
-                proxy: '/Training/AddTrainingInfo',
+                proxy: '/Sys/AddFixedCost',
                 type: 'POST',
                 data: JSON.stringify({
-                    url: "pkInsertAct_syseducationssalesman",
-                    model_id: model_id,
-                    vch_id: vch_id,
-                    cry_id: cry_id,
+                    url: "pkInsertAct_sysfixedsalescosts",
+                    name: fc_name,
+                    vehicle_gruop_id: model_id,
+                    vehicle_second_group_id: vhc_id,
+                    currency_type_id: cry_id,
                     start_date: start_date,
-                    price: price,
-                    fc_name_wr: fc_name_wr,
+                    vvalue: price,
+                    warranty_matrix_id: wr_id,
+                    is_all_vehicle: is_all_vehicle,
                     pk: "GsZVzEYe50uGgNM"
                 })
             });
-            ajax_InsertTrainingInfo.ajaxCallWidget({
+            ajax_InsertFixedCost.ajaxCallWidget({
                 onReset: function (event, data) {
-                    resetTraningInfoForm();
+                    resetFixedCostForm();
                 },
+                onAfterSuccess: function (event, data) {
+                    $("#gridContainer_fixedCostList").dxDataGrid("instance").refresh();
+                }
             })
-            ajax_InsertTrainingInfo.ajaxCallWidget('call');
-            $('#fcListRefresh').click();
+            ajax_InsertFixedCost.ajaxCallWidget('call');
+            //$('#fcListRefresh').click();
+            
             return false;
         }
     })
@@ -581,29 +639,29 @@ $(document).ready(function () {
         $("#loadingImage_FixedCost").loadImager('appendImage');
 
         //document.getElementById("txt-bbreturn-price").value = data.SaleAmount;
-        document.getElementById("txt-fc-name").value = data.SaleAmount;
-        document.getElementById("txt-fc-price").value = data.OrderDate;
+        document.getElementById("txt-fc-name").value = data.name;
+        document.getElementById("txt-fc-price").value = data.vvalue;
 
-        ddslick_vehicleId = data.country_id;
-        ddslick_vehicle_name = data.country_name;
+        ddslick_modelId = data.vehicle_gruop_id;
+        ddslick_model_name = data.vehicle_gruop_name;
 
-        ddslick_warrantyId = data.region_id;
-        ddslick_warranty_name = data.region_name;
+        ddslick_vehicleId = data.vehicle_second_group_id;
+        ddslick_vehicle_name = data.model_description;
 
-        ddslick_modelId = data.city_id;
-        ddslick_model_name = data.city_name;
+        ddslick_warrantyId = data.warranty_matrix_id;
+        ddslick_warranty_name = data.warranty_matrix_name;
 
         $('#ddslickModel').ddslick('selectByValue',
             {
-                index: '' + data.country_id + '',
-                text: '' + data.country_name + ''
+                index: '' + data.vehicle_gruop_id + '',
+                text: '' + data.vehicle_gruop_name + ''
             }
         );
 
         $('#ddslickCurrency').ddslick('selectByValue',
             {
-                index: '' + data.country_id + '',
-                text: '' + data.country_name + ''
+                index: '' + data.currency_type_id + '',
+                text: '' + data.currency_name + ''
             }
         );
 
@@ -626,7 +684,7 @@ $(document).ready(function () {
             transactionSuccessMessage = window.lang.translate('Pasive successful');
         }
 
-        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateMakeActiveOrPassive_syseducationssalesman&id=29&pk=GsZVzEYe50uGgNM
+        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateMakeActiveOrPassive_sysfixedsalescosts&id=29&pk=GsZVzEYe50uGgNM
         var ajax_activepasiveTrInfolist = $('#ajaxACL-fixedCostList').ajaxCallWidget({
             failureLoadImage: true,
             loadingImageID: "loadingImage_DdslickFixedCostList",
@@ -634,12 +692,12 @@ $(document).ready(function () {
             transactionSuccessText: window.lang.translate('Transaction successful'),
             transactionFailureText: window.lang.translate("Service URL not found, please report error"),
             dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-            proxy: '/Training/SysDeleteTrInfo',
+            proxy: '/Sys/SysActivePassiveFixedCost',
             type: "POST",
             data: JSON.stringify({
                 id: fcInfo_id,
                 pk: "GsZVzEYe50uGgNM",
-                url: "pkUpdateMakeActiveOrPassive_syseducationssalesman"
+                url: "pkUpdateMakeActiveOrPassive_sysfixedsalescosts"
             }),
 
         });
