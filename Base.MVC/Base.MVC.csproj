@@ -41,7 +41,7 @@
     <Content Update="Views\BuybackTradeback\BuybackReturn.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Views\BuybackTradeback\BuybackYearlyQuota.cshtml">
+    <Content Update="Views\Sys\YearlyQuota.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\BuybackTradeback\BuybackMonthlyQuota.cshtml">
