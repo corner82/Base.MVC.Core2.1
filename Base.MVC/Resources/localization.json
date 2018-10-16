@@ -9,6 +9,15 @@
     }
   },
   {
+    "Key": "Quantity",
+    "LocalizedValue": {
+      "de-DE": "Beschreibung",
+      "en-US": "Quantity",
+      "af-ZA": "Beskrywing",
+      "tr-TR": "Miktar"
+    }
+  },
+  {
     "Key": "Description",
     "LocalizedValue": {
       "de-DE": "Beschreibung",

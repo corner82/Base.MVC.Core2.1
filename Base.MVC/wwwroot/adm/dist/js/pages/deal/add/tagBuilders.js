@@ -52,7 +52,7 @@
 
     });
     //var testArr = ['text', 'value'];
-    tagBuilderDealBuyBacks.tagCabin('addTags', JSON.stringify(tagdataDealBuyBacks)/*, testArr*/);
+    //tagBuilderDealBuyBacks.tagCabin('addTags', JSON.stringify(tagdataDealBuyBacks)/*, testArr*/);
 
     //buyBack tab form elements end
 
@@ -75,7 +75,7 @@
 
     });
     //var testArr = ['text', 'value'];
-    tagBuilderDealTradeBacks.tagCabin('addTags', JSON.stringify(tagdataDealTradeBacks)/*, testArr*/);
+    //tagBuilderDealTradeBacks.tagCabin('addTags', JSON.stringify(tagdataDealTradeBacks)/*, testArr*/);
 
     //tradeBack tab form elements end
 
@@ -97,6 +97,6 @@
 
     });
     //var testArr = ['text', 'value'];
-    tagBuilderDealCampaigns.tagCabin('addTags', JSON.stringify(tagdataDealCampaigns)/*, testArr*/);
+    //tagBuilderDealCampaigns.tagCabin('addTags', JSON.stringify(tagdataDealCampaigns)/*, testArr*/);
 
 });

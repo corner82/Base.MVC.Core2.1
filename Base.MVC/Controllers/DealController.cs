@@ -111,7 +111,7 @@ namespace Base.MVC.Controllers
         }
 
         /// <summary>
-        /// add buyback
+        /// add buyback to deal
         /// Mustafa Zeynel
         /// </summary>
         /// 
@@ -120,7 +120,7 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> AddBuyBackProxyService([FromBody] VehicleTypeModel vehicleTypeModel)
+        public async Task<string> AddBuyBackProxyService([FromBody] DealBuyBackModel vehicleTypeModel)
         {
             if (ModelState.IsValid)
             {
@@ -137,7 +137,6 @@ namespace Base.MVC.Controllers
             {
                 throw new Exception("Model state is not valid");
             }
-
         }
 
         /// <summary>
@@ -150,7 +149,7 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> AddTradeBackProxyService([FromBody] VehicleTypeModel vehicleTypeModel)
+        public async Task<string> AddTradeBackProxyService([FromBody] DealTradeBackModel tradeBackModel)
         {
             if (ModelState.IsValid)
             {
@@ -158,7 +157,7 @@ namespace Base.MVC.Controllers
                 var tokenGenerated = HttpContext.Session.GetHmacToken();
                 headers.Add("X-Hmac", tokenGenerated);
                 headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-                string queryStr = _queryCreater.GetQueryStringFromObject(vehicleTypeModel);
+                string queryStr = _queryCreater.GetQueryStringFromObject(tradeBackModel);
                 var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
                 var data = response.Content.ReadAsStringAsync().Result;
                 return data.ToString();
@@ -167,8 +166,9 @@ namespace Base.MVC.Controllers
             {
                 throw new Exception("Model state is not valid");
             }
-
         }
+
+       
 
         /// <summary>
         /// get deal list for salesman
