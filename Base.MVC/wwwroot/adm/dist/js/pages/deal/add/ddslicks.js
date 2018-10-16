@@ -158,7 +158,6 @@
      */
     $("#deal_hidden").organizeTabs({
         onAftertab_BuyBack: function (e) {
-            alert("test 3");
             $('#loadingImage_DdslickDealVehicleTypeBuyBack').loadImager('removeLoadImage');
             $("#loadingImage_DdslickDealVehicleTypeBuyBack").loadImager('appendImage');
             if (parseInt($("#deal_hidden").deal("getDealID")) > 0) {
@@ -170,8 +169,8 @@
                     $('#tab_BuyBack').loadImager('appendImage');*/
 
                     $(window).warningMessage('resetOnShown');
-                    $(window).warningMessage('show', "You must add at least one vehicle type to deal",
-                        "You must add at least one vehicle type to deal");
+                    $(window).warningMessage('show', window.lang.translate("You must add at least one vehicle type to deal"),
+                        window.lang.translate("You must add at least one vehicle type to deal"));
                     return false;
                 }
 
@@ -185,12 +184,13 @@
                         url: "pkProjectVehicleModelsTradeDdList_infoprojectbuybacks",
                         language_code: $("#langCode").val(),
                         pk: "GsZVzEYe50uGgNM",
-                        //project_id: $("#deal_hidden").deal("getDealID"),
-                        project_id: 1,
+                        project_id: $("#deal_hidden").deal("getDealID"),
+                        //project_id: 1,
                         pkIdentity: $("#publicKey").val(),
                     }),
                     type: 'POST'
                 });
+                var selectedContVehicleTypeBuyBack = false;
                 ajax_DdslickVehicleTypeBuyBack.ajaxCallWidget({
                     onSuccess: function (event, data) {
                         var data = $.parseJSON(data);
@@ -201,8 +201,9 @@
                             data: data,
                             width: '100%',
                             onSelected: function (selectedData) {
+                                if (selectedContVehicleTypeBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
+                                selectedContVehicleTypeBuyBack = true;
                                 if (selectedData.selectedData.value > 0) {
-                                    //vehicleKitTypeForDefineFields(selectedData.selectedData.text);
                                 }
                             }
                         });
@@ -210,15 +211,14 @@
 
                     },
                 });
-                alert("test 2");
                 ajax_DdslickVehicleTypeBuyBack.ajaxCallWidget('call');
             } else {
                 /*$('#tab_BuyBack').loadImager('removeLoadImage');
                 $('#tab_BuyBack').loadImager('appendImage');*/
 
                 $(window).warningMessage('resetOnShown');
-                $(window).warningMessage('show', "Please select deal",
-                    "Please select deal");
+                $(window).warningMessage('show', window.lang.translate("Please select deal"),
+                    window.lang.translate("Please select deal"));
                 // $('#loadingImage_DdslickVehicleTypeBuyBack').loadImager('removeLoadImage');
             }
         },
@@ -237,8 +237,8 @@
                     $('#tab_TradeBack').loadImager('appendImage');*/
 
                     $(window).warningMessage('resetOnShown');
-                    $(window).warningMessage('show', "You must add at least one vehicle type to deal",
-                        "You must add at least one vehicle type to deal");
+                    $(window).warningMessage('show', window.lang.translate("You must add at least one vehicle type to deal"),
+                        window.lang.translate("You must add at least one vehicle type to deal"));
                     return false;
                 }
 
@@ -252,12 +252,13 @@
                         url: "pkProjectVehicleModelsTradeDdList_infoprojecttradeback",
                         language_code: $("#langCode").val(),
                         pk: "GsZVzEYe50uGgNM",
-                        //project_id: $("#deal_hidden").deal("getDealID"),
-                        project_id : 1,
+                        project_id: $("#deal_hidden").deal("getDealID"),
+                        //project_id : 1,
                         pkIdentity: $("#publicKey").val(),
                     }),
                     type: 'POST'
                 });
+                var selectedContVehicleTypeTradeBack = false;
                 ajax_DdslickVehicleTypeTradeBack.ajaxCallWidget({
                     onSuccess: function (event, data) {
                         var data = $.parseJSON(data);
@@ -268,6 +269,8 @@
                             data: data,
                             width: '100%',
                             onSelected: function (selectedData) {
+                                if (selectedContVehicleTypeTradeBack == true) $("#gridContainer_TradeBack").dxDataGrid("instance").refresh();
+                                selectedContVehicleTypeTradeBack = true;
                                 if (selectedData.selectedData.value > 0) {
                                     //vehicleKitTypeForDefineFields(selectedData.selectedData.text);
                                 }
@@ -282,8 +285,8 @@
                 $('#tab_TradeBack').loadImager('appendImage');*/
 
                 $(window).warningMessage('resetOnShown');
-                $(window).warningMessage('show', "Please select deal",
-                    "Please select deal");
+                $(window).warningMessage('show', window.lang.translate("Please select deal"),
+                    window.lang.translate("Please select deal"));
                  $('#loadingImage_DdslickVehicleTypeBuyBack').loadImager('removeLoadImage');
             }
 

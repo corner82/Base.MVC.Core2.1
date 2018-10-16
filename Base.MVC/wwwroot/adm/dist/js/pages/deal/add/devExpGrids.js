@@ -267,6 +267,9 @@
             allowDeleting: false,
             useIcons: false
         },
+        selection: {
+            mode: "single"
+        },
         "export": {
             enabled: true,
             fileName: "TradeBackMatrix"
