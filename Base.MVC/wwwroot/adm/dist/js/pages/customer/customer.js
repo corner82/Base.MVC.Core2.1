@@ -12,10 +12,12 @@
 
 
     var selectedCustomerId = 0;
+    var selectedCustomerActivityId = 0;
+    var selectedContactPersonId = 0;
     var filldropdown = false;
 
-    var ddslick_countryId = 0;
-    var ddslick_country_name = "";
+    var ddslick_countryId = 1;
+    var ddslick_country_name = "South Africa";
     var ddslick_provinceId = 0;
     var ddslick_province_name = "";
     var ddslick_cityId = 0;
@@ -132,7 +134,7 @@
 
     }
 
-    tab_disable();
+    //tab_disable();
     /*
     * Customer Info insert form validation engine attached to work
     * @since 02/08/2016
@@ -2264,9 +2266,321 @@
         }
     });
 
-
+*/
     //Seçili Müşteriye ait Aktiviteler Listelenir
+    /**
+*.branch/dealer List Refresh
+* @returns 
+* @author Gül Özdemir
+* @since 03/09/2018
+*/
+
+    $('#customerActivityList').click(function () {
+
+        /* devexgrid */
+        var activity_data = new DevExpress.data.CustomStore({
+            load: function (loadOptions) {
+                var deferred = $.Deferred(),
+                    args = {};
+
+                if (loadOptions.sort) {
+                    args.orderby = loadOptions.sort[0].selector;
+                    if (loadOptions.sort[0].desc)
+                        args.orderby += " desc";
+                }
+
+                args.skip = loadOptions.skip || 0;
+                args.take = loadOptions.take || 12;
+
+                $.ajax({
+                    url: '/Customer/CustomerActivityGridList',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        language_code: $("#langCode").val(),
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkFillCustomeractivationsGridx_infocustomeractivations",
+                        pkIdentity: $("#publicKey").val(),
+                        page: "",
+                        rows: "",
+                        sort: "",
+                        order: "", //args.orderby,
+                        skip: args.skip,
+                        take: args.take,
+                        customer_id: selectedCustomerId
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                    },
+                    error: function () {
+                        deferred.reject("Data Loading Error");
+                    },
+                    timeout: 30000
+                });
+
+                return deferred.promise();
+            },
+            remove: function (key) {
+                /*
+                var deferred = $.Deferred();
+
+                return $.ajax({
+                    url: '/Customer/DeleteCustomerActivity',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        id: selectedBranchId,
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkDeletedAct_infocustomeractivations"  //Değiş
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                    },
+                    error: function () {
+                        deferred.reject("Data remove Error");
+                    },
+                    timeout: 30000
+                });
+                */
+            }
+        });
+
+        DevExpress.localization.locale(langCode);
+
+        $(function () {
+            $("#gridContainer_activity").dxDataGrid({
+
+                showColumnLines: true,
+
+                showRowLines: true,
+
+                showBorders: true,
+
+                dataSource: activity_data,
+
+                columnHidingEnabled: true,
+
+                selection: {
+                    mode: "single"
+                },
+
+                hoverStateEnabled: true,
+
+                editing: {
+                    //mode: "batch"
+                    mode: "form",
+                    //allowAdding: true,
+                    //allowUpdating: true,
+                    allowDeleting: true,
+                    useIcons: true
+                },
+
+                "export": {
+                    enabled: true,
+                    fileName: window.lang.translate('CustomerActivityList')
+                },
+
+                grouping: {
+                    contextMenuEnabled: true,
+                    expandMode: "rowClick"
+                },
+
+                groupPanel: {
+                    emptyPanelText: window.lang.translate('Use the context menu of header columns to group data'),
+                    visible: true
+                },
+
+                pager: {
+                    allowedPageSizes: [5, 8, 15, 30],
+                    showInfo: true,
+                    showNavigationButtons: true,
+                    showPageSizeSelector: true,
+                    visible: true
+                },
+
+                paging: {
+                    pageSize: 8
+                },
+                OnCellPrepared: function (options) {
+
+                    var fieldData = options.value;
+                    fieldHtml = "";
+
+                    fieldHtml = fieldData.value;
+                    options.cellElement.html(fieldHtml);
+
+                },
+
+                filterRow: {
+                    visible: true,
+                    applyFilter: "auto"
+                },
+
+                searchPanel: {
+                    visible: true,
+                    width: 240,
+                    placeholder: window.lang.translate('Search') + "...",
+                },
+
+                headerFilter: {
+                    visible: true
+                },
+
+                columnChooser: {
+                    enabled: true,
+                    mode: "select"
+                },
+
+                //{"id":"14","apid":14,
+                //"name": "asd,",
+                //"branch_no": "e345fert", 
+                //"address1": "213123 street", "address2": "no 11", "address3": "etlik", "postalcode": "06010", 
+                //"country_name": "South Africa", "region_name": "Eastern Cape", "city_name": "Graaff-Reinet", 
+                //"departman_name": "Middelburg", "country_id": 107, "country_region_id": 9, "city_id": 158, "sis_department_id": 45, "op_username": "mustafa.zeynel.admin@ostim.com.tr", 
+                //"state_active": "Active", "date_saved": "2018-10-04 16:41:42", "date_modified": null, "language_code": "en", 
+                //"active": 0, "op_user_id": 16, "language_id": "385", "language_name": "English"
+
+                columns: [
+                    /*{
+                        
+                        caption: window.lang.translate('Active/Passive'),
+                        width: 40,
+                        alignment: 'center',
+
+                        cellTemplate: function (container, options) {
+                            var fieldHtml;
+                            var activity_id = options.data.id;
+
+                            if (options.data.active === 1) {
+                                //active
+                                $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
+                                    activepassiveActivity(activity_id, options.data.active);
+
+                                }).appendTo(container);
+                            } else if (options.data.active === 0) {
+
+                                //passive
+                                $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
+                                    activepassiveActivity(activity_id, options.data.active);
+
+                                }).appendTo(container);
+                            }
+
+                            //$('<img />').addClass('dx-link').attr('src', "/adm/dist/img/icons.png").on('click', function () {
+                            //    dm.dangerMessage('show', window.lang.translate('dangerMessage...'), window.lang.translate('dangerMessage...'));
+                            //}).appendTo(container); 
+
+                        }
+
+                    }, */
+
+                    //    "registration_name": "COMMERCIAL MOTORS (PTY) LTD", 
+                    //"trading_name": "", "embrace_customer_no": "", "tu_emb_customer_no": "", "ce_emb_customer_no": "", "other_emb_customer_no": "", 
+                    //"www": "", "vatnumber": "", "registration_number": "", "registration_date": null, "customer_segment_type_id": 1, 
+                    //"segment_type_name": "Long Haul", "cs_activation_type_id": 1, 
+                    //"activation_type_name": "Fair Visit", "act_date": null, "cs_statu_types_id": 1, 
+                    //"statu_types_name": "Passive - Not a Buyer", "cs_act_statutype_id": 1, 
+                    //"cs_act_statutype_name": "Planned", "project_id": 0, "vehicle_model_id": 1, 
+                    //"vehicle_model_name": "CLA", "description": "1", "manager_description": "", 
+                    //"name": "Jimmy", "surname": "Page",
+                    //"email": "jimmypage@gmail.com", "cep": "05325698569", "tel": "", "fax": "", "op_username": "admin@gmail.com", "state_active": "Active", "date_saved": "2018-10-11 15:16:36", "date_modified": null, "language_code": "en", "active": 0, "op_user_id": 0, "language_id": "385", "language_name": "English"
+
+                    {
+                        caption: window.lang.translate('Contact person name'),
+                        dataField: "name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Contact person surname'),
+                        dataField: "surname",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Activity type'),
+                        dataField: "activation_type_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Statu type'),
+                        dataField: "statu_types_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Activity status'),
+                        dataField: "cs_act_statutype_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Vehicle Model'),
+                        dataField: "vehicle_model_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Description'),
+                        dataField: "description",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Segment type'),
+                        dataField: "segment_type_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('E-mail'),
+                        dataField: "email",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('GSM'),
+                        dataField: "cep",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Phone'),
+                        dataField: "tel",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Fax'),
+                        dataField: "fax",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Date saved'),
+                        dataField: "date_saved",
+                        encodeHtml: false
+                    }, {
+                        caption: "Active/Passive",
+                        dataField: "active",
+                        dataType: "boolean"
+                    }
+                ],
+
+                rowPrepared: function (rowElement, rowInfo) {
+                    return false;
+                    //if (rowInfo.data.key === 1)
+                    //    rowElement.css('background', 'green');
+                    //else if (rowInfo.data.key === 0)
+                    //    rowElement.css('background', 'yellow');
+
+                },
+
+                onSelectionChanged: function (selectedItems) {
+                    var data = selectedItems.selectedRowsData[0];
+                    if (data) {
+                        selectedCustomerActivityId = data.id;
+
+                    }
+                },
+
+                onRowRemoving: function (e) {
+                    selectedCustomerActivityId = e.key.id;
+                    //alert(selectedBranchId);
+                },
+
+                onRowRemoved: function (e) {
+                    $("#gridContainer_activity").dxDataGrid("instance").refresh();
+                },
+
+            });
+        });
+    })
+
+
+    $('#customerActivityList').click();
+
     
+/*
     $("#gridContainer_activity").dxDataGrid({
 
         showColumnLines: true,
@@ -2438,13 +2752,13 @@
     }
 
  /**
- * insert / Update Branch Form
+ * insert / Update Customer Form
  * @returns {undefined}
  * @author Gül Özdemir
- * @since 03/09/2018
+ * @since 14/10/2018
  */
 
-    $("#btn-customer-save").on("click", function (e) {
+    $("#btn-cst-save").on("click", function (e) {
         e.preventDefault();
 
         if ($("#customerInfoForm").validationEngine('validate')) {
@@ -2489,10 +2803,10 @@
             var ddData_AppType = $('#dropdownApplicationType').data('ddslick');
             var applicationId = ddData_AppType.selectedData.value;
 
-            var ddData_AnnuelRevenue = $('#dropdowAnnnuelRevenue').data('ddslick');
-            var annuelRevenueId = ddData_AnnuelRevenue.selectedData.value;
+            var ddData_AR = $('#dropdownAnnuelRevenue').data('ddslick');
+            var annuelRevenueId = ddData_AR.selectedData.value;
 
-            var ddData_Credibility = $('#dropdowCredibility').data('ddslick');
+            var ddData_Credibility = $('#dropdownCredibility').data('ddslick');
             var credibilityId = ddData_Credibility.selectedData.value;
 
             var ddData_CstCategory = $('#dropdownCustomerCategory').data('ddslick');
@@ -2511,6 +2825,42 @@
             var otherEmbraceNo = $('#txt-cst-other-embno').val();
 
             alert(selectedCustomerId);
+            var mydata = JSON.stringify({
+                url: "pkInsertAct_infocustomer",
+                registration_name: customerName,
+                name_short: customerShortName,
+                trading_name: customerTradingName,
+                address1: address1,
+                address2: address2,
+                address3: address3,
+                postalcode: postalCode,
+                country_id: countryId,
+                country2_id: 0,
+                country_region_id: provinceId,
+                city_id: cityId,
+                email: email,
+                phonenumber: phone,
+                www: website,
+                vatnumber: vatNumber,
+                registration_number: regNumber,
+                registration_date: regDate,
+                segment_type_id: segmentId,
+                sector_type_id: sectorId,
+                application_type_id: applicationId,
+                turnover_rate_id: annuelRevenueId,
+                reliabilityId: credibilityId,
+                customer_category_id: customercategoryId,
+                ne_count_type_id: totalemployeesId,
+                nv_count_type_id: totalvehicleId,
+                embrace_customer_no: omEmbraceNo,
+                tu_emb_customer_no: tuEmbraceNo,
+                ce_emb_customer_no: ceEmbraceNo,
+                other_emb_customer_no: otherEmbraceNo,
+                pk: "GsZVzEYe50uGgNM"
+            });
+
+            console.log(mydata);
+
 
             var ajax;
             if (selectedCustomerId === 0) {
@@ -2563,6 +2913,9 @@
                 ajax.ajaxCallWidget({
                     onReset: function (event, data) {
 
+                    },
+                    onSucces: function (event, data) {
+                        alert('success');
                     },
                     onAfterSuccess: function (event, data) {
                         $("#gridContainer_customer").dxDataGrid("instance").refresh();
@@ -2651,8 +3004,8 @@
 
         selectedCustomerId = 0;
 
-        ddslick_countryId = 0;
-        ddslick_country_name = "";
+        ddslick_countryId = 1;
+        ddslick_country_name = "South Africa";
 
         ddslick_provinceId = 0;
         ddslick_province_name = "";
@@ -3033,7 +3386,8 @@
         $("#loading-image-cstcp").loadImager('appendImage');
 
         //Customer_id alınacak
-        var cst_id = 1;
+        //selectedCustomerId;
+
         /*
         var cst_lastpurchase = $('#lastpurchase-datepicker').val();
         var cst_purchaselastupdate = $('#txt-cst-purchaselastupdate').val();

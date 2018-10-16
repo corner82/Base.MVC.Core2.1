@@ -7,7 +7,9 @@ $(document).ready(function () {
 
     "use strict";
 
-    var selectedVehicleId;
+    var selectedVehicleId = 0;
+    var selectedVehicleBTDescId = 0;
+    //var selectedVehicleModelGrTonajId = 0;
     var filldropdown = false;
 
     var ddslick_vehicleModelId = 0;
@@ -35,17 +37,16 @@ $(document).ready(function () {
     $("#loadingImage_FormVehicle").loadImager();
     
     $("#loadingImage_DdslickVehicleKitType").loadImager();
-    $("#loadingImage_DdslickApplicationType").loadImager();
     $("#loadingImage_DdslickVehicleModel").loadImager();
     $("#loadingImage_DdslickVehicleModelGr").loadImager();
-    $("#loadingImage_DdslickVehicleType").loadImager();
-    $("#loadingImage_DdslickVehicleVariant").loadImager();
-    $("#loadingImage_DdslickVehicleTonaj").loadImager();
+    $("#loadingImage_DdslickVehicleModelGrTonaj").loadImager();
     $("#loadingImage_DdslickHorsepower").loadImager();
-    $("#loadingImage_DdslickCab").loadImager();
     $("#loadingImage_DdslickConfig").loadImager();
+    $("#loadingImage_DdslickVehicleVariant").loadImager();
+    $("#loadingImage_DdslickCab").loadImager();
     $("#loadingImage_DdslickKP").loadImager();
     $("#loadingImage_DdslickBTOBTS").loadImager();
+    $("#loadingImage_DdslickApplicationType").loadImager();
 
     //to vehiclemodel form grid loading-image
     $("#loadingImage_GridVehicle").loadImager();
@@ -57,28 +58,7 @@ $(document).ready(function () {
 
     var vehicleModel = "";
     var vehicleType = "";
-    //alert(langCode);
 
-//KP NO gelmediği için geçici olarak cbdata açıldı.
-/*
-    var cbdata = [
-        {
-            text: window.lang.translate('Please select') + "...",
-            value: 1,
-            selected: true
-        },
-        {
-            text: "CKD",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "CBU",
-            value: 3,
-            selected: false
-        }
-    ];
-*/
     //CKD / CBU
     var ajaxACLResources_vehiclekittype = $('#ajax_DdslickVehicleKitType').ajaxCallWidget({
         failureLoadImage: true,
@@ -96,6 +76,7 @@ $(document).ready(function () {
             pkIdentity: $("#publicKey").val()   
         })
     });
+
     ajaxACLResources_vehiclekittype.ajaxCallWidget({
         onSuccess: function (event, datakittype) {
             var cbdata_kittype = $.parseJSON(datakittype);
@@ -145,6 +126,7 @@ $(document).ready(function () {
             pkIdentity: $("#publicKey").val()
         })
     });
+
     ajaxACLResources_vehiclemodel.ajaxCallWidget({
         onSuccess: function (event, datamodel) {
             var cbdata_model = $.parseJSON(datamodel);
@@ -229,12 +211,30 @@ $(document).ready(function () {
                                                         onSelected: function (selectedData) {
                                                             if (selectedData.selectedData.value > 0) {
                                                                 //alert(selectedData.selectedData.text);
-                                                                vehicleKitTypeForDefineFields(selectedData.selectedData.text);
+                                                                ddslick_vehicleModelGrTypeTonajId = selectedData.selectedData.value;
+                                                                ddslick_vehicleModelGrTypeTonajName = selectedData.selectedData.text;
+                                                                vehicleKitTypeForDefineFields(ddslick_vehicleModelGrTypeTonajName);
+
+                                                            } else {
+                                                                ddslick_vehicleModelGrTypeTonajId = 0; 
+                                                                ddslick_vehicleModelGrTypeTonajName = "";
                                                             }
-
+                                                            //selectedVehicleModelGrTonajId = 1;
+                                                            //alert(selectedVehicleModelGrTonajId);
+                                                            $('#vehicleBTDescList').click();
                                                         }
+                                                       
                                                     });
-
+                                                    if (filldropdown === true) {
+                                                       
+                                                        $('#ddslickVehicleModelGrTonaj').ddslick('selectByValue',
+                                                            {
+                                                                index: ddslick_vehicleModelGrTypeTonajId,
+                                                                value: ddslick_vehicleModelGrTypeTonajName
+                                                            });
+                                                        filldropdown = false;
+                                                    }
+                                                    
                                                     $("#loadingImage_DdslickVehicleModelGrTonaj").loadImager('removeLoadImage');
                                                 },
                                                 onReset: function (event, data) {
@@ -250,7 +250,15 @@ $(document).ready(function () {
                                         }
                                     }
                                 });
+                                if (filldropdown === true) {
 
+                                    $('#ddslickVehicleModelGr').ddslick('selectByValue',
+                                        {
+                                            index: ddslick_vehicleModelGrTypeId,
+                                            value: ddslick_vehicleModelGrTypeName
+                                        }
+                                    );
+                                }
                                 $("#loadingImage_DdslickVehicleModelGr").loadImager('removeLoadImage');
                             },
                             onReset: function (event, data) {
@@ -268,10 +276,9 @@ $(document).ready(function () {
                     }
                     document.getElementById("txt-vehicle-name").value = vehicleModel + "-" + document.getElementById("txt-modeldescription").value;
 
-
                 }
             });
-
+            
             $("#loadingImage_DdslickVehicleModel").loadImager('removeLoadImage');
         },
         onReset: function (event, data) {
@@ -284,8 +291,7 @@ $(document).ready(function () {
     ajaxACLResources_vehiclemodel.ajaxCallWidget('call');
 
     /////////////////////////////////////////////////////////////////////////
-//http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkHorsePowerDdList_syshorsepower&language_code=en&project_id=1&pk=GsZVzEYe50uGgNM
-//HorsePower
+    //HorsePower
     var ajaxACLResources_vehiclehorsepower = $('#ajax_DdslickHorsepower').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loadingImage_DdslickHorsepower",
@@ -302,6 +308,7 @@ $(document).ready(function () {
             pkIdentity: $("#publicKey").val()
         })
     });
+
     ajaxACLResources_vehiclehorsepower.ajaxCallWidget({
         onSuccess: function (event, datahorsepower) {
             var cbdata_horsepower = $.parseJSON(datahorsepower);
@@ -427,10 +434,7 @@ $(document).ready(function () {
     })
     ajaxACLResources_config.ajaxCallWidget('call');
 
-
-
     //4x2, 4x4, 6x4, 8x4, 6x6, 8x8, 8x4/4
-
     //CAB
     var ajaxACLResources_cab = $('#ajax_DdslickCab').ajaxCallWidget({
         failureLoadImage: true,
@@ -476,8 +480,8 @@ $(document).ready(function () {
     })
     ajaxACLResources_cab.ajaxCallWidget('call');
 
-    //KP
 
+    //KP
     var ajaxACLResources_kp = $('#ajax_DdslickKPNo').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loadingImage_DdslickKP",
@@ -569,8 +573,8 @@ $(document).ready(function () {
     })
     ajaxACLResources_btobts.ajaxCallWidget('call');
 
-    //Longhaul, Traction/distribution, Hydrodrive, Heavy Duty
 
+    //Longhaul, Traction/distribution, Hydrodrive, Heavy Duty
     var ajaxACLResources_applicationtype = $('#ajax_DdslickApplicationType').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loadingImage_DdslickApplicationType",
@@ -620,7 +624,7 @@ $(document).ready(function () {
 
     DevExpress.localization.locale(langCode);
 
-    /**
+/**
 *.vehicleList Refresh
 * @returns 
 * @author Gül Özdemir
@@ -644,7 +648,7 @@ $(document).ready(function () {
                 args.take = loadOptions.take || 12;
 
                 $.ajax({
-                    url: '/Vehicle/SysVehicleGridList',
+                    url: '/Vehicle/VehicleGridList',
                     dataType: "json",
                     data: JSON.stringify({
                         language_code: $("#langCode").val(),
@@ -673,10 +677,10 @@ $(document).ready(function () {
             },
             remove: function (key) {
                 var deferred = $.Deferred();
-                alert(selectedVehicleId);
+                //alert(selectedVehicleId);
 
                 return $.ajax({
-                    url: '/Vehicle/SysDeleteVehicle',
+                    url: '/Vehicle/DeleteVehicle',
                     dataType: "json",
                     data: JSON.stringify({
                         id: selectedVehicleId,
@@ -696,7 +700,7 @@ $(document).ready(function () {
             }
         });
 
-        DevExpress.localization.locale(langCode);
+        //DevExpress.localization.locale(langCode);
 
         $(function () {
             $("#gridContainer_vehicle").dxDataGrid({
@@ -782,7 +786,6 @@ $(document).ready(function () {
                     mode: "select"
                 },
 
-
                 columns: [
                     {
                         caption: window.lang.translate('Active/Passive'),
@@ -846,15 +849,15 @@ $(document).ready(function () {
                         encodeHtml: false
                     }, {
                         caption: window.lang.translate('Vehicle model'),
-                        dataField: "gt_model_name",
+                        dataField: "vehicle_groups_name",
                         encodeHtml: false
                     }, {
                         caption: window.lang.translate('Vehicle model type'),
-                        dataField: "factorymodel_name",
+                        dataField: "vehicle_group_types_name",
                         encodeHtml: false
                     }, {
                         caption: window.lang.translate('Vehicle model type tonaj'),
-                        dataField: "factorymodel_name",
+                        dataField: "gt_model_name",
                         encodeHtml: false
                     }, {
                         caption: window.lang.translate('Horsepower'),
@@ -908,7 +911,7 @@ $(document).ready(function () {
                     if (data) {
                         selectedVehicleId = data.id;
                         filldropdown = true;
-                        //fillVehicleForm(data);
+                        fillVehicleForm(data);
 
                     }
                 },
@@ -916,7 +919,7 @@ $(document).ready(function () {
                 onRowRemoving: function (e) {
                     selectedVehicleId = e.key.id;
     
-                    alert(selectedVehicleId);
+                    //alert(selectedVehicleId);
                 },
 
                 onRowRemoved: function (e) {
@@ -926,289 +929,20 @@ $(document).ready(function () {
             });
         });
     })
-/*
- *$('#vehicleList').click(function () {
 
-        var vehicle_dxGridListData = new DevExpress.data.CustomStore({
-            load: function (loadOptions) {
-                var deferred = $.Deferred(),
-                    args = {};
 
-                if (loadOptions.sort) {
-                    args.orderby = loadOptions.sort[0].selector;
-                    if (loadOptions.sort[0].desc)
-                        args.orderby += " desc";
-                }
-
-                args.skip = loadOptions.skip || 0;
-                args.take = loadOptions.take || 12;
-
-                $.ajax({
-                    url: '/Vehicle/SysVehicleList',
-                    dataType: "json",
-                    data: JSON.stringify({
-                        language_code: $("#langCode").val(),
-                        pk: "GsZVzEYe50uGgNM",
-                        url: "pkFillVehiclesGridx_sysvehicles",
-                        pkIdentity: $("#publicKey").val(),
-                        page: "",
-                        rows: "",
-                        sort: "",
-                        order: "", //args.orderby,
-                        skip: args.skip,
-                        take: args.take
-                    }),
-                    type: 'POST',
-                    contentType: 'application/json',
-                    success: function (result) {
-                        deferred.resolve(result.items, { totalCount: result.totalCount });
-                    },
-                    error: function () {
-                        deferred.reject("Data Loading Error");
-                    },
-                    timeout: 30000
-                });
-
-                return deferred.promise();
-            },
-            remove: function (key) {
-                var deferred = $.Deferred();
-
-                return $.ajax({
-                    url: '/Sys/SysDeleteVehicle',
-                    dataType: "json",
-                    data: JSON.stringify({
-                        id: selectedBranchId,
-                        pk: "GsZVzEYe50uGgNM",
-                        url: "pkDeletedAct_sysvehicles"
-                    }),
-                    type: 'POST',
-                    contentType: 'application/json',
-                    success: function (result) {
-                        deferred.resolve(result.items, { totalCount: result.totalCount });
-                    },
-                    error: function () {
-                        deferred.reject("Data remove Error");
-                    },
-                    timeout: 30000
-                });
-            }
-        });
-
-        $("#gridContainer_vehicle").dxDataGrid({
-
-            showColumnLines: true,
-
-            showRowLines: true,
-
-            showBorders: true,
-
-            dataSource: vehicle_dxGridListData,
-
-            columnHidingEnabled: true,
-
-            selection: {
-                mode: "single"
-            },
-
-            hoverStateEnabled: true,
-
-            editing: {
-                //mode: "batch"
-                mode: "form",
-                //allowAdding: true,
-                //allowUpdating: true,
-                allowDeleting: true,
-                useIcons: true
-            },
-
-            "export": {
-                enabled: true,
-                fileName: window.lang.translate('Vehicle list'),
-            },
-
-            grouping: {
-                contextMenuEnabled: true,
-                expandMode: "rowClick"
-            },
-
-            groupPanel: {
-                emptyPanelText: window.lang.translate('Use the context menu of header columns to group data'),
-                visible: true
-            },
-
-            pager: {
-                allowedPageSizes: [5, 8, 15, 30],
-                showInfo: true,
-                showNavigationButtons: true,
-                showPageSizeSelector: true,
-                visible: true
-            },
-
-            paging: {
-                pageSize: 8
-            },
-            OnCellPrepared: function (options) {
-
-                var fieldData = options.value;
-                fieldHtml = "";
-
-                fieldHtml = fieldData.value;
-                options.cellElement.html(fieldHtml);
-
-            },
-            filterRow: {
-                visible: true,
-                applyFilter: "auto"
-            },
-
-            searchPanel: {
-                visible: true,
-                width: 240,
-                placeholder: window.lang.translate('Search') + "...",
-            },
-
-            headerFilter: {
-                visible: true
-            },
-
-            columnChooser: {
-                enabled: true,
-                mode: "select"
-            },
-
-            
-            // {"id":"1","apid":1,"ckdcbu_type_id":1,"cbuckd_name":"CBU",
-            // "vehicle_gt_model_id":1,
-            // "gt_model_name":"26.280",
-            // "model_variant_id":1,
-            // "variant_name":"Tipper",
-            // "config_type_id":1,
-            // "config_type_name":"4 X 2","cap_type_id":1,"cap_type_name":"C","vehicle_app_type_id":1,
-            // "app_type_name":"Longhaul","kpnumber_id":1,"kp_name":"KP000404","btsbto_type_id":1,
-            // "btobts_name":"BTO","roadtype_id":1,"road_type_name":"dsdfsdf","gfz":"4r34r3",
-            // "factorymodel_name":"sdfsfsdf","op_username":"admin@gmail.com",
-            // "state_active":"Active","date_saved":"2018-08-31 20:21:35","date_modified":null,
-            // "language_code":"en","active":0,"op_user_id":0,"language_id":"385","language_name":"English"}
-             
-
-            columns: [
-            {
-                caption: window.lang.translate('Active/Passive'),
-                width: 40,
-                alignment: 'center',
-
-                cellTemplate: function (container, options) {
-                    var fieldHtml;
-                    var vehicle_id = options.data.id;
-
-                    if (options.data.active === 1) {
-                        //active
-                        $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
-                            activepassiveVehicle(vehicle_id, options.data.active);
-
-                        }).appendTo(container);
-                    } else if (options.data.active === 0) {
-
-                        //passive
-                        $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
-                            activepassiveVehicle(vehicle_id, options.data.active);
-
-                        }).appendTo(container);
-                    }
-
-                    //$('<img />').addClass('dx-link').attr('src', "/adm/dist/img/icons.png").on('click', function () {
-                    //    dm.dangerMessage('show', window.lang.translate('dangerMessage...'), window.lang.translate('dangerMessage...'));
-                    //}).appendTo(container); 
-
-                }
-
-            },{
-                caption: window.lang.translate('Vehicle name'),
-                dataField: "factorymodel_name"
-            }, {
-                caption: window.lang.translate('Vehicle Kit Type'),
-                dataField: "cbuckd_name"
-            }, {
-                caption: window.lang.translate('Vehicle Model Grouping'),
-                dataField: "gt_model_name"
-            }, {
-                caption: window.lang.translate('Vehicle type'),
-                dataField: "factorymodel_name"
-            }, {
-                caption: window.lang.translate('Vehicle tonaj type'),
-                dataField: "factorymodel_name"
-            }, {
-                caption: window.lang.translate('GVM'),
-                dataField: "factorymodel_name"
-            }, {
-                caption: window.lang.translate('Config'),
-                dataField: "config_type_name"
-            }, {
-                caption: window.lang.translate('Vehicle Variant'),
-                dataField: "variant_name"
-            }, {
-                caption: window.lang.translate('Vehicle Cab'),
-                dataField: "cap_type_name"
-            }, {
-                caption: window.lang.translate('GFZ'),
-                dataField: "gfz"
-            }, {
-                caption: window.lang.translate('KP No'),
-                dataField: "kp_name"
-            }, {
-                caption: window.lang.translate('BTO/BTS'),
-                dataField: "btobts_name"
-            }, {
-                caption: window.lang.translate('Model Description'),
-                dataField: "factorymodel_name"
-            }, {
-                caption: window.lang.translate('Application Type'),
-                dataField: "app_type_name"
-            }, {
-                caption: window.lang.translate('Property'),
-                dataField: "factorymodel_name"
-            }
-            ],
-            rowPrepared: function (rowElement, rowInfo) {
-                return false;
-                //if (rowInfo.data.key === 1)
-                //    rowElement.css('background', 'green');
-                //else if (rowInfo.data.key === 0)
-                //    rowElement.css('background', 'yellow');
-
-            },
-
-            onSelectionChanged: function (selectedItems) {
-                var data = selectedItems.selectedRowsData[0];
-                if (data) {
-                    selectedVehicleId = data.vehicle_id;
-                    filldropdown = true;
-                    fillVehicleForm(data);
-                }
-            },
-
-            onRowRemoving: function (e) {
-                selectedVehicleId = e.key.id;
-                //alert(selectedBranchId);
-            },
-
-            onRowRemoved: function (e) {
-                $("#gridContainer_vehicle").dxDataGrid("instance").refresh();
-            },
-        });
-    });
-    */
+    //////////////////////////////////////////////////////////////////////////////////////////////
     /**
-    *.vehicleBTDescList Refresh
+    * vehicleBTDescList Refresh
     * @returns 
     * @author Gül Özdemir
     * @since 03/09/2018
     */
-/*
+    
     $('#vehicleBTDescList').click(function () {
-       // devexgrid 
-        var vehicleBTDesc_dxGridListData = new DevExpress.data.CustomStore({
+
+        /* devexgrid */
+        var vehicleeBTDesc_data = new DevExpress.data.CustomStore({
             load: function (loadOptions) {
                 var deferred = $.Deferred(),
                     args = {};
@@ -1223,19 +957,20 @@ $(document).ready(function () {
                 args.take = loadOptions.take || 12;
 
                 $.ajax({
-                    url: '/Vehicle/SysVehicleList',
+                    url: '/Vehicle/VehicleBTDescGridList',
                     dataType: "json",
                     data: JSON.stringify({
                         language_code: $("#langCode").val(),
                         pk: "GsZVzEYe50uGgNM",
-                        url: "pkFillVehiclesGridx_sysvehicles",
+                        url: "pkFillVehiclesTradeNamesGridx_sysvehiclestrade",
                         pkIdentity: $("#publicKey").val(),
                         page: "",
                         rows: "",
                         sort: "",
                         order: "", //args.orderby,
                         skip: args.skip,
-                        take: args.take
+                        take: args.take,
+                        vehicle_gt_model_id: ddslick_vehicleModelGrTypeTonajId
                     }),
                     type: 'POST',
                     contentType: 'application/json',
@@ -1246,20 +981,22 @@ $(document).ready(function () {
                         deferred.reject("Data Loading Error");
                     },
                     timeout: 30000
-                }); 
+                });
 
                 return deferred.promise();
             },
+
             remove: function (key) {
                 var deferred = $.Deferred();
+                //alert(selectedVehicleId);
 
                 return $.ajax({
-                    url: '/Sys/SysDeleteVehicle',
+                    url: '/Vehicle/DeleteVehicleBTDesc',
                     dataType: "json",
                     data: JSON.stringify({
-                        id: selectedBranchId,
+                        id: selectedVehicleBTDescId,
                         pk: "GsZVzEYe50uGgNM",
-                        url: "pkDeletedAct_sysvehicles"
+                        url: "pkDeletedAct_sysvehiclestrade"
                     }),
                     type: 'POST',
                     contentType: 'application/json',
@@ -1271,172 +1008,389 @@ $(document).ready(function () {
                     },
                     timeout: 30000
                 });
+            },
+
+            insert: function (values) {
+                var deferred = $.Deferred();
+
+                return $.ajax({
+                    url: '/Vehicle/InsertVehicleBTDesc',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        description: ddslick_vehicleModelGrTypeTonajName + " " + values["trade_name"],
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkInsertAct_sysvehiclestrade",
+                        vehicle_gt_model_id: ddslick_vehicleModelGrTypeTonajId
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                        alert("success");
+                    },
+                    error: function () {
+                        deferred.reject("Data insert Error");
+                    },
+                    timeout: 30000
+                });
+            },
+
+            update: function (key, values) {
+                var deferred = $.Deferred();
+
+                //alert("update k" + key["id"]);
+                var updatekeyId = key["id"];
+
+                return $.ajax({
+                    url: '/Vehicle/UpdateVehicleBTDesc',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        description: values["trade_name"],
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkUpdateAct_sysvehiclestrade",
+                        id: updatekeyId
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                        alert("success");
+                    },
+                    error: function () {
+                        deferred.reject("Data update Error");
+                    },
+                    timeout: 30000
+                });
             }
         });
 
+        DevExpress.localization.locale(langCode);
 
-        $("#gridContainer_vehicle_buybacktradeback_desc").dxDataGrid({
+        $(function () {
+            $("#gridContainer_vehicleBTDesc").dxDataGrid({
 
-            showColumnLines: true,
+                showColumnLines: true,
 
-            showRowLines: true,
+                showRowLines: true,
 
-            showBorders: true,
+                showBorders: true,
 
-            dataSource: vehicleBTDesc_dxGridListData,
+                dataSource: vehicleeBTDesc_data,
 
-            columnHidingEnabled: true,
+                columnHidingEnabled: true,
 
-            selection: {
-                mode: "single"
-            },
+                selection: {
+                    mode: "single"
+                },
 
-            hoverStateEnabled: true,
+                hoverStateEnabled: true,
 
-            editing: {
-                //mode: "batch"
-                mode: "form",
-                allowAdding: true,
-                allowUpdating: true,
-                allowDeleting: true,
-                useIcons: true
-            },
+                editing: {
+                    //mode: "batch"
+                    mode: "form",
+                    allowAdding: true,
+                    allowUpdating: true,
+                    allowDeleting: true,
+                    useIcons: true
+                },
 
-            pager: {
-                allowedPageSizes: [3, 6, 9, 12],
-                showInfo: true,
-                showNavigationButtons: true,
-                showPageSizeSelector: true,
-                visible: true
-            },
+                "export": {
+                    enabled: true,
+                    fileName: window.lang.translate('VehicleBuybackTradebackDescriptionsList')
+                },
 
-            paging: {
-                pageSize: 3
-            },
+                grouping: {
+                    contextMenuEnabled: true,
+                    expandMode: "rowClick"
+                },
 
-            columns: [{
-                caption: window.lang.translate('Buyback & Tradeback descriptions'),
-                dataField: "factorymodel_name"
-            }],
+                groupPanel: {
+                    emptyPanelText: window.lang.translate('Use the context menu of header columns to group data'),
+                    visible: true
+                },
 
-            onSelectionChanged: function (selectedItems) {
-                var data = selectedItems.selectedRowsData[0];
-                if (data) {
-                    //fillVehicleForm(data);
-                }
-            }
+                pager: {
+                    allowedPageSizes: [5, 8, 15, 30],
+                    showInfo: true,
+                    showNavigationButtons: true,
+                    showPageSizeSelector: true,
+                    visible: true
+                },
 
+                paging: {
+                    pageSize: 8
+                },
+                OnCellPrepared: function (options) {
+
+                    var fieldData = options.value;
+                    fieldHtml = "";
+
+                    fieldHtml = fieldData.value;
+                    options.cellElement.html(fieldHtml);
+
+                },
+
+                filterRow: {
+                    visible: true,
+                    applyFilter: "auto"
+                },
+
+                searchPanel: {
+                    visible: true,
+                    width: 240,
+                    placeholder: window.lang.translate('Search') + "...",
+                },
+
+                headerFilter: {
+                    visible: true
+                },
+
+                columnChooser: {
+                    enabled: true,
+                    mode: "select"
+                },
+
+                columns: [
+                    {
+                        caption: window.lang.translate('Active/Passive'),
+                        width: 40,
+                        alignment: 'center',
+
+                        cellTemplate: function (container, options) {
+                            var fieldHtml;
+                            var vehiclebtdesc_id = options.data.id;
+
+                            if (options.data.active === 1) {
+                                //active
+                                $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
+                                    activepassiveVehicleBTDesc(vehiclebtdesc_id, options.data.active);
+
+                                }).appendTo(container);
+                            } else if (options.data.active === 0) {
+
+                                //passive
+                                $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
+                                    activepassiveVehicleBTDesc(vehiclebtdesc_id, options.data.active);
+
+                                }).appendTo(container);
+                            }
+
+                            //$('<img />').addClass('dx-link').attr('src', "/adm/dist/img/icons.png").on('click', function () {
+                            //    dm.dangerMessage('show', window.lang.translate('dangerMessage...'), window.lang.translate('dangerMessage...'));
+                            //}).appendTo(container); 
+
+                        }
+
+                    }, {
+                        caption: window.lang.translate('Vehicle buyback tradeback description'),
+                        dataField: "trade_name",
+                        encodeHtml: false
+                    }
+                ],
+                rowPrepared: function (rowElement, rowInfo) {
+                    return false;
+                    //if (rowInfo.data.key === 1)
+                    //    rowElement.css('background', 'green');
+                    //else if (rowInfo.data.key === 0)
+                    //    rowElement.css('background', 'yellow');
+
+                },
+
+                onSelectionChanged: function (selectedItems) {
+                    var data = selectedItems.selectedRowsData[0];
+                    if (data) {
+                        selectedVehicleBTDescId = data.id;
+                        //alert("z " + selectedVehicleBTDescId);
+                        //filldropdown = true;
+                    }
+                },
+
+                onInitNewRow: function (e) {
+                    //alert("InitNewRow");
+                    //e.key.trade_name.value = "zzzzzzzzzzzzzzz";
+                },
+
+                onModifying: function () {
+                    // Your code goes here
+                    //selectedVehicleBTDescId = e.key.id;
+                    //alert("m " + selectedVehicleBTDescId);
+                },
+
+                onRowRemoving: function (e) {
+                    selectedVehicleBTDescId = e.key.id;
+                    //alert("x " + selectedVehicleBTDescId);
+                },
+
+                onRowRemoved: function (e) {
+                    $("#gridContainer_vehicleBTDesc").dxDataGrid("instance").refresh();
+                },
+
+                onRowEditing: function (e) {
+                //    selectedVehicleBTDescId = e.key.id;
+                //    alert("y " + selectedVehicleBTDescId);
+                },
+
+            });
         });
+    })
 
-    });
-
-*/
-/*
     $('#vehicleBTDescList').click();
-
-   
-*/
 
     $('#vehicleList').click();
 
+
     /**
- * insertVehicle
+ * insert / Update Vehicle Form
  * @returns {undefined}
  * @author Gül Özdemir
- * @since 15/08/2018
+ * @since 15/10/2018
  */
-/*
-    window.insertVehicle= function () {
-        $("#loadingImage_FormVehicle").loadImager('removeLoadImage');
-        $("#loadingImage_FormVehicle").loadImager('appendImage');
 
-        var vehicle_name = $('#txt-vehicle-name').val();
-        var gfz = $('#txt-gfz').val();
-        var gfz_vehicletype = $('#txt-gfz-vehicletype').val();
+    $("#btn-vehicle-save").on("click", function (e) {
+        e.preventDefault();
 
-        alert("insertVehicle");
+        if ($("#vehicleForm").validationEngine('validate')) {
 
-        var ajax_GetVehicleInsert = $(ajax_FormVehicle).ajaxCallWidget({
-            proxy: '/Vehicle/SysInsertVehicle',
-            type: 'GET',
-            data: {
-                //url=pkInsertAct_sysvehicles & description=aracdescriptioni& factorymodel_name=xcv& gfz=ggttrr& ckdcbu_type_id=1& vehicle_gt_model_id=2& model_variant_id=1& config_type_id=2& cap_type_id=3& vehicle_app_type_id=1& kpnumber_id=5& btsbto_type_id=1& roadtype_id=2& pk=GsZVzEYe50uGgNM
-                url: "pkInsertAct_sysvehicles",
-                description: "TEST1",
-                factorymodel_name: "fm1",
-                gfz: "gfz1",
-                ckdcbu_type_id: "2",
-                vehicle_gt_model_id: "3",
-                model_variant_id: "2",
-                config_type_id: "3",
-                cap_type_id: "2",
-                vehicle_app_type_id: "1",
-                kpnumber_id: "55",
-                btsbto_type_id: "1",
-                roadtype_id: "2",
-                language_code:"en",
-                pk: "GsZVzEYe50uGgNM"
-            },
-        });
+            $("#loadingImage_FormVehicle").loadImager('removeLoadImage');
+            $("#loadingImage_FormVehicle").loadImager('appendImage');
 
-        ajax_GetVehicleInsert.ajaxCallWidget({
-            onError: function (event, textStatus, errorThrown) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'vehicle Ekleme İşlemi Başarısız...',
-                    'vehicle Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
-                console.error('"pkInsert_sysVehicle" servis hatası->' + textStatus);
-                $("#loadingImage_FormVehicle").loadImager('removeLoadImage');
-            },
-            onSuccess: function (event, data) {
-                console.log(data);
-                var data = data;
-                sm.successMessage({
-                    onShown: function (event, data) {
-                        $('#vehicleForm')[0].reset();
+            var vehicle_name = $('#txt-vehicle-name').val();
+            var gfz = $('#txt-gfz').val();
+            //var gfz-vehicletype = $('#txt-gfz-vehicletype').val();
+            var modeldescription = $('#txt-modeldescription').val();
 
+            var ddData_VehicleKitType = $('#ddslickVehicleKitType').data('ddslick');
+            var vehicleKitTypeId = ddData_VehicleKitType.selectedData.value;
+
+            var ddData_VehicleModel = $('#ddslickVehicleModel').data('ddslick');
+            var vehicleModelId = ddData_VehicleModel.selectedData.value;
+
+            var ddData_VehicleModelGr = $('#ddslickVehicleModelGr').data('ddslick');
+            var vehicleModelGrId = ddData_VehicleModelGr.selectedData.value;
+
+            var ddData_VehicleModelGrTonaj = $('#ddslickVehicleModelGrTonaj').data('ddslick');
+            var vehicleModelGrTonajId = ddData_VehicleModelGrTonaj.selectedData.value;
+
+            var ddData_Horsepower = $('#ddslickHorsepower').data('ddslick');
+            var horsepowerId = ddData_Horsepower.selectedData.value;
+
+            var ddData_Config = $('#ddslickConfig').data('ddslick');
+            var configId = ddData_Config.selectedData.value;
+
+            var ddData_VehicleVariant = $('#ddslickVehicleVariant').data('ddslick');
+            var vehicleVariantId = ddData_VehicleVariant.selectedData.value;
+
+            var ddData_Cab = $('#ddslickCab').data('ddslick');
+            var cabId = ddData_Cab.selectedData.value;
+
+            var ddData_KPNo = $('#ddslickKPNo').data('ddslick');
+            var kpNoId = ddData_KPNo.selectedData.value;
+
+            var ddData_BTOBTS = $('#ddslickBTOBTS').data('ddslick');
+            var btobtsId = ddData_BTOBTS.selectedData.value;
+
+            var ddData_ApplicationType = $('#ddslickApplicationType').data('ddslick');
+            var applicationTypeId = ddData_ApplicationType.selectedData.value;
+
+            //alert(selectedVehicleId);
+
+            var ajax;
+            if (selectedVehicleId === 0) {
+                //alert("yeni kayıt");
+                //Yeni kayıt
+                ajax = $('#ajaxACL-vehicle').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loadingImage_FormVehicle",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    proxy: '/Vehicle/InsertVehicle',
+                    type: "POST",
+                    data: JSON.stringify({
+                        url: "pkInsertAct_sysvehicles",
+                        description: modeldescription,
+                        factorymodel_name: vehicle_name,
+                        gfz: gfz,
+                        ckdcbu_type_id: vehicleKitTypeId,
+                        vehicle_gt_model_id: vehicleModelId,
+                        model_variant_id: vehicleVariantId,
+                        config_type_id: configId,
+                        cap_type_id: cabId,
+                        vehicle_app_type_id: applicationTypeId,
+                        kpnumber_id: kpNoId,
+                        btsbto_type_id: btobtsId,
+                        roadtype_id: "0",
+                        language_code: "en",
+                        pk: "GsZVzEYe50uGgNM"
+                    })
+                });
+
+                ajax.ajaxCallWidget({
+                    onReset: function (event, data) {
+
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_vehicle").dxDataGrid("instance").refresh();
                         $("#loadingImage_FormVehicle").loadImager('removeLoadImage');
+                    }
+                })
+                ajax.ajaxCallWidget('call');
 
+            } else {
+                //update
+                //alert("update");
+
+                wcm.warningComplexMessage({
+                    onConfirm: function (event, data) {
+                        ajax = $('#ajaxACL-vehicle').ajaxCallWidget({
+                            failureLoadImage: true,
+                            loadingImageID: "loadingImage_FormVehicle",
+                            triggerSuccessAuto: true,
+                            transactionSuccessText: window.lang.translate('Transaction successful'),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            proxy: '/Vehicle/UpdateVehicle',
+                            type: "POST",
+                            data: JSON.stringify({
+                                id: selectedVehicleId,
+                                url: "pkUpdateAct_sysvehicles",
+                                description: modeldescription,
+                                factorymodel_name: vehicle_name,
+                                gfz: gfz,
+                                ckdcbu_type_id: vehicleKitTypeId,
+                                vehicle_gt_model_id: vehicleModelId,
+                                model_variant_id: vehicleVariantId,
+                                config_type_id: configId,
+                                cap_type_id: cabId,
+                                vehicle_app_type_id: applicationTypeId,
+                                kpnumber_id: kpNoId,
+                                btsbto_type_id: btobtsId,
+                                roadtype_id: "0",
+                                language_code: "en",
+                                pk: "GsZVzEYe50uGgNM"
+                            })
+                        });
+
+                        ajax.ajaxCallWidget({
+                            onReset: function (event, data) {
+
+                            },
+                            onAfterSuccess: function (event, data) {
+                                $("#gridContainer_vehicle").dxDataGrid("instance").refresh();
+                                $("#loadingImage_FormVehicle").loadImager('removeLoadImage');
+                            }
+                        })
+                        ajax.ajaxCallWidget('call');
                     }
                 });
-                sm.successMessage('show', 'vehicle Kayıt İşlemi Başarılı...',
-                    'vehicle kayıt işlemini gerçekleştirdiniz... ',
-                    data);
-                $("#loadingImage_FormVehicle").loadImager('removeLoadImage');
-
-            },
-            onErrorDataNull: function (event, data) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'vehicle Kayıt İşlemi Başarısız...',
-                    'vehicle kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysvehiclemodel" servis datası boştur!!');
-                $("#loadingImage_FormVehicle").loadImager('removeLoadImage');
-            },
-            onErrorMessage: function (event, data) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'vehiclemodel Kayıt İşlemi Başarısız...',
-                    'vehiclemodel kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysvehiclemodel" servis datası boştur!!');
-                $("#loadingImage_FormVehicle").loadImager('removeLoadImage');
-            },
-            onError23503: function (event, data) {
-                dm.dangerMessage('Error23503');
-                $("#loadingImage_FormVehicle").loadImager('removeLoadImage');
-            },
-            onError23505: function (event, data) {
-                dm.dangerMessage({
-                    onShown: function (event, data) {
-                        $('#vehicleForm')[0].reset();
-                        $("#loadingImage_FormVehicle").loadImager('removeLoadImage');
-                    }
-                });
-                dm.dangerMessage('show', 'Kayıt İşlemi Başarısız...',
-                    'Aynı isim ile Araç kaydı yapılmıştır, yeni bir araç kaydı deneyiniz... ');
-                $("#loadingImage_FormVehicle").loadImager('removeLoadImage');
+                wcm.warningComplexMessage('show', 'Vehicle is update! Are you sure?', 'Vehicle is update! Are you sure?');
             }
-        })
-        ajax_GetVehicleInsert.ajaxCallWidget('call');
-    }
-*/
+        }
+        return false;
+
+    })
+
  /**
  * reset vehicle Form
  * @returns {undefined}
@@ -1449,6 +1403,7 @@ $(document).ready(function () {
         $("#loadingImage_FormVehicle").loadImager('appendImage');
 
         selectedVehicleId = 0;
+        selectedVehicleBTDescId = 0;
 
         ddslick_vehicleModelId = 0;
         ddslick_vehicleModelName = "";
@@ -1469,69 +1424,70 @@ $(document).ready(function () {
         $('#ddslickConfig').ddslick('select', { index: String(0) });
         $('#ddslickVehicleVariant').ddslick('select', { index: String(0) });
         $('#ddslickCab').ddslick('select', { index: String(0) });
-        $('#ddslickKPNo').ddslick('select', { index: String(0) });
+        $('#ddslickKPNo').ddslick('select', { index: String(0) }); 
         $('#ddslickBTOBTS').ddslick('select', { index: String(0) });
         $('#ddslickApplicationType').ddslick('select', { index: String(0) });
+
+        $("#gridContainer_vehicleBTDesc").dxDataGrid("instance").refresh();
 
         $("#loadingImage_FormVehicle").loadImager('removeLoadImage');
 
         return false;
     }
 
-    /**
-    * insert Vehicle Wrapper
-    * @returns {Boolean}
-    * @author Gül Özdemir
-    * @since 15/08/2018
-    */
-/*
-    window.insertVehicleWrapper = function (e) {
-        alert("GELDİM 1");
-        insertVehicle();
-        alert("BİTTİ 2");
 
-        //e.preventDefault();
-
-        //if ($("#vehicleForm").validationEngine('validate')) {
-
-        //    insertVehicle();
-        //}
-        return false;
-    }
-
-*/
     /**
     * Fill Vehicle form
     * @returns {Boolean}
     * @author Gül Özdemir
     * @since 15/08/2018
     */
-/*
+        
+    //"id": "10", "apid": 10, 
+    //"ckdcbu_type_id": 1, 
+    //"cbuckd_name": "CBU", 
+    //"vehicle_gt_model_id": 3, 
+    //"gt_model_name": "19.360", 
+    //"model_variant_id": 1, 
+    //"variant_name": "Tipper", 
+    //"config_type_id": 1, 
+    //"config_type_name": "4 X 2", 
+    //"cap_type_id": 2, 
+    //"cap_type_name": "L", 
+    //"vehicle_app_type_id": 1, 
+    //"app_type_name": "Traction\/Distribution", 
+    //"kpnumber_id": 1, 
+    //"kp_name": "KP000404", 
+    //"btsbto_type_id": 1, 
+    //"btobts_name": "BTO", 
+    //"gfz": "xxxx", 
+    //"factorymodel_name": "TGS-mmmmm", 
+    //"road_type_name": "mmmmm", 
+    //"horsepower_id": 2, 
+    //"horse_power": "19.360", 
+    //vehicle_group_types_id: 4
+    //vehicle_group_types_name: "L72W"
+    //vehicle_groups_id: 3
+    //vehicle_groups_name: "TGS"
+    //vehicle_gt_model_id: 3 <<==================>> model type tonaj id
+    //gt_model_name: "19.360"
+    //"op_username": "mustafa.zeynel.admin@ostim.com.tr", "state_active": "Active", "date_saved": "2018-10-15 09:59:18", "date_modified": null, "language_code": "en", "active": 0, "op_user_id": 16, "language_id": "385", "language_name": "English"
+
+        
     window.fillVehicleForm = function (data) {
 
         $("#loadingImage_FormVehicle").loadImager('removeLoadImage');
         $("#loadingImage_FormVehicle").loadImager('appendImage');
 
+        resetVehicleForm();
+
+        selectedVehicleId = data.id;
+
         document.getElementById("txt-vehicle-name").value = data.vehicle_name;
         document.getElementById("txt-gfz").value = data.gfz;
-        document.getElementById("txt-gfz-vehicletype").value = data.gfz_vehicletype;
-        document.getElementById("txt-modeldescription").value = data.modeldescription;
+        document.getElementById("txt-gfz-vehicletype").value = data.gfz;
+        document.getElementById("txt-modeldescription").value = data.factorymodel_name;
 
-        
-        //{"totalCount":"1","items":[{"id":"1","apid":1,
-        //"ckdcbu_type_id":1,"cbuckd_name":"CBU",
-        //"vehicle_gt_model_id":1,"gt_model_name":"26.280",
-        //"model_variant_id":1,"variant_name":"Tipper",
-        //"config_type_id":1,"config_type_name":"4 X 2",
-        //"cap_type_id":1,"cap_type_name":"C",
-        //"vehicle_app_type_id":1,"app_type_name":"Longhaul",
-        //"kpnumber_id":1,"kp_name":"KP000404",
-        //"btsbto_type_id":1,"btobts_name":"BTO",
-        //"roadtype_id":1,"road_type_name":"dsdfsdf",
-        //"gfz":"4r34r3","factorymodel_name":"sdfsfsdf",
-        //"op_username":"admin@gmail.com","state_active":"Active","date_saved":"2018-08-31 20:21:35","date_modified":null,"language_code":"en","active":0,"op_user_id":0,"language_id":"385","language_name":"English"}]}
-        
-        //$('#ddslickVehicleKitType').ddslick('select', { index: 2 });
         $('#ddslickVehicleKitType').ddslick('selectByValue',
             {
                 index: '' + data.ckdcbu_type_id + '',
@@ -1539,63 +1495,69 @@ $(document).ready(function () {
             }
         );
 
-        //$('#ddslickApplicationType').ddslick('select', { index: 2 });
-        $('#ddslickApplicationType').ddslick('selectByValue',
+        ddslick_vehicleModelId = data.vehicle_groups_id;
+        ddslick_vehicleModelName = data.vehicle_groups_name;
+
+        ddslick_vehicleModelGrTypeId = data.vehicle_group_types_id;
+        ddslick_vehicleModelGrTypeName = data.vehicle_group_types_name;
+
+        ddslick_vehicleModelGrTypeTonajId = data.vehicle_gt_model_id;
+        ddslick_vehicleModelGrTypeTonajName = data.gt_model_name;
+
+        $('#ddslickVehicleModel').ddslick('selectByValue',
             {
-                index: '' + data.vehicle_app_type_id + '',
-                value: '' + data.app_type_name + ''
+                index: ddslick_vehicleModelId,
+                value: ddslick_vehicleModelName
+            }
+        );
+        //vehicleModelGrTyp ve vehicleModelGrTypeTonaj otomatik tetikleniyor.
+
+        $('#ddslickHorsepower').ddslick('selectByValue',
+            {
+                index: data.horsepower_id,
+                value: data.horse_power
             }
         );
 
-        //$('#ddslickVehicleModel').ddslick('select', { index: 2 });
-
-        //$('#ddslickVehicleVariant').ddslick('select', { index: 2 });
-        $('#ddslickVehicleVariant').ddslick('selectByValue',
-            {
-                index: '' + data.model_variant_id + '',
-                value: '' + data.variant_name + ''
-            }
-        );
-
-        //$('#ddslickVehicleType').ddslick('select', { index: 2 });
-        //$('#ddslickVehicleTonaj').ddslick('select', { index: 2 });
-        //$('#ddslickGVM').ddslick('select', { index: 2 });
-
-        //$('#ddslickVehicleModelGr').ddslick('select', { index: 2 });
-        $('#ddslickVehicleModelGr').ddslick('selectByValue',
-            {
-                index: '' + data.vehicle_gt_model_id + '',
-                value: '' + data.gt_model_name + ''
-            }
-        );
-        //$('#ddslickConfig').ddslick('select', { index: 2 });
         $('#ddslickConfig').ddslick('selectByValue',
             {
-                index: '' + data.config_type_id + '',
-                value: '' + data.config_type_name + ''
+                index: data.config_type_id,
+                value: data.config_type_name
             }
         );
 
-        //$('#ddslickCab').ddslick('select', { index: 2 });
-        //$('#ddslickCab').ddslick('selectByValue',
-        //    {
-        //        index: '' + data.cap_type_id + '',
-        //        text: '' + data.cap_type_name + ''
-        //    }
-        //);
-        //$('#ddslickKPNo').ddslick('select', { index: 2 });
-        //$('#ddslickKPNo').ddslick('selectByValue',
-        //    {
-        //        index: '' + data.kpnumber_id + '',
-        //        text: '' + data.kp_name + ''
-        //    }
-        //);
-
-        //$('#ddslickBTOBTS').ddslick('select', { index: 1 });
-        $('#ddslickVehicleBTOBTS').ddslick('selectByValue',
+        $('#ddslickVehicleVariant').ddslick('selectByValue',
             {
-                index: '' + data.btsbto_type_id + '',
-                value: '' + data.btobts_name + ''
+                index: data.model_variant_id,
+                value: data.variant_name
+            }
+        );
+
+        $('#ddslickCab').ddslick('selectByValue',
+            {
+                index: data.cap_type_id,
+                value: data.cap_type_name
+            }
+        );
+
+        $('#ddslickKPNo').ddslick('selectByValue',
+            {
+                index: data.kpnumber_id,
+                value: data.kp_name
+            }
+        );
+
+        $('#ddslickBTOBTS').ddslick('selectByValue',
+            {
+                index: data.btsbto_type_id,
+                value: data.btobts_name
+            }
+        );
+
+        $('#ddslickApplicationType').ddslick('selectByValue',
+            {
+                index: data.vehicle_app_type_id,
+                value: data.app_type_name
             }
         );
 
@@ -1603,7 +1565,7 @@ $(document).ready(function () {
 
         return false;
     }
-*/
+
     /**
     * Model Description On Change
     * @returns 
@@ -1676,7 +1638,7 @@ $(document).ready(function () {
             transactionSuccessText: transactionSuccessMessage,
             transactionFailureText: window.lang.translate("Service URL not found, please report error"),
             dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-            proxy: '/Vehicle/SysActivePassiveVehicle',
+            proxy: '/Vehicle/ActivePassiveVehicle',
             type: "POST",
             data: JSON.stringify({
                 id: vehicle_id,
@@ -1693,6 +1655,7 @@ $(document).ready(function () {
 
             onAfterSuccess: function (event, data) {
                 $("#gridContainer_vehicle").dxDataGrid("instance").refresh();
+                $("#loadingImage_FormVehicle").loadImager('removeLoadImage');
             }
 
         })
@@ -1720,12 +1683,12 @@ $(document).ready(function () {
             transactionSuccessText: transactionSuccessMessage,
             transactionFailureText: window.lang.translate("Service URL not found, please report error"),
             dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-            proxy: '/Vehicle/SysActivePassiveVehicleBTDesc',
+            proxy: '/Vehicle/ActivePassiveVehicleBTDesc',
             type: "POST",
             data: JSON.stringify({
                 id: vehicleBTDesc_id,
                 pk: "GsZVzEYe50uGgNM",
-                //url: "pkUpdateMakeActiveOrPassive_sysvehicles"
+                url: "pkUpdateMakeActiveOrPassive_sysvehiclestrade"
             }),
 
         });
@@ -1735,7 +1698,8 @@ $(document).ready(function () {
             onSuccess: function (event, data) {
             },
             onAfterSuccess: function (event, data) {
-                $("#gridContainer_vehicle_buybacktradeback_desc").dxDataGrid("instance").refresh();
+                $("#gridContainer_vehicleBTDesc").dxDataGrid("instance").refresh();
+                $("#loading-image-vehicleBTDescGrid").loadImager('removeLoadImage');
             }
         })
         ajax_activepassivevehicleBTDesclist.ajaxCallWidget('call');

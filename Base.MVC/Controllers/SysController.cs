@@ -296,7 +296,7 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> SysInsertBranch([FromBody] CustomerPostModel branchModel)
+        public async Task<string> SysInsertBranch([FromBody] BranchPostModel branchModel)
         {
             if (ModelState.IsValid)
             {
