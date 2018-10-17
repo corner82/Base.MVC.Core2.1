@@ -41,6 +41,9 @@
     <Content Update="Views\BuybackTradeback\BuybackReturn.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Stock\StockHos.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Sys\YearlyQuota.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -194,6 +197,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Models\HttpRequest\Stock\" />
     <Folder Include="wwwroot\adm\plugins\font-awesome-5.1.1\" />
     <Folder Include="wwwroot\adm\plugins\node_js\modules\" />
   </ItemGroup>
