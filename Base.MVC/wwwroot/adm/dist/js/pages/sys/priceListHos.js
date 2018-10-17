@@ -2133,9 +2133,9 @@
             enabled: true,
             mode: "select"
         },
-        columnWidth: {
-            autoWidth: false
-        },
+        //columnWidth: {
+        //    autoWidth: false
+        //},
         columns: [{
         //    caption: window.lang.translate('Active/Passive'),
         //    width: 40,
@@ -2393,9 +2393,9 @@
                 enabled: true,
                 mode: "select"
             },
-            columnWidth: {
-                autoWidth: false
-            },
+            //columnWidth: {
+            //    autoWidth: false
+            //},
             columns: [{
                 //    caption: window.lang.translate('Active/Passive'),
                 //    width: 40,
@@ -2653,9 +2653,9 @@
                 enabled: true,
                 mode: "select"
             },
-            columnWidth: {
-                autoWidth: false
-            },
+            //columnWidth: {
+            //    autoWidth: false
+            //},
             columns: [{
                 //    caption: window.lang.translate('Active/Passive'),
                 //    width: 40,
