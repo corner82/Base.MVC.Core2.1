@@ -63,7 +63,7 @@
                                     <div class="form-group">
                                         <label><span lang="en">Vehicle list</span></label>
                                         <div class="" id="ajax_DdslickVehicleList">
-                                            <div id="loadingImage_VehicleList" class="input-group zeyn-load-imager">
+                                            <div id="loadingImage_DdslickVehicleList" class="input-group zeyn-load-imager">
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-copyright"></i>
                                                 </div>
@@ -71,21 +71,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @*<div class="form-group">
-                <label><span lang="en">Vehicle type?</span></label>
-                <div class="" id="ajax_DdslickVehicleType">
-                    <div id="loadingImage_VehicleType" class="input-group zeyn-load-imager">
-                        <div class="input-group-addon">
-                            <i class="fa fa-copyright"></i>
-                        </div>
-                        <div id="ddslickVehicleType" class="form-control"></div>
-                    </div>
-                </div>
-            </div>*@
                                     <div class="form-group">
                                         <label><span lang="en">Price for role</span></label>
                                         <div class="" id="ajax_DdslickPriceForRole">
-                                            <div id="loadingImage_PriceForRole" class="input-group zeyn-load-imager">
+                                            <div id="loadingImage_DdslickPriceForRole" class="input-group zeyn-load-imager">
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-copyright"></i>
                                                 </div>
@@ -96,7 +85,7 @@
                                     <div class="form-group">
                                         <label><span lang="en">Vehicle model group</span></label>
                                         <div class="" id="ajax_DdslickModel">
-                                            <div id="loadingImage_Model" class="input-group zeyn-load-imager">
+                                            <div id="loadingImage_DdslickModel" class="input-group zeyn-load-imager">
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-copyright"></i>
                                                 </div>
@@ -104,15 +93,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label><span lang="en">Vehicle model end group</span></label>
-                                    <div class="" id="ajax_DdslickVehicle">
-                                        <div id="loadingImage_Vehicle" class="input-group zeyn-load-imager">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-copyright"></i>
+                                    <div class="form-group">
+                                        <label><span lang="en">Vehicle model end group</span></label>
+                                        <div class="" id="ajax_DdslickVehicle">
+                                            <div id="loadingImage_DdslickVehicle" class="input-group zeyn-load-imager">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <div id="ddslickVehicle" class="form-control"></div>
                                             </div>
-                                            <div id="ddslickVehicle" class="form-control"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -121,7 +110,7 @@
                                     <div class="form-group">
                                         <label><span lang="en">Body option</span></label>
                                         <div class="" id="ajax_DdslickBodyOption">
-                                            <div id="loadingImage_BodyOption" class="input-group zeyn-load-imager">
+                                            <div id="loadingImage_DdslickBodyOption" class="input-group zeyn-load-imager">
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-copyright"></i>
                                                 </div>
@@ -132,7 +121,7 @@
                                     <div class="form-group">
                                         <label><span lang="en">Warranty</span></label>
                                         <div class="" id="ajax_DdslickWarranty">
-                                            <div id="loadingImage_Warranty" class="input-group zeyn-load-imager">
+                                            <div id="loadingImage_DdslickWarranty" class="input-group zeyn-load-imager">
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-copyright"></i>
                                                 </div>
@@ -143,7 +132,7 @@
                                     <div class="form-group">
                                         <label><span lang="en">Chassis number</span></label>
                                         <div class="" id="ajax_DdslickChassisNumber">
-                                            <div id="loadingImage_ChassisNumber" class="input-group zeyn-load-imager">
+                                            <div id="loadingImage_DdslickChassisNumber" class="input-group zeyn-load-imager">
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-copyright"></i>
                                                 </div>
@@ -151,39 +140,583 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label><span lang="en">Price</span></label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-user"></i>
-                                            </div>
-                                            <input type="number" class="form-control validate[required]" placeholder="Price" id="txt-plh-price">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                    </div>
-
+                                    @*<div class="form-group">
+                <label id="test"><span lang="en">Price</span></label>
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <input type="number" class="form-control validate[required]" placeholder="Price" id="txt-plh-price">
+                </div>
+            </div>*@
+                                    @*<div id="testceyda">
+            <button type="button" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-priceHos-price">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;price&nbsp;&nbsp;</button></div>*@
                                     <!-- /.col -->
                                 </div>
-                                <div class="box-footer">
-                                    <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-priceHos-clear">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                    <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-priceHos-save">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                
+                                <div class="col-md-12">
+                                    <div class="nav-tabs-custom" id="priceForRole_tab">
+                                        <ul class="nav nav-tabs pull-right">
+                                            <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true"><span lang="en">Salesman</span></a></li>
+                                            <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false" class="disable" disabled=""><span lang="en">ASM</span></a></li>
+                                            <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false" class="disable" disabled=""><span lang="en">PCD</span></a></li>
+                                            <li class=""><a href="#tab_4" data-toggle="tab" aria-expanded="false" class="disable" disabled=""><span lang="en">KAM</span></a></li>
+                                            <li class=""><a href="#tab_5" data-toggle="tab" aria-expanded="false" class="disable" disabled=""><span lang="en">PCD VW</span></a></li>
+                                            <li class=""><a href="#tab_6" data-toggle="tab" aria-expanded="false" class="disable" disabled=""><span lang="en">CH</span></a></li>
+                                            <li class=""><a href="#tab_7" data-toggle="tab" aria-expanded="false" class="disable" disabled=""><span lang="en">MAN PCD</span></a></li>
+                                            <li class="pull-left header"><i class="fa fa-th"></i></li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="tab_1">
+                                                <div class="row" id="loadingImage_PriceListSM">
+                                                    <div class="col-md-6" id="ajaxACL-insertSM">
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Retail price</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control validate[required]" placeholder="Retail price" id="txt-plh-SmRetailPrice">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Salesman limit</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control validate[required]" placeholder="Salesman limit" id="txt-plh-SmLimit">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Additional salesman commission</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control validate[required]" placeholder="Additional salesman commission" id="txt-plh-SmCommission">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- /.col -->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Campaign 1</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" placeholder="Campaign 1" id="txt-plh-SmCampaign1">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Campaign 2</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" placeholder="Campaign 2" id="txt-plh-SmCampaign2">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Campaign 3</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" placeholder="Campaign 2" id="txt-plh-SmCampaign3">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.col -->
+                                                </div>
+                                            </div>
+
+                                            <div class="tab-pane" id="tab_2">
+                                                <div class="row" id="loadingImage_PriceListASM">
+                                                    <div class="col-md-6" id="ajaxACL-insertASM">
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Retail price</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control validate[required]" placeholder="Retail price" id="txt-plh-AsmRetailPrice">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Salesman limit</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control validate[required]" placeholder="Salesman limit" id="txt-plh-AsmSmLimit">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">ASM limit</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control validate[required]" placeholder="ASM limit" id="txt-plh-AsmAsmLimit">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Additional salesman commission</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control validate[required]" placeholder="Additional salesman commission" id="txt-plh-AsmSmCommission">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- /.col -->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Additional ASM commission</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" placeholder="Additional ASM commission" id="txt-plh-AsmAsmCommission">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Campaign 1</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" placeholder="Campaign 1" id="txt-plh-AsmCampaign1">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Campaign 2</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" placeholder="Campaign 2" id="txt-plh-AsmCampaign2">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Campaign 3</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" placeholder="Campaign 3" id="txt-plh-AsmCampaign3">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.col -->
+                                                </div>
+                                            </div>
+
+                                            <div class="tab-pane" id="tab_3">
+                                                <div class="row" id="loadingImage_PriceListPCD">
+                                                    <div class="col-md-6" id="ajaxACL-insertPCD">
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Retail price</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control validate[required]" placeholder="Retail price" id="txt-plh-PcdRetailPrice">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Salesman limit</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control validate[required]" placeholder="Salesman limit" id="txt-plh-PcdSmLimit">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Dealer billing</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control validate[required]" placeholder="Dealer billing" id="txt-plh-PcdDealerBilling">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- /.col -->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Campaign 1</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" placeholder="Campaign 1" id="txt-plh-PcdCampaign1">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Campaign 2</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" placeholder="Campaign 2" id="txt-plh-PcdCampaign2">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Campaign 3</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" placeholder="Campaign 2" id="txt-plh-PcdCampaign3">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.col -->
+                                                </div>
+                                            </div>
+
+                                            <div class="tab-pane" id="tab_4">
+                                                <div class="row" id="loadingImage_PriceListKAM">
+                                                    <div class="col-md-6" id="ajaxACL-insertKAM">
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Retail price</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control validate[required]" placeholder="Retail price" id="txt-plh-KamRetailPrice">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Salesman limit</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control validate[required]" placeholder="Salesman limit" id="txt-plh-KamSmLimit">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Kam limit</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control validate[required]" placeholder="Kam Limit" id="txt-plh-KamKamLimit">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Additional Kam commission</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" placeholder="Additional Kam commission" id="txt-plh-KamKamCommission">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- /.col -->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Campaign 1</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" placeholder="Campaign 1" id="txt-plh-KamCampaign1">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Campaign 2</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" placeholder="Campaign 2" id="txt-plh-KamCampaign2">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Campaign 3</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" placeholder="Campaign 2" id="txt-plh-KamCampaign3">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.col -->
+                                                </div>
+                                            </div>
+
+                                            <div class="tab-pane" id="tab_5">
+                                                <div class="row" id="loadingImage_PriceListPCDVW">
+                                                    <div class="col-md-6" id="ajaxACL-insertPCDVW">
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Retail price</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control validate[required]" placeholder="Retail price" id="txt-plh-PcdVwRetailPrice">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Dealer billing</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control validate[required]" placeholder="Dealer billing" id="txt-plh-PcdVwDealerBilling">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Additional salesman commission</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" placeholder="Additional salesman commission" id="txt-plh-PcdVwSmCommission">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- /.col -->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Campaign 1</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" placeholder="Campaign 1" id="txt-plh-PcdVwCampaign1">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Campaign 2</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" placeholder="Campaign 2" id="txt-plh-PcdVwCampaign2">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Campaign 3</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" placeholder="Campaign 2" id="txt-plh-PcdVwCampaign3">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.col -->
+                                                </div>
+                                            </div>
+
+                                            <div class="tab-pane" id="tab_6">
+                                                <div class="row" id="loadingImage_PriceListCH">
+                                                    <div class="col-md-6" id="ajaxACL-insertCH">
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Retail price</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control validate[required]" placeholder="Retail price" id="txt-plh-ChRetailPrice">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">ASM limit</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control validate[required]" placeholder="ASM limit" id="txt-plh-ChAsmLimit">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">CH Limit</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control validate[required]" placeholder="CH limit" id="txt-plh-ChChLimit">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- /.col -->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Campaign 1</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" placeholder="Campaign 1" id="txt-plh-ChCampaign1">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Campaign 2</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" placeholder="Campaign 2" id="txt-plh-ChCampaign2">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Campaign 3</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" placeholder="Campaign 2" id="txt-plh-ChCampaign3">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.col -->
+                                                </div>
+                                            </div>
+
+                                            <div class="tab-pane" id="tab_7">
+                                                <div class="row" id="loadingImage_PriceListMANPCD">
+                                                    <div class="col-md-6" id="ajaxACL-insertMANPCD">
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Retail price</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control validate[required]" placeholder="Retail price" id="txt-plh-ManPcdRetailPrice">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Dealer Billing</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control validate[required]" placeholder="Dealer Billing" id="txt-plh-ManPcdDealerBilling">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Additional salesman commission</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control" placeholder="Additional salesman commission" id="txt-plh-PcdManSmCommission">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- /.col -->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Campaign 1</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control validate[required]" placeholder="Campaign 1" id="txt-plh-PcdManCampaign1">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Campaign 2</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control validate[required]" placeholder="Campaign 2" id="txt-plh-PcdManCampaign2">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label><span lang="en">Campaign 3</span></label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-user"></i>
+                                                                </div>
+                                                                <input type="text" class="form-control validate[required]" placeholder="Campaign 2" id="txt-plh-PcdManCampaign3">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.col -->
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+
+                                    </div>
+
+
                                 </div>
+                            </div>
+                            <div class="box-footer">
+                                <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-priceHos-clear">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-priceHos-save">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                            </div>
                         </form>
                         <!-- Devex datagrid -->
-                        <div class="box box-info" id="ajax_priceListHosGrid">
+                        <div class="box box-info" id="ajax_priceListHosGridStock">
                             <div class="box-header">
                                 <i class="fa fa-comments-o"></i>
-                                <h3 class="box-title"><span lang="en">Price list Hos info</span></h3>
+                                <h3 class="box-title"><span lang="en">Price list Hos info (stock)</span></h3>
 
                                 <div class="box-tools pull-right">
-                                    <button class="btn bg-teal btn-sm btn-small-miya" data-widget="refresh" id="priceHosRefresh"><i class="fa fa-refresh"></i></button>
+                                    <button class="btn bg-teal btn-sm btn-small-miya" data-widget="refresh" id="priceHosStockRefresh"><i class="fa fa-refresh"></i></button>
                                     <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                     <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
                                 </div>
                             </div>
-                            <div class="box-body" id="loadingImage_priceHosGrid">
-                                <div id="gridContainer_priceHos"></div>
+                            <div class="box-body" id="loadingImage_priceHosGridStock">
+                                <div id="gridContainer_priceHosStock"></div>
+                            </div>
+                        </div>
+
+                        <div class="box box-info" id="ajax_priceListHosGridDemo">
+                            <div class="box-header">
+                                <i class="fa fa-comments-o"></i>
+                                <h3 class="box-title"><span lang="en">Price list Hos info (demo)</span></h3>
+
+                                <div class="box-tools pull-right">
+                                    <button class="btn bg-teal btn-sm btn-small-miya" data-widget="refresh" id="priceHosDemoRefresh"><i class="fa fa-refresh"></i></button>
+                                    <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                    <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                                </div>
+                            </div>
+                            <div class="box-body" id="loadingImage_priceHosGridDemo">
+                                <div id="gridContainer_priceHosDemo"></div>
+                            </div>
+                        </div>
+
+                        <div class="box box-info" id="ajax_priceListHosGridTruckstogo">
+                            <div class="box-header">
+                                <i class="fa fa-comments-o"></i>
+                                <h3 class="box-title"><span lang="en">Price list Hos info (trucks to go)</span></h3>
+
+                                <div class="box-tools pull-right">
+                                    <button class="btn bg-teal btn-sm btn-small-miya" data-widget="refresh" id="priceHosTruckstogoRefresh"><i class="fa fa-refresh"></i></button>
+                                    <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                    <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                                </div>
+                            </div>
+                            <div class="box-body" id="loadingImage_priceHosGridTruckstogo">
+                                <div id="gridContainer_priceHosTruckstogo"></div>
                             </div>
                         </div>
 
