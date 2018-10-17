@@ -55,7 +55,7 @@
                         </div>
                     </div>
                     <div class="box-body">
-                        <div class="nav-tabs-custom">
+                        <div class="nav-tabs-custom" id="customer_tab">
                             <ul class="nav nav-tabs pull-right">
                                 <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true"><span lang="en">Customer</span></a></li>
                                 <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false" class="disable" disabled=""><span lang="en">Contact address</span></a></li>
@@ -418,7 +418,7 @@
                                         <div class="row" id="loading-image-cstPurchase">
                                             <div class="col-md-6">
 
-                                                <div class="form-group">
+                                                <div class="form-group" id="ajaxACL-purchaseplan">
                                                     <label><span lang="en">Last purchase date</span></label>
                                                     <div class="input-group date">
                                                         <div class="input-group-addon">
@@ -524,12 +524,12 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label><span lang="en">GSM</span></label>
+                                                    <label><span lang="en">Mobile Number</span></label>
                                                     <div class="input-group">
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-user"></i>
                                                         </div>
-                                                        <input type="text" class="form-control" placeholder="GSM" name="txt-cp-gsm" id="txt-cp-gsm">
+                                                        <input type="text" class="form-control" placeholder="Mobile Number" name="txt-cp-gsm" id="txt-cp-gsm">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -552,45 +552,17 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label><span lang="en">Birth date</span></label>
-                                                    <div class="input-group date">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-calendar"></i>
+                                                    <label><span lang="en">Source of lead</span></label>
+                                                    <div class="" id="ajaxACL-sourceoflead">
+                                                        <div id="loading-image-sourceoflead" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-copyright"></i>
+                                                            </div>
+                                                            <div id="dropdownSourceoflead" class="form-control"></div>
                                                         </div>
-                                                        <input type="text" class="form-control pull-right" name="cp-birthdate-datepicker" id="cp-birthdate-datepicker">
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label><span lang="en">Reference</span></label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-user"></i>
-                                                        </div>
-                                                        <input type="text" class="form-control" placeholder="Reference" name="txt-cp-reference" id="txt-cp-reference">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label><span lang="en">Hobies</span></label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-user"></i>
-                                                        </div>
-                                                        <input type="text" class="form-control" placeholder="Hobies" name="txt-cp-hobies" id="txt-cp-hobies">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label><span lang="en">Club</span></label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-user"></i>
-                                                        </div>
-                                                        <input type="text" class="form-control" placeholder="Club" name="txt-cp-club" id="txt-cp-club">
-                                                    </div>
-                                                </div>
-                                            </div>
 
-                                            <!-- /.col -->
-                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label><span lang="en">Priority</span></label>
                                                     <div class="" id="ajaxACL-priority">
@@ -602,6 +574,12 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                            </div>
+
+                                            <!-- /.col -->
+                                            <div class="col-md-6">
+
                                                 <div class="form-group">
                                                     <label><span lang="en">Title</span></label>
                                                     <div class="" id="ajaxACL-title">

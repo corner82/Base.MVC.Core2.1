@@ -31,7 +31,7 @@ namespace Base.MVC.Models.HttpRequest
         public string sector_type_id { get; set; }
         public string application_type_id { get; set; }
         public string turnover_rate_id { get; set; }
-        public string reliability_id { get; set; }
+        public string credibilityId { get; set; }
         public string customer_category_id { get; set; }
         public string ne_count_type_id { get; set; }
         public string nv_count_type_id { get; set; }

@@ -739,7 +739,7 @@ namespace Base.MVC.Controllers
             return data.ToString();
         }
 
-
+        
         /// <summary>
         /// get Customer Activity Grid List
         /// Gül Özdemir
@@ -751,6 +751,98 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
         public async Task<string> CustomerActivityGridList([FromBody] CustomerActivityModelGridList gridModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(gridModel);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model satate is not valid");
+            }
+
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Insert Purchase Plan
+        /// Gül Özdemir
+        /// </summary>
+        ///
+        ///http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_infocustomerpurchaseplan&customer_id=1&last_purchase_date=2016-04-10&date_of_purchase=2018-10-10&quantity=22&description=asdasd&last_brand=VW&pk=GsZVzEYe50uGgNM
+        /// <returns></returns>
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> InsertPurchasePlan([FromBody] PurchasePlanPostModel customerModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(customerModel);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model satate is not valid");
+            }
+
+        }
+
+        /// <summary>
+        /// Update Purchase Plan
+        /// Gül Özdemir
+        /// </summary>
+        ///
+        ///http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateAct_infocustomeractivations&act_date=2018-10-12&customer_id=1&contact_person_id=3&cs_activation_type_id=2&cs_statu_types_id=1&cs_act_statutype_id=1&project_id=2&customer_segment_type_id=2&vehicle_model_id=3&description=32222&manager_description=&pk=GsZVzEYe50uGgNM&id=4
+        /// <returns></returns>
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> UpdatePurchasePlan([FromBody] PurchasePlanUpdateModel customerModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(customerModel);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model satate is not valid");
+            }
+
+        }
+
+        /// <summary>
+        /// get Purchase Plan Grid List
+        /// Gül Özdemir
+        /// </summary>
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillCustomerPurchaseGridx_infocustomerpurchaseplan&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM&customer_id=1
+        /// <returns></returns>
+        //[SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> CustomerPurchasePlan([FromBody] PurchasePlanModelGridList gridModel)
         {
             if (ModelState.IsValid)
             {

@@ -110,6 +110,7 @@
     * @author Gül Özdemir
     * @since 06/08/2016
     */
+    /*
     var tab_active = function () {
         //Update & View Mode
         //enabled tabs
@@ -135,6 +136,12 @@
     }
 
     //tab_disable();
+    */
+
+
+    var tabOrganizer = $("#customer_tab").organizeTabs({ tabID: "customer_tab" });
+    $("#customer_tab").organizeTabs('disableAllTabs');
+
     /*
     * Customer Info insert form validation engine attached to work
     * @since 02/08/2016
@@ -273,8 +280,8 @@
                                                     if (filldropdown === true) {
                                                         $('#dropdownCity').ddslick('selectByValue',
                                                             {
-                                                                index: '' + ddslick_cityId + '',
-                                                                value: '' + ddslick_city_name + ''
+                                                                index: ddslick_cityId,
+                                                                value: ddslick_city_name
                                                             });
                                                         filldropdown = false;
                                                     }
@@ -292,8 +299,8 @@
                                 if (filldropdown === true) {
                                     $('#dropdownProvince').ddslick('selectByValue',
                                         {
-                                            index: '' + ddslick_provinceId + '',
-                                            value: '' + ddslick_province_name + ''
+                                            index: ddslick_provinceId,
+                                            value: ddslick_province_name
                                         }
                                     );
                                 }
@@ -717,7 +724,214 @@
 
 
 
+
     /* Purchase Plans loading services */
+
+    //Vehicle brand
+
+    var ajaxACLResources_vehiclebrand = $('#ajaxACL-lastpurchasedbrand').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loading-image-lastpurchasedbrand",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Vehicle/SysVehicleBrand/',
+        type: 'POST',
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkVehicleBrandDdList_sysvehiclebrand",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
+    ajaxACLResources_vehiclebrand.ajaxCallWidget({
+        onSuccess: function (event, databrand) {
+            var cbdata_brand = $.parseJSON(databrand);
+            cbdata_brand.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+            $('#dropdownLastPurchaseBrand').ddslick({
+                data: cbdata_brand,
+                width: '100%',
+                search: true,
+                searchText: window.lang.translate('Search'),
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            $("#loading-image-lastpurchasedbrand").loadImager('removeLoadImage');
+        },
+        onReset: function (event, data) {
+
+        },
+        onAfterSuccess: function (event, data) {
+            $("#loading-image-lastpurchasedbrand").loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_vehiclebrand.ajaxCallWidget('call');
+
+//Date of purchase plan - SysRangesQuarters
+
+    var ajaxACLResources_dateofpurchaseplan = $('#ajaxACL-dateofpurchaseplan').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loading-image-dateofpurchaseplan",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Sys/SysRangesQuarters/',
+        type: 'POST',
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkNumericalRangesQuartersDdList_sysnumericalranges",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
+    ajaxACLResources_dateofpurchaseplan.ajaxCallWidget({
+        onSuccess: function (event, datarangesquarters) {
+            var cbdata_rangesquarters = $.parseJSON(datarangesquarters);
+            cbdata_rangesquarters.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+            $('#dropdownDateofPurchasePlan').ddslick({
+                data: cbdata_rangesquarters,
+                width: '100%',
+                search: true,
+                searchText: window.lang.translate('Search'),
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            $("#loading-image-dateofpurchaseplan").loadImager('removeLoadImage');
+        },
+        onReset: function (event, data) {
+
+        },
+        onAfterSuccess: function (event, data) {
+            $("#loading-image-dateofpurchaseplan").loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_dateofpurchaseplan.ajaxCallWidget('call');
+
+
+    // Maybe/Yes/No - SysMaybeYesNo
+
+    var ajaxACLResources_purchasedecision = $('#ajaxACL-purchasedecision').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loading-image-purchasedecision",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Sys/SysMaybeYesNo/',
+        type: 'POST',
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "fillMaybeYesNoTypes_sysSpecificDefinitions",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
+    ajaxACLResources_purchasedecision.ajaxCallWidget({
+        onSuccess: function (event, datadecision) {
+            var cbdata_decision = $.parseJSON(datadecision);
+            cbdata_decision.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+            $('#dropdownPurchaseDecision').ddslick({
+                data: cbdata_decision,
+                width: '100%',
+                search: true,
+                searchText: window.lang.translate('Search'),
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            $("#loading-image-purchasedecision").loadImager('removeLoadImage');
+        },
+        onReset: function (event, data) {
+
+        },
+        onAfterSuccess: function (event, data) {
+            $("#loading-image-purchasedecision").loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_purchasedecision.ajaxCallWidget('call');
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //totalvehicles
+    //purchaseplan 
+    
+    var ajaxACLResources_numberofvehiclestopurchase = $('#ajaxACL-numberofvehiclestopurchase').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loading-image-totalvehicles",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Customer/SysCustomerTotalVehicles',
+        type: 'POST',
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkNumericalRangesVeichlesDdList_sysnumericalranges",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
+    ajaxACLResources_numberofvehiclestopurchase.ajaxCallWidget({
+        onSuccess: function (event, dataptotalvehicles) {
+            var cbdata_ptotalvehicles = $.parseJSON(dataptotalvehicles);
+            cbdata_ptotalvehicles.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+            $('#dropdownNumberofVehiclestoP').ddslick({
+                data: cbdata_ptotalvehicles,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+                        //alert(selectedData.selectedData.text);
+
+                    }
+
+                }
+            });
+
+            $('#dropdownNumberofVehiclestoP').ddslick({
+                data: cbdata_ptotalvehicles,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+                        //alert(selectedData.selectedData.text);
+
+                    }
+
+                }
+            });
+
+            $("#loading-image-numberofvehiclestopurchase").loadImager('removeLoadImage');
+        },
+        onReset: function (event, data) {
+
+        },
+        onAfterSuccess: function (event, data) {
+            $("#loading-image-numberofvehiclestopurchase").loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_numberofvehiclestopurchase.ajaxCallWidget('call');
+
 /*
     $('#loading-image-lastpurchasedbrand').loadImager('removeLoadImage');
     $("#loading-image-lastpurchasedbrand").loadImager('appendImage');
@@ -1491,7 +1705,7 @@
 /* devexgrid */
 
     $('#customerList').click(function () {
-    
+
         var customer_data = new DevExpress.data.CustomStore({
             load: function (loadOptions) {
                 var deferred = $.Deferred(),
@@ -1581,7 +1795,7 @@
 
                 editing: {
                     //mode: "batch"
-                    mode: "form",
+                    mode: "popup",
                     //allowAdding: true,
                     //allowUpdating: true,
                     allowDeleting: true,
@@ -1742,7 +1956,7 @@
                         encodeHtml: false
                     }, {
                         caption: window.lang.translate('Province'),
-                        dataField: "region_name",
+                        dataField: "region",
                         encodeHtml: false
                     }, {
                         caption: window.lang.translate('City'),
@@ -1817,8 +2031,8 @@
                         dataField: "turnover_rate_name",
                         encodeHtml: false
                     }, {
-                        caption: window.lang.translate('Oder management embrace no'),
-                        dataField: "om_emb_customer_no",
+                        caption: window.lang.translate('Order management embrace no'),
+                        dataField: "embrace_customer_no",
                         encodeHtml: false
                     }, {
                         caption: window.lang.translate('TopUsed embrace no'),
@@ -2767,8 +2981,8 @@
             $("#loading-image-cstInfo").loadImager('appendImage');
 
             var customerName = $('#txt-cst-name').val();
-            var customerShortName = $('#txt-cst-name').val();
-            var customerTradingName = $('#txt-cst-name').val();
+            var customerShortName = $('#txt-cst-sname').val();
+            var customerTradingName = $('#txt-cst-tradingname').val();
             //alert(branchName);
             //txt-embrace-no
             //var branchEmbraceNo = $('#txt-embrace-no').val();
@@ -2816,7 +3030,7 @@
             var totalemployeesId = ddData_TotalEmployees.selectedData.value;
 
             var ddData_TotalVehicles = $('#dropdownTotalVehicles').data('ddslick');
-            var totalvehicleId = ddData_TotalEmployees.selectedData.value;
+            var totalvehicleId = ddData_TotalVehicles.selectedData.value;
 
 
             var omEmbraceNo = $('#txt-cst-ordermanagement-embno').val();
@@ -2824,7 +3038,7 @@
             var ceEmbraceNo = $('#txt-cst-centurion-embno').val();
             var otherEmbraceNo = $('#txt-cst-other-embno').val();
 
-            alert(selectedCustomerId);
+            //alert(selectedCustomerId);
             var mydata = JSON.stringify({
                 url: "pkInsertAct_infocustomer",
                 registration_name: customerName,
@@ -2848,7 +3062,7 @@
                 sector_type_id: sectorId,
                 application_type_id: applicationId,
                 turnover_rate_id: annuelRevenueId,
-                reliabilityId: credibilityId,
+                credibilityId: credibilityId,
                 customer_category_id: customercategoryId,
                 ne_count_type_id: totalemployeesId,
                 nv_count_type_id: totalvehicleId,
@@ -2864,7 +3078,7 @@
 
             var ajax;
             if (selectedCustomerId === 0) {
-                alert("yeni kayıt");
+                //alert("yeni kayıt");
                 //Yeni kayıt
                 ajax = $('#ajaxACL-customer').ajaxCallWidget({
                     failureLoadImage: true,
@@ -2875,39 +3089,7 @@
                     dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
                     proxy: '/Customer/InsertCustomer',
                     type: "POST",
-                    data: JSON.stringify({
-                        url: "pkInsertAct_infocustomer",
-                        registration_name: customerName,
-                        name_short: customerShortName,
-                        trading_name: customerTradingName,
-                        address1: address1,
-                        address2: address2,
-                        address3: address3,
-                        postalcode: postalCode,
-                        country_id: countryId,
-                        country2_id: 0,
-                        country_region_id: provinceId,
-                        city_id: cityId,
-                        email: email,
-                        phonenumber: phone,
-                        www: website,
-                        vatnumber: vatNumber,
-                        registration_number : regNumber,
-                        registration_date : regDate,
-                        segment_type_id : segmentId,
-                        sector_type_id : sectorId,
-                        application_type_id : applicationId,
-                        turnover_rate_id : annuelRevenueId,
-                        reliabilityId : credibilityId,
-                        customer_category_id : customercategoryId,
-                        ne_count_type_id : totalemployeesId,
-                        nv_count_type_id : totalvehicleId,
-                        embrace_customer_no : omEmbraceNo,
-                        tu_emb_customer_no : tuEmbraceNo,
-                        ce_emb_customer_no : ceEmbraceNo,
-                        other_emb_customer_no : otherEmbraceNo,
-                        pk: "GsZVzEYe50uGgNM"
-                    })
+                    data: mydata
                 });
 
                 ajax.ajaxCallWidget({
@@ -2926,7 +3108,7 @@
 
             } else {
                 //update
-                alert("update");
+                //alert("update");
 
                 wcm.warningComplexMessage({
                     onConfirm: function (event, data) {
@@ -2963,7 +3145,7 @@
                                 sector_type_id: sectorId,
                                 application_type_id: applicationId,
                                 turnover_rate_id: annuelRevenueId,
-                                reliabilityId: credibilityId,
+                                credibilityId: credibilityId,
                                 customer_category_id: customercategoryId,
                                 ne_count_type_id: totalemployeesId,
                                 nv_count_type_id: totalvehicleId,
@@ -3033,7 +3215,8 @@
         $("#loading-image-cstInfo").loadImager('removeLoadImage');
     
         //yeni kayda açık, tablar kapatılıyor
-        tab_disable();
+        //tab_disable();
+        $("#customer_tab").organizeTabs('disableAllTabs');
 
         return false;
     }
@@ -3148,80 +3331,116 @@
             document.getElementById("txt-cst-other-embno").value = "";
         }
 
-        ddslick_countryId = data.country_id;
-        ddslick_country_name = data.country_name;
+        if (data.country_id) {
+            ddslick_countryId = data.country_id;
+            ddslick_country_name = data.country_name;
+        } else {
+            ddslick_countryId = 0;
+            ddslick_country_name = "";
+        }
 
-        ddslick_provinceId = data.region_id;
-        ddslick_province_name = data.region;
+        if (data.region_id) {
+            ddslick_provinceId = data.region_id;
+            ddslick_province_name = data.region;
+        } else {
+            ddslick_provinceId = 0;
+            ddslick_province_name = "";
+        }
 
-        ddslick_cityId = data.city_id;
-        ddslick_city_name = data.city_name;
+        if (data.city_id) {
+            ddslick_cityId = data.city_id;
+            ddslick_city_name = data.city_name;
+        } else {
+            ddslick_cityId = 0;
+            ddslick_city_name = "";
+        }
 
-        $('#dropdownCountry').ddslick('selectByValue',
-            {
-                index: '' + data.country_id + '',
-                value: '' + data.country_name + ''
-            }
-        );
+        if (data.country_id) {
+            $('#dropdownCountry').ddslick('selectByValue',
+                {
+                    index: data.country_id,
+                    value: data.country_name
+                }
+            );
+        }
 
-        $('#dropdownSegment').ddslick('selectByValue',
-            {
-                index: '' + data.segment_type_id + '',
-                value: '' + data.segment_type_name + ''
-            }
-        );
+        if (data.segment_type_id) {
+            $('#dropdownSegment').ddslick('selectByValue',
+                {
+                    index: data.segment_type_id,
+                    value: data.segment_type_name
+                }
+            );
+        }
 
-        $('#dropdownSector').ddslick('selectByValue',
-            {
-                index: '' + data.sector_type_id + '',
-                value: '' + data.sector_type_name + ''
-            }
-        );
+        if (data.sector_type_id) {
+            $('#dropdownSector').ddslick('selectByValue',
+                {
+                    index: data.sector_type_id,
+                    value: data.sector_type_name
+                }
+            );
+        }
 
-        $('#dropdownApplicationType').ddslick('selectByValue',
-            {
-                index: '' + data.application_type_id + '',
-                value: '' + data.application_type_name + ''
-            }
-        );
+        if (data.application_type_id) {
+            $('#dropdownApplicationType').ddslick('selectByValue',
+                {
+                    index: data.application_type_id,
+                    value: data.application_type_name
+                }
+            );
+        }
 
-        $('#dropdownCredibility').ddslick('selectByValue',
-            {
-                index: '' + data.reliability_id + '',
-                value: '' + data.reliability_name + ''
-            }
-        );
+        if (data.credibilityId) {
+            $('#dropdownCredibility').ddslick('selectByValue',
+                {
+                    index: data.credibilityId,
+                    value: data.reliability_name
+                }
+            );
+        }
 
-        $('#dropdownCustomerCategory').ddslick('selectByValue',
-            {
-                index: '' + data.customer_category_id + '',
-                value: '' + data.customer_category_name + ''
-            }
-        );
+        if (data.customer_category_id) {
+            $('#dropdownCustomerCategory').ddslick('selectByValue',
+                {
+                    index: data.customer_category_id,
+                    value: data.customer_category_name
+                }
+            );
+        }
 
-        $('#dropdownTotalEmployees').ddslick('selectByValue',
-            {
-                index: '' + data.ne_count_type_id + '',
-                value: '' + data.numberofemployees + ''
-            }
-        );
+        if (data.ne_count_type_id) {
+            $('#dropdownTotalEmployees').ddslick('selectByValue',
+                {
+                    index: data.ne_count_type_id,
+                    value: data.numberofemployees
+                }
+            );
+        }
 
-        $('#dropdownTotalVehicles').ddslick('selectByValue',
-            {
-                index: '' + data.nv_count_type_id + '',
-                value: '' + data.numberofvehicles + ''
-            }
-        );
+        //alert(data.nv_count_type_id);
 
-        $('#dropdownAnnuelRevenue').ddslick('selectByValue',
-            {
-                index: '' + data.turnover_rate_id + '',
-                value: '' + data.turnover_rate_name + ''
-            }
-        );
+        if (data.nv_count_type_id) {
+            $('#dropdownTotalVehicles').ddslick('selectByValue',
+                {
+                    index: data.nv_count_type_id,
+                    value: data.numberofvehicles
+                }
+            );
+        }
+
+        if (data.turnover_rate_id) {
+            $('#dropdownAnnuelRevenue').ddslick('selectByValue',
+                {
+                    index: data.turnover_rate_id,
+                    value: data.turnover_rate_name
+                }
+            );
+        }
 
         $("#loading-image-cstInfo").loadImager('removeLoadImage');
-        tab_active();
+        //tab_active();
+        $("#customer_tab").organizeTabs('enableAllTabs');
 
         return false;
     }
@@ -3354,10 +3573,56 @@
         return false;
     }
 
-    window.fillCustomerPuchaseForm = function (data) {
-        $("#loading-image-cstPurchase").loadImager('removeLoadImage');
+    window.fillCustomerPuchaseForm = function () {
+
+        var ajaxACLResources_cstpurchaseplan = $('#ajaxACL-purchaseplan').ajaxCallWidget({
+            failureLoadImage: true,
+            loadingImageID: "loading-image-cstPurchase",
+            triggerSuccessAuto: true,
+            transactionSuccessText: window.lang.translate('Transaction successful'),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            proxy: '/Customer/CustomerPurchasePlan/',
+            type: 'POST',
+            data: JSON.stringify({
+                language_code: $("#langCode").val(),
+                pk: "GsZVzEYe50uGgNM",
+                url: "pkFillCustomerPurchaseGridx_infocustomerpurchaseplan",
+                pkIdentity: $("#publicKey").val(),
+                customer_id: selectedCustomerId
+            })
+        });
+
+        ajaxACLResources_cstpurchaseplan.ajaxCallWidget({
+            onSuccess: function (event, datapurchaseplan) {
+                var cbdata_purchaseplan = $.parseJSON(datapurchaseplan);
+
+                //lastpurchase-datepicker
+
+                /*
+                 "last_purchase_date":"2016-04-10 00:00:00",
+                 "last_brand":"VW",
+                 "description":"asdasd",
+                 "date_of_purchase":"2018-10-10 00:00:00",
+                 "quantity":22,"op_username":"mustafa.zeynel.admin@ostim.com.tr","date_saved":"2018-10-15 01:10:20","date_modified":null,"op_user_id":16}]
+                 */
+
+                $("#loading-image-cstPurchase").loadImager('removeLoadImage');
+            },
+            onReset: function (event, data) {
+
+            },
+            onAfterSuccess: function (event, data) {
+                $("#loading-image-cstPurchase").loadImager('removeLoadImage');
+            }
+        })
+        ajaxACLResources_cstpurchaseplan.ajaxCallWidget('call');
+
+
+        /*$("#loading-image-cstPurchase").loadImager('removeLoadImage');
         $("#loading-image-cstPurchase").loadImager('appendImage');
 
+        
         document.getElementById("lastpurchase-datepicker").value = Date();
         document.getElementById("txt-cst-purchaselastupdate").value = Date();
 
@@ -3369,7 +3634,7 @@
         //document.getElementById("dropdownCity").SelectedIndex = 2; //data.cityId;
         //document.getElementById("dropdownSector").value = data.sectorId;
         //document.getElementById("dropdownSegment").value = data.segmentId;
-
+        */
         $("#loading-image-cstPurchase").loadImager('removeLoadImage');
         return false;
     }
