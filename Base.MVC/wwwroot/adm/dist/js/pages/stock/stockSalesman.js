@@ -1,7 +1,7 @@
 /*
-* Monthly Quota Form
+* Stock Form
 * @author Ceydacan Seyrek
-* @since 17/09/2018
+* @since 18/10/2018
 */
 $(document).ready(function () {
 
@@ -22,25 +22,25 @@ $(document).ready(function () {
     var ddslick_vehicleId = 0;
     var ddslick_vehicle_name = "";
     /*
-    * Monthly Quota LoadImager
+    * Stock LoadImager
     * @author Ceydacan Seyrek
-    * @since 17/09/2018
+    * @since 18/10/2018
     */
-    //to Monthly Quota form
+    //to Stock form
     $("#loadingImage_DdslickModel").loadImager();
     $("#loadingImage_DdslickVehicle").loadImager();
     $("#loadingImage_DdslickVehicleList").loadImager();
 
-    //to Monthly Quota form grid loading-image
-    $("#loadingImage_DdslickStockStockHosGrid").loadImager();
-    $("#loadingImage_DdslickDemoStockHosGrid").loadImager();
-    $("#loadingImage_DdslickTruckstogoStockHosGrid").loadImager();
+    //to Stock form grid loading-image
+    $("#loadingImage_DdslickStockStockSmGrid").loadImager();
+    $("#loadingImage_DdslickDemoStockSmGrid").loadImager();
+    $("#loadingImage_DdslickTruckstogoStockSmGrid").loadImager();
 
     var langCode = $("#langCode").val();
     var QuotaMonthID;
     //alert(langCode);
 
-    $('#stockHosForm').validationEngine();
+    $('#stockSalesmanForm').validationEngine();
 
     //vehicle list
     $('#loadingImage_DdslickVehicleList').loadImager('removeLoadImage');
@@ -209,10 +209,10 @@ $(document).ready(function () {
     DevExpress.localization.locale(langCode);
 
 // Stock Grid
-    $('#stockStockHosRefresh').click(function () {
+    $('#stockStockSmRefresh').click(function () {
         //Quota month Grid
         //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillSisMonthlyQuotasGridx_syssismonthlyquotas&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
-        var stockHos = new DevExpress.data.CustomStore({
+        var stockSm = new DevExpress.data.CustomStore({
             load: function (loadOptions) {
                 var deferred = $.Deferred(),
                     args = {};
@@ -277,12 +277,12 @@ $(document).ready(function () {
             //}
         });
         //Quota month Grid
-        $("#gridContainer_stockStockHos").dxDataGrid({
+        $("#gridContainer_stockStockSm").dxDataGrid({
 
             showColumnLines: true,
             showRowLines: true,
             showBorders: true,
-            dataSource: stockHos,
+            dataSource: stockSm,
             columnHidingEnabled: true,
             selection: {
                 mode: "single"
@@ -298,7 +298,7 @@ $(document).ready(function () {
             },
             "export": {
                 enabled: true,
-                fileName: "stockHos"
+                fileName: "stockSm"
             },
             grouping: {
                 contextMenuEnabled: true,
@@ -393,33 +393,9 @@ $(document).ready(function () {
             }, {
                 caption: window.lang.translate('Days in stock') + "...",
                 dataField: "quantity",
-                encodeHtml: false
+                    encodeHtml: false
             }, {
-                caption: window.lang.translate('Production date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Expected ship arrival date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('expected CBU date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Soll reg date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Required delivery date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Park Off') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Location') + "...",
+                caption: window.lang.translate('Retail price') + "...",
                 dataField: "quantity",
                 encodeHtml: false
             }, {
@@ -427,49 +403,13 @@ $(document).ready(function () {
                 dataField: "quantity",
                 encodeHtml: false
             }, {
-                caption: window.lang.translate('Comment') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Price') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('TBA1') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('TBA2') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('EngineType') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Gearbox type') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('FrontTyreMake') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Channel') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
                 caption: window.lang.translate('Salesman') + "...",
                 dataField: "quantity",
-                encodeHtml: false
+                encodeHtml: false           
             }, {
-                caption: window.lang.translate('Dealer') + "...",
+                caption: window.lang.translate('Comment') + "...",
                 dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('MANEC') + "...",
-                dataField: "quantity",
-                encodeHtml: false
+                encodeHtml: false          
             }],
 
             onSelectionChanged: function (selectedItems) {
@@ -489,14 +429,14 @@ $(document).ready(function () {
         });
     });
 
-    $('#stockStockHosRefresh').click();
+    $('#stockStockSmRefresh').click();
 // Stock Grid End
 
 // Demo Grid
-    $('#demoStockHosRefresh').click(function () {
+    $('#demoStockSmRefresh').click(function () {
         //Quota month Grid
         //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillSisMonthlyQuotasGridx_syssismonthlyquotas&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
-        var demoHos = new DevExpress.data.CustomStore({
+        var demoSm = new DevExpress.data.CustomStore({
             load: function (loadOptions) {
                 var deferred = $.Deferred(),
                     args = {};
@@ -561,12 +501,12 @@ $(document).ready(function () {
             //}
         });
         //Quota month Grid
-        $("#gridContainer_demoStockHos").dxDataGrid({
+        $("#gridContainer_demoStockSm").dxDataGrid({
 
             showColumnLines: true,
             showRowLines: true,
             showBorders: true,
-            dataSource: demoHos,
+            dataSource: demoSm,
             columnHidingEnabled: true,
             selection: {
                 mode: "single"
@@ -582,7 +522,7 @@ $(document).ready(function () {
             },
             "export": {
                 enabled: true,
-                fileName: "demostockHos"
+                fileName: "demostockSm"
             },
             grouping: {
                 contextMenuEnabled: true,
@@ -659,101 +599,41 @@ $(document).ready(function () {
                 dataField: "quantity",
                 encodeHtml: false
             }, {
-                caption: window.lang.translate('Chassis no') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Order no') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Body&extra') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Expected CBU Date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Days in stock') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Production date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Expected ship arrival date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('expected CBU date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Soll reg date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Required delivery date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Park Off') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Location') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Sold/unsold') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Comment') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Price') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('TBA1') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('TBA2') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('EngineType') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Gearbox type') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('FrontTyreMake') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Channel') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Salesman') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Dealer') + "...",
-                dataField: "quantity",
+                    caption: window.lang.translate('Chassis no') + "...",
+                    dataField: "quantity",
                     encodeHtml: false
-            }, {
-                caption: window.lang.translate('MANEC') + "...",
-                dataField: "quantity",
-                encodeHtml: false
+                }, {
+                    caption: window.lang.translate('Order no') + "...",
+                    dataField: "quantity",
+                    encodeHtml: false
+                }, {
+                    caption: window.lang.translate('Body&extra') + "...",
+                    dataField: "quantity",
+                    encodeHtml: false
+                }, {
+                    caption: window.lang.translate('Expected CBU Date') + "...",
+                    dataField: "quantity",
+                    encodeHtml: false
+                }, {
+                    caption: window.lang.translate('Days in stock') + "...",
+                    dataField: "quantity",
+                    encodeHtml: false
+                }, {
+                    caption: window.lang.translate('Retail price') + "...",
+                    dataField: "quantity",
+                    encodeHtml: false
+                }, {
+                    caption: window.lang.translate('Sold/unsold') + "...",
+                    dataField: "quantity",
+                    encodeHtml: false
+                }, {
+                    caption: window.lang.translate('Salesman') + "...",
+                    dataField: "quantity",
+                    encodeHtml: false
+                }, {
+                    caption: window.lang.translate('Comment') + "...",
+                    dataField: "quantity",
+                    encodeHtml: false      
             }],
 
             onSelectionChanged: function (selectedItems) {
@@ -773,14 +653,14 @@ $(document).ready(function () {
         });
     });
 
-    $('#demoStockHosRefresh').click();
+    $('#demoStockSmRefresh').click();
 // Demo Grid End
 
 // Demo Grid
-    $('#truckstogoStockHosRefresh').click(function () {
+    $('#truckstogoStockSmRefresh').click(function () {
         //Quota month Grid
         //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillSisMonthlyQuotasGridx_syssismonthlyquotas&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
-        var truckstogoHos = new DevExpress.data.CustomStore({
+        var truckstogoSm = new DevExpress.data.CustomStore({
             load: function (loadOptions) {
                 var deferred = $.Deferred(),
                     args = {};
@@ -845,12 +725,12 @@ $(document).ready(function () {
             //}
         });
         //Quota month Grid
-        $("#gridContainer_truckstogoStockHos").dxDataGrid({
+        $("#gridContainer_truckstogoStockSm").dxDataGrid({
 
             showColumnLines: true,
             showRowLines: true,
             showBorders: true,
-            dataSource: truckstogoHos,
+            dataSource: truckstogoSm,
             columnHidingEnabled: true,
             selection: {
                 mode: "single"
@@ -866,7 +746,7 @@ $(document).ready(function () {
             },
             "export": {
                 enabled: true,
-                fileName: "truckstogostockHos"
+                fileName: "truckstogostockSm"
             },
             grouping: {
                 contextMenuEnabled: true,
@@ -963,31 +843,7 @@ $(document).ready(function () {
                 dataField: "quantity",
                 encodeHtml: false
             }, {
-                caption: window.lang.translate('Production date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Expected ship arrival date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('expected CBU date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Soll reg date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Required delivery date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Park Off') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Location') + "...",
+                caption: window.lang.translate('Retail price') + "...",
                 dataField: "quantity",
                 encodeHtml: false
             }, {
@@ -995,47 +851,15 @@ $(document).ready(function () {
                 dataField: "quantity",
                 encodeHtml: false
             }, {
-                caption: window.lang.translate('Comment') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Price') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('TBA1') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('TBA2') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('EngineType') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Gearbox type') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('FrontTyreMake') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Channel') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
                 caption: window.lang.translate('Salesman') + "...",
                 dataField: "quantity",
                 encodeHtml: false
             }, {
-                caption: window.lang.translate('Dealer') + "...",
+                caption: window.lang.translate('Comment') + "...",
                 dataField: "quantity",
-                encodeHtml: false
+                encodeHtml: false      
             }, {
-                caption: window.lang.translate('MANEC') + "...",
+                caption: window.lang.translate('Website') + "...",
                 dataField: "quantity",
                 encodeHtml: false
             }],
@@ -1057,7 +881,7 @@ $(document).ready(function () {
         });
     });
 
-    $('#truckstogoStockHosRefresh').click();
+    $('#truckstogoStockSmRefresh').click();
 // Demo Grid End
 
 //    /**

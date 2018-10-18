@@ -41,6 +41,12 @@
     <Content Update="Views\BuybackTradeback\BuybackReturn.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Stock\StockBackOffice.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Stock\StockSalesman.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Stock\StockHos.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
