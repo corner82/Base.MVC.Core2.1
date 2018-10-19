@@ -31,7 +31,7 @@
     <div class="tab-content" id="testZeyn">
         <!-- Home tab content -->
         
-        <div class="tab-pane active pad" id="control-sidebar-tab-tradeins">
+        <div class="tab-pane active pad zeyn-load-imager position-relative" id="tab_TradeInVehicle">
             <form id="addTradeInVehicleForm">
                 <div class="row">
                     <div class="col-md-6 ">
@@ -179,35 +179,54 @@
                     </div>
                 </div>
             </form>
-                <!--<div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12 ">
-
-                <div id="gridContainer_BuyBack"></div>
-            </div>
-
-        </div>-->
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12 ">
-                        <div class="form-group">
-                            <label lang="en">TradeIn</label>
-                            <div class="">
-                                <div id="loadingImage_TagCabinDealCampaigns" class="input-group zeyn-load-imager">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-hand-o-right"></i>
-                                    </div>
-                                    <div style="margin-bottom: -10px;width:96%" class="tag-container-campaigns">
-                                        <ul id="tagcabin_DealCampaigns" class="tag-box"></ul>
-                                    </div>
-                                </div>
-
+            <div class="row">
+                <div class="col-md-6 ">
+                    <div class="form-group">
+                        <label>Engine no</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-mail-forward"></i>
                             </div>
+                            <input type="file" class="form-control validate[required]" id="file" name="file"  />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 "></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 ">
+                    <div id="gridContainer_TradeIn_Vehicle"></div>
+                </div>
+
+            </div>
+            <!--<div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 ">
+            <div class="form-group">
+                <label lang="en">TradeIn</label>
+                <div class="">
+                    <div id="loadingImage_TagCabinDealCampaigns" class="input-group zeyn-load-imager">
+                        <div class="input-group-addon">
+                            <i class="fa fa-hand-o-right"></i>
+                        </div>
+                        <div style="margin-bottom: -10px;width:96%" class="tag-container-campaigns">
+                            <ul id="tagcabin_DealCampaigns" class="tag-box"></ul>
                         </div>
                     </div>
 
                 </div>
-                <div class="row">
-                    <button class="btn btn-default pull-right" id="tab_next_2" style="margin-top: 20px;margin-right: 10px;" lang="en"><i class="fa fa-plus"></i>  Add</button>
-                </div>
+            </div>
+        </div>
+
+    </div>-->
+
+
+            <div class="row">
+
+                <button type="submit" class="btn btn-primary btn-md pull-right " style="margin-right:10px;margin-top:20px;" id="add_tradein_vehicle_deal">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;@Localizer["Save"]&nbsp;&nbsp;</button>
+                <button type="submit" class="btn btn-primary btn-md pull-right hidden" style="margin-right:10px;margin-top:20px;" id="add_tradein_vehicle_reset">&nbsp;<i class="fa fa-refresh"></i>&nbsp;&nbsp;@Localizer["Reset"]&nbsp;&nbsp;</button>
+                <button type="submit" class="btn btn-primary btn-md pull-right hidden" style="margin-right:10px;margin-top:20px;" id="update_tradein_vehicle_deal">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;@Localizer["Update"]&nbsp;&nbsp;</button>
+
+            </div>
 
         </div><!-- /.tab-pane -->
 

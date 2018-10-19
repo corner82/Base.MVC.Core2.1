@@ -2571,6 +2571,8 @@
             slide: true,
             top: 0,
             bottom: 0,
+            height: null,
+            scroll: false,
         },
         /**
          * private constructor method for jquery widget
@@ -2596,6 +2598,9 @@
             self.element.css('top', '' + self.options.width + 'px');
             self.element.addClass('control-sidebar-custom-left');
             self.element.addClass('control-sidebar-custom-light');
+
+            if (self.options.height != null) self.element.css('height', '' + self.options.height + 'px');
+            if (self.options.scroll == true) self.element.css('overflow', 'scroll');
             
         },
 
@@ -2678,6 +2683,8 @@
             slide: true,
             top: 0,
             bottom: 0,
+            height: null,
+            scroll : false,
         },
         /**
          * private constructor method for jquery widget
@@ -2703,6 +2710,9 @@
             self.element.css('top', '' + self.options.width + 'px');
             self.element.addClass('control-sidebar-custom-right');
             self.element.addClass('control-sidebar-custom-light');
+
+            if (self.options.height != null) self.element.css('height', '' + self.options.height + 'px');
+            if (self.options.scroll == true) self.element.css('overflow', 'scroll');
 
         },
 
