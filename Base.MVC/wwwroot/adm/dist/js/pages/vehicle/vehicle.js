@@ -1048,7 +1048,8 @@ $(document).ready(function () {
                         description: values["trade_name"],
                         pk: "GsZVzEYe50uGgNM",
                         url: "pkUpdateAct_sysvehiclestrade",
-                        id: updatekeyId
+                        id: updatekeyId,
+                        vehicle_gt_model_id: ddslick_vehicleModelGrTypeTonajId
                     }),
                     type: 'POST',
                     contentType: 'application/json',

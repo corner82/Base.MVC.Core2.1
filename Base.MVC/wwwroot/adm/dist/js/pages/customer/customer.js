@@ -12,8 +12,12 @@
 
 
     var selectedCustomerId = 0;
+    var selectedPurchasePlanId = 0;
     var selectedCustomerActivityId = 0;
     var selectedContactPersonId = 0;
+    var selectedContactPersonProductId = 0;
+    var SelectedProductInterestId = 0;
+
     var filldropdown = false;
 
     var ddslick_countryId = 1;
@@ -45,6 +49,8 @@
     $("#loading-image-customercategory").loadImager();
     $("#loading-image-applicationtype").loadImager();
     $("#loading-image-turnoverrate").loadImager();
+
+
     //to customer info grid loading-image
     $("#loading-image-cstInfoGrid").loadImager();
     /*
@@ -67,15 +73,16 @@
     */
     //to contact person form
     $("#loading-image-cstcp").loadImager();
-
+    $("#loading-image-cstcppi").loadImager();
     $("#loading-image-priority").loadImager();
     $("#loading-image-title").loadImager();
     $("#loading-image-role").loadImager();
+    $("#loading-image-sourceoflead").loadImager();
     $("#loading-image-productinterest").loadImager();
     $("#loading-image-compsatisfaction").loadImager();
     $("#loading-image-mansatisfaction").loadImager();
     $("#loading-image-brandloyalty").loadImager();
-    $("#loading-image-brand").loadImager();
+    $("#loading-image-lastbrand").loadImager(); 
 
    
     var langCode = $("#langCode").val();
@@ -98,7 +105,7 @@
         format: 'yyyy/mm/dd'
     });
 
-    $('#cp-birthdate-datepicker').datepicker({
+    $('#lastcontactdate-datepicker').datepicker({
         //autoclose: true,
         locale: langCode,
         format: 'yyyy/mm/dd'
@@ -110,7 +117,7 @@
     * @author Gül Özdemir
     * @since 06/08/2016
     */
-    /*
+
     var tab_active = function () {
         //Update & View Mode
         //enabled tabs
@@ -135,16 +142,37 @@
 
     }
 
-    //tab_disable();
-    */
+    tab_disable();
 
 
-    var tabOrganizer = $("#customer_tab").organizeTabs({ tabID: "customer_tab" });
-    $("#customer_tab").organizeTabs('disableAllTabs');
+
+    //var tabOrganizer = $("#customer_tab").organizeTabs({ tabID: "customer_tab" });
+    //$("#customer_tab").organizeTabs('disableAllTabs');
 
     /*
     * Customer Info insert form validation engine attached to work
     * @since 02/08/2016
+    */
+/*
+    jQuery.validator.addMethod(
+        "regNumber",
+        function (value, element) {
+            return value.match(/^(d\d\d\d)[\/](d\d\d\d\d\d)[\/](d\d)$/);
+        },
+        "Please enter a date in the format mm/dd/yyyy  NNNN/NNNNNN/NN"
+    );
+
+    ///////
+
+    $("#customerInfoForm").validate({
+        rules: {
+            dob: {
+                required: true,
+                date: true,
+                regnumber: true
+            },
+        }
+    });
     */
     $('#customerInfoForm').validationEngine();
     $('#customerPurchaseForm').validationEngine();
@@ -463,8 +491,77 @@
 
                 }
             });
-
+            
             $("#loading-image-credibility").loadImager('removeLoadImage');
+
+            //contact Person Form
+            $("#loading-image-compsatisfaction").loadImager('removeLoadImage');
+            $("#loading-image-compsatisfaction").loadImager('appendImage');
+            
+            $('#dropdownCompSatisfaction').ddslick({
+                data: cbdata_credibility,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+                        //alert(selectedData.selectedData.text);
+
+                    }
+
+                }
+            });
+            $("#loading-image-compsatisfaction").loadImager('removeLoadImage');
+
+
+            $("#loading-image-mansatisfaction").loadImager('removeLoadImage');
+            $("#loading-image-mansatisfaction").loadImager('appendImage');
+            $('#dropdownMANSatisfaction').ddslick({
+                data: cbdata_credibility,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+                        //alert(selectedData.selectedData.text);
+
+                    }
+
+                }
+            });
+            $("#loading-image-mansatisfaction").loadImager('removeLoadImage');
+
+
+            $("#loading-image-brandloyalty").loadImager('removeLoadImage');
+            $("#loading-image-brandloyalty").loadImager('appendImage');
+            $('#dropdownBrandLoyalty').ddslick({
+                data: cbdata_credibility,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+                        //alert(selectedData.selectedData.text);
+
+                    }
+
+                }
+            });
+            $("#loading-image-brandloyalty").loadImager('removeLoadImage');
+
+
+            $("#loading-image-priority").loadImager('removeLoadImage');
+            $("#loading-image-priority").loadImager('appendImage');
+            $('#dropdownPriority').ddslick({
+                data: cbdata_credibility,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+                        //alert(selectedData.selectedData.text);
+
+                    }
+
+                }
+            });
+            $("#loading-image-priority").loadImager('removeLoadImage');
         },
         onReset: function (event, data) {
 
@@ -754,8 +851,8 @@
             $('#dropdownLastPurchaseBrand').ddslick({
                 data: cbdata_brand,
                 width: '100%',
-                search: true,
-                searchText: window.lang.translate('Search'),
+                //search: true,
+                //searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
 
@@ -801,8 +898,8 @@
             $('#dropdownDateofPurchasePlan').ddslick({
                 data: cbdata_rangesquarters,
                 width: '100%',
-                search: true,
-                searchText: window.lang.translate('Search'),
+                //search: true,
+                //searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
 
@@ -849,8 +946,8 @@
             $('#dropdownPurchaseDecision').ddslick({
                 data: cbdata_decision,
                 width: '100%',
-                search: true,
-                searchText: window.lang.translate('Search'),
+                //search: true,
+                //searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
 
@@ -932,39 +1029,41 @@
     })
     ajaxACLResources_numberofvehiclestopurchase.ajaxCallWidget('call');
 
-/*
-    $('#loading-image-lastpurchasedbrand').loadImager('removeLoadImage');
-    $("#loading-image-lastpurchasedbrand").loadImager('appendImage');
+//Contact Person Loading Services
 
-    var ajaxACLResources_lastpurchasedbrand = $('#ajaxACL-lastpurchasedbrand').ajaxCallWidget({
-        proxy: '/Vehicle/SysVehicleBrand/',
+ /**
+* Contact Source of lead
+* @returns {undefined}
+* @author Gül Özdemir
+* @since 14/10/2018
+*/
+    var ajaxACLResources_sourceoflead = $('#ajaxACL-sourceoflead').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loading-image-sourceoflead",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Customer/SysSourceofLead/',
         type: 'POST',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkSourceOfLeadDdList_syssourceoflead",
+            pkIdentity: $("#publicKey").val()
+        })
     });
-
-    ajaxACLResources_lastpurchasedbrand.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-lastpurchasedbrand').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
-        },
-        onSuccess: function (event, datavehiclebrand) {
-            var cbdata_vehiclebrand = $.parseJSON(datavehiclebrand);
-            cbdata_vehiclebrand.splice(0, 0,
+    ajaxACLResources_sourceoflead.ajaxCallWidget({
+        onSuccess: function (event, datasourceoflead) {
+            var cbdata_sourceoflead = $.parseJSON(datasourceoflead);
+            cbdata_sourceoflead.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
-            $('#dropdownLastPurchaseBrand').ddslick({
-                data: cbdata_vehiclebrand,
+            $('#dropdownSourceoflead').ddslick({
+                data: cbdata_sourceoflead,
                 width: '100%',
-
+                //search: true,
+                //searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
 
@@ -972,451 +1071,90 @@
                 }
             });
 
-            $("#loading-image-lastpurchasedbrand").loadImager('removeLoadImage');
+            $("#loading-image-sourceoflead").loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-lastpurchasedbrand').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'Brand Bulunamamıştır...', 'Brand  bulunamamıştır...');
+        onReset: function (event, data) {
+
         },
+        onAfterSuccess: function (event, data) {
+            $("#loading-image-sourceoflead").loadImager('removeLoadImage');
+        }
     })
-    ajaxACLResources_lastpurchasedbrand.ajaxCallWidget('call');
+    ajaxACLResources_sourceoflead.ajaxCallWidget('call');
 
-    $('#loading-image-purchasedecision').loadImager('removeLoadImage');
-    $("#loading-image-purchasedecision").loadImager('appendImage');
 
-    var ajaxACLResources_purchasedecision = $('#ajaxACL-purchasedecision').ajaxCallWidget({
-        proxy: '/Sys/SysCountrys/',
-        type: 'POST',
-
-    });
-
-    ajaxACLResources_purchasedecision.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-purchasedecision').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
+ /**
+ * Contact Person Title
+ * @returns {undefined}
+ * @author Gül Özdemir
+ * @since 14/10/2018
+ */
+    var cbdata_title = [
+        {
+            text: window.lang.translate('Please select') + "...",
+            value: 0,
+            selected: true
         },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
-            $('#dropdownPurchaseDecision').ddslick({
-                //height: 150,
-                data: cbdata,
-                width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loading-image-purchasedecision").loadImager('removeLoadImage');
+        {
+            text: "Mrs.",
+            value: 1,
+            selected: false
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-purchasedecision').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'Rol Bulunamamıştır...', 'Rol  bulunamamıştır...');
-        },
-    })
-    ajaxACLResources_purchasedecision.ajaxCallWidget('call');
-
-    $('#loading-image-dateofpurchaseplan').loadImager('removeLoadImage');
-    $("#loading-image-dateofpurchaseplan").loadImager('appendImage');
-
-    var ajaxACLResources_dateofpurchaseplan = $('#ajaxACL-dateofpurchaseplan').ajaxCallWidget({
-        proxy: '/Sys/SysCountrys/',
-        type: 'POST',
-
-    });
-
-    ajaxACLResources_dateofpurchaseplan.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-dateofpurchaseplan').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
-        },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
-            $('#dropdownDateofPurchasePlan').ddslick({
-                //height: 150,
-                data: cbdata,
-                width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loading-image-dateofpurchaseplan").loadImager('removeLoadImage');
-        },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-dateofpurchaseplan').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'Rol Bulunamamıştır...', 'Rol  bulunamamıştır...');
-        },
-    })
-    ajaxACLResources_dateofpurchaseplan.ajaxCallWidget('call');
-
-    $('#loading-image-numberofvehiclestopurchase').loadImager('removeLoadImage');
-    $("#loading-image-numberofvehiclestopurchase").loadImager('appendImage');
-
-    var ajaxACLResources_numberofvehiclestopurchase = $('#ajaxACL-numberofvehiclestopurchase').ajaxCallWidget({
-        proxy: '/Sys/SysCountrys/',
-        type: 'POST',
-
-    });
-
-    ajaxACLResources_numberofvehiclestopurchase.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-numberofvehiclestopurchase').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
-        },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
-            $('#dropdownNumberofVehiclestoP').ddslick({
-                //height: 150,
-                data: cbdata,
-                width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loading-image-numberofvehiclestopurchase").loadImager('removeLoadImage');
-        },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-numberofvehiclestopurchase').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'Rol Bulunamamıştır...', 'Rol  bulunamamıştır...');
-        },
-    })
-    ajaxACLResources_numberofvehiclestopurchase.ajaxCallWidget('call');
-
-    //ContactPerson
-
-    var data_priority = [{
-        "value": 0,
-        "text": "Select...",
-        selected: true
-    },{
-        "value": 1,
-        "text": "High",
-        selected: false
-    }, {
-        "value": 2,
-        "text": "Normal",
-        selected: false
-    }, {
-        "value": 3,
-        "text": "Low",
-        selected: false
-
-    }];
-
-    var data_role = [{
-        "value": 0,
-        "text": "Select.. .",
-        selected: true
-    },{
-        "value": 1,
-        "text": "CEO"
-    }, {
-        "value": 2,
-        "text": "Owner"
-    }, {
-        "value": 3,
-        "text": "Salesman"
-    }, {
-        "value": 4,
-        "text": "Others"
-    }];
-
-    var data_title = [{
-        "value": 0,
-        "text": "Select...",
-        selected: true
-    }, {
-        "value": 1,
-        "text": "Mr."
-    }, {
-        "value": 2,
-        "text": "Mrs."
-    }];
-
-    var data_brand = [{
-        "value": 0,
-        "text": "Select...",
-        selected: true
-    }, {
-        "value": 1,
-        "text": "MAN"
-    }, {
-        "value": 2,
-        "text": "MERCEDES"
-    }, {
-        "value": 3,
-        "text": "IVECO"
-    }, {
-        "value": 4,
-        "text": "BMC"
-    }, {
-        "value": 5,
-        "text": "FORD"
-    }];
-
-    var data_product = [{
-        "value": 0,
-        "text": "Select...",
-        selected: true
-    }, {
-        "value": 1,
-        "text": "T00001"
-    }, {
-        "value": 2,
-        "text": "T00002"
-    }, {
-        "value": 3,
-        "text": "T00003"
-    }];
-
-    var data_country = [{
-        "value": 0,
-        "text": "Select...",
-        selected: true
-    }, {
-        "value": 1,
-        "text": "South Africa",
-        selected: false
-    }, {
-        "value": 2,
-        "text": "Turkey",
-        selected: false
-    }, {
-        "value": 3,
-        "text": "Germany",
-        selected: false
-    }];
-
-    var data_state = [{
-        "value": 0,
-        "text": "Select...",
-        "countryID": 0,
-        selected: true
-    }, {
-        "value": 1,
-        "text": "1- State1",
-        "countryID": 1,
-        selected: false
-    }, {
-        "value": 2,
-        "text": "1- State2",
-        "countryID": 1,
-        selected: false
-    }, {
-        "value": 3,
-        "text": "2- State1",
-        "countryID": 2,
-        selected: false
-    }, {
-        "value": 4,
-        "text": "2- State2",
-        "countryID": 2,
-        selected: false
-    }];
-
-    var data_city = [{
-        "value": 0,
-        "text": "Select...",
-        "stateID": 0,
-         selected: true
-    }, {
-        "value": 1,
-        "text": "Pretoria",
-        "stateID": 1,
-        selected: false
-    }, {
-        "value": 2,
-        "text": "Bloemfontein",
-        "stateID": 1,
-        selected: false
-    }, {
-        "value": 3,
-        "text": "CapeTown",
-        "stateID": 1,
-        selected: false
-    }, {
-        "value": 4,
-        "text": "Johannesburg",
-        "stateID": 2,
-        selected: false
-    }];
-
-//Contact Person 
-    $('#loading-image-priority').loadImager('removeLoadImage');
-    $("#loading-image-priority").loadImager('appendImage');
-
-    var ajaxACLResources_priority = $('#ajaxACL-priority').ajaxCallWidget({
-        proxy: '/Sys/SysCountrys/',
-        type: 'POST',
-        //proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        //data: {
-        //    url: '1'
-        //    //pk: $("#pk").val()
-        //}
-    });
-
-    ajaxACLResources_priority.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-priority').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
-        },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
-            $('#dropdownPriority').ddslick({
-                //height: 150,
-                data: data_priority,
-                width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loading-image-priority").loadImager('removeLoadImage');
-        },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-priority').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'priority not show...', 'priority not show...');
-        },
-    })
-    ajaxACLResources_priority.ajaxCallWidget('call');
+        {
+            text: "Mr.",
+            value: 2,
+            selected: false
+        }
+    ];
 
     $('#loading-image-title').loadImager('removeLoadImage');
     $("#loading-image-title").loadImager('appendImage');
 
-    var ajaxACLResources_title = $('#ajaxACL-title').ajaxCallWidget({
-        proxy: '/Sys/SysCountrys/',
-        type: 'POST',
+    $('#dropdownTitle').ddslick({
+        //height: 150,
+        data: cbdata_title,
+        width: '100%',
 
+        onSelected: function (selectedData) {
+            if (selectedData.selectedData.value > 1) {
+            }
+        }
     });
+    $('#loading-image-title').loadImager('removeLoadImage');
 
-    ajaxACLResources_title.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-title').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
-        },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
-            $('#dropdownTitle').ddslick({
-                //height: 150,
-                data: data_title,
-                width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loading-image-title").loadImager('removeLoadImage');
-        },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-title').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'title not show...', 'title not show...');
-        },
-    })
-    ajaxACLResources_title.ajaxCallWidget('call');
-
-    $('#loading-image-role').loadImager('removeLoadImage');
-    $("#loading-image-role").loadImager('appendImage');
-
+ /**
+ * Contact Person Role
+ * @returns {undefined}
+ * @author Gül Özdemir
+ * @since 14/10/2018
+ */
     var ajaxACLResources_role = $('#ajaxACL-role').ajaxCallWidget({
-        proxy: '/Sys/SysCountrys/',
+        failureLoadImage: true,
+        loadingImageID: "loading-image-role",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Customer/SysContactPersonRole/',
         type: 'POST',
-
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkTitlesCustomerDdList_systitles",
+            pkIdentity: $("#publicKey").val()
+        })
     });
-
     ajaxACLResources_role.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-role').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
-        },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
+        onSuccess: function (event, datarole) {
+            var cbdata_role = $.parseJSON(datarole);
+            cbdata_role.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#dropdownRole').ddslick({
-                //height: 150,
-                data: data_role,
+                data: cbdata_role,
                 width: '100%',
-
+                //search: true,
+                //searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
 
@@ -1426,260 +1164,48 @@
 
             $("#loading-image-role").loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-role').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'role not show...', 'role not show...');
+        onReset: function (event, data) {
+
         },
+        onAfterSuccess: function (event, data) {
+            $("#loading-image-role").loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_role.ajaxCallWidget('call');
 
-*/
-    /**
- * Product Interest dropdown prepared
- * @type @call;$@call;ajaxCallWidget
- * @since 30/05/2018
+ /**
+ * Contact Person last brand
+ * @returns {undefined}
+ * @author Gül Özdemir
+ * @since 14/10/2018
  */
-/*
-    $('#loading-image-productinterest').loadImager('removeLoadImage');
-    $("#loading-image-productinterest").loadImager('appendImage');
-
-    var ajaxACLResources_productinterest = $('#ajaxACL-productinterest').ajaxCallWidget({
-        proxy: '/Sys/SysCountrys/',
-        type: 'POST',
-        async: false
-    });
-
-    ajaxACLResources_productinterest.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-productinterest').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'servis Bulunamamıştır...',
-                'Servis  bulunamamıştır...');
-        },
-        onSuccess: function (event, data) {
-
-            $('#dropdownProductInterest').ddslick({
-
-                height: 200,
-                data: data_product,
-                width:'100%',
-                selectText: window.lang.translate('Please select') + "...",
-                searchText: window.lang.translate('Search') + "...",
-                //showSelectedHTML : false,
-                defaultSelectedIndex: 3,
-                search : true,
-                multiSelect : true,
-                tagBox : 'tag-container',
-                //multiSelectTagID : 'deneme',
-                //imagePosition:"right",
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }  
-                
-            });
-            $('#loading-image-productinterest').loadImager('removeLoadImage');
-        },
-            onErrorDataNull : function (event, data) {
-            dm.dangerMessage({
-                onShown: function () {
-                $('#loading-image-productinterest').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'Rol Bulunamamıştır...',
-            'Rol  bulunamamıştır...');
-        },
-    }) 
-    ajaxACLResources_productinterest.ajaxCallWidget('call');
-
-
-
-    $('#loading-image-compsatisfaction').loadImager('removeLoadImage');
-    $("#loading-image-compsatisfaction").loadImager('appendImage');
-
-    var ajaxACLResources_compsatisfaction = $('#ajaxACL-compsatisfaction').ajaxCallWidget({
-        proxy: '/Sys/SysCountrys/',
-        type: 'POST',
-
-    });
-
-    ajaxACLResources_compsatisfaction.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-compsatisfaction').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
-        },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
-            $('#dropdownCompSatisfaction').ddslick({
-                //height: 150,
-                data: data_priority,
-                width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loading-image-compsatisfaction").loadImager('removeLoadImage');
-        },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-compsatisfaction').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'compsatisfaction not show...', 'compsatisfaction not show...');
-        },
-    })
-    ajaxACLResources_compsatisfaction.ajaxCallWidget('call');
-
-    $('#loading-image-mansatisfaction').loadImager('removeLoadImage');
-    $("#loading-image-mansatisfaction").loadImager('appendImage');
-
-    var ajaxACLResources_mansatisfaction = $('#ajaxACL-mansatisfaction').ajaxCallWidget({
-        proxy: '/Sys/SysCountrys/',
-        type: 'POST',
-
-    });
-
-    ajaxACLResources_mansatisfaction.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-mansatisfaction').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
-        },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
-            $('#dropdownMANSatisfaction').ddslick({
-                //height: 150,
-                data: data_priority,
-                width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loading-image-mansatisfaction").loadImager('removeLoadImage');
-        },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-mansatisfaction').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'mansatisfaction not show...', 'mansatisfaction not show...');
-        },
-    })
-    ajaxACLResources_mansatisfaction.ajaxCallWidget('call');
-
-    $('#loading-image-brandloyalty').loadImager('removeLoadImage');
-    $("#loading-image-brandloyalty").loadImager('appendImage');
-
-    var ajaxACLResources_brandloyalty = $('#ajaxACL-brandloyalty').ajaxCallWidget({
-        proxy: '/Sys/SysCountrys/',
-        type: 'POST',
-    });
-
-    ajaxACLResources_brandloyalty.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-brandloyalty').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
-        },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
-            $('#dropdownBrandLoyalty').ddslick({
-                //height: 150,
-                data: data_priority,
-                width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loading-image-brandloyalty").loadImager('removeLoadImage');
-        },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-brandloyalty').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'brandloyalty not show...', 'brandloyalty not show...');
-        },
-    })
-    ajaxACLResources_brandloyalty.ajaxCallWidget('call');
-
-    $('#loading-image-brand').loadImager('removeLoadImage');
-    $("#loading-image-brand").loadImager('appendImage');
-
-    var ajaxACLResources_brand = $('#ajaxACL-brand').ajaxCallWidget({
+    var ajaxACLResources_lastbrand = $('#ajaxACL-lastbrand').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loading-image-lastbrand",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
         proxy: '/Vehicle/SysVehicleBrand/',
         type: 'POST',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkVehicleBrandDdList_sysvehiclebrand",
+            pkIdentity: $("#publicKey").val()
+        })
     });
-
-    ajaxACLResources_brand.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-brand').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', 'servis Bulunamamıştır...', 'Servis  bulunamamıştır...');
-        },
-        onSuccess: function (event, databrand) {
-            var cbdata_brand = $.parseJSON(databrand);
-            cbdata_brand.splice(0, 0,
+    ajaxACLResources_lastbrand.ajaxCallWidget({
+        onSuccess: function (event, datalastbrand) {
+            var cbdata_lastbrand = $.parseJSON(datalastbrand);
+            cbdata_lastbrand.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
-
-            $('#dropdownBrand').ddslick({
-                //height: 150,
-                data: cbdata_brand,
+            $('#dropdownLastBrand').ddslick({
+                data: cbdata_lastbrand,
                 width: '100%',
-
+                //search: true,
+                //searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
 
@@ -1687,20 +1213,71 @@
                 }
             });
 
-            $("#loading-image-brand").loadImager('removeLoadImage');
+            $("#loading-image-lastbrand").loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-brand').loadImager('removeLoadImage');
+        onReset: function (event, data) {
+
+        },
+        onAfterSuccess: function (event, data) {
+            $("#loading-image-lastbrand").loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_lastbrand.ajaxCallWidget('call');
+
+
+ /**
+ * Contact Person product interest
+ * @returns {undefined}
+ * @author Gül Özdemir
+ * @since 18/10/2018
+ */
+    var ajaxACLResources_productinterest = $('#ajaxACL-productinterest').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loading-image-productinterest",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Vehicle/SysVehiclesEndgroupsCost/',
+        type: 'POST',
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
+    ajaxACLResources_productinterest.ajaxCallWidget({
+        onSuccess: function (event, dataproductinterest) {
+            console.log(dataproductinterest);
+            var cbdata_productinterest = $.parseJSON(dataproductinterest);
+            cbdata_productinterest.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+            $('#dropdownProductInterest').ddslick({
+                data: cbdata_productinterest,
+                width: '100%',
+                //search: true,
+                //searchText: window.lang.translate('Search'),
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                        SelectedProductInterestId = selectedData.selectedData.value;
+                    }
                 }
             });
-            dm.dangerMessage('show', 'brand not show...', 'brandloyalty not show...');
+
+            $("#loading-image-productinterest").loadImager('removeLoadImage');
         },
+        onReset: function (event, data) {
+
+        },
+        onAfterSuccess: function (event, data) {
+            $("#loading-image-productinterest").loadImager('removeLoadImage');
+        }
     })
-    ajaxACLResources_brand.ajaxCallWidget('call');
-*/
+    ajaxACLResources_productinterest.ajaxCallWidget('call');
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /* devexgrid */
 
@@ -2088,402 +1665,303 @@
     $('#customerList').click();
 
 
-/*
-//////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /* devexgrid */
+ /**
+ * Contact person list
+ * @returns {undefined}
+ * @author Gül Özdemir
+ * @since 14/10/2018
+ */
 
-    $("#gridContainer_contactaddress").dxDataGrid({
+    $('#contactpersonList').click(function () {
 
-        showColumnLines: true,
+       // alert(selectedCustomerId);
 
-        showRowLines: true,
+        var contactperson_data = new DevExpress.data.CustomStore({
+            load: function (loadOptions) {
+                var deferred = $.Deferred(),
+                    args = {};
 
-        rowAlternationEnabled: true,
+                if (loadOptions.sort) {
+                    args.orderby = loadOptions.sort[0].selector;
+                    if (loadOptions.sort[0].desc)
+                        args.orderby += " desc";
+                }
 
-        showBorders: true,
+                args.skip = loadOptions.skip || 0;
+                args.take = loadOptions.take || 12;
 
-        dataSource: orders,
+                $.ajax({
+                    url: '/Customer/ContactPersonGridList',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        language_code: $("#langCode").val(),
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkCustomerContactPersonGridx_infocustomercontactpersons",
+                        pkIdentity: $("#publicKey").val(),
+                        page: "",
+                        rows: "",
+                        sort: "",
+                        order: "", //args.orderby,
+                        skip: args.skip,
+                        take: args.take,
+                        customer_id: selectedCustomerId
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                    },
+                    error: function () {
+                        deferred.reject("Data Loading Error");
+                    },
+                    timeout: 30000
+                });
 
-        columnHidingEnabled: true,
-        editing: {
-            mode: "form",
-            allowAdding: true,
-            allowUpdating: true,
-            allowDeleting: true,
-            useIcons: true
-        },
+                return deferred.promise();
+            },
+            remove: function (key) {
+                var deferred = $.Deferred();
 
-        "export": {
-            enabled: true,
-            fileName: window.lang.translate('CustomerAddress'),
-        },
+                //alert(selectedContactPersonId);
 
-        pager: {
-            allowedPageSizes: [5, 8, 15, 30],
-            showInfo: true,
-            showNavigationButtons: true,
-            showPageSizeSelector: true,
-            visible: true
-        },
-
-        paging: {
-            pageSize: 8
-        },
-
-        columnChooser: {
-            enabled: true,
-            mode: "select"
-        },
-
-        columns: [{
-            allowGrouping: false,
-            dataField: "OrderNumber",
-            caption: "Invoice Number",
-            width: 130
-        }, {
-            dataField: "CityID",
-            caption: "City",
-            width: 125,
-            lookup: {
-                    dataSource: data_city,
-                    displayExpr: "text",
-                    valueExpr: "value"
+                return $.ajax({
+                    url: '/Customer/DeleteContactPerson',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        id: selectedContactPersonId,
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkDeletedAct_infocustomercontactpersons"
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                    },
+                    error: function () {
+                        deferred.reject("Data remove Error");
+                    },
+                    timeout: 30000
+                });
             }
-        }, {
-            caption: "State",
-            dataField: "StoreState"
-        },
-            "Employee", {
-            dataField: "OrderDate",
-            dataType: "date"
-        }, {
-            dataField: "SaleAmount",
-            format: "currency"
+        });
 
-        }],
+        DevExpress.localization.locale(langCode);
 
-    });
+        $(function () {
+            $("#gridContainer_contactperson").dxDataGrid({
 
-    $("#gridContainer_contactphone").dxDataGrid({
+                showColumnLines: true,
 
-        showColumnLines: true,
+                showRowLines: true,
 
-        showRowLines: true,
+                showBorders: true,
 
-        rowAlternationEnabled: true,
+                dataSource: contactperson_data,
 
-        showBorders: true,
+                columnHidingEnabled: true,
 
-        dataSource: orders,
+                selection: {
+                    mode: "single"
+                },
 
-        columnHidingEnabled: true,
-        editing: {
-            mode: "form",
-            allowUpdating: true,
-            allowUpdating: true,
-            allowDeleting: true,
-            useIcons: true
-        },
+                hoverStateEnabled: true,
 
-        "export": {
-            enabled: true,
-            fileName: "Orders"
-        },
+                editing: {
+                    //mode: "batch"
+                    mode: "popup",
+                    //allowAdding: true,
+                    //allowUpdating: true,
+                    allowDeleting: true,
+                    useIcons: true
+                },
 
-        grouping: {
-            contextMenuEnabled: true,
-            expandMode: "rowClick"
-        },
+                "export": {
+                    enabled: true,
+                    fileName: window.lang.translate('ContactPersonList')
+                },
 
-        groupPanel: {
-            emptyPanelText: window.lang.translate('Use the context menu of header columns to group data'),
-            visible: true
-        },
+                grouping: {
+                    contextMenuEnabled: true,
+                    expandMode: "rowClick"
+                },
 
-        pager: {
-            allowedPageSizes: [5, 8, 15, 30],
-            showInfo: true,
-            showNavigationButtons: true,
-            showPageSizeSelector: true,
-            visible: true
-        },
+                groupPanel: {
+                    emptyPanelText: window.lang.translate('Use the context menu of header columns to group data'),
+                    visible: true
+                },
 
-        paging: {
-            pageSize: 8
-        },
+                pager: {
+                    allowedPageSizes: [5, 8, 15, 30],
+                    showInfo: true,
+                    showNavigationButtons: true,
+                    showPageSizeSelector: true,
+                    visible: true
+                },
 
-        filterRow: {
-            visible: true,
-            applyFilter: "auto"
-        },
+                paging: {
+                    pageSize: 8
+                },
+                OnCellPrepared: function (options) {
 
-        searchPanel: {
-            visible: true,
-            width: 240,
-            placeholder: window.lang.translate('Search') + "...",
-        },
+                    var fieldData = options.value;
+                    fieldHtml = "";
 
-        headerFilter: {
-            visible: true
-        },
+                    fieldHtml = fieldData.value;
+                    options.cellElement.html(fieldHtml);
 
-        columnChooser: {
-            enabled: true,
-            mode: "select"
-        },
+                },
 
-        columns: [{
-            allowGrouping: false,
-            dataField: "OrderNumber",
-            caption: "Invoice Number",
-            width: 130
-        }, {
-            caption: "City",
-            dataField: "StoreCity"
-        }, {
-            caption: "State",
-            dataField: "StoreState"
-        },
-            "Employee", {
-            dataField: "OrderDate",
-            dataType: "date"
-        }, {
-            dataField: "SaleAmount",
-            format: "currency"
+                filterRow: {
+                    visible: true,
+                    applyFilter: "auto"
+                },
 
-        }],
+                searchPanel: {
+                    visible: true,
+                    width: 240,
+                    placeholder: window.lang.translate('Search') + "...",
+                },
 
-        customizeColumns: function (columns) {
-            columns[5].format = { type: "currency", currency: "EUR" };
-        },
+                headerFilter: {
+                    visible: true
+                },
 
-        summary: {
-            totalItems: [{
-                column: "OrderNumber",
-                summaryType: "count"
-            }, {
-                column: "SaleAmount",
-                summaryType: "sum",
-                valueFormat: "currency"
-            }]
-        }
+                columnChooser: {
+                    enabled: true,
+                    mode: "select"
+                },
 
-    });
+                columns: [
+                    {
+                        caption: window.lang.translate('Active/Passive'),
+                        width: 40,
+                        alignment: 'center',
 
+                        cellTemplate: function (container, options) {
+                            var fieldHtml;
+                            var contactperson_id = options.data.id;
 
-    
-    function logEvent(eventName) {
-         var logList = $("#events ul"),
-             newItem = $("<li>", { text: eventName });
+                            if (options.data.active === 1) {
+                                //active
+                                $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
+                                    activepassiveContactPerson(contactperson_id, options.data.active);
 
-         logList.prepend(newItem);
-     }
+                                }).appendTo(container);
+                            } else if (options.data.active === 0) {
 
+                                //passive
+                                $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
+                                    activepassiveContactPerson(contactperson_id, options.data.active);
 
-    //Contact Person dxDataGrid
+                                }).appendTo(container);
+                            }
 
-    $("#gridContainer_contactperson").dxDataGrid({
+                            //$('<img />').addClass('dx-link').attr('src', "/adm/dist/img/icons.png").on('click', function () {
+                            //    dm.dangerMessage('show', window.lang.translate('dangerMessage...'), window.lang.translate('dangerMessage...'));
+                            //}).appendTo(container); 
 
-        showColumnLines: true,
+                        }
 
-        showRowLines: true,
+                    }, {
+                        caption: window.lang.translate('First name'),
+                        dataField: "name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Last name'),
+                        dataField: "surname",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Mobile phone'),
+                        dataField: "mobile",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Phone'),
+                        dataField: "phone",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Fax'),
+                        dataField: "fax",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('E-mail'),
+                        dataField: "email",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Source of lead'),
+                        dataField: "source_of_lead_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Last contact date'),
+                        dataField: "con_end_date",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Role'),
+                        dataField: "role_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Priority'),
+                        dataField: "priority_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Brand loyalty'),
+                        dataField: "brand_loyalty_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Last brand'),
+                        dataField: "last_brand_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Competitor satisfaction'),
+                        dataField: "competitor_satisfaction_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Man satisfaction'),
+                        dataField: "man_satisfaction_name",
+                        encodeHtml: false
+                    }
+                ],
 
-        showBorders: true,
+                rowPrepared: function (rowElement, rowInfo) {
+                    return false;
+                    //if (rowInfo.data.key === 1)
+                    //    rowElement.css('background', 'green');
+                    //else if (rowInfo.data.key === 0)
+                    //    rowElement.css('background', 'yellow');
 
-        dataSource: orders,
+                },
 
-        columnHidingEnabled: true,
+                onSelectionChanged: function (selectedItems) {
+                    var data = selectedItems.selectedRowsData[0];
+                    if (data) {
+                        selectedContactPersonId = data.id;
+                        
+                        fillContactPersonForm(data);
+                        $('#contactperson_productinterestList').click();
 
-        selection: {
-            mode: "single"
-        },
+                        //filldropdown = false;
+                    }
+                },
 
-        hoverStateEnabled: true,
+                onRowRemoving: function (e) {
+                    selectedContactPersonId = e.key.id;
+                    //alert(selectedBranchId);
+                },
 
-        editing: {
-            //mode: "batch"
-            mode: "row",
-            //allowAdding: true,
-            //allowUpdating: true,
-            allowDeleting: true,
-            useIcons: true
-        },
+                onRowRemoved: function (e) {
+                    $("#gridContainer_contactperson").dxDataGrid("instance").refresh();
+                },
 
-        "export": {
-            enabled: true,
-            fileName: "ContactPerson"
-        },
+            });
+        });
+    })
 
-        grouping: {
-            contextMenuEnabled: true,
-            expandMode: "rowClick"
-        },
+    $('#contactpersonList').click();
 
-        groupPanel: {
-            emptyPanelText: window.lang.translate('Use the context menu of header columns to group data'),
-            visible: true
-        },
-
-        pager: {
-            allowedPageSizes: [5, 8, 15, 30],
-            showInfo: true,
-            showNavigationButtons: true,
-            showPageSizeSelector: true,
-            visible: true
-        },
-
-        paging: {
-            pageSize: 8
-        },
-
-        filterRow: {
-            visible: true,
-            applyFilter: "auto"
-        },
-
-        searchPanel: {
-            visible: true,
-            width: 240,
-            placeholder: window.lang.translate('Search') + "...",
-        },
-
-        headerFilter: {
-            visible: true
-        },
-
-        columnChooser: {
-            enabled: true,
-            mode: "select"
-        },
-        columns: [{
-            //allowGrouping: false,
-            caption: "First Name",
-            dataField: "StoreState",      
-            //validationRules: [{ type: "required" }],
-            width: 130
-        }, {
-            caption: "Last Name",
-            dataField: "StoreCity",
-            //validationRules: [{ type: "required" }]
-        }, {
-            caption: "GSM",
-            dataField: "OrderNumber"    
-        }, {
-            caption: window.lang.translate("Phone"),
-            dataField: "OrderNumber"
-        }, {
-            caption: "E-mail",
-            dataField: "StoreState",
-            //validationRules: [{ type: "required" }, { type: "email" }]
-        }, {
-            caption: "Birth Date",
-            dataField: "OrderDate",
-            dataType: "date",
-            //validationRules: [{ type: "date" }]
-        }, {
-            dataField: "PriorityID",
-            caption: "Priority",
-            width: 125,
-            lookup: {
-                dataSource: data_priority,
-                displayExpr: "Name",
-                valueExpr: "ID"
-            }
-        }, {
-            dataField: "RoleID",
-            caption: "Role",
-            width: 125,
-            lookup: {
-                dataSource: data_role,
-                displayExpr: "Name",
-                valueExpr: "ID"
-            }
-        }, {
-            caption: "Last Contact Date",
-            dataField: "LastContactDate",
-            dataType: "date",
-            validationRules: [{ type: "date" }]
-        }, {
-            caption: "Reference",
-            dataField: "Reference"
-        }, {
-            dataField: "TitleID",
-            caption: "Title",
-            width: 125,
-            lookup: {
-                dataSource: data_title,
-                displayExpr: "Name",
-                valueExpr: "ID"
-            }
-        }, {
-            dataField: "CompetitorSatisfactionID",
-            caption: "Competitor Satisfaction",
-            width: 125,
-            lookup: {
-                dataSource: data_priority,
-                displayExpr: "Name",
-                valueExpr: "ID"
-            }
-        }, {
-            dataField: "MANSatisfactionID",
-            caption: "MAN Satisfaction",
-            width: 125,
-            lookup: {
-                dataSource: data_priority,
-                displayExpr: "Name",
-                valueExpr: "ID"
-            }
-        }, {
-            dataField: "BrandLoyaltyID",
-            caption: "Brand Loyalty",
-            width: 125,
-            lookup: {
-                dataSource: data_priority,
-                displayExpr: "Name",
-                valueExpr: "ID"
-            }
-        }, {
-            dataField: "LastBrandID",
-            caption: "Last Brand",
-            width: 125,
-            lookup: {
-                dataSource: data_brand,
-                displayExpr: "Name",
-                valueExpr: "ID"
-            }
-        }, {
-            caption: "Hobies",
-            dataField: "Hobies"
-        }, {
-            caption: "Club",
-            dataField: "Club"
-        }],
-
-        onRowRemoving: function (e) {
-            //alert("RowRemoving - gridContainer_contactperson");
-            logEvent("RowRemoving");
-        },
-        onRowRemoved: function (e) {
-            //alert("RowRemoved - gridContainer_contactperson");
-            logEvent("RowRemoved");
-        },
-        
-        onSelectionChanged: function (selectedItems) {
-            var data = selectedItems.selectedRowsData[0];
-            if (data) {
-
-                fillCustomerContactPersonForm(data);
-
-                //alert("gridContainer_customer - onSelectionChanged :" + data);
-                //$(".employeeNotes").text(data.Notes);
-                //$(".employeePhoto").attr("src", data.Picture);
-            }
-        }
-    });
-
-*/
-    //Seçili Müşteriye ait Aktiviteler Listelenir
-    /**
-*.branch/dealer List Refresh
+//Seçili Müşteriye ait Aktiviteler Listelenir
+/**
+*.customer activity List Refresh
 * @returns 
 * @author Gül Özdemir
 * @since 03/09/2018
@@ -2738,7 +2216,7 @@
                         dataField: "email",
                         encodeHtml: false
                     }, {
-                        caption: window.lang.translate('GSM'),
+                        caption: window.lang.translate('Mobile number'),
                         dataField: "cep",
                         encodeHtml: false
                     }, {
@@ -2790,181 +2268,221 @@
         });
     })
 
-
+ /**
+ * Customer activity list
+ * @returns {undefined}
+ * @author Gül Özdemir
+ * @since 14/10/2018
+ */
     $('#customerActivityList').click();
 
-    
-/*
-    $("#gridContainer_activity").dxDataGrid({
 
-        showColumnLines: true,
-
-        showRowLines: true,
-
-        rowAlternationEnabled: true,
-
-        showBorders: true,
-
-        dataSource: orders,
-
-        columnHidingEnabled: true,
-        editing: {
-            mode: "form",
-            allowUpdating: true,
-            allowUpdating: true,
-            allowDeleting: true,
-            useIcons: true
-        },
-
-        "export": {
-            enabled: true,
-            fileName: window.lang.translate('Activity'),
-        },
-
-        grouping: {
-            contextMenuEnabled: true,
-            expandMode: "rowClick"
-        },
-
-        groupPanel: {
-            emptyPanelText: window.lang.translate('Use the context menu of header columns to group data'),
-            visible: true
-        },
-
-        pager: {
-            allowedPageSizes: [5, 8, 15, 30],
-            showInfo: true,
-            showNavigationButtons: true,
-            showPageSizeSelector: true,
-            visible: true
-        },
-
-        paging: {
-            pageSize: 8
-        },
-
-        filterRow: {
-            visible: true,
-            applyFilter: "auto"
-        },
-
-        searchPanel: {
-            visible: true,
-            width: 240,
-            placeholder: window.lang.translate('Search') + "...",
-        },
-
-        headerFilter: {
-            visible: true
-        },
-
-        columnChooser: {
-            enabled: true,
-            mode: "select"
-        },
-
-        columns: [{
-            allowGrouping: false,
-            dataField: "City",
-            caption: "First Name",
-            width: 130
-        }, {
-            caption: "Last Name",
-            dataField: "StoreCity"
-        }, {
-            caption: "GSM",
-            dataField: "StoreState"
-        },
-            "Employee", {
-            dataField: "OrderDate",
-            dataType: "date"
-        }, {
-            dataField: "SaleAmount",
-            format: "currency"
-
-        }],
-
-        customizeColumns: function (columns) {
-            columns[5].format = { type: "currency", currency: "EUR" };
-        },
-
-        summary: {
-            totalItems: [{
-                column: "OrderNumber",
-                summaryType: "count"
-            }, {
-                column: "SaleAmount",
-                summaryType: "sum",
-                valueFormat: "currency"
-            }]
-        }
-    });
-
-
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-        var target = $(e.target).attr("href") // activated tab
-      
-        if (target == "#tab_1") {
-            
-           
-            //alert("#tab_1");
-        }
-        if (target == "#tab_2") {
-            // grid refresh olması gerektiği için kullanıldı.
-            $(gridContainer_contactaddress).dxDataGrid("updateDimensions");
-            $(gridContainer_contactphone).dxDataGrid("updateDimensions");
-            //alert("#tab_2");
-        }
-        if (target == "#tab_3") {
-            //Müşteri seçili ise
-            //PurchasePlan görüntüle
-            //alert("#tab_3");
-        }
-        if (target == "#tab_4") {
-            // grid refresh olması gerektiği için kullanıldı.
-            $(gridContainer_contactperson).dxDataGrid("updateDimensions");
-            //alert("#tab_4");
-        }
-        if (target == "#tab_5") {
-            // grid refresh olması gerektiği için kullanıldı.
-            $(gridContainer_activity).dxDataGrid("updateDimensions");
-            //alert("#tab_5");
-        }
-    });
-
-
-*/
     /**
-    * insert CustomerInfo Wrapper
-    * @returns {Boolean}
-    * @since 02/08/2018
-    */
-/*
- * 
- * {"id":"2","apid":2,"cust_sis_key":"1716068406394007398","registration_name":"TIREPOINT (PTY) LTD","trading_name":"",
- * "name_short":"TIREPOINT ","embrace_customer_no":"31000663","tu_emb_customer_no":"","ce_emb_customer_no":"",
- * "other_emb_customer_no":"","www":"","vatnumber":"","registration_number":"","registration_date":null,"ne_count_type_id":16,
- * "numberofemployees":"51-100","nv_count_type_id":23,"numberofvehicles":"21-50",
- * "customer_category_id":2,
- * "customer_category_name":"DTRK","reliability_id":2,"reliability_name":"Low","turnover_rate_id":1,
- * "turnover_rate_name":"1 - 100.000","sector_type_id":1,"sector_type_name":"General","application_type_id":2,
- * "application_type_name":"General Distribution","segment_type_id":1,"segment_type_name":"Long Haul",
- * "is_bo_confirm":0,"firm_country_id":107,"firm_country_name":"G\u00fcney Afrika","address1":"","address2":"","address3":"",
- * "postalcode":"","country_id":107,"country_name":"G\u00fcney Afrika","city_id":0,"city_name":"","region_id":null,"region":"",
- * "op_username":"admin@gmail.com","state_active":"Active","date_saved":"2018-09-27 12:23:04","date_modified":null,
- * "language_code":"en","active":0,"op_user_id":0,"language_id":"385","language_name":"English"}
- * 
- * /
-    window.insertCustomerInfoWrapper = function (e) {
-        //e.preventDefault();
-        
-        if ($("#customerInfoForm").validationEngine('validate')) {
+* Contact person product interest list
+* @returns {undefined}
+* @author Gül Özdemir
+* @since 14/10/2018
+*/
 
-            insertCustomerInfo();
-        }
-        return false;
-    }
+    $('#contactperson_productinterestList').click(function () {
 
+        //alert(selectedCustomerId);
+
+        var contactpersonproduct_data = new DevExpress.data.CustomStore({
+            load: function (loadOptions) {
+                var deferred = $.Deferred(),
+                    args = {};
+
+                if (loadOptions.sort) {
+                    args.orderby = loadOptions.sort[0].selector;
+                    if (loadOptions.sort[0].desc)
+                        args.orderby += " desc";
+                }
+
+                args.skip = loadOptions.skip || 0;
+                args.take = loadOptions.take || 12;
+
+                $.ajax({
+                    url: '/Customer/ContactPersonProductInterestGridList',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        language_code: $("#langCode").val(),
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkFillCustomerCpVehiclesGridx_infocustomercpersonvehicle",
+                        pkIdentity: $("#publicKey").val(),
+                        page: "",
+                        rows: "",
+                        sort: "",
+                        order: "", //args.orderby,
+                        skip: args.skip,
+                        take: args.take,
+                        customer_contact_persons_id: selectedContactPersonId
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                    },
+                    error: function () {
+                        deferred.reject("Data Loading Error");
+                    },
+                    timeout: 30000
+                });
+
+                return deferred.promise();
+            },
+            remove: function (key) {
+                var deferred = $.Deferred();
+
+                return $.ajax({
+                    url: '/Customer/DeleteContactPersonProductInterest',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        id: selectedContactPersonProductId,
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkDeletedAct_infocustomercpersonvehicle"
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                    },
+                    error: function () {
+                        deferred.reject("Data remove Error");
+                    },
+                    timeout: 30000
+                });
+            }
+        });
+
+        DevExpress.localization.locale(langCode);
+
+        console.log(contactpersonproduct_data);
+
+        $(function () {
+            $("#gridContainer_contactperson_productinterest").dxDataGrid({
+
+                showColumnLines: true,
+
+                showRowLines: true,
+
+                showBorders: true,
+
+                dataSource: contactpersonproduct_data,
+
+                columnHidingEnabled: true,
+
+                selection: {
+                    mode: "single"
+                },
+
+                hoverStateEnabled: true,
+
+                editing: {
+                    //mode: "batch"
+                    mode: "popup",
+                    //allowAdding: true,
+                    //allowUpdating: true,
+                    allowDeleting: true,
+                    useIcons: true
+                },
+
+                "export": {
+                    enabled: true,
+                    fileName: window.lang.translate('ContactPersonProductInterestList')
+                },
+
+                grouping: {
+                    contextMenuEnabled: true,
+                    expandMode: "rowClick"
+                },
+
+                groupPanel: {
+                    emptyPanelText: window.lang.translate('Use the context menu of header columns to group data'),
+                    visible: true
+                },
+
+                pager: {
+                    allowedPageSizes: [5, 8, 15, 30],
+                    showInfo: true,
+                    showNavigationButtons: true,
+                    showPageSizeSelector: true,
+                    visible: true
+                },
+
+                paging: {
+                    pageSize: 8
+                },
+                OnCellPrepared: function (options) {
+
+                    var fieldData = options.value;
+                    fieldHtml = "";
+
+                    fieldHtml = fieldData.value;
+                    options.cellElement.html(fieldHtml);
+
+                },
+
+                filterRow: {
+                    visible: true,
+                    applyFilter: "auto"
+                },
+
+                searchPanel: {
+                    visible: true,
+                    width: 240,
+                    placeholder: window.lang.translate('Search') + "...",
+                },
+
+                headerFilter: {
+                    visible: true
+                },
+
+                columnChooser: {
+                    enabled: true,
+                    mode: "select"
+                },
+
+                columns: [
+                    {
+                        caption: window.lang.translate('Product Interest'),
+                        dataField: "name",
+                        encodeHtml: false
+                    }
+                ],
+
+                rowPrepared: function (rowElement, rowInfo) {
+                    return false;
+                    //if (rowInfo.data.key === 1)
+                    //    rowElement.css('background', 'green');
+                    //else if (rowInfo.data.key === 0)
+                    //    rowElement.css('background', 'yellow');
+
+                },
+
+                onSelectionChanged: function (selectedItems) {
+                    var data = selectedItems.selectedRowsData[0];
+                    if (data) {
+
+                    }
+                },
+
+                onRowRemoving: function (e) {
+                    selectedContactPersonProductId = e.key.id;
+                    //alert(selectedBranchId);
+                },
+
+                onRowRemoved: function (e) {
+                    $("#gridContainer_contactperson_productinterest").dxDataGrid("instance").refresh();
+                },
+
+            });
+        });
+    })
+
+   // $('#contactperson_productinterestList').click();
+
+    
  /**
  * insert / Update Customer Form
  * @returns {undefined}
@@ -2977,8 +2495,8 @@
 
         if ($("#customerInfoForm").validationEngine('validate')) {
 
-            $("#loading-image-cstInfo").loadImager('removeLoadImage');
-            $("#loading-image-cstInfo").loadImager('appendImage');
+            //$("#loading-image-cstInfo").loadImager('removeLoadImage');
+            //$("#loading-image-cstInfo").loadImager('appendImage');
 
             var customerName = $('#txt-cst-name').val();
             var customerShortName = $('#txt-cst-sname').val();
@@ -3162,24 +2680,24 @@
 
                             },
                             onAfterSuccess: function (event, data) {
-                                $("#gridContainer_branch").dxDataGrid("instance").refresh();
+                                $("#gridContainer_customer").dxDataGrid("instance").refresh();
                             }
                         })
                         ajax.ajaxCallWidget('call');
                     }
                 });
-                wcm.warningComplexMessage('show', 'Branch is update! Are you ok?', 'Branch is update! Are you sure?');
+                wcm.warningComplexMessage('show', 'Customer will be updated! Are you ok?', 'customer will be updated! Are you sure?');
             }
         }
         return false;
 
     })
 
-    /**
-    * reset button function for Customer Info insert form
-    * @returns null
-    * @since 14/07/2016
-    */
+ /**
+ * reset button function for Customer Info insert form
+ * @returns null
+ * @since 14/07/2016
+ */
     window.resetCustomerInfoForm = function () {
         $("#loading-image-cstInfo").loadImager('removeLoadImage');
         $("#loading-image-cstInfo").loadImager('appendImage');
@@ -3212,16 +2730,24 @@
         $('#dropdownTotalEmployees').ddslick('select', { index: String(0) });
         $('#dropdownAnnuelRevenue').ddslick('select', { index: String(0) });
 
+        resetCustomerPurchaseForm();
+
         $("#loading-image-cstInfo").loadImager('removeLoadImage');
     
         //yeni kayda açık, tablar kapatılıyor
-        //tab_disable();
-        $("#customer_tab").organizeTabs('disableAllTabs');
+        tab_disable();
+        //$("#customer_tab").organizeTabs('disableAllTabs');
 
         return false;
     }
 
-
+ 
+ /**
+ * customer info fill form
+ * @returns {undefined}
+ * @author Gül Özdemir
+ * @since 14/10/2018
+ */
     window.fillCustomerInfoForm = function (data) {
         $("#loading-image-cstInfo").loadImager('removeLoadImage');
         $("#loading-image-cstInfo").loadImager('appendImage');
@@ -3418,8 +2944,6 @@
             );
         }
 
-        //alert(data.nv_count_type_id);
-
         if (data.nv_count_type_id) {
             $('#dropdownTotalVehicles').ddslick('selectByValue',
                 {
@@ -3438,124 +2962,169 @@
             );
         }
 
+        fillCustomerPuchaseForm();
+        resetContactPersonForm();
+        $('#contactpersonList').click();
+
         $("#loading-image-cstInfo").loadImager('removeLoadImage');
-        //tab_active();
-        $("#customer_tab").organizeTabs('enableAllTabs');
+        tab_active();
+        //$("#customer_tab").organizeTabs('enableAllTabs');
+
 
         return false;
     }
 
+/**
+ * Contact person tab click grid refresh
+ * @returns {undefined}
+ * @author Gül Özdemir
+ * @since 18/10/2018
+ */
+
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        var target = $(e.target).attr("href") // activated tab
+        //alert(target);
+        if (target == "#tab_3") {
+            // grid refresh olması gerektiği için kullanıldı.
+            //$(gridContainer_tab).dxDataGrid("updateDimensions");
+            $('#contactpersonList').click();
+
+        }
+        if (target == "#tab_4") {
+            // grid refresh olması gerektiği için kullanıldı.
+            //$(gridContainer_tab).dxDataGrid("updateDimensions");
+            $('#customerActivityList').click();
+        }
+    });
 
 
-    window.insertCustomerPurchaseWrapper = function (e) {
+/**
+ * Customer purchaseplan delete
+ * @returns {undefined}
+ * @author Gül Özdemir
+ * @since 14/10/2018
+ */
+
+
+  $("#btn-cstp-delete").on("click", function (e) { 
+        e.preventDefault();
+
+        wcm.warningComplexMessage({
+            onConfirm: function (event, data) {
+                var ajax = $('#ajaxACL-purchaseplan').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loading-image-cstPurchase",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    proxy: '/Customer/DeletePurchasePlan',
+                    type: "POST",
+                    data: JSON.stringify({
+                        id: selectedCustomerId,//selectedPurchasePlanId,
+                        url: "pkDeletedAct_infocustomerpurchaseplan",
+                        pk: "GsZVzEYe50uGgNM"
+                    })
+                });
+
+                ajax.ajaxCallWidget({
+                    onReset: function (event, data) {
+
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#loading-image-cstPurchase").loadImager('removeLoadImage');
+                    }
+                })
+                ajax.ajaxCallWidget('call');
+            }
+        });
+        wcm.warningComplexMessage('show', 'Customer purchase plan will be deleted! Are you ok?', 'Customer purchase plan will be deleted! Are you sure?');
+})
+
+/**
+ * Customer purcase plan insert / update
+ * @returns {undefined}
+ * @author Gül Özdemir
+ * @since 14/10/2018
+ */
+    $("#btn-cstp-save").on("click", function (e) {
         e.preventDefault();
 
         if ($("#customerPurchaseForm").validationEngine('validate')) {
 
-            insertCustomerPurchase();
+            var cst_lastpurchase_date = $('#lastpurchase-datepicker').val();
+            var purchaseplan_description = $('#txt-cst-purchaseplandesc').val();
+
+            var ddData_lastPurchaseBrand = $('#dropdownLastPurchaseBrand').data('ddslick')
+            var lastPurchaseBrand_id = ddData_lastPurchaseBrand.selectedData.value;
+
+            var ddData_purchaseDecision = $('#dropdownPurchaseDecision').data('ddslick')
+            var purchaseDecision_id = ddData_purchaseDecision.selectedData.value;
+
+            var ddData_dateofPurchasePlan = $('#dropdownDateofPurchasePlan').data('ddslick')
+            var dateofPurchasePlan_id = ddData_dateofPurchasePlan.selectedData.value;
+
+            var ddData_numberofVehiclestoP = $('#dropdownNumberofVehiclestoP').data('ddslick')
+            var numberofVehiclestoP_id = ddData_numberofVehiclestoP.selectedData.value;
+
+
+            var mydata = JSON.stringify({
+                url: "pkInsertAct_infocustomerpurchaseplan",
+                customer_id: selectedCustomerId,
+                last_purchase_date: cst_lastpurchase_date,
+                description: purchaseplan_description,
+                last_brand_id: lastPurchaseBrand_id,
+                purchase_decision_id: purchaseDecision_id,
+                date_of_plan_id: dateofPurchasePlan_id,
+                quantity_id: numberofVehiclestoP_id,
+                pk: "GsZVzEYe50uGgNM"
+            });
+
+            console.log(mydata);
+
+            wcm.warningComplexMessage({
+                onConfirm: function (event, data) {
+                    var ajax = $('#ajaxACL-purchaseplan').ajaxCallWidget({
+                        failureLoadImage: true,
+                        loadingImageID: "loading-image-cstPurchase",
+                        triggerSuccessAuto: true,
+                        transactionSuccessText: window.lang.translate('Transaction successful'),
+                        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                        proxy: '/Customer/InsertPurchasePlan',
+                        type: "POST",
+                        data: mydata
+                    });
+
+                    ajax.ajaxCallWidget({
+                        onReset: function (event, data) {
+
+                        },
+                        onSucces: function (event, data) {
+                            alert('success');
+                        },
+                        onAfterSuccess: function (event, data) {
+
+                            $("#loading-image-cstPurchase").loadImager('removeLoadImage');
+                        }
+                    })
+                    ajax.ajaxCallWidget('call');
+
+                }
+            });
+
+            wcm.warningComplexMessage('show', 'Customer purchase plan will be updated! Are you ok?', 'Customer purchase plan will be updated! Are you sure?');
+
         }
-        return false;
-    }
-    /**
- * insert CustomerPurchase
+           
+    })
+
+/**
+ * Customer purcase plan reset form
  * @returns {undefined}
- * @since 06/08/2018
+ * @author Gül Özdemir
+ * @since 14/10/2018
  */
-
-    window.insertCustomerPurchase = function () {
-
-        $("#loading-image-cstPurchase").loadImager('removeLoadImage');
-        $("#loading-image-cstPurchase").loadImager('appendImage');
-
-        //Customer_id alınacak
-        var cst_id = 1;
-        var cst_lastpurchase = $('#lastpurchase-datepicker').val();
-        var cst_purchaselastupdate = $('#txt-cst-purchaselastupdate').val();
-
-        var ddData_lastPurchaseBrand = $('#dropdownLastPurchaseBrand').data('ddslick')
-        var lastPurchaseBrand_id = ddData_lastPurchaseBrand.selectedData.value;
-
-        var ddData_purchaseDecision = $('#dropdownPurchaseDecision').data('ddslick')
-        var purchaseDecision_id = ddData_purchaseDecision.selectedData.value;
-
-        var ddData_dateofPurchasePlan = $('#dropdownDateofPurchasePlan').data('ddslick')
-        var dateofPurchasePlan_id = ddData_dateofPurchasePlan.selectedData.value;
-
-        var ddData_numberofVehiclestoP = $('#dropdownNumberofVehiclestoP').data('ddslick')
-        var numberofVehiclestoP_id = ddData_numberofVehiclestoP.selectedData.value;
-
-
-        var aj = $(window).ajaxCall({
-            proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
-            data: {
-                url: 'pkInsert_sysCustomerPurchase',
-                cst_id: cst_id,
-                cst_lastpurchase: cst_lastpurchase,
-                cst_purchaselastupdate: cst_purchaselastupdate,
-                lastPurchaseBrand_id: lastPurchaseBrand_id,
-                purchaseDecision_id: purchaseDecision_id,
-                dateofPurchasePlan_id: dateofPurchasePlan_id,
-                numberofVehiclestoP_id: numberofVehiclestoP_id,
-                pk: $("#pk").val()
-            }
-        })
-        aj.ajaxCall({
-            onError: function (event, textStatus, errorThrown) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Müşteri Yatırım Planı Ekleme İşlemi Başarısız...',
-                    'Müşteri Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
-                console.error('"pkInsert_sysCustomerInfo" servis hatası->' + textStatus);
-                $("#loading-image-cstPurchase").loadImager('removeLoadImage');
-            },
-            onSuccess: function (event, data) {
-                console.log(data);
-                var data = data;
-                sm.successMessage({
-                    onShown: function (event, data) {
-                        $('#customerPurchaseForm')[0].reset();
-
-                        $("#loading-image-cstPurchase").loadImager('removeLoadImage');
-                        
-                    }
-                });
-                sm.successMessage('show', 'Müşteri Yatırım Planı Kayıt İşlemi Başarılı...',
-                    'Müşteri kayıt işlemini gerçekleştirdiniz... ',
-                    data);
-                $("#loading-image-cstPurchase").loadImager('removeLoadImage');
-
-            },
-            onErrorDataNull: function (event, data) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Müşteri Yatırım Planı Kayıt İşlemi Başarısız...',
-                    'Müşteri Yatırım Planı kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysCustomerPurchase" servis datası boştur!!');
-                $("#loading-image-cstPurchase").loadImager('removeLoadImage');
-            },
-            onErrorMessage: function (event, data) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Müşteri Yatırım Planı Kayıt İşlemi Başarısız...',
-                    'Müşteri Yatırım Planı kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysCustomerPurchase" servis datası boştur!!');
-                $("#loading-image-cstPurchase").loadImager('removeLoadImage');
-            },
-            onError23503: function (event, data) {
-                dm.dangerMessage('Error23503');
-                $("#loading-image-cstPurchase").loadImager('removeLoadImage');
-            },
-            onError23505: function (event, data) {
-                dm.dangerMessage({
-                    onShown: function (event, data) {
-                        $('#customerPurchaseForm')[0].reset();
-                        $("#loading-image-cstPurchase").loadImager('removeLoadImage');
-                    }
-                });
-                dm.dangerMessage('show', 'Kayıt İşlemi Başarısız...',
-                    'Aynı isim ile Müşteri  kaydı yapılmıştır, yeni bir Müşteri kaydı deneyiniz... ');
-                $("#loading-image-cstPurchase").loadImager('removeLoadImage');
-            }
-        })
-        aj.ajaxCall('call');
-    }
 
     window.resetCustomerPurchaseForm = function () {
         $("#loading-image-cstPurchase").loadImager('removeLoadImage');
@@ -3571,9 +3140,18 @@
         $("#loading-image-cstPurchase").loadImager('removeLoadImage');
 
         return false;
-    }
+        }
+
+/**
+ * Customer purcase plan fill form
+ * @returns {undefined}
+ * @author Gül Özdemir
+ * @since 14/10/2018
+ */
 
     window.fillCustomerPuchaseForm = function () {
+
+        resetCustomerPurchaseForm();
 
         var ajaxACLResources_cstpurchaseplan = $('#ajaxACL-purchaseplan').ajaxCallWidget({
             failureLoadImage: true,
@@ -3595,17 +3173,58 @@
 
         ajaxACLResources_cstpurchaseplan.ajaxCallWidget({
             onSuccess: function (event, datapurchaseplan) {
-                var cbdata_purchaseplan = $.parseJSON(datapurchaseplan);
+                datapurchaseplan =  $.parseJSON(datapurchaseplan);
 
-                //lastpurchase-datepicker
+                if (datapurchaseplan) {
 
-                /*
-                 "last_purchase_date":"2016-04-10 00:00:00",
-                 "last_brand":"VW",
-                 "description":"asdasd",
-                 "date_of_purchase":"2018-10-10 00:00:00",
-                 "quantity":22,"op_username":"mustafa.zeynel.admin@ostim.com.tr","date_saved":"2018-10-15 01:10:20","date_modified":null,"op_user_id":16}]
-                 */
+                    if (datapurchaseplan[0].last_purchase_date) {
+                        document.getElementById("lastpurchase-datepicker").value = datapurchaseplan[0].last_purchase_date;
+                    }
+
+                    if (datapurchaseplan[0].date_saved) {
+                        document.getElementById("txt-cst-purchaselastupdate").value = datapurchaseplan[0].date_saved;
+                    }
+
+                    if (datapurchaseplan[0].description) {
+                        document.getElementById("txt-cst-purchaseplandesc").value = datapurchaseplan[0].description;
+                    }
+
+                    if (datapurchaseplan[0].last_brand_id) {
+                        $('#dropdownLastPurchaseBrand').ddslick('selectByValue',
+                            {
+                                index: datapurchaseplan[0].last_brand_id,
+                                value: datapurchaseplan[0].last_brand_name
+                            }
+                        );
+                    }
+
+                    if (datapurchaseplan[0].purchase_decision_id) {
+                        $('#dropdownPurchaseDecision').ddslick('selectByValue',
+                            {
+                                index: datapurchaseplan[0].purchase_decision_id,
+                                value: datapurchaseplan[0].purchase_decision
+                            }
+                        );
+                    }
+
+                    if (datapurchaseplan[0].date_of_plan_id) {
+                        $('#dropdownDateofPurchasePlan').ddslick('selectByValue',
+                            {
+                                index: datapurchaseplan[0].date_of_plan_id,
+                                value: datapurchaseplan[0].date_of_plan
+                            }
+                        );
+                    }
+
+                    if (datapurchaseplan[0].quantity_id) {
+                        $('#dropdownNumberofVehiclestoP').ddslick('selectByValue',
+                            {
+                                index: datapurchaseplan[0].quantity_id,
+                                value: datapurchaseplan[0].quantity_name
+                            }
+                        );
+                    }
+                }
 
                 $("#loading-image-cstPurchase").loadImager('removeLoadImage');
             },
@@ -3618,131 +3237,347 @@
         })
         ajaxACLResources_cstpurchaseplan.ajaxCallWidget('call');
 
-
-        /*$("#loading-image-cstPurchase").loadImager('removeLoadImage');
-        $("#loading-image-cstPurchase").loadImager('appendImage');
-
-        
-        document.getElementById("lastpurchase-datepicker").value = Date();
-        document.getElementById("txt-cst-purchaselastupdate").value = Date();
-
-        $('#dropdownLastPurchaseBrand').ddslick('select', { index: 3 });
-        $('#dropdownPurchaseDecision').ddslick('select', { index: 2 });
-        $('#dropdownDateofPurchasePlan').ddslick('select', { index: 3 });
-        $('#dropdownNumberofVehiclestoP').ddslick('select', { index: 2 });
-
-        //document.getElementById("dropdownCity").SelectedIndex = 2; //data.cityId;
-        //document.getElementById("dropdownSector").value = data.sectorId;
-        //document.getElementById("dropdownSegment").value = data.segmentId;
-        */
-        $("#loading-image-cstPurchase").loadImager('removeLoadImage');
         return false;
     }
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Contact Person
+
 /**
- * insert CustomerContactPerson
+ * insert / update CustomerContactPerson
  * @returns {undefined}
+ * @author Gül Özdemir
  * @since 07/08/2018
  */
 
-    window.insertCustomerContactPerson = function () {
+    $("#btn-cstcp-save").on("click", function (e) {
+        e.preventDefault();
+
+        if ($("#customerContactPersonForm").validationEngine('validate')) {
+
+            var firstName = $('#txt-cp-firstname').val();
+            var lastName = $('#txt-cp-lastname').val();
+            var cp_mobile = $('#txt-cp-mobile').val();
+            var cp_phone = $('#txt-cp-phone').val();
+            var cp_fax = $('#txt-cp-fax').val();
+            var cp_email = $('#txt-cp-email').val();
+            var lastcontactdate = $('#lastcontactdate-datepicker').val();
+
+            var ddData_Sourceoflead = $('#dropdownSourceoflead').data('ddslick');
+            var sourceofleadId = ddData_Sourceoflead.selectedData.value;
+
+            var ddData_Priority = $('#dropdownPriority').data('ddslick');
+            var priorityId = ddData_Priority.selectedData.value;
+
+            var ddData_Title = $('#dropdownTitle').data('ddslick');
+            var titleId = ddData_Title.selectedData.value;
+
+            var ddData_Role = $('#dropdownRole').data('ddslick');
+            var roleId = ddData_Role.selectedData.value;  
+
+            var ddData_CompSatisfaction = $('#dropdownCompSatisfaction').data('ddslick');
+            var compsatisfactionId = ddData_CompSatisfaction.selectedData.value;  
+
+            var ddData_MANSatisfaction = $('#dropdownMANSatisfaction').data('ddslick');
+            var mansatisfactionId = ddData_MANSatisfaction.selectedData.value; 
+
+            var ddData_BrandLoyalty = $('#dropdownBrandLoyalty').data('ddslick');
+            var brandloyaltyId = ddData_BrandLoyalty.selectedData.value; 
+
+            var ddData_LastBrand = $('#dropdownLastBrand').data('ddslick');
+            var lastbrandId = ddData_LastBrand.selectedData.value;
+
+            var mydata = JSON.stringify({
+                url: "pkInsertAct_infocustomercontactpersons",
+                customer_id: selectedCustomerId,
+                name: firstName,
+                surname: lastName,
+                email: cp_email,
+                mobile: cp_mobile,
+                phone: cp_phone,
+                fax: cp_fax,
+                priority_id: priorityId,
+                source_of_lead_id: sourceofleadId,
+                con_end_date: lastcontactdate,
+                title_id: titleId,
+                title_role_id: roleId,
+                brand_loyalty_id: brandloyaltyId,
+                last_brand_id: lastbrandId,
+                competitor_satisfaction_id: compsatisfactionId,
+                man_satisfaction_id: mansatisfactionId,
+                pk: "GsZVzEYe50uGgNM"
+            })
+
+            console.log(mydata);
+
+            //alert(selectedContactPersonId); 
+            var ajax;
+            if (selectedContactPersonId === 0) {
+                //alert("yeni kayıt");
+                //Yeni kayıt
+                ajax = $('#ajaxACL-contactperson').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loading-image-cstcp",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    proxy: '/Customer/InsertContactPerson',
+                    type: "POST",
+                    data: mydata
+                });
+
+                ajax.ajaxCallWidget({
+                    onReset: function (event, data) {
+
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_contactperson").dxDataGrid("instance").refresh();
+                        $("#loading-image-cstcp").loadImager('removeLoadImage');
+                    }
+                })
+                ajax.ajaxCallWidget('call');
+
+            } else {
+                //update
+                //alert("update");
+
+                wcm.warningComplexMessage({
+                    onConfirm: function (event, data) {
+                        ajax = $('#ajaxACL-contactperson').ajaxCallWidget({
+                            failureLoadImage: true,
+                            loadingImageID: "loading-image-cstcp",
+                            triggerSuccessAuto: true,
+                            transactionSuccessText: window.lang.translate('Transaction successful'),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            proxy: '/Customer/UpdateContactPerson',
+                            type: "POST",
+                            data: JSON.stringify({
+                                id: selectedContactPersonId,
+                                url: "pkUpdateAct_infocustomercontactpersons",
+                                customer_id: selectedCustomerId,
+                                name: firstName,
+                                surname: lastName,
+                                email: cp_email,
+                                mobile: cp_mobile,
+                                phone: cp_phone,
+                                fax: cp_fax,
+                                priority_id: priorityId,
+                                source_of_lead_id: sourceofleadId,
+                                con_end_date: lastcontactdate,
+                                title_id: titleId,
+                                title_role_id: roleId,
+                                brand_loyalty_id: brandloyaltyId,
+                                last_brand_id: lastbrandId,
+                                competitor_satisfaction_id: compsatisfactionId,
+                                man_satisfaction_id: mansatisfactionId,
+                                pk: "GsZVzEYe50uGgNM"
+                            })
+                        });
+
+                        ajax.ajaxCallWidget({
+                            onReset: function (event, data) {
+
+                            },
+                            onAfterSuccess: function (event, data) {
+                                $("#gridContainer_contactperson").dxDataGrid("instance").refresh();
+                                $("#loading-image-cstcp").loadImager('removeLoadImage');
+                            }
+                        })
+                        ajax.ajaxCallWidget('call');
+                    }
+                });
+                wcm.warningComplexMessage('show', 'Contact Person will be updated! Are you sure?', 'Contact Person will be updated! Are you sure?');
+            }
+        }
+        return false;
+
+    })
+    /*
+ {"id":"1","apid":1,
+ "customer_id":29,
+ "name":"dene",
+ "surname":"ddwe",
+ "email":"fdd",
+ "mobile":"123",
+ "phone":"321",
+ "fax":"123331",
+ "embrace_customer_no":"1222",
+ "tu_emb_customer_no":"2333",
+ "ce_emb_customer_no":"3444",
+ "other_emb_customer_no":"4555",
+ "www":"www.siteadi.com",
+ "registration_name":"COMMERCIAL MOTORS (PTY) LTD",
+ "source_of_lead_id":1,
+ "source_of_lead_name":"telephone inquiry",
+ "con_end_date":"2018-10-09 00:00:00",
+ "title_id":1,
+ "title_role_id":42,
+ "role_name":"CEO",
+ "priority_id":1,
+ "priority_name":"Low",
+ "brand_loyalty_id":1,
+ "brand_loyalty_name":"",
+ "last_brand_id":1,
+ "last_brand_name":"MAN",
+ "competitor_satisfaction_id":1,
+ "competitor_satisfaction_name":"High",
+ "man_satisfaction_id":2,
+ "man_satisfaction_name":"Low",
+ "op_username":"admin@gmail.com","state_active":"Active","date_saved":"2018-10-18 11:17:32","date_modified":null,"language_code":"en","active":0,"op_user_id":0,"language_id":"385","language_name":"English"},
+     */
+
+
+/**
+ * fill CustomerContactPerson
+ * @returns {undefined}
+ * @author Gül Özdemir
+ * @since 07/08/2018
+ */
+    window.fillContactPersonForm = function (data) {
+
         $("#loading-image-cstcp").loadImager('removeLoadImage');
         $("#loading-image-cstcp").loadImager('appendImage');
 
-        //Customer_id alınacak
-        //selectedCustomerId;
+        if (data.name) {
+            document.getElementById("txt-cp-firstname").value = data.name;
+        } else {
+            document.getElementById("txt-cp-firstname").value = "";
+        }
 
-        /*
-        var cst_lastpurchase = $('#lastpurchase-datepicker').val();
-        var cst_purchaselastupdate = $('#txt-cst-purchaselastupdate').val();
+        if (data.surname) {
+            document.getElementById("txt-cp-lastname").value = data.surname;
+        } else {
+            document.getElementById("txt-cp-lastname").value = "";
+        }
 
-        var ddData_lastPurchaseBrand = $('#dropdownLastPurchaseBrand').data('ddslick')
-        var lastPurchaseBrand_id = ddData_lastPurchaseBrand.selectedData.value;
+        if (data.mobile) {
+            document.getElementById("txt-cp-mobile").value = data.mobile;
+        } else {
+            document.getElementById("txt-cp-mobile").value = "";
+        }
 
-        var ddData_purchaseDecision = $('#dropdownPurchaseDecision').data('ddslick')
-        var purchaseDecision_id = ddData_purchaseDecision.selectedData.value;
+        if (data.phone) {
+            document.getElementById("txt-cp-phone").value = data.phone;
+        } else {
+            document.getElementById("txt-cp-phone").value = "";
+        }
 
-        var ddData_dateofPurchasePlan = $('#dropdownDateofPurchasePlan').data('ddslick')
-        var dateofPurchasePlan_id = ddData_dateofPurchasePlan.selectedData.value;
+        if (data.fax) {
+            document.getElementById("txt-cp-fax").value = data.fax;
+        } else {
+            document.getElementById("txt-cp-fax").value = "";
+        }
 
-        var ddData_numberofVehiclestoP = $('#dropdownNumberofVehiclestoP').data('ddslick')
-        var numberofVehiclestoP_id = ddData_numberofVehiclestoP.selectedData.value;
-        */
+        if (data.email) {
+            document.getElementById("txt-cp-email").value = data.email;
+        } else {
+            document.getElementById("txt-cp-email").value = "";
+        }
+        
+        if (data.con_end_date) {
+            document.getElementById("lastcontactdate-datepicker").value = data.con_end_date;
+        } else {
+            document.getElementById("lastcontactdate-datepicker").value = "";
+        }
+        
 
-        var aj = $(window).ajaxCall({
-            proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
-            data: {
-                url: 'pkInsert_sysCustomerPurchase',
-                cst_id: cst_id,
-                //cst_lastpurchase: cst_lastpurchase,
-                //cst_purchaselastupdate: cst_purchaselastupdate,
-                //lastPurchaseBrand_id: lastPurchaseBrand_id,
-                //purchaseDecision_id: purchaseDecision_id,
-                //dateofPurchasePlan_id: dateofPurchasePlan_id,
-                //numberofVehiclestoP_id: numberofVehiclestoP_id,
-                pk: $("#pk").val()
-            }
-        })
-        aj.ajaxCall({
-            onError: function (event, textStatus, errorThrown) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Müşteri Kontak Kişi Ekleme İşlemi Başarısız...',
-                    'Müşteri Kontak Kişi Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
-                console.error('"pkInsert_sysCustomerInfo" servis hatası->' + textStatus);
-                $("#loading-image-cstcp").loadImager('removeLoadImage');
-            },
-            onSuccess: function (event, data) {
-                console.log(data);
-                var data = data;
-                sm.successMessage({
-                    onShown: function (event, data) {
-                        $('#customerContactPersonForm')[0].reset();
+        if (data.source_of_lead_id) {
+            $('#dropdownSourceoflead').ddslick('selectByValue',
+                {
+                    index: data.source_of_lead_id,
+                    value: data.source_of_lead_name
+                }
+            );
+        }
 
-                        $("#loading-image-cstcp").loadImager('removeLoadImage');
-
+        if (data.title_id) {
+            if (data.title_id === 1) {
+                $('#dropdownTitle').ddslick('selectByValue',
+                    {
+                        index: data.title_id,
+                        value: "Mrs"
                     }
-                });
-                sm.successMessage('show', 'Müşteri Kontak Kişi Kayıt İşlemi Başarılı...',
-                    'Müşteri Kontak Kişi kayıt işlemini gerçekleştirdiniz... ',
-                    data);
-                $("#loading-image-cstcp").loadImager('removeLoadImage');
-
-            },
-            onErrorDataNull: function (event, data) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Müşteri Kontak Kişi Kayıt İşlemi Başarısız...',
-                    'Müşteri Kontak Kişi kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysCustomerContactPerson" servis datası boştur!!');
-                $("#loading-image-cstcp").loadImager('removeLoadImage');
-            },
-            onErrorMessage: function (event, data) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Müşteri Kontak Kişi Kayıt İşlemi Başarısız...',
-                    'Müşteri Kontak Kişi kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysCustomerContactPerson" servis datası boştur!!');
-                $("#loading-image-cstcp").loadImager('removeLoadImage');
-            },
-            onError23503: function (event, data) {
-                dm.dangerMessage('Error23503');
-                $("#loading-image-cstcp").loadImager('removeLoadImage');
-            },
-            onError23505: function (event, data) {
-                dm.dangerMessage({
-                    onShown: function (event, data) {
-                        $('#customerContactPersonForm')[0].reset();
-                        $("#loading-image-cstcp").loadImager('removeLoadImage');
-                    }
-                });
-                dm.dangerMessage('show', 'Kayıt İşlemi Başarısız...',
-                    'Aynı isim ile Müşteri Kontak Kişi kaydı yapılmıştır, yeni bir Müşteri Kontak Kişi kaydı deneyiniz... ');
-                $("#loading-image-cstcp").loadImager('removeLoadImage');
+                ); 
             }
-        })
-        aj.ajaxCall('call');
+            if (data.title_id === 2) {
+                $('#dropdownTitle').ddslick('selectByValue',
+                    {
+                        index: data.title_id,
+                        value: "Mr"
+                    }
+                );
+            }
+        }
+
+        if (data.title_role_id) {
+            $('#dropdownRole').ddslick('selectByValue',
+                {
+                    index: data.title_role_id,
+                    value: data.role_name
+                }
+            );
+        }
+        
+        alert(data.priority_id);
+        if (data.priority_id) {
+            $('#dropdownPriority').ddslick('selectByValue',
+                {
+                    index: data.priority_id,
+                    value: data.priority_name
+                }
+            );
+        }
+
+        if (data.brand_loyalty_id) {
+            $('#dropdownBrandLoyalty').ddslick('selectByValue',
+                {
+                    index: data.brand_loyalty_id,
+                    value: data.brand_loyalty_name
+                }
+            );
+        }
+
+        if (data.last_brand_id) {
+            $('#dropdownLastBrand').ddslick('selectByValue',
+                {
+                    index: data.last_brand_id,
+                    value: data.last_brand_name
+                }
+            );
+        }
+
+        if (data.competitor_satisfaction_id) {
+            $('#dropdownCompSatisfaction').ddslick('selectByValue',
+                {
+                    index: data.competitor_satisfaction_id,
+                    value: data.competitor_satisfaction_name
+                }
+            );
+        }
+
+        if (data.man_satisfaction_id) {
+            $('#dropdownMANSatisfaction').ddslick('selectByValue',
+                {
+                    index: data.man_satisfaction_id,
+                    value: data.man_satisfaction_name
+                }
+            );
+        }
+
+
+        $("#loading-image-cstcp").loadImager('removeLoadImage');
     }
 
-    //Contact Person
+
+/**
+ * Customer contact person reset form
+ * @returns {undefined}
+ * @author Gül Özdemir
+ * @since 14/10/2018
+ */
     window.resetContactPersonForm = function () {
         $("#loading-image-cstcp").loadImager('removeLoadImage');
         $("#loading-image-cstcp").loadImager('appendImage');
@@ -3750,69 +3585,28 @@
         $('#customerContactPersonForm').validationEngine('hide');
 
         $('#dropdownLastPriority').ddslick('select', { index: String(0) });
-       // $('#dropdownPurchaseDecision').ddslick('select', { index: String(0) });
-       // $('#dropdownDateofPurchasePlan').ddslick('select', { index: String(0) });
-       // $('#dropdownNumberofVehiclestoP').ddslick('select', { index: String(0) });
+        $('#dropdownSourceoflead').ddslick('select', { index: String(0) });
+        $('#dropdownTitle').ddslick('select', { index: String(0) });
+        $('#dropdownRole').ddslick('select', { index: String(0) });
+        $('#dropdownPriority').ddslick('select', { index: String(0) });
+        $('#dropdownBrandLoyalty').ddslick('select', { index: String(0) });
+        $('#dropdownLastBrand').ddslick('select', { index: String(0) });
+        $('#dropdownCompSatisfaction').ddslick('select', { index: String(0) });
+        $('#dropdownMANSatisfaction').ddslick('select', { index: String(0) });
 
         $("#loading-image-cstcp").loadImager('removeLoadImage');
 
         return false;
     }
+
 
 
 /**
-* insert CustomerContactPerson Wrapper
-* @returns {Boolean}
-* @since 02/08/2018
-*/
-
-    window.insertCustomerContactPersonWrapper = function (e) {
-        e.preventDefault();
-
-        if ($("#customerContactPersonForm").validationEngine('validate')) {
-
-            insertCustomerContactPerson();
-        }
-        return false;
-    }
-
-    //Contact Person Form
-    window.fillCustomerContactPersonForm = function (data) {
-        
-        $("#loading-image-cstcp").loadImager('removeLoadImage');
-        $("#loading-image-cstcp").loadImager('appendImage');
-
-        document.getElementById("txt-cp-firstname").value = data.Employee;
-        document.getElementById("txt-cp-lastname").value = data.Employee;
-
-        $('#dropdownPriority').ddslick('select', { index: 2 });
-
-/*
-        document.getElementById("txt-cp-email").value = data.Employee;
-        document.getElementById("txt-cst-website").value = data.Employee;
-        document.getElementById("txt-cst-phone").value = data.Employee;
-        document.getElementById("txt-cst-vatnumber").value = data.Employee;
-        document.getElementById("txt-cst-regnumber").value = data.Employee;
-
-        document.getElementById("registration-datepicker").value = Date();
-
-        $('#dropdownCountry').ddslick('select', { index: 3 });
-        $('#dropdownState').ddslick('select', { index: 2 });
-        $('#dropdownCity').ddslick('select', { index: 2 });
-        $('#dropdownSector').ddslick('select', { index: 3 });
-        $('#dropdownSegment').ddslick('select', { index: 2 });
-        $('#dropdownReliabilityRate').ddslick('select', { index: 3 });
-        $('#dropdownCustomerGroup').ddslick('select', { index: 2 });
-        $('#dropdownTotalVehicles').ddslick('select', { index: 3 });
-        $('#dropdownTotalEmployees').ddslick('select', { index: 2 });
-        $('#dropdownAnnuelRevenue').ddslick('select', { index: 2 });
-*/
-        $("#loading-image-cstcp").loadImager('removeLoadImage');
-        
-
-        return false;
-    }
-
+ * Customer active / passive
+ * @returns {undefined}
+ * @author Gül Özdemir
+ * @since 14/10/2018
+ */
     window.activepassiveCustomer = function (customer_id, active) {
 
         var transactionSuccessMessage;
@@ -3851,6 +3645,123 @@
             }
         })
         ajax_activepassivecustomerlist.ajaxCallWidget('call');
+
+    }
+
+
+    /**
+    * insert CustomerContactPersonProductInterest
+    * @returns {undefined}
+    * @author Gül Özdemir
+    * @since 07/08/2018
+    */
+
+    $("#btn-cstcp-pi-add").on("click", function (e) {
+        e.preventDefault();
+
+        if ($("#customerContactPersonProductInterestForm").validationEngine('validate')) {
+
+            //var ddData_ProductInterest = $('#dropdownProductInterest').data('ddslick');
+            //var productinterestId = ddData_ProductInterest.selectedData.value;
+
+
+            var ajax = $('#ajaxACL-cp-productinterest').ajaxCallWidget({
+                failureLoadImage: true,
+                loadingImageID: "loading-image-cstcppi",
+                triggerSuccessAuto: true,
+                transactionSuccessText: window.lang.translate('Transaction successful'),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                proxy: '/Customer/InsertContactPersonProductInterest',
+                type: "POST",
+                data: JSON.stringify({
+                    url: "pkInsertAct_infocustomercpersonvehicle",
+                    customer_contact_persons_id: selectedContactPersonId,
+                    vehicle_group_id: SelectedProductInterestId,
+                    pk: "GsZVzEYe50uGgNM"
+                })
+            });
+
+            ajax.ajaxCallWidget({
+                onReset: function (event, data) {
+
+                },
+                onAfterSuccess: function (event, data) {
+                    $("#gridContainer_contactperson_productinterest").dxDataGrid("instance").refresh();
+                    $("#loading-image-cstcppi").loadImager('removeLoadImage');
+                }
+            })
+            ajax.ajaxCallWidget('call');
+        }
+       
+        return false;
+
+    })
+
+
+/**
+ * Customer contact person product interest reset form
+ * @returns {undefined}
+ * @author Gül Özdemir
+ * @since 14/10/2018
+ */
+    window.resetContactPersonProductInterestForm = function () {
+        $("#loading-image-cstcppi").loadImager('removeLoadImage');
+        $("#loading-image-cstcppi").loadImager('appendImage');
+
+        $('#customerContactPersonProductInterestForm').validationEngine('hide');
+
+        $('#dropdownProductInterest').ddslick('select', { index: String(0) });
+
+        $("#loading-image-cstcp").loadImager('removeLoadImage');
+
+        return false;
+    }
+
+    /**
+ * Contact Person active / passive
+ * @returns {undefined}
+ * @author Gül Özdemir
+ * @since 14/10/2018
+ */
+    window.activepassiveContactPerson = function (contactperson_id, active) {
+
+        var transactionSuccessMessage;
+
+        if (active === 1) {
+            //active
+            transactionSuccessMessage = window.lang.translate('Active successful');
+        } else {
+            //passive
+            transactionSuccessMessage = window.lang.translate('Passive successful');
+        }
+
+        var ajax_activepassivecontactpersonlist = $('#ajaxACL-contactpersonlist').ajaxCallWidget({
+            failureLoadImage: true,
+            loadingImageID: "loading-image-contactpersonGrid",
+            triggerSuccessAuto: true,
+            transactionSuccessText: transactionSuccessMessage,
+            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            proxy: '/Customer/ActivePassiveContactPerson',
+            type: "POST",
+            data: JSON.stringify({
+                id: contactperson_id,
+                pk: "GsZVzEYe50uGgNM",
+                url: "pkUpdateMakeActiveOrPassive_infocustomercontactpersons"
+            }),
+
+        });
+        ajax_activepassivecontactpersonlist.ajaxCallWidget({
+            onReset: function (event, data) {
+
+            },
+            onAfterSuccess: function (event, data) {
+                $("#gridContainer_contactperson").dxDataGrid("instance").refresh();
+                $("#loading-image-contactpersonGrid").loadImager('removeLoadImage');
+            }
+        })
+        ajax_activepassivecontactpersonlist.ajaxCallWidget('call');
 
     }
 });

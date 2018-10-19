@@ -18,5 +18,17 @@ namespace Base.MVC.Models.HttpRequest
         public string skip { get; set; }
         public string take { get; set; }
         public string customer_id { get; set; }
+        public string last_purchase_date { get; set; }
+        public string last_brand_id { get; set; }
+        public string last_brand_name { get; set; }
+        public string purchase_decision_id { get; set; }
+        public string purchase_decision { get; set; }
+        public string date_of_plan_id { get; set; }
+        public string date_of_plan { get; set; }
+        public string quantity_id { get; set; }
+        public string quantity_name { get; set; }
+        public string description { get; set; }
+        public string date_saved { get; set; }
+
     }
 }

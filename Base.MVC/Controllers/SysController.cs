@@ -973,7 +973,7 @@ namespace Base.MVC.Controllers
 
 
         /// <summary>
-        /// get RangesQuarters (ddslick dropdown)
+        /// get MaybeYesNo(ddslick dropdown)
         /// Gül Özdemir
         /// </summary>
         /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=fillMaybeYesNoTypes_sysSpecificDefinitions&sis_quota_id=1&year=2017&value=150&id=4&pk=GsZVzEYe50uGgNM&id=55
@@ -995,7 +995,5 @@ namespace Base.MVC.Controllers
             return data.ToString();
         }
     }
-
-
 
 }

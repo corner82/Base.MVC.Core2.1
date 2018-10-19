@@ -644,9 +644,6 @@ $(document).ready(function () {
         
         if ($("#branchForm").validationEngine('validate')) {
 
-            $("#loading-image-branch").loadImager('removeLoadImage');
-            $("#loading-image-branch").loadImager('appendImage');
-
             var branchName = $('#txt-branch-name').val();
             //alert(branchName);
             //txt-embrace-no
@@ -715,7 +712,7 @@ $(document).ready(function () {
 
             } else {
                 //update
-                alert("update");
+                //alert("update");
 
                 wcm.warningComplexMessage({
                     onConfirm: function (event, data) {

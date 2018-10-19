@@ -146,12 +146,12 @@
 
                                     <div class="form-group">
                                         <label><span lang="en">Application grup / Segment</span></label>
-                                        <div class="" id="ajaxACL-applicationgrup">
-                                            <div id="loading-image-applicationgrup" class="input-group">
+                                        <div class="" id="ajaxACL-segment">
+                                            <div id="loading-image-segment" class="input-group">
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-copyright"></i>
                                                 </div>
-                                                <div id="dropdownApplicationgrup" class="form-control"></div>
+                                                <div id="dropdownSegment" class="form-control"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -205,22 +205,9 @@
 
                                 <!-- /.col -->
                             </div>
-                            <div class="box-footer clearfix no-border">
-                                <table class="table text-center">
-                                    <tbody>
-                                        <tr>
-                                            <td width="75%">
-                                                &nbsp;
-                                            </td>
-                                            <td>
-                                                <button type="reset" class="btn btn-block btn-primary btn-md" id="btn-brand-clear" onclick="resetActivityForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                            </td>
-                                            <td>
-                                                <button type="submit" class="btn btn-block btn-primary btn-md" id="btn-brand-save" onclick="insertActivityWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <div class="box-footer">
+                                <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-activity-clear" onclick="resetActivityForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-activity-save">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Add&nbsp;&nbsp;</button>
                             </div>
                         </form>
 
@@ -241,6 +228,7 @@
                         <h3 class="box-title">Customer Activity List</h3>
 
                         <div class="box-tools pull-right">
+                            <button class="btn bg-teal btn-sm btn-small-miya" data-widget="refresh" id="activityList"><i class="fa fa-refresh"></i></button>
                             <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
                             <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
                         </div>

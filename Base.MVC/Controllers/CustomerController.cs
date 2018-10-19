@@ -353,6 +353,34 @@ namespace Base.MVC.Controllers
             return data.ToString();
         }
 
+
+        /// <summary>
+        /// get customer filter contact persons
+        /// Gül Özdemir
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        //[AjaxSessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> DdslickGetCustomerContactList([FromBody] DefaultPostModel postModel)
+        {
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            string queryStr = _queryCreater.GetQueryStringFromObject(postModel);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+            //var response = await HttpClientRequestFactory.Get("http://91.93.128.181:8080/mansis_services/mansissa_Slim_Proxy_v1/SlimProxyBoot.php?"+ queryStr, headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
+
+
+        http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkCustomerContactPersonDdList_infocustomercontactpersons&customer_id=1&language_code=en&pk=GsZVzEYe50uGgNM
+
+
         /// <summary>
         /// Delete Customer Info
         ///Gül Özdemir
@@ -518,10 +546,10 @@ namespace Base.MVC.Controllers
 
         /// <summary>
         /// Insert Contact Person
-        ///Gül Özdemir
+        /// Gül Özdemir
         /// </summary>
         ///
-        ///http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_infocustomeractivations&act_date=2018-10-12&customer_id=1&contact_person_id=2&cs_activation_type_id=2&cs_statu_types_id=1&cs_act_statutype_id=1&project_id=2&customer_segment_type_id=2&vehicle_model_id=3&description=32222&manager_description=&pk=GsZVzEYe50uGgNM
+        ///http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_infocustomercontactpersons&customer_id=29&name=asdasd&surname=asdasdad&email=asdas&mobile=2912312&phone=29333222&fax=2923&priority_id=2&source_of_lead_id=1&con_end_date=2018-05-05&title_id=2&title_role_id=1&brand_loyalty_id=2&last_brand_id=2&competitor_satisfaction_id=3&man_satisfaction_id=2&pk=GsZVzEYe50uGgNM
         /// <returns></returns>
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
@@ -547,7 +575,7 @@ namespace Base.MVC.Controllers
         }
 
         /// <summary>
-        /// Update Customer Activity
+        /// Update Contact Person
         /// Gül Özdemir
         /// </summary>
         ///
@@ -581,7 +609,7 @@ namespace Base.MVC.Controllers
         ///Gül Özdemir
         /// </summary>
         /// 
-        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateMakeActiveOrPassive_infocustomeractivations&id=29&pk=GsZVzEYe50uGgNM
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateMakeActiveOrPassive_infocustomercontactpersons&id=29&pk=GsZVzEYe50uGgNM
         /// <returns></returns>
         //[AjaxSessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
@@ -604,13 +632,97 @@ namespace Base.MVC.Controllers
         /// get Customer Contact Person Grid List
         /// Gül Özdemir
         /// </summary>
-        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkCustomerContactPersonGridx_infocustomercontactpersons&page=&rows=&sort=&order=&language_code=en&project_id=1&pk=GsZVzEYe50uGgNM&customer_id=1
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkCustomerContactPersonGridx_infocustomercontactpersons&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM&customer_id=29
         /// <returns></returns>
         //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
         public async Task<string> ContactPersonGridList([FromBody] ContactPersonModelGridList gridModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(gridModel);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model satate is not valid");
+            }
+
+        }
+
+
+        /// <summary>
+        /// Delete Contact Person Product Interest
+        /// Gül Özdemir
+        /// </summary>
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_infocustomercpersonvehicle&id=33&pk=GsZVzEYe50uGgNM
+        /// <returns></returns>
+        //[AjaxSessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> DeleteContactPersonProductInterest([FromBody] DeletePostModel deleteModel)
+        {
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            string queryStr = _queryCreater.GetQueryStringFromObject(deleteModel);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
+
+        /// <summary>
+        /// Insert Contact Person Product Interest
+        /// Gül Özdemir
+        /// </summary>
+        ///
+        ///http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_infocustomercpersonvehicle&customer_contact_persons_id=1&vehicle_group_id=3&pk=GsZVzEYe50uGgNM
+        /// <returns></returns>
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> InsertContactPersonProductInterest([FromBody] ContactPersonProductInterestPostModel contactpersonproductModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(contactpersonproductModel);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model satate is not valid");
+            }
+
+        }
+
+
+        /// <summary>
+        /// get Customer Contact Person Product Interest Grid List
+        /// Gül Özdemir
+        /// </summary>
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillCustomerCpVehiclesGridx_infocustomercpersonvehicle&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM&customer_contact_persons_id=1
+        /// <returns></returns>
+        //[SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> ContactPersonProductInterestGridList([FromBody] ContactPersonProductInterestModelGridList gridModel)
         {
             if (ModelState.IsValid)
             {
@@ -802,34 +914,26 @@ namespace Base.MVC.Controllers
 
         }
 
-        /// <summary>
-        /// Update Purchase Plan
-        /// Gül Özdemir
+
+        /// Delete Purchase Plan
+        ///Gül Özdemir
         /// </summary>
-        ///
-        ///http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateAct_infocustomeractivations&act_date=2018-10-12&customer_id=1&contact_person_id=3&cs_activation_type_id=2&cs_statu_types_id=1&cs_act_statutype_id=1&project_id=2&customer_segment_type_id=2&vehicle_model_id=3&description=32222&manager_description=&pk=GsZVzEYe50uGgNM&id=4
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_infocustomer&id=29&pk=GsZVzEYe50uGgNM
         /// <returns></returns>
+        //[AjaxSessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> UpdatePurchasePlan([FromBody] PurchasePlanUpdateModel customerModel)
+        public async Task<string> DeletePurchasePlan([FromBody] DeletePostModel deleteModel)
         {
-            if (ModelState.IsValid)
-            {
-                var headers = new Dictionary<string, string>();
-                var tokenGenerated = HttpContext.Session.GetHmacToken();
-                headers.Add("X-Hmac", tokenGenerated);
-                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-                string queryStr = _queryCreater.GetQueryStringFromObject(customerModel);
-                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
-                var data = response.Content.ReadAsStringAsync().Result;
-                return data.ToString();
-            }
-            else
-            {
-                throw new Exception("Model satate is not valid");
-            }
-
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            string queryStr = _queryCreater.GetQueryStringFromObject(deleteModel);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
         }
 
         /// <summary>
@@ -861,6 +965,78 @@ namespace Base.MVC.Controllers
             }
 
         }
-    }
 
+
+        /// <summary>
+        /// get Source of Lead (ddslick dropdown) (for Customer Contact Person)
+        /// Gül Özdemir
+        /// </summary>
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkSourceOfLeadDdList_syssourceoflead&sis_quota_id=1&year=2017&value=150&id=4&pk=GsZVzEYe50uGgNM&id=55
+
+        /// <returns></returns>
+        //[SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysSourceofLead([FromBody] DefaultPostModel postModel)
+        {
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            string queryStr = _queryCreater.GetQueryStringFromObject(postModel);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
+
+        /// <summary>
+        /// get Contact Person Role/title (ddslick dropdown) (for Customer Contact Person)
+        /// Gül Özdemir
+        /// </summary>
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkTitlesCustomerDdList_systitles&sis_quota_id=1&year=2017&value=150&id=4&pk=GsZVzEYe50uGgNM&id=55
+
+        /// <returns></returns>
+        //[SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysContactPersonRole([FromBody] DefaultPostModel postModel)
+        {
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            string queryStr = _queryCreater.GetQueryStringFromObject(postModel);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
+
+        /// <summary>
+        /// get Contact Person Role/title (ddslick dropdown) (for Customer Contact Person)
+        /// Gül Özdemir
+        /// </summary>
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkCsActivationTypesDdList_syscsactivationtypes&language_code=en&pk=GsZVzEYe50uGgNM
+
+        /// <returns></returns>
+        //[SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysActivityTypes([FromBody] DefaultPostModel postModel)
+        {
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            string queryStr = _queryCreater.GetQueryStringFromObject(postModel);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
+
+        
+    }
 }
+
