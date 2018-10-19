@@ -15,10 +15,13 @@
 <div class="nav-tabs-custom">
     <input type="hidden" id="deal_hidden" />
     <ul class="nav nav-tabs pull-right" id="deals_tab">
-        <li class="nav-item"><a href="#tab_Body" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Add Body</a></li>
+        <li class="nav-item"><a href="#tab_Warranty" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Warranty</a></li>
+        <li class="nav-item"><a href="#tab_TradeIn" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">TradeIn</a></li>
+        <li class="nav-item"><a href="#tab_Aksesuar" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Accessory</a></li>
+        <li class="nav-item"><a href="#tab_Body" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Body</a></li>
         <li class="nav-item"><a href="#tab_TradeBack" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Trade Back</a></li>
         <li class="nav-item"><a href="#tab_BuyBack" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Buy back</a></li>
-        <li class=" nav-item"><a href="#tab_VehicleType" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Add vehicle type</a></li>
+        <li class=" nav-item"><a href="#tab_VehicleType" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Vehicle type</a></li>
         <li class="active nav-item"><a href="#tab_DealAttr" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="true">Deal</a></li>
         <!--<li class="dropdown nav-item">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
@@ -35,6 +38,331 @@
         <li class="pull-left header"><i class="fa fa-th"></i>@Localizer["Deal"]</li>
     </ul>
     <div class="tab-content ">
+
+        <div class="tab-pane zeyn-load-imager position-relative" id="tab_Warranty" style="padding: 21px 20px 65px 20px;">
+            <form id="addWarrantyForm">
+                <div class="row">
+                    <div class="col-md-6 ">
+                        <div class="form-group">
+                            <label>Vehicle group</label>
+                            <div class="" id="ajax_DdslickVehicleGroupsWarranty">
+                                <div id="loadingImage_DdslickVehicleGroupsWarranty" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickVehicleGroupsWarranty"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Vehicle type</label>
+                            <div class="" id="ajax_DdslickDealVehicleTypeWarranty">
+                                <div id="loadingImage_DdslickDealVehicleTypeWarranty" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickDealVehicleTypeWarranty"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Warranty types</label>
+                            <div class="" id="ajax_DdslickWarrantyType">
+                                <div id="loadingImage_DdslickWarrantyType" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickWarrantyType"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Warranty term</label>
+                            <div class="" id="ajax_DdslickWarrantyTerm">
+                                <div id="loadingImage_DdslickWarrantyTerm" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickWarrantyTerm"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Warranty km</label>
+                            <div class="" id="ajax_DdslickWarrantyKm">
+                                <div id="loadingImage_DdslickWarrantyKm" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickWarrantyKm"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>@Localizer["Price"]</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <input id="price_customer_warranty" type="text" class="form-control validate[required]" placeholder="@Localizer["Price"]">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>@Localizer["Price"]</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <input id="price_list_warranty" type="text" class="form-control disabled" placeholder="@Localizer["Price"]">
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 ">
+                        <div id="gridContainer_Warranty"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 ">
+                        <div class="form-group">
+                            <label>Warranties</label>
+                            <div class="">
+                                <div id="loadingImage_TagCabinVehicleAksesuarlar" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-hand-o-right"></i>
+                                    </div>
+                                    <div style="margin-bottom: -10px;width:96%" class="tag-container-warranties">
+                                        <ul id="tagcabin_Warranties" class="tag-box"></ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <button type="submit" class="btn btn-primary btn-md pull-right " style="margin-right:10px;margin-top:20px;" id="add_warranty">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;@Localizer["Save"]&nbsp;&nbsp;</button>
+                </div>
+            </form>
+        </div><!-- /.tab-pane -->
+
+        <div class="tab-pane zeyn-load-imager position-relative" id="tab_TradeIn" style="padding: 21px 20px 65px 20px;">
+            <form id="addTradeInForm">
+                <div class="row">
+                    <div class="col-md-6 ">
+                        <div class="form-group">
+                            <label>@Localizer["Quantity"]</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <input id="quantity_vehicleNumbers" type="text" class="form-control validate[required]" placeholder="@Localizer["Quantity"]">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>TopUsed offer</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <input id="price_topusedOffer" type="text" class="form-control validate[required]" placeholder="TopUsed offer">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Customer price</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <input id="price_customerOffer" type="text" class="form-control validate[required]" placeholder="Customer price">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Over allowance</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <input id="price_overAllowance" type="text" class="form-control validate[required]" placeholder="Over allowance">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Over allowance type</label>
+                            <div class="" id="ajax_DdslickOverAllowanceType">
+                                <div id="loadingImage_DdslickOverAllowanceType" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickOverAllowanceType"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--<div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 ">
+                    <div id="gridContainer_TradeIn"></div>
+                </div>
+            </div>-->
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 ">
+                        <div class="form-group">
+                            <label>TradeIns</label>
+                            <div class="">
+                                <div id="loadingImage_TagCabinTradeIn" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-hand-o-right"></i>
+                                    </div>
+                                    <div style="margin-bottom: -10px;width:96%" class="tag-container-tradeins">
+                                        <ul id="tagcabin_TradeIns" class="tag-box"></ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <button type="button" class="btn btn-primary btn-md pull-right " style="margin-right:10px;margin-top:20px;" id="toggle_TradeInAsider">&nbsp;<i class="fa fa-feed"></i>&nbsp;&nbsp;Add Vehicle&nbsp;&nbsp;</button>
+                    <button type="submit" class="btn btn-primary btn-md pull-right " style="margin-right:10px;margin-top:20px;" id="add_tradein">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;@Localizer["Save"]&nbsp;&nbsp;</button>
+                </div>
+            </form>
+        </div><!-- /.tab-pane -->
+
+
+        <div class="tab-pane zeyn-load-imager position-relative" id="tab_Aksesuar" style="padding: 21px 20px 65px 20px;">
+            <form id="addAksesuarForm">
+                <div class="row">
+                    <div class="col-md-6 ">
+                        <div class="form-group">
+                            <label>Vehicle group</label>
+                            <div class="" id="ajax_DdslickVehicleGroupsAksesuar">
+                                <div id="loadingImage_DdslickVehicleGroupsAksesuar" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickVehicleGroupsAksesuar"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Vehicle type</label>
+                            <div class="" id="ajax_DdslickDealVehicleTypeAksesuar">
+                                <div id="loadingImage_DdslickDealVehicleTypeAksesuar" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickDealVehicleTypeAksesuar"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Accessories types</label>
+                            <div class="" id="ajax_DdslickAksesuarType">
+                                <div id="loadingImage_DdslickAksesuarType" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickAksesuarType"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Accessories options</label>
+                            <div class="" id="ajax_DdslickAksesuarOptions">
+                                <div id="loadingImage_DdslickAksesuarOptions" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickAksesuarOptions"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Suppliers</label>
+                            <div class="" id="ajax_DdslickAksesuarSuppliers">
+                                <div id="loadingImage_DdslickAksesuarSuppliers" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickAksesuarSuppliers"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>@Localizer["Quantity"]</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <input id="quantity_aksesuar" type="text" class="form-control validate[required]" placeholder="@Localizer["Quantity"]">
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label>@Localizer["Price"]</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <input id="aksesuar_old_price" type="text" class="form-control" placeholder="@Localizer["Price"]">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>New @Localizer["Price"]</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <input id="aksesuar_new_price" type="text" class="form-control" placeholder="New @Localizer["Price"]">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 ">
+                        <div class="form-group">
+                            <label>Accessories</label>
+                            <div class="">
+                                <div id="loadingImage_TagCabinVehicleAksesuarlar" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-hand-o-right"></i>
+                                    </div>
+                                    <div style="margin-bottom: -10px;width:96%" class="tag-container-aksesuarlar">
+                                        <ul id="tagcabin_VehicleAksesuarlar" class="tag-box"></ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <!--<button class="btn btn-default pull-right" id="tab_next_2" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>  Add</button>-->
+                    <button onclick="return openAddProposalAksesuarPopUp();" id="add_aksesuar_proposal" name="add_aksesuar_proposal" type="button" class="btn btn-primary btn-md pull-right "  style="margin-right:10px;margin-top:20px;" >&nbsp;<i class="fa fa-arrow-circle-right"></i>&nbsp;&nbsp;@Localizer["Add accessory proposal"]&nbsp;&nbsp;</button>
+                    <button type="submit" class="btn btn-primary btn-md pull-right " style="margin-right:10px;margin-top:20px;" id="add_aksesuar">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;@Localizer["Save"]&nbsp;&nbsp;</button>
+            </form>
+            
+
+            </div>
+
+        </div><!-- /.tab-pane -->
+
 
         <div class="tab-pane zeyn-load-imager position-relative" id="tab_Body" style="padding: 21px 20px 65px 20px;">
             <form id="addBodyForm">
@@ -87,16 +415,16 @@
                             </div>
                         </div>
                         <!--<div class="form-group">
-        <label>Truck type</label>
-        <div class="" id="ajax_DdslickTruckTypeTradeBack">
-            <div id="loadingImage_DdslickTruckTypeTradeBack" class="input-group zeyn-load-imager">
-                <div class="input-group-addon">
-                    <i class="fa fa-copyright"></i>
-                </div>
-                <div id="ddslickTruckTypeTradeBack"></div>
-            </div>
-        </div>
-    </div>-->
+                        <label>Truck type</label>
+                        <div class="" id="ajax_DdslickTruckTypeTradeBack">
+                            <div id="loadingImage_DdslickTruckTypeTradeBack" class="input-group zeyn-load-imager">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-copyright"></i>
+                                </div>
+                                <div id="ddslickTruckTypeTradeBack"></div>
+                            </div>
+                        </div>
+                    </div>-->
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">

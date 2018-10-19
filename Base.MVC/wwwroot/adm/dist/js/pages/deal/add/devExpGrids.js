@@ -44,7 +44,7 @@
             var terrainType = getSelectedTerrainType("ddslickTerrainTypeBuyBack");
             var repmainType = getSelectedRepMainType("ddslickRepMainBuyBack");
             var hydraType = getSelectedHydraType("ddslickHydraBuyBack");
-            var vehicleType = getSelectedDDslickValueOrDefaultVal("ddslickDealVehicleTypeBuyBack");
+            var vehicleType = window.getSelectedDDslickValueOrDefaultVal("ddslickDealVehicleTypeBuyBack");
 
             $.ajax({
                 url: '/Deal/GetDealBuyBackListProxyService',
@@ -213,7 +213,7 @@
             var terrainType = getSelectedTerrainType("ddslickTerrainTypeTradeBack");
             var repmainType = getSelectedRepMainType("ddslickRepMainTradeBack");
             var hydraType = getSelectedHydraType("ddslickHydraTradeBack");
-            var vehicleType = getSelectedDDslickValueOrDefaultVal("ddslickDealVehicleTypeTradeBack");
+            var vehicleType = window.getSelectedDDslickValueOrDefaultVal("ddslickDealVehicleTypeTradeBack");
 
             $.ajax({
                 url: '/Deal/GetDealTradeBackListProxyService',
@@ -517,7 +517,7 @@
 
     });
 
-    var getSelectedDDslickValueOrDefaultVal = function (id) {
+    window.getSelectedDDslickValueOrDefaultVal = function (id) {
         var customerType;
         var ddDataCustomerType = $('#' + id + '').data("ddslick")
         if (ddDataCustomerType) {

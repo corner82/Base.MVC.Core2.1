@@ -9,6 +9,15 @@
     }
   },
   {
+    "Key": "Add accessory proposal",
+    "LocalizedValue": {
+      "de-DE": "Add accessory proposal",
+      "en-US": "Add accessory proposal",
+      "af-ZA": "Add accessory proposal",
+      "tr-TR": "Aksesuar öner"
+    }
+  },
+  {
     "Key": "Quantity",
     "LocalizedValue": {
       "de-DE": "Beschreibung",
@@ -168,6 +177,15 @@
       "en-US": "Realization rate",
       "af-ZA": "Realisasie koers",
       "tr-TR": "Gerçekleşme oranı"
+    }
+  },
+  {
+    "Key": "Price",
+    "LocalizedValue": {
+      "de-DE": "Price",
+      "en-US": "Price",
+      "af-ZA": "Price",
+      "tr-TR": "Fiyat"
     }
   },
   {

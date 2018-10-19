@@ -1,0 +1,218 @@
+﻿@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHttpContextAccessor HttpContextAccessor
+@using System
+@using System.Text
+@using Base.Core.Entities.Session
+@using Base.Core.Extensions.Session
+@using Microsoft.AspNetCore.Http
+@{
+    var currentUser = Context.Session.Get<SessionUserModel>("CurrentUser");
+}
+
+
+
+<!-- Control Sidebar right -->
+<aside id="tradeInAddAside" class="padding-top-minus-50" style="padding-top : -50px;">
+    <div class="row margin">
+        <button class="btn btn-default pull-left" id="toggle_closeTradeInAside" style="margin-right: 10px;" ><i class="fa fa-close"></i></button>
+
+    </div>
+    <!-- Create the tabs -->
+    <div class="callout callout-info lead margin">
+
+        <p lang="en">Add <code lang="en">tradein</code></p>
+    </div>
+    <!--<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+        <li><a href="#control-sidebar-tab-campaigns" data-toggle="tab"><i class="fa fa-desktop"></i></a></li>
+    </ul>-->
+    <!-- Tab panes -->
+    <div class="tab-content" id="testZeyn">
+        <!-- Home tab content -->
+        
+        <div class="tab-pane active pad" id="control-sidebar-tab-tradeins">
+            <form id="addTradeInVehicleForm">
+                <div class="row">
+                    <div class="col-md-6 ">
+                        <div class="form-group">
+                            <label>Engine no</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <input id="number_engineTradeIn" type="text" class="form-control validate[required]" placeholder="Engine no">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Km</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <input id="number_kmTradeIn" type="text" class="form-control validate[required]" placeholder="Km">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Vehicle brand</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <input id="text_vehicleBrandTradeIn" type="text" class="form-control validate[required]" placeholder="Vehicle brand">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Model</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <input id="text_modelTradeIn" type="text" class="form-control validate[required]" placeholder="Model">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Model year</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <input id="text_modelYearTradeIn" type="text" class="form-control validate[required]" placeholder="Model year">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Tracker number</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <input id="number_trackerTradeIn" type="text" class="form-control validate[required]" placeholder="Tracker number">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Vehicle location</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <input id="text_vehiclelocationTradeIn" type="text" class="form-control validate[required]" placeholder="Vehicle location">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Body type</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <textarea data-prompt-position="topLeft:70" class="form-control validate[required]" rows="3" name="text_bodyTypeTradeIn" id="text_bodyTypeTradeIn" placeholder=""></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>VIN no</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <input id="number_vinTradeIn" type="text" class="form-control validate[required]" placeholder="VIN no">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Brand</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <input id="text_brandTradeIn" type="text" class="form-control validate[required]" placeholder="Brand">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Vehicle type</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <input id="text_vehicleTypeTradeIn" type="text" class="form-control validate[required]" placeholder="Vehicle type">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>License</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <input id="text_licenseTradeIn" type="text" class="form-control validate[required]" placeholder="License">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Warranty</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <input id="text_warrantyTradeIn" type="text" class="form-control validate[required]" placeholder="Warranty">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Embrace transfer @Localizer["Date"]</label>
+                            <div class="">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input class="datepicker form-control" id="date_embraceTransferDate" data-date-format="mm/dd/yyyy">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Body info</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <textarea data-prompt-position="topLeft:70" class="form-control validate[required]" rows="3" name="text_bodyInfoTradeIn" id="text_bodyInfoTradeIn" placeholder=""></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+                <!--<div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 ">
+
+                <div id="gridContainer_BuyBack"></div>
+            </div>
+
+        </div>-->
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 ">
+                        <div class="form-group">
+                            <label lang="en">TradeIn</label>
+                            <div class="">
+                                <div id="loadingImage_TagCabinDealCampaigns" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-hand-o-right"></i>
+                                    </div>
+                                    <div style="margin-bottom: -10px;width:96%" class="tag-container-campaigns">
+                                        <ul id="tagcabin_DealCampaigns" class="tag-box"></ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <button class="btn btn-default pull-right" id="tab_next_2" style="margin-top: 20px;margin-right: 10px;" lang="en"><i class="fa fa-plus"></i>  Add</button>
+                </div>
+
+        </div><!-- /.tab-pane -->
+
+    </div>
+</aside><!-- /.control-sidebar -->
+<!-- Add the sidebar's background. This div must be placed
+ immediately after the control sidebar -->
+<div class='control-sidebar-custom-bg'></div>
