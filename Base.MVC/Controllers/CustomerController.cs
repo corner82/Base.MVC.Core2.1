@@ -358,13 +358,13 @@ namespace Base.MVC.Controllers
         /// get customer filter contact persons
         /// Gül Özdemir
         /// </summary>
-        /// 
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkCustomerContactPersonDdList_infocustomercontactpersons&customer_id=1&language_code=en&pk=GsZVzEYe50uGgNM
         /// <returns></returns>
         //[AjaxSessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> DdslickGetCustomerContactList([FromBody] DefaultPostModel postModel)
+        public async Task<string> DdslickGetCustomerContactList([FromBody] CustomerContactPersonsPostModel postModel)
         {
             var headers = new Dictionary<string, string>();
             var tokenGenerated = HttpContext.Session.GetHmacToken();
@@ -377,8 +377,6 @@ namespace Base.MVC.Controllers
             return data.ToString();
         }
 
-
-        http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkCustomerContactPersonDdList_infocustomercontactpersons&customer_id=1&language_code=en&pk=GsZVzEYe50uGgNM
 
 
         /// <summary>
@@ -1036,7 +1034,53 @@ namespace Base.MVC.Controllers
             return data.ToString();
         }
 
-        
+
+        /// <summary>
+        /// get Planed /UnPlaned
+        /// Gül Özdemir
+        /// </summary>
+        /// //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkCsActStatutypesDdList_syscsactstatutypess&language_code=en&pk=GsZVzEYe50uGgNM
+
+        /// <returns></returns>
+        //[SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysPlanedUnPlaned([FromBody] DefaultPostModel postModel)
+        {
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            string queryStr = _queryCreater.GetQueryStringFromObject(postModel);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
+
+
+        /// <summary>
+        /// get Planed /UnPlaned
+        /// Gül Özdemir
+        /// </summary>
+        /// //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkCsStatuTypesDdList_syscsstatutypes&language_code=en&pk=GsZVzEYe50uGgNM
+
+        /// <returns></returns>
+        //[SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysActivePasiveList([FromBody] DefaultPostModel postModel)
+        {
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            string queryStr = _queryCreater.GetQueryStringFromObject(postModel);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
     }
 }
 

@@ -199,7 +199,8 @@
             pk: "GsZVzEYe50uGgNM",
             url: "pkCountryDdList_syscountrys",
             //pkIdentity: $("#publicKey").val()
-        })
+        }),
+        timeout: 30000
     });
     ajaxACLResources_country.ajaxCallWidget({
         onReset: function (event, data) {
@@ -239,7 +240,8 @@
                                 url: "pkCountryRegionsDdList_syscountryregions",
                                 country_id: ddslick_countryId
                                 //pkIdentity: $("#publicKey").val()
-                            })
+                            }),
+                            timeout: 30000
                         });
 
                         //province
@@ -283,7 +285,8 @@
                                                     country_id: ddslick_countryId,
                                                     region_id: ddslick_provinceId
                                                     //pkIdentity: $("#publicKey").val()
-                                                })
+                                                }),
+                                                timeout: 30000
                                             });
 
                                             ajaxACLResources_getcity.ajaxCallWidget({
@@ -374,7 +377,8 @@
             pk: "GsZVzEYe50uGgNM",
             url: "pkCustomerSegmentTypesDdList_syscustomersegmenttypes",
             pkIdentity: $("#publicKey").val()
-        })
+        }),
+        timeout: 30000
     });
     ajaxACLResources_segment.ajaxCallWidget({
         onSuccess: function (event, datasegment) {
@@ -422,7 +426,8 @@
             pk: "GsZVzEYe50uGgNM",
             url: "pkCustomerSectorTypesDdList_syscustomersectortypes",
             pkIdentity: $("#publicKey").val()
-        })
+        }),
+        timeout: 30000
     });
     ajaxACLResources_sector.ajaxCallWidget({
         onSuccess: function (event, datasector) {
@@ -471,7 +476,8 @@
             pk: "GsZVzEYe50uGgNM",
             url: "pkCustomerReliabilityDdList_syscustomerreliability",
             pkIdentity: $("#publicKey").val()
-        })
+        }),
+        timeout: 30000
     });
     ajaxACLResources_credibility.ajaxCallWidget({
         onSuccess: function (event, datacredibility) {
@@ -638,7 +644,8 @@
             pk: "GsZVzEYe50uGgNM",
             url: "pkCustomerApplicationMainTypesDdList_syscustomerapplicationtypes",
             pkIdentity: $("#publicKey").val()
-        })
+        }),
+        timeout: 30000
     });
     ajaxACLResources_applicationtype.ajaxCallWidget({
         onSuccess: function (event, dataapplicationtype) {
@@ -688,7 +695,8 @@
             pk: "GsZVzEYe50uGgNM",
             url: "pkNumericalRangesVeichlesDdList_sysnumericalranges",
             pkIdentity: $("#publicKey").val()
-        })
+        }),
+        timeout: 30000
     });
     ajaxACLResources_totalvehicles.ajaxCallWidget({
         onSuccess: function (event, datatotalvehicles) {
@@ -787,7 +795,8 @@
             pk: "GsZVzEYe50uGgNM",
             url: "pkCustomerTurnoverRatesDdList_syscustomerturnoverrates",
             pkIdentity: $("#publicKey").val()
-        })
+        }),
+        timeout: 30000
     });
     ajaxACLResources_annuelrevenue.ajaxCallWidget({
         onSuccess: function (event, dataannuelrevenue) {
@@ -840,7 +849,8 @@
             pk: "GsZVzEYe50uGgNM",
             url: "pkVehicleBrandDdList_sysvehiclebrand",
             pkIdentity: $("#publicKey").val()
-        })
+        }),
+        timeout: 30000
     });
     ajaxACLResources_vehiclebrand.ajaxCallWidget({
         onSuccess: function (event, databrand) {
@@ -887,7 +897,8 @@
             pk: "GsZVzEYe50uGgNM",
             url: "pkNumericalRangesQuartersDdList_sysnumericalranges",
             pkIdentity: $("#publicKey").val()
-        })
+        }),
+        timeout: 30000
     });
     ajaxACLResources_dateofpurchaseplan.ajaxCallWidget({
         onSuccess: function (event, datarangesquarters) {
@@ -935,7 +946,8 @@
             pk: "GsZVzEYe50uGgNM",
             url: "fillMaybeYesNoTypes_sysSpecificDefinitions",
             pkIdentity: $("#publicKey").val()
-        })
+        }),
+        timeout: 30000
     });
     ajaxACLResources_purchasedecision.ajaxCallWidget({
         onSuccess: function (event, datadecision) {
@@ -984,7 +996,8 @@
             pk: "GsZVzEYe50uGgNM",
             url: "pkNumericalRangesVeichlesDdList_sysnumericalranges",
             pkIdentity: $("#publicKey").val()
-        })
+        }),
+        timeout: 30000
     });
     ajaxACLResources_numberofvehiclestopurchase.ajaxCallWidget({
         onSuccess: function (event, dataptotalvehicles) {
@@ -1051,7 +1064,8 @@
             pk: "GsZVzEYe50uGgNM",
             url: "pkSourceOfLeadDdList_syssourceoflead",
             pkIdentity: $("#publicKey").val()
-        })
+        }),
+        timeout: 30000
     });
     ajaxACLResources_sourceoflead.ajaxCallWidget({
         onSuccess: function (event, datasourceoflead) {
@@ -1142,7 +1156,8 @@
             pk: "GsZVzEYe50uGgNM",
             url: "pkTitlesCustomerDdList_systitles",
             pkIdentity: $("#publicKey").val()
-        })
+        }),
+        timeout: 30000
     });
     ajaxACLResources_role.ajaxCallWidget({
         onSuccess: function (event, datarole) {
@@ -1193,7 +1208,8 @@
             pk: "GsZVzEYe50uGgNM",
             url: "pkVehicleBrandDdList_sysvehiclebrand",
             pkIdentity: $("#publicKey").val()
-        })
+        }),
+        timeout: 30000
     });
     ajaxACLResources_lastbrand.ajaxCallWidget({
         onSuccess: function (event, datalastbrand) {
@@ -1245,7 +1261,8 @@
             pk: "GsZVzEYe50uGgNM",
             url: "pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups",
             pkIdentity: $("#publicKey").val()
-        })
+        }),
+        timeout: 30000
     });
     ajaxACLResources_productinterest.ajaxCallWidget({
         onSuccess: function (event, dataproductinterest) {
@@ -2334,6 +2351,8 @@
             remove: function (key) {
                 var deferred = $.Deferred();
 
+                //alert("remove selectedContactPersonProductId" + selectedContactPersonProductId);
+
                 return $.ajax({
                     url: '/Customer/DeleteContactPersonProductInterest',
                     dataType: "json",
@@ -2380,7 +2399,7 @@
 
                 editing: {
                     //mode: "batch"
-                    mode: "popup",
+                    mode: "form",
                     //allowAdding: true,
                     //allowUpdating: true,
                     allowDeleting: true,
@@ -2463,13 +2482,14 @@
                 onSelectionChanged: function (selectedItems) {
                     var data = selectedItems.selectedRowsData[0];
                     if (data) {
-
+                        selectedContactPersonProductId = data.id;
+                        //alert("onSelectionChanged selectedContactPersonProductId" + selectedContactPersonProductId);
                     }
                 },
 
                 onRowRemoving: function (e) {
                     selectedContactPersonProductId = e.key.id;
-                    //alert(selectedBranchId);
+                    //alert("onRowRemoving selectedContactPersonProductId" + selectedContactPersonProductId);
                 },
 
                 onRowRemoved: function (e) {
@@ -3521,7 +3541,7 @@
             );
         }
         
-        alert(data.priority_id);
+        //alert(data.priority_id);
         if (data.priority_id) {
             $('#dropdownPriority').ddslick('selectByValue',
                 {

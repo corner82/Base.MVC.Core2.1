@@ -358,6 +358,108 @@ $(document).ready(function () {
     })
     ajaxACLResources_activitytype.ajaxCallWidget('call');
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Active / Pasive 
+    var ajaxACLResources_activitystatus = $('#ajaxACL-activitystatus').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loading-image-activitystatus",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Customer/SysActivePasiveList',
+        type: 'POST',
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkCsStatuTypesDdList_syscsstatutypes",
+            //pkIdentity: $("#publicKey").val()
+        })
+    });
+    ajaxACLResources_activitystatus.ajaxCallWidget({
+        onSuccess: function (event, dataaactivitystatus) {
+            var cbdata_activitystatus = $.parseJSON(dataactivitystatus);
+            cbdata_activitystatus.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+
+            console.log(cbdata_activitystatus);
+
+            $('#dropdownActivityStatus').ddslick({
+                data: cbdata_activitystatus,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+                        //alert(selectedData.selectedData.text);
+
+                    }
+
+                }
+            });
+
+            $("#loading-image-activitystatus").loadImager('removeLoadImage');
+        },
+        onReset: function (event, data) {
+
+        },
+        onAfterSuccess: function (event, data) {
+            $("#loading-image-activitystatus").loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_activitystatus.ajaxCallWidget('call');
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Planed / UnPlaned 
+    var ajaxACLResources_activityplaned = $('#ajaxACL-activityplaned').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loading-image-activityplaned",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Customer/SysPlanedUnPlaned',
+        type: 'POST',
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkCsActStatutypesDdList_syscsactstatutypess",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
+    ajaxACLResources_activityplaned.ajaxCallWidget({
+        onSuccess: function (event, dataactivityplaned) {
+            var cbdata_activityplaned = $.parseJSON(dataactivityplaned);
+            cbdata_activityplaned.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+
+            console.log(cbdata_activityplaned);
+
+            $('#dropdownActivityPlaned').ddslick({
+                data: cbdata_activityplaned,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+                        //alert(selectedData.selectedData.text);
+
+                    }
+
+                }
+            });
+
+            $("#loading-image-activityplaned").loadImager('removeLoadImage');
+        },
+        onReset: function (event, data) {
+
+        },
+        onAfterSuccess: function (event, data) {
+            $("#loading-image-activityplaned").loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_activityplaned.ajaxCallWidget('call');
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Segment
