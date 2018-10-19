@@ -378,7 +378,7 @@ namespace Base.MVC.Controllers
         }
 
 
-        http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkCustomerContactPersonDdList_infocustomercontactpersons&customer_id=1&language_code=en&pk=GsZVzEYe50uGgNM
+        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkCustomerContactPersonDdList_infocustomercontactpersons&customer_id=1&language_code=en&pk=GsZVzEYe50uGgNM
 
 
         /// <summary>
