@@ -849,7 +849,7 @@ namespace Base.MVC.Controllers
             return data.ToString();
         }
 
-        
+
         /// <summary>
         /// get Customer Activity Grid List
         /// Gül Özdemir
