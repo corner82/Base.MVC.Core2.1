@@ -501,6 +501,14 @@ if it's not present, don't show loader */
     padding-top : -50px;
 }
 
+.padding-top-20 {
+    padding-top: 20px;
+}
+
+.padding-top-50 {
+    padding-top: 50px;
+}
+
 
 
 #gridContainer td {

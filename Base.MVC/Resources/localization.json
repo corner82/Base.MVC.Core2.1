@@ -135,6 +135,15 @@
     }
   },
   {
+    "Key": "Upload",
+    "LocalizedValue": {
+      "de-DE": "Upload",
+      "en-US": "Upload",
+      "af-ZA": "Upload",
+      "tr-TR": "Dosya yükle"
+    }
+  },
+  {
     "Key": "Update",
     "LocalizedValue": {
       "de-DE": "Aktualisieren",

@@ -160,6 +160,7 @@
             console.log(data.op_username);
             $("#add_tradein_vehicle_deal").addClass("hidden");
             $("#update_tradein_vehicle_deal").removeClass("hidden");
+            $("#upload_tradein_vehicle_deal").removeClass("hidden");
             $("#add_tradein_vehicle_reset").removeClass("hidden");
             //var data = selectedItems[0]["op_username"];
             //console.log(data);
@@ -377,7 +378,7 @@
             //ajax.ajaxCallWidget('call');
 
         } else {
-            $('#tab_Aksesuar').loadImager('removeLoadImage');
+            $('#tab_TradeIn').loadImager('removeLoadImage');
         }
 
         
@@ -385,9 +386,9 @@
     })
 
     // add aksesuar reset
-    $("#add_aksesuar_reset").on("click", function (e) {
+    $("#add_tradein_reset").on("click", function (e) {
         e.preventDefault();
-        resetAksesuarAddDealForm();
+        resetTradeInAddDealForm();
         return false;
     })
 
@@ -610,6 +611,7 @@
         resetTradeInVehicleAddDealForm();
         $("#add_tradein_vehicle_reset").addClass("hidden");
         $("#update_tradein_vehicle_deal").addClass("hidden");
+        $("#upload_tradein_vehicle_deal").addClass("hidden");
         $("#add_tradein_vehicle_deal").removeClass("hidden");
         return false;
     })
