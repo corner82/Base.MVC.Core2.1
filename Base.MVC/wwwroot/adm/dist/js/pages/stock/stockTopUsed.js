@@ -597,7 +597,7 @@ DevExpress.localization.locale(langCode);
                 //deleteTrName(trName_id);
             },
             onRowRemoved: function (e) {
-                $("#gridContainer_QuotaMonth").dxDataGrid("instance").refresh();
+                $("#gridContainer_topUsedStock").dxDataGrid("instance").refresh();
             },
         });
     });
@@ -832,11 +832,456 @@ DevExpress.localization.locale(langCode);
 //Cost Grid End
 
 //Rental Grid
+    $('#rentalList').click(function () {
+
+        /* devexgrid */
+        var rentalData = new DevExpress.data.CustomStore({
+            load: function (loadOptions) {
+                var deferred = $.Deferred(),
+                    args = {};
+
+                if (loadOptions.sort) {
+                    args.orderby = loadOptions.sort[0].selector;
+                    if (loadOptions.sort[0].desc)
+                        args.orderby += " desc";
+                }
+
+                args.skip = loadOptions.skip || 0;
+                args.take = loadOptions.take || 12;
+
+                $.ajax({
+                    url: '/Sys/SysYearlyQuotaGrid',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        language_code: $("#langCode").val(),
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkFillSisMonthlyQuotasGridx_syssismonthlyquotas",
+                        pkIdentity: $("#publicKey").val(),
+                        page: "",
+                        rows: "",
+                        sort: "",
+                        order: "", //args.orderby,
+                        skip: args.skip,
+                        take: args.take
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                    },
+                    error: function () {
+                        deferred.reject("Data Loading Error");
+                    },
+                    timeout: 30000
+                });
+
+                return deferred.promise();
+            },
+
+            remove: function (key) {
+                var deferred = $.Deferred();
+                //alert(selectedVehicleId);
+
+                return $.ajax({
+                    url: '/Vehicle/DeleteVehicleBTDesc',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        id: selectedVehicleBTDescId,
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkDeletedAct_sysvehiclestrade"
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                    },
+                    error: function () {
+                        deferred.reject("Data remove Error");
+                    },
+                    timeout: 30000
+                });
+            },
+        });
+
+        DevExpress.localization.locale(langCode);
+
+        $(function () {
+            $("#gridContainer_rentalGrid").dxDataGrid({
+
+                showColumnLines: true,
+                showRowLines: true,
+                showBorders: true,
+                dataSource: rentalData,
+                columnHidingEnabled: true,
+                selection: {
+                    mode: "single"
+                },
+                hoverStateEnabled: true,
+                editing: {
+                    //mode: "batch"
+                    mode: "form",
+                    //allowAdding: true,
+                    //allowUpdating: true,
+                    allowDeleting: true,
+                    useIcons: true
+                },
+                "export": {
+                    enabled: true,
+                    fileName: "rental list"
+                },
+                grouping: {
+                    contextMenuEnabled: true,
+                    expandMode: "rowClick"
+                },
+                groupPanel: {
+                    emptyPanelText: window.lang.translate('Use the context menu of header columns to group data'),
+                    visible: true
+                },
+                pager: {
+                    allowedPageSizes: [5, 8, 15, 30],
+                    showInfo: true,
+                    showNavigationButtons: true,
+                    showPageSizeSelector: true,
+                    visible: true
+                },
+                paging: {
+                    pageSize: 8
+                },
+                OnCellPrepared: function (options) {
+
+                    var fieldData = options.value;
+                    fieldHtml = "";
+
+                    fieldHtml = fieldData.value;
+                    options.cellElement.html(fieldHtml);
+
+                },
+                filterRow: {
+                    visible: true,
+                    applyFilter: "auto"
+                },
+                searchPanel: {
+                    visible: true,
+                    width: 240,
+                    placeholder: window.lang.translate('Search') + "...",
+                },
+                headerFilter: {
+                    visible: true
+                },
+                columnChooser: {
+                    enabled: true,
+                    mode: "select"
+                },
+                columns: [
+                    {
+                        //    caption: window.lang.translate('Active/Passive'),
+                        //    width: 40,
+                        //    alignment: 'center',
+
+                        //    cellTemplate: function (container, options) {
+                        //        var fieldHtml;
+                        //        var vehiclebtdesc_id = options.data.id;
+
+                        //        if (options.data.active === 1) {
+                        //            //active
+                        //            $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
+                        //                activepassiveVehicleBTDesc(vehiclebtdesc_id, options.data.active);
+
+                        //            }).appendTo(container);
+                        //        } else if (options.data.active === 0) {
+
+                        //            //passive
+                        //            $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
+                        //                activepassiveVehicleBTDesc(vehiclebtdesc_id, options.data.active);
+
+                        //            }).appendTo(container);
+                        //        }
+
+                        //        //$('<img />').addClass('dx-link').attr('src', "/adm/dist/img/icons.png").on('click', function () {
+                        //        //    dm.dangerMessage('show', window.lang.translate('dangerMessage...'), window.lang.translate('dangerMessage...'));
+                        //        //}).appendTo(container); 
+
+                        //    }
+
+                        //}, {
+                        caption: window.lang.translate('month'),
+                        dataField: "month_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('year'),
+                        dataField: "month_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('cost'),
+                        dataField: "month_name",
+                        encodeHtml: false
+                    }, {//openAddProposalAksesuarPopUp
+                        caption: window.lang.translate('Active/Passive'),
+                        width: 40,
+                        alignment: 'center',
+
+                        cellTemplate: function (container, options) {
+                            var fieldHtml;
+                            var vehiclebtdesc_id = options.data.id;
+                            //active
+                            $('<div />').addClass('dx-link').attr('class', "fa fa-plus").on('click', function () {
+                                openAddRentalPopUp();
+
+                            }).appendTo(container);
+
+                        }
+                    }
+                ],
+                rowPrepared: function (rowElement, rowInfo) {
+                    return false;
+                    //if (rowInfo.data.key === 1)
+                    //    rowElement.css('background', 'green');
+                    //else if (rowInfo.data.key === 0)
+                    //    rowElement.css('background', 'yellow');
+
+                },
+
+                onSelectionChanged: function (selectedItems) {
+                    var data = selectedItems.selectedRowsData[0];
+                    if (data) {
+                        //selectedVehicleBTDescId = data.id;
+                        //alert("z " + selectedVehicleBTDescId);
+                        //filldropdown = true;
+                    }
+                }
+
+            });
+        });
+    })
+
+    $('#rentalList').click();
 
 //Rental Grid End
 
 //Repair Cost Grid
+    $('#repairCostList').click(function () {
 
+        /* devexgrid */
+        var repaircostData = new DevExpress.data.CustomStore({
+            load: function (loadOptions) {
+                var deferred = $.Deferred(),
+                    args = {};
+
+                if (loadOptions.sort) {
+                    args.orderby = loadOptions.sort[0].selector;
+                    if (loadOptions.sort[0].desc)
+                        args.orderby += " desc";
+                }
+
+                args.skip = loadOptions.skip || 0;
+                args.take = loadOptions.take || 12;
+
+                $.ajax({
+                    url: '/Sys/SysYearlyQuotaGrid',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        language_code: $("#langCode").val(),
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkFillSisMonthlyQuotasGridx_syssismonthlyquotas",
+                        pkIdentity: $("#publicKey").val(),
+                        page: "",
+                        rows: "",
+                        sort: "",
+                        order: "", //args.orderby,
+                        skip: args.skip,
+                        take: args.take
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                    },
+                    error: function () {
+                        deferred.reject("Data Loading Error");
+                    },
+                    timeout: 30000
+                });
+
+                return deferred.promise();
+            },
+
+            remove: function (key) {
+                var deferred = $.Deferred();
+                //alert(selectedVehicleId);
+
+                return $.ajax({
+                    url: '/Vehicle/DeleteVehicleBTDesc',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        id: selectedVehicleBTDescId,
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkDeletedAct_sysvehiclestrade"
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                    },
+                    error: function () {
+                        deferred.reject("Data remove Error");
+                    },
+                    timeout: 30000
+                });
+            },
+        });
+
+        DevExpress.localization.locale(langCode);
+
+        $(function () {
+            $("#gridContainer_repairCostGrid").dxDataGrid({
+
+                showColumnLines: true,
+                showRowLines: true,
+                showBorders: true,
+                dataSource: repaircostData,
+                columnHidingEnabled: true,
+                selection: {
+                    mode: "single"
+                },
+                hoverStateEnabled: true,
+                editing: {
+                    //mode: "batch"
+                    mode: "form",
+                    //allowAdding: true,
+                    //allowUpdating: true,
+                    allowDeleting: true,
+                    useIcons: true
+                },
+                "export": {
+                    enabled: true,
+                    fileName: "repair cost list"
+                },
+                grouping: {
+                    contextMenuEnabled: true,
+                    expandMode: "rowClick"
+                },
+                groupPanel: {
+                    emptyPanelText: window.lang.translate('Use the context menu of header columns to group data'),
+                    visible: true
+                },
+                pager: {
+                    allowedPageSizes: [5, 8, 15, 30],
+                    showInfo: true,
+                    showNavigationButtons: true,
+                    showPageSizeSelector: true,
+                    visible: true
+                },
+                paging: {
+                    pageSize: 8
+                },
+                OnCellPrepared: function (options) {
+
+                    var fieldData = options.value;
+                    fieldHtml = "";
+
+                    fieldHtml = fieldData.value;
+                    options.cellElement.html(fieldHtml);
+
+                },
+                filterRow: {
+                    visible: true,
+                    applyFilter: "auto"
+                },
+                searchPanel: {
+                    visible: true,
+                    width: 240,
+                    placeholder: window.lang.translate('Search') + "...",
+                },
+                headerFilter: {
+                    visible: true
+                },
+                columnChooser: {
+                    enabled: true,
+                    mode: "select"
+                },
+                columns: [
+                    {
+                        //    caption: window.lang.translate('Active/Passive'),
+                        //    width: 40,
+                        //    alignment: 'center',
+
+                        //    cellTemplate: function (container, options) {
+                        //        var fieldHtml;
+                        //        var vehiclebtdesc_id = options.data.id;
+
+                        //        if (options.data.active === 1) {
+                        //            //active
+                        //            $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
+                        //                activepassiveVehicleBTDesc(vehiclebtdesc_id, options.data.active);
+
+                        //            }).appendTo(container);
+                        //        } else if (options.data.active === 0) {
+
+                        //            //passive
+                        //            $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
+                        //                activepassiveVehicleBTDesc(vehiclebtdesc_id, options.data.active);
+
+                        //            }).appendTo(container);
+                        //        }
+
+                        //        //$('<img />').addClass('dx-link').attr('src', "/adm/dist/img/icons.png").on('click', function () {
+                        //        //    dm.dangerMessage('show', window.lang.translate('dangerMessage...'), window.lang.translate('dangerMessage...'));
+                        //        //}).appendTo(container); 
+
+                        //    }
+
+                        //}, {
+                        caption: window.lang.translate('month'),
+                        dataField: "month_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('year'),
+                        dataField: "month_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('cost'),
+                        dataField: "month_name",
+                        encodeHtml: false
+                    }, {//openAddProposalAksesuarPopUp
+                        caption: window.lang.translate('Active/Passive'),
+                        width: 40,
+                        alignment: 'center',
+
+                        cellTemplate: function (container, options) {
+                            var fieldHtml;
+                            var vehiclebtdesc_id = options.data.id;
+                            //active
+                            $('<div />').addClass('dx-link').attr('class', "fa fa-plus").on('click', function () {
+                                openAddRepairCostPopUp();
+
+                            }).appendTo(container);
+
+                        }
+                    }
+                ],
+                rowPrepared: function (rowElement, rowInfo) {
+                    return false;
+                    //if (rowInfo.data.key === 1)
+                    //    rowElement.css('background', 'green');
+                    //else if (rowInfo.data.key === 0)
+                    //    rowElement.css('background', 'yellow');
+
+                },
+
+                onSelectionChanged: function (selectedItems) {
+                    var data = selectedItems.selectedRowsData[0];
+                    if (data) {
+                        //selectedVehicleBTDescId = data.id;
+                        //alert("z " + selectedVehicleBTDescId);
+                        //filldropdown = true;
+                    }
+                }
+
+            });
+        });
+    })
+
+    $('#repairCostList').click();
 //Repair Cost Grid End
 
 
@@ -1091,8 +1536,8 @@ DevExpress.localization.locale(langCode);
                 var dialogRef = dialogRef;
                 var $message = $(' <div class="row">\n\
                                              <div class="col-md-12">\n\
-                                                 <div id="loadingImage_AddAksesuarProposal" class="box box-primary">\n\
-                                                     <form id="aksesuarProposalForm" method="get" class="form-horizontal">\n\
+                                                 <div id="loadingImage_AddCost" class="box box-primary">\n\
+                                                     <form id="costForm" method="get" class="form-horizontal">\n\
                                                      <input type="hidden" id="machine_tool_group_id_popup" name="machine_tool_group_id_popup"  />\n\
                                                      <div class="hr-line-dashed"></div>\n\
                                                          <div class="form-group">\n\
@@ -1297,8 +1742,8 @@ DevExpress.localization.locale(langCode);
                 var dialogRef = dialogRef;
                 var $message = $(' <div class="row">\n\
                                              <div class="col-md-12">\n\
-                                                 <div id="loadingImage_AddAksesuarProposal" class="box box-primary">\n\
-                                                     <form id="aksesuarProposalForm" method="get" class="form-horizontal">\n\
+                                                 <div id="loadingImage_AddRental" class="box box-primary">\n\
+                                                     <form id="rentalForm" method="get" class="form-horizontal">\n\
                                                      <input type="hidden" id="machine_tool_group_id_popup" name="machine_tool_group_id_popup"  />\n\
                                                      <div class="hr-line-dashed"></div>\n\
                                                          <div class="form-group">\n\
@@ -1324,7 +1769,7 @@ DevExpress.localization.locale(langCode);
                                                             </div>\n\
                                                         </div>\n\
                                                          <div class="form-group">\n\
-                                                             <label class="col-sm-2 control-label">Cost</label>\n\
+                                                             <label class="col-sm-2 control-label">Rental</label>\n\
                                                              <div id="mach-prod-box-popup" class="col-sm-10">\n\
                                                                  <div class="input-group">\n\
                                                                      <div class="input-group-addon">\n\
@@ -1337,7 +1782,7 @@ DevExpress.localization.locale(langCode);
                                                          <div class="hr-line-dashed"></div>\n\
                                                          <div class="form-group">\n\
                                                              <div class="col-sm-10 col-sm-offset-2">\n\
-                                                             <button id="add_cost" class="btn btn-primary" type="button" onclick="return openAddCostPopUpWrapper(event);" >\n\
+                                                             <button id="add_cost" class="btn btn-primary" type="button" onclick="return openAddRentalPopUpWrapper(event);" >\n\
                                                                  <i class="fa fa-save"></i> Save </button>\n\
                                                          </div>\n\
                                                      </div>\n\
@@ -1468,7 +1913,7 @@ DevExpress.localization.locale(langCode);
 
     $("#btn-repaircostadd-save").on("click", function (e) {
         e.preventDefault();
-        openAddCostPopUp();
+        openAddRepairCostPopUp();
         return false;
     })
     //----------------------------------popup begin-------------------------------------------------
@@ -1478,7 +1923,7 @@ DevExpress.localization.locale(langCode);
      * @author Ceydacan Seyrek
      * @since 19/10/2018
      * */
-    window.openAddCostPopUpWrapper = function (e) {
+    window.openAddRepairCostPopUpWrapper = function (e) {
         //alert("popup submit click");
 
         if ($("#topUsedStockForm").validationEngine('validate')) {
@@ -1495,15 +1940,15 @@ DevExpress.localization.locale(langCode);
      * @author Ceydacan Seyrek
      * @since 19/10/2018
      * */
-    window.openAddCostPopUp = function () {
+    window.openAddRepairCostPopUp = function () {
         BootstrapDialog.show({
-            title: window.lang.translate("Add Cost"),
+            title: window.lang.translate("Add Repair Cost"),
             message: function (dialogRef) {
                 var dialogRef = dialogRef;
                 var $message = $(' <div class="row">\n\
                                              <div class="col-md-12">\n\
-                                                 <div id="loadingImage_AddAksesuarProposal" class="box box-primary">\n\
-                                                     <form id="aksesuarProposalForm" method="get" class="form-horizontal">\n\
+                                                 <div id="loadingImage_AddRepairCost" class="box box-primary">\n\
+                                                     <form id="repairCostForm" method="get" class="form-horizontal">\n\
                                                      <input type="hidden" id="machine_tool_group_id_popup" name="machine_tool_group_id_popup"  />\n\
                                                      <div class="hr-line-dashed"></div>\n\
                                                          <div class="form-group">\n\
@@ -1542,7 +1987,7 @@ DevExpress.localization.locale(langCode);
                                                          <div class="hr-line-dashed"></div>\n\
                                                          <div class="form-group">\n\
                                                              <div class="col-sm-10 col-sm-offset-2">\n\
-                                                             <button id="add_cost" class="btn btn-primary" type="button" onclick="return openAddCostPopUpWrapper(event);" >\n\
+                                                             <button id="add_Repaircost" class="btn btn-primary" type="button" onclick="return openAddRepairCostPopUpWrapper(event);" >\n\
                                                                  <i class="fa fa-save"></i> Save </button>\n\
                                                          </div>\n\
                                                      </div>\n\

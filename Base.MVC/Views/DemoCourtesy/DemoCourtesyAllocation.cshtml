@@ -47,7 +47,7 @@
                 <div class="box box-info">
                     <div class="box-header">
                         <i class="fa fa-comments-o"></i>
-                        <h3 class="box-title"><span lang="en">Demo/Courtesy vehicle return form</span></h3>
+                        <h3 class="box-title"><span lang="en">Demo/Courtesy allocation form</span></h3>
 
                         <div class="box-tools pull-right">
                             <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -55,10 +55,21 @@
                         </div>
                     </div>
                     <div class="box-body">
-                        <form id='demoCourtesyReturnForm' method="get">
-                            <div class="row" id="loadingImage_demoCourtesyReturn">
+                        <form id='demoCourtesyAllocationForm' method="get">
+                            <div class="row" id="loadingImage_demoCourtesyAllocation">
 
-                                <div class="col-md-6" id="ajaxACL-demoCourtesyReturn">
+                                <div class="col-md-6" id="ajaxACL-demoCourtesyAllocation">
+                                    <div class="form-group">
+                                        <label><span lang="en">Demo/Courtesy</span></label>
+                                        <div class="" id="ajax_DdslickDemoCourtesy">
+                                            <div id="loadingImage_DdslickDemoCourtesy" class="input-group zeyn-load-imager">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <div id="ddslickDemoCourtesy" class="form-control"></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <label><span lang="en">Demo/Courtesy vehicle list</span></label>
                                         <div class="" id="ajax_DdslickDemoVehicle">
@@ -70,57 +81,13 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="form-group">
-                                        <div class="form-group">
-                                            <label>
-                                                Customer Informed?
-                                                <div class="icheckbox_minimal-blue " aria-checked="false" aria-disabled="true" style="position: relative;">
-                                                    <input type="checkbox" class="minimal" checked="" style="position: absolute; opacity: 0;">
-                                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                                    </ins>
-                                                </div>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label><span lang="en">Vehicle return</span></label>
-                                        <div class="" id="ajax_DdslickReturn">
-                                            <div id="loadingImage_DdslickReturn" class="input-group zeyn-load-imager">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-copyright"></i>
-                                                </div>
-                                                <div id="ddslickReturn" class="form-control"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <label><span lang="en">Customer name</span></label>
-                                        <div class="input-group">
+                                        <label><span lang="en">Demo availability date</span></label>
+                                        <div class="input-group date">
                                             <div class="input-group-addon">
-                                                <i class="fa fa-map-pin"></i>
+                                                <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" class="form-control validate[required]" placeholder="Customer Name" id="txt-demoCourReturn-cusName" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label><span lang="en">Customer address</span></label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-map-pin"></i>
-                                            </div>
-                                            <input type="text" class="form-control validate[required]" placeholder="Customer Address" id="txt-demoCourReturn-cusAddr" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label><span lang="en">Delivery address</span></label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-map-pin"></i>
-                                            </div>
-                                            <input type="text" class="form-control validate[required]" placeholder="Customer Address" id="txt-demoCourReturn-deliveryAddr" disabled>
+                                            <input type="text" class="form-control pull-right validate[required]" name="availability-datepicker" id="availability-datepicker" placeholder="Availability Date" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -129,7 +96,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" class="form-control pull-right validate[required]" name="Start-datepicker" id="start-datepicker" placeholder="Start Date" disabled>
+                                            <input type="text" class="form-control pull-right validate[required]" name="Start-datepicker" id="start-datepicker" placeholder="Start Date">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -138,14 +105,37 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" class="form-control pull-right validate[required]" name="End-datepicker" id="end-datepicker" placeholder="End Date" disabled>
+                                            <input type="text" class="form-control pull-right validate[required]" name="End-datepicker" id="end-datepicker" placeholder="End Date">
                                         </div>
                                     </div>
 
+                                    <div class="form-group">
+                                        <label><span lang="en">Customer</span></label>
+                                        <div class="" id="ajax_DdslickCustomer">
+                                            <div id="loadingImage_DdslickCustomer" class="input-group zeyn-load-imager">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <div id="ddslickCustomer" class="form-control"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                 </div>
                                 <!-- /.col -->
 
                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label><span lang="en">Vehicle location</span></label>
+                                        <div class="" id="ajax_DdslickLocation">
+                                            <div id="loadingImage_DdslickLocation" class="input-group zeyn-load-imager">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <div id="ddslickLocation" class="form-control"></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <label><span lang="en">Vehicle return location</span></label>
                                         <div class="" id="ajax_DdslickReturnLoc">
@@ -163,7 +153,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-map-pin"></i>
                                             </div>
-                                            <input type="text" class="form-control validate[required]" placeholder="Motivation" id="txt-demoCourReturn-motivation" >
+                                            <input type="text" class="form-control validate[required]" placeholder="Motivation" id="txt-demoCourReturn-motivation">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -188,38 +178,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label><span lang="en">Reason for extension</span></label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-map-pin"></i>
-                                            </div>
-                                            <input type="text" class="form-control validate[required]" placeholder="Reason for extension" id="txt-demoCourReturn-reasonExt" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label><span lang="en">Extension start date</span></label>
-                                        <div class="input-group date">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
-                                            </div>
-                                            <input type="text" class="form-control pull-right validate[required]" name="Start-datepicker" id="exStart-datepicker" placeholder="Start Date" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label><span lang="en">Extension end date</span></label>
-                                        <div class="input-group date">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
-                                            </div>
-                                            <input type="text" class="form-control pull-right validate[required]" name="End-datepicker" id="exEnd-datepicker" placeholder="End Date" disabled>
-                                        </div>
-                                    </div>
+
+
                                 </div><!-- /.col -->
+
                             </div>
                             <div class="box-footer">
-                                <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-demoCourReturn-clear">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-demoCourReturn-save">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-demoCourAllo-clear">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-demoCourAllo-save">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
                             </div>
                         </form>
 
@@ -229,14 +195,14 @@
                                 <h3 class="box-title"><span lang="en">Demo/Courtesy vehicle list</span></h3>
 
                                 <div class="box-tools pull-right">
-                                    <button class="btn bg-teal btn-sm btn-small-miya" data-widget="refresh" id="demoCourReturnRefresh"><i class="fa fa-refresh"></i></button>
+                                    <button class="btn bg-teal btn-sm btn-small-miya" data-widget="refresh" id="demoCourAlloRefresh"><i class="fa fa-refresh"></i></button>
                                     <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                     <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
                                 </div>
                             </div>
 
-                            <div class="box-body" id="loadingImage_DdslickDemoCourReturnGrid">
-                                <div id="gridContainer_DemoCourReturn"></div>
+                            <div class="box-body" id="loadingImage_DdslickDemoCourAllocationGrid">
+                                <div id="gridContainer_DemoCourAllocation"></div>
                             </div>
                         </div>
                     </div>
@@ -287,7 +253,7 @@
     <script src="@ViewBag.defaultDevExLangPath"></script>
 
 
-    <script src="~/adm/dist/js/pages/demo-courtesy/demoCourtesyReturn.js" type="text/javascript"></script>
+    <script src="~/adm/dist/js/pages/demo-courtesy/demoCourtesyAllocation.js" type="text/javascript"></script>
 
     <script>
         $(document).ready(function () {
