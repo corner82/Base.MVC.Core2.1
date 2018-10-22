@@ -47,6 +47,9 @@
     <Content Update="Views\Deal\BodyProp.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\DemoCourtesy\DemoCourtesyNewReq.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\DemoCourtesy\DemoCourtesyAllocation.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
