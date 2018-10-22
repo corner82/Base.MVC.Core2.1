@@ -135,6 +135,8 @@ $(document).ready(function () {
 * Gül Özdemir
 * 09/10/2018
 */
+    $('#loading-image-country').loadImager('removeLoadImage');
+    $("#loading-image-country").loadImager('appendImage');
 
     var ajaxACLResources_country = $('#ajaxACL-country').ajaxCallWidget({
         failureLoadImage: true,
@@ -174,6 +176,9 @@ $(document).ready(function () {
                     if (selectedData.selectedData.value > 0) {
 
                         ddslick_countryId = selectedData.selectedData.value;
+
+                        $('#loading-image-province').loadImager('removeLoadImage');
+                        $("#loading-image-province").loadImager('appendImage');
 
                         var ajaxACLResources_getprovince = $('#ajaxACL-province').ajaxCallWidget({
                             failureLoadImage: true,
@@ -218,6 +223,10 @@ $(document).ready(function () {
                                             ddslick_provinceId = selectedData.selectedData.value;
 
                                             //city
+
+                                            $('#loading-image-city').loadImager('removeLoadImage');
+                                            $("#loading-image-city").loadImager('appendImage');
+
                                             var ajaxACLResources_getcity = $('#ajaxACL-city').ajaxCallWidget({
                                                 failureLoadImage: true,
                                                 loadingImageID: "loading-image-city",

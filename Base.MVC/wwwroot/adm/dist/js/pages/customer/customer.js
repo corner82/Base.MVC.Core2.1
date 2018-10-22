@@ -185,6 +185,9 @@
     * 09/10/2018
     */
 
+    $('#loading-image-country').loadImager('removeLoadImage');
+    $('#loading-image-country').loadImager('appendImage');
+
     var ajaxACLResources_country = $('#ajaxACL-country').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loading-image-country",
@@ -224,6 +227,10 @@
                     if (selectedData.selectedData.value > 0) {
 
                         ddslick_countryId = selectedData.selectedData.value;
+
+
+                        $('#loading-image-province').loadImager('removeLoadImage');
+                        $('#loading-image-province').loadImager('appendImage');
 
                         var ajaxACLResources_getprovince = $('#ajaxACL-province').ajaxCallWidget({
                             failureLoadImage: true,
@@ -267,6 +274,9 @@
 
                                         if (selectedData.selectedData.value > 0) {
                                             ddslick_provinceId = selectedData.selectedData.value;
+
+                                            $('#loading-image-city').loadImager('removeLoadImage');
+                                            $('#loading-image-city').loadImager('appendImage');
 
                                             //city
                                             var ajaxACLResources_getcity = $('#ajaxACL-city').ajaxCallWidget({
@@ -346,8 +356,6 @@
                         })
                         ajaxACLResources_getprovince.ajaxCallWidget('call');
                         //province bitti
-
-
                     }
                 }
             })
@@ -363,6 +371,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Segment
+    $('#loading-image-segment').loadImager('removeLoadImage');
+    $('#loading-image-segment').loadImager('appendImage');
+
     var ajaxACLResources_segment = $('#ajaxACL-segment').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loading-image-segment",
@@ -412,6 +423,10 @@
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Sector
+
+    $('#loading-image-sector').loadImager('removeLoadImage');
+    $('#loading-image-sector').loadImager('appendImage');
+
     var ajaxACLResources_sector = $('#ajaxACL-sector').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loading-image-sector",
@@ -462,6 +477,9 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //credibility
+    $('#loading-image-credibility').loadImager('removeLoadImage');
+    $('#loading-image-credibility').loadImager('appendImage');
+
     var ajaxACLResources_credibility = $('#ajaxACL-credibility').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loading-image-credibility",
@@ -581,6 +599,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 //customercategory
 
+    $("#loading-image-customercategory").loadImager('removeLoadImage');
+    $("#loading-image-customercategory").loadImager('appendImage');
+
     var ajaxACLResources_customercategory = $('#ajaxACL-customercategory').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loading-image-customercategory",
@@ -629,6 +650,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 //customer Application Type
+    $("#loading-image-applicationtype").loadImager('removeLoadImage');
+    $("#loading-image-applicationtype").loadImager('appendImage');
 
     var ajaxACLResources_applicationtype = $('#ajaxACL-applicationtype').ajaxCallWidget({
         failureLoadImage: true,
@@ -680,6 +703,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 //totalvehicles
+    $("#loading-image-totalvehicles").loadImager('removeLoadImage');
+    $("#loading-image-totalvehicles").loadImager('appendImage');
 
     var ajaxACLResources_totalvehicles = $('#ajaxACL-totalvehicles').ajaxCallWidget({
         failureLoadImage: true,
@@ -731,6 +756,8 @@
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     //totalvehicles
+    $("#loading-image-totalemployes").loadImager('removeLoadImage');
+    $("#loading-image-totalemployes").loadImager('appendImage');
 
     var ajaxACLResources_totalemployees = $('#ajaxACL-totalemployees').ajaxCallWidget({
         failureLoadImage: true,
@@ -780,6 +807,9 @@
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     //annuelrevenue
+
+    $("#loading-image-annuelrevenue").loadImager('removeLoadImage');
+    $("#loading-image-annuelrevenue").loadImager('appendImage');
 
     var ajaxACLResources_annuelrevenue = $('#ajaxACL-annuelrevenue').ajaxCallWidget({
         failureLoadImage: true,
@@ -834,6 +864,8 @@
     /* Purchase Plans loading services */
 
     //Vehicle brand
+    $("#loading-image-lastpurchasedbrand").loadImager('removeLoadImage');
+    $("#loading-image-lastpurchasedbrand").loadImager('appendImage');
 
     var ajaxACLResources_vehiclebrand = $('#ajaxACL-lastpurchasedbrand').ajaxCallWidget({
         failureLoadImage: true,
@@ -883,6 +915,9 @@
 
 //Date of purchase plan - SysRangesQuarters
 
+    $("#loading-image-dateofpurchaseplan").loadImager('removeLoadImage');
+    $("#loading-image-dateofpurchaseplan").loadImager('appendImage');
+
     var ajaxACLResources_dateofpurchaseplan = $('#ajaxACL-dateofpurchaseplan').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loading-image-dateofpurchaseplan",
@@ -931,6 +966,8 @@
 
 
     // Maybe/Yes/No - SysMaybeYesNo
+    $("#loading-image-purchasedecision").loadImager('removeLoadImage');
+    $("#loading-image-purchasedecision").loadImager('appendImage');
 
     var ajaxACLResources_purchasedecision = $('#ajaxACL-purchasedecision').ajaxCallWidget({
         failureLoadImage: true,
@@ -981,7 +1018,9 @@
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     //totalvehicles
     //purchaseplan 
-    
+    $("#loading-image-totalvehicles").loadImager('removeLoadImage');
+    $("#loading-image-totalvehicles").loadImager('appendImage');
+
     var ajaxACLResources_numberofvehiclestopurchase = $('#ajaxACL-numberofvehiclestopurchase').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loading-image-totalvehicles",
@@ -1050,6 +1089,9 @@
 * @author Gül Özdemir
 * @since 14/10/2018
 */
+    $("#loading-image-sourceoflead").loadImager('removeLoadImage');
+    $("#loading-image-sourceoflead").loadImager('appendImage');
+
     var ajaxACLResources_sourceoflead = $('#ajaxACL-sourceoflead').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loading-image-sourceoflead",
@@ -1142,6 +1184,9 @@
  * @author Gül Özdemir
  * @since 14/10/2018
  */
+    $('#loading-image-role').loadImager('removeLoadImage');
+    $("#loading-image-role").loadImager('appendImage');
+
     var ajaxACLResources_role = $('#ajaxACL-role').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loading-image-role",
@@ -1194,6 +1239,9 @@
  * @author Gül Özdemir
  * @since 14/10/2018
  */
+    $('#loading-image-lastbrand').loadImager('removeLoadImage');
+    $("#loading-image-lastbrand").loadImager('appendImage');
+
     var ajaxACLResources_lastbrand = $('#ajaxACL-lastbrand').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loading-image-lastbrand",
@@ -1247,6 +1295,9 @@
  * @author Gül Özdemir
  * @since 18/10/2018
  */
+    $('#loading-image-productinterest').loadImager('removeLoadImage');
+    $("#loading-image-productinterest").loadImager('appendImage');
+
     var ajaxACLResources_productinterest = $('#ajaxACL-productinterest').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loading-image-productinterest",
@@ -3173,6 +3224,9 @@
 
         resetCustomerPurchaseForm();
 
+        $("#loading-image-cstPurchase").loadImager('removeLoadImage');
+        $("#loading-image-cstPurchase").loadImager('appendImage');
+
         var ajaxACLResources_cstpurchaseplan = $('#ajaxACL-purchaseplan').ajaxCallWidget({
             failureLoadImage: true,
             loadingImageID: "loading-image-cstPurchase",
@@ -3276,6 +3330,9 @@
 
         if ($("#customerContactPersonForm").validationEngine('validate')) {
 
+            $("#loading-image-cstcp").loadImager('removeLoadImage');
+            $("#loading-image-cstcp").loadImager('appendImage');
+
             var firstName = $('#txt-cp-firstname').val();
             var lastName = $('#txt-cp-lastname').val();
             var cp_mobile = $('#txt-cp-mobile').val();
@@ -3331,6 +3388,7 @@
 
             console.log(mydata);
 
+
             //alert(selectedContactPersonId); 
             var ajax;
             if (selectedContactPersonId === 0) {
@@ -3362,6 +3420,8 @@
             } else {
                 //update
                 //alert("update");
+                $("#loading-image-cstcp").loadImager('removeLoadImage');
+                $("#loading-image-cstcp").loadImager('appendImage');
 
                 wcm.warningComplexMessage({
                     onConfirm: function (event, data) {
@@ -3639,6 +3699,9 @@
             transactionSuccessMessage = window.lang.translate('Passive successful');
         }
 
+        $("#loading-image-cstInfoGrid").loadImager('removeLoadImage');
+        $("#loading-image-cstInfoGrid").loadImager('appendImage');
+
         var ajax_activepassivecustomerlist = $('#ajaxACL-customerlist').ajaxCallWidget({
             failureLoadImage: true,
             loadingImageID: "loading-image-cstInfoGrid",
@@ -3683,7 +3746,8 @@
 
             //var ddData_ProductInterest = $('#dropdownProductInterest').data('ddslick');
             //var productinterestId = ddData_ProductInterest.selectedData.value;
-
+            $("#loading-image-productinterest").loadImager('removeLoadImage');
+            $("#loading-image-productinterest").loadImager('appendImage');
 
             var ajax = $('#ajaxACL-cp-productinterest').ajaxCallWidget({
                 failureLoadImage: true,
@@ -3738,7 +3802,7 @@
         return false;
     }
 
-    /**
+ /**
  * Contact Person active / passive
  * @returns {undefined}
  * @author Gül Özdemir
@@ -3755,6 +3819,9 @@
             //passive
             transactionSuccessMessage = window.lang.translate('Passive successful');
         }
+
+        $("#loading-image-contactpersonGrid").loadImager('removeLoadImage');
+        $("#loading-image-contactpersonGrid").loadImager('appendImage');
 
         var ajax_activepassivecontactpersonlist = $('#ajaxACL-contactpersonlist').ajaxCallWidget({
             failureLoadImage: true,
