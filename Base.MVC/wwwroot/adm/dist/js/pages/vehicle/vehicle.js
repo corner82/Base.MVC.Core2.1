@@ -59,6 +59,8 @@ $(document).ready(function () {
     var vehicleModel = "";
     var vehicleType = "";
 
+    $('#loadingImage_DdslickVehicleKitType').loadImager('removeLoadImage');
+    $('#loadingImage_DdslickVehicleKitType').loadImager('appendImage');
     //CKD / CBU
     var ajaxACLResources_vehiclekittype = $('#ajax_DdslickVehicleKitType').ajaxCallWidget({
         failureLoadImage: true,
@@ -110,6 +112,10 @@ $(document).ready(function () {
 
     //Vehicle Model/Groups
     //CLA, TGM, TGS, VW, XHCV
+
+    $('#loadingImage_DdslickVehicleModel').loadImager('removeLoadImage');
+    $('#loadingImage_DdslickVehicleModel').loadImager('appendImage');
+
     var ajaxACLResources_vehiclemodel = $('#ajax_DdslickVehicleModel').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loadingImage_DdslickVehicleModel",
@@ -148,6 +154,8 @@ $(document).ready(function () {
 
                         ddslick_vehicleModelId = selectedData.selectedData.value;
 
+                        $('#loadingImage_DdslickVehicleModelGr').loadImager('removeLoadImage');
+                        $('#loadingImage_DdslickVehicleModelGr').loadImager('appendImage');
                         //CLA CBU 2-axis , CLA CBU 3- & 4-axis, TGM < 16t non tract.
                         var ajaxACLResources_vehiclemodelgr = $('#ajax_DdslickVehicleModel').ajaxCallWidget({
                             failureLoadImage: true,
@@ -180,6 +188,9 @@ $(document).ready(function () {
                                             //Vehicle model group type ///////////////////////////////////////////
                                             //
                                             ddslick_vehicleModelGrTypeId = selectedData.selectedData.value;
+
+                                            $('#loadingImage_DdslickVehicleModelGrTonaj').loadImager('removeLoadImage');
+                                            $('#loadingImage_DdslickVehicleModelGrTonaj').loadImager('appendImage');
 
                                             var ajaxACLResources_vehiclemodelgrtonaj = $('#ajax_DdslickVehicleModelGrTonaj').ajaxCallWidget({
                                                 failureLoadImage: true,
@@ -292,6 +303,10 @@ $(document).ready(function () {
 
     /////////////////////////////////////////////////////////////////////////
     //HorsePower
+
+    $('#loadingImage_DdslickHorsepower').loadImager('removeLoadImage');
+    $('#loadingImage_DdslickHorsepower').loadImager('appendImage');
+
     var ajaxACLResources_vehiclehorsepower = $('#ajax_DdslickHorsepower').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loadingImage_DdslickHorsepower",
@@ -341,6 +356,9 @@ $(document).ready(function () {
 
     //Vehicle Variant
     //T/T, F/C, TIP, MIX, Tipper
+    $('#loadingImage_DdslickVehicleVariant').loadImager('removeLoadImage');
+    $('#loadingImage_DdslickVehicleVariant').loadImager('appendImage');
+
     var ajaxACLResources_vehiclevariant = $('#ajax_DdslickVehicleVariant').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loadingImage_DdslickVehicleVariant",
@@ -389,6 +407,9 @@ $(document).ready(function () {
     //Config bilgileri
     //4x2, 4x4, 6x4, 8x4, 6x6, 8x8, 8x4/4
 
+    $('#loadingImage_DdslickConfig').loadImager('removeLoadImage');
+    $('#loadingImage_DdslickConfig').loadImager('appendImage');
+
     var ajaxACLResources_config = $('#ajax_DdslickConfig').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loadingImage_DdslickConfig",
@@ -436,6 +457,10 @@ $(document).ready(function () {
 
     //4x2, 4x4, 6x4, 8x4, 6x6, 8x8, 8x4/4
     //CAB
+
+    $('#loadingImage_DdslickCab').loadImager('removeLoadImage');
+    $('#loadingImage_DdslickCab').loadImager('appendImage');
+
     var ajaxACLResources_cab = $('#ajax_DdslickCab').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loadingImage_DdslickCab",
@@ -482,6 +507,9 @@ $(document).ready(function () {
 
 
     //KP
+    $('#loadingImage_DdslickKP').loadImager('removeLoadImage');
+    $('#loadingImage_DdslickKP').loadImager('appendImage');
+
     var ajaxACLResources_kp = $('#ajax_DdslickKPNo').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loadingImage_DdslickKP",
@@ -529,6 +557,9 @@ $(document).ready(function () {
 
 
     //BTO / BTS
+    $('#loadingImage_DdslickBTOBTS').loadImager('removeLoadImage');
+    $('#loadingImage_DdslickBTOBTS').loadImager('appendImage');
+
     var ajaxACLResources_btobts = $('#ajax_DdslickBTOBTS').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loadingImage_DdslickBTOBTS",
@@ -575,6 +606,9 @@ $(document).ready(function () {
 
 
     //Longhaul, Traction/distribution, Hydrodrive, Heavy Duty
+    $('#loadingImage_DdslickApplicationType').loadImager('removeLoadImage');
+    $('#loadingImage_DdslickApplicationType').loadImager('appendImage');
+
     var ajaxACLResources_applicationtype = $('#ajax_DdslickApplicationType').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loadingImage_DdslickApplicationType",

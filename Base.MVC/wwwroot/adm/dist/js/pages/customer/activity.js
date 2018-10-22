@@ -29,12 +29,11 @@ $(document).ready(function () {
     $("#loading-image-contactperson").loadImager();
     $("#loading-image-activitytype").loadImager();
     $("#loading-image-activitystatus").loadImager();
-    $("#loading-image-activityplaned").loadImager();
+    $("#loading-image-activityplanned").loadImager();
     $("#loading-image-segment").loadImager();
-    $("#loading-image-concernedvehicletype").loadImager();
-    $("#loading-image-activitytrackingtype").loadImager();
-    $('#loading-image-activityplaned').loadImager();
-
+    $("#loading-image-productinterest").loadImager();
+    $("#loading-image-followuptype").loadImager();
+    $("#loading-image-activitylaststatus").loadImager();
     //to activity form grid loading-image
     $("#loading-image-activityGrid").loadImager();
    
@@ -63,12 +62,15 @@ $(document).ready(function () {
      * @since 19/10/2018
      */
 
+    $("#loading-image-customername").loadImager('removeLoadImage');
+    $("#loading-image-customername").loadImager('appendImage');
+
     var ajax_customername = $('#ajaxACL-customername').ajaxCallWidget({
         proxy: '/Customer/DdslickGetAllCustomers',
         type: "POST",
         transactionFailureText: window.lang.translate("Service URL not found, please report error"),
         noDataFailureText: window.lang.translate("No data returned from service"),
-        loadingImageID: "loadingImage_DdslickCustomer",
+        loadingImageID: "loading-image-customername",
         data: JSON.stringify({
             language_code: $("#langCode").val(),
             pk: "GsZVzEYe50uGgNM",
@@ -92,7 +94,10 @@ $(document).ready(function () {
                     if (selectedData.selectedData.value > 0) {
 
                         selectedCustomerId = selectedData.selectedData.value;
-                        alert(selectedCustomerId);
+                        //alert(selectedCustomerId);
+                        $("#loading-image-contactperson").loadImager('removeLoadImage');
+                        $("#loading-image-contactperson").loadImager('appendImage');
+
                         var ajax_contactperson = $('#ajaxACL-contactperson').ajaxCallWidget({
                             proxy: '/Customer/DdslickGetCustomerContactList',
                             type: "POST",
@@ -141,159 +146,12 @@ $(document).ready(function () {
     })
     ajax_customername.ajaxCallWidget('call');
 
-/*
-    var cbdata_customer = [
-        {
-            text: window.lang.translate('Please select') + "...",
-            value: 1,
-            selected: true
-        },
-        {
-            text: "Customer 1",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "Customer 2",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "Customer 3",
-            value: 4,
-            selected: false
-        }
-    ];
-
-    $('#loading-image-customername').loadImager('removeLoadImage');
-    $("#loading-image-customername").loadImager('appendImage');
-
-    var ajaxACLResources_customername = $('#ajaxACL-customername').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
-    });
-
-    ajaxACLResources_customername.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-customername').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
-        },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
-            $('#dropdownCustomerName').ddslick({
-                //height: 150,
-                data: cbdata_customer,
-                width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loading-image-customername").loadImager('removeLoadImage');
-        },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-customername').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Customer bulunamamıştır...'), window.lang.translate('Customer  bulunamamıştır...'));
-        },
-    })
-    ajaxACLResources_customername.ajaxCallWidget('call');
-
-
-    var cbdata_contactperson = [
-        {
-            text: window.lang.translate('Please select') + "...",
-            value: 1,
-            selected: true
-        },
-        {
-            text: "Contact Person 1",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "Contact Person 2",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "Contact Person 3",
-            value: 4,
-            selected: false
-        }
-    ];
-
-    $('#loading-image-contactperson').loadImager('removeLoadImage');
-    $("#loading-image-contactperson").loadImager('appendImage');
-
-    var ajaxACLResources_contactperson = $('#ajaxACL-contactperson').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
-    });
-
-    ajaxACLResources_contactperson.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-contactperson').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
-        },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
-            $('#dropdownContactPerson').ddslick({
-                //height: 150,
-                data: cbdata_contactperson,
-                width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loading-image-contactperson").loadImager('removeLoadImage');
-        },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-contactperson').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Contact Person bulunamamıştır...'), window.lang.translate('Contact Person  bulunamamıştır...'));
-        },
-    })
-    ajaxACLResources_contactperson.ajaxCallWidget('call');
-
-*/
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Activity type "Fair Visit","Customer support interview","Customer Visit(Inbound)","Customer Visit(Outbound)","Phone Interview(Incoming)","Telephone Interview(Outgoing)",
+
+
+    $("#loading-image-activitytype").loadImager('removeLoadImage');
+    $("#loading-image-activitytype").loadImager('appendImage');
 
     var ajaxACLResources_activitytype = $('#ajaxACL-activitytype').ajaxCallWidget({
         failureLoadImage: true,
@@ -332,9 +190,9 @@ $(document).ready(function () {
 
             $("#loading-image-activitytype").loadImager('removeLoadImage');
 
-            $("#loading-image-activitytrackingtype").loadImager('removeLoadImage');
-            $("#loading-image-activitytrackingtype").loadImager('appendImage');
-            $('#dropdownActivitytrackingtype').ddslick({
+            $("#loading-image-followuptype").loadImager('removeLoadImage');
+            $("#loading-image-followuptype").loadImager('appendImage');
+            $('#dropdownFollowuptype').ddslick({
                 data: cbdata_activitytype,
                 width: '100%',
 
@@ -346,7 +204,7 @@ $(document).ready(function () {
 
                 }
             });
-            $("#loading-image-activitytrackingtype").loadImager('removeLoadImage');
+            $("#loading-image-followuptype").loadImager('removeLoadImage');
 
         },
         onReset: function (event, data) {
@@ -360,6 +218,11 @@ $(document).ready(function () {
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Active / Pasive 
+
+
+    $("#loading-image-activitystatus").loadImager('removeLoadImage');
+    $("#loading-image-activitystatus").loadImager('appendImage');
+
     var ajaxACLResources_activitystatus = $('#ajaxACL-activitystatus').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loading-image-activitystatus",
@@ -367,7 +230,7 @@ $(document).ready(function () {
         transactionSuccessText: window.lang.translate('Transaction successful'),
         transactionFailureText: window.lang.translate("Service URL not found, please report error"),
         dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-        proxy: '/Customer/SysActivePasiveList',
+        proxy: '/Customer/SysActivePassiveList',
         type: 'POST',
         data: JSON.stringify({
             language_code: $("#langCode").val(),
@@ -377,7 +240,9 @@ $(document).ready(function () {
         })
     });
     ajaxACLResources_activitystatus.ajaxCallWidget({
-        onSuccess: function (event, dataaactivitystatus) {
+        onSuccess: function (event, dataactivitystatus) {
+            console.log(dataactivitystatus);
+
             var cbdata_activitystatus = $.parseJSON(dataactivitystatus);
             cbdata_activitystatus.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
@@ -412,33 +277,36 @@ $(document).ready(function () {
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Planed / UnPlaned 
-    var ajaxACLResources_activityplaned = $('#ajaxACL-activityplaned').ajaxCallWidget({
+    $("#loading-image-activityplaned").loadImager('removeLoadImage');
+    $("#loading-image-activityplaned").loadImager('appendImage');
+
+
+    var ajaxACLResources_activityplanned = $('#ajaxACL-activityplanned').ajaxCallWidget({
         failureLoadImage: true,
-        loadingImageID: "loading-image-activityplaned",
+        loadingImageID: "loading-image-activityplanned",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
         transactionFailureText: window.lang.translate("Service URL not found, please report error"),
         dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-        proxy: '/Customer/SysPlanedUnPlaned',
+        proxy: '/Customer/SysPlannedUnPlanned',
         type: 'POST',
         data: JSON.stringify({
             language_code: $("#langCode").val(),
             pk: "GsZVzEYe50uGgNM",
-            url: "pkCsActStatutypesDdList_syscsactstatutypess",
-            pkIdentity: $("#publicKey").val()
+            url: "pkCsActStatutypesPUDdList_syscsactstatutypess"
         })
     });
-    ajaxACLResources_activityplaned.ajaxCallWidget({
-        onSuccess: function (event, dataactivityplaned) {
-            var cbdata_activityplaned = $.parseJSON(dataactivityplaned);
-            cbdata_activityplaned.splice(0, 0,
+    ajaxACLResources_activityplanned.ajaxCallWidget({
+        onSuccess: function (event, dataactivityplanned) {
+            var cbdata_activityplanned = $.parseJSON(dataactivityplanned);
+            cbdata_activityplanned.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
 
-            console.log(cbdata_activityplaned);
+            console.log(cbdata_activityplanned);
 
-            $('#dropdownActivityPlaned').ddslick({
-                data: cbdata_activityplaned,
+            $('#dropdownActivityPlanned').ddslick({
+                data: cbdata_activityplanned,
                 width: '100%',
 
                 onSelected: function (selectedData) {
@@ -450,19 +318,23 @@ $(document).ready(function () {
                 }
             });
 
-            $("#loading-image-activityplaned").loadImager('removeLoadImage');
+            $("#loading-image-activityplanned").loadImager('removeLoadImage');
         },
         onReset: function (event, data) {
 
         },
         onAfterSuccess: function (event, data) {
-            $("#loading-image-activityplaned").loadImager('removeLoadImage');
+            $("#loading-image-activityplanned").loadImager('removeLoadImage');
         }
     })
-    ajaxACLResources_activityplaned.ajaxCallWidget('call');
+    ajaxACLResources_activityplanned.ajaxCallWidget('call');
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Segment
+
+    $("#loading-image-segment").loadImager('removeLoadImage');
+    $("#loading-image-segment").loadImager('appendImage');
+
     var ajaxACLResources_segment = $('#ajaxACL-segment').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loading-image-segment",
@@ -516,9 +388,12 @@ $(document).ready(function () {
 * @author Gül Özdemir
 * @since 18/10/2018
 */
-    var ajaxACLResources_concernedvehicletype = $('#ajaxACL-concernedvehicletype').ajaxCallWidget({
+    $("#loading-image-productinterest").loadImager('removeLoadImage');
+    $("#loading-image-productinterest").loadImager('appendImage');
+
+    var ajaxACLResources_productinterest = $('#ajaxACL-productinterest').ajaxCallWidget({
         failureLoadImage: true,
-        loadingImageID: "loading-image-concernedvehicletype",
+        loadingImageID: "loading-image-productinterest",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
         transactionFailureText: window.lang.translate("Service URL not found, please report error"),
@@ -532,15 +407,15 @@ $(document).ready(function () {
             pkIdentity: $("#publicKey").val()
         })
     });
-    ajaxACLResources_concernedvehicletype.ajaxCallWidget({
-        onSuccess: function (event, dataconcernedvehicletype) {
-            console.log(dataconcernedvehicletype);
-            var cbdata_concernedvehicletype = $.parseJSON(dataconcernedvehicletype);
-            cbdata_concernedvehicletype.splice(0, 0,
+    ajaxACLResources_productinterest.ajaxCallWidget({
+        onSuccess: function (event, dataproductinterest) {
+            console.log(dataproductinterest);
+            var cbdata_productinterest = $.parseJSON(dataproductinterest);
+            cbdata_productinterest.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
-            $('#dropdownConcernedVehicleType').ddslick({
-                data: cbdata_concernedvehicletype,
+            $('#dropdownProductInterest').ddslick({
+                data: cbdata_productinterest,
                 width: '100%',
                 //search: true,
                 //searchText: window.lang.translate('Search'),
@@ -552,72 +427,240 @@ $(document).ready(function () {
                 }
             });
 
-            $("#loading-image-concernedvehicletype").loadImager('removeLoadImage');
+            $("#loading-image-productinterest").loadImager('removeLoadImage');
         },
         onReset: function (event, data) {
 
         },
         onAfterSuccess: function (event, data) {
-            $("#loading-image-concernedvehicletype").loadImager('removeLoadImage');
+            $("#loading-image-productinterest").loadImager('removeLoadImage');
         }
     })
-    ajaxACLResources_concernedvehicletype.ajaxCallWidget('call');
+    ajaxACLResources_productinterest.ajaxCallWidget('call');
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //-achieved -cancelled -not planned -planned 
+
+    /**
+   * Activity Last Status Type
+   * @returns {undefined}
+   * @author Gül Özdemir
+   * @since 14/10/2018
+   */
+
+    $("#loading-image-activitylaststatus").loadImager('removeLoadImage');
+    $("#loading-image-activitylaststatus").loadImager('appendImage');
 
 
-
- //   $('#loading-image-activityplaned').loadImager('removeLoadImage');
- //   $("#loading-image-activityplaned").loadImager('appendImage');
-/*
-    var ajaxACLResources_activityplaned = $('#ajaxACL-activityplaned').ajaxCallWidget({
-        proxy: '/Customer/SysCsActStatuTypess/',
+    var ajaxACLResources_activitylaststatus = $('#ajaxACL-activitylaststatus').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loading-image-activitylaststatus",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Customer/SysActivityLastStatus',
         type: 'POST',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkCsActStatutypesDdList_syscsactstatutypess"
+        })
     });
-
-    ajaxACLResources_activityplaned.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-activityplaned').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
-        },
-        onSuccess: function (event, dataactpln) {
-            var cbdata_activityplaned = $.parseJSON(dataactpln);
-            cbdata_activityplaned.splice(0, 0,
+    ajaxACLResources_activitylaststatus.ajaxCallWidget({
+        onSuccess: function (event, dataactivitylaststatus) {
+            var cbdata_activitylaststatus = $.parseJSON(dataactivitylaststatus);
+            cbdata_activitylaststatus.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
-            $('#dropdownActivityPlaned').ddslick({
-                data: cbdata_activityplaned,
+
+            console.log(cbdata_activitylaststatus);
+
+            $('#dropdownActivityLastStatus').ddslick({
+                data: cbdata_activitylaststatus,
                 width: '100%',
 
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
+                        //alert(selectedData.selectedData.text);
 
                     }
+
                 }
             });
 
-            $("#loading-image-activityplaned").loadImager('removeLoadImage');
+            $("#loading-image-activitylaststatus").loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-activityplaned').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('activityplaned bulunamamıştır...'), window.lang.translate('activityplaned  bulunamamıştır...'));
+        onReset: function (event, data) {
+
         },
+        onAfterSuccess: function (event, data) {
+            $("#loading-image-activitylaststatus").loadImager('removeLoadImage');
+        }
     })
-    ajaxACLResources_activityplaned.ajaxCallWidget('call');
-*/
+    ajaxACLResources_activitylaststatus.ajaxCallWidget('call');
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+
+    /**
+     * insert / update Activity
+     * @returns {undefined}
+     * @author Gül Özdemir
+     * @since 07/08/2018
+     */
+
+    $("#btn-activity-save").on("click", function (e) {
+        e.preventDefault();
+
+        if ($("#activityForm").validationEngine('validate')) {
+
+            $("#loading-image-activity").loadImager('removeLoadImage');
+            $("#loading-image-activity").loadImager('appendImage');
+
+            var activityComment = $('#txt-activity-comment').val();
+            var activityNoteManager = $('#txt-note-manager').val();
+
+            var activitydate = $('#activity-datepicker').val();
+            var followupdate = $('#followup-datepicker').val();
+
+            var ddData_cstname = $('#dropdownCustomerName').data('ddslick');
+            var cstnameId = ddData_cstname.selectedData.value;
+
+            var ddData_ContactPerson = $('#dropdownContactPerson').data('ddslick');
+            var contactpersonId = ddData_ContactPerson.selectedData.value;
+
+            var ddData_ActivityType = $('#dropdownActivityType').data('ddslick');
+            var activitytypeId = ddData_ActivityType.selectedData.value;
+
+            var ddData_ActivityStatus = $('#dropdownActivityStatus').data('ddslick');
+            var activitystatusId = ddData_ActivityStatus.selectedData.value;
+            
+            var ddData_ActivityPlaned = $('#dropdownActivityPlaned').data('ddslick');
+            var activityplanedId = ddData_ActivityPlaned.selectedData.value;
+
+            var ddData_Segment = $('#dropdownSegment').data('ddslick');
+            var segmentId = ddData_Segment.selectedData.value;
+
+            var ddData_ProductInterest = $('#dropdownProductInterest').data('ddslick');
+            var productinterestId = ddData_ProductInterest.selectedData.value;
+
+            var ddData_Followuptype = $('#dropdownFollowuptype').data('ddslick');
+            var followuptypeId = ddData_Followuptype.selectedData.value;
+
+            var mydata = JSON.stringify({
+                url: "pkInsertAct_infocustomeractivations",
+                customer_id: selectedCustomerId,
+                act_date: activitydate,
+                contact_person_id: contactpersonId,
+                cs_activation_type_id: activitytypeId,
+                cs_statu_types_id: activitystatusId,
+                cs_act_statutype_id: activityplanedId,
+                customer_segment_type_id: segmentId,
+                vehicle_model_id: productinterestId,
+                activty_tracking_type_id : followuptypeId,
+                activity_tracking_date: followupdate,
+                manager_description: activityNoteManager,
+                project_id: 0,
+                description: "",
+                realization_date: null,
+                report:"",
+                pk: "GsZVzEYe50uGgNM"
+
+            })
+
+            console.log(mydata);
+
+
+            //alert(selectedContactPersonId); 
+            var ajax;
+            if (selectedContactPersonId === 0) {
+                //alert("yeni kayıt");
+                //Yeni kayıt
+                ajax = $('#ajaxACL-contactperson').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loading-image-cstcp",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    proxy: '/Customer/InsertContactPerson',
+                    type: "POST",
+                    data: mydata
+                });
+
+                ajax.ajaxCallWidget({
+                    onReset: function (event, data) {
+
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_contactperson").dxDataGrid("instance").refresh();
+                        $("#loading-image-cstcp").loadImager('removeLoadImage');
+                    }
+                })
+                ajax.ajaxCallWidget('call');
+
+            } else {
+                //update
+                //alert("update");
+                /*
+                $("#loading-image-cstcp").loadImager('removeLoadImage');
+                $("#loading-image-cstcp").loadImager('appendImage');
+
+                wcm.warningComplexMessage({
+                    onConfirm: function (event, data) {
+                        ajax = $('#ajaxACL-contactperson').ajaxCallWidget({
+                            failureLoadImage: true,
+                            loadingImageID: "loading-image-cstcp",
+                            triggerSuccessAuto: true,
+                            transactionSuccessText: window.lang.translate('Transaction successful'),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            proxy: '/Customer/UpdateContactPerson',
+                            type: "POST",
+                            data: JSON.stringify({
+                                id: selectedContactPersonId,
+                                url: "pkUpdateAct_infocustomercontactpersons",
+                                customer_id: selectedCustomerId,
+                                name: firstName,
+                                surname: lastName,
+                                email: cp_email,
+                                mobile: cp_mobile,
+                                phone: cp_phone,
+                                fax: cp_fax,
+                                priority_id: priorityId,
+                                source_of_lead_id: sourceofleadId,
+                                con_end_date: lastcontactdate,
+                                title_id: titleId,
+                                title_role_id: roleId,
+                                brand_loyalty_id: brandloyaltyId,
+                                last_brand_id: lastbrandId,
+                                competitor_satisfaction_id: compsatisfactionId,
+                                man_satisfaction_id: mansatisfactionId,
+                                pk: "GsZVzEYe50uGgNM"
+                            })
+                        });
+
+                        ajax.ajaxCallWidget({
+                            onReset: function (event, data) {
+
+                            },
+                            onAfterSuccess: function (event, data) {
+                                $("#gridContainer_contactperson").dxDataGrid("instance").refresh();
+                                $("#loading-image-cstcp").loadImager('removeLoadImage');
+                            }
+                        })
+                        ajax.ajaxCallWidget('call');
+                    }
+                });
+                wcm.warningComplexMessage('show', 'Contact Person will be updated! Are you sure?', 'Contact Person will be updated! Are you sure?');
+            */
+            }
+        }
+        return false;
+
+    })
 
  
  /**
@@ -632,12 +675,20 @@ $(document).ready(function () {
         $("#loading-image-activity").loadImager('appendImage');
 
         $('#activityForm').validationEngine('hide');
+        $('#dropdownCustomerName').ddslick('select', { index: String(0) });
+        $('#dropdownContactPerson').ddslick('destroy');
+        $('#dropdownActivityType').ddslick('select', { index: String(0) });
+        $('#dropdownActivityStatus').ddslick('select', { index: String(0) });
+        $('#dropdownActivityPlaned').ddslick('select', { index: String(0) });
+        $('#dropdownSegment').ddslick('select', { index: String(0) });
+        $('#dropdownProductInterest').ddslick('select', { index: String(0) });
+
+        $('#dropdownFollowuptype').ddslick('select', { index: String(0) });
         
         $("#loading-image-activity").loadImager('removeLoadImage');
 
         return false;
     }
-
 
 
     /**
@@ -713,14 +764,14 @@ $(document).ready(function () {
                 return deferred.promise();
             },
             remove: function (key) {
-                /*
+                
                 var deferred = $.Deferred();
 
                 return $.ajax({
                     url: '/Customer/DeleteCustomerActivity',
                     dataType: "json",
                     data: JSON.stringify({
-                        id: selectedBranchId,
+                        id: selectedCustomerActivityId,
                         pk: "GsZVzEYe50uGgNM",
                         url: "pkDeletedAct_infocustomeractivations"  //Değiş
                     }),
@@ -734,7 +785,7 @@ $(document).ready(function () {
                     },
                     timeout: 30000
                 });
-                */
+                
             }
         });
 
@@ -961,5 +1012,56 @@ $(document).ready(function () {
     * @since 19/10/2018
     */
     $('#activityList').click();
+
+
+ /**
+ * Activity active / passive
+ * @returns {undefined}
+ * @author Gül Özdemir
+ * @since 14/10/2018
+ */
+    window.activepassiveActivity = function (activity_id, active) {
+
+        var transactionSuccessMessage;
+
+        if (active === 1) {
+            //active
+            transactionSuccessMessage = window.lang.translate('Active successful');
+        } else {
+            //passive
+            transactionSuccessMessage = window.lang.translate('Passive successful');
+        }
+
+        $("#loading-image-activityGrid").loadImager('removeLoadImage');
+        $("#loading-image-activityGrid").loadImager('appendImage');
+
+        var ajax_activepassiveactivitylist = $('#ajaxACL-activityist').ajaxCallWidget({
+            failureLoadImage: true,
+            loadingImageID: "loading-image-activityGrid",
+            triggerSuccessAuto: true,
+            transactionSuccessText: transactionSuccessMessage,
+            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            proxy: '/Customer/ActivePassiveCustomerActivity',
+            type: "POST",
+            data: JSON.stringify({
+                id: contactperson_id,
+                pk: "GsZVzEYe50uGgNM",
+                url: "pkUpdateMakeActiveOrPassive_infocustomeractivations"
+            }),
+
+        });
+        ajax_activepassiveactivitylist.ajaxCallWidget({
+            onReset: function (event, data) {
+
+            },
+            onAfterSuccess: function (event, data) {
+                $("#gridContainer_activity").dxDataGrid("instance").refresh();
+                $("#loading-image-activityGrid").loadImager('removeLoadImage');
+            }
+        })
+        ajax_activepassiveactivitylist.ajaxCallWidget('call');
+
+    }
 });
 

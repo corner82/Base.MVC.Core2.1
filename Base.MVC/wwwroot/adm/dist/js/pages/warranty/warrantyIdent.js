@@ -426,7 +426,7 @@ $(document).ready(function () {
 //wrMonth
     $('#loading-image-wrMonth').loadImager('removeLoadImage');
     $("#loading-image-wrMonth").loadImager('appendImage');
-
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkWarrantyMonthsDdList_sysmonths&language_code=en&pk=GsZVzEYe50uGgNM
     var ajaxACLResources_wrMonth = $('#ajaxACL-wrMonth').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loading-image-wrMonth",
@@ -439,7 +439,7 @@ $(document).ready(function () {
         data: JSON.stringify({
             language_code: $("#langCode").val(),
             pk: "GsZVzEYe50uGgNM",
-            url: "pkMileagesWarrantyDdList_sysmileages",
+            url: "pkWarrantyMonthsDdList_sysmonths",
             pkIdentity: $("#publicKey").val()
         })
     });
