@@ -134,6 +134,9 @@
     <Content Update="Views\Training\Training.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Truckstogo\Truckstogo.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Vehicle\SpecialVehicle.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

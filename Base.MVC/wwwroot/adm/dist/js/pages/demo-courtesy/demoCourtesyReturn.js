@@ -554,6 +554,10 @@ $(document).ready(function () {
                 caption: window.lang.translate('Extension end date') + "...",
                 dataField: "value",
                 encodeHtml: false
+            }, {
+                caption: window.lang.translate('Assesment form') + "...",
+                dataField: "value",
+                encodeHtml: false
             }],
 
             onSelectionChanged: function (selectedItems) {
@@ -673,7 +677,7 @@ $(document).ready(function () {
         $('#ddslickCusPri').ddslick('select', { index: String(0) });
         $('#ddslickPotSize').ddslick('select', { index: String(0) });
 
-        $("#loadingImage_yearlyQuota").loadImager('removeLoadImage');
+        $("#loadingImage_demoCourtesyReturn").loadImager('removeLoadImage');
 
         return false;
     }

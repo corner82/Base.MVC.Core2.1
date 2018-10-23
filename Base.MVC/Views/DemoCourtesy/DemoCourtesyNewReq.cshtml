@@ -58,7 +58,21 @@
                         <form id='demoCourtesyNewReqForm' method="get">
                             <div class="row" id="loadingImage_demoCourtesyNewReq">
 
-                                <div class="col-md-6" id="ajaxACL-demoCourtesyNewRequest">
+
+
+                                <div class="col-md-12" >
+                                    <div class="form-group">
+                                        <label><span lang="en">Demo Status</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-truck"></i>
+                                            </div>
+                                            <input type="text" class="form-control validate[required]" placeholder="Extras(accessories & body)" id="txt-demoCourNewReq-statu" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                    
+                                    <div class="col-md-6" id="ajaxACL-demoCourtesyNewRequest">
                                     <div class="form-group">
                                         <label><span lang="en">Demo/Courtesy</span></label>
                                         <div class="" id="ajax_DdslickDemoCourtesy">
@@ -107,7 +121,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-map-pin"></i>
                                             </div>
-                                            <input type="text" class="form-control validate[required]" placeholder="Number of units" id="txt-demoCourNewReq-unitNo">
+                                            <input type="number" class="form-control validate[required]" placeholder="Number of units" id="txt-demoCourNewReq-unitNo">
                                         </div>
                                     </div>
 
