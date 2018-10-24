@@ -100,6 +100,21 @@ namespace Base.MVC.Controllers
             return View();
         }
 
+        public async Task<IActionResult> VehicleKitModel()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> VehicleKitModelModeltype()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> VehicleKitModelModeltypeTonnage()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> TNofVehicles()
         {
             return View();
