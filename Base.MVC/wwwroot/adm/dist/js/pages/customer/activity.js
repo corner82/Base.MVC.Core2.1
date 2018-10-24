@@ -137,6 +137,9 @@ $(document).ready(function () {
                 width: '100%',
 
                 onSelected: function (selectedData) {
+
+                    $('#dropdownContactPerson').ddslick('destroy');
+
                     if (selectedData.selectedData.value > 0) {
 
                         selectedCustomerId = selectedData.selectedData.value;
@@ -178,21 +181,25 @@ $(document).ready(function () {
                                 });
                                 $("#loading-image-contactperson").loadImager('removeLoadImage');
 
+                                if (filldropdown === true) {
+                                    //alert(ddslick_contactpersonId);
+                                    //alert(ddslick_contactperson_name);
+                                    $('#dropdownContactPerson').ddslick('selectByValue',
+                                    {
+                                        index: ddslick_contactpersonId,
+                                        value: ddslick_contactperson_name
+                                    });
+                                    filldropdown = false;
+                                }
+                            },
+                            onAfterSuccess: function (event, data) {
+                                //alert('geldim AfterSuccess province');
+
+                                $("#loading-image-contactperson").loadImager('removeLoadImage');
                             }
                         })
                         ajax_contactperson.ajaxCallWidget('call');
-                        
-
-                        if (filldropdown === true) {
-                            //alert(ddslick_contactperson_name);
-                            $('#dropdownContactPerson').ddslick('selectByValue',
-                                {
-                                    index: ddslick_contactpersonId,
-                                    value: ddslick_contactperson_name
-                                });
-                            filldropdown = false;
-                        }
-                        $("#loading-image-customername").loadImager('removeLoadImage');
+                       
                     }
                 }
             });

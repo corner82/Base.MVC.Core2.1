@@ -47,7 +47,7 @@ $(document).ready(function () {
     $("#loading-image-activitylaststatus").loadImager();
     //to activity form grid loading-image
     $("#loading-image-activityGrid").loadImager();
-   
+
     var langCode = $("#langCode").val();
     //alert(langCode);
 
@@ -93,7 +93,7 @@ $(document).ready(function () {
         todayBtn: true
     });
 
-  
+
 
     $('#activity-realization-datetimepicker').datetimepicker({
         locale: langCode,
@@ -111,7 +111,7 @@ $(document).ready(function () {
     $("#loading-image-customername").loadImager('removeLoadImage');
     $("#loading-image-customername").loadImager('appendImage');
 
-    var ajax_customername = $('#ajaxACL-customername').ajaxCallWidget({
+    var ajax_customername = $('#ajaxACL-act-customername').ajaxCallWidget({
         proxy: '/Customer/DdslickGetAllCustomers',
         type: "POST",
         transactionFailureText: window.lang.translate("Service URL not found, please report error"),
@@ -137,6 +137,9 @@ $(document).ready(function () {
                 width: '100%',
 
                 onSelected: function (selectedData) {
+
+                    $('#dropdownContactPerson').ddslick('destroy');
+
                     if (selectedData.selectedData.value > 0) {
 
                         selectedCustomerId = selectedData.selectedData.value;
@@ -144,7 +147,7 @@ $(document).ready(function () {
                         $("#loading-image-contactperson").loadImager('removeLoadImage');
                         $("#loading-image-contactperson").loadImager('appendImage');
 
-                        var ajax_contactperson = $('#ajaxACL-contactperson').ajaxCallWidget({
+                        var ajax_contactperson = $('#ajaxACL-act-contactperson').ajaxCallWidget({
                             proxy: '/Customer/DdslickGetCustomerContactList',
                             type: "POST",
                             transactionFailureText: window.lang.translate("Service URL not found, please report error"),
@@ -154,7 +157,7 @@ $(document).ready(function () {
                                 language_code: $("#langCode").val(),
                                 pk: "GsZVzEYe50uGgNM",
                                 url: "pkCustomerContactPersonDdList_infocustomercontactpersons",
-                               // pkIdentity: $("#publicKey").val(),
+                                // pkIdentity: $("#publicKey").val(),
                                 customer_id: selectedCustomerId
                             })
 
@@ -178,20 +181,24 @@ $(document).ready(function () {
                                 });
                                 $("#loading-image-contactperson").loadImager('removeLoadImage');
 
+                                if (filldropdown === true) {
+                                    //alert(ddslick_contactpersonId);
+                                    //alert(ddslick_contactperson_name);
+                                    $('#dropdownContactPerson').ddslick('selectByValue',
+                                        {
+                                            index: ddslick_contactpersonId,
+                                            value: ddslick_contactperson_name
+                                        });
+                                    filldropdown = false;
+                                }
+                            },
+                            onAfterSuccess: function (event, data) {
+                                //alert('geldim AfterSuccess province');
+
+                                $("#loading-image-contactperson").loadImager('removeLoadImage');
                             }
                         })
                         ajax_contactperson.ajaxCallWidget('call');
-                        $("#loading-image-customername").loadImager('removeLoadImage');
-
-                        if (filldropdown === true) {
-                            //alert(ddslick_contactperson_name);
-                            $('#dropdownContactPerson').ddslick('selectByValue',
-                                {
-                                    index: ddslick_contactpersonId,
-                                    value: ddslick_contactperson_name
-                                });
-                            filldropdown = false;
-                        }
 
                     }
                 }
@@ -200,6 +207,7 @@ $(document).ready(function () {
         }
     })
     ajax_customername.ajaxCallWidget('call');
+
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Activity type "Fair Visit","Customer support interview","Customer Visit(Inbound)","Customer Visit(Outbound)","Phone Interview(Incoming)","Telephone Interview(Outgoing)",
@@ -770,7 +778,7 @@ $(document).ready(function () {
         return false;
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
     /**
      * insert / update Activity
      * @returns {undefined}
@@ -803,58 +811,58 @@ $(document).ready(function () {
     * @author Gül Özdemir
     * @since 22/10/2018
     */
-/*
-    window.activity_Formcontrol = function () {
-        var myreturn = true;
-
-        var activitydate = $('#activity-datetimepicker').val();
-        var followupdate = $('#followup-datetimepicker').val();
-
-        var mytoday = new Date();
-        var myday = mytoday.getDate();
-        mytoday.setDate(myday - 15);
-
-        //alert(mytoday);
-
-        //1- aktivite tarihi, bugünden max 2hafta küçük olabilir.
-        if (activitydate < mytoday) {
-
-            //alert("Aktivite tarihi 15 günden küçük olamaz!");
-            dm.dangerMessage('show', window.lang.translate('Activity date cannot be less than 15 days!'), window.lang.translate('Activity date cannot be less than 15 days!'));
-            myreturn = false;
-        }
-
-        //2- Takip tarihi dolu ise takip tipi seçili olmalıdır. (follow up)
-        if (followupdate) {
-            //dropdownFollowuptype
-            var ddData_Followuptype = $('#dropdownFollowuptype').data('ddslick');
-            var followuptypeId = ddData_Followuptype.selectedData.value;
-            if (followuptypeId === 0) {
-                //alert("Folow up type giriniz!");
-                dm.dangerMessage('show', window.lang.translate('Enter type of follow up!'), window.lang.translate('Enter type of follow up!'));
-
+    /*
+        window.activity_Formcontrol = function () {
+            var myreturn = true;
+    
+            var activitydate = $('#activity-datetimepicker').val();
+            var followupdate = $('#followup-datetimepicker').val();
+    
+            var mytoday = new Date();
+            var myday = mytoday.getDate();
+            mytoday.setDate(myday - 15);
+    
+            //alert(mytoday);
+    
+            //1- aktivite tarihi, bugünden max 2hafta küçük olabilir.
+            if (activitydate < mytoday) {
+    
+                //alert("Aktivite tarihi 15 günden küçük olamaz!");
+                dm.dangerMessage('show', window.lang.translate('Activity date cannot be less than 15 days!'), window.lang.translate('Activity date cannot be less than 15 days!'));
                 myreturn = false;
             }
+    
+            //2- Takip tarihi dolu ise takip tipi seçili olmalıdır. (follow up)
+            if (followupdate) {
+                //dropdownFollowuptype
+                var ddData_Followuptype = $('#dropdownFollowuptype').data('ddslick');
+                var followuptypeId = ddData_Followuptype.selectedData.value;
+                if (followuptypeId === 0) {
+                    //alert("Folow up type giriniz!");
+                    dm.dangerMessage('show', window.lang.translate('Enter type of follow up!'), window.lang.translate('Enter type of follow up!'));
+    
+                    myreturn = false;
+                }
+            }
+    
+            //3- Takip tarihi activite tarihinden küçük olamaz 
+            if (followupdate < activitydate) {
+    
+                //alert("Follow up date Aktivite tarihinden küçük olamaz! / Follow up date Cannot be smaller than activity date");
+                dm.dangerMessage('show', window.lang.translate('Follow up date Cannot be smaller than activity date!'), window.lang.translate('Follow up date Cannot be smaller than activity date!'));
+                myreturn = false;
+            }
+            
+    
+            return myreturn;
         }
-
-        //3- Takip tarihi activite tarihinden küçük olamaz 
-        if (followupdate < activitydate) {
-
-            //alert("Follow up date Aktivite tarihinden küçük olamaz! / Follow up date Cannot be smaller than activity date");
-            dm.dangerMessage('show', window.lang.translate('Follow up date Cannot be smaller than activity date!'), window.lang.translate('Follow up date Cannot be smaller than activity date!'));
-            myreturn = false;
-        }
-        
-
-        return myreturn;
-    }
-*/
- /**
- * reset Activity Form
- * @returns {undefined}
- * @author Gül Özdemir
- * @since 10/09/2018
- */
+    */
+    /**
+    * reset Activity Form
+    * @returns {undefined}
+    * @author Gül Özdemir
+    * @since 10/09/2018
+    */
 
     window.resetActivityForm = function () {
         $("#loading-image-activity").loadImager('removeLoadImage');
@@ -901,7 +909,7 @@ $(document).ready(function () {
 
         $("#loading-image-activity").loadImager('removeLoadImage');
         $("#loading-image-activity").loadImager('appendImage');
-        
+
         selectedActivityId = data.id;
 
         if (data.customer_id) {
@@ -955,7 +963,7 @@ $(document).ready(function () {
                     value: data.planned_unplaned_name
                 }
             );
-        }        
+        }
 
         if (data.description) {
             document.getElementById("txt-activity-comment").value = data.description;
@@ -1116,7 +1124,7 @@ $(document).ready(function () {
                 return deferred.promise();
             },
             remove: function (key) {
-                
+
                 var deferred = $.Deferred();
 
                 return $.ajax({
@@ -1137,7 +1145,7 @@ $(document).ready(function () {
                     },
                     timeout: 30000
                 });
-                
+
             }
         });
 
@@ -1229,7 +1237,7 @@ $(document).ready(function () {
 
                 columns: [
                     {
-                        
+
                         caption: window.lang.translate('Active/Passive'),
                         width: 40,
                         alignment: 'center',
@@ -1291,11 +1299,11 @@ $(document).ready(function () {
                         caption: window.lang.translate('Segment type'),
                         dataField: "segment_type_name",
                         encodeHtml: false
-                    }, {                  
+                    }, {
                         caption: window.lang.translate('Product of interest'),
                         dataField: "vehicle_model_name",
                         encodeHtml: false
-                    },{
+                    }, {
                         caption: window.lang.translate('Note to the manager'),
                         dataField: "manager_description",
                         encodeHtml: false
@@ -1379,12 +1387,12 @@ $(document).ready(function () {
     $('#activityList').click();
 
 
- /**
- * Activity active / passive
- * @returns {undefined}
- * @author Gül Özdemir
- * @since 14/10/2018
- */
+    /**
+    * Activity active / passive
+    * @returns {undefined}
+    * @author Gül Özdemir
+    * @since 14/10/2018
+    */
     window.activepassiveActivity = function (activity_id, active) {
 
         var transactionSuccessMessage;
