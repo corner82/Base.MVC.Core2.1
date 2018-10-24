@@ -398,29 +398,25 @@
         columns: [
             {
                 //allowGrouping: false,
-                caption: "Vehicle",
-                dataField: "vahicle_description"
+                caption: "Vehicle group",
+                dataField: "vehicle_group"
             },
             {
-                caption: "Comfort Super",
-                dataField: "comfort_super_name"
+                caption: "Maint.",
+                dataField: "ismaintenance"
             },
             {
-                caption: "Mileage",
-                dataField: "mileage_type_name"
+                caption: "Config",
+                dataField: "vehicle_config_name"
             },
             {
-                caption: "Terrain",
-                dataField: "terrain_name"
+                caption: "Group name",
+                dataField: "vehicle_group_name"
             },
             {
-                caption: "Month",
-                dataField: "month_name"
+                caption: "Type",
+                dataField: "warranty_type_name"
             },
-            {
-                caption: "Price",
-                dataField: "price"
-            }
 
         ],
         customizeColumns: function (columns) {
@@ -527,21 +523,43 @@
     ];
     $('#loadingImage_DdslickWarrantyType').loadImager('removeLoadImage');
     $("#loadingImage_DdslickWarrantyType").loadImager('appendImage');
-    //var selectedContRepMainBuyBack = false;
-    $('#ddslickWarrantyType').ddslick({
-        //height: 150,
-        data: ddslickDealWarrantyTypeData,
-        width: '100%',
-        onSelected: function (selectedData) {
-            /*if (selectedContRepMainBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
-            selectedContRepMainBuyBack = true;*/
-            if (selectedData.selectedData.value > 0) {
-                //$("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
+    var ajax_DdslickWarrantyType = $('#ajax_DdslickWarrantyType').ajaxCallWidget({
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickWarrantyType",
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        noDataFailureText: window.lang.translate("No data returned from service"),
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkWarrantyTypesDdList_syswarrantytypes",
+            pkIdentity: $("#publicKey").val()
+        })
 
-            }
-        }
     });
-    $("#loadingImage_DdslickWarrantyType").loadImager('removeLoadImage');
+    ajax_DdslickWarrantyType.ajaxCallWidget({
+        onSuccess: function (event, data) {
+            var data = $.parseJSON(data);
+            data.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+            $('#ddslickWarrantyType').ddslick({
+                //height: 150,
+                data: data,
+                width: '100%',
+                onSelected: function (selectedData) {
+                    /*if (selectedContTerrainTypeBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
+                    selectedContTerrainTypeBuyBack = true;*/
+                    if (selectedData.selectedData.value > 0) {
+                        //getDealVehicleTypeDdslick();
+                    }
+                }
+            });
+            $("#loadingImage_DdslickWarrantyType").loadImager('removeLoadImage');
+        },
+    })
+    ajax_DdslickWarrantyType.ajaxCallWidget('call');
 
 
     /**
@@ -558,21 +576,44 @@
     ];
     $('#loadingImage_DdslickWarrantyTerm').loadImager('removeLoadImage');
     $("#loadingImage_DdslickWarrantyTerm").loadImager('appendImage');
-    //var selectedContRepMainBuyBack = false;
-    $('#ddslickWarrantyTerm').ddslick({
-        //height: 150,
-        data: ddslickDealWarrantyTermData,
-        width: '100%',
-        onSelected: function (selectedData) {
-            /*if (selectedContRepMainBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
-            selectedContRepMainBuyBack = true;*/
-            if (selectedData.selectedData.value > 0) {
-                //$("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
+    var ajax_DdslickWarrantyTerm = $('#ajax_DdslickWarrantyTerm').ajaxCallWidget({
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickWarrantyTerm",
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        noDataFailureText: window.lang.translate("No data returned from service"),
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkMileagesWarrantyDdList_sysmileages",
+            pkIdentity: $("#publicKey").val()
+        })
 
-            }
-        }
     });
-    $("#loadingImage_DdslickWarrantyTerm").loadImager('removeLoadImage');
+    ajax_DdslickWarrantyTerm.ajaxCallWidget({
+        onSuccess: function (event, data) {
+            var data = $.parseJSON(data);
+            data.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+            $('#ddslickWarrantyTerm').ddslick({
+                //height: 150,
+                data: data,
+                width: '100%',
+                onSelected: function (selectedData) {
+                    /*if (selectedContTerrainTypeBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
+                    selectedContTerrainTypeBuyBack = true;*/
+                    if (selectedData.selectedData.value > 0) {
+                        //getDealVehicleTypeDdslick();
+                    }
+                }
+            });
+            $("#loadingImage_DdslickWarrantyTerm").loadImager('removeLoadImage');
+        },
+    })
+    ajax_DdslickWarrantyTerm.ajaxCallWidget('call');
+
 
     /**
   * ddslick deal aksesuar options dropdown (aksesuar)
@@ -588,21 +629,44 @@
     ];
     $('#loadingImage_DdslickWarrantyKm').loadImager('removeLoadImage');
     $("#loadingImage_DdslickWarrantyKm").loadImager('appendImage');
-    //var selectedContRepMainBuyBack = false;
-    $('#ddslickWarrantyKm').ddslick({
-        //height: 150,
-        data: ddslickDealWarrantyKmData,
-        width: '100%',
-        onSelected: function (selectedData) {
-            /*if (selectedContRepMainBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
-            selectedContRepMainBuyBack = true;*/
-            if (selectedData.selectedData.value > 0) {
-                //$("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
+    var ajax_DdslickWarrantyKm = $('#ajax_DdslickWarrantyKm').ajaxCallWidget({
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickWarrantyTerm",
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        noDataFailureText: window.lang.translate("No data returned from service"),
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkMileagesWarrantyDdList_sysmileages",
+            pkIdentity: $("#publicKey").val()
+        })
 
-            }
-        }
     });
-    $("#loadingImage_DdslickWarrantyKm").loadImager('removeLoadImage');
+    ajax_DdslickWarrantyKm.ajaxCallWidget({
+        onSuccess: function (event, data) {
+            var data = $.parseJSON(data);
+            data.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+            $('#ddslickWarrantyKm').ddslick({
+                //height: 150,
+                data: data,
+                width: '100%',
+                onSelected: function (selectedData) {
+                    /*if (selectedContTerrainTypeBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
+                    selectedContTerrainTypeBuyBack = true;*/
+                    if (selectedData.selectedData.value > 0) {
+                        //getDealVehicleTypeDdslick();
+                    }
+                }
+            });
+            $("#loadingImage_DdslickWarrantyKm").loadImager('removeLoadImage');
+        },
+    })
+    ajax_DdslickWarrantyKm.ajaxCallWidget('call');
+
 
 
     /**
