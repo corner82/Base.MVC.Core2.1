@@ -77,7 +77,7 @@
                                                             <div class="input-group-addon">
                                                                 <i class="fa fa-copyright"></i>
                                                             </div>
-                                                            <div id="dropdownCustomerName" class="form-control"></div>
+                                                            <div id="dropdownCustomerName" class="form-control validate[required]"></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -89,7 +89,7 @@
                                                             <div class="input-group-addon">
                                                                 <i class="fa fa-copyright"></i>
                                                             </div>
-                                                            <div id="dropdownContactPerson" class="form-control"></div>
+                                                            <div id="dropdownContactPerson" class="form-control validate[required]"></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -101,7 +101,7 @@
                                                             <div class="input-group-addon">
                                                                 <i class="fa fa-copyright"></i>
                                                             </div>
-                                                            <div id="dropdownActivityType" class="form-control"></div>
+                                                            <div id="dropdownActivityType" class="form-control validate[required]"></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -146,7 +146,7 @@
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-calendar"></i>
                                                         </div>
-                                                        <input type="text" class="form-control pull-right" name="activity-datetimepicker" id="activity-datetimepicker">
+                                                        <input type="text" class="form-control pull-right validate[required]" name="activity-datetimepicker" id="activity-datetimepicker">
                                                     </div>
                                                     <!-- /.input group -->
                                                 </div>
@@ -212,16 +212,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group">
-                                                    <label><span lang="en">Realization date/time</span></label>
 
-                                                    <div class="input-group datetime">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-calendar"></i>
-                                                        </div>
-                                                        <input type="text" class="form-control pull-right" name="activity-realization-datetimepicker" id="activity-realization-datetimepicker">
-                                                    </div>
-                                                </div>
 
                                                 <div class="form-group">
                                                     <label><span lang="en">Activity last status</span></label>
@@ -251,6 +242,16 @@
                                     <form id='aktivityReportForm' method="get">
                                         <div class="row" id="loading-image-activityReport">
                                             <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label><span lang="en">Realization date/time</span></label>
+
+                                                    <div class="input-group datetime">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control pull-right" name="activity-realization-datetimepicker" id="activity-realization-datetimepicker">
+                                                    </div>
+                                                </div>
                                                 <div class="form-group">
                                                     <label><span lang="en">Activity report</span></label>
                                                     <div class="" id="ajaxACL-activitytrackingtype">

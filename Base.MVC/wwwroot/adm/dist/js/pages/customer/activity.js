@@ -27,6 +27,7 @@ $(document).ready(function () {
     var ddslick_contactperson_name = "";
 
     var filldropdown = false;
+
     /*
     * Activity LoadImager
     * @author Gül Özdemir
@@ -50,6 +51,31 @@ $(document).ready(function () {
     var langCode = $("#langCode").val();
     //alert(langCode);
 
+    var tab_active = function () {
+        //Update & View Mode
+        //enabled tabs
+
+        $("a[data-toggle='tab'").prop('disabled', false);
+        $("a[data-toggle='tab'").each(function () {
+            $(this).attr('href', $(this).prop('data-href')); // restore original href
+        });
+        $("a[data-toggle='tab'").removeClass('disabled-link');
+    }
+
+    var tab_disable = function () {
+        //Add new record
+        //tablar kapatılacak
+
+        $("a[data-toggle='tab'").prop('disabled', true);
+        $("a[data-toggle='tab'").each(function () {
+            $(this).prop('data-href', $(this).attr('href')); // hold you original href
+            $(this).attr('href', '#'); // clear href
+        });
+        $("a[data-toggle='tab'").addClass('disabled-link');
+
+    }
+
+    tab_disable();
 
     $('#activityForm').validationEngine();
 
@@ -510,7 +536,13 @@ $(document).ready(function () {
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
                         //alert(selectedData.selectedData.text);
-
+                        if (selectedData.selectedData.text == "Achieved") {
+                            //open tab
+                            tab_active();
+                        } else {
+                            //close tab
+                            tab_disable();
+                        }
                     }
 
                 }
@@ -545,16 +577,50 @@ $(document).ready(function () {
 
         if ($("#activityForm").validationEngine('validate')) {
 
-            if (activity_Formcontrol) {
+            //var activityFormcontrol = activity_Formcontrol();
+            //alert(activityFormcontrol);
+
+            var activitydate = $('#activity-datetimepicker').val();
+            var followupdate = $('#followup-datetimepicker').val();
+
+            var activityFormcontrol = true;
+
+            var mytoday = new Date();
+            var myday = mytoday.getDate();
+            mytoday.setDate(myday - 15);
+
+            //alert(mytoday);
+
+            //1- aktivite tarihi, bugünden max 2hafta küçük olabilir.
+            if (activitydate < mytoday) {
+                dm.dangerMessage('show', window.lang.translate('Activity date cannot be less than 15 days!'), window.lang.translate('Activity date cannot be less than 15 days!'));
+                activityFormcontrol = false;
+            }
+
+            //2- Takip tarihi dolu ise takip tipi seçili olmalıdır. (follow up)
+            if (followupdate) {
+                var ddData_Followuptype = $('#dropdownFollowuptype').data('ddslick');
+                var followuptypeId = ddData_Followuptype.selectedData.value;
+
+                if (followuptypeId === 0) {
+                    dm.dangerMessage('show', window.lang.translate('Enter type of follow up!'), window.lang.translate('Enter type of follow up!'));
+                    activityFormcontrol = false;
+                }
+            }
+
+            //3- Takip tarihi activite tarihinden küçük olamaz 
+            if (followupdate < activitydate) {
+                dm.dangerMessage('show', window.lang.translate('Follow up date Cannot be smaller than activity date!'), window.lang.translate('Follow up date Cannot be smaller than activity date!'));
+                activityFormcontrol = false;
+            }
+
+            if (activityFormcontrol) {
 
                 $("#loading-image-activity").loadImager('removeLoadImage');
                 $("#loading-image-activity").loadImager('appendImage');
 
                 var activityComment = $('#txt-activity-comment').val();
                 var activityNoteManager = $('#txt-note-manager').val();
-
-                var activitydate = $('#activity-datetimepicker').val();
-                var followupdate = $('#followup-datetimepicker').val();
 
                 var realizationdate = $('#activity-realization-datetimepicker').val();
 
@@ -659,7 +725,7 @@ $(document).ready(function () {
                         customer_id: selectedCustomerId,
                         act_date: activitydate,
                         contact_person_id: contactpersonId,
-                       cs_activation_type_id: activitytypeId,
+                        cs_activation_type_id: activitytypeId,
                         cs_statu_types_id: activitystatusId,
                         planned_unplaned_id: activityplannedId,
                         cs_act_statutype_id: activitylaststatusId,
@@ -719,22 +785,52 @@ $(document).ready(function () {
     * @author Gül Özdemir
     * @since 22/10/2018
     */
-
+/*
     window.activity_Formcontrol = function () {
         var myreturn = true;
 
-        //var activitydate = $('#activity-datetimepicker').val();
-        //var followupdate = $('#followup-datetimepicker').val();
+        var activitydate = $('#activity-datetimepicker').val();
+        var followupdate = $('#followup-datetimepicker').val();
 
-        //if (activitydate < today - 15day)
-        //1- Takip tarihi dolu ise takip tipi seçili olmalıdır. (follow up)
+        var mytoday = new Date();
+        var myday = mytoday.getDate();
+        mytoday.setDate(myday - 15);
 
-        //2- Takip tarihi activite tarihinden küçük olamaz 
+        //alert(mytoday);
 
-        //3- aktivite tarihi, bugünden max 2hafta küçük olabilir.
+        //1- aktivite tarihi, bugünden max 2hafta küçük olabilir.
+        if (activitydate < mytoday) {
+
+            //alert("Aktivite tarihi 15 günden küçük olamaz!");
+            dm.dangerMessage('show', window.lang.translate('Activity date cannot be less than 15 days!'), window.lang.translate('Activity date cannot be less than 15 days!'));
+            myreturn = false;
+        }
+
+        //2- Takip tarihi dolu ise takip tipi seçili olmalıdır. (follow up)
+        if (followupdate) {
+            //dropdownFollowuptype
+            var ddData_Followuptype = $('#dropdownFollowuptype').data('ddslick');
+            var followuptypeId = ddData_Followuptype.selectedData.value;
+            if (followuptypeId === 0) {
+                //alert("Folow up type giriniz!");
+                dm.dangerMessage('show', window.lang.translate('Enter type of follow up!'), window.lang.translate('Enter type of follow up!'));
+
+                myreturn = false;
+            }
+        }
+
+        //3- Takip tarihi activite tarihinden küçük olamaz 
+        if (followupdate < activitydate) {
+
+            //alert("Follow up date Aktivite tarihinden küçük olamaz! / Follow up date Cannot be smaller than activity date");
+            dm.dangerMessage('show', window.lang.translate('Follow up date Cannot be smaller than activity date!'), window.lang.translate('Follow up date Cannot be smaller than activity date!'));
+            myreturn = false;
+        }
+        
 
         return myreturn;
     }
+*/
  /**
  * reset Activity Form
  * @returns {undefined}
