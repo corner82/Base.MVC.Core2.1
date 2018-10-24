@@ -10,7 +10,7 @@
     "DefaultConnection": "Server=91.93.128.181;Database=SISIdentity;user id=sa;password=1q2w3e4r;MultipleActiveResultSets=true",
     //"DefaultConnection": "Server=localhost;Database=SISIdentity;user id=sa;password=1q2w3e4r;MultipleActiveResultSets=true",
     //"DefaultConnection": "Host=185.86.4.73;Database=TRF;Username=postgres;Password=1Qaaal123",
-    //"RedisServer": "127.0.0.1,abortConnect=false",
+    "RedisServer": "127.0.0.1,abortConnect=false",
     "RedisServer": "91.93.128.181,password=1q2w3e4r,abortConnect=false",
     //"RedisServer": "127.0.0.1,password=1q2w3e4r,abortConnect=false",
     "RedisInstanceName": "testInstance"

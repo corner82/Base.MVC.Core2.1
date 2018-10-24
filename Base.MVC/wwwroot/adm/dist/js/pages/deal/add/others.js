@@ -75,66 +75,6 @@
     });
 
 
-
-    //----------------------------------add  deal campaign begin-------------------------------------------------
-
-    /**
-     * add campaign to deal asider opening
-     * @author Mustafa Zeynel Dağlı
-     * @since 08/10/2018
-     * */
-    $('#campaignAddAside').asideRight({
-        width: "900"
-    });
-
-    /**
-     * add campaiggn asider events
-     * @author Mustafa Zeynel Dağlı
-     * @since 08/10/2018
-     * */
-    $('#campaignAddAside').asideRight({
-        onClosed: function (event, element) {
-            //alert('onclosed event right slider');
-        },
-        onClosing: function (event, element) {
-            //alert('onclosing event right slider');
-        },
-        onOpened: function (event, element) {
-            //alert('onopened event right slider');
-        },
-        onOpening: function (event, element) {
-            //console.log(element);
-            //alert('onopening event right slider');
-        }
-    });
-
-    /**
-     * add campaign asider opening
-     * @author Mustafa Zeynel Dağlı
-     * @since 08/10/2018
-     * */
-    $("#toggle_CampaignAsider").on("click", function (e) {
-        e.preventDefault();
-        // $(".sidebar.left").sidebar().trigger("sidebar:open");
-        //alert('test');
-
-        //alert($(this).offset().top);
-        $('#campaignAddAside').asideRight('setFromTop', (parseFloat($(this).offset().top)) - 500);
-        $('#campaignAddAside').asideRight('toggle');
-    });
-
-    /**
-     * add campaign asider closing
-     * @author Mustafa Zeynel Dağlı
-     * @since 08/10/2018
-     * */
-    $("#toggle_closeCampaignAside").on("click", function () {
-        $('#campaignAddAside').asideRight('toggle');
-    });
-
-    //----------------------------------add  deal campaign end-------------------------------------------------
-
-
     //----------------------------------add  deal begin-------------------------------------------------
 
     /**

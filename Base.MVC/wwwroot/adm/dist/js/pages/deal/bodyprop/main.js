@@ -1,8 +1,16 @@
 ﻿$(document).ready(function () {
 
+    var sm = $(window).successMessage();
+    var dm = $(window).dangerMessage();
+    var wm = $(window).warningMessage();
+    var wcm = $(window).warningComplexMessage({
+        denyButtonLabel: 'Vazgeç',
+        actionButtonLabel: 'İşleme devam et'
+    });
+
     //----------------------------------loadImager begin-------------------------------------------------
     $('#loadingImage_DdslickVehicleGroupsBodyProposal').loadImager();
-    $('#loadingImage_ddslickVehicleGroupProducts').loadImager();
+    $('#loadingImage_DdslickVehicleGroupProducts').loadImager();
     //----------------------------------loadImager end-------------------------------------------------
 
     //----------------------------------tagcabin begin-------------------------------------------------
@@ -27,8 +35,8 @@
 
    //----------------------------------datepicker begin-------------------------------------------------
     $('#date_vehicleDelivery').datepicker({
-        format: 'mm/dd/yyyy',
-        startDate: '-1d'
+        format: 'yyyy-mm-dd',
+        //startDate: '-1d'
     });
     //----------------------------------datepicker end-------------------------------------------------
 
@@ -53,12 +61,12 @@
             args.take = loadOptions.take || 12;
 
             $.ajax({
-                url: '/Deal/GetDealListProxyService',
+                url: '/DefaultPost/DefaultGridPostModel',
                 dataType: "json",
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
-                    url: "pkFillProjectGridx_infoproject",
+                    url: "pkFillCustomerBodyProposalGridx_infobodyproposal",
                     pkIdentity: $("#publicKey").val(),
                     //project_id: dealID,
                     page: "",
@@ -80,24 +88,7 @@
             return deferred.promise();
         }
     });
-    // deal list grid
-    var dealGridDataSource = {
-        store: {
-            type: 'array',
-            data: [{ "OrderNumber": 35703, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Harv Mudd", "OrderDate": "2013/11/12" },
-            { "OrderNumber": 35706, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Harv Mudd", "OrderDate": "2013/11/14" },
-            { "OrderNumber": 35709, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Harv Mudd", "OrderDate": "2013/11/18" },
-            { "OrderNumber": 35711, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Jim Packard", "OrderDate": "2013/11/22" },
-            { "OrderNumber": 35714, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Harv Mudd", "OrderDate": "2013/11/30" },
-            { "OrderNumber": 35789, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Clark Morgan", "OrderDate": "2013/12/01" },
-            { "OrderNumber": 35983, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Todd Hoffman", "OrderDate": "2013/12/03" },
-            { "OrderNumber": 36488, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Todd Hoffman", "OrderDate": "2013/12/05" },
-            { "OrderNumber": 36987, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Clark Morgan", "OrderDate": "2013/12/07" },
-            { "OrderNumber": 37642, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Clark Morgan", "OrderDate": "2013/12/08" },
-            { "OrderNumber": 38466, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Harv Mudd", "OrderDate": "2013/12/10" },
-            { "OrderNumber": 38775, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Harv Mudd", "OrderDate": "2013/12/15" }]
-        }
-    };
+    
     /* 
     * body proposal grid 
     * @author Mustafa Zeynel dağlı
@@ -160,31 +151,26 @@
         },
         columns: [
             {
-                caption: "Deal name",
-                dataField: "deal_name"
+                caption: "Description",
+                dataField: "vehicle_description"
             },
             {
-                caption: "Customer",
-                dataField: "registration_name"
-            },
-            /*{
-                allowGrouping: false,
-                dataField: "discount_rate",
-                caption: "Discount rate",
-                width: 130
-            },*/
-            {
-                dataField: "state_active",
-                caption: "Active / Passive",
+                caption: "Vehicle model",
+                dataField: "vehicle_gt_model_name"
             },
             {
-                dataField: "date_saved",
-                dataType: "date",
-                caption: "Date",
-            }, {
-                dataField: "reliability_name",
-                caption: "Reliability",
-            }
+                caption: "Brand",
+                dataField: "body_brand"
+            },
+            {
+                caption: "Body opt.",
+                dataField: "body_options"
+            },
+            {
+                caption: "Body desc.",
+                dataField: "body_desc"
+            },
+            
         ],
         customizeColumns: function (columns) {
             //columns[5].format = { type: "currency", currency: "EUR" };
@@ -240,14 +226,22 @@
                 data: data,
                 width: '100%',
                 onSelected: function (selectedData) {
-                    /*if (selectedContTerrainTypeBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
-                    selectedContTerrainTypeBuyBack = true;*/
+                    
                     if (selectedData.selectedData.value > 0) {
+                        $('#loadingImage_DdslickVehicleGroupProducts').loadImager('removeLoadImage');
+                        $("#loadingImage_DdslickVehicleGroupProducts").loadImager('appendImage');
                         //getDealVehicleTypeDdslick();
-                    }
+                        getVehicleGroupProducts(selectedData.selectedData.value);
+
+                    } /*else {
+                        $(window).warningMessage('resetOnShown');
+                        $(window).warningMessage('show', window.lang.translate("Please vehicle group"),
+                            window.lang.translate("Please vehicle group"));
+                        $("#loadingImage_DdslickVehicleGroupProducts").loadImager('removeLoadImage');
+                    }*/
+                    
                 }
             });
-
             $("#loadingImage_DdslickVehicleGroupsBodyProposal").loadImager('removeLoadImage');
         },
     })
@@ -291,35 +285,31 @@
    * @author Mustafa Zeynel Dağlı
    * @since 21/10/2018
    */
-    var getVehicleGroupProducts = function () {
-        if (parseInt($("#deal_hidden").deal("getDealID")) > 0) {
-            $('#loadingImage_DdslickDealVehicleTypeBody').loadImager('removeLoadImage');
-            $("#loadingImage_DdslickDealVehicleTypeBody").loadImager('appendImage');
-            var ddDataVehicleGroupsBody = $('#ddslickVehicleGroupsBody').data("ddslick");
-            var ajax_DdslickDealVehicleTypeBody = $('#ajax_DdslickDealVehicleTypeBody').ajaxCallWidget({
-                proxy: '/Deal/DdslickGetDealVehicleTypeProxyService',
+    var getVehicleGroupProducts = function (id) {
+        var ajax_DdslickDealVehicleGroupProduct = $('#ajax_DdslickVehicleGroupProducts').ajaxCallWidget({
+                proxy: '/Deal/DdslickGetVehicleGroupProductProxyService',
                 type: "POST",
                 failureLoadImage: true,
-                loadingImageID: "loadingImage_DdslickDealVehicleTypeBody",
+                loadingImageID: "loadingImage_DdslickVehicleGroupProducts",
                 transactionFailureText: window.lang.translate("Service URL not found, please report error"),
                 noDataFailureText: window.lang.translate("No data returned from service"),
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
-                    url: "pkVehicleGroupsDdList_sysvehiclegroups",
+                    url: "pkVehiclesEndgroupsFixCostDdList_sysvehiclesendgroups",
                     pkIdentity: $("#publicKey").val(),
-                    project_id: parseInt($("#deal_hidden").deal("getDealID")),
-                    vehicle_groups_id: parseInt(ddDataVehicleGroupsBody.selectedData.value)
+                    vehicle_groups_id: parseInt(id)
                 })
 
             });
-            ajax_DdslickDealVehicleTypeBody.ajaxCallWidget({
+            ajax_DdslickDealVehicleGroupProduct.ajaxCallWidget({
                 onSuccess: function (event, data) {
+                    $('#ddslickDealVehicleGroupProducts').ddslick('destroy');
                     var data = $.parseJSON(data);
                     data.splice(0, 0,
                         { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
                     );
-                    $('#ddslickDealVehicleTypeBody').ddslick({
+                    $('#ddslickDealVehicleGroupProducts').ddslick({
                         //height: 150,
                         data: data,
                         width: '100%',
@@ -329,20 +319,34 @@
                             }
                         }
                     });
-                    $("#loadingImage_DdslickDealVehicleTypeBody").loadImager('removeLoadImage');
+                    $("#loadingImage_DdslickVehicleGroupProducts").loadImager('removeLoadImage');
                 },
+                onErrorDataNull: function (event, data) {
+                    $('#ddslickDealVehicleGroupProducts').ddslick('destroy');
+                    var ddslickDealVehicleGroupsProductionData = [
+                        {
+                            text: 'Please select',
+                            value: 0,
+                            selected: true
+                        },
+                    ];
+                    $('#ddslickDealVehicleGroupProducts').ddslick({
+                        //height: 150,
+                        data: ddslickDealVehicleGroupsProductionData,
+                        width: '100%',
+                        onSelected: function (selectedData) {
+                            /*if (selectedContRepMainBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
+                            selectedContRepMainBuyBack = true;*/
+                            if (selectedData.selectedData.value > 0) {
+                                //$("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
+
+                            }
+                        }
+                    });
+                    $("#loadingImage_DdslickVehicleGroupProducts").loadImager('removeLoadImage');
+                }
             })
-            ajax_DdslickDealVehicleTypeBody.ajaxCallWidget('call');
-        } else {
-            /*$('#tab_VehicleType').loadImager('removeLoadImage');
-            $('#tab_VehicleType').loadImager('appendImage');*/
-            //alert("deal id < 0");
-            $(window).warningMessage('resetOnShown');
-            $(window).warningMessage('show', "Please select deal",
-                "Please select deal");
-        }
-
-
+            ajax_DdslickDealVehicleGroupProduct.ajaxCallWidget('call');
     };
 
     //----------------------------------dropdowns end-------------------------------------------------
@@ -391,8 +395,8 @@
                 return false;
             }
 
-            var ddDataVehicleType = $('#ddslickDealVehicleGroupProducts').data('ddslick');
-            if (!ddDataVehicleType.selectedData.value > 0) {
+            var ddDataVehicleGroupProducts = $('#ddslickDealVehicleGroupProducts').data('ddslick');
+            if (!ddDataVehicleGroupProducts.selectedData.value > 0) {
                 $(window).warningMessage('resetOnShown');
                 $(window).warningMessage('show', window.lang.translate("Please select vehicle group product"),
                     window.lang.translate("Please select vehicle group product"));
@@ -407,18 +411,19 @@
                 transactionSuccessText: window.lang.translate('Transaction successful'),
                 transactionFailureText: window.lang.translate("Service URL not found, please report error"),
                 dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-                proxy: '/Deal/AddBodyProxyService',
+                proxy: '/Deal/AddBodyProposalProxyService',
                 type: "POST",
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
-                    url: "pkInsertAct_infoprojectvehiclemodels",
+                    url: "pkInsertAct_infobodyproposal",
                     pkIdentity: $("#publicKey").val(),
-                    project_id: dealID,
-                    is_house_deal: 0,
-                    vehicle_gt_model_id: ddDataVehicleType.selectedData.value,
-                    quantity: $("#quantity").val(),
-                    delivery_date: "10/10/2018",
+                    vehicle_group_id: parseInt(ddDataVehicleGroupProducts.selectedData.value),
+                    vehicles_endgroup_id: parseInt(ddDataVehicleGroups.selectedData.value),
+                    body_brand: $("#text_bodyBrand").val(),
+                    body_options: $("#text_bodyOptions").val(),
+                    body_desc: $("#text_bodyDesc").val(),
+                    demand_date: $("#date_vehicleDelivery").val()
                 })
 
             });
@@ -427,10 +432,10 @@
                     resetBodyProposalAddForm();
                 },
                 onAfterSuccess: function (event, data) {
-                    
+                    $("#gridContainer_vehicle").dxDataGrid("instance").refresh();
                 }
             })
-            //ajax.ajaxCallWidget('call');
+            ajax.ajaxCallWidget('call');
 
         } else {
             $('#loadingImage_BodyProposal').loadImager('removeLoadImage');

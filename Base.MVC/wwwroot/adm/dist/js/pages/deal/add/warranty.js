@@ -91,6 +91,13 @@
                     },
                 });
                 ajax_DdslickVehicleTypeWarranty.ajaxCallWidget('call');
+
+                $("#gridContainer_DealWarranty").dxDataGrid("instance").refresh();
+                $("#gridContainer_Warranty").dxDataGrid("instance").refresh();
+                 
+
+                
+
             } else {
                 /*$('#tab_BuyBack').loadImager('removeLoadImage');
                 $('#tab_BuyBack').loadImager('appendImage');*/
@@ -107,10 +114,169 @@
 
     //----------------------------------grid begin-------------------------------------------------
     /* 
-     * warranty grid data source
-     * @author Mustafa Zeynel dağlı
-     * @since 12/10/2018
-     * */
+    * deal warranty grid data source
+    * @author Mustafa Zeynel dağlı
+    * @since 12/10/2018
+    * */
+    var warrantyDealMatrix_grid_datasource = new DevExpress.data.CustomStore({
+        load: function (loadOptions) {
+            var deferred = $.Deferred(),
+                args = {};
+
+            if (loadOptions.sort) {
+                args.orderby = loadOptions.sort[0].selector;
+                if (loadOptions.sort[0].desc)
+                    args.orderby += " desc";
+            }
+
+            args.skip = loadOptions.skip || 0;
+            args.take = loadOptions.take || 12;
+
+            /*var customerType = window.getSelectedDDslickValueOrDefaultVal("ddslickVehicleGroupsWarranty");
+            var terrainType = window.getSelectedDDslickValueOrDefaultVal("ddslickDealVehicleTypeWarranty");
+            var repmainType = window.getSelectedDDslickValueOrDefaultVal("ddslickWarrantyType");
+            var hydraType = window.getSelectedDDslickValueOrDefaultVal("ddslickWarrantyTerm");
+            var vehicleType = window.getSelectedDDslickValueOrDefaultVal("ddslickWarrantyKm");*/
+
+            $.ajax({
+                url: '/DefaultPost/DefaultGridPostModel',
+                dataType: "json",
+                data: JSON.stringify({
+                    language_code: $("#langCode").val(),
+                    pk: "GsZVzEYe50uGgNM",
+                    url: "pkFillProjectWarrantiesGridx_infoprojectwarranties",
+                    pkIdentity: $("#publicKey").val(),
+                    project_id: parseInt($("#deal_hidden").deal("getDealID")),
+                    page: "",
+                    rows: "",
+                    sort: "",
+                    order: "",
+
+                }),
+                type: 'POST',
+                contentType: 'application/json',
+                success: function (result) {
+                    deferred.resolve(result.items, { totalCount: result.totalCount });
+                },
+                error: function () {
+                    deferred.reject("Data Loading Error");
+                },
+                timeout: 30000
+            });
+
+            return deferred.promise();
+        }
+    });
+    DevExpress.localization.locale($('#langCode').val());
+    $("#gridContainer_DealWarranty").dxDataGrid({
+        showColumnLines: true,
+        showRowLines: true,
+        rowAlternationEnabled: true,
+        showBorders: true,
+        // dataSource: orders,
+        dataSource: warrantyDealMatrix_grid_datasource,
+        columnHidingEnabled: false,
+        editing: {
+            //mode: "batch"
+            mode: "row",
+            //allowAdding: false,
+            allowUpdating: false,
+            allowDeleting: false,
+            useIcons: false
+        },
+        "export": {
+            enabled: true,
+            fileName: "Orders"
+        },
+        grouping: {
+            contextMenuEnabled: true,
+            expandMode: "rowClick"
+        },
+        groupPanel: {
+            emptyPanelText: "Use the context menu of header columns to group data",
+            visible: true
+        },
+        pager: {
+            allowedPageSizes: [5, 8, 15, 30],
+            showInfo: true,
+            showNavigationButtons: true,
+            showPageSizeSelector: true,
+            visible: true
+        },
+        paging: {
+            pageSize: 8
+        },
+        filterRow: {
+            visible: true,
+            applyFilter: "auto"
+        },
+        searchPanel: {
+            visible: true,
+            width: 240,
+            //placeholder: "Search..."
+            placeholder: window.lang.translate("Search")
+        },
+        headerFilter: {
+            visible: true
+        },
+        columnChooser: {
+            enabled: true,
+            mode: "select"
+        },
+        selection: {
+            mode: "single"
+        },
+        onSelectionChanged: function (selectedItems) {
+            var data = selectedItems.selectedRowsData[0];
+            console.log(data);
+            /*if (data) {
+                selectedBranchId = data.id;
+                filldropdown = true;
+                fillBranchForm(data);
+                //filldropdown = false;
+            }*/
+        },
+        columns: [
+            {
+                //allowGrouping: false,
+                caption: "Vehicle",
+                dataField: "vehicle_description"
+            },
+            {
+                caption: "Warranty code",
+                dataField: "waranty_code"
+            },
+            {
+                caption: "Warranty type",
+                dataField: "warranty_type_name"
+            },
+            {
+                caption: "Model",
+                dataField: "vehicle_gt_model_name"
+            },
+            {
+                caption: "Month",
+                dataField: "month_value"
+            },
+            {
+                caption: "Mileagas",
+                dataField: "mileages1"
+            }
+
+        ],
+        customizeColumns: function (columns) {
+            //columns[5].format = { type: "currency", currency: "EUR" };
+        },
+
+
+    });
+
+
+    /* 
+    * warranty grid data source
+    * @author Mustafa Zeynel dağlı
+    * @since 12/10/2018
+    * */
     var warrantyMatrix_grid_datasource = new DevExpress.data.CustomStore({
         load: function (loadOptions) {
             var deferred = $.Deferred(),
@@ -125,38 +291,25 @@
             args.skip = loadOptions.skip || 0;
             args.take = loadOptions.take || 12;
 
-            var customerType = window.getSelectedDDslickValueOrDefaultVal("ddslickVehicleGroupsWarranty");
+            /*var customerType = window.getSelectedDDslickValueOrDefaultVal("ddslickVehicleGroupsWarranty");
             var terrainType = window.getSelectedDDslickValueOrDefaultVal("ddslickDealVehicleTypeWarranty");
             var repmainType = window.getSelectedDDslickValueOrDefaultVal("ddslickWarrantyType");
             var hydraType = window.getSelectedDDslickValueOrDefaultVal("ddslickWarrantyTerm");
-            var vehicleType = window.getSelectedDDslickValueOrDefaultVal("ddslickWarrantyKm");
+            var vehicleType = window.getSelectedDDslickValueOrDefaultVal("ddslickWarrantyKm");*/
 
             $.ajax({
-                url: '/Deal/GetDealBuyBackListProxyService',
+                url: '/DefaultPost/DefaultGridPostModel',
                 dataType: "json",
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
-                    url: "pkFillBuybackMatrixGridx_sysbuybackmatrix",
+                    url: "pkFillWarrantyMatrixGridx_syswarrantymatrix",
                     pkIdentity: $("#publicKey").val(),
-                    //project_id: dealID,
+                    project_id: parseInt($("#deal_hidden").deal("getDealID")),
                     page: "",
                     rows: "",
                     sort: "",
                     order: "",
-                    terrain_id: parseInt(terrainType),
-                    comfort_super_id: parseInt(repmainType),
-                    hydraulics: parseInt(hydraType),
-                    customer_type_id: parseInt(customerType),
-                    model_id: parseInt(vehicleType),
-                    /*terrain_id: 3,
-                    comfort_super_id: 1,
-                    hydraulics: 2,
-                    customer_type_id: 1, */
-                    /*terrain_id: ddDataTerrainType.selectedData.value,
-                    comfort_super_id: ddDataRepMainType.selectedData.value,
-                    hydraulics: ddDataHydraType.selectedData.value,
-                    customer_type_id: parseInt(ddDataCustomerType.selectedData.value), */
 
                 }),
                 type: 'POST',
@@ -538,10 +691,6 @@
      * */
     $("#addWarrantyForm").validationEngine();
 
-
-    
-
-
     /**
      * add aksesuar click event handler
      * @author Mustafa Zeynel Dağlı
@@ -565,49 +714,11 @@
 
         if ($("#addWarrantyForm").validationEngine('validate')) {
             var ddDataVehicleGroups = $('#ddslickVehicleGroupsWarranty').data('ddslick');
-            if (!ddDataVehicleGroups.selectedData.value > 0) {
-                $(window).warningMessage('resetOnShown');
-                $(window).warningMessage('show', window.lang.translate("Please select vehicle group"),
-                    window.lang.translate("Please select vehicle group"));
-                $('#tab_Warranty').loadImager('removeLoadImage');
-                return false;
-            }
-
             var ddDataVehicleType = $('#ddslickDealVehicleTypeWarranty').data('ddslick');
-            if (!ddDataVehicleType.selectedData.value > 0) {
-                $(window).warningMessage('resetOnShown');
-                $(window).warningMessage('show', window.lang.translate("Please select vehicle type"),
-                    window.lang.translate("Please select vehicle type"));
-                $('#tab_Warranty').loadImager('removeLoadImage');
-                return false;
-            }
-
-            var ddDataAksesuarType = $('#ddslickWarrantyType').data('ddslick');
-            if (!ddDataAksesuarType.selectedData.value > 0) {
-                $(window).warningMessage('resetOnShown');
-                $(window).warningMessage('show', window.lang.translate("Please select accessory type"),
-                    window.lang.translate("Please select accessory type"));
-                $('#tab_Warranty').loadImager('removeLoadImage');
-                return false;
-            }
-
-            var ddDataAksesuarOptions = $('#ddslickWarrantyTerm').data('ddslick');
-            if (!ddDataAksesuarOptions.selectedData.value > 0) {
-                $(window).warningMessage('resetOnShown');
-                $(window).warningMessage('show', window.lang.translate("Please select warranty term"),
-                    window.lang.translate("Please select warranty term"));
-                $('#tab_Warranty').loadImager('removeLoadImage');
-                return false;
-            }
-
+            var ddDatawarrantyType = $('#ddslickWarrantyType').data('ddslick');
+            var ddDataWarrantyTermOptions = $('#ddslickWarrantyTerm').data('ddslick');
             var ddDataAksesuarSuppliers = $('#ddslickWarrantyKm').data('ddslick');
-            if (!ddDataAksesuarSuppliers.selectedData.value > 0) {
-                $(window).warningMessage('resetOnShown');
-                $(window).warningMessage('show', window.lang.translate("Please select warranty km"),
-                    window.lang.translate("Please select warranty km"));
-                $('#tab_Warranty').loadImager('removeLoadImage');
-                return false;
-            }
+            var rows = $("#gridContainer_Warranty").dxDataGrid('getSelectedRowsData');
 
             //alert(ddDataVehicleType.selectedData.value);
             if ($("#tagcabin_VehicleWarranties").tagCabin('findSpecificTags', ddDataVehicleType.selectedData.value, 'data-attribute') != true) {
@@ -632,13 +743,15 @@
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
-                    url: "pkInsertAct_infoprojectvehiclemodels",
+                    url: "pkInsertAct_infoprojectwarranties",
                     pkIdentity: $("#publicKey").val(),
                     project_id: dealID,
-                    is_house_deal: 0,
-                    vehicle_gt_model_id: ddDataVehicleType.selectedData.value,
-                    quantity: $("#quantity").val(),
-                    delivery_date: "10/10/2018",
+                    vehicle_group_id: ddDataVehicleGroups.selectedData.value,
+                    vehicles_endgroup_id: ddDataVehicleType.selectedData.value,
+                    monthsx_id: ddDataWarrantyTermOptions.selectedData.value,
+                    warranty_matrix_id: rows[0].id,
+                    warranty_type_id : ddDatawarrantyType.selectedData.value,
+                    new_price : $("#price_warranty").val()
                 })
 
             });
@@ -668,8 +781,6 @@
         } else {
             $('#tab_Warranty').loadImager('removeLoadImage');
         }
-
-        
         return false;
     })
 
