@@ -56,6 +56,9 @@
     <Content Update="Views\DemoCourtesy\DemoCourtesyReturn.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\ParkOff\ParkOff.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Stock\StockTopUsed.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
