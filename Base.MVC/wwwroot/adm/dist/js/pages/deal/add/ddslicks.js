@@ -136,12 +136,7 @@
     $('#loadingImage_DdslickHydraTradeBack').loadImager();
 
 
-    /**
-    * ddslick vehicle type-campaign dropdown load imager
-    * @author Mustafa Zeynel Dağlı
-    * @since 11/09/2018
-    */
-    $('#loadingImage_DdslickVehicleTypeCampaign').loadImager();
+    
 
     /**
     * ddslick campaign dropdown load imager
@@ -1310,76 +1305,7 @@
 
 
     //add deal-campaign aside tab form elements begin
-    /**
-    * ddslick vehicle type dropdown 
-    * @author Mustafa Zeynel Dağlı
-    * @since 15/08/2018
-    */
-    var ddslickVehicleTypeDataCampaign = [
-        {
-            text: 'Please select',
-            value: -1,
-            selected: true
-        },
-        {
-            text: "TGS-26-4406X4BLS-LX-ALU-EL",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "TGS-26-4406X4BLS-LX-ALU-ELX",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "TGS-16-4406X4BLS-LX-ALU-EL",
-            value: 4,
-            selected: false
-        },
-        {
-            text: "TGS-26-5406X4BLS-LX-ALU-EL",
-            value: 5,
-            selected: false
-        },
-        {
-            text: "TGX-26-5406X4BLS-LX-ALU-EL",
-            value: 5,
-            selected: false
-        },
-        {
-            text: "TGV-26-5406X4BLS-LX-ALU-EL",
-            value: 5,
-            selected: false
-        }
-    ];
-    $('#loadingImage_DdslickVehicleTypeCampaign').loadImager('removeLoadImage');
-    $("#loadingImage_DdslickVehicleTypeCampain").loadImager('appendImage');
-    var ajax_DdslickVehicleTypeCampaign = $('#ajax_DdslickVehicleTypeCampaign').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
-    });
-    ajax_DdslickVehicleTypeCampaign.ajaxCallWidget({
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-            $('#ddslickVehicleTypeCampaign').ddslick({
-                //height: 150,
-                data: ddslickVehicleTypeDataCampaign,
-                width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-                        //vehicleKitTypeForDefineFields(selectedData.selectedData.text);
-                    }
-                }
-            });
-            $("#loadingImage_DdslickVehicleTypeCampain").loadImager('removeLoadImage');
-        },
-    })
-    ajax_DdslickVehicleTypeCampaign.ajaxCallWidget('call');
+    
 
 
     /**

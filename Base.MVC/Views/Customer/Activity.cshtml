@@ -14,7 +14,9 @@
     <link href="~/adm/plugins/iCheck/minimal/minimal.css" rel="stylesheet" type="text/css" />
 
     <!-- Date Picker -->
-    <link href="~/adm/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet">
+    <!--<link href="~/adm/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet">-->
+    <!-- Date time Picker -->
+    <link href="~/adm/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet">
 
     <!-- devex -->
     <link rel="stylesheet" type="text/css" href="~/adm/plugins/devextreme/css/dx.spa.css" />
@@ -59,10 +61,10 @@
                             <ul class="nav nav-tabs pull-right">
                                 <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true"><span lang="en">Activity</span></a></li>
                                 <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false" class="disable" disabled=""><span lang="en">Report</span></a></li>
-                            
+
                                 <li class="pull-left header"><i class="fa fa-th"></i></li>
                             </ul>
-                            <div class="tab-content" id="ajaxACL-customer">
+                            <div class="tab-content" id="ajaxACL-activity">
                                 <div class="tab-pane active" id="tab_1">
 
                                     <form id='activityForm' method="get">
@@ -140,11 +142,11 @@
                                                 <div class="form-group">
                                                     <label><span lang="en">Activity date/time</span></label>
 
-                                                    <div class="input-group date">
+                                                    <div class="input-group datetime">
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-calendar"></i>
                                                         </div>
-                                                        <input type="text" class="form-control pull-right" name="activity-datepicker" id="activity-datepicker">
+                                                        <input type="text" class="form-control pull-right" name="activity-datetimepicker" id="activity-datetimepicker">
                                                     </div>
                                                     <!-- /.input group -->
                                                 </div>
@@ -190,11 +192,11 @@
 
                                                 <div class="form-group">
                                                     <label><span lang="en">Follow up date/time</span></label>
-                                                    <div class="input-group date">
+                                                    <div class="input-group">
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-calendar"></i>
                                                         </div>
-                                                        <input type="text" class="form-control pull-right" name="followup-datepicker" id="followup-datepicker">
+                                                        <input type="text" class="form-control pull-right" name="followup-datetimepicker" id="followup-datetimepicker">
                                                     </div>
                                                 </div>
 
@@ -209,14 +211,15 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group">
                                                     <label><span lang="en">Realization date/time</span></label>
 
-                                                    <div class="input-group date">
+                                                    <div class="input-group datetime">
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-calendar"></i>
                                                         </div>
-                                                        <input type="text" class="form-control pull-right" name="activity-realization-datepicker" id="activity-realization-datepicker">
+                                                        <input type="text" class="form-control pull-right" name="activity-realization-datetimepicker" id="activity-realization-datetimepicker">
                                                     </div>
                                                 </div>
 
@@ -262,8 +265,8 @@
                                             </div>
                                         </div>
                                         <div class="box-footer">
-                                            <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-cstp-clear" onclick="resetCustomerPurchaseForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                            <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-cstp-save">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                            <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-activity-clear" onclick="resetCustomerPurchaseForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                            <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-activity-save">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
                                         </div>
 
                                     </form>
@@ -284,7 +287,7 @@
             <!-- Left col -->
             <section class="col-lg-12 connectedSortable">
 
-                <div class="box box-info">
+                <div class="box box-info" id="ajaxACL-activityist">
                     <div class="box-header">
                         <i class="fa fa-comments-o"></i>
                         <h3 class="box-title">Customer Activity List</h3>
@@ -315,6 +318,8 @@
 
     <!-- datepicker -->
     <script src="~/adm/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.js" type="text/javascript"></script>
+    <!-- datetimepicker -->
+    <script src="~/adm/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" type="text/javascript"></script>
 
     <!-- Slimscroll -->
     <script src="~/adm/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
@@ -328,7 +333,6 @@
     <!-- AdminLTE App -->
     <!--<script src="dist/js/app.min.js" type="text/javascript"></script>-->
     <!--<script src="~/adm/dist/js/app.js" type="text/javascript"></script>-->
-
     <!--  ddslick -->
     <script src="~/adm/plugins/bootstrap-select-ddslick/js/ddslick.js"></script>
     <script src="~/adm/plugins/zeyn/tag-cabin/tag-cabin.js"></script>

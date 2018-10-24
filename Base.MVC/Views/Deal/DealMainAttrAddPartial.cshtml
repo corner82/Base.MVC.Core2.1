@@ -76,6 +76,10 @@
                                 </div>
                             </div>
                         </div>
+
+
+                    </div>
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Warranty term</label>
                             <div class="" id="ajax_DdslickWarrantyTerm">
@@ -98,27 +102,16 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
                         <div class="form-group">
                             <label>@Localizer["Price"]</label>
                             <div class="input-group">
                                 <div class="input-group-addon">
                                     <i class="fa fa-mail-forward"></i>
                                 </div>
-                                <input id="price_customer_warranty" type="text" class="form-control validate[required]" placeholder="@Localizer["Price"]">
+                                <input id="price_warranty" type="text" class="form-control " placeholder="@Localizer["Price"]">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label>@Localizer["Price"]</label>
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-mail-forward"></i>
-                                </div>
-                                <input id="price_list_warranty" type="text" class="form-control disabled" placeholder="@Localizer["Price"]">
-                            </div>
-                        </div>
-                        
+
                     </div>
                 </div>
                 <div class="row">
@@ -128,23 +121,28 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12 ">
-                        <div class="form-group">
-                            <label>Warranties</label>
-                            <div class="">
-                                <div id="loadingImage_TagCabinVehicleAksesuarlar" class="input-group zeyn-load-imager">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-hand-o-right"></i>
-                                    </div>
-                                    <div style="margin-bottom: -10px;width:96%" class="tag-container-warranties">
-                                        <ul id="tagcabin_Warranties" class="tag-box"></ul>
-                                    </div>
-                                </div>
-
-                            </div>
+                        <div id="gridContainer_DealWarranty"></div>
+                    </div>
+                </div>
+                <!--<div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 ">
+            <div class="form-group">
+                <label>Warranties</label>
+                <div class="">
+                    <div id="loadingImage_TagCabinVehicleAksesuarlar" class="input-group zeyn-load-imager">
+                        <div class="input-group-addon">
+                            <i class="fa fa-hand-o-right"></i>
+                        </div>
+                        <div style="margin-bottom: -10px;width:96%" class="tag-container-warranties">
+                            <ul id="tagcabin_Warranties" class="tag-box"></ul>
                         </div>
                     </div>
 
                 </div>
+            </div>
+        </div>
+
+    </div>-->
                 <div class="row">
                     <button type="submit" class="btn btn-primary btn-md pull-right " style="margin-right:10px;margin-top:20px;" id="add_warranty">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;@Localizer["Save"]&nbsp;&nbsp;</button>
                 </div>
@@ -203,25 +201,7 @@
                     <div id="gridContainer_TradeIn"></div>
                 </div>
             </div>-->
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12 ">
-                        <div class="form-group">
-                            <label>TradeIns</label>
-                            <div class="">
-                                <div id="loadingImage_TagCabinTradeIn" class="input-group zeyn-load-imager">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-hand-o-right"></i>
-                                    </div>
-                                    <div style="margin-bottom: -10px;width:96%" class="tag-container-tradeins">
-                                        <ul id="tagcabin_TradeIns" class="tag-box"></ul>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+                
                 <div class="row">
                     <button type="button" class="btn btn-primary btn-md pull-right " style="margin-right:10px;margin-top:20px;" id="toggle_TradeInAsider">&nbsp;<i class="fa fa-feed"></i>&nbsp;&nbsp;Add Vehicle&nbsp;&nbsp;</button>
                     <button type="submit" class="btn btn-primary btn-md pull-right " style="margin-right:10px;margin-top:20px;" id="add_tradein">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;@Localizer["Save"]&nbsp;&nbsp;</button>

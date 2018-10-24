@@ -10,6 +10,11 @@
 
 
 @section stylesPageSpecs {
+    <!-- easyui implementation -->
+    <link rel="stylesheet" type="text/css" href="~/adm/plugins/jquery-easyui-1.3.3/themes/default/tree.css">
+    <link rel="stylesheet" type="text/css" href="~/adm/plugins/jquery-easyui-1.3.3/themes/icon.css">
+
+
     <!-- iCheck -->
     <link href="~/adm/plugins/iCheck/minimal/minimal.css" rel="stylesheet" type="text/css" />
 
@@ -28,6 +33,7 @@
     <link href="~/adm/plugins/zeyn/tag-cabin/tag-cabin.css" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" href="~/adm/dist/css/AdminLTE.css" type="text/css" />
+    <link rel="stylesheet" href="~/miya/dist/css/miya.css" type="text/css" />
 }
 
 <!-- Content Wrapper. Contains page content -->
@@ -44,10 +50,10 @@
             <!-- Left col -->
             <section class="col-lg-12 connectedSortable">
 
-                <div class="box box-info">
+                <div class="box box-info" id="ajaxACL-supplier">
                     <div class="box-header">
                         <i class="fa fa-comments-o"></i>
-                        <h3 class="box-title">Supplier Definition Form</h3>
+                        <h3 class="box-title"><span lang="en">Supplier Information Form</span></h3>
 
                         <div class="box-tools pull-right">
                             <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -58,6 +64,7 @@
                         <form id='supplierForm' method="get">
                             <div class="row" id="loading-image-supplier">
                                 <div class="col-md-6">
+
                                     <div class="form-group">
                                         <label><span lang="en">Supplier name</span></label>
                                         <div class="input-group">
@@ -67,38 +74,150 @@
                                             <input type="text" class="form-control validate[required]" placeholder="Supplier name" id="txt-supplier-name">
                                         </div>
                                     </div>
+
                                     <div class="form-group">
                                         <label><span lang="en">Supplier short name</span></label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-user"></i>
                                             </div>
-                                            <input type="text" class="form-control validate[required]" placeholder="Supplier short name" id="txt-supplier-shortname">
+                                            <input type="text" class="form-control validate[required]" placeholder="Supplier short name" id="txt-supplier-sname">
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label lang="en">
-                                            Active
-                                            <div class="icheckbox_minimal-blue checked" aria-checked="false" aria-disabled="false" style="position: relative;">
-                                                <input type="checkbox" class="minimal" checked="" style="position: absolute; opacity: 0;">
-                                                <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                                </ins>
-                                            </div>
 
-                                        </label>
+                                    <div class="form-group">
+                                        <label><span lang="en">Embrace supplier number</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-user"></i>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Embrace supplier number" id="txt-embrace-no">
+                                        </div>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label><span lang="en">Country name</span></label>
+
+                                        <div class="" id="ajaxACL-country">
+                                            <div id="loading-image-country" class="input-group zeyn-load-imager">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-map"></i>
+                                                </div>
+                                                <div id="dropdownCountry" class="form-control"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label><span lang="en">Province name</span></label>
+
+                                        <div class="" id="ajaxACL-province">
+                                            <div id="loading-image-province" class="input-group zeyn-load-imager">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-map"></i>
+                                                </div>
+                                                <div id="dropdownProvince" class="form-control"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label><span lang="en">City name</span></label>
+
+                                        <div class="" id="ajaxACL-city">
+                                            <div id="loading-image-city" class="input-group zeyn-load-imager">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-map"></i>
+                                                </div>
+                                                <div id="dropdownCity" class="form-control"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <!-- /.col -->
 
                                 <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label><span lang="en">Address 1</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-map"></i>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Supplier address 1" id="txt-supplier-address1">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label><span lang="en">Address 2</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-map"></i>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Supplier address 2" id="txt-supplier-address2">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label><span lang="en">Address 3</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-map"></i>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Supplier address 3" id="txt-supplier-address3">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label><span lang="en">Postal code</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-map-pin"></i>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Supplier Postal Code" id="txt-location-ptcode">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label><span lang="en">Telephone</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-map-pin"></i>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Supplier Telephone" id="txt-supplier-telephone">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label><span lang="en">Fax</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-map-pin"></i>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Supplier fax" id="txt-supplier-fax">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label><span lang="en">E-mail</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-map-pin"></i>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Supplier e-mail" id="txt-supplier-email">
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <!-- /.col -->
                             </div>
                             <div class="box-footer clearfix no-border">
-                                <div class="box-footer">
-                                    <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-supplier-clear" onclick="resetSupplierForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                    <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-supplier-save" onclick="insertSupplierWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                <div class="box-footer clearfix no-border">
+                                    <div class="box-footer">
+                                        <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-supplier-clear" onclick="resetSupplierForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                        <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-supplier-save">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -114,12 +233,13 @@
             <!-- Left col -->
             <section class="col-lg-12 connectedSortable">
 
-                <div class="box box-info">
+                <div class="box box-info" id="ajaxACL-supplierlist">
                     <div class="box-header">
                         <i class="fa fa-comments-o"></i>
-                        <h3 class="box-title">Supplier List</h3>
+                        <h3 class="box-title"><span lang="en">Supplier List</span></h3>
 
                         <div class="box-tools pull-right">
+                            <button class="btn bg-teal btn-sm btn-small-miya" data-widget="refresh" id="supplierList"><i class="fa fa-refresh"></i></button>
                             <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
                             <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
                         </div>
@@ -127,6 +247,7 @@
                     <div class="box-body" id="loading-image-supplierGrid">
                         <div id="gridContainer_supplier"></div>
                     </div>
+
                 </div>
 
             </section><!-- /.Left col -->
@@ -140,6 +261,7 @@
 @section javascriptsPageSpecs {
 
     <!-- easyui implementation -->
+    <script src="~/adm/plugins/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
     <script src="~/adm/plugins/jquery-easyui-1.3.3/locale/easyui-lang-tr.js" type="text/javascript"></script>
 
     <!-- datepicker -->
@@ -157,11 +279,9 @@
     <!-- AdminLTE App -->
     <!--<script src="dist/js/app.min.js" type="text/javascript"></script>-->
     <!--<script src="~/adm/dist/js/app.js" type="text/javascript"></script>-->
-
     <!--  ddslick -->
     <script src="~/adm/plugins/bootstrap-select-ddslick/js/ddslick.js"></script>
     <script src="~/adm/plugins/zeyn/tag-cabin/tag-cabin.js"></script>
-
 
     <!-- devexpress datagrid -->
     <script src="~/adm/plugins/jszip/dist/jszip.min.js"></script>
@@ -176,8 +296,9 @@
     <script src="~/adm/dist/js/pages/sys/supplier.js" type="text/javascript"></script>
 
     <script>
-    });
+        $(document).ready(function () {
 
-/**/
+
+        });
     </script>
 }
