@@ -19,8 +19,8 @@
     var SelectedProductInterestId = 0;
 
     var filldropdown = false;
-
-    var ddslick_countryId = 1;
+    var newload = true;
+    var ddslick_countryId = 107;
     var ddslick_country_name = "South Africa";
     var ddslick_provinceId = 0;
     var ddslick_province_name = "";
@@ -215,19 +215,20 @@
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
 
+            //alert("geldim 1");
             $('#dropdownCountry').ddslick({
                 data: cbdata_country,
                 width: '100%',
                 search: true,
                 searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
-
+                    //alert("geldim country selected");
                     $('#dropdownProvince').ddslick('destroy');
-
+                    //alert("geldim country selected " + selectedData.selectedData.value);
                     if (selectedData.selectedData.value > 0) {
 
                         ddslick_countryId = selectedData.selectedData.value;
-
+                        //alert("geldim country selected :" + ddslick_countryId);
 
                         $('#loading-image-province').loadImager('removeLoadImage');
                         $('#loading-image-province').loadImager('appendImage');
@@ -257,7 +258,7 @@
 
                             },
                             onSuccess: function (event, dataprovince) {
-
+                                //alert("geldim 2");
                                 var cbdata_province = $.parseJSON(dataprovince);
                                 cbdata_province.splice(0, 0,
                                     { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
@@ -304,7 +305,7 @@
 
                                                 },
                                                 onSuccess: function (event, datacity) {
-
+                                                    alert("geldim 3");
                                                     var cbdata_city = $.parseJSON(datacity);
                                                     cbdata_city.splice(0, 0,
                                                         { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
@@ -330,6 +331,9 @@
                                                 },
                                                 onAfterSuccess: function (event, data) {
                                                     $('#loading-image-city').loadImager('removeLoadImage');
+                                                },
+                                                onError: function (event, data) {
+                                                    alert("geldim hata city");
                                                 }
                                             })
                                             ajaxACLResources_getcity.ajaxCallWidget('call');
@@ -352,21 +356,48 @@
                                 //alert('geldim AfterSuccess province');
 
                                 $('#loading-image-province').loadImager('removeLoadImage');
+                            },
+                            onError: function (event, data) {
+                                alert("geldim hata province");
                             }
                         })
                         ajaxACLResources_getprovince.ajaxCallWidget('call');
                         //province bitti
                     }
+
+                    if (newload === true) {
+                        newload = false;
+                        $('#dropdownCountry').ddslick('selectByValue',
+                            {
+                                index: ddslick_countryId,
+                                value: ddslick_country_name
+                            }
+                        );
+                    }
+
+                    if (ddslick_country_name === "South Africa") {
+                        //txt-cst-regnumber format NNNN/NNNNNN/NN
+                        $('txt-cst-regnumber').mask('0000/000000/00', { 'translation': { 0: { pattern: /[0-9]/ } } });
+                    } else {
+                        //‘A’: {pattern: /[a-zA-Z0-9]/}
+                       // $('txt-cst-regnumber').mask('', { 'translation': { A: { pattern: /[a-zA-Z0-9]/ } } });
+                       
+                    }
+
+
+                    $('#loading-image-country').loadImager('removeLoadImage');
                 }
             })
         },
         onAfterSuccess: function (event, data) {
             //alert('geldim AfterSuccess country');
             $('#loading-image-country').loadImager('removeLoadImage');
+        },
+        onError: function (event, data) {
+            alert("geldim hata");
         }
     })
     ajaxACLResources_country.ajaxCallWidget('call');
-
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2775,7 +2806,7 @@
 
         selectedCustomerId = 0;
 
-        ddslick_countryId = 1;
+        ddslick_countryId = 107;
         ddslick_country_name = "South Africa";
 
         ddslick_provinceId = 0;
@@ -2787,7 +2818,15 @@
 
         $('#customerInfoForm').validationEngine('hide');
         
-        $('#dropdownCountry').ddslick('select', { index: String(0) });
+        //$('#dropdownCountry').ddslick('select', { index: String(0) });
+        
+        $('#dropdownCountry').ddslick('selectByValue',
+            {
+                    index: ddslick_countryId,
+                    value: ddslick_country_name
+            }
+        );
+        
         $('#dropdownProvince').ddslick('destroy');
         $('#dropdownCity').ddslick('destroy');
 
@@ -2801,9 +2840,9 @@
         $('#dropdownTotalEmployees').ddslick('select', { index: String(0) });
         $('#dropdownAnnuelRevenue').ddslick('select', { index: String(0) });
 
-        resetCustomerPurchaseForm();
-
         $("#loading-image-cstInfo").loadImager('removeLoadImage');
+        resetCustomerPurchaseForm();
+        
     
         //yeni kayda açık, tablar kapatılıyor
         tab_disable();
