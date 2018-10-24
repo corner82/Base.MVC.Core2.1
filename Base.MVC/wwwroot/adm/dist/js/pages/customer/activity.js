@@ -15,8 +15,18 @@ $(document).ready(function () {
         actionButtonLabel: 'İşleme devam et'
     });
 
-    var selectedCustomerId=0;
+    var selectedCustomerId = 0;
+    var selectedProductInterestId = 0;
+    var selectedActivityId = 0;
 
+
+    var ddslick_customerId = 0;
+    var ddslick_customer_name = "";
+
+    var ddslick_contactpersonId = 0;
+    var ddslick_contactperson_name = "";
+
+    var filldropdown = false;
     /*
     * Activity LoadImager
     * @author Gül Özdemir
@@ -43,18 +53,28 @@ $(document).ready(function () {
 
     $('#activityForm').validationEngine();
 
-    $('#activity-datepicker').datepicker({
-        //autoclose: true,
+    $('#activity-datetimepicker').datetimepicker({
         locale: langCode,
-        format: 'yyyy/mm/dd'
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
     });
 
-    $('#activity-tracking-datepicker').datepicker({
-        //autoclose: true,
+    $('#followup-datetimepicker').datetimepicker({
         locale: langCode,
-        format: 'yyyy/mm/dd'
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
     });
 
+  
+
+    $('#activity-realization-datetimepicker').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
 
     /**
      * ddslick customer dropdown and contact person dropdown
@@ -131,12 +151,19 @@ $(document).ready(function () {
                                     }
                                 });
 
+                                if (filldropdown === true) {
+                                    $('#dropdownContactPerson').ddslick('selectByValue',
+                                        {
+                                            index: ddslick_contactpersonId,
+                                            value: ddslick_contactperson_name
+                                        });
+                                    filldropdown = false;
+                                }
                                 $("#loading-image-contactperson").loadImager('removeLoadImage');
 
                             }
                         })
                         ajax_contactperson.ajaxCallWidget('call');
-
                     }
                 }
             });
@@ -422,7 +449,7 @@ $(document).ready(function () {
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
 
-                        SelectedProductInterestId = selectedData.selectedData.value;
+                        selectedProductInterestId = selectedData.selectedData.value;
                     }
                 }
             });
@@ -513,156 +540,201 @@ $(document).ready(function () {
 
     $("#btn-activity-save").on("click", function (e) {
         e.preventDefault();
+        
+        var mydata;
 
         if ($("#activityForm").validationEngine('validate')) {
 
-            $("#loading-image-activity").loadImager('removeLoadImage');
-            $("#loading-image-activity").loadImager('appendImage');
+            if (activity_Formcontrol) {
 
-            var activityComment = $('#txt-activity-comment').val();
-            var activityNoteManager = $('#txt-note-manager').val();
+                $("#loading-image-activity").loadImager('removeLoadImage');
+                $("#loading-image-activity").loadImager('appendImage');
 
-            var activitydate = $('#activity-datepicker').val();
-            var followupdate = $('#followup-datepicker').val();
+                var activityComment = $('#txt-activity-comment').val();
+                var activityNoteManager = $('#txt-note-manager').val();
 
-            var ddData_cstname = $('#dropdownCustomerName').data('ddslick');
-            var cstnameId = ddData_cstname.selectedData.value;
+                var activitydate = $('#activity-datetimepicker').val();
+                var followupdate = $('#followup-datetimepicker').val();
 
-            var ddData_ContactPerson = $('#dropdownContactPerson').data('ddslick');
-            var contactpersonId = ddData_ContactPerson.selectedData.value;
+                var realizationdate = $('#activity-realization-datetimepicker').val();
 
-            var ddData_ActivityType = $('#dropdownActivityType').data('ddslick');
-            var activitytypeId = ddData_ActivityType.selectedData.value;
+                var ddData_cstname = $('#dropdownCustomerName').data('ddslick');
+                var cstnameId = ddData_cstname.selectedData.value;
 
-            var ddData_ActivityStatus = $('#dropdownActivityStatus').data('ddslick');
-            var activitystatusId = ddData_ActivityStatus.selectedData.value;
+                var ddData_ContactPerson = $('#dropdownContactPerson').data('ddslick');
+                var contactpersonId = ddData_ContactPerson.selectedData.value;
+
+                var ddData_ActivityType = $('#dropdownActivityType').data('ddslick');
+                var activitytypeId = ddData_ActivityType.selectedData.value;
+
+                var ddData_ActivityStatus = $('#dropdownActivityStatus').data('ddslick');
+                var activitystatusId = ddData_ActivityStatus.selectedData.value;
             
-            var ddData_ActivityPlaned = $('#dropdownActivityPlaned').data('ddslick');
-            var activityplanedId = ddData_ActivityPlaned.selectedData.value;
+                var ddData_ActivityPlanned = $('#dropdownActivityPlanned').data('ddslick');
+                var activityplannedId = ddData_ActivityPlanned.selectedData.value;
 
-            var ddData_Segment = $('#dropdownSegment').data('ddslick');
-            var segmentId = ddData_Segment.selectedData.value;
+                var ddData_ActivityLastStatus = $('#dropdownActivityLastStatus').data('ddslick');
+                var activitylaststatusId = ddData_ActivityLastStatus.selectedData.value;
 
-            var ddData_ProductInterest = $('#dropdownProductInterest').data('ddslick');
-            var productinterestId = ddData_ProductInterest.selectedData.value;
+                var ddData_Segment = $('#dropdownSegment').data('ddslick');
+                var segmentId = ddData_Segment.selectedData.value;
 
-            var ddData_Followuptype = $('#dropdownFollowuptype').data('ddslick');
-            var followuptypeId = ddData_Followuptype.selectedData.value;
+                var ddData_ProductInterest = $('#dropdownProductInterest').data('ddslick');
+                var productinterestId = ddData_ProductInterest.selectedData.value;
 
-            var mydata = JSON.stringify({
-                url: "pkInsertAct_infocustomeractivations",
-                customer_id: selectedCustomerId,
-                act_date: activitydate,
-                contact_person_id: contactpersonId,
-                cs_activation_type_id: activitytypeId,
-                cs_statu_types_id: activitystatusId,
-                cs_act_statutype_id: activityplanedId,
-                customer_segment_type_id: segmentId,
-                vehicle_model_id: productinterestId,
-                activty_tracking_type_id : followuptypeId,
-                activity_tracking_date: followupdate,
-                manager_description: activityNoteManager,
-                project_id: 0,
-                description: "",
-                realization_date: null,
-                report:"",
-                pk: "GsZVzEYe50uGgNM"
+                var ddData_Followuptype = $('#dropdownFollowuptype').data('ddslick');
+                var followuptypeId = ddData_Followuptype.selectedData.value;
 
-            })
+                var activityreport = $('#activity_report').val();
 
-            console.log(mydata);
+                //alert(selectedActivityId); 
+                var ajax;
 
-
-            //alert(selectedContactPersonId); 
-            var ajax;
-            if (selectedContactPersonId === 0) {
+                if (selectedActivityId === 0) {
                 //alert("yeni kayıt");
                 //Yeni kayıt
-                ajax = $('#ajaxACL-contactperson').ajaxCallWidget({
-                    failureLoadImage: true,
-                    loadingImageID: "loading-image-cstcp",
-                    triggerSuccessAuto: true,
-                    transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-                    proxy: '/Customer/InsertContactPerson',
-                    type: "POST",
-                    data: mydata
-                });
 
-                ajax.ajaxCallWidget({
-                    onReset: function (event, data) {
+                /*  cs_activation_type_id: 2	Fair visit, Customer Visit vs.
+                    cs_statu_types_id: 1	    active, pasive, project
+                    cs_act_statutype_id: 1	    arshived, cancelled, planed, unplaned
+                    planned_unplaned_id: 2	    planed, unplaned, 2 tane daha
+                                                (takipli için) Fair visit, Customer Visit vs.		 */
+                    mydata = JSON.stringify({
+                        url: "pkInsertAct_infocustomeractivations",
+                        customer_id: selectedCustomerId,
+                        act_date: activitydate,
+                        contact_person_id: contactpersonId,
+                        cs_activation_type_id: activitytypeId,
+                        cs_statu_types_id: activitystatusId,
+                        planned_unplaned_id: activityplannedId,
+                        cs_act_statutype_id: activitylaststatusId,
+                        customer_segment_type_id: segmentId,
+                        vehicle_model_id: productinterestId,
+                        activty_tracking_type_id: followuptypeId,
+                        activity_tracking_date: followupdate,
+                        manager_description: activityNoteManager,
+                        project_id: 0,
+                        description: activityComment,
+                        realization_date: realizationdate,
+                        report: activityreport,
+                        pk: "GsZVzEYe50uGgNM"
+                    })
 
-                    },
-                    onAfterSuccess: function (event, data) {
-                        $("#gridContainer_contactperson").dxDataGrid("instance").refresh();
-                        $("#loading-image-cstcp").loadImager('removeLoadImage');
-                    }
-                })
-                ajax.ajaxCallWidget('call');
+                    console.log(mydata);
 
-            } else {
-                //update
-                //alert("update");
-                /*
-                $("#loading-image-cstcp").loadImager('removeLoadImage');
-                $("#loading-image-cstcp").loadImager('appendImage');
+                    ajax = $('#ajaxACL-activity').ajaxCallWidget({
+                        failureLoadImage: true,
+                        loadingImageID: "loading-image-activity",
+                        triggerSuccessAuto: true,
+                        transactionSuccessText: window.lang.translate('Transaction successful'),
+                        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                        proxy: '/Customer/InsertCustomerActivity',
+                        type: "POST",
+                        data: mydata
+                    });
 
-                wcm.warningComplexMessage({
-                    onConfirm: function (event, data) {
-                        ajax = $('#ajaxACL-contactperson').ajaxCallWidget({
-                            failureLoadImage: true,
-                            loadingImageID: "loading-image-cstcp",
-                            triggerSuccessAuto: true,
-                            transactionSuccessText: window.lang.translate('Transaction successful'),
-                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-                            proxy: '/Customer/UpdateContactPerson',
-                            type: "POST",
-                            data: JSON.stringify({
-                                id: selectedContactPersonId,
-                                url: "pkUpdateAct_infocustomercontactpersons",
-                                customer_id: selectedCustomerId,
-                                name: firstName,
-                                surname: lastName,
-                                email: cp_email,
-                                mobile: cp_mobile,
-                                phone: cp_phone,
-                                fax: cp_fax,
-                                priority_id: priorityId,
-                                source_of_lead_id: sourceofleadId,
-                                con_end_date: lastcontactdate,
-                                title_id: titleId,
-                                title_role_id: roleId,
-                                brand_loyalty_id: brandloyaltyId,
-                                last_brand_id: lastbrandId,
-                                competitor_satisfaction_id: compsatisfactionId,
-                                man_satisfaction_id: mansatisfactionId,
-                                pk: "GsZVzEYe50uGgNM"
+                    ajax.ajaxCallWidget({
+                        onSuccess: function (event, data) {
+
+                        },
+                        onReset: function (event, data) {
+
+                        },
+                        onAfterSuccess: function (event, data) {
+                            $("#gridContainer_activity").dxDataGrid("instance").refresh();
+                            $("#loading-image-activity").loadImager('removeLoadImage');
+                        }
+                    })
+                    ajax.ajaxCallWidget('call');
+                    $("#loading-image-activity").loadImager('removeLoadImage');
+
+                } else {
+                    //update
+                    //alert("update");
+
+                    mydata = JSON.stringify({
+                        url: "pkUpdateAct_infocustomeractivations",
+                        id: selectedActivityId,
+                        customer_id: selectedCustomerId,
+                        act_date: activitydate,
+                        contact_person_id: contactpersonId,
+                       cs_activation_type_id: activitytypeId,
+                        cs_statu_types_id: activitystatusId,
+                        planned_unplaned_id: activityplannedId,
+                        cs_act_statutype_id: activitylaststatusId,
+                        customer_segment_type_id: segmentId,
+                        vehicle_model_id: productinterestId,
+                        activty_tracking_type_id: followuptypeId,
+                        activity_tracking_date: followupdate,
+                        manager_description: activityNoteManager,
+                        project_id: 0,
+                        description: activityComment,
+                        realization_date: realizationdate,
+                        report: activityreport,
+                        pk: "GsZVzEYe50uGgNM"
+                    })
+
+                    console.log(mydata);
+                    
+                    wcm.warningComplexMessage({
+                        onConfirm: function (event, data) {
+                            ajax = $('#ajaxACL-activity').ajaxCallWidget({
+                                failureLoadImage: true,
+                                loadingImageID: "loading-image-activity",
+                                triggerSuccessAuto: true,
+                                transactionSuccessText: window.lang.translate('Transaction successful'),
+                                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                                proxy: '/Customer/UpdateCustomerActivity',
+                                type: "POST",
+                                data: mydata
+                            });
+                                
+                            ajax.ajaxCallWidget({
+                                onReset: function (event, data) {
+                                        
+                                },
+                                onAfterSuccess: function (event, data) {
+                                    $("#gridContainer_activity").dxDataGrid("instance").refresh();
+                                    $("#loading-image-activity").loadImager('removeLoadImage');
+                                }
                             })
-                        });
-
-                        ajax.ajaxCallWidget({
-                            onReset: function (event, data) {
-
-                            },
-                            onAfterSuccess: function (event, data) {
-                                $("#gridContainer_contactperson").dxDataGrid("instance").refresh();
-                                $("#loading-image-cstcp").loadImager('removeLoadImage');
-                            }
-                        })
-                        ajax.ajaxCallWidget('call');
-                    }
-                });
-                wcm.warningComplexMessage('show', 'Contact Person will be updated! Are you sure?', 'Contact Person will be updated! Are you sure?');
-            */
+                            ajax.ajaxCallWidget('call');
+                            $("#loading-image-activity").loadImager('removeLoadImage');
+                        }
+                    });
+                    wcm.warningComplexMessage('show', 'Activity will be updated! Are you sure?', 'Activity will be updated! Are you sure?');
+          
+                }
             }
         }
         return false;
-
     })
 
- 
+
+    /**
+    * Activity Form kontrol (extantions)
+    * @returns {undefined}
+    * @author Gül Özdemir
+    * @since 22/10/2018
+    */
+
+    window.activity_Formcontrol = function () {
+        var myreturn = true;
+
+        //var activitydate = $('#activity-datetimepicker').val();
+        //var followupdate = $('#followup-datetimepicker').val();
+
+        //if (activitydate < today - 15day)
+        //1- Takip tarihi dolu ise takip tipi seçili olmalıdır. (follow up)
+
+        //2- Takip tarihi activite tarihinden küçük olamaz 
+
+        //3- aktivite tarihi, bugünden max 2hafta küçük olabilir.
+
+        return myreturn;
+    }
  /**
  * reset Activity Form
  * @returns {undefined}
@@ -674,17 +746,25 @@ $(document).ready(function () {
         $("#loading-image-activity").loadImager('removeLoadImage');
         $("#loading-image-activity").loadImager('appendImage');
 
+        selectedActivityId = 0;
+
+        ddslick_customerId = 0;
+        ddslick_customer_name = "";
+
+        ddslick_contactpersonId = 0;
+        ddslick_contactperson_name = "";
+
         $('#activityForm').validationEngine('hide');
         $('#dropdownCustomerName').ddslick('select', { index: String(0) });
         $('#dropdownContactPerson').ddslick('destroy');
         $('#dropdownActivityType').ddslick('select', { index: String(0) });
         $('#dropdownActivityStatus').ddslick('select', { index: String(0) });
-        $('#dropdownActivityPlaned').ddslick('select', { index: String(0) });
+        $('#dropdownActivityPlanned').ddslick('select', { index: String(0) });
         $('#dropdownSegment').ddslick('select', { index: String(0) });
         $('#dropdownProductInterest').ddslick('select', { index: String(0) });
-
         $('#dropdownFollowuptype').ddslick('select', { index: String(0) });
-        
+        $('#dropdownActivityLastStatus').ddslick('select', { index: String(0) });
+
         $("#loading-image-activity").loadImager('removeLoadImage');
 
         return false;
@@ -702,8 +782,146 @@ $(document).ready(function () {
         $("#loading-image-activity").loadImager('removeLoadImage');
         $("#loading-image-activity").loadImager('appendImage');
 
-        //document.getElementById("txt-activity-name").value = data.Employee;
-    
+        resetActivityForm;
+
+        selectedActivityId = data.id;
+
+        if (data.customer_id) {
+            ddslick_customerId = data.registration_id;
+            ddslick_customer_name = data.registration_name;
+        } else {
+            ddslick_customerId = 0;
+            ddslick_customer_name = "";
+        }
+
+        if (data.contactperson_id) {
+            ddslick_contactpersonId = data.contactperson_id;
+            ddslick_contactperson_name = data.namesurname;
+        } else {
+            ddslick_contactpersonId = 0;
+            ddslick_contactperson_name = "";
+        }
+
+        if (data.registration_name) {
+            $('#dropdownCustomerName').ddslick('selectByValue',
+                {
+                    index: data.customer_id,
+                    value: data.registration_name
+                }
+            );
+        }
+
+        if (data.activation_type_name) {
+            $('#dropdownActivityType').ddslick('selectByValue',
+                {
+                    index: data.cs_activation_type_id,
+                    value: data.activation_type_name
+                }
+            );
+        }
+
+        if (data.planned_unplaned_name) {
+            $('#dropdownActivityPlanned').ddslick('selectByValue',
+                {
+                    index: data.planned_unplaned_id,
+                    value: data.planned_unplaned_name
+                }
+            );
+        }        
+
+        if (data.description) {
+            document.getElementById("txt-activity-comment").value = data.description;
+        } else {
+            document.getElementById("txt-activity-comment").value = "";
+        }
+
+        if (data.statu_types_name) {
+            $('#dropdownActivityStatus').ddslick('selectByValue',
+                {
+                    index: data.cs_statu_types_id,
+                    value: data.statu_types_name
+                }
+            );
+        }
+
+        if (data.statu_planned_unplaned_name) {
+            $('#dropdownActivityPlanned').ddslick('selectByValue',
+                {
+                    index: data.planned_unplaned_id,
+                    value: data.planned_unplaned_name
+                }
+            );
+        }
+
+        if (data.act_date) {
+            document.getElementById("activity-datetimepicker").value = data.act_date;
+        } else {
+            document.getElementById("activity-datetimepicker").value = "";
+        }
+
+        if (data.customer_segment_type_id) {
+            $('#dropdownSegment').ddslick('selectByValue',
+                {
+                    index: data.customer_segment_type_id,
+                    value: data.segment_type_name
+                }
+            );
+        }
+
+        if (data.customer_segment_type_id) {
+            $('#dropdownSegment').ddslick('selectByValue',
+                {
+                    index: data.customer_segment_type_id,
+                    value: data.segment_type_name
+                }
+            );
+        }
+
+        if (data.vehicle_model_name) {
+            $('#dropdownProductInterest').ddslick('selectByValue',
+                {
+                    index: data.vehicle_model_id,
+                    value: data.vehicle_model_name
+                }
+            );
+        }
+
+        if (data.manager_description) {
+            document.getElementById("txt-note-manager").value = data.manager_description;
+        } else {
+            document.getElementById("txt-note-manager").value = "";
+        }
+
+        if (data.activity_tracking_date) {
+            document.getElementById("followup-datetimepicker").value = data.activity_tracking_date;
+        } else {
+            document.getElementById("followup-datetimepicker").value = "";
+        }
+
+        if (data.activty_tracking_type_id) {
+            $('#dropdownFollowuptype').ddslick('selectByValue',
+                {
+                    index: data.activty_tracking_type_id,
+                    value: data.activty_tracking_type_name
+                }
+            );
+        }
+
+        if (data.realization_date) {
+            document.getElementById("activity-realization-datetimepicker").value = data.realization_date;
+        } else {
+            document.getElementById("activity-realization-datetimepicker").value = "";
+        }
+
+        if (data.cs_act_statutype_name) {
+            $('#dropdownActivityLastStatus').ddslick('selectByValue',
+                {
+                    index: data.cs_act_statutype_id,
+                    value: data.cs_act_statutype_name
+                }
+            );
+        }
+
         $("#loading-image-activity").loadImager('removeLoadImage');
 
         return false;
@@ -747,8 +965,7 @@ $(document).ready(function () {
                         sort: "",
                         order: "", //args.orderby,
                         skip: args.skip,
-                        take: args.take,
-                        customer_id: selectedCustomerId
+                        take: args.take
                     }),
                     type: 'POST',
                     contentType: 'application/json',
@@ -771,7 +988,7 @@ $(document).ready(function () {
                     url: '/Customer/DeleteCustomerActivity',
                     dataType: "json",
                     data: JSON.stringify({
-                        id: selectedCustomerActivityId,
+                        id: selectedActivityId,
                         pk: "GsZVzEYe50uGgNM",
                         url: "pkDeletedAct_infocustomeractivations"  //Değiş
                     }),
@@ -875,15 +1092,6 @@ $(document).ready(function () {
                     mode: "select"
                 },
 
-                //{"id":"14","apid":14,
-                //"name": "asd,",
-                //"branch_no": "e345fert", 
-                //"address1": "213123 street", "address2": "no 11", "address3": "etlik", "postalcode": "06010", 
-                //"country_name": "South Africa", "region_name": "Eastern Cape", "city_name": "Graaff-Reinet", 
-                //"departman_name": "Middelburg", "country_id": 107, "country_region_id": 9, "city_id": 158, "sis_department_id": 45, "op_username": "mustafa.zeynel.admin@ostim.com.tr", 
-                //"state_active": "Active", "date_saved": "2018-10-04 16:41:42", "date_modified": null, "language_code": "en", 
-                //"active": 0, "op_user_id": 16, "language_id": "385", "language_name": "English"
-
                 columns: [
                     {
                         
@@ -917,36 +1125,60 @@ $(document).ready(function () {
                         }
 
                     }, {
-                        caption: window.lang.translate('Contact person name'),
-                        dataField: "name",
+                        caption: window.lang.translate('Customer'),
+                        dataField: "registration_name",
                         encodeHtml: false
                     }, {
-                        caption: window.lang.translate('Contact person surname'),
-                        dataField: "surname",
+                        caption: window.lang.translate('Contact person name'),
+                        dataField: "namesurname",
                         encodeHtml: false
                     }, {
                         caption: window.lang.translate('Activity type'),
                         dataField: "activation_type_name",
                         encodeHtml: false
                     }, {
-                        caption: window.lang.translate('Statu type'),
-                        dataField: "statu_types_name",
+                        caption: window.lang.translate('Activity command'),
+                        dataField: "description",
                         encodeHtml: false
                     }, {
                         caption: window.lang.translate('Activity status'),
-                        dataField: "cs_act_statutype_name",
+                        dataField: "statu_types_name",
                         encodeHtml: false
                     }, {
-                        caption: window.lang.translate('Vehicle Model'),
-                        dataField: "vehicle_model_name",
+                        caption: window.lang.translate('Planned/Unplanned'),
+                        dataField: "planned_unplaned_name",   //"cs_act_statutype_name",
                         encodeHtml: false
                     }, {
-                        caption: window.lang.translate('Description'),
-                        dataField: "description",
+                        caption: window.lang.translate('Activity date/time'),
+                        dataField: "act_date",
                         encodeHtml: false
                     }, {
                         caption: window.lang.translate('Segment type'),
                         dataField: "segment_type_name",
+                        encodeHtml: false
+                    }, {                  
+                        caption: window.lang.translate('Product of interest'),
+                        dataField: "vehicle_model_name",
+                        encodeHtml: false
+                    },{
+                        caption: window.lang.translate('Note to the manager'),
+                        dataField: "manager_description",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Follow up date/time'),
+                        dataField: "activity_tracking_date",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Follow up type'),
+                        dataField: "activty_tracking_type_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Realization date/time'),
+                        dataField: "realization_date",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Activity last status'),
+                        dataField: "cs_act_statutype_name",
                         encodeHtml: false
                     }, {
                         caption: window.lang.translate('E-mail'),
@@ -954,11 +1186,11 @@ $(document).ready(function () {
                         encodeHtml: false
                     }, {
                         caption: window.lang.translate('Mobile number'),
-                        dataField: "cep",
+                        dataField: "mobile",
                         encodeHtml: false
                     }, {
                         caption: window.lang.translate('Phone'),
-                        dataField: "tel",
+                        dataField: "phone",
                         encodeHtml: false
                     }, {
                         caption: window.lang.translate('Fax'),
@@ -968,10 +1200,6 @@ $(document).ready(function () {
                         caption: window.lang.translate('Date saved'),
                         dataField: "date_saved",
                         encodeHtml: false
-                    }, {
-                        caption: "Active/Passive",
-                        dataField: "active",
-                        dataType: "boolean"
                     }
                 ],
 
@@ -987,13 +1215,15 @@ $(document).ready(function () {
                 onSelectionChanged: function (selectedItems) {
                     var data = selectedItems.selectedRowsData[0];
                     if (data) {
-                        selectedCustomerActivityId = data.id;
-
+                        selectedActivityId = data.id;
+                        filldropdown = true;
+                        fillActivityForm(data);
+                        $("#loading-image-activity").loadImager('removeLoadImage');
                     }
                 },
 
                 onRowRemoving: function (e) {
-                    selectedCustomerActivityId = e.key.id;
+                    selectedActivityId = e.key.id;
                     //alert(selectedBranchId);
                 },
 
@@ -1045,7 +1275,7 @@ $(document).ready(function () {
             proxy: '/Customer/ActivePassiveCustomerActivity',
             type: "POST",
             data: JSON.stringify({
-                id: contactperson_id,
+                id: activity_id,
                 pk: "GsZVzEYe50uGgNM",
                 url: "pkUpdateMakeActiveOrPassive_infocustomeractivations"
             }),

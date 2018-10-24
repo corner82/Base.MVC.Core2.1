@@ -292,50 +292,46 @@ $(document).ready(function () {
     $('#loadingImage_DdslickBbTruckType').loadImager('removeLoadImage');
     $("#loadingImage_DdslickBbTruckType").loadImager('appendImage');
 
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkVehiclesBbDefDdList_sysvehiclestrade&language_code=en&pk=GsZVzEYe50uGgNM
     var ajaxACLResources_BbTruckType = $('#ajax_DdslickBbTruckType').ajaxCallWidget({
-        proxy: '/Vehicle/SysVehicleTypesForBuybackInDeal/',
-        type: 'POST'
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickBbTruckType",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkVehiclesBbDefDdList_sysvehiclestrade",
+            pkIdentity: $("#publicKey").val()
+        })
     });
 
     ajaxACLResources_BbTruckType.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
+        onReset: function (event, data) {
 
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickBbTruckType').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis bulunamamıştır...'));
         },
-        onSuccess: function (event, cbdata) {
-            //var data = $.parseJSON(cbdata);
-            var cbdata_vehicle = $.parseJSON(cbdata);
-            cbdata_vehicle.splice(0, 0,
+        onSuccess: function (event, databvehicle) {
+
+            var cbdata_bvehicle = $.parseJSON(databvehicle);
+            cbdata_bvehicle.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
+
             $('#ddslickBbTruckType').ddslick({
-                //height: 150,
-                data: cbdata_vehicle,
+                data: cbdata_bvehicle,
                 width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loadingImage_DdslickBbTruckType").loadImager('removeLoadImage');
+                search: true,
+                searchText: window.lang.translate('Search'),
+            })
+            $('#loadingImage_DdslickBbTruckType').loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickBbTruckType').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Truck Type bulunamamıştır...'), window.lang.translate('Truck Type bulunamamıştır...'));
-        },
+        onAfterSuccess: function (event, data) {
+            $('#loadingImage_DdslickBbTruckType').loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_BbTruckType.ajaxCallWidget('call');
 
@@ -631,50 +627,46 @@ $(document).ready(function () {
     $('#loadingImage_DdslickTbTruckType').loadImager('removeLoadImage');
     $("#loadingImage_DdslickTbTruckType").loadImager('appendImage');
 
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkVehiclesTbDefDdList_sysvehiclestrade&language_code=en&pk=GsZVzEYe50uGgNM
     var ajaxACLResources_TbTruckType = $('#ajax_DdslickTbTruckType').ajaxCallWidget({
-        proxy: '/Vehicle/SysVehicleTypesForBuybackInDeal/',
-        type: 'POST'
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickTbTruckType",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkVehiclesTbDefDdList_sysvehiclestrade",
+            pkIdentity: $("#publicKey").val()
+        })
     });
 
     ajaxACLResources_TbTruckType.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
+        onReset: function (event, data) {
 
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickTbTruckType').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis bulunamamıştır...'));
         },
-        onSuccess: function (event, cbdata) {
-            //var data = $.parseJSON(cbdata);
-            var cbdata_vehicle = $.parseJSON(cbdata);
-            cbdata_vehicle.splice(0, 0,
+        onSuccess: function (event, dataTvehicle) {
+
+            var cbdata_Tvehicle = $.parseJSON(dataTvehicle);
+            cbdata_Tvehicle.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
+
             $('#ddslickTbTruckType').ddslick({
-                //height: 150,
-                data: cbdata_vehicle,
+                data: cbdata_Tvehicle,
                 width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loadingImage_DdslickTbTruckType").loadImager('removeLoadImage');
+                search: true,
+                searchText: window.lang.translate('Search'),
+            })
+            $('#loadingImage_DdslickTbTruckType').loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickTbTruckType').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Truck Type bulunamamıştır...'), window.lang.translate('Truck Type bulunamamıştır...'));
-        },
+        onAfterSuccess: function (event, data) {
+            $('#loadingImage_DdslickTbTruckType').loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_TbTruckType.ajaxCallWidget('call');
 //TruckType End

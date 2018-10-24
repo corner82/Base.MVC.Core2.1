@@ -770,7 +770,7 @@ namespace Base.MVC.Controllers
         /// Insert Customer Activity
         ///Gül Özdemir
         /// </summary>
-        ///
+        ///"url=pkInsertAct_infocustomeractivations&customer_id=30&contact_person_id=6&cs_activation_type_id=2&cs_statu_types_id=2&planned_unplaned_id=5&cs_act_statutype_id=0&customer_segment_type_id=3&vehicle_model_id=2&activty_tracking_type_id=0&manager_description=not+to+the+manager+test&project_id=0&description=&report=&pk=GsZVzEYe50uGgNM"
         ///http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_infocustomeractivations&act_date=2018-10-12&customer_id=1&contact_person_id=2&cs_activation_type_id=2&cs_statu_types_id=1&cs_act_statutype_id=1&project_id=2&customer_segment_type_id=2&vehicle_model_id=3&description=32222&manager_description=&pk=GsZVzEYe50uGgNM
         /// <returns></returns>
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
