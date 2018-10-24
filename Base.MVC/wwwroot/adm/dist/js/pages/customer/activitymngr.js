@@ -196,7 +196,7 @@ $(document).ready(function () {
                     }
                 }
             });
-
+            $("#loading-image-customername").loadImager('removeLoadImage');
         }
     })
     ajax_customername.ajaxCallWidget('call');

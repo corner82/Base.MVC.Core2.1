@@ -111,7 +111,7 @@ $(document).ready(function () {
     $("#loading-image-customername").loadImager('removeLoadImage');
     $("#loading-image-customername").loadImager('appendImage');
 
-    var ajax_customername = $('#ajaxACL-customername').ajaxCallWidget({
+    var ajax_customername = $('#ajaxACL-act-customername').ajaxCallWidget({
         proxy: '/Customer/DdslickGetAllCustomers',
         type: "POST",
         transactionFailureText: window.lang.translate("Service URL not found, please report error"),
@@ -144,7 +144,7 @@ $(document).ready(function () {
                         $("#loading-image-contactperson").loadImager('removeLoadImage');
                         $("#loading-image-contactperson").loadImager('appendImage');
 
-                        var ajax_contactperson = $('#ajaxACL-contactperson').ajaxCallWidget({
+                        var ajax_contactperson = $('#ajaxACL-act-contactperson').ajaxCallWidget({
                             proxy: '/Customer/DdslickGetCustomerContactList',
                             type: "POST",
                             transactionFailureText: window.lang.translate("Service URL not found, please report error"),
@@ -181,7 +181,7 @@ $(document).ready(function () {
                             }
                         })
                         ajax_contactperson.ajaxCallWidget('call');
-                        $("#loading-image-customername").loadImager('removeLoadImage');
+                        
 
                         if (filldropdown === true) {
                             //alert(ddslick_contactperson_name);
@@ -192,14 +192,15 @@ $(document).ready(function () {
                                 });
                             filldropdown = false;
                         }
-
+                        $("#loading-image-customername").loadImager('removeLoadImage');
                     }
                 }
             });
-
+            $("#loading-image-customername").loadImager('removeLoadImage');
         }
     })
     ajax_customername.ajaxCallWidget('call');
+
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Activity type "Fair Visit","Customer support interview","Customer Visit(Inbound)","Customer Visit(Outbound)","Phone Interview(Incoming)","Telephone Interview(Outgoing)",
