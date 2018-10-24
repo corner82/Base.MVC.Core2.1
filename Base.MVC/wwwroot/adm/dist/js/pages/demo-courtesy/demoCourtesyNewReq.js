@@ -69,6 +69,8 @@ $(document).ready(function () {
     //to demo return form grid loading-image
     $("#loadingImage_DdslickDemoCourAllocationGrid").loadImager();
 
+    document.getElementById("txt-demoCourNewReq-statu").value = "Demo approval requested";
+
     var langCode = $("#langCode").val();
     //alert(langCode);
     var demoVehicleId;
@@ -554,6 +556,10 @@ $(document).ready(function () {
             }, {
                 caption: window.lang.translate('Demo/Courtesy') + "...",
                 dataField: "name",
+                    encodeHtml: false
+            }, {
+                    caption: window.lang.translate('Demo status') + "...",
+                dataField: "name",
                 encodeHtml: false
             }, {
                 caption: window.lang.translate('Vehicle model group') + "...",
@@ -576,7 +582,7 @@ $(document).ready(function () {
                 dataField: "value",
                 encodeHtml: false
             }, {
-                caption: window.lang.translate('REquest for customer') + "...",
+                caption: window.lang.translate('Request for customer') + "...",
                 dataField: "name",
                 encodeHtml: false
             }, {

@@ -17,5 +17,6 @@ namespace Base.MVC.Models.HttpRequest
         public string order { get; set; }
         public string skip { get; set; }
         public string take { get; set; }
+        public int? project_id { get; set; }
     }
 }

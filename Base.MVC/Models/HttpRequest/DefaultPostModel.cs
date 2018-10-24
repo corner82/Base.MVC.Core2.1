@@ -11,5 +11,7 @@ namespace Base.MVC.Models.HttpRequest
         public string pk { get; set; }
         public string pkIdentity { get; set; }
         public string url { get; set; }
+
+        public int? project_id { get; set; }
     }
 }

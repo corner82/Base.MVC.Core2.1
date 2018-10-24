@@ -25,6 +25,7 @@ $(document).ready(function () {
         format: 'yyyy/mm/dd'
     });
 
+    $('#FixedCostForm').validationEngine(); 
 
     //Loading image
     $("#loadingImage_FixedCost").loadImager();
