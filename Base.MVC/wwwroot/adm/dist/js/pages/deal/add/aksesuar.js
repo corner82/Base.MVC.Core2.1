@@ -572,8 +572,6 @@
     var resetAksesuarAddDealForm = function () {
         $('#addAksesuarForm').validationEngine('hide');
         $('#addAksesuarForm')[0].reset();
-        //$('#ddslickDealVehicleTypeBody').ddslick("select", { index: '0' });
-
     }
 
     /**
@@ -630,18 +628,6 @@
             var ddDataAksesuarOptions = $('#ddslickAksesuarOptions').data('ddslick');
             var ddDataAksesuarSuppliers = $('#ddslickAksesuarSuppliers').data('ddslick');
             
-
-            //alert(ddDataVehicleType.selectedData.value);
-            if ($("#tagcabin_VehicleAksesuarlar").tagCabin('findSpecificTags', ddDataVehicleType.selectedData.value, 'data-attribute') != true) {
-                /*tagBuilderChemicalPropGroup.tagCabin('addTagManuallyDataAttr', selectedItem.value,
-                    selectedItem.text,*/
-                $(window).warningMessage('resetOnShown');
-                $(window).warningMessage('show', "Please select another accessory type",
-                    "Please select another accessory type");
-                $('#tab_Aksesuar').loadImager('removeLoadImage');
-                return false;
-            }
-
             var ajax = $('#add_aksesuar').ajaxCallWidget({
                 failureLoadImage: true,
                 loadingImageID: "tab_Aksesuar",
@@ -658,7 +644,7 @@
                     pkIdentity: $("#publicKey").val(),
                     project_id: dealID,
                     vehicles_group_id: parseInt(ddDataVehicleGroups.selectedData.value),
-                    vehicle_gt_model_id: parInt(ddDataVehicleType.selectedData.value),
+                    vehicle_gt_model_id: parseInt(ddDataVehicleType.selectedData.value),
                     acc_option_id: parseInt(ddDataAksesuarOptions.selectedData.value),
                     acc_supplier_id: parseInt(ddDataAksesuarSuppliers.selectedData.value),
                     accessories_matrix_id: 1,
@@ -669,13 +655,13 @@
             });
             ajax.ajaxCallWidget({
                 onReset: function (event, data) {
-                    resetVehicleTypeAddDealForm();
+                    resetAksesuarAddDealForm();
                 },
                 onAfterSuccess: function (event, data) {
-
+                    $("#gridContainer_Aksesuar").dxDataGrid("instance").refresh();
                 }
             })
-            //ajax.ajaxCallWidget('call');
+            ajax.ajaxCallWidget('call');
 
         } else {
             $('#tab_Aksesuar').loadImager('removeLoadImage');

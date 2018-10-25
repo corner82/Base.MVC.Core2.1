@@ -14,9 +14,9 @@ $(document).ready(function () {
     var selectedMANBranchId;
     var selectedMANBranchName;
     var filldropdown = false;
-
-    var ddslick_countryId = 0;
-    var ddslick_country_name = "";
+    var newload = true;
+    var ddslick_countryId = 107;
+    var ddslick_country_name = "South Africa";
     var ddslick_provinceId = 0;
     var ddslick_province_name = "";
     var ddslick_cityId = 0;
@@ -136,7 +136,7 @@ $(document).ready(function () {
 * 09/10/2018
 */
     $('#loading-image-country').loadImager('removeLoadImage');
-    $("#loading-image-country").loadImager('appendImage');
+    $('#loading-image-country').loadImager('appendImage');
 
     var ajaxACLResources_country = $('#ajaxACL-country').ajaxCallWidget({
         failureLoadImage: true,
@@ -152,11 +152,12 @@ $(document).ready(function () {
             pk: "GsZVzEYe50uGgNM",
             url: "pkCountryDdList_syscountrys",
             //pkIdentity: $("#publicKey").val()
-        })
+        }),
+        timeout: 30000
     });
     ajaxACLResources_country.ajaxCallWidget({
         onReset: function (event, data) {
-            
+
         },
         onSuccess: function (event, datacountry) {
             var cbdata_country = $.parseJSON(datacountry);
@@ -164,21 +165,23 @@ $(document).ready(function () {
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
 
+            //alert("geldim 1");
             $('#dropdownCountry').ddslick({
                 data: cbdata_country,
                 width: '100%',
                 search: true,
                 searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
-                    
+                    //alert("geldim country selected");
                     $('#dropdownProvince').ddslick('destroy');
-
+                    //alert("geldim country selected " + selectedData.selectedData.value);
                     if (selectedData.selectedData.value > 0) {
 
                         ddslick_countryId = selectedData.selectedData.value;
+                        //alert("geldim country selected :" + ddslick_countryId);
 
                         $('#loading-image-province').loadImager('removeLoadImage');
-                        $("#loading-image-province").loadImager('appendImage');
+                        $('#loading-image-province').loadImager('appendImage');
 
                         var ajaxACLResources_getprovince = $('#ajaxACL-province').ajaxCallWidget({
                             failureLoadImage: true,
@@ -195,20 +198,21 @@ $(document).ready(function () {
                                 url: "pkCountryRegionsDdList_syscountryregions",
                                 country_id: ddslick_countryId
                                 //pkIdentity: $("#publicKey").val()
-                            })
+                            }),
+                            timeout: 30000
                         });
-                        
+
                         //province
                         ajaxACLResources_getprovince.ajaxCallWidget({
                             onReset: function (event, data) {
-                                
+
                             },
                             onSuccess: function (event, dataprovince) {
-                                
+                                //alert("geldim 2");
                                 var cbdata_province = $.parseJSON(dataprovince);
                                 cbdata_province.splice(0, 0,
                                     { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-                                );                                
+                                );
 
                                 $('#dropdownProvince').ddslick({
                                     data: cbdata_province,
@@ -222,11 +226,10 @@ $(document).ready(function () {
                                         if (selectedData.selectedData.value > 0) {
                                             ddslick_provinceId = selectedData.selectedData.value;
 
-                                            //city
-
                                             $('#loading-image-city').loadImager('removeLoadImage');
-                                            $("#loading-image-city").loadImager('appendImage');
+                                            $('#loading-image-city').loadImager('appendImage');
 
+                                            //city
                                             var ajaxACLResources_getcity = $('#ajaxACL-city').ajaxCallWidget({
                                                 failureLoadImage: true,
                                                 loadingImageID: "loading-image-city",
@@ -243,15 +246,16 @@ $(document).ready(function () {
                                                     country_id: ddslick_countryId,
                                                     region_id: ddslick_provinceId
                                                     //pkIdentity: $("#publicKey").val()
-                                                })
+                                                }),
+                                                timeout: 30000
                                             });
-                                            
+
                                             ajaxACLResources_getcity.ajaxCallWidget({
                                                 onReset: function (event, data) {
 
                                                 },
                                                 onSuccess: function (event, datacity) {
-
+                                                    alert("geldim 3");
                                                     var cbdata_city = $.parseJSON(datacity);
                                                     cbdata_city.splice(0, 0,
                                                         { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
@@ -265,18 +269,21 @@ $(document).ready(function () {
                                                         //defaultSelectedIndex: ddslick_cityId, //$("#dropdownCity li:has(.dd-option-text:contains('" + ddslick_city_name + "'))").index()
 
                                                     })
-                                                    if (filldropdown === true){
+                                                    if (filldropdown === true) {
                                                         $('#dropdownCity').ddslick('selectByValue',
-                                                        {
-                                                            index: '' + ddslick_cityId + '',
-                                                            value: '' + ddslick_city_name + ''
-                                                        });
+                                                            {
+                                                                index: ddslick_cityId,
+                                                                value: ddslick_city_name
+                                                            });
                                                         filldropdown = false;
                                                     }
                                                     $('#loading-image-city').loadImager('removeLoadImage');
                                                 },
                                                 onAfterSuccess: function (event, data) {
                                                     $('#loading-image-city').loadImager('removeLoadImage');
+                                                },
+                                                onError: function (event, data) {
+                                                    alert("geldim hata city");
                                                 }
                                             })
                                             ajaxACLResources_getcity.ajaxCallWidget('call');
@@ -287,31 +294,47 @@ $(document).ready(function () {
                                 if (filldropdown === true) {
                                     $('#dropdownProvince').ddslick('selectByValue',
                                         {
-                                            index: '' + ddslick_provinceId + '',
-                                            value: '' + ddslick_province_name + ''
+                                            index: ddslick_provinceId,
+                                            value: ddslick_province_name
                                         }
                                     );
                                 }
                                 $('#loading-image-province').loadImager('removeLoadImage');
                             },
-                            
+
                             onAfterSuccess: function (event, data) {
                                 //alert('geldim AfterSuccess province');
 
                                 $('#loading-image-province').loadImager('removeLoadImage');
+                            },
+                            onError: function (event, data) {
+                                //alert("geldim hata province");
                             }
                         })
                         ajaxACLResources_getprovince.ajaxCallWidget('call');
                         //province bitti
-
-
                     }
+
+                    if (newload === true) {
+                        newload = false;
+                        $('#dropdownCountry').ddslick('selectByValue',
+                            {
+                                index: ddslick_countryId,
+                                value: ddslick_country_name
+                            }
+                        );
+                    }
+
+                    $('#loading-image-country').loadImager('removeLoadImage');
                 }
             })
         },
         onAfterSuccess: function (event, data) {
             //alert('geldim AfterSuccess country');
             $('#loading-image-country').loadImager('removeLoadImage');
+        },
+        onError: function (event, data) {
+            alert("geldim hata");
         }
     })
     ajaxACLResources_country.ajaxCallWidget('call');
@@ -616,8 +639,8 @@ $(document).ready(function () {
 
         selectedBranchId = 0;
 
-        ddslick_countryId = 0;
-        ddslick_country_name = "";
+        ddslick_countryId = 107;
+        ddslick_country_name = "South Africa";
 
         ddslick_provinceId = 0;
         ddslick_province_name = "";
@@ -627,7 +650,13 @@ $(document).ready(function () {
 
         $('#branchForm').validationEngine('hide');
 
-        $('#dropdownCountry').ddslick('select', { index: String(0) });
+        //$('#dropdownCountry').ddslick('select', { index: String(0) });
+        $('#dropdownCountry').ddslick('selectByValue',
+            {
+                index: ddslick_countryId,
+                value: ddslick_country_name
+            }
+        );
 
         $('#dropdownProvince').ddslick('destroy');
         $('#dropdownCity').ddslick('destroy');

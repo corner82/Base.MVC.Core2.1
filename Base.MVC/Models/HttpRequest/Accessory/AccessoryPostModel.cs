@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Base.MVC.Models.HttpRequest
+{
+ 
+    public class AccessoryPostModel
+    {
+        public string url { get; set; }
+        public string name_bo { get; set; }
+        public string name_sm { get; set; }
+        public string pk { get; set; }
+    }
+
+}

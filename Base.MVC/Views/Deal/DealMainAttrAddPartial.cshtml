@@ -23,18 +23,6 @@
         <li class="nav-item"><a href="#tab_BuyBack" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Buy back</a></li>
         <li class=" nav-item"><a href="#tab_VehicleType" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Vehicle type</a></li>
         <li class="active nav-item"><a href="#tab_DealAttr" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="true">Deal</a></li>
-        <!--<li class="dropdown nav-item">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-            Dropdown <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu">
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-            <li role="presentation" class="divider"></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-        </ul>
-    </li>-->
         <li class="pull-left header"><i class="fa fa-th"></i>@Localizer["Deal"]</li>
     </ul>
     <div class="tab-content ">
@@ -111,6 +99,16 @@
                                 <input id="price_warranty" type="text" class="form-control " placeholder="@Localizer["Price"]">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label>Quantity</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <input id="quantity" type="text" class="form-control " placeholder="Quantity">
+                            </div>
+                        </div>
+
 
                     </div>
                 </div>
@@ -125,24 +123,23 @@
                     </div>
                 </div>
                 <!--<div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12 ">
-            <div class="form-group">
-                <label>Warranties</label>
-                <div class="">
-                    <div id="loadingImage_TagCabinVehicleAksesuarlar" class="input-group zeyn-load-imager">
-                        <div class="input-group-addon">
-                            <i class="fa fa-hand-o-right"></i>
-                        </div>
-                        <div style="margin-bottom: -10px;width:96%" class="tag-container-warranties">
-                            <ul id="tagcabin_Warranties" class="tag-box"></ul>
+                    <div class="col-md-12 col-sm-12 col-xs-12 ">
+                        <div class="form-group">
+                            <label>Warranties</label>
+                            <div class="">
+                                <div id="loadingImage_TagCabinVehicleAksesuarlar" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-hand-o-right"></i>
+                                    </div>
+                                    <div style="margin-bottom: -10px;width:96%" class="tag-container-warranties">
+                                        <ul id="tagcabin_Warranties" class="tag-box"></ul>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
-
-                </div>
-            </div>
-        </div>
-
-    </div>-->
+                </div>-->
                 <div class="row">
                     <button type="submit" class="btn btn-primary btn-md pull-right " style="margin-right:10px;margin-top:20px;" id="add_warranty">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;@Localizer["Save"]&nbsp;&nbsp;</button>
                 </div>
@@ -196,19 +193,12 @@
 
                     </div>
                 </div>
-                <!--<div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12 ">
-                    <div id="gridContainer_TradeIn"></div>
-                </div>
-            </div>-->
-                
                 <div class="row">
                     <button type="button" class="btn btn-primary btn-md pull-right " style="margin-right:10px;margin-top:20px;" id="toggle_TradeInAsider">&nbsp;<i class="fa fa-feed"></i>&nbsp;&nbsp;Add Vehicle&nbsp;&nbsp;</button>
                     <button type="submit" class="btn btn-primary btn-md pull-right " style="margin-right:10px;margin-top:20px;" id="add_tradein">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;@Localizer["Save"]&nbsp;&nbsp;</button>
                 </div>
             </form>
         </div><!-- /.tab-pane -->
-
 
         <div class="tab-pane zeyn-load-imager position-relative" id="tab_Aksesuar" style="padding: 21px 20px 65px 20px;">
             <form id="addAksesuarForm">
@@ -280,9 +270,6 @@
                                 <input id="quantity_aksesuar" type="text" class="form-control validate[required]" placeholder="@Localizer["Quantity"]">
                             </div>
                         </div>
-
-
-
                         <div class="form-group">
                             <label>@Localizer["Price"]</label>
                             <div class="input-group">
@@ -301,33 +288,25 @@
                                 <input id="aksesuar_new_price" type="text" class="form-control" placeholder="New @Localizer["Price"]">
                             </div>
                         </div>
-
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12 ">
                         <div id="gridContainer_Aksesuar"></div>
                     </div>
                 </div>
-
                 <div class="row">
                     <!--<button class="btn btn-default pull-right" id="tab_next_2" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>  Add</button>-->
                     <button onclick="return openAddProposalAksesuarPopUp();" id="add_aksesuar_proposal" name="add_aksesuar_proposal" type="button" class="btn btn-primary btn-md pull-right " style="margin-right:10px;margin-top:20px;">&nbsp;<i class="fa fa-arrow-circle-right"></i>&nbsp;&nbsp;@Localizer["Add accessory proposal"]&nbsp;&nbsp;</button>
                     <button type="submit" class="btn btn-primary btn-md pull-right " style="margin-right:10px;margin-top:20px;" id="add_aksesuar">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;@Localizer["Save"]&nbsp;&nbsp;</button>
+                </div>
             </form>
-            
-
-            </div>
-
-        </div><!-- /.tab-pane -->
-
+        </div>
 
         <div class="tab-pane zeyn-load-imager position-relative" id="tab_Body" style="padding: 21px 20px 65px 20px;">
             <form id="addBodyForm">
                 <div class="row">
                     <div class="col-md-6 ">
-
                         <div class="form-group">
                             <label>Body type</label>
                             <div class="" id="ajax_DdslickAddBodyType">
@@ -339,7 +318,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label>Vehicle group</label>
                             <div class="" id="ajax_DdslickVehicleGroupsBody">
@@ -373,22 +351,10 @@
                                 </div>
                             </div>
                         </div>
-                        <!--<div class="form-group">
-                        <label>Truck type</label>
-                        <div class="" id="ajax_DdslickTruckTypeTradeBack">
-                            <div id="loadingImage_DdslickTruckTypeTradeBack" class="input-group zeyn-load-imager">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-copyright"></i>
-                                </div>
-                                <div id="ddslickTruckTypeTradeBack"></div>
-                            </div>
-                        </div>
-                    </div>-->
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>R&M</label>
-
                             <div class="" id="ajax_DdslickRepMainBody">
                                 <div id="loadingImage_DdslickRepMainBody" class="input-group zeyn-load-imager">
                                     <div class="input-group-addon">
@@ -422,10 +388,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12 ">
-
                         <div id="gridContainer_Body"></div>
                     </div>
-
                 </div>
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12 ">
@@ -444,7 +408,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="row">
                     <!--<button class="btn btn-default pull-right" id="tab_next_2" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>  Add</button>-->
@@ -453,12 +416,10 @@
             </form>
         </div><!-- /.tab-pane -->
 
-
         <div class="tab-pane zeyn-load-imager position-relative" id="tab_TradeBack" style="padding: 21px 20px 65px 20px;">
             <form id="addTradeBackForm">
                 <div class="row">
                     <div class="col-md-6 ">
-
                         <div class="form-group">
                             <label>Vehicle type</label>
                             <div class="" id="ajax_DdslickDealVehicleTypeTradeBack">
@@ -492,22 +453,10 @@
                                 </div>
                             </div>
                         </div>
-                        <!--<div class="form-group">
-                        <label>Truck type</label>
-                        <div class="" id="ajax_DdslickTruckTypeTradeBack">
-                            <div id="loadingImage_DdslickTruckTypeTradeBack" class="input-group zeyn-load-imager">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-copyright"></i>
-                                </div>
-                                <div id="ddslickTruckTypeTradeBack"></div>
-                            </div>
-                        </div>
-                    </div>-->
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>R&M</label>
-
                             <div class="" id="ajax_DdslickRepMainTradeBack">
                                 <div id="loadingImage_DdslickRepMainTradeBack" class="input-group zeyn-load-imager">
                                     <div class="input-group-addon">
@@ -541,10 +490,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12 ">
-
                         <div id="gridContainer_TradeBack"></div>
                     </div>
-
                 </div>
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12 ">
@@ -559,11 +506,9 @@
                                         <ul id="tagcabin_DealTradeBacks" class="tag-box"></ul>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="row">
                     <!--<button class="btn btn-default pull-right" id="tab_next_2" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>  Add</button>-->
@@ -571,11 +516,11 @@
                 </div>
             </form>
         </div><!-- /.tab-pane -->
+
         <div class="tab-pane zeyn-load-imager position-relative" id="tab_BuyBack" style="padding: 21px 20px 65px 20px;">
             <form id="addBuyBackForm">
                 <div class="row">
                     <div class="col-md-6 ">
-
                         <div class="form-group">
                             <label>@Localizer["Vehicle type"]</label>
                             <div class="" id="ajax_DdslickDealVehicleTypeBuyBack">
@@ -609,17 +554,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!--<div class="form-group">
-                        <label>@Localizer["Truck type"]</label>
-                        <div class="" id="ajax_DdslickTruckTypeBuyBack">
-                            <div id="loadingImage_DdslickTruckTypeBuyBack" class="input-group zeyn-load-imager">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-copyright"></i>
-                                </div>
-                                <div id="ddslickTruckTypeBuyBack"></div>
-                            </div>
-                        </div>
-                    </div>-->
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
@@ -657,10 +591,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12 ">
-
                         <div id="gridContainer_BuyBack"></div>
                     </div>
-
                 </div>
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12 ">
@@ -679,7 +611,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="row">
                     <!--<button type="submit" class="btn btn-primary btn-md pull-right " style="margin-right:10px;margin-top:20px;" id="add_buyBack_reset">&nbsp;<i class="fa fa-minus"></i>&nbsp;&nbsp;@Localizer["Reset"]&nbsp;&nbsp;</button>-->
@@ -687,6 +618,7 @@
                 </div>
             </form>
         </div><!-- /.tab-pane -->
+
         <div class="tab-pane zeyn-load-imager position-relative" id="tab_VehicleType">
             <form id="addVehicleTypeForm">
                 <div class="row">
@@ -715,18 +647,6 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <!--<div class="form-group">
-                        <label >Realization rate</label>
-
-                        <div class="" id="ajax_DdslickRealizationRate2">
-                            <div id="loadingImage_DdslickRealizationRate2" class="input-group zeyn-load-imager">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-copyright"></i>
-                                </div>
-                                <div id="ddslickRealizationRate2"></div>
-                            </div>
-                        </div>
-                    </div>-->
                         <div class="form-group">
                             <label>@Localizer["Total count"]</label>
                             <div class="input-group">
@@ -767,11 +687,10 @@
                 </div>
             </form>
         </div><!-- /.tab-pane -->
+
         <div class="tab-pane active zeyn-load-imager position-relative" id="tab_DealAttr">
             <form id="addDealForm">
-
                 <div class="row ">
-                    <!--<div class="zeyn-load-imager" id="loadingImage_tabDealAdd">-->
                     <div class="col-md-6 ">
                         <div class="form-group">
                             <label>@Localizer["Deal name"]</label>
@@ -847,21 +766,14 @@
 
                             </div>
                         </div>
-
                     </div>
-                    <!--</div>-->
                 </div>
                 <div class="row">
-                    <!--<button class="btn btn-default pull-right" id="add_deal_reset" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-minus"></i>&nbsp;&nbsp;&nbsp;@Localizer["Reset"]</button>-->
                     <button type="submit" class="btn btn-primary btn-md pull-right " style="margin-right:10px;margin-top:20px;" id="add_deal_reset">&nbsp;<i class="fa fa-minus"></i>&nbsp;&nbsp;@Localizer["Reset"]&nbsp;&nbsp;</button>
-                    <!--<button class="btn btn-default pull-right" id="toggle_CampaignAsider" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;@Localizer["Add campaign"]</button>-->
                     <button type="button" class="btn btn-primary btn-md pull-right " style="margin-right:10px;margin-top:20px;" id="toggle_CampaignAsider">&nbsp;<i class="fa fa-feed"></i>&nbsp;&nbsp;@Localizer["Add campaign"]&nbsp;&nbsp;</button>
-                    <!-- <button class="btn btn-default pull-right" id="add_deal" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;@Localizer["Save"]</button>-->
                     <button type="submit" class="btn btn-primary btn-md pull-right " style="margin-right:10px;margin-top:20px;" id="add_deal">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;@Localizer["Save"]&nbsp;&nbsp;</button>
                     <button type="submit" class="btn btn-primary btn-md pull-right hidden" style="margin-right:10px;margin-top:20px;" id="update_deal">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;@Localizer["Update"]&nbsp;&nbsp;</button>
-                    <!--<input type="submit" class="btn btn-default pull-right" id="add_deal" value="@Localizer["Save"]" /> -->
                 </div>
-
             </form>
         </div><!-- /.tab-pane -->
 

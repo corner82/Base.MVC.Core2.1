@@ -1903,7 +1903,7 @@ $(document).ready(function () {
                 index: '' + data.mileage_id + '',
                 text: '' + data.mileage_type_name + ''
             }
-        )
+        );
         $('#ddslickTbMonths').ddslick('selectByValue',
             {
                 index: '' + data.month_id + '',

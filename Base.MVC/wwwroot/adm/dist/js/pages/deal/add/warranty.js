@@ -745,8 +745,6 @@
     var resetWarrantyAddDealForm = function () {
         $('#addWarrantyForm').validationEngine('hide');
         $('#addWarrantyForm')[0].reset();
-        //$('#ddslickDealVehicleTypeBody').ddslick("select", { index: '0' });
-
     }
 
     /**
@@ -783,18 +781,7 @@
             var ddDataWarrantyTermOptions = $('#ddslickWarrantyTerm').data('ddslick');
             var ddDataAksesuarSuppliers = $('#ddslickWarrantyKm').data('ddslick');
             var rows = $("#gridContainer_Warranty").dxDataGrid('getSelectedRowsData');
-
-            //alert(ddDataVehicleType.selectedData.value);
-            if ($("#tagcabin_VehicleWarranties").tagCabin('findSpecificTags', ddDataVehicleType.selectedData.value, 'data-attribute') != true) {
-                /*tagBuilderChemicalPropGroup.tagCabin('addTagManuallyDataAttr', selectedItem.value,
-                    selectedItem.text,*/
-                $(window).warningMessage('resetOnShown');
-                $(window).warningMessage('show', "Please select another warranty type",
-                    "Please select another warranty type");
-                $('#tab_Warranty').loadImager('removeLoadImage');
-                return false;
-            }
-
+            console.log(rows);
             var ajax = $('#add_warranty').ajaxCallWidget({
                 failureLoadImage: true,
                 loadingImageID: "tab_Warranty",
@@ -802,7 +789,7 @@
                 transactionSuccessText: window.lang.translate('Transaction successful'),
                 transactionFailureText: window.lang.translate("Service URL not found, please report error"),
                 dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-                proxy: '/Deal/AddBodyProxyService',
+                proxy: '/Deal/AddWarrantyProxyService',
                 type: "POST",
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
@@ -810,37 +797,27 @@
                     url: "pkInsertAct_infoprojectwarranties",
                     pkIdentity: $("#publicKey").val(),
                     project_id: dealID,
-                    vehicle_group_id: ddDataVehicleGroups.selectedData.value,
-                    vehicles_endgroup_id: ddDataVehicleType.selectedData.value,
-                    monthsx_id: ddDataWarrantyTermOptions.selectedData.value,
-                    warranty_matrix_id: rows[0].id,
-                    warranty_type_id : ddDatawarrantyType.selectedData.value,
-                    new_price : $("#price_warranty").val()
+                    //project_id: 1,
+                    vehicle_group_id: parseInt(ddDataVehicleGroups.selectedData.value),
+                    vehicles_endgroup_id: parseInt(ddDataVehicleType.selectedData.value),
+                    //vehicles_endgroup_id: 1,
+                    monthsx_id: parseInt(ddDataWarrantyTermOptions.selectedData.value),
+                    warranty_matrix_id: parseInt(rows[0].id),
+                    warranty_type_id : parseInt(ddDatawarrantyType.selectedData.value),
+                    new_price: $("#price_warranty").val(),
+                    quantity: $("#quantity").val()
                 })
 
             });
             ajax.ajaxCallWidget({
                 onReset: function (event, data) {
-                    resetVehicleTypeAddDealForm();
+                    resetWarrantyAddDealForm();
                 },
                 onAfterSuccess: function (event, data) {
-                    $("#deal_hidden").deal("addVehicleType", { vehicleType: ddDataVehicleType.selectedData.value, count: $("#quantity").val() });
-                    $("#tagcabin_Warranties").tagCabin('addTagManuallyDataAttr', ddDataVehicleType.selectedData.value,
-                        ddDataVehicleType.selectedData.text + " / " + $("#quantity").val(),
-
-                    );
-
-                    /*var tagBuilderChemicalPropGroup = $('#chemical-property-group-cabin').tagCabin({
-                        tagCopy: false,
-                        tagDeletable: true,
-                        tagDeletableAll: false,
-                        tagBox: $('.tag-container-chemical-property-group').find('ul'),
-    
-                    });*/
-
+                    $("#gridContainer_DealWarranty").dxDataGrid('instance').refresh();
                 }
             })
-            //ajax.ajaxCallWidget('call');
+            ajax.ajaxCallWidget('call');
 
         } else {
             $('#tab_Warranty').loadImager('removeLoadImage');
