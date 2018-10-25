@@ -330,10 +330,166 @@
 
             };
 
-    //----------------------------------dropdowns end-------------------------------------------------
+            //----------------------------------dropdowns end-------------------------------------------------
 
 
+            //----------------------------------grid begin-------------------------------------------------
 
+            /* 
+            * warranty grid data source
+            * @author Mustafa Zeynel dağlı
+            * @since 12/10/2018
+            * */
+            var warrantyMatrix_grid_datasource = new DevExpress.data.CustomStore({
+                load: function (loadOptions) {
+                    var deferred = $.Deferred(),
+                        args = {};
+
+                    if (loadOptions.sort) {
+                        args.orderby = loadOptions.sort[0].selector;
+                        if (loadOptions.sort[0].desc)
+                            args.orderby += " desc";
+                    }
+
+                    args.skip = loadOptions.skip || 0;
+                    args.take = loadOptions.take || 12;
+
+                    /*var customerType = window.getSelectedDDslickValueOrDefaultVal("ddslickVehicleGroupsWarranty");
+                    var terrainType = window.getSelectedDDslickValueOrDefaultVal("ddslickDealVehicleTypeWarranty");
+                    var repmainType = window.getSelectedDDslickValueOrDefaultVal("ddslickWarrantyType");
+                    var hydraType = window.getSelectedDDslickValueOrDefaultVal("ddslickWarrantyTerm");
+                    var vehicleType = window.getSelectedDDslickValueOrDefaultVal("ddslickWarrantyKm");*/
+
+                    $.ajax({
+                        url: '/DefaultPost/DefaultGridPostModel',
+                        dataType: "json",
+                        data: JSON.stringify({
+                            language_code: $("#langCode").val(),
+                            pk: "GsZVzEYe50uGgNM",
+                            url: "pkFillProjectVehicleAccGridx_infoprojectacc",
+                            pkIdentity: $("#publicKey").val(),
+                            project_id: parseInt($("#deal_hidden").deal("getDealID")),
+                            page: "",
+                            rows: "",
+                            sort: "",
+                            order: "",
+
+                        }),
+                        type: 'POST',
+                        contentType: 'application/json',
+                        success: function (result) {
+                            deferred.resolve(result.items, { totalCount: result.totalCount });
+                        },
+                        error: function () {
+                            deferred.reject("Data Loading Error");
+                        },
+                        timeout: 30000
+                    });
+
+                    return deferred.promise();
+                }
+            });
+            DevExpress.localization.locale($('#langCode').val());
+            $("#gridContainer_Aksesuar").dxDataGrid({
+                showColumnLines: true,
+                showRowLines: true,
+                rowAlternationEnabled: true,
+                showBorders: true,
+                // dataSource: orders,
+                dataSource: warrantyMatrix_grid_datasource,
+                columnHidingEnabled: false,
+                editing: {
+                    //mode: "batch"
+                    mode: "row",
+                    //allowAdding: false,
+                    allowUpdating: false,
+                    allowDeleting: false,
+                    useIcons: false
+                },
+                "export": {
+                    enabled: true,
+                    fileName: "Orders"
+                },
+                grouping: {
+                    contextMenuEnabled: true,
+                    expandMode: "rowClick"
+                },
+                groupPanel: {
+                    emptyPanelText: "Use the context menu of header columns to group data",
+                    visible: true
+                },
+                pager: {
+                    allowedPageSizes: [5, 8, 15, 30],
+                    showInfo: true,
+                    showNavigationButtons: true,
+                    showPageSizeSelector: true,
+                    visible: true
+                },
+                paging: {
+                    pageSize: 8
+                },
+                filterRow: {
+                    visible: true,
+                    applyFilter: "auto"
+                },
+                searchPanel: {
+                    visible: true,
+                    width: 240,
+                    //placeholder: "Search..."
+                    placeholder: window.lang.translate("Search")
+                },
+                headerFilter: {
+                    visible: true
+                },
+                columnChooser: {
+                    enabled: true,
+                    mode: "select"
+                },
+                selection: {
+                    mode: "single"
+                },
+                onSelectionChanged: function (selectedItems) {
+                    var data = selectedItems.selectedRowsData[0];
+                    console.log(data);
+                    /*if (data) {
+                        selectedBranchId = data.id;
+                        filldropdown = true;
+                        fillBranchForm(data);
+                        //filldropdown = false;
+                    }*/
+                },
+                columns: [
+                    {
+                        //allowGrouping: false,
+                        caption: "Option",
+                        dataField: "option_name"
+                    },
+                    {
+                        caption: "Supplier",
+                        dataField: "supplier_name"
+                    },
+                    {
+                        caption: "tag name",
+                        dataField: "tag_name"
+                    },
+                    {
+                        caption: "model name",
+                        dataField: "vehicle_gt_model_name"
+                    },
+                    {
+                        caption: "Other brand name",
+                        dataField: "other_acc_brand"
+                    },
+
+                ],
+                customizeColumns: function (columns) {
+                    //columns[5].format = { type: "currency", currency: "EUR" };
+                },
+
+
+            });
+
+            //----------------------------------grid end-------------------------------------------------
 
 
             $('#loadingImage_DdslickDealVehicleTypeAksesuar').loadImager('removeLoadImage');
@@ -405,163 +561,7 @@
     });
 
 
-    //----------------------------------grid begin-------------------------------------------------
     
-    /* 
-    * warranty grid data source
-    * @author Mustafa Zeynel dağlı
-    * @since 12/10/2018
-    * */
-    var warrantyMatrix_grid_datasource = new DevExpress.data.CustomStore({
-        load: function (loadOptions) {
-            var deferred = $.Deferred(),
-                args = {};
-
-            if (loadOptions.sort) {
-                args.orderby = loadOptions.sort[0].selector;
-                if (loadOptions.sort[0].desc)
-                    args.orderby += " desc";
-            }
-
-            args.skip = loadOptions.skip || 0;
-            args.take = loadOptions.take || 12;
-
-            /*var customerType = window.getSelectedDDslickValueOrDefaultVal("ddslickVehicleGroupsWarranty");
-            var terrainType = window.getSelectedDDslickValueOrDefaultVal("ddslickDealVehicleTypeWarranty");
-            var repmainType = window.getSelectedDDslickValueOrDefaultVal("ddslickWarrantyType");
-            var hydraType = window.getSelectedDDslickValueOrDefaultVal("ddslickWarrantyTerm");
-            var vehicleType = window.getSelectedDDslickValueOrDefaultVal("ddslickWarrantyKm");*/
-
-            $.ajax({
-                url: '/DefaultPost/DefaultGridPostModel',
-                dataType: "json",
-                data: JSON.stringify({
-                    language_code: $("#langCode").val(),
-                    pk: "GsZVzEYe50uGgNM",
-                    url: "pkFillProjectVehicleAccGridx_infoprojectacc",
-                    pkIdentity: $("#publicKey").val(),
-                    project_id: parseInt($("#deal_hidden").deal("getDealID")),
-                    page: "",
-                    rows: "",
-                    sort: "",
-                    order: "",
-
-                }),
-                type: 'POST',
-                contentType: 'application/json',
-                success: function (result) {
-                    deferred.resolve(result.items, { totalCount: result.totalCount });
-                },
-                error: function () {
-                    deferred.reject("Data Loading Error");
-                },
-                timeout: 30000
-            });
-
-            return deferred.promise();
-        }
-    });
-    DevExpress.localization.locale($('#langCode').val());
-    $("#gridContainer_Aksesuar").dxDataGrid({
-        showColumnLines: true,
-        showRowLines: true,
-        rowAlternationEnabled: true,
-        showBorders: true,
-        // dataSource: orders,
-        dataSource: warrantyMatrix_grid_datasource,
-        columnHidingEnabled: false,
-        editing: {
-            //mode: "batch"
-            mode: "row",
-            //allowAdding: false,
-            allowUpdating: false,
-            allowDeleting: false,
-            useIcons: false
-        },
-        "export": {
-            enabled: true,
-            fileName: "Orders"
-        },
-        grouping: {
-            contextMenuEnabled: true,
-            expandMode: "rowClick"
-        },
-        groupPanel: {
-            emptyPanelText: "Use the context menu of header columns to group data",
-            visible: true
-        },
-        pager: {
-            allowedPageSizes: [5, 8, 15, 30],
-            showInfo: true,
-            showNavigationButtons: true,
-            showPageSizeSelector: true,
-            visible: true
-        },
-        paging: {
-            pageSize: 8
-        },
-        filterRow: {
-            visible: true,
-            applyFilter: "auto"
-        },
-        searchPanel: {
-            visible: true,
-            width: 240,
-            //placeholder: "Search..."
-            placeholder: window.lang.translate("Search")
-        },
-        headerFilter: {
-            visible: true
-        },
-        columnChooser: {
-            enabled: true,
-            mode: "select"
-        },
-        selection: {
-            mode: "single"
-        },
-        onSelectionChanged: function (selectedItems) {
-            var data = selectedItems.selectedRowsData[0];
-            console.log(data);
-            /*if (data) {
-                selectedBranchId = data.id;
-                filldropdown = true;
-                fillBranchForm(data);
-                //filldropdown = false;
-            }*/
-        },
-        columns: [
-            {
-                //allowGrouping: false,
-                caption: "Option",
-                dataField: "option_name"
-            },
-            {
-                caption: "Supplier",
-                dataField: "supplier_name"
-            },
-            {
-                caption: "tag name",
-                dataField: "tag_name"
-            },
-            {
-                caption: "model name",
-                dataField: "vehicle_gt_model_name"
-            },
-            {
-                caption: "Other brand name",
-                dataField: "other_acc_brand"
-            },
-
-        ],
-        customizeColumns: function (columns) {
-            //columns[5].format = { type: "currency", currency: "EUR" };
-        },
-
-
-    });
-
-    //----------------------------------grid end-------------------------------------------------
 
 
    

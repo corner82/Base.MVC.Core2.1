@@ -491,20 +491,188 @@
             });
             $("#loadingImage_DdslickHydraTradeBack").loadImager('removeLoadImage');
 
+            /**
+          * ddslick deal vehicle type dropdown (aksesuar)
+          * @author Mustafa Zeynel Dağlı
+          * @since 17/10/2018
+          */
+            var ddslickDealVehicleTypeAksesuarData = [
+                {
+                    text: 'Please select',
+                    value: 0,
+                    selected: true
+                },
+            ];
+            $('#loadingImage_DdslickDealVehicleTypeTradeBack').loadImager('removeLoadImage');
+            $("#loadingImage_DdslickDealVehicleTypeTradeBack").loadImager('appendImage');
+            $('#ddslickDealVehicleTypeTradeBack').ddslick({
+                data: ddslickDealVehicleTypeAksesuarData,
+                width: '100%',
+                onSelected: function (selectedData) {
+                }
+            });
+            $("#loadingImage_DdslickDealVehicleTypeTradeBack").loadImager('removeLoadImage');
+
             //TradeBack tab form elements end
+
+            //tradeBack tab form elements begin
+            var tradebackMatrix_grid_datasource = new DevExpress.data.CustomStore({
+                load: function (loadOptions) {
+                    var deferred = $.Deferred(),
+                        args = {};
+
+                    if (loadOptions.sort) {
+                        args.orderby = loadOptions.sort[0].selector;
+                        if (loadOptions.sort[0].desc)
+                            args.orderby += " desc";
+                    }
+
+                    args.skip = loadOptions.skip || 0;
+                    args.take = loadOptions.take || 12;
+
+                    var customerType = window.getSelectedDDslickValueOrDefaultVal("ddslickCustomerTypeTradeBack");
+                    var terrainType = window.getSelectedDDslickValueOrDefaultVal("ddslickTerrainTypeTradeBack");
+                    var repmainType = window.getSelectedDDslickValueOrDefaultVal("ddslickRepMainTradeBack");
+                    var hydraType = window.getSelectedDDslickValueOrDefaultVal("ddslickHydraTradeBack");
+                    var vehicleType = window.getSelectedDDslickValueOrDefaultVal("ddslickDealVehicleTypeTradeBack");
+
+                    $.ajax({
+                        url: '/Deal/GetDealTradeBackListProxyService',
+                        dataType: "json",
+                        data: JSON.stringify({
+                            language_code: $("#langCode").val(),
+                            pk: "GsZVzEYe50uGgNM",
+                            url: "pkFillTradebackMatrixGridx_sysbuybackmatrix",
+                            pkIdentity: $("#publicKey").val(),
+                            //project_id: dealID,
+                            page: "",
+                            rows: "",
+                            sort: "",
+                            order: "",
+                            terrain_id: parseInt(terrainType),
+                            comfort_super_id: parseInt(repmainType),
+                            hydraulics: parseInt(hydraType),
+                            customer_type_id: parseInt(customerType),
+                            model_id: parseInt(vehicleType),
+                            //model_id: 1,
+
+                        }),
+                        type: 'POST',
+                        contentType: 'application/json',
+                        success: function (result) {
+                            deferred.resolve(result.items, { totalCount: result.totalCount });
+                        },
+                        error: function () {
+                            deferred.reject("Data Loading Error");
+                        },
+                        timeout: 30000
+                    });
+
+                    return deferred.promise();
+                }
+            });
+            DevExpress.localization.locale($('#langCode').val());
+            $("#gridContainer_TradeBack").dxDataGrid({
+                showColumnLines: true,
+                showRowLines: true,
+                rowAlternationEnabled: true,
+                showBorders: true,
+                // dataSource: orders,
+                dataSource: tradebackMatrix_grid_datasource,
+                columnHidingEnabled: false,
+                editing: {
+                    //mode: "batch"
+                    mode: "row",
+                    //allowAdding: false,
+                    allowUpdating: false,
+                    allowDeleting: false,
+                    useIcons: false
+                },
+                selection: {
+                    mode: "single"
+                },
+                "export": {
+                    enabled: true,
+                    fileName: "TradeBackMatrix"
+                },
+                grouping: {
+                    contextMenuEnabled: true,
+                    expandMode: "rowClick"
+                },
+                groupPanel: {
+                    emptyPanelText: "Use the context menu of header columns to group data",
+                    visible: true
+                },
+                pager: {
+                    allowedPageSizes: [5, 8, 15, 30],
+                    showInfo: true,
+                    showNavigationButtons: true,
+                    showPageSizeSelector: true,
+                    visible: true
+                },
+                paging: {
+                    pageSize: 8
+                },
+                filterRow: {
+                    visible: true,
+                    applyFilter: "auto"
+                },
+                searchPanel: {
+                    visible: true,
+                    width: 240,
+                    placeholder: "Search..."
+                },
+                headerFilter: {
+                    visible: true
+                },
+                columnChooser: {
+                    enabled: true,
+                    mode: "select"
+                },
+                columns: [
+                    {
+                        //allowGrouping: false,
+                        caption: "Vehicle",
+                        dataField: "vahicle_description"
+                    },
+                    {
+                        caption: "Comfort Super",
+                        dataField: "comfort_super_name"
+                    },
+                    {
+                        caption: "Mileage",
+                        dataField: "mileage_type_name"
+                    },
+                    {
+                        caption: "Terrain",
+                        dataField: "terrain_name"
+                    },
+                    {
+                        caption: "Month",
+                        dataField: "month_name"
+                    },
+                    {
+                        caption: "Price",
+                        dataField: "price"
+                    }
+
+                ],
+                customizeColumns: function (columns) {
+                    //columns[5].format = { type: "currency", currency: "EUR" };
+                },
+
+
+            });
+
+            //tradeBack tab form elements end
+
 
             $('#loadingImage_DdslickDealVehicleTypeTradeBack').loadImager('removeLoadImage');
             $("#loadingImage_DdslickDealVehicleTypeTradeBack").loadImager('appendImage');
 
             if (parseInt($("#deal_hidden").deal("getDealID")) > 0) {
-
-
                 var vehicleTypes = $("#deal_hidden").deal("getVehicleTypes");
                 if (vehicleTypes.length == 0) {
-
-                    /*$('#tab_TradeBack').loadImager('removeLoadImage');
-                    $('#tab_TradeBack').loadImager('appendImage');*/
-
                     $(window).warningMessage('resetOnShown');
                     $(window).warningMessage('show', window.lang.translate("You must add at least one vehicle type to deal"),
                         window.lang.translate("You must add at least one vehicle type to deal"));
@@ -517,12 +685,10 @@
                     noDataFailureText: window.lang.translate("No data returned from service"),
                     loadingImageID: "loadingImage_DdslickDealVehicleTypeTradeBack",
                     data: JSON.stringify({
-                        //url: "pkProjectVehicleModelsDdList_infoprojectvehiclemodels",
                         url: "pkProjectVehicleModelsTradeDdList_infoprojecttradeback",
                         language_code: $("#langCode").val(),
                         pk: "GsZVzEYe50uGgNM",
                         project_id: $("#deal_hidden").deal("getDealID"),
-                        //project_id : 1,
                         pkIdentity: $("#publicKey").val(),
                     }),
                     type: 'POST'
@@ -530,6 +696,7 @@
                 var selectedContVehicleTypeTradeBack = false;
                 ajax_DdslickVehicleTypeTradeBack.ajaxCallWidget({
                     onSuccess: function (event, data) {
+                        $("#ddslickDealVehicleTypeTradeBack").ddslick('destroy');
                         var data = $.parseJSON(data);
                         data.splice(0, 0,
                             { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
@@ -556,7 +723,7 @@
                 $(window).warningMessage('resetOnShown');
                 $(window).warningMessage('show', window.lang.translate("Please select deal"),
                     window.lang.translate("Please select deal"));
-                $('#loadingImage_DdslickVehicleTypeBuyBack').loadImager('removeLoadImage');
+                $('#loadingImage_DdslickDealVehicleTypeTradeBack').loadImager('removeLoadImage');
             }
 
 

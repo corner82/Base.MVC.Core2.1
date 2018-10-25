@@ -472,7 +472,204 @@
             });
             $("#loadingImage_DdslickHydraBuyBack").loadImager('removeLoadImage');
 
+            /**
+           * ddslick deal vehicle type dropdown (aksesuar)
+           * @author Mustafa Zeynel Dağlı
+           * @since 17/10/2018
+           */
+            var ddslickDealVehicleTypeAksesuarData = [
+                {
+                    text: 'Please select',
+                    value: 0,
+                    selected: true
+                },
+            ];
+            $('#loadingImage_DdslickDealVehicleTypeBuyBack').loadImager('removeLoadImage');
+            $("#loadingImage_DdslickDealVehicleTypeBuyBack").loadImager('appendImage');
+            $('#ddslickDealVehicleTypeBuyBack').ddslick({
+                data: ddslickDealVehicleTypeAksesuarData,
+                width: '100%',
+                onSelected: function (selectedData) {
+                }
+            });
+            $("#loadingImage_DdslickDealVehicleTypeBuyBack").loadImager('removeLoadImage');
+
             //BuyBack tab form elements end
+
+            //buyBack tab form elements begin
+            /* 
+             * deal grid data source
+             * @author Mustafa Zeynel dağlı
+             * @since 12/10/2018
+             * */
+            var buybackMatrix_grid_datasource = new DevExpress.data.CustomStore({
+                load: function (loadOptions) {
+                    var deferred = $.Deferred(),
+                        args = {};
+
+                    if (loadOptions.sort) {
+                        args.orderby = loadOptions.sort[0].selector;
+                        if (loadOptions.sort[0].desc)
+                            args.orderby += " desc";
+                    }
+
+                    args.skip = loadOptions.skip || 0;
+                    args.take = loadOptions.take || 12;
+
+                    var customerType = window.getSelectedDDslickValueOrDefaultVal("ddslickCustomerTypeBuyBack");
+                    var terrainType = window.getSelectedDDslickValueOrDefaultVal("ddslickTerrainTypeBuyBack");
+                    var repmainType = window.getSelectedDDslickValueOrDefaultVal("ddslickRepMainBuyBack");
+                    var hydraType = window.getSelectedDDslickValueOrDefaultVal("ddslickHydraBuyBack");
+                    var vehicleType = window.getSelectedDDslickValueOrDefaultVal("ddslickDealVehicleTypeBuyBack");
+
+                    $.ajax({
+                        url: '/Deal/GetDealBuyBackListProxyService',
+                        dataType: "json",
+                        data: JSON.stringify({
+                            language_code: $("#langCode").val(),
+                            pk: "GsZVzEYe50uGgNM",
+                            url: "pkFillBuybackMatrixGridx_sysbuybackmatrix",
+                            pkIdentity: $("#publicKey").val(),
+                            //project_id: dealID,
+                            page: "",
+                            rows: "",
+                            sort: "",
+                            order: "",
+                            terrain_id: parseInt(terrainType),
+                            comfort_super_id: parseInt(repmainType),
+                            hydraulics: parseInt(hydraType),
+                            customer_type_id: parseInt(customerType),
+                            model_id: parseInt(vehicleType),
+                            /*terrain_id: 3,
+                            comfort_super_id: 1,
+                            hydraulics: 2,
+                            customer_type_id: 1, */
+                            /*terrain_id: ddDataTerrainType.selectedData.value,
+                            comfort_super_id: ddDataRepMainType.selectedData.value,
+                            hydraulics: ddDataHydraType.selectedData.value,
+                            customer_type_id: parseInt(ddDataCustomerType.selectedData.value), */
+
+                        }),
+                        type: 'POST',
+                        contentType: 'application/json',
+                        success: function (result) {
+                            deferred.resolve(result.items, { totalCount: result.totalCount });
+                        },
+                        error: function () {
+                            deferred.reject("Data Loading Error");
+                        },
+                        timeout: 30000
+                    });
+
+                    return deferred.promise();
+                }
+            });
+            DevExpress.localization.locale($('#langCode').val());
+            $("#gridContainer_BuyBack").dxDataGrid({
+                showColumnLines: true,
+                showRowLines: true,
+                rowAlternationEnabled: true,
+                showBorders: true,
+                // dataSource: orders,
+                dataSource: buybackMatrix_grid_datasource,
+                columnHidingEnabled: false,
+                editing: {
+                    //mode: "batch"
+                    mode: "row",
+                    //allowAdding: false,
+                    allowUpdating: false,
+                    allowDeleting: false,
+                    useIcons: false
+                },
+                "export": {
+                    enabled: true,
+                    fileName: "Orders"
+                },
+                grouping: {
+                    contextMenuEnabled: true,
+                    expandMode: "rowClick"
+                },
+                groupPanel: {
+                    emptyPanelText: "Use the context menu of header columns to group data",
+                    visible: true
+                },
+                pager: {
+                    allowedPageSizes: [5, 8, 15, 30],
+                    showInfo: true,
+                    showNavigationButtons: true,
+                    showPageSizeSelector: true,
+                    visible: true
+                },
+                paging: {
+                    pageSize: 8
+                },
+                filterRow: {
+                    visible: true,
+                    applyFilter: "auto"
+                },
+                searchPanel: {
+                    visible: true,
+                    width: 240,
+                    //placeholder: "Search..."
+                    placeholder: window.lang.translate("Search")
+                },
+                headerFilter: {
+                    visible: true
+                },
+                columnChooser: {
+                    enabled: true,
+                    mode: "select"
+                },
+                selection: {
+                    mode: "single"
+                },
+                onSelectionChanged: function (selectedItems) {
+                    var data = selectedItems.selectedRowsData[0];
+                    console.log(data);
+                    /*if (data) {
+                        selectedBranchId = data.id;
+                        filldropdown = true;
+                        fillBranchForm(data);
+                        //filldropdown = false;
+                    }*/
+                },
+                columns: [
+                    {
+                        //allowGrouping: false,
+                        caption: "Vehicle",
+                        dataField: "vahicle_description"
+                    },
+                    {
+                        caption: "Comfort Super",
+                        dataField: "comfort_super_name"
+                    },
+                    {
+                        caption: "Mileage",
+                        dataField: "mileage_type_name"
+                    },
+                    {
+                        caption: "Terrain",
+                        dataField: "terrain_name"
+                    },
+                    {
+                        caption: "Month",
+                        dataField: "month_name"
+                    },
+                    {
+                        caption: "Price",
+                        dataField: "price"
+                    }
+
+                ],
+                customizeColumns: function (columns) {
+                    //columns[5].format = { type: "currency", currency: "EUR" };
+                },
+
+
+            });
+
+            //buyBack tab form elements end
+
             $('#loadingImage_DdslickDealVehicleTypeBuyBack').loadImager('removeLoadImage');
             $("#loadingImage_DdslickDealVehicleTypeBuyBack").loadImager('appendImage');
             if (parseInt($("#deal_hidden").deal("getDealID")) > 0) {
@@ -508,6 +705,7 @@
                 var selectedContVehicleTypeBuyBack = false;
                 ajax_DdslickVehicleTypeBuyBack.ajaxCallWidget({
                     onSuccess: function (event, data) {
+                        $("#ddslickDealVehicleTypeBuyBack").ddslick('destroy');
                         var data = $.parseJSON(data);
                         data.splice(0, 0,
                             { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
@@ -534,7 +732,7 @@
                 $(window).warningMessage('resetOnShown');
                 $(window).warningMessage('show', window.lang.translate("Please select deal"),
                     window.lang.translate("Please select deal"));
-                // $('#loadingImage_DdslickVehicleTypeBuyBack').loadImager('removeLoadImage');
+                 $('#loadingImage_DdslickDealVehicleTypeBuyBack').loadImager('removeLoadImage');
             }
         },
         onAftertab_Body: function (e) {

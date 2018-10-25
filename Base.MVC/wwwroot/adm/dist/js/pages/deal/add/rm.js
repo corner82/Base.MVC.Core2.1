@@ -9,9 +9,7 @@
     $('#loadingImage_DdslickRMTime').loadImager();
     $('#loadingImage_DdslickRMKm').loadImager();
     
-    
-    
-    $('#loadingImage_DdslickAksesuarSuppliers').loadImager();
+
     //----------------------------------loadImager end-------------------------------------------------
 
    
