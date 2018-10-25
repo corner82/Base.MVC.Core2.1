@@ -62,6 +62,9 @@
     <Content Update="Views\ParkOff\ParkOff.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\RepairMaintenance\RepairMaintenanceMatrix.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Stock\StockTopUsed.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

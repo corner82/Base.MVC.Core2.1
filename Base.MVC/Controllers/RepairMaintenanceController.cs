@@ -15,17 +15,16 @@ using Base.Core.Utills.Url;
 using Base.Core.Http.HttpRequest.Concrete;
 using Microsoft.AspNetCore.Http.Extensions;
 using Base.MVC.Models.HttpRequest;
-using Base.MVC.Models.HttpRequest.Training;
-using Base.MVC.Models.HttpRequest.ParkOff;
+using Base.MVC.Models.HttpRequest.RepairMaintenance;
 
 namespace Base.MVC.Controllers
 {
-    public class ParkOffController : Controller
+    public class RepairMaintenanceController : Controller
     {
         private readonly IDistributedCache _distributedCache;
         private QueryCreater _queryCreater;
 
-        public ParkOffController(IDistributedCache distributedCache,
+        public RepairMaintenanceController(IDistributedCache distributedCache,
                               QueryCreater queryCreater)
         {
             _distributedCache = distributedCache;
@@ -41,14 +40,13 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
 
-        public async Task<IActionResult> ParkOff()
+        public async Task<IActionResult> RepairMaintenanceMatrix()
         {
             return View();
         }
 
-
         /// <summary>
-        /// get ParkOff grid 
+        /// get RepairMaintenanceMatrix grid 
         /// Ceydacan Seyrek
         /// </summary>
         /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFixedSalesCostsGridx_sysfixedsalescosts&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
@@ -57,7 +55,7 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> ParkoffGrid([FromBody] DefaultPostModelGridList gridModel)
+        public async Task<string> RepairMaintenanceMatrixGrid([FromBody] DefaultPostModelGridList gridModel)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +76,7 @@ namespace Base.MVC.Controllers
         }
 
         /// <summary>
-        /// Delete ParkOff
+        /// Delete RepairMaintenanceMatrix
         ///Ceydacan Seyrek
         /// </summary>
         /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_sysfixedsalescosts&id=33&pk=GsZVzEYe50uGgNM
@@ -87,7 +85,7 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> DeleteParkoff([FromBody] DeletePostModel deleteModel)
+        public async Task<string> DeleteRepairMaintenanceMatrix([FromBody] DeletePostModel deleteModel)
         {
             var headers = new Dictionary<string, string>();
             var tokenGenerated = HttpContext.Session.GetHmacToken();
@@ -100,7 +98,7 @@ namespace Base.MVC.Controllers
         }
 
         /// <summary>
-        /// add ParkOff
+        /// add RepairMaintenanceMatrix
         /// Ceydacan Seyrek
         /// </summary>
         /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_sysfixedsalescosts&name=gitgel%20cost&vehicle_gruop_id=1&vehicle_second_group_id=&vvalue=1111=&currency_type_id=16&start_date=2018-10-10&is_all_vehicle=1=warranty_matrix_id=&pk=GsZVzEYe50uGgNM
@@ -109,7 +107,7 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> AddParkoff ([FromBody] ParkOff parkoff)
+        public async Task<string> AddRepairMaintenanceMatrix([FromBody] RepairMaintenance repairMaintenanceMatrix)
         {
             if (ModelState.IsValid)
             {
@@ -117,7 +115,7 @@ namespace Base.MVC.Controllers
                 var tokenGenerated = HttpContext.Session.GetHmacToken();
                 headers.Add("X-Hmac", tokenGenerated);
                 headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-                string queryStr = _queryCreater.GetQueryStringFromObject(parkoff);
+                string queryStr = _queryCreater.GetQueryStringFromObject(repairMaintenanceMatrix);
                 var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
                 var data = response.Content.ReadAsStringAsync().Result;
                 return data.ToString();
@@ -128,6 +126,5 @@ namespace Base.MVC.Controllers
             }
 
         }
-
     }
 }
