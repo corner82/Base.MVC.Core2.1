@@ -111,7 +111,7 @@ $(document).ready(function () {
     $("#loading-image-customername").loadImager('removeLoadImage');
     $("#loading-image-customername").loadImager('appendImage');
 
-    var ajax_customername = $('#ajaxACL-customername').ajaxCallWidget({
+    var ajax_customername = $('#ajaxACL-act-customername').ajaxCallWidget({
         proxy: '/Customer/DdslickGetAllCustomers',
         type: "POST",
         transactionFailureText: window.lang.translate("Service URL not found, please report error"),
@@ -137,6 +137,9 @@ $(document).ready(function () {
                 width: '100%',
 
                 onSelected: function (selectedData) {
+
+                    $('#dropdownContactPerson').ddslick('destroy');
+
                     if (selectedData.selectedData.value > 0) {
 
                         selectedCustomerId = selectedData.selectedData.value;
@@ -144,7 +147,7 @@ $(document).ready(function () {
                         $("#loading-image-contactperson").loadImager('removeLoadImage');
                         $("#loading-image-contactperson").loadImager('appendImage');
 
-                        var ajax_contactperson = $('#ajaxACL-contactperson').ajaxCallWidget({
+                        var ajax_contactperson = $('#ajaxACL-act-contactperson').ajaxCallWidget({
                             proxy: '/Customer/DdslickGetCustomerContactList',
                             type: "POST",
                             transactionFailureText: window.lang.translate("Service URL not found, please report error"),
@@ -176,28 +179,35 @@ $(document).ready(function () {
                                         }
                                     }
                                 });
-
-                                if (filldropdown === true) {
-                                    $('#dropdownContactPerson').ddslick('selectByValue',
-                                        {
-                                            index: ddslick_contactpersonId,
-                                            value: ddslick_contactperson_name
-                                        });
-                                    filldropdown = false;
-                                }
                                 $("#loading-image-contactperson").loadImager('removeLoadImage');
 
+                                if (filldropdown === true) {
+                                    //alert(ddslick_contactpersonId);
+                                    //alert(ddslick_contactperson_name);
+                                    $('#dropdownContactPerson').ddslick('selectByValue',
+                                    {
+                                        index: ddslick_contactpersonId,
+                                        value: ddslick_contactperson_name
+                                    });
+                                    filldropdown = false;
+                                }
+                            },
+                            onAfterSuccess: function (event, data) {
+                                //alert('geldim AfterSuccess province');
+
+                                $("#loading-image-contactperson").loadImager('removeLoadImage');
                             }
                         })
                         ajax_contactperson.ajaxCallWidget('call');
+                       
                     }
                 }
             });
-
             $("#loading-image-customername").loadImager('removeLoadImage');
         }
     })
     ajax_customername.ajaxCallWidget('call');
+
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Activity type "Fair Visit","Customer support interview","Customer Visit(Inbound)","Customer Visit(Outbound)","Phone Interview(Incoming)","Telephone Interview(Outgoing)",
@@ -560,19 +570,7 @@ $(document).ready(function () {
     ajaxACLResources_activitylaststatus.ajaxCallWidget('call');
 
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
-
-    /**
-     * insert / update Activity
-     * @returns {undefined}
-     * @author Gül Özdemir
-     * @since 07/08/2018
-     */
-
-    $("#btn-activity-save").on("click", function (e) {
-        e.preventDefault();
-        
+    window.activity_savebutton = function () {
         var mydata;
 
         if ($("#activityForm").validationEngine('validate')) {
@@ -635,7 +633,7 @@ $(document).ready(function () {
 
                 var ddData_ActivityStatus = $('#dropdownActivityStatus').data('ddslick');
                 var activitystatusId = ddData_ActivityStatus.selectedData.value;
-            
+
                 var ddData_ActivityPlanned = $('#dropdownActivityPlanned').data('ddslick');
                 var activityplannedId = ddData_ActivityPlanned.selectedData.value;
 
@@ -657,14 +655,14 @@ $(document).ready(function () {
                 var ajax;
 
                 if (selectedActivityId === 0) {
-                //alert("yeni kayıt");
-                //Yeni kayıt
+                    //alert("yeni kayıt");
+                    //Yeni kayıt
 
-                /*  cs_activation_type_id: 2	Fair visit, Customer Visit vs.
-                    cs_statu_types_id: 1	    active, pasive, project
-                    cs_act_statutype_id: 1	    arshived, cancelled, planed, unplaned
-                    planned_unplaned_id: 2	    planed, unplaned, 2 tane daha
-                                                (takipli için) Fair visit, Customer Visit vs.		 */
+                    /*  cs_activation_type_id: 2	Fair visit, Customer Visit vs.
+                        cs_statu_types_id: 1	    active, pasive, project
+                        cs_act_statutype_id: 1	    arshived, cancelled, planed, unplaned
+                        planned_unplaned_id: 2	    planed, unplaned, 2 tane daha
+                                                    (takipli için) Fair visit, Customer Visit vs.		 */
                     mydata = JSON.stringify({
                         url: "pkInsertAct_infocustomeractivations",
                         customer_id: selectedCustomerId,
@@ -709,6 +707,7 @@ $(document).ready(function () {
                         },
                         onAfterSuccess: function (event, data) {
                             $("#gridContainer_activity").dxDataGrid("instance").refresh();
+                            resetActivityForm();
                             $("#loading-image-activity").loadImager('removeLoadImage');
                         }
                     })
@@ -742,7 +741,7 @@ $(document).ready(function () {
                     })
 
                     console.log(mydata);
-                    
+
                     wcm.warningComplexMessage({
                         onConfirm: function (event, data) {
                             ajax = $('#ajaxACL-activity').ajaxCallWidget({
@@ -756,13 +755,14 @@ $(document).ready(function () {
                                 type: "POST",
                                 data: mydata
                             });
-                                
+
                             ajax.ajaxCallWidget({
                                 onReset: function (event, data) {
-                                        
+
                                 },
                                 onAfterSuccess: function (event, data) {
                                     $("#gridContainer_activity").dxDataGrid("instance").refresh();
+                                    resetActivityForm();
                                     $("#loading-image-activity").loadImager('removeLoadImage');
                                 }
                             })
@@ -771,13 +771,39 @@ $(document).ready(function () {
                         }
                     });
                     wcm.warningComplexMessage('show', 'Activity will be updated! Are you sure?', 'Activity will be updated! Are you sure?');
-          
+
                 }
             }
         }
         return false;
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    /**
+     * insert / update Activity
+     * @returns {undefined}
+     * @author Gül Özdemir
+     * @since 07/08/2018
+     */
+
+    $("#btn-activity-save").on("click", function (e) {
+        e.preventDefault();
+        activity_savebutton();
+
     })
 
+    /**
+      * insert / update Activity
+      * @returns {undefined}
+      * @author Gül Özdemir
+      * @since 07/08/2018
+      */
+
+    $("#btn-activityreport-save").on("click", function (e) {
+        e.preventDefault();
+
+        activity_savebutton();
+    })
 
     /**
     * Activity Form kontrol (extantions)
@@ -861,6 +887,8 @@ $(document).ready(function () {
         $('#dropdownFollowuptype').ddslick('select', { index: String(0) });
         $('#dropdownActivityLastStatus').ddslick('select', { index: String(0) });
 
+        tab_disable();
+
         $("#loading-image-activity").loadImager('removeLoadImage');
 
         return false;
@@ -875,11 +903,13 @@ $(document).ready(function () {
     */
 
     window.fillActivityForm = function (data) {
-        $("#loading-image-activity").loadImager('removeLoadImage');
-        $("#loading-image-activity").loadImager('appendImage');
 
         resetActivityForm;
+        filldropdown = true;
 
+        $("#loading-image-activity").loadImager('removeLoadImage');
+        $("#loading-image-activity").loadImager('appendImage');
+        
         selectedActivityId = data.id;
 
         if (data.customer_id) {
@@ -890,9 +920,18 @@ $(document).ready(function () {
             ddslick_customer_name = "";
         }
 
-        if (data.contactperson_id) {
-            ddslick_contactpersonId = data.contactperson_id;
+        //alert(data.contact_person_id);
+        if (data.contact_person_id) {
+
+            ddslick_contactpersonId = data.contact_person_id;
             ddslick_contactperson_name = data.namesurname;
+            /*
+            $('#dropdownContactPerson').ddslick('selectByValue',
+                {
+                    index: ddslick_contactpersonId,
+                    value: ddslick_contactperson_name
+                });
+            */
         } else {
             ddslick_contactpersonId = 0;
             ddslick_contactperson_name = "";
@@ -906,6 +945,7 @@ $(document).ready(function () {
                 }
             );
         }
+
 
         if (data.activation_type_name) {
             $('#dropdownActivityType').ddslick('selectByValue',
@@ -1002,13 +1042,6 @@ $(document).ready(function () {
                 }
             );
         }
-
-        if (data.realization_date) {
-            document.getElementById("activity-realization-datetimepicker").value = data.realization_date;
-        } else {
-            document.getElementById("activity-realization-datetimepicker").value = "";
-        }
-
         if (data.cs_act_statutype_name) {
             $('#dropdownActivityLastStatus').ddslick('selectByValue',
                 {
@@ -1016,6 +1049,20 @@ $(document).ready(function () {
                     value: data.cs_act_statutype_name
                 }
             );
+        }
+
+        if (data.realization_date) {
+            tab_active();
+            document.getElementById("activity-realization-datetimepicker").value = data.realization_date;
+        } else {
+            tab_disable();
+            document.getElementById("activity-realization-datetimepicker").value = "";
+        }
+
+        if (data.report) {
+            document.getElementById("activity_report").value = datareport;
+        } else {
+            document.getElementById("activity_report").value = "";
         }
 
         $("#loading-image-activity").loadImager('removeLoadImage');
