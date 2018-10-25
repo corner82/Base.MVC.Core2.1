@@ -22,6 +22,311 @@
      */
     $("#deal_hidden").organizeTabs({
         onAftertab_RM: function (e) {
+
+
+            //----------------------------------grid begin-------------------------------------------------
+            /* 
+            * deal warranty grid data source
+            * @author Mustafa Zeynel dağlı
+            * @since 12/10/2018
+            * */
+            var warrantyDealMatrix_grid_datasource = new DevExpress.data.CustomStore({
+                load: function (loadOptions) {
+                    var deferred = $.Deferred(),
+                        args = {};
+
+                    if (loadOptions.sort) {
+                        args.orderby = loadOptions.sort[0].selector;
+                        if (loadOptions.sort[0].desc)
+                            args.orderby += " desc";
+                    }
+
+                    args.skip = loadOptions.skip || 0;
+                    args.take = loadOptions.take || 12;
+
+                    $.ajax({
+                        url: '/DefaultPost/DefaultGridPostModel',
+                        dataType: "json",
+                        data: JSON.stringify({
+                            language_code: $("#langCode").val(),
+                            pk: "GsZVzEYe50uGgNM",
+                            url: "pkFillProjectWarrantiesGridx_infoprojectwarranties",
+                            pkIdentity: $("#publicKey").val(),
+                            project_id: parseInt($("#deal_hidden").deal("getDealID")),
+                            page: "",
+                            rows: "",
+                            sort: "",
+                            order: "",
+
+                        }),
+                        type: 'POST',
+                        contentType: 'application/json',
+                        success: function (result) {
+                            deferred.resolve(result.items, { totalCount: result.totalCount });
+                        },
+                        error: function () {
+                            deferred.reject("Data Loading Error");
+                        },
+                        timeout: 30000
+                    });
+                    return deferred.promise();
+                }
+            });
+            DevExpress.localization.locale($('#langCode').val());
+            $("#gridContainer_DealRM").dxDataGrid({
+                showColumnLines: true,
+                showRowLines: true,
+                rowAlternationEnabled: true,
+                showBorders: true,
+                // dataSource: orders,
+                dataSource: warrantyDealMatrix_grid_datasource,
+                columnHidingEnabled: false,
+                editing: {
+                    //mode: "batch"
+                    mode: "row",
+                    //allowAdding: false,
+                    allowUpdating: false,
+                    allowDeleting: false,
+                    useIcons: false
+                },
+                "export": {
+                    enabled: true,
+                    fileName: "Orders"
+                },
+                grouping: {
+                    contextMenuEnabled: true,
+                    expandMode: "rowClick"
+                },
+                groupPanel: {
+                    emptyPanelText: "Use the context menu of header columns to group data",
+                    visible: true
+                },
+                pager: {
+                    allowedPageSizes: [5, 8, 15, 30],
+                    showInfo: true,
+                    showNavigationButtons: true,
+                    showPageSizeSelector: true,
+                    visible: true
+                },
+                paging: {
+                    pageSize: 8
+                },
+                filterRow: {
+                    visible: true,
+                    applyFilter: "auto"
+                },
+                searchPanel: {
+                    visible: true,
+                    width: 240,
+                    //placeholder: "Search..."
+                    placeholder: window.lang.translate("Search")
+                },
+                headerFilter: {
+                    visible: true
+                },
+                columnChooser: {
+                    enabled: true,
+                    mode: "select"
+                },
+                selection: {
+                    mode: "single"
+                },
+                onSelectionChanged: function (selectedItems) {
+                    var data = selectedItems.selectedRowsData[0];
+                    console.log(data);
+                    /*if (data) {
+                        selectedBranchId = data.id;
+                        filldropdown = true;
+                        fillBranchForm(data);
+                        //filldropdown = false;
+                    }*/
+                },
+                columns: [
+                    {
+                        //allowGrouping: false,
+                        caption: "Vehicle",
+                        dataField: "vehicle_description"
+                    },
+                    {
+                        caption: "Warranty code",
+                        dataField: "waranty_code"
+                    },
+                    {
+                        caption: "Warranty type",
+                        dataField: "warranty_type_name"
+                    },
+                    {
+                        caption: "Model",
+                        dataField: "vehicle_gt_model_name"
+                    },
+                    {
+                        caption: "Month",
+                        dataField: "month_value"
+                    },
+                    {
+                        caption: "Mileagas",
+                        dataField: "mileages1"
+                    }
+
+                ],
+                customizeColumns: function (columns) {
+                    //columns[5].format = { type: "currency", currency: "EUR" };
+                },
+
+
+            });
+
+            /* 
+            * warranty grid data source
+            * @author Mustafa Zeynel dağlı
+            * @since 12/10/2018
+            * */
+            var warrantyMatrix_grid_datasource = new DevExpress.data.CustomStore({
+                load: function (loadOptions) {
+                    var deferred = $.Deferred(),
+                        args = {};
+
+                    if (loadOptions.sort) {
+                        args.orderby = loadOptions.sort[0].selector;
+                        if (loadOptions.sort[0].desc)
+                            args.orderby += " desc";
+                    }
+
+                    args.skip = loadOptions.skip || 0;
+                    args.take = loadOptions.take || 12;
+
+                    $.ajax({
+                        url: '/DefaultPost/DefaultGridPostModel',
+                        dataType: "json",
+                        data: JSON.stringify({
+                            language_code: $("#langCode").val(),
+                            pk: "GsZVzEYe50uGgNM",
+                            url: "pkFillWarrantyMatrixGridx_syswarrantymatrix",
+                            pkIdentity: $("#publicKey").val(),
+                            project_id: parseInt($("#deal_hidden").deal("getDealID")),
+                            page: "",
+                            rows: "",
+                            sort: "",
+                            order: "",
+
+                        }),
+                        type: 'POST',
+                        contentType: 'application/json',
+                        success: function (result) {
+                            deferred.resolve(result.items, { totalCount: result.totalCount });
+                        },
+                        error: function () {
+                            deferred.reject("Data Loading Error");
+                        },
+                        timeout: 30000
+                    });
+
+                    return deferred.promise();
+                }
+            });
+            DevExpress.localization.locale($('#langCode').val());
+            $("#gridContainer_RM").dxDataGrid({
+                showColumnLines: true,
+                showRowLines: true,
+                rowAlternationEnabled: true,
+                showBorders: true,
+                // dataSource: orders,
+                dataSource: warrantyMatrix_grid_datasource,
+                columnHidingEnabled: false,
+                editing: {
+                    //mode: "batch"
+                    mode: "row",
+                    //allowAdding: false,
+                    allowUpdating: false,
+                    allowDeleting: false,
+                    useIcons: false
+                },
+                "export": {
+                    enabled: true,
+                    fileName: "Orders"
+                },
+                grouping: {
+                    contextMenuEnabled: true,
+                    expandMode: "rowClick"
+                },
+                groupPanel: {
+                    emptyPanelText: "Use the context menu of header columns to group data",
+                    visible: true
+                },
+                pager: {
+                    allowedPageSizes: [5, 8, 15, 30],
+                    showInfo: true,
+                    showNavigationButtons: true,
+                    showPageSizeSelector: true,
+                    visible: true
+                },
+                paging: {
+                    pageSize: 8
+                },
+                filterRow: {
+                    visible: true,
+                    applyFilter: "auto"
+                },
+                searchPanel: {
+                    visible: true,
+                    width: 240,
+                    //placeholder: "Search..."
+                    placeholder: window.lang.translate("Search")
+                },
+                headerFilter: {
+                    visible: true
+                },
+                columnChooser: {
+                    enabled: true,
+                    mode: "select"
+                },
+                selection: {
+                    mode: "single"
+                },
+                onSelectionChanged: function (selectedItems) {
+                    var data = selectedItems.selectedRowsData[0];
+                    console.log(data);
+                    /*if (data) {
+                        selectedBranchId = data.id;
+                        filldropdown = true;
+                        fillBranchForm(data);
+                        //filldropdown = false;
+                    }*/
+                },
+                columns: [
+                    {
+                        //allowGrouping: false,
+                        caption: "Vehicle group",
+                        dataField: "vehicle_group"
+                    },
+                    {
+                        caption: "Maint.",
+                        dataField: "ismaintenance"
+                    },
+                    {
+                        caption: "Config",
+                        dataField: "vehicle_config_name"
+                    },
+                    {
+                        caption: "Group name",
+                        dataField: "vehicle_group_name"
+                    },
+                    {
+                        caption: "Type",
+                        dataField: "warranty_type_name"
+                    },
+
+                ],
+                customizeColumns: function (columns) {
+                    //columns[5].format = { type: "currency", currency: "EUR" };
+                },
+
+
+            });
+
+            //----------------------------------grid end-------------------------------------------------
+
+
             $('#loadingImage_DdslickDealVehicleTypeRM').loadImager('removeLoadImage');
             $("#loadingImage_DdslickDealVehicleTypeRM").loadImager('appendImage');
             if (parseInt($("#deal_hidden").deal("getDealID")) > 0) {
@@ -82,7 +387,6 @@
                     window.lang.translate("Please select deal"));
                 $('#loadingImage_DdslickDealVehicleTypeRM').loadImager('removeLoadImage');
             }
-
 
             //----------------------------------dropdowns begin-------------------------------------------------
 
@@ -287,7 +591,7 @@
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
-                    url: "ddslickRMTime",
+                    url: "pkRmMonthsDdList_sysmonths",
                     pkIdentity: $("#publicKey").val()
                 })
             });
@@ -309,67 +613,6 @@
             })
             ajax_Ddslick5.ajaxCallWidget('call');
 
-
-
-            /**
-           * ddslick deal vehicle type dropdown function (body)
-           * @author Mustafa Zeynel Dağlı
-           * @since 16/08/2018
-           */
-            var getDealVehicleTypeDdslick = function () {
-                if (parseInt($("#deal_hidden").deal("getDealID")) > 0) {
-                    $('#loadingImage_DdslickDealVehicleTypeBody').loadImager('removeLoadImage');
-                    $("#loadingImage_DdslickDealVehicleTypeBody").loadImager('appendImage');
-                    var ddDataVehicleGroupsBody = $('#ddslickVehicleGroupsBody').data("ddslick");
-                    var ajax_DdslickDealVehicleTypeBody = $('#ajax_DdslickDealVehicleTypeBody').ajaxCallWidget({
-                        proxy: '/Deal/DdslickGetDealVehicleTypeProxyService',
-                        type: "POST",
-                        failureLoadImage: true,
-                        loadingImageID: "loadingImage_DdslickDealVehicleTypeBody",
-                        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                        noDataFailureText: window.lang.translate("No data returned from service"),
-                        data: JSON.stringify({
-                            language_code: $("#langCode").val(),
-                            pk: "GsZVzEYe50uGgNM",
-                            url: "pkVehicleGroupsDdList_sysvehiclegroups",
-                            pkIdentity: $("#publicKey").val(),
-                            project_id: parseInt($("#deal_hidden").deal("getDealID")),
-                            vehicle_groups_id: parseInt(ddDataVehicleGroupsBody.selectedData.value)
-                        })
-
-                    });
-                    ajax_DdslickDealVehicleTypeBody.ajaxCallWidget({
-                        onSuccess: function (event, data) {
-                            var data = $.parseJSON(data);
-                            data.splice(0, 0,
-                                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-                            );
-                            $('#ddslickDealVehicleTypeBody').ddslick({
-                                //height: 150,
-                                data: data,
-                                width: '100%',
-                                onSelected: function (selectedData) {
-                                    if (selectedData.selectedData.value > 0) {
-                                        //vehicleKitTypeForDefineFields(selectedData.selectedData.text);
-                                    }
-                                }
-                            });
-                            $("#loadingImage_DdslickDealVehicleTypeBody").loadImager('removeLoadImage');
-                        },
-                    })
-                    ajax_DdslickDealVehicleTypeBody.ajaxCallWidget('call');
-                } else {
-                    /*$('#tab_VehicleType').loadImager('removeLoadImage');
-                    $('#tab_VehicleType').loadImager('appendImage');*/
-                    //alert("deal id < 0");
-                    $(window).warningMessage('resetOnShown');
-                    $(window).warningMessage('show', "Please select deal",
-                        "Please select deal");
-                }
-
-
-            };
-
     //----------------------------------dropdowns end-------------------------------------------------
 
 
@@ -377,190 +620,27 @@
         
     });
 
-
-    //----------------------------------grid begin-------------------------------------------------
-    
-    /* 
-    * warranty grid data source
-    * @author Mustafa Zeynel dağlı
-    * @since 12/10/2018
-    * */
-    var warrantyMatrix_grid_datasource = new DevExpress.data.CustomStore({
-        load: function (loadOptions) {
-            var deferred = $.Deferred(),
-                args = {};
-
-            if (loadOptions.sort) {
-                args.orderby = loadOptions.sort[0].selector;
-                if (loadOptions.sort[0].desc)
-                    args.orderby += " desc";
-            }
-
-            args.skip = loadOptions.skip || 0;
-            args.take = loadOptions.take || 12;
-
-            /*var customerType = window.getSelectedDDslickValueOrDefaultVal("ddslickVehicleGroupsWarranty");
-            var terrainType = window.getSelectedDDslickValueOrDefaultVal("ddslickDealVehicleTypeWarranty");
-            var repmainType = window.getSelectedDDslickValueOrDefaultVal("ddslickWarrantyType");
-            var hydraType = window.getSelectedDDslickValueOrDefaultVal("ddslickWarrantyTerm");
-            var vehicleType = window.getSelectedDDslickValueOrDefaultVal("ddslickWarrantyKm");*/
-
-            $.ajax({
-                url: '/DefaultPost/DefaultGridPostModel',
-                dataType: "json",
-                data: JSON.stringify({
-                    language_code: $("#langCode").val(),
-                    pk: "GsZVzEYe50uGgNM",
-                    url: "pkFillProjectVehicleAccGridx_infoprojectacc",
-                    pkIdentity: $("#publicKey").val(),
-                    project_id: parseInt($("#deal_hidden").deal("getDealID")),
-                    page: "",
-                    rows: "",
-                    sort: "",
-                    order: "",
-
-                }),
-                type: 'POST',
-                contentType: 'application/json',
-                success: function (result) {
-                    deferred.resolve(result.items, { totalCount: result.totalCount });
-                },
-                error: function () {
-                    deferred.reject("Data Loading Error");
-                },
-                timeout: 30000
-            });
-
-            return deferred.promise();
-        }
-    });
-    DevExpress.localization.locale($('#langCode').val());
-    $("#gridContainer_Aksesuar").dxDataGrid({
-        showColumnLines: true,
-        showRowLines: true,
-        rowAlternationEnabled: true,
-        showBorders: true,
-        // dataSource: orders,
-        dataSource: warrantyMatrix_grid_datasource,
-        columnHidingEnabled: false,
-        editing: {
-            //mode: "batch"
-            mode: "row",
-            //allowAdding: false,
-            allowUpdating: false,
-            allowDeleting: false,
-            useIcons: false
-        },
-        "export": {
-            enabled: true,
-            fileName: "Orders"
-        },
-        grouping: {
-            contextMenuEnabled: true,
-            expandMode: "rowClick"
-        },
-        groupPanel: {
-            emptyPanelText: "Use the context menu of header columns to group data",
-            visible: true
-        },
-        pager: {
-            allowedPageSizes: [5, 8, 15, 30],
-            showInfo: true,
-            showNavigationButtons: true,
-            showPageSizeSelector: true,
-            visible: true
-        },
-        paging: {
-            pageSize: 8
-        },
-        filterRow: {
-            visible: true,
-            applyFilter: "auto"
-        },
-        searchPanel: {
-            visible: true,
-            width: 240,
-            //placeholder: "Search..."
-            placeholder: window.lang.translate("Search")
-        },
-        headerFilter: {
-            visible: true
-        },
-        columnChooser: {
-            enabled: true,
-            mode: "select"
-        },
-        selection: {
-            mode: "single"
-        },
-        onSelectionChanged: function (selectedItems) {
-            var data = selectedItems.selectedRowsData[0];
-            console.log(data);
-            /*if (data) {
-                selectedBranchId = data.id;
-                filldropdown = true;
-                fillBranchForm(data);
-                //filldropdown = false;
-            }*/
-        },
-        columns: [
-            {
-                //allowGrouping: false,
-                caption: "Option",
-                dataField: "option_name"
-            },
-            {
-                caption: "Supplier",
-                dataField: "supplier_name"
-            },
-            {
-                caption: "tag name",
-                dataField: "tag_name"
-            },
-            {
-                caption: "model name",
-                dataField: "vehicle_gt_model_name"
-            },
-            {
-                caption: "Other brand name",
-                dataField: "other_acc_brand"
-            },
-
-        ],
-        customizeColumns: function (columns) {
-            //columns[5].format = { type: "currency", currency: "EUR" };
-        },
-
-
-    });
-
-    //----------------------------------grid end-------------------------------------------------
-
-
-
-
-
     //----------------------------------add aksesuar to deal begin-------------------------------------------------
 
     /**
      * loading image for add vehicle type process
      * */
-    $('#tab_Aksesuar').loadImager();
+    $('#tab_RM').loadImager();
 
     /**
      * add deal form body reset
      * @author Mustafa Zeynel Dağlı
      * */
     var resetAksesuarAddDealForm = function () {
-        $('#addAksesuarForm').validationEngine('hide');
-        $('#addAksesuarForm')[0].reset();
+        $('#addRMForm').validationEngine('hide');
+        $('#addRMForm')[0].reset();
     }
 
     /**
      * add vehicle type form validation engine activated
      * @author Mustafa Zeynel Dağlı
      * */
-    $("#addAksesuarForm").validationEngine();
+    $("#addRMForm").validationEngine();
 
 
     /**
@@ -670,7 +750,7 @@
      * @author Mustafa Zeynel Dağlı
      * @since 17/10/2018
      * */
-    window.addAksesuarProposalPopupWrapper = function (e) {
+    window.addRMProposalPopupWrapper = function (e) {
         //alert("popup submit click");
 
         if ($("#aksesuarProposalForm").validationEngine('validate')) {
@@ -687,54 +767,87 @@
      * @author Mustafa Zeynel Dağlı
      * @since 17/10/2018
      * */
-    window.openAddProposalAksesuarPopUp = function () {
+    window.openAddProposalRMPopUp = function () {
         BootstrapDialog.show({
             title: window.lang.translate("Add proposal"),
             message: function (dialogRef) {
                 var dialogRef = dialogRef;
                 var $message = $(' <div class="row">\n\
                                              <div class="col-md-12">\n\
-                                                 <div id="loadingImage_AddAksesuarProposal" class="box box-primary">\n\
-                                                     <form id="aksesuarProposalForm" method="get" class="form-horizontal">\n\
+                                                 <div id="loadingImage_AddRMProposal" class="box box-primary">\n\
+                                                     <form id="rmProposalForm" method="get" class="form-horizontal">\n\
                                                      <input type="hidden" id="machine_tool_group_id_popup" name="machine_tool_group_id_popup"  />\n\
                                                      <div class="hr-line-dashed"></div>\n\
                                                          <div class="form-group">\n\
-                                                             <label class="col-sm-2 control-label">Accesory name</label>\n\
+                                                             <label class="col-sm-2 control-label">Vehicle groups</label>\n\
                                                              <div id="mach-prod-box-popup" class="col-sm-10">\n\
                                                                  <div class="input-group">\n\
                                                                      <div class="input-group-addon">\n\
                                                                          <i class="fa fa-hand-o-right"></i>\n\
                                                                      </div>\n\
-                                                                     <textarea data-prompt-position="topLeft:70" class="form-control validate[required]" rows="3" name="accesoryName_popup" id="accesoryName_popup" placeholder=""></textarea>\n\
+                                                                     <div id="ddslickVehicleGroupsRMPopup"></div>\n\
                                                                  </div>\n\
                                                              </div>\n\
                                                          </div>\n\
                                                          <div class="form-group">\n\
-                                                             <label class="col-sm-2 control-label">Brand</label>\n\
+                                                             <label class="col-sm-2 control-label">Vehicle type</label>\n\
                                                              <div id="mach-prod-box-popup" class="col-sm-10">\n\
                                                                  <div class="input-group">\n\
                                                                      <div class="input-group-addon">\n\
                                                                          <i class="fa fa-hand-o-right"></i>\n\
                                                                      </div>\n\
-                                                                     <textarea data-prompt-position="topLeft:70" class="form-control validate[required]" rows="3" name="brandName_popup" id="brandName_popup" placeholder=""></textarea>\n\
+                                                                    <div id="ddslickDealVehicleTypeRMPopup"></div>\n\
                                                                  </div>\n\
                                                              </div>\n\
                                                          </div>\n\
                                                          <div class="form-group">\n\
-                                                             <label class="col-sm-2 control-label">Supplier</label>\n\
+                                                             <label class="col-sm-2 control-label">Quantity</label>\n\
                                                              <div id="mach-prod-box-popup" class="col-sm-10">\n\
                                                                  <div class="input-group">\n\
                                                                      <div class="input-group-addon">\n\
                                                                          <i class="fa fa-hand-o-right"></i>\n\
                                                                      </div>\n\
-                                                                     <textarea data-prompt-position="topLeft:70" class="form-control validate[required]" rows="3" name="supplierName_popup" id="supplierName_popup" placeholder=""></textarea>\n\
+                                                                     <input id="quantity_RMPopup" type="text" class="form-control validate[required]" placeholder="Quantity">\n\
+                                                                 </div>\n\
+                                                             </div>\n\
+                                                         </div>\n\
+                                                         <div class="form-group">\n\
+                                                             <label class="col-sm-2 control-label">Month</label>\n\
+                                                             <div id="mach-prod-box-popup" class="col-sm-10">\n\
+                                                                 <div class="input-group">\n\
+                                                                     <div class="input-group-addon">\n\
+                                                                         <i class="fa fa-hand-o-right"></i>\n\
+                                                                     </div>\n\
+                                                                     <div id="ddslickRMTimePopup"></div>\n\
+                                                                 </div>\n\
+                                                             </div>\n\
+                                                         </div>\n\
+                                                         <div class="form-group">\n\
+                                                             <label class="col-sm-2 control-label">Km</label>\n\
+                                                             <div id="mach-prod-box-popup" class="col-sm-10">\n\
+                                                                 <div class="input-group">\n\
+                                                                     <div class="input-group-addon">\n\
+                                                                         <i class="fa fa-hand-o-right"></i>\n\
+                                                                     </div>\n\
+                                                                     <div id="ddslickRMKmPopup"></div>\n\
+                                                                 </div>\n\
+                                                             </div>\n\
+                                                         </div>\n\
+                                                         <div class="form-group">\n\
+                                                             <label class="col-sm-2 control-label">Km</label>\n\
+                                                             <div id="mach-prod-box-popup" class="col-sm-10">\n\
+                                                                 <div class="input-group">\n\
+                                                                     <div class="input-group-addon">\n\
+                                                                         <i class="fa fa-hand-o-right"></i>\n\
+                                                                     </div>\n\
+                                                                     <input type="file" class="form-control " id="file" name="file"  />\n\
                                                                  </div>\n\
                                                              </div>\n\
                                                          </div>\n\
                                                          <div class="hr-line-dashed"></div>\n\
                                                          <div class="form-group">\n\
                                                              <div class="col-sm-10 col-sm-offset-2">\n\
-                                                             <button id="add_aksesuar_proposal" class="btn btn-primary" type="button" onclick="return addAksesuarProposalPopupWrapper(event);" >\n\
+                                                             <button id="add_aksesuar_proposal" class="btn btn-primary" type="button" onclick="return addRMProposalPopupWrapper(event);" >\n\
                                                                  <i class="fa fa-save"></i> Add proposal </button>\n\
                                                          </div>\n\
                                                      </div>\n\
@@ -745,17 +858,157 @@
                 return $message;
             },
             type: BootstrapDialog.TYPE_PRIMARY,
-            onshow: function (dialogRef) {
-                
+            onshow: function (dialogRef) {  
             },
             onshown: function () {
-                $('#aksesuarProposalForm').validationEngine();
-                $('#loadingImage_AddAksesuarProposal').loadImager();
-                //$('#loadingImage_AddAksesuarProposal').loadImager("appendImage");
+                $('#rmProposalForm').validationEngine();
+                $('#loadingImage_AddRMProposal').loadImager();
 
-            },
-            onhide: function () {
-                //alert('onhide popup');
+
+                /**
+            * ddslick vehicle groups (body) dropdown 
+            * @author Mustafa Zeynel Dağlı
+            * @since 16/10/2018
+            */
+               /* $('#loadingImage_DdslickVehicleGroupsRM').loadImager('removeLoadImage');
+                $("#loadingImage_DdslickVehicleGroupsRM").loadImager('appendImage');*/
+                var ajax_DdslickVehicleGroupsAksesuar = $('#ajax_DdslickVehicleGroupsRM').ajaxCallWidget({
+                    proxy: '/DefaultPost/DefaultPostModel',
+                    type: "POST",
+                    failureLoadImage: true,
+                    loadingImageID: "loadingImage_DdslickVehicleGroupsRM",
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    noDataFailureText: window.lang.translate("No data returned from service"),
+                    data: JSON.stringify({
+                        language_code: $("#langCode").val(),
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkVehicleGroupsDdList_sysvehiclegroups",
+                        pkIdentity: $("#publicKey").val()
+                    })
+
+                });
+                ajax_DdslickVehicleGroupsAksesuar.ajaxCallWidget({
+                    onSuccess: function (event, data) {
+                        var data = $.parseJSON(data);
+                        data.splice(0, 0,
+                            { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                        );
+                        $('#ddslickVehicleGroupsRMPopup').ddslick({
+                            //height: 150,
+                            data: data,
+                            width: '100%',
+                            onSelected: function (selectedData) {
+                            }
+                        });
+
+                       // $("#loadingImage_DdslickVehicleGroupsRM").loadImager('removeLoadImage');
+                    },
+                })
+                ajax_DdslickVehicleGroupsAksesuar.ajaxCallWidget('call');
+
+                /**
+               * ddslick deal vehicle type dropdown (aksesuar)
+               * @author Mustafa Zeynel Dağlı
+               * @since 17/10/2018
+               */
+                    var ddslickDealVehicleTypeAksesuarData = [
+                        {
+                            text: 'Please select',
+                            value: 0,
+                            selected: true
+                        },
+                    ];
+                    /*$('#loadingImage_DdslickDealVehicleTypeRM').loadImager('removeLoadImage');
+                    $("#loadingImage_DdslickDealVehicleTypeRM").loadImager('appendImage');*/
+                    $('#ddslickDealVehicleTypeRMPopup').ddslick({
+                        data: ddslickDealVehicleTypeAksesuarData,
+                        width: '100%',
+                        onSelected: function (selectedData) {
+                        }
+                    });
+                    //$("#loadingImage_DdslickDealVehicleTypeRM").loadImager('removeLoadImage');
+
+
+                /**
+                * ddslick vehicle groups (body) dropdown 
+                * @author Mustafa Zeynel Dağlı
+                * @since 16/10/2018
+                */
+                    /*$('#loadingImage_DdslickRMKm').loadImager('removeLoadImage');
+                    $("#loadingImage_DdslickRMKm").loadImager('appendImage');*/
+                    var ajax_Ddslick4 = $('#ajax_DdslickRMKm').ajaxCallWidget({
+                        proxy: '/DefaultPost/DefaultPostModel',
+                        type: "POST",
+                        failureLoadImage: true,
+                        //loadingImageID: "loadingImage_DdslickRMKm",
+                        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                        noDataFailureText: window.lang.translate("No data returned from service"),
+                        data: JSON.stringify({
+                            language_code: $("#langCode").val(),
+                            pk: "GsZVzEYe50uGgNM",
+                            url: "pkMileagesWarrantyDdList_sysmileages",
+                            pkIdentity: $("#publicKey").val()
+                        })
+                    });
+                    ajax_Ddslick4.ajaxCallWidget({
+                        onSuccess: function (event, data) {
+                            var data = $.parseJSON(data);
+                            data.splice(0, 0,
+                                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                            );
+                            $('#ddslickRMKmPopup').ddslick({
+                                data: data,
+                                width: '100%',
+                                onSelected: function (selectedData) {
+                                }
+                            });
+
+                            //$("#loadingImage_DdslickRMKm").loadImager('removeLoadImage');
+                        },
+                    })
+                    ajax_Ddslick4.ajaxCallWidget('call');
+
+
+                /**
+                * ddslick vehicle groups (body) dropdown 
+                * @author Mustafa Zeynel Dağlı
+                * @since 16/10/2018
+                */
+                   /* $('#loadingImage_DdslickRMTime').loadImager('removeLoadImage');
+                    $("#loadingImage_DdslickRMTime").loadImager('appendImage');*/
+                    var ajax_Ddslick5 = $('#ajax_DdslickRMTime').ajaxCallWidget({
+                        proxy: '/DefaultPost/DefaultPostModel',
+                        type: "POST",
+                        failureLoadImage: true,
+                        //loadingImageID: "loadingImage_DdslickRMTime",
+                        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                        noDataFailureText: window.lang.translate("No data returned from service"),
+                        data: JSON.stringify({
+                            language_code: $("#langCode").val(),
+                            pk: "GsZVzEYe50uGgNM",
+                            url: "pkRmMonthsDdList_sysmonths",
+                            pkIdentity: $("#publicKey").val()
+                        })
+                    });
+                    ajax_Ddslick5.ajaxCallWidget({
+                        onSuccess: function (event, data) {
+                            var data = $.parseJSON(data);
+                            data.splice(0, 0,
+                                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                            );
+                            $('#ddslickRMTimePopup').ddslick({
+                                data: data,
+                                width: '100%',
+                                onSelected: function (selectedData) {
+                                }
+                            });
+
+                            //$("#loadingImage_DdslickRMTime").loadImager('removeLoadImage');
+                        },
+                    })
+                    ajax_Ddslick5.ajaxCallWidget('call');
+
+    //----------------------------------dropdowns end-------------------------------------------------
 
             },
         });
