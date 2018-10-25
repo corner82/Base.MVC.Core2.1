@@ -77,7 +77,7 @@ $(document).ready(function () {
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
 
-            $('#ddslickbranch').ddslick({
+            $('#ddslickBranch').ddslick({
                 data: cbdata_branch,
                 width: '100%',
                 //search: true,
@@ -119,7 +119,7 @@ $(document).ready(function () {
                             onSuccess: function (event, datachassis) {
 
                                 var cbdata_chassis = $.parseJSON(datachassis);
-                                cbdata_vehicle.splice(0, 0,
+                                cbdata_chassis.splice(0, 0,
                                     { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
                                 );
 
@@ -276,7 +276,7 @@ $(document).ready(function () {
             args.take = loadOptions.take || 12;
 
             $.ajax({
-                url: '/Sys/SysFixedSalesCostsGrid',
+                url: '/ParkOff/ParkoffGrid',
                 dataType: "json",
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
@@ -306,7 +306,7 @@ $(document).ready(function () {
             var deferred = $.Deferred();
             //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_sysfixedsalescosts&id=33&pk=GsZVzEYe50uGgNM
             return $.ajax({
-                url: '/Sys/SysDeleteFixedCost',
+                url: '/ParkOff/DeleteParkoff',
                 dataType: "json",
                 data: JSON.stringify({
                     id: parkoffId,
@@ -449,37 +449,45 @@ $(document).ready(function () {
             $("#loadingImage_parkoff").loadImager('removeLoadImage');
             $("#loadingImage_parkoff").loadImager('appendImage');
 
-
-            var ddDataModel = $('#ddslickModel').data('ddslick');
-            var model_id;
-            if (ddDataModel.selectedData.value > 0) {
-                model_id = ddDataModel.selectedData.value;
+            var ddDataParkoffType = $('#ddslickParkoffType').data('ddslick');
+            if (!ddDataParkoffType.selectedData.value > 0) {
+                wm.warningMessage('resetOnShown');
+                wm.warningMessage('show', window.lang.translate("Please select Park off Type "),
+                    window.lang.translate("Please select Park off Type"));
+            }
+            else {
+                var parkoffType_id = ddDataParkoffType.selectedData.value;
             }
 
-            var ddDataVhc = $('#ddslickVehicle').data('ddslick');
-            var vhc_id ;
-            if (ddDataVhc.selectedData.value > 0) {
-                vhc_id = ddDataVhc.selectedData.value;
+            var ddDataBranch = $('#ddslickBranch').data('ddslick');
+            if (!ddDataBranch.selectedData.value > 0) {
+                wm.warningMessage('resetOnShown');
+                wm.warningMessage('show', window.lang.translate("Please select Branch"),
+                    window.lang.translate("Please select Branch"));
+            }
+            else {
+                var branch_id = ddDataBranch.selectedData.value;
             }
 
-            var ddDataCry = $('#ddslickCurrency').data('ddslick');
-            var cry_id;
-            if (ddDataCry.selectedData.value > 0) {
-                cry_id = ddDataCry.selectedData.value;
+            var ddDataChassis = $('#ajax_DdslickChassis').data('ddslick');
+            if (!ddDataChassis.selectedData.value > 0) {
+                wm.warningMessage('resetOnShown');
+                wm.warningMessage('show', window.lang.translate("Please select Chassis"),
+                    window.lang.translate("Please select Chassis"));
+            }
+            else {
+                var chassis_id = ddDataChassis.selectedData.value;
             }
 
-            var ddDataWr = $('#ddslickWarranty').data('ddslick');
-            var wr_id ;
-            if (ddDataWr.selectedData.value > 0) {
-                wr_id = ddDataWr.selectedData.value;
+            var ddDataCompleted = $('#ddslickCompleted').data('ddslick');
+            if (!ddDataCompleted.selectedData.value > 0) {
+                wm.warningMessage('resetOnShown');
+                wm.warningMessage('show', window.lang.translate("Please select Completed"),
+                    window.lang.translate("Please select Completed"));
             }
-
-            var price = $('#txt-fc-price').val();
-            var fc_name = $('#txt-fc-name').val();
-
-            var start_date = $('#start-datepicker').val();
-
-            var is_all_vehicle = 2;
+            else {
+                var completed_id = ddDataCompleted.selectedData.value;
+            }
 
             //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?
             //url=pkInsertAct_sysfixedsalescosts
@@ -492,40 +500,67 @@ $(document).ready(function () {
             //&is_all_vehicle=1--
             //warranty_matrix_id=--
             //&pk=GsZVzEYe50uGgNM--
+            if (!parkoffId == "") {//update
+                var ajax_Insertparkoff = $('#ajaxACL-parkoffList').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loadingImage_parkoff",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
 
-            var ajax_Insertparkoff = $('#ajaxACL-parkoffList').ajaxCallWidget({
-                failureLoadImage: true,
-                loadingImageID: "loadingImage_parkoff",
-                triggerSuccessAuto: true,
-                transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-
-                proxy: '/Sys/AddFixedCost',
-                type: 'POST',
-                data: JSON.stringify({
-                    url: "pkInsertAct_sysfixedsalescosts",
-                    name: fc_name,
-                    vehicle_gruop_id: model_id,
-                    vehicle_second_group_id: vhc_id,
-                    currency_type_id: cry_id,
-                    start_date: start_date,
-                    vvalue: price,
-                    warranty_matrix_id: wr_id,
-                    is_all_vehicle: is_all_vehicle,
-                    pk: "GsZVzEYe50uGgNM"
+                    proxy: '/ParkOff/AddParkoff',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        url: "pkInsertAct_sysfixedsalescosts",
+                        id: parkoffId,
+                        parkoffType_id: parkoffType_id,
+                        branch_id: branch_id,
+                        chassis_id: chassis_id,
+                        completed_id: completed_id,
+                        pk: "GsZVzEYe50uGgNM"
+                    })
+                });
+                ajax_Insertparkoff.ajaxCallWidget({
+                    onReset: function (event, data) {
+                        resetFixedCostForm();
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_parkoffList").dxDataGrid("instance").refresh();
+                    }
                 })
-            });
-            ajax_Insertparkoff.ajaxCallWidget({
-                onReset: function (event, data) {
-                    resetFixedCostForm();
-                },
-                onAfterSuccess: function (event, data) {
-                    $("#gridContainer_parkoffList").dxDataGrid("instance").refresh();
-                }
-            })
-            ajax_Insertparkoff.ajaxCallWidget('call');
-            //$('#fcListRefresh').click();
+                ajax_Insertparkoff.ajaxCallWidget('call');
+            }
+            else { //insert
+                var ajax_Insertparkoff = $('#ajaxACL-parkoffList').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loadingImage_parkoff",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+
+                    proxy: '/ParkOff/AddParkoff',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        url: "pkInsertAct_sysfixedsalescosts",
+                        parkoffType_id: parkoffType_id,
+                        branch_id: branch_id,
+                        chassis_id: chassis_id,
+                        completed_id: completed_id,
+                        pk: "GsZVzEYe50uGgNM"
+                    })
+                });
+                ajax_Insertparkoff.ajaxCallWidget({
+                    onReset: function (event, data) {
+                        resetFixedCostForm();
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_parkoffList").dxDataGrid("instance").refresh();
+                    }
+                })
+                ajax_Insertparkoff.ajaxCallWidget('call');
+            }
             
             return false;
         }
@@ -599,49 +634,6 @@ $(document).ready(function () {
 
         return false;
     }
-
-////ActivePasive Fixed Cost Info
-
-//    window.activepasivefcInfo = function (fcInfo_id, active) {
-
-//        var transactionSuccessMessage;
-
-//        if (active === 1) {
-//            //active
-//            transactionSuccessMessage = window.lang.translate('Active successful');
-//        } else {
-//            //pasive
-//            transactionSuccessMessage = window.lang.translate('Pasive successful');
-//        }
-
-//        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateMakeActiveOrPassive_sysfixedsalescosts&id=29&pk=GsZVzEYe50uGgNM
-//        var ajax_activepasiveTrInfolist = $('#ajaxACL-fixedCostList').ajaxCallWidget({
-//            failureLoadImage: true,
-//            loadingImageID: "loadingImage_DdslickFixedCostList",
-//            triggerSuccessAuto: true,
-//            transactionSuccessText: window.lang.translate('Transaction successful'),
-//            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-//            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-//            proxy: '/Sys/SysActivePassiveFixedCost',
-//            type: "POST",
-//            data: JSON.stringify({
-//                id: fcInfo_id,
-//                pk: "GsZVzEYe50uGgNM",
-//                url: "pkUpdateMakeActiveOrPassive_sysfixedsalescosts"
-//            }),
-
-//        });
-//        ajax_activepasiveTrInfolist.ajaxCallWidget({
-//            onReset: function (event, data) {
-
-//            },
-//            onAfterSuccess: function (event, data) {
-//                $("#gridContainer_fixedCostList").dxDataGrid("instance").refresh();
-//            }
-//        })
-//        ajax_activepasiveTrInfolist.ajaxCallWidget('call');
-//        //$('#trListRefresh').click();
-//    }
 
 });
 
