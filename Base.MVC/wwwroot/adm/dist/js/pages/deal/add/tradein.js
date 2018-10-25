@@ -33,6 +33,54 @@
                     window.lang.translate("Please select deal"));
                 // $('#loadingImage_DdslickVehicleTypeBuyBack').loadImager('removeLoadImage');
             }
+
+
+            //----------------------------------dropdowns begin-------------------------------------------------
+
+            /**
+           * ddslick deal vehicle type dropdown (aksesuar)
+           * @author Mustafa Zeynel Dağlı
+           * @since 17/10/2018
+           */
+            var ddslickOverAllowanceTypeData = [
+                {
+                    text: 'Please select',
+                    value: 0,
+                    selected: true
+                },
+                {
+                    text: 'Equal',
+                    value: 1,
+                    selected: true
+                },
+                {
+                    text: 'Vehicle based',
+                    value: 2,
+                    selected: true
+                },
+            ];
+            $('#loadingImage_DdslickOverAllowanceType').loadImager('removeLoadImage');
+            $("#loadingImage_DdslickOverAllowanceType").loadImager('appendImage');
+            //var selectedContRepMainBuyBack = false;
+            $('#ddslickOverAllowanceType').ddslick({
+                //height: 150,
+                data: ddslickOverAllowanceTypeData,
+                width: '100%',
+                onSelected: function (selectedData) {
+                    /*if (selectedContRepMainBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
+                    selectedContRepMainBuyBack = true;*/
+                    if (selectedData.selectedData.value > 0) {
+                        //$("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
+
+                    }
+                }
+            });
+            $("#loadingImage_DdslickOverAllowanceType").loadImager('removeLoadImage');
+
+
+    //----------------------------------dropdowns end-------------------------------------------------
+
+
         },
         
     });
@@ -44,50 +92,7 @@
     });
     //----------------------------------datepicker end-------------------------------------------------
 
-    //----------------------------------dropdowns begin-------------------------------------------------
-
-    /**
-   * ddslick deal vehicle type dropdown (aksesuar)
-   * @author Mustafa Zeynel Dağlı
-   * @since 17/10/2018
-   */
-    var ddslickOverAllowanceTypeData = [
-        {
-            text: 'Please select',
-            value: 0,
-            selected: true
-        },
-        {
-            text: 'Equal',
-            value: 1,
-            selected: true
-        },
-        {
-            text: 'Vehicle based',
-            value: 2,
-            selected: true
-        },
-    ];
-    $('#loadingImage_DdslickOverAllowanceType').loadImager('removeLoadImage');
-    $("#loadingImage_DdslickOverAllowanceType").loadImager('appendImage');
-    //var selectedContRepMainBuyBack = false;
-    $('#ddslickOverAllowanceType').ddslick({
-        //height: 150,
-        data: ddslickOverAllowanceTypeData,
-        width: '100%',
-        onSelected: function (selectedData) {
-            /*if (selectedContRepMainBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
-            selectedContRepMainBuyBack = true;*/
-            if (selectedData.selectedData.value > 0) {
-                //$("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
-
-            }
-        }
-    });
-    $("#loadingImage_DdslickOverAllowanceType").loadImager('removeLoadImage');
-
-
-    //----------------------------------dropdowns end-------------------------------------------------
+  
 
 
     //----------------------------------add tradein to deal begin-------------------------------------------------

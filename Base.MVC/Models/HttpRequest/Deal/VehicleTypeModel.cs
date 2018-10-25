@@ -11,7 +11,7 @@ namespace Base.MVC.Models.HttpRequest.Deal
         public string pk { get; set; }
         public string pkIdentity { get; set; }
         public int vehicle_gt_model_id { get; set; }
-        public int quantity { get; set; }
+        public string quantity { get; set; }
         public DateTime delivery_date { get; set; }
         public string url { get; set; }
     }

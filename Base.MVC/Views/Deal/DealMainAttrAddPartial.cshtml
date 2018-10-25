@@ -15,6 +15,7 @@
 <div class="nav-tabs-custom">
     <input type="hidden" id="deal_hidden" />
     <ul class="nav nav-tabs pull-right" id="deals_tab">
+        <li class="nav-item"><a href="#tab_RM" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">R&M</a></li>
         <li class="nav-item"><a href="#tab_Warranty" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Warranty</a></li>
         <li class="nav-item"><a href="#tab_TradeIn" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">TradeIn</a></li>
         <li class="nav-item"><a href="#tab_Aksesuar" data-toggle="tab" data-nodejs-log="socket log" aria-expanded="false">Accessory</a></li>
@@ -26,6 +27,116 @@
         <li class="pull-left header"><i class="fa fa-th"></i>@Localizer["Deal"]</li>
     </ul>
     <div class="tab-content ">
+
+        <div class="tab-pane zeyn-load-imager position-relative" id="tab_RM" style="padding: 21px 20px 65px 20px;">
+            <form id="addRMForm">
+                <div class="row">
+                    <div class="col-md-6 ">
+                        <div class="form-group">
+                            <label>Vehicle group</label>
+                            <div class="" id="ajax_DdslickVehicleGroupsRM">
+                                <div id="loadingImage_DdslickVehicleGroupsRM" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickVehicleGroupsRM"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>R&M vehicle type</label>
+                            <div class="" id="ajax_DdslickVehicleTypeRM">
+                                <div id="loadingImage_DdslickVehicleTypeRM" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickVehicleTypeRM"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Vehicle type</label>
+                            <div class="" id="ajax_DdslickDealVehicleTypeRM">
+                                <div id="loadingImage_DdslickDealVehicleTypeRM" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickDealVehicleTypeRM"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>@Localizer["Quantity"]</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <input id="quantity_RM" type="text" class="form-control validate[required]" placeholder="@Localizer["Quantity"]">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>R&M types</label>
+                            <div class="" id="ajax_DdslickRMType">
+                                <div id="loadingImage_DdslickRMType" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickRMType"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>R&M months</label>
+                            <div class="" id="ajax_DdslickRMTime">
+                                <div id="loadingImage_DdslickRMTime" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickRMTime"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>R&M km</label>
+                            <div class="" id="ajax_DdslickRMKm">
+                                <div id="loadingImage_DdslickRMKm" class="input-group zeyn-load-imager">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-copyright"></i>
+                                    </div>
+                                    <div id="ddslickRMKm"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>@Localizer["Price"]</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-mail-forward"></i>
+                                </div>
+                                <input id="rm_price" type="text" class="form-control" placeholder="@Localizer["Price"]">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 ">
+                        <div id="gridContainer_RM"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 ">
+                        <div id="gridContainer_DealRM"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!--<button class="btn btn-default pull-right" id="tab_next_2" style="margin-top: 20px;margin-right: 10px;"><i class="fa fa-plus"></i>  Add</button>-->
+                    <button onclick="return openAddProposalRMPopUp();" id="add_rm_proposal" name="add_rm_proposal" type="button" class="btn btn-primary btn-md pull-right " style="margin-right:10px;margin-top:20px;">&nbsp;<i class="fa fa-arrow-circle-right"></i>&nbsp;&nbsp;@Localizer["Add accessory proposal"]&nbsp;&nbsp;</button>
+                    <button type="submit" class="btn btn-primary btn-md pull-right " style="margin-right:10px;margin-top:20px;" id="add_aksesuar">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;@Localizer["Save"]&nbsp;&nbsp;</button>
+                </div>
+            </form>
+        </div>
 
         <div class="tab-pane zeyn-load-imager position-relative" id="tab_Warranty" style="padding: 21px 20px 65px 20px;">
             <form id="addWarrantyForm">
@@ -108,8 +219,6 @@
                                 <input id="quantity" type="text" class="form-control " placeholder="Quantity">
                             </div>
                         </div>
-
-
                     </div>
                 </div>
                 <div class="row">
@@ -653,7 +762,7 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-mail-forward"></i>
                                 </div>
-                                <input id="quantity" type="text" class="form-control" placeholder="total count">
+                                <input id="quantity_vehicleType" type="text" class="form-control" placeholder="total count">
                             </div>
                         </div>
                     </div>
