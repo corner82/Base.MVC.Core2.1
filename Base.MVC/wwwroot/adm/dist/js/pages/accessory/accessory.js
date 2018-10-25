@@ -76,6 +76,7 @@ $(document).ready(function () {
 
 
     //CLA, TGM, TGS, VW, XHCV
+    /*
     var cbdata_model = [
         {
             text: window.lang.translate('Please select') + "...",
@@ -163,6 +164,63 @@ $(document).ready(function () {
         }
     })
     ajaxACLResources_vehiclemodel.ajaxCallWidget('call');
+
+    */
+
+    $('#loading-image-vehiclemodel').loadImager('removeLoadImage');
+    $('#loading-image-vehiclemodel').loadImager('appendImage');
+
+    var ajaxACLResources_vehiclemodel = $('#ajaxACL-vehiclemodel').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loading-image-vehiclemodel",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Vehicle/SysVehicleGroups/',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkVehicleGroupsDdList_sysvehiclegroups",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
+
+    ajaxACLResources_vehiclemodel.ajaxCallWidget({
+        onSuccess: function (event, datamodel) {
+            var cbdata_model = $.parseJSON(datamodel);
+            cbdata_model.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+
+            $('#ddslickVehicleModel').ddslick({
+                data: cbdata_model,
+                width: '100%',
+                search: true,
+                searchText: window.lang.translate('Search'),
+                onSelected: function (selectedData) {
+
+                    if (selectedData.selectedData.value > 0) {
+                        //vehicleModel = selectedData.selectedData.text;
+                        //ddslick_vehicleModelId = selectedData.selectedData.value;
+                    else {
+                        //vehicleModel = "";
+                    }
+                }
+            });
+
+            $("#loading-image-vehiclemodel").loadImager('removeLoadImage');
+        },
+        onReset: function (event, data) {
+
+        },
+        onAfterSuccess: function (event, data) {
+            $("#loadingImage_DdslickVehicleModel").loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_vehiclemodel.ajaxCallWidget('call');
+
 
     //4x2, 4x4, 6x4, 8x4, 6x6, 8x8, 8x4/4
     var cbdata_kp = [

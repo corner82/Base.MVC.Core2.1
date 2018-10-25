@@ -143,90 +143,54 @@ $(document).ready(function () {
 
 
     //CLA, TGM, TGS, VW, XHCV
-    var cbdata_vehiclemodel = [
-        {
-            text: window.lang.translate('Please select') + "...",
-            value: 1,
-            selected: true
-        },
-        {
-            text: "ALL",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "CLA",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "TGM",
-            value: 4,
-            selected: false
-        },
-        {
-            text: "TGS",
-            value: 5,
-            selected: false
-        },
-        {
-            text: "VW",
-            value: 6,
-            selected: false
-        },
-        {
-            text: "XHCV",
-            value: 7,
-            selected: false
-        }
-    ];
 
     $('#loading-image-vehiclemodel').loadImager('removeLoadImage');
-    $("#loading-image-vehiclemodel").loadImager('appendImage');
+    $('#loading-image-vehiclemodel').loadImager('appendImage');
 
     var ajaxACLResources_vehiclemodel = $('#ajaxACL-vehiclemodel').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
+        failureLoadImage: true,
+        loadingImageID: "loading-image-vehiclemodel",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Vehicle/SysVehicleGroups/',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkVehicleGroupsDdList_sysvehiclegroups",
+            pkIdentity: $("#publicKey").val()
+        })
     });
 
     ajaxACLResources_vehiclemodel.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-vehiclemodel').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
-        },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
+        onSuccess: function (event, datamodel) {
+            var cbdata_model = $.parseJSON(datamodel);
+            cbdata_model.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
 
             $('#dropdownVehicleModel').ddslick({
-                //height: 150,
-                data: cbdata_vehiclemodel,
+                data: cbdata_model,
                 width: '100%',
-
+                search: true,
+                searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
-                    //if (selectedData.selectedData.value > 1) {
-                    //}
+
+                    if (selectedData.selectedData.value > 0) {
+                       
+                    }
                 }
             });
 
             $("#loading-image-vehiclemodel").loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-vehiclemodel').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('vehiclemodel bulunamamıştır...'), window.lang.translate('vehiclemodel  bulunamamıştır...'));
+        onReset: function (event, data) {
+
+        },
+        onAfterSuccess: function (event, data) {
+            $("#loading-image-vehiclemodel").loadImager('removeLoadImage');
         }
     })
     ajaxACLResources_vehiclemodel.ajaxCallWidget('call');
