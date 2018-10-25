@@ -1053,6 +1053,8 @@ $(document).ready(function () {
                     onAfterSuccess: function (event, data) {
                         $("#gridContainer_accessoryname").dxDataGrid("instance").refresh();
                         $("#loadingImage_accessorynameform").loadImager('removeLoadImage');
+                        resetAccessoryNameForm();
+                       
                     }
                 })
                 ajax.ajaxCallWidget('call');
@@ -1088,6 +1090,7 @@ $(document).ready(function () {
                             onAfterSuccess: function (event, data) {
                                 $("#gridContainer_accessoryname").dxDataGrid("instance").refresh();
                                 $("#loadingImage_accessorynameform").loadImager('removeLoadImage');
+                                resetAccessoryNameForm();
                             }
                         })
                         ajax.ajaxCallWidget('call');
@@ -1113,12 +1116,14 @@ $(document).ready(function () {
 
         selectedAccessorynameId = 0;
         $('#accessorynameForm').validationEngine('hide');
+        document.getElementById("txt-featurename-bo").value = "";
+        document.getElementById("txt-featurename-sm").value = "";
 
         $("#loading-image-accessorynameform").loadImager('removeLoadImage');
 
         //yeni kayda açık, tablar kapatılıyor
         tab_disable();
-
+       
         return false;
     }
 
