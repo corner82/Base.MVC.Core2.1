@@ -371,8 +371,8 @@ $(document).ready(function () {
     DevExpress.localization.locale(langCode);
 
 //RM Grid
-    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillBuybackMatrixGridx_sysbuybackmatrix&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
-    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_sysbuybackmatrix&id=8&pk=GsZVzEYe50uGgNM
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillRmMatrixGridx_sysrmmatrix&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_sysrmmatrix&id=6&pk=GsZVzEYe50uGgNM
 
     $('#rmListRefresh').click(function () {
         $("#gridContainer_rmMatrix").dxDataGrid("instance").refresh();
@@ -393,12 +393,12 @@ $(document).ready(function () {
             args.take = loadOptions.take || 12;
 
             $.ajax({
-                url: '/BuybackTradeback/SysBbMatrixGrid',
+                url: '/RepairMaintenance/RepairMaintenanceMatrixGrid',
                 dataType: "json",
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
-                    url: "pkFillBuybackMatrixGridx_sysbuybackmatrix",
+                    url: "pkFillRmMatrixGridx_sysrmmatrix",
                     pkIdentity: $("#publicKey").val(),
                     page: "",
                     rows: "",
@@ -423,12 +423,12 @@ $(document).ready(function () {
             var deferred = $.Deferred();
 
             return $.ajax({
-                url: '/BuybackTradeback/SysDeleteBbTb',
+                url: '/RepairMaintenance/DeleteRepairMaintenanceMatrix',
                 dataType: "json",
                 data: JSON.stringify({
                     id: rmId,
                     pk: "GsZVzEYe50uGgNM",
-                    url: "pkDeletedAct_sysbuybackmatrix"
+                    url: "pkDeletedAct_sysrmmatrix"
                 }),
                 type: 'POST',
                 contentType: 'application/json',
@@ -528,35 +528,35 @@ $(document).ready(function () {
         }, {
             caption: window.lang.translate('Vehicle model group') + "...",
             encodeHtml: false,
-            dataField: "customer_type_name"
+            dataField: "customer_type_name"//Düzeltilecek
         }, {
             caption: window.lang.translate('Vehicle model end group') + "...",
             encodeHtml: false,
-            dataField: "comfort_super_name"
+            dataField: "model_description"
         }, {
             caption: window.lang.translate('Application type') + "...",
             encodeHtml: false,
-            dataField: "terrain_name"
+            dataField: "rm_type_name"
         }, {
             caption: window.lang.translate('Contract Type') + "...",
             encodeHtml: false,
-            dataField: "vahicle_description"
+            dataField: "vahicle_description"//Düzeltilecek
         }, {
             caption: window.lang.translate('Mileage per annum (km)') + "...",
             encodeHtml: false,
-            dataField: "mileage_type_name"
+            dataField: "mileage"
         }, {
             caption: window.lang.translate('Months') + "...",
             encodeHtml: false,
-            dataField: "month_name"
+            dataField: "month"
         }, {
             caption: window.lang.translate('CPK Price') + "...",
             encodeHtml: false,
-            dataField: "price"
+            dataField: "cpk_price"
          }, {
             caption: window.lang.translate('Monthly Price') + "...",
             encodeHtml: false,
-            dataField: "price"
+            dataField: "mothly_price"
         }],
 
         onSelectionChanged: function (selectedItems) {
@@ -664,37 +664,75 @@ $(document).ready(function () {
             //comfort_super_id 
             //hydraulics
             //customer_type_id 
+            if (!rmId == "") {//update
+                var ajax_InsertMatrix = $('#ajaxACL-insertTradeback').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loadingImage_tbInfo",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
 
-            var ajax_InsertMatrix = $('#ajaxACL-insertTradeback').ajaxCallWidget({
-                failureLoadImage: true,
-                loadingImageID: "loadingImage_tbInfo",
-                triggerSuccessAuto: true,
-                transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-
-                proxy: '/BuybackTradeBack/AddMatrix',
-                type: 'POST',
-                data: JSON.stringify({
-                    url: "pkInsertTBAct_sysbuybackmatrix",
-                    vehicle_group_id: vehicle_group_id,
-                    vehicle_gt_model_id: vehicle_gt_model_id,
-                    vehicle_type_id: vehicle_type_id,
-                    contractType_id: contractType_id,
-                    month_id: month_id,
-                    mileage_id: mileage_id,
-                    price: price,
-                    cpkPrice: cpkPrice,
-                    pk: "GsZVzEYe50uGgNM"
+                    proxy: '/BuybackTradeBack/AddMatrix',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        url: "pkInsertTBAct_sysbuybackmatrix",
+                        id: rmId,
+                        vehicle_group_id: vehicle_group_id,
+                        vehicle_gt_model_id: vehicle_gt_model_id,
+                        rm_type_id: vehicle_type_id,
+                        comfort_super_id: contractType_id,
+                        month_id: month_id,
+                        mileage_id: mileage_id,
+                        mothly_price: price,
+                        cpk_price: cpkPrice,
+                        pk: "GsZVzEYe50uGgNM"
+                    })
+                });
+                ajax_InsertMatrix.ajaxCallWidget({
+                    onReset: function (event, data) {
+                        //resetTbMatrixForm();
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_rmMatrix").dxDataGrid("instance").refresh();
+                    }
                 })
-            });
-            ajax_InsertMatrix.ajaxCallWidget({
-                onReset: function (event, data) {
-                    //resetTbMatrixForm();
-                },
-            })
-            ajax_InsertMatrix.ajaxCallWidget('call');
-             $('#tradebackListRefresh').click();
+                ajax_InsertMatrix.ajaxCallWidget('call');
+            }
+            else {//insert
+                var ajax_InsertMatrix = $('#ajaxACL-insertTradeback').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loadingImage_tbInfo",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+
+                    proxy: '/BuybackTradeBack/AddMatrix',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        url: "pkInsertTBAct_sysbuybackmatrix",
+                        vehicle_group_id: vehicle_group_id,
+                        vehicle_gt_model_id: vehicle_gt_model_id,
+                        rm_type_id: vehicle_type_id,
+                        comfort_super_id: contractType_id,
+                        month_id: month_id,
+                        mileage_id: mileage_id,
+                        mothly_price: price,
+                        cpk_price: cpkPrice,
+                        pk: "GsZVzEYe50uGgNM"
+                    })
+                });
+                ajax_InsertMatrix.ajaxCallWidget({
+                    onReset: function (event, data) {
+                        //resetTbMatrixForm();
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_rmMatrix").dxDataGrid("instance").refresh();
+                    }
+                })
+                ajax_InsertMatrix.ajaxCallWidget('call');
+            }
             return false;
         }
     })
@@ -739,8 +777,8 @@ $(document).ready(function () {
         $("#loadingImage_rmInfo").loadImager('removeLoadImage');
         $("#loadingImage_rmInfo").loadImager('appendImage');
 
-        document.getElementById("txt-rmMatrix-cpkPrice").value = data.price;
-        document.getElementById("txt-rmMatrix-Price").value = data.price;
+        document.getElementById("txt-rmMatrix-cpkPrice").value = data.cpk_price;
+        document.getElementById("txt-rmMatrix-Price").value = data.mothly_price;
 
         ddslick_modelId = data.vehicle_group_id;
         ddslick_model_name = data.vehicle_group;
@@ -748,8 +786,8 @@ $(document).ready(function () {
         ddslick_vehicleId = data.vehicle_gt_model_id;
         ddslick_vehicle_name = data.model_description;
 
-        ddslick_vehicletypeId = data.vehicle_gt_model_id;
-        ddslick_vehicletype_name = data.model_description;
+        ddslick_vehicletypeId = data.rm_type_id;
+        ddslick_vehicletype_name = data.rm_type_name;
 
         $('#ddslickModel').ddslick('selectByValue',
             {
@@ -760,19 +798,19 @@ $(document).ready(function () {
         $('#ddslickMileage').ddslick('selectByValue',
             {
                 index: '' + data.mileage_id + '',
-                text: '' + data.mileage_type_name + ''
+                text: '' + data.mileage + ''
             }
         );
         $('#ddslickMonths').ddslick('selectByValue',
             {
                 index: '' + data.month_id + '',
-                text: '' + data.month_name + ''
+                text: '' + data.month + ''
             }
         );
         $('#ddslickContractType').ddslick('selectByValue',
             {
-                index: '' + data.month_id + '',
-                text: '' + data.month_name + ''
+                index: '' + data.comfort_super_id + '',
+                text: '' + data.comfort_super_name + ''
             }
         );
 
@@ -797,7 +835,7 @@ $(document).ready(function () {
             //pasive
             transactionSuccessMessage = window.lang.translate('Pasive successful');
         }
-        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateMakeActiveOrPassive_sysbuybackmatrix&id=29&pk=GsZVzEYe50uGgNM
+        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateMakeActiveOrPassive_sysrmmatrix&id=29&pk=GsZVzEYe50uGgNM
         var ajax_activepasiveRm = $('#ajaxACL-rmList').ajaxCallWidget({
             failureLoadImage: true,
             loadingImageID: "loadingImage_DdslickRmMatrixGrid",
@@ -810,7 +848,7 @@ $(document).ready(function () {
             data: JSON.stringify({
                 id: rm_id,
                 pk: "GsZVzEYe50uGgNM",
-                url: "pkUpdateMakeActiveOrPassive_sysbuybackmatrix"
+                url: "pkUpdateMakeActiveOrPassive_sysrmmatrix"
             }),
 
         });
