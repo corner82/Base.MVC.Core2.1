@@ -86,7 +86,7 @@ $(document).ready(function () {
                 //searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
 
-                    $('#ddslickWarranty').ddslick('destroy');
+                    $('#ddslickVehicleType').ddslick('destroy');
                     $('#ddslickVehicle').ddslick('destroy');
 
                     if (selectedData.selectedData.value > 0) {
@@ -149,9 +149,9 @@ $(document).ready(function () {
                             }
                         })
                         ajaxACLResources_vehicle.ajaxCallWidget('call');
-                        //Vehicle End
-                        if (ddslick_modelId = 3) {
-                            //VehicleType
+//Vehicle End
+                        if (ddslick_modelId == 3) {
+//VehicleType
                             $('#loadingImage_DdslickVehicleType').loadImager('removeLoadImage');
                             $("#loadingImage_DdslickVehicleType").loadImager('appendImage');
                             //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkRmTypesDdList_sysrmtypes&language_code=en&pk=GsZVzEYe50uGgNM
@@ -184,7 +184,7 @@ $(document).ready(function () {
                                         { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
                                     );
 
-                                    $('#ddslickkVehicleType').ddslick({
+                                    $('#ddslickVehicleType').ddslick({
                                         data: cbdata_vehicletype,
                                         width: '100%',
                                         //search: true,
