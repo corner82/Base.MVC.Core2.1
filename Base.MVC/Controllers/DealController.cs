@@ -170,7 +170,7 @@ namespace Base.MVC.Controllers
             }
             else
             {
-                throw new Exception("Model satate is not valid");
+                throw new Exception("Model state is not valid");
             }
 
         }
@@ -432,7 +432,7 @@ namespace Base.MVC.Controllers
             }
             else
             {
-                throw new Exception("Model satate is not valid");
+                throw new Exception("Model state is not valid");
             }
         }
 
@@ -461,7 +461,7 @@ namespace Base.MVC.Controllers
             }
             else
             {
-                throw new Exception("Model satate is not valid");
+                throw new Exception("Model state is not valid");
             }
         }
 
@@ -490,7 +490,7 @@ namespace Base.MVC.Controllers
             }
             else
             {
-                throw new Exception("Model satate is not valid");
+                throw new Exception("Model state is not valid");
             }
         }
 
@@ -519,7 +519,7 @@ namespace Base.MVC.Controllers
             }
             else
             {
-                throw new Exception("Model satate is not valid");
+                throw new Exception("Model state is not valid");
             }
 
         }
@@ -549,7 +549,7 @@ namespace Base.MVC.Controllers
             }
             else
             {
-                throw new Exception("Model satate is not valid");
+                throw new Exception("Model state is not valid");
             }
 
         }
