@@ -333,7 +333,7 @@
                                                     $('#loading-image-city').loadImager('removeLoadImage');
                                                 },
                                                 onError: function (event, data) {
-                                                    alert("geldim hata city");
+                                                    //alert("geldim hata city");
                                                 }
                                             })
                                             ajaxACLResources_getcity.ajaxCallWidget('call');

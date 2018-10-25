@@ -45,10 +45,7 @@ $(document).ready(function () {
 
     var langCode = $("#langCode").val();
 
-    var warrantyNameID;
     var warrantyInfoID;
-    var vehicle_group_id;
-
 
     var filldropdown = false;
 
@@ -56,13 +53,13 @@ $(document).ready(function () {
     var ddslick_model_name = "";
     var ddslick_warrantyId = 0;
     var ddslick_warranty_name = "";
+    var ddslick_modelId = 0;
+    var ddslick_model_name = "";
+    var ddslick_vehicleId = 0;
+    var ddslick_vehicle_name = "";
 
-    var tabOrganizer = $("#warranty_tab").organizeTabs({ tabID: "warranty_tab" });
+    $('#factoryWarrantyForm').validationEngine();
 
-    //$("#warranty_tab").organizeTabs('disableAllTabs');
-
-    $('#warrantyForm').validationEngine();
-    $('#warrantyNameForm').validationEngine();
 
 //model
     $('#loading-image-modelName').loadImager('removeLoadImage');
@@ -275,7 +272,7 @@ $(document).ready(function () {
                     else {
                         Model = "";
                     }
-                    document.getElementById("txt-wrUnique-name").value = VhType + Model + Mil1 + Mil2 + WrType + WrRM;
+                    document.getElementById("txt-wrUnique-name").value = "Factory" + VhType + Model + Mil1 + Mil2 + WrType + WrRM;
                 }
             })
             $('#loading-image-vhModel').loadImager('removeLoadImage');
@@ -332,7 +329,7 @@ $(document).ready(function () {
                     else {
                         Mil1 = "";
                     }
-                    document.getElementById("txt-wrUnique-name").value = VhType + Model + Mil1 + Mil2 + WrType + WrRM;
+                    document.getElementById("txt-wrUnique-name").value = "Factory" +  VhType + Model + Mil1 + Mil2 + WrType + WrRM;
                 }
             })
             $('#loading-image-wrType').loadImager('removeLoadImage');
@@ -388,7 +385,7 @@ $(document).ready(function () {
                     else {
                         Mil1 = "";
                     }
-                    document.getElementById("txt-wrUnique-name").value = VhType + Model + Mil1 + Mil2 + WrType + WrRM;
+                    document.getElementById("txt-wrUnique-name").value = "Factory" +  VhType + Model + Mil1 + Mil2 + WrType + WrRM;
                     }
                 })
             $('#loading-image-wrMil').loadImager('removeLoadImage');
@@ -444,7 +441,7 @@ $(document).ready(function () {
                     else {
                         Mil2 = "";
                     }
-                    document.getElementById("txt-wrUnique-name").value = VhType + Model + Mil1 + Mil2 + WrType + WrRM;
+                    document.getElementById("txt-wrUnique-name").value = "Factory" +  VhType + Model + Mil1 + Mil2 + WrType + WrRM;
                 }
             })
             $('#loading-image-wrMonth').loadImager('removeLoadImage');
@@ -500,7 +497,7 @@ $(document).ready(function () {
                     else {
                         WrRM = "";
                     }
-                    document.getElementById("txt-wrUnique-name").value = VhType + Model + Mil1 + Mil2 + WrType + WrRM;
+                    document.getElementById("txt-wrUnique-name").value = "Factory" +  VhType + Model + Mil1 + Mil2 + WrType + WrRM;
                 }
             })
             $('#loading-image-rm').loadImager('removeLoadImage');
@@ -569,7 +566,10 @@ $(document).ready(function () {
     /* devexgrid */
     DevExpress.localization.locale(langCode);
 
-    $('#factoryWarrantyListRefresh').click(function() {
+    $('#factoryWarrantyListRefresh').click(function () {
+        $("#gridContainer_factoryWarranty").dxDataGrid("instance").refresh();
+    });
+
     //warranty matrix  warrantyListRefresh
     var wrmatrix = new DevExpress.data.CustomStore({
         load: function (loadOptions) {
@@ -584,14 +584,14 @@ $(document).ready(function () {
 
             args.skip = loadOptions.skip || 0;
             args.take = loadOptions.take || 12;
-            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillWarrantyMatrixGridx_syswarrantymatrix&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
+            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillWarrantyMatrixFGridx_syswarrantymatrix&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
             $.ajax({
                 url: '/Warranty/SysWarrantiesTypeGrid',
                 dataType: "json",
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
-                    url: "pkFillWarrantyMatrixGridx_syswarrantymatrix",
+                    url: "pkFillWarrantyMatrixFGridx_syswarrantymatrix",
                     pkIdentity: $("#publicKey").val(),
                     page: "",
                     rows: "",
@@ -731,9 +731,17 @@ $(document).ready(function () {
             encodeHtml: false,
             dataField: "unique_code"
         }, {
-            caption: window.lang.translate('Vehicle type name') + "...",
+            caption: window.lang.translate('Vehicle model group') + "...",
             encodeHtml: false,
             dataField: "vehicle_group" 
+        }, {
+            caption: window.lang.translate('Vehicle model end group') + "...",
+            encodeHtml: false,
+            dataField: "model_description"
+        }, {
+            caption: window.lang.translate('Application type') + "...",
+            encodeHtml: false,
+            dataField: "vehicle_app_type_name"
         }, {
             caption: window.lang.translate('Vehicle model name') + "...",
             encodeHtml: false,
@@ -777,9 +785,7 @@ $(document).ready(function () {
             $("#gridContainer_factoryWarranty").dxDataGrid("instance").refresh();
         },
     });
-    });
 
-    $('#factoryWarrantyListRefresh').click();
 
 /////////////////////////Warranty Info//////////////////////////////
 
@@ -792,31 +798,92 @@ $(document).ready(function () {
     $("#btn-warrantyInfo-save").on("click", function (e) {
         e.preventDefault();
         //alert("geldim click");
-        if ($("#warrantyNameForm").validationEngine('validate')) {
+        if ($("#factoryWarrantyForm").validationEngine('validate')) {
             // window.insertwarranty = function () {
-            $("#loading-image-warranty").loadImager('removeLoadImage');
-            $("#loading-image-warranty").loadImager('appendImage');
+            $("#loadingImage_factoryWarrantyform").loadImager('removeLoadImage');
+            $("#loadingImage_factoryWarrantyform").loadImager('appendImage');
 
             //var cst_purchaselastupdate = $('#txt-model-name').val();
             //var warranty_id = warrantyNameId;
 
-            var ddDataWrNameId = $('#dropdownWrName').data('ddslick');
-            var warranty_id = ddDataWrNameId.selectedData.value;
+            var ddDataModelId = $('#ddslickModel').data('ddslick');
+            if (!ddDataModelId.selectedData.value > 0) {
+                wm.warningMessage('resetOnShown');
+                wm.warningMessage('show', window.lang.translate("Please select Model "),
+                    window.lang.translate("Please select Model"));
+            }
+            else {
+                var vehicle_group_id = ddDataModelId.selectedData.value;
+            }
+
+            var ddDataVehicleId = $('#ddslickVehicle').data('ddslick');
+            if (!ddDataVehicleId.selectedData.value > 0) {
+                var vehicle_gt_model_id = "";
+            }
+            else {
+                var vehicle_gt_model_id = ddDataVehicleId.selectedData.value;
+            }
+
+            var ddDataApplicationTypeId = $('#ddslickApplicationType').data('ddslick');
+            if (!ddDataApplicationTypeId.selectedData.value > 0) {
+                wm.warningMessage('resetOnShown');
+                wm.warningMessage('show', window.lang.translate("Please select application type"),
+                    window.lang.translate("Please select application type"));
+            }
+            else {
+                var vehicle_app_types_id = ddDataApplicationTypeId.selectedData.value;
+            }
 
             var ddDataWrConfigId = $('#dropdownVhModel').data('ddslick');
-            var vehicle_config_type_id = ddDataWrConfigId.selectedData.value;
+            if (!ddDataWrConfigId.selectedData.value > 0) {
+                wm.warningMessage('resetOnShown');
+                wm.warningMessage('show', window.lang.translate("Please select config "),
+                    window.lang.translate("Please select config"));
+            }
+            else {
+                var vehicle_config_type_id = ddDataWrConfigId.selectedData.value;
+            }
 
             var ddDataWrMonthId = $('#dropdownWrMonth').data('ddslick');
-            var months1_id = ddDataWrMonthId.selectedData.value;
+            if (!ddDataWrMonthId.selectedData.value > 0) {
+                wm.warningMessage('resetOnShown');
+                wm.warningMessage('show', window.lang.translate("Please select month "),
+                    window.lang.translate("Please select month"));
+            }
+            else {
+                var months1_id = ddDataWrMonthId.selectedData.value;
+            }
+          
 
             var ddDataWrMilId = $('#dropdownWrMil').data('ddslick');
-            var mileages1_id = ddDataWrMilId.selectedData.value;
+            if (!ddDataWrMonthId.selectedData.value > 0) {
+                wm.warningMessage('resetOnShown');
+                wm.warningMessage('show', window.lang.translate("Please select mil "),
+                    window.lang.translate("Please select mil"));
+            }
+            else {
+                var mileages1_id = ddDataWrMilId.selectedData.value;
+            }
 
             var ddDataWrTypeId = $('#dropdownWrType').data('ddslick');
-            var warranty_types_id = ddDataWrTypeId.selectedData.value;
+            if (!ddDataWrTypeId.selectedData.value > 0) {
+                wm.warningMessage('resetOnShown');
+                wm.warningMessage('show', window.lang.translate("Please select warranty type "),
+                    window.lang.translate("Please select warranty type"));
+            }
+            else {
+                var warranty_types_id = ddDataWrTypeId.selectedData.value;
+            }
 
             var ddDataIsmaintenance = $('#dropdownRm').data('ddslick');
-            var ismaintenance = ddDataIsmaintenance.selectedData.value;
+            if (!ddDataIsmaintenance.selectedData.value > 0) {
+                wm.warningMessage('resetOnShown');
+                wm.warningMessage('show', window.lang.translate("Please select R&M "),
+                    window.lang.translate("Please select R&M"));
+            }
+            else {
+                var ismaintenance = ddDataIsmaintenance.selectedData.value;
+            }
 
             var unique_code = $('#txt-wrUnique-name').val();
             var price_in_euros = $('#txt-wrPrice-name').val();
@@ -831,37 +898,85 @@ $(document).ready(function () {
             //& unique_code=XHCV4X4400000KM24MONTHSDrivelineNo
             //& price_in_euros=10000.0000 
             //& pk=GsZVzEYe50uGgNM
+            //vehicle_gt_model_id:
+            //vehicle_app_types_id:
+            //is_factory: 
+            if (!warrantyInfoID == "") {
+                var ajax_InsertWarrantyInfo = $('#ajaxACL-insertFactoryWarranty').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loadingImage_factoryWarrantyform",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
 
-            var ajax_InsertWarrantyInfo = $('#ajaxACL-insertwarrantyName').ajaxCallWidget({
-                failureLoadImage: true,
-                loadingImageID: "loading-image-warranty",
-                triggerSuccessAuto: true,
-                transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-
-                proxy: '/Warranty/AddWarrantyInfo',
-                type: 'POST',
-                data: JSON.stringify({
-                    url: "pkInsertAct_syswarrantymatrix",
-                    warranty_id: warranty_id,
-                    vehicle_config_type_id: vehicle_config_type_id,
-                    months1_id : months1_id,
-                    mileages1_id: mileages1_id,
-                    warranty_types_id : warranty_types_id,
-                    ismaintenance : ismaintenance,
-                    unique_code : unique_code,
-                    price_in_euros : price_in_euros,
-                    pk : "GsZVzEYe50uGgNM"
+                    proxy: '/Warranty/AddWarrantyInfo',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        url: "pkUpdateAct_syswarrantymatrix",
+                        id: warrantyInfoID,
+                        vehicle_group_id: vehicle_group_id,
+                        vehicle_config_type_id: vehicle_config_type_id,
+                        months1_id: months1_id,
+                        mileages1_id: mileages1_id,
+                        warranty_types_id: warranty_types_id,
+                        ismaintenance: ismaintenance,
+                        unique_code: unique_code,
+                        price_in_euros: price_in_euros,
+                        vehicle_gt_model_id: vehicle_gt_model_id,
+                        vehicle_app_types_id: vehicle_app_types_id,
+                        is_factory:1,
+                        pk: "GsZVzEYe50uGgNM"
+                    })
+                });
+                ajax_InsertWarrantyInfo.ajaxCallWidget({
+                    onReset: function (event, data) {
+                        resetwarrantyForm();
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_factoryWarranty").dxDataGrid("instance").refresh();
+                    }
                 })
-            });
-            ajax_InsertWarrantyInfo.ajaxCallWidget({
-                onReset: function (event, data) {
-                    resetwarrantyForm();
-                },
-            })
-            ajax_InsertWarrantyInfo.ajaxCallWidget('call');
-            $('#warrantyListRefresh').click();
+                ajax_InsertWarrantyInfo.ajaxCallWidget('call');
+            }
+            else {
+                var ajax_InsertWarrantyInfo = $('#ajaxACL-insertFactoryWarranty').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loadingImage_factoryWarrantyform",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+
+                    proxy: '/Warranty/AddWarrantyInfo',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        url: "pkInsertAct_syswarrantymatrix",
+                        vehicle_group_id: vehicle_group_id,
+                        vehicle_config_type_id: vehicle_config_type_id,
+                        months1_id : months1_id,
+                        mileages1_id: mileages1_id,
+                        warranty_types_id : warranty_types_id,
+                        ismaintenance : ismaintenance,
+                        unique_code : unique_code,
+                        price_in_euros: price_in_euros,
+                        vehicle_gt_model_id: vehicle_gt_model_id,
+                        vehicle_app_types_id: vehicle_app_types_id,
+                        is_factory: 1 ,
+                        pk : "GsZVzEYe50uGgNM"
+                    })
+                });
+                ajax_InsertWarrantyInfo.ajaxCallWidget({
+                    onReset: function (event, data) {
+                        resetwarrantyForm();
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_factoryWarranty").dxDataGrid("instance").refresh();
+                    }
+                })
+                ajax_InsertWarrantyInfo.ajaxCallWidget('call');
+            }
+            warrantyInfoID = "";
             return false;
         }
     })
@@ -874,19 +989,20 @@ $(document).ready(function () {
 */
 
     window.resetwarrantyForm = function (data) {
-        $("#loading-image-warranty").loadImager('removeLoadImage');
-        $("#loading-image-warranty").loadImager('appendImage');
+        $("#loadingImage_factoryWarrantyform").loadImager('removeLoadImage');
+        $("#loadingImage_factoryWarrantyform").loadImager('appendImage');
 
-        $('#warrantyForm').validationEngine('hide');
-        $('#dropdownModel').ddslick('select', { index: String(0) });
-        $('#dropdownVhModel').ddslick('select', { index: String(0) });
-        ddslick_warrantyId = 0;
-        ddslick_warranty_name = "";
+        $('#factoryWarrantyForm')[0].reset();
+        $('#factoryWarrantyForm').validationEngine('hide');
+
+        $('#ddslickModel').ddslick('select', { index: String(0) });
+        $('#ddslickVehicle').ddslick('destroy');
+        $('#ddslickApplicationType').ddslick('select', { index: String(0) });
         $('#dropdownWrType').ddslick('select', { index: String(0) });
         $('#dropdownWrMil').ddslick('select', { index: String(0) });
         $('#dropdownWrMonth').ddslick('select', { index: String(0) });
         $('#dropdownRm').ddslick('select', { index: String(0) });
-        $("#loading-image-warranty").loadImager('removeLoadImage');
+        $("#loadingImage_factoryWarrantyform").loadImager('removeLoadImage');
         
        // $("#warranty_tab").organizeTabs('activatePrevTab');
        // $("#warranty_tab").organizeTabs('disableAllTabs');
@@ -901,19 +1017,26 @@ $(document).ready(function () {
 */
 
     window.fillwarrantyForm = function (data) {
-        $("#loading-image-warranty").loadImager('removeLoadImage');
-        $("#loading-image-warranty").loadImager('appendImage');
+        //$("#loadingImage_factoryWarrantyform").loadImager('removeLoadImage');
+        //$("#loadingImage_factoryWarrantyform").loadImager('appendImage');
 
         ddslick_modelId = data.vehicle_group_id;
         ddslick_model_name = data.vehicle_group;
 
-        ddslick_warrantyId = data.apid;
-        ddslick_warranty_name = data.vehicle_group_name;
+        ddslick_vehicleId = data.vehicle_gt_model_id;
+        ddslick_vehicle_name = data.model_description;
 
-        $('#dropdownModel').ddslick('selectByValue',
+        $('#ddslickModel').ddslick('selectByValue',
             {
                 index: '' + data.vehicle_group_id + '',
                 text: '' + data.vehicle_group + ''
+            }
+        );
+        
+        $('#ddslickApplicationType').ddslick('selectByValue',
+            {
+                index: '' + data.vehicle_app_types_id + '',
+                text: '' + data.vehicle_app_type_name + ''
             }
         );
 
@@ -959,8 +1082,8 @@ $(document).ready(function () {
         document.getElementById("txt-wrPrice-name").value = data.price_in_euros;
         //document.getElementById("txt-wrName-VhType").value = data.vehicle_group_id;
         //document.getElementById("txt-wrName-WrName").value = data.vehicle_group_name;
-        document.getElementById("txt-wrUnique-name").value = data.vehicle_group + data.vehicle_config_name + Mil1 + Mil2 + WrType + WrRM;
-        $("#loading-image-warranty").loadImager('removeLoadImage');
+        document.getElementById("txt-wrUnique-name").value = data.unique_code;
+       // $("#loadingImage_factoryWarrantyform").loadImager('removeLoadImage');
         return false;
     }
 
@@ -1005,155 +1128,6 @@ $(document).ready(function () {
         })
         ajax_activepasiveWrMatrix.ajaxCallWidget('call');
         //$('#warrantyListRefresh').click();
-    }
-
-
-
-/////////////////////////Warranty Name//////////////////////////////
-/**
-* insert traning name
-* @returns {undefined}
-* @since 29/08/2018
-*/
-    $("#btn-warrantyName-save").on("click", function (e) {
-        e.preventDefault();
-        //alert("geldim click");
-        if ($("#warrantyNameForm").validationEngine('validate')) {
-            //window.insertwarrantyName = function () {
-
-            $("#loading-image-warrantyName").loadImager('removeLoadImage');
-            $("#loading-image-warrantyName").loadImager('appendImage');
-
-            var ddData = $('#dropdownModelName').data('ddslick');
-            var vehicle_group_id = ddData.selectedData.value;
-
-            var warrantyName = $('#txt-wrName-name').val();
-
-            // http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_syswarranties&name=dennee&vehicle_group_id=8&pk=GsZVzEYe50uGgNM
-            var ajax_InsertWarrantyName = $('#ajaxACL-insertwarrantyName').ajaxCallWidget({
-                failureLoadImage: true,
-                loadingImageID: "loading-image-warrantyName",
-                triggerSuccessAuto: true,
-                transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-
-                proxy: '/Warranty/AddWarrantyName',
-                type: 'POST',
-                data: JSON.stringify({
-                    url: "pkInsertAct_syswarranties",
-                    name: warrantyName,
-                    vehicle_group_id: vehicle_group_id,
-                    pk: "GsZVzEYe50uGgNM"
-                })
-            });
-            ajax_InsertWarrantyName.ajaxCallWidget({
-                onReset: function (event, data) {
-                    resetwarrantyNameForm();
-                },
-            })
-            ajax_InsertWarrantyName.ajaxCallWidget('call');
-            return false;
-        }
-    })
-
-/**
-* Fill model form
-* @returns {Boolean}
-* @author Ceydacan Seyrek
-* @since 14/08/2018
-*/
-var warrantyNameId = "";
-    window.fillwarrantyNameForm = function (data) {
-        $("#loading-image-warrantyName").loadImager('removeLoadImage');
-        $("#loading-image-warrantyName").loadImager('appendImage');
-
-        $('#dropdownModelName').ddslick('selectByValue',
-            {
-                index: '' + data.vehicle_group_id + '',
-                text: '' + data.name + ''
-            }
-        );
-        document.getElementById("txt-wrName-name").value = data.name;
-        //document.getElementById("txt-wrName-VhType").value = data.vehicle_group_name;
-        //document.getElementById("txt-wrName-WrName").value = data.name;
-
-        $("#loading-image-warrantyName").loadImager('removeLoadImage');
-
-        warrantyNameId = data.id;
-        VhType = data.vehicle_group_name;
-        //$("#warranty_tab").organizeTabs('enableAllTabs');
-        //tab_active();
-        return false;
-    }
-
-/**
-* reset model Form
-* @returns {undefined}
-* @author Ceydacan Seyrek
-* @since 14/08/2018
-*/
-    $("#btn-warrantyName-clear").on("click", function (e) {
-        e.preventDefault();
-        resetwarrantyNameForm();
-        return false;
-    })
-
-    var resetwarrantyNameForm = function () {
-        $("#loading-image-warrantyName").loadImager('removeLoadImage');
-        $("#loading-image-warrantyName").loadImager('appendImage');
-
-        $('#warrantyNameForm')[0].reset();
-        $('#warrantyNameForm').validationEngine('hide');
-        $('#dropdownModelName').ddslick('select', { index: String(0) });
-
-        $("#loading-image-warrantyName").loadImager('removeLoadImage');
-
-        //tab_disable();
-        return false;
-    }
-
-//ActivePasive Warranty Name
-
-    window.activepasiveWrName = function (wrName_id, active) {
-
-        var transactionSuccessMessage;
-
-        if (active === 1) {
-            //active
-            transactionSuccessMessage = window.lang.translate('Active successful');
-        } else {
-            //pasive
-            transactionSuccessMessage = window.lang.translate('Pasive successful');
-        }
-
-        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateMakeActiveOrPassive_syswarranties&id=29&pk=GsZVzEYe50uGgNM
-        var ajax_activepasiveWrName = $('#ajaxACL-wrNameList').ajaxCallWidget({
-            failureLoadImage: true,
-            loadingImageID: "loading-image-warrantyNameGrid",
-            triggerSuccessAuto: true,
-            transactionSuccessText: transactionSuccessMessage,
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-            proxy: '/Warranty/SysActivePasiveWrName',
-            type: "POST",
-            data: JSON.stringify({
-                id: wrName_id,
-                pk: "GsZVzEYe50uGgNM",
-                url: "pkUpdateMakeActiveOrPassive_syswarranties"
-            }),
-
-        });
-        ajax_activepasiveWrName.ajaxCallWidget({
-            onReset: function (event, data) {
-
-            },
-            onAfterSuccess: function (event, data) {
-                $("#gridContainer_factoryWarranty").dxDataGrid("instance").refresh();
-            }
-        })
-        ajax_activepasiveWrName.ajaxCallWidget('call');
-        $('#wrNameListRefresh').click();
     }
 
 });
