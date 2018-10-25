@@ -532,6 +532,9 @@ $(document).ready(function () {
             if (ddDataVhc.selectedData.value > 0) {
                 vhc_id = ddDataVhc.selectedData.value;
             }
+            else {
+                vhc_id = "";
+            }
 
             var ddDataCry = $('#ddslickCurrency').data('ddslick');
             var cry_id;
@@ -543,6 +546,9 @@ $(document).ready(function () {
             var wr_id ;
             if (ddDataWr.selectedData.value > 0) {
                 wr_id = ddDataWr.selectedData.value;
+            }
+            else {
+                wr_id = "";
             }
 
             var price = $('#txt-fc-price').val();
@@ -563,41 +569,77 @@ $(document).ready(function () {
             //&is_all_vehicle=1--
             //warranty_matrix_id=--
             //&pk=GsZVzEYe50uGgNM--
+            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateAct_sysfixedsalescosts&name=gitgel%20cost&vehicle_gruop_id=1&vehicle_second_group_id=&vvalue=1111=&currency_type_id=16&start_date=2018-10-10&is_all_vehicle=1=warranty_matrix_id=&pk=GsZVzEYe50uGgNM&id=4
+            if (!fixedCostId == "") {//update
+                var ajax_InsertFixedCost = $('#ajaxACL-fixedCostList').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loadingImage_FixedCost",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
 
-            var ajax_InsertFixedCost = $('#ajaxACL-fixedCostList').ajaxCallWidget({
-                failureLoadImage: true,
-                loadingImageID: "loadingImage_FixedCost",
-                triggerSuccessAuto: true,
-                transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-
-                proxy: '/Sys/AddFixedCost',
-                type: 'POST',
-                data: JSON.stringify({
-                    url: "pkInsertAct_sysfixedsalescosts",
-                    name: fc_name,
-                    vehicle_gruop_id: model_id,
-                    vehicle_second_group_id: vhc_id,
-                    currency_type_id: cry_id,
-                    start_date: start_date,
-                    vvalue: price,
-                    warranty_matrix_id: wr_id,
-                    is_all_vehicle: is_all_vehicle,
-                    pk: "GsZVzEYe50uGgNM"
+                    proxy: '/Sys/AddFixedCost',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        url: "pkUpdateAct_sysfixedsalescosts",
+                        id: fixedCostId,
+                        name: fc_name,
+                        vehicle_gruop_id: model_id,
+                        vehicle_second_group_id: vhc_id,
+                        currency_type_id: cry_id,
+                        start_date: start_date,
+                        vvalue: price,
+                        warranty_matrix_id: wr_id,
+                        is_all_vehicle: is_all_vehicle,
+                        pk: "GsZVzEYe50uGgNM"
+                    })
+                });
+                ajax_InsertFixedCost.ajaxCallWidget({
+                    onReset: function (event, data) {
+                        resetFixedCostForm();
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_fixedCostList").dxDataGrid("instance").refresh();
+                    }
                 })
-            });
-            ajax_InsertFixedCost.ajaxCallWidget({
-                onReset: function (event, data) {
-                    resetFixedCostForm();
-                },
-                onAfterSuccess: function (event, data) {
-                    $("#gridContainer_fixedCostList").dxDataGrid("instance").refresh();
-                }
-            })
-            ajax_InsertFixedCost.ajaxCallWidget('call');
-            //$('#fcListRefresh').click();
-            
+                ajax_InsertFixedCost.ajaxCallWidget('call');
+            }
+            else {//insert
+                var ajax_InsertFixedCost = $('#ajaxACL-fixedCostList').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loadingImage_FixedCost",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+
+                    proxy: '/Sys/AddFixedCost',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        url: "pkInsertAct_sysfixedsalescosts",
+                        name: fc_name,
+                        vehicle_gruop_id: model_id,
+                        vehicle_second_group_id: vhc_id,
+                        currency_type_id: cry_id,
+                        start_date: start_date,
+                        vvalue: price,
+                        warranty_matrix_id: wr_id,
+                        is_all_vehicle: is_all_vehicle,
+                        pk: "GsZVzEYe50uGgNM"
+                    })
+                });
+                ajax_InsertFixedCost.ajaxCallWidget({
+                    onReset: function (event, data) {
+                        resetFixedCostForm();
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_fixedCostList").dxDataGrid("instance").refresh();
+                    }
+                })
+                ajax_InsertFixedCost.ajaxCallWidget('call');
+            }
+            fixedCostId = "";
             return false;
         }
     })
@@ -642,6 +684,7 @@ $(document).ready(function () {
         //document.getElementById("txt-bbreturn-price").value = data.SaleAmount;
         document.getElementById("txt-fc-name").value = data.name;
         document.getElementById("txt-fc-price").value = data.vvalue;
+        document.getElementById("start-datepicker").value = data.start_date;
 
         ddslick_modelId = data.vehicle_gruop_id;
         ddslick_model_name = data.vehicle_gruop_name;

@@ -47,7 +47,7 @@ namespace Base.MVC.Controllers
         }
 
         /// <summary>
-        /// get Truckstogo grid 
+        /// get Trucks to go grid 
         /// Ceydacan Seyrek
         /// </summary>
         /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFixedSalesCostsGridx_sysfixedsalescosts&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
@@ -99,7 +99,7 @@ namespace Base.MVC.Controllers
         }
 
         /// <summary>
-        /// add Fixed Cost
+        /// add Trucks to go
         /// Ceydacan Seyrek
         /// </summary>
         /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_sysfixedsalescosts&name=gitgel%20cost&vehicle_gruop_id=1&vehicle_second_group_id=&vvalue=1111=&currency_type_id=16&start_date=2018-10-10&is_all_vehicle=1=warranty_matrix_id=&pk=GsZVzEYe50uGgNM
