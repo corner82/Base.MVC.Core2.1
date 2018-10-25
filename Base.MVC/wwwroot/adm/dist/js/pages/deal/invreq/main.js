@@ -3,6 +3,15 @@
     //----------------------------------loadImager begin-------------------------------------------------
     $('#loadingImage_DdslickVehicleGroupsBodyProposal').loadImager();
     $('#loadingImage_ddslickVehicleGroupProducts').loadImager();
+    $("#loading-image-country").loadImager();
+    $("#loading-image-province").loadImager();
+    $("#loading-image-city").loadImager();
+    $('#loadingImage_Ddslick3').loadImager();
+    $('#loadingImage_Ddslick4').loadImager();
+    $('#loadingImage_Ddslick5').loadImager();
+    $('#loadingImage_Ddslick6').loadImager();
+    $('#loadingImage_Ddslick7').loadImager();
+    $('#loadingImage_Ddslick8').loadImager();
     //----------------------------------loadImager end-------------------------------------------------
 
     //----------------------------------tagcabin begin-------------------------------------------------
@@ -205,6 +214,250 @@
     //----------------------------------grid end-------------------------------------------------
 
     //----------------------------------dropdowns begin-------------------------------------------------
+    var filldropdown = false;
+    /*
+    * 
+    * Country, Province, City ddSlick
+    * Gül Özdemir
+    * 09/10/2018
+    */
+    $('#loading-image-country').loadImager('removeLoadImage');
+    $('#loading-image-country').loadImager('appendImage');
+    var ajaxACLResources_country = $('#ajaxACL-country').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loading-image-country",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Sys/SysCountrys',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkCountryDdList_syscountrys",
+            //pkIdentity: $("#publicKey").val()
+        }),
+        timeout: 30000
+    });
+    ajaxACLResources_country.ajaxCallWidget({
+        onReset: function (event, data) {
+
+        },
+        onSuccess: function (event, datacountry) {
+            var cbdata_country = $.parseJSON(datacountry);
+            cbdata_country.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+
+            $('#dropdownCountry').ddslick({
+                data: cbdata_country,
+                width: '100%',
+                search: true,
+                searchText: window.lang.translate('Search'),
+                onSelected: function (selectedData) {
+
+                    $('#dropdownProvince').ddslick('destroy');
+
+                    if (selectedData.selectedData.value > 0) {
+
+                        ddslick_countryId = selectedData.selectedData.value;
+
+
+                        $('#loading-image-province').loadImager('removeLoadImage');
+                        $('#loading-image-province').loadImager('appendImage');
+
+                        var ajaxACLResources_getprovince = $('#ajaxACL-province').ajaxCallWidget({
+                            failureLoadImage: true,
+                            loadingImageID: "loading-image-province",
+                            triggerSuccessAuto: true,
+                            transactionSuccessText: window.lang.translate('Transaction successful'),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            proxy: '/Sys/SysCountryRegions',
+                            type: "POST",
+                            data: JSON.stringify({
+                                language_code: $("#langCode").val(),
+                                pk: "GsZVzEYe50uGgNM",
+                                url: "pkCountryRegionsDdList_syscountryregions",
+                                country_id: ddslick_countryId
+                                //pkIdentity: $("#publicKey").val()
+                            }),
+                            timeout: 30000
+                        });
+
+                        //province
+                        ajaxACLResources_getprovince.ajaxCallWidget({
+                            onReset: function (event, data) {
+
+                            },
+                            onSuccess: function (event, dataprovince) {
+
+                                var cbdata_province = $.parseJSON(dataprovince);
+                                cbdata_province.splice(0, 0,
+                                    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                                );
+
+                                $('#dropdownProvince').ddslick({
+                                    data: cbdata_province,
+                                    width: '100%',
+                                    search: true,
+                                    searchText: window.lang.translate('Search'),
+                                    onSelected: function (selectedData) {
+
+                                        $('#dropdownCity').ddslick('destroy');
+
+                                        if (selectedData.selectedData.value > 0) {
+                                            ddslick_provinceId = selectedData.selectedData.value;
+
+                                            $('#loading-image-city').loadImager('removeLoadImage');
+                                            $('#loading-image-city').loadImager('appendImage');
+
+                                            //city
+                                            var ajaxACLResources_getcity = $('#ajaxACL-city').ajaxCallWidget({
+                                                failureLoadImage: true,
+                                                loadingImageID: "loading-image-city",
+                                                triggerSuccessAuto: true,
+                                                transactionSuccessText: window.lang.translate('Transaction successful'),
+                                                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                                                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                                                proxy: '/Sys/SysCity',
+                                                type: "POST",
+                                                data: JSON.stringify({
+                                                    language_code: $("#langCode").val(),
+                                                    pk: "GsZVzEYe50uGgNM",
+                                                    url: "pkCityDdList_syscity",
+                                                    country_id: ddslick_countryId,
+                                                    region_id: ddslick_provinceId
+                                                    //pkIdentity: $("#publicKey").val()
+                                                }),
+                                                timeout: 30000
+                                            });
+
+                                            ajaxACLResources_getcity.ajaxCallWidget({
+                                                onReset: function (event, data) {
+
+                                                },
+                                                onSuccess: function (event, datacity) {
+
+                                                    var cbdata_city = $.parseJSON(datacity);
+                                                    cbdata_city.splice(0, 0,
+                                                        { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                                                    );
+
+                                                    $('#dropdownCity').ddslick({
+                                                        data: cbdata_city,
+                                                        width: '100%',
+                                                        search: true,
+                                                        searchText: window.lang.translate('Search'),
+                                                        //defaultSelectedIndex: ddslick_cityId, //$("#dropdownCity li:has(.dd-option-text:contains('" + ddslick_city_name + "'))").index()
+
+                                                    })
+                                                    if (filldropdown === true) {
+                                                        $('#dropdownCity').ddslick('selectByValue',
+                                                            {
+                                                                index: ddslick_cityId,
+                                                                value: ddslick_city_name
+                                                            });
+                                                        filldropdown = false;
+                                                    }
+                                                    $('#loading-image-city').loadImager('removeLoadImage');
+                                                },
+                                                onAfterSuccess: function (event, data) {
+                                                    $('#loading-image-city').loadImager('removeLoadImage');
+                                                }
+                                            })
+                                            ajaxACLResources_getcity.ajaxCallWidget('call');
+                                            //city bitti
+                                        }
+                                    }
+                                })
+                                if (filldropdown === true) {
+                                    $('#dropdownProvince').ddslick('selectByValue',
+                                        {
+                                            index: ddslick_provinceId,
+                                            value: ddslick_province_name
+                                        }
+                                    );
+                                }
+                                $('#loading-image-province').loadImager('removeLoadImage');
+                            },
+
+                            onAfterSuccess: function (event, data) {
+                                //alert('geldim AfterSuccess province');
+
+                                $('#loading-image-province').loadImager('removeLoadImage');
+                            }
+                        })
+                        ajaxACLResources_getprovince.ajaxCallWidget('call');
+                        //province bitti
+                    }
+                }
+            })
+            $('#loading-image-country').loadImager('removeLoadImage');
+        },
+        onAfterSuccess: function (event, data) {
+            //alert('geldim AfterSuccess country');
+            
+        }
+    })
+    ajaxACLResources_country.ajaxCallWidget('call');
+
+    /**
+   * ddslick R&M (buyback) dropdown 
+   * @author Mustafa Zeynel Dağlı
+   * @since 15/08/2018
+   */
+    var ddslickRepMainDataBuyBack = [
+        {
+            text: 'Please select',
+            value: 0,
+            selected: true
+        },
+
+    ];
+    $('#loading-image-province').loadImager('removeLoadImage');
+    $("#loading-image-province").loadImager('appendImage');
+    var selectedContRepMainBuyBack = false;
+    $('#dropdownProvince').ddslick({
+        //height: 150,
+        data: ddslickRepMainDataBuyBack,
+        width: '100%',
+        onSelected: function (selectedData) {
+            
+        }
+    });
+    $("#loading-image-province").loadImager('removeLoadImage');
+
+    /**
+   * ddslick R&M (buyback) dropdown 
+   * @author Mustafa Zeynel Dağlı
+   * @since 15/08/2018
+   */
+    var ddslickRepMainDataBuyBack = [
+        {
+            text: 'Please select',
+            value: 0,
+            selected: true
+        },
+
+
+    ];
+    $('#loading-image-city').loadImager('removeLoadImage');
+    $("#loading-image-city").loadImager('appendImage');
+    var selectedContRepMainBuyBack = false;
+    $('#dropdownCity').ddslick({
+        //height: 150,
+        data: ddslickRepMainDataBuyBack,
+        width: '100%',
+
+        onSelected: function (selectedData) {
+            
+            
+        }
+    });
+    $("#loading-image-city").loadImager('removeLoadImage');
+
 
     /**
     * ddslick vehicle groups (body) dropdown 
@@ -213,7 +466,6 @@
     */
     $('#loadingImage_DdslickVehicleGroupsBodyProposal').loadImager('removeLoadImage');
     $("#loadingImage_DdslickVehicleGroupsBodyProposal").loadImager('appendImage');
-    //var selectedContTerrainTypeBuyBack = false;
     var ajax_DdslickVehicleGroupsBodyProposal = $('#ajax_DdslickVehicleGroupsBodyProposal').ajaxCallWidget({
         proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
@@ -235,7 +487,7 @@
             data.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
-            $('#ddslickVehicleGroupsBodyProposal').ddslick({
+            $('#ddslickDeals').ddslick({
                 //height: 150,
                 data: data,
                 width: '100%',
@@ -259,30 +511,295 @@
    * @author Mustafa Zeynel Dağlı
    * @since 21/10/2018
    */
-    var ddslickDealVehicleGroupsProductionData = [
-        {
-            text: 'Please select',
-            value: 0,
-            selected: true
-        },
-    ];
+    
     $('#loadingImage_ddslickVehicleGroupProducts').loadImager('removeLoadImage');
     $("#loadingImage_ddslickVehicleGroupProducts").loadImager('appendImage');
-    //var selectedContRepMainBuyBack = false;
-    $('#ddslickDealVehicleGroupProducts').ddslick({
-        //height: 150,
-        data: ddslickDealVehicleGroupsProductionData,
-        width: '100%',
-        onSelected: function (selectedData) {
-            /*if (selectedContRepMainBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
-            selectedContRepMainBuyBack = true;*/
-            if (selectedData.selectedData.value > 0) {
-                //$("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
+    var ajax_Ddslick2 = $('#ajax_DdslickVehicleGroupProducts').ajaxCallWidget({
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickVehicleGroupsBodyProposal",
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        noDataFailureText: window.lang.translate("No data returned from service"),
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkVehicleGroupsDdList_sysvehiclegroups",
+            pkIdentity: $("#publicKey").val()
+        })
 
-            }
-        }
     });
-    $("#loadingImage_ddslickVehicleGroupProducts").loadImager('removeLoadImage');
+    ajax_Ddslick2.ajaxCallWidget({
+        onSuccess: function (event, data) {
+            var data = $.parseJSON(data);
+            data.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+            $('#ddslickInvoiceType').ddslick({
+                //height: 150,
+                data: data,
+                width: '100%',
+                onSelected: function (selectedData) {
+                    
+                }
+            });
+
+            $("#loadingImage_ddslickVehicleGroupProducts").loadImager('removeLoadImage');
+        },
+    })
+    ajax_Ddslick2.ajaxCallWidget('call');
+
+
+    /**
+   * ddslick vehicle group productions (body proposal)
+   * @author Mustafa Zeynel Dağlı
+   * @since 21/10/2018
+   */
+
+    $('#loadingImage_Ddslick3').loadImager('removeLoadImage');
+    $("#loadingImage_Ddslick3").loadImager('appendImage');
+    var ajax_Ddslick3 = $('#ajax_Ddslick3').ajaxCallWidget({
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_Ddslick3",
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        noDataFailureText: window.lang.translate("No data returned from service"),
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkVehicleGroupsDdList_sysvehiclegroups",
+            pkIdentity: $("#publicKey").val()
+        })
+
+    });
+    ajax_Ddslick3.ajaxCallWidget({
+        onSuccess: function (event, data) {
+            var data = $.parseJSON(data);
+            data.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+            $('#ddslick3').ddslick({
+                //height: 150,
+                data: data,
+                width: '100%',
+                onSelected: function (selectedData) {
+
+                }
+            });
+
+            $("#loadingImage_Ddslick3").loadImager('removeLoadImage');
+        },
+    })
+    ajax_Ddslick3.ajaxCallWidget('call');
+
+    /**
+  * ddslick vehicle group productions (body proposal)
+  * @author Mustafa Zeynel Dağlı
+  * @since 21/10/2018
+  */
+
+    $('#loadingImage_Ddslick4').loadImager('removeLoadImage');
+    $("#loadingImage_Ddslick4").loadImager('appendImage');
+    var ajax_Ddslick4 = $('#ajax_Ddslick4').ajaxCallWidget({
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_Ddslick3",
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        noDataFailureText: window.lang.translate("No data returned from service"),
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkVehicleGroupsDdList_sysvehiclegroups",
+            pkIdentity: $("#publicKey").val()
+        })
+
+    });
+    ajax_Ddslick4.ajaxCallWidget({
+        onSuccess: function (event, data) {
+            var data = $.parseJSON(data);
+            data.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+            $('#ddslick4').ddslick({
+                //height: 150,
+                data: data,
+                width: '100%',
+                onSelected: function (selectedData) {
+
+                }
+            });
+
+            $("#loadingImage_Ddslick4").loadImager('removeLoadImage');
+        },
+    })
+    ajax_Ddslick4.ajaxCallWidget('call');
+
+
+    /**
+   * ddslick vehicle type dropdown 
+   * @author Mustafa Zeynel Dağlı
+   * @since 15/08/2018
+   */
+
+    $('#loadingImage_Ddslick5').loadImager('removeLoadImage');
+    $("#loadingImage_Ddslick5").loadImager('appendImage');
+    var ajax_Ddslick5 = $('#ajax_Ddslick5').ajaxCallWidget({
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        noDataFailureText: window.lang.translate("No data returned from service"),
+        loadingImageID: "loadingImage_Ddslick5",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups",
+            pkIdentity: $("#publicKey").val()
+        })
+
+    });
+    ajax_Ddslick5.ajaxCallWidget({
+        onSuccess: function (event, data) {
+            var data = $.parseJSON(data);
+            data.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+            $('#ddslick5').ddslick({
+                //height: 150,
+                data: data,
+                width: '100%',
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+                        //vehicleKitTypeForDefineFields(selectedData.selectedData.text);
+                    }
+                }
+            });
+            $("#loadingImage_Ddslick5").loadImager('removeLoadImage');
+        },
+    })
+    ajax_Ddslick5.ajaxCallWidget('call');
+
+
+    /**
+   * ddslick vehicle type dropdown 
+   * @author Mustafa Zeynel Dağlı
+   * @since 15/08/2018
+   */
+    $('#loadingImage_Ddslick6').loadImager('removeLoadImage');
+    $("#loadingImage_Ddslick6").loadImager('appendImage');
+    var ajax_Ddslick6 = $('#ajax_Ddslick6').ajaxCallWidget({
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        noDataFailureText: window.lang.translate("No data returned from service"),
+        loadingImageID: "loadingImage_Ddslick6",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups",
+            pkIdentity: $("#publicKey").val()
+        })
+
+    });
+    ajax_Ddslick6.ajaxCallWidget({
+        onSuccess: function (event, data) {
+            var data = $.parseJSON(data);
+            data.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+            $('#ddslick6').ddslick({
+                //height: 150,
+                data: data,
+                width: '100%',
+                onSelected: function (selectedData) {
+                    
+                }
+            });
+            $("#loadingImage_Ddslick6").loadImager('removeLoadImage');
+        },
+    })
+    ajax_Ddslick6.ajaxCallWidget('call');
+
+    /**
+   * ddslick vehicle type dropdown 
+   * @author Mustafa Zeynel Dağlı
+   * @since 15/08/2018
+   */
+    $('#loadingImage_Ddslick7').loadImager('removeLoadImage');
+    $("#loadingImage_Ddslick7").loadImager('appendImage');
+    var ajax_Ddslick7 = $('#ajax_Ddslick7').ajaxCallWidget({
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        noDataFailureText: window.lang.translate("No data returned from service"),
+        loadingImageID: "loadingImage_Ddslick7",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups",
+            pkIdentity: $("#publicKey").val()
+        })
+
+    });
+    ajax_Ddslick7.ajaxCallWidget({
+        onSuccess: function (event, data) {
+            var data = $.parseJSON(data);
+            data.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+            $('#ddslick7').ddslick({
+                //height: 150,
+                data: data,
+                width: '100%',
+                onSelected: function (selectedData) {
+
+                }
+            });
+            $("#loadingImage_Ddslick7").loadImager('removeLoadImage');
+        },
+    })
+    ajax_Ddslick7.ajaxCallWidget('call');
+
+    /**
+   * ddslick vehicle type dropdown 
+   * @author Mustafa Zeynel Dağlı
+   * @since 15/08/2018
+   */
+    $('#loadingImage_Ddslick8').loadImager('removeLoadImage');
+    $("#loadingImage_Ddslick8").loadImager('appendImage');
+    var ajax_Ddslick8 = $('#ajax_Ddslick8').ajaxCallWidget({
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        noDataFailureText: window.lang.translate("No data returned from service"),
+        loadingImageID: "loadingImage_Ddslick7",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups",
+            pkIdentity: $("#publicKey").val()
+        })
+
+    });
+    ajax_Ddslick8.ajaxCallWidget({
+        onSuccess: function (event, data) {
+            var data = $.parseJSON(data);
+            data.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+            $('#ddslick8').ddslick({
+                //height: 150,
+                data: data,
+                width: '100%',
+                onSelected: function (selectedData) {
+
+                }
+            });
+            $("#loadingImage_Ddslick8").loadImager('removeLoadImage');
+        },
+    })
+    ajax_Ddslick8.ajaxCallWidget('call');
 
 
 
