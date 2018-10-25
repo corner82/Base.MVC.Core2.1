@@ -23,7 +23,7 @@ $(document).ready(function () {
     */
     //to accessory form
     //to accessory feature name form
-    $("#loading-image-accessoryname").loadImager();
+    $("#loading-image-accessorynameform").loadImager();
     $("#loading-image-accessory").loadImager();
 
     $("#loading-image-vehiclemodel").loadImager();
@@ -38,6 +38,9 @@ $(document).ready(function () {
     $("#loading-image-accessorynameGrid").loadImager();
     //to accessory form grid loading-image
     $("#loading-image-accessoryGrid").loadImager();
+
+
+    var selectedAccessorynameId = 0;
 
     var langCode = $("#langCode").val();
     //alert(langCode);
@@ -481,7 +484,7 @@ $(document).ready(function () {
 
 
     /* devexgrid */
-    var orders = new DevExpress.data.CustomStore({
+/*    var orders = new DevExpress.data.CustomStore({
         load: function (loadOptions) {
             var deferred = $.Deferred(),
                 args = {};
@@ -618,15 +621,14 @@ $(document).ready(function () {
 
          logList.prepend(newItem);
      }
-
-
+*/
     /**
  * insertAccessory
  * @returns {undefined}
  * @author Gül Özdemir
  * @since 03/09/2018
  */
-
+/*
     window.insertAccessory = function () {
         $("#loading-image-accessory").loadImager('removeLoadImage');
         $("#loading-image-accessory").loadImager('appendImage');
@@ -700,6 +702,7 @@ $(document).ready(function () {
         })
         aj.ajaxCall('call');
     }
+    */
  /**
  * reset Accessory Form
  * @returns {undefined}
@@ -766,180 +769,337 @@ $(document).ready(function () {
         return false;
     }
 
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    /**
+    * accessorynameList Refresh
+    * @returns 
+    * @author Gül Özdemir
+    * @since 24/10/2018
+    */
 
-    $("#gridContainer_accessoryname").dxDataGrid({
+    $('#accessorynameList').click(function () {
 
-        showColumnLines: true,
+        /* devexgrid */
+        var accessoryname_data = new DevExpress.data.CustomStore({
+            load: function (loadOptions) {
+                var deferred = $.Deferred(),
+                    args = {};
 
-        showRowLines: true,
+                if (loadOptions.sort) {
+                    args.orderby = loadOptions.sort[0].selector;
+                    if (loadOptions.sort[0].desc)
+                        args.orderby += " desc";
+                }
 
-        showBorders: true,
+                args.skip = loadOptions.skip || 0;
+                args.take = loadOptions.take || 12;
 
-        dataSource: orders,
+                $.ajax({
+                    url: '/Accessory/AccessoryFeatureGridList',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        language_code: $("#langCode").val(),
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkFillAccDeffGridx_sysaccdeff",
+                        pkIdentity: $("#publicKey").val(),
+                        page: "",
+                        rows: "",
+                        sort: "",
+                        order: "", //args.orderby,
+                        skip: args.skip,
+                        take: args.take
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                    },
+                    error: function () {
+                        deferred.reject("Data Loading Error");
+                    },
+                    timeout: 30000
+                });
 
-        columnHidingEnabled: true,
-
-        selection: {
-            mode: "single"
-        },
-
-        hoverStateEnabled: true,
-
-        editing: {
-            //mode: "batch"
-            mode: "form",
-            allowAdding: true,
-            allowUpdating: true,
-            allowDeleting: true,
-            useIcons: true
-        },
-
-        "export": {
-            enabled: true,
-            fileName: "AccessoryNameList"
-        },
-
-        grouping: {
-            contextMenuEnabled: true,
-            expandMode: "rowClick"
-        },
-
-        groupPanel: {
-            emptyPanelText: "Use the context menu of header columns to group data",
-            visible: true
-        },
-
-        pager: {
-            allowedPageSizes: [5, 8, 15, 30],
-            showInfo: true,
-            showNavigationButtons: true,
-            showPageSizeSelector: true,
-            visible: true
-        },
-
-        paging: {
-            pageSize: 8
-        },
-
-        filterRow: {
-            visible: true,
-            applyFilter: "auto"
-        },
-
-        searchPanel: {
-            visible: true,
-            width: 240,
-            placeholder: window.lang.translate('Search') + "...",
-        },
-
-        headerFilter: {
-            visible: true
-        },
-
-        columnChooser: {
-            enabled: true,
-            mode: "select"
-        },
-
-        columns: [{
-            caption: "Accessory Feature Name (Backoffice)",
-            dataField: "StoreState"
-        },
-        {
-            caption: "Accessory Feature Name (Salesman)",
-            dataField: "StoreCity"
-        }],
-
-        onSelectionChanged: function (selectedItems) {
-            var data = selectedItems.selectedRowsData[0];
-            if (data) {
-                fillAccessoryNameForm(data);
+                return deferred.promise();
+            },
+            remove: function (key) {
+                var deferred = $.Deferred();
+               
+                return $.ajax({
+                    url: '/Accessory/DeleteAccessoryFeature',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        id: selectedAccessorynameId,
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkDeletedAct_sysaccdeff"
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                    },
+                    error: function () {
+                        deferred.reject("Data remove Error");
+                    },
+                    timeout: 30000
+                });
             }
-        }
+        });
 
-    });
+        //DevExpress.localization.locale(langCode);
 
+        $(function () {
+            $("#gridContainer_accessoryname").dxDataGrid({
+
+                showColumnLines: true,
+
+                showRowLines: true,
+
+                showBorders: true,
+
+                dataSource: accessoryname_data,
+
+                columnHidingEnabled: true,
+
+                selection: {
+                    mode: "single"
+                },
+
+                hoverStateEnabled: true,
+
+                editing: {
+                    //mode: "batch"
+                    mode: "form",
+                    //allowAdding: true,
+                    //allowUpdating: true,
+                    allowDeleting: true,
+                    useIcons: true
+                },
+
+                "export": {
+                    enabled: true,
+                    fileName: window.lang.translate('AccessoryFeatureList')
+                },
+
+                grouping: {
+                    contextMenuEnabled: true,
+                    expandMode: "rowClick"
+                },
+
+                groupPanel: {
+                    emptyPanelText: window.lang.translate('Use the context menu of header columns to group data'),
+                    visible: true
+                },
+
+                pager: {
+                    allowedPageSizes: [5, 8, 15, 30],
+                    showInfo: true,
+                    showNavigationButtons: true,
+                    showPageSizeSelector: true,
+                    visible: true
+                },
+
+                paging: {
+                    pageSize: 8
+                },
+                OnCellPrepared: function (options) {
+
+                    var fieldData = options.value;
+                    fieldHtml = "";
+
+                    fieldHtml = fieldData.value;
+                    options.cellElement.html(fieldHtml);
+
+                },
+
+                filterRow: {
+                    visible: true,
+                    applyFilter: "auto"
+                },
+
+                searchPanel: {
+                    visible: true,
+                    width: 240,
+                    placeholder: window.lang.translate('Search') + "...",
+                },
+
+                headerFilter: {
+                    visible: true
+                },
+
+                columnChooser: {
+                    enabled: true,
+                    mode: "select"
+                },
+
+                columns: [
+                    {
+                        caption: window.lang.translate('Active/Passive'),
+                        width: 40,
+                        alignment: 'center',
+
+                        cellTemplate: function (container, options) {
+                            var fieldHtml;
+                            var accessoryname_id = options.data.id;
+
+                            if (options.data.active === 1) {
+                                //active
+                                $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
+                                    activepassiveAccessoryName(accessoryname_id, options.data.active);
+
+                                }).appendTo(container);
+                            } else if (options.data.active === 0) {
+
+                                //passive
+                                $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
+                                    activepassiveAccessoryName(accessoryname_id, options.data.active);
+
+                                }).appendTo(container);
+                            }
+
+                            //$('<img />').addClass('dx-link').attr('src', "/adm/dist/img/icons.png").on('click', function () {
+                            //    dm.dangerMessage('show', window.lang.translate('dangerMessage...'), window.lang.translate('dangerMessage...'));
+                            //}).appendTo(container); 
+
+                        }
+
+                    }, {
+                        caption: window.lang.translate('Feature Backoffice'),
+                        dataField: "name_bo",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Feature Salesman'),
+                        dataField: "name_sm",
+                        encodeHtml: false
+                    }
+                ],
+                rowPrepared: function (rowElement, rowInfo) {
+                    return false;
+                    //if (rowInfo.data.key === 1)
+                    //    rowElement.css('background', 'green');
+                    //else if (rowInfo.data.key === 0)
+                    //    rowElement.css('background', 'yellow');
+
+                },
+
+                onSelectionChanged: function (selectedItems) {
+                    var data = selectedItems.selectedRowsData[0];
+                    if (data) {
+                        selectedAccessorynameId = data.id;
+                        
+                        fillAccessoryNameForm(data);
+
+                    }
+                },
+
+                onRowRemoving: function (e) {
+                    selectedAccessorynameId = e.key.id;
+
+                },
+
+                onRowRemoved: function (e) {
+                    $("#gridContainer_accessoryname").dxDataGrid("instance").refresh();
+                },
+
+            });
+        });
+    })
+
+    $('#accessorynameList').click();
 
     /**
  * Insert AccessoryFeatureName
  * @returns {undefined}
  * @author Gül Özdemir
- * @since 13/09/2018
+ * @since 24/10/2018
  */
 
-    window.insertAccessoryName = function () {
-        $("#loading-image-accesoryname").loadImager('removeLoadImage');
-        $("#loading-image-accesoryname").loadImager('appendImage');
+    $("#btn-accessoryname-save").on("click", function (e) {
+        e.preventDefault();
 
-        var featurename_bo = $('#txt-featurename-bo').val();
-        var featurename_sm = $('#txt-featurename-sm').val();
+        if ($("#accessorynameForm").validationEngine('validate')) {
 
-        var aj = $(window).ajaxCall({
-            proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
-            data: {
-                url: 'pkInsert_sysbrand',
+            $("#loading-image-accessorynameform").loadImager('removeLoadImage');
+            $("#loading-image-accessorynameform").loadImager('appendImage');
 
-                name: brand_name,
-                pk: $("#pk").val()
-            }
-        })
-        aj.ajaxCall({
-            onError: function (event, textStatus, errorThrown) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Accessory Feature Name Ekleme İşlemi Başarısız...',
-                    'Accessory Feature Name Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
-                console.error('"pkInsert_sysCustomerInfo" servis hatası->' + textStatus);
-                $("#loading-image-accesoryname").loadImager('removeLoadImage');
-            },
-            onSuccess: function (event, data) {
-                console.log(data);
-                var data = data;
-                sm.successMessage({
-                    onShown: function (event, data) {
-                        $('#accesorynameForm')[0].reset();
+            var accessory_featurename_bo = $('#txt-featurename-bo').val();
+            var accessory_featurename_sm = $('#txt-featurename-sm').val();
 
-                        $("#loading-image-accesoryname").loadImager('removeLoadImage');
+            var ajax;
+            if (selectedAccessorynameId === 0) {
+                //alert("yeni kayıt");
+                //Yeni kayıt
+                ajax = $('#ajaxACL-accessoryname').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loading-image-accessorynameform",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    proxy: '/Accessory/InsertAccessoryFeature',
+                    type: "POST",
+                    data: JSON.stringify({
+                        url: "pkInsertAct_sysaccdeff",
+                        name_bo: accessory_featurename_bo,
+                        name_sm: accessory_featurename_sm,
+                        pk: "GsZVzEYe50uGgNM"
+                    })
+                });
 
+                ajax.ajaxCallWidget({
+                    onReset: function (event, data) {
+
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_accessoryname").dxDataGrid("instance").refresh();
+                        $("#loadingImage_accessorynameform").loadImager('removeLoadImage');
+                    }
+                })
+                ajax.ajaxCallWidget('call');
+
+            } else {
+                //update
+                //alert("update");
+
+                wcm.warningComplexMessage({
+                    onConfirm: function (event, data) {
+                        ajax = $('#ajaxACL-accessoryname').ajaxCallWidget({
+                            failureLoadImage: true,
+                            loadingImageID: "loading-image-accessorynameform",
+                            triggerSuccessAuto: true,
+                            transactionSuccessText: window.lang.translate('Transaction successful'),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            proxy: '/Accessory/UpdateAccessoryFeature',
+                            type: "POST",
+                            data: JSON.stringify({
+                                id: selectedAccessorynameId,
+                                url: "pkUpdateAct_sysaccdeff",
+                                name_bo: accessory_featurename_bo,
+                                name_sm: accessory_featurename_sm,
+                                pk: "GsZVzEYe50uGgNM"
+                            })
+                        });
+
+                        ajax.ajaxCallWidget({
+                            onReset: function (event, data) {
+
+                            },
+                            onAfterSuccess: function (event, data) {
+                                $("#gridContainer_accessoryname").dxDataGrid("instance").refresh();
+                                $("#loadingImage_accessorynameform").loadImager('removeLoadImage');
+                            }
+                        })
+                        ajax.ajaxCallWidget('call');
                     }
                 });
-                sm.successMessage('show', 'Brand Kayıt İşlemi Başarılı...',
-                    'Brand kayıt işlemini gerçekleştirdiniz... ',
-                    data);
-                $("#loading-image-accesoryname").loadImager('removeLoadImage');
-
-            },
-            onErrorDataNull: function (event, data) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'featurename Kayıt İşlemi Başarısız...',
-                    'featurename kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysfeaturename" servis datası boştur!!');
-                $("#loading-image-accesoryname").loadImager('removeLoadImage');
-            },
-            onErrorMessage: function (event, data) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'featurename Kayıt İşlemi Başarısız...',
-                    'featurename kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysfeaturename" servis datası boştur!!');
-                $("#loading-image-accesoryname").loadImager('removeLoadImage');
-            },
-            onError23503: function (event, data) {
-                dm.dangerMessage('Error23503');
-                $("#loading-image-accesoryname").loadImager('removeLoadImage');
-            },
-            onError23505: function (event, data) {
-                dm.dangerMessage({
-                    onShown: function (event, data) {
-                        $('#accesorynameForm')[0].reset();
-                        $("#loading-image-accesoryname").loadImager('removeLoadImage');
-                    }
-                });
-                dm.dangerMessage('show', 'Kayıt İşlemi Başarısız...',
-                    'Aynı isim ile accesoryname kaydı yapılmıştır, yeni bir Marka kaydı deneyiniz... ');
-                $("#loading-image-accesoryname").loadImager('removeLoadImage');
+                wcm.warningComplexMessage('show', 'Accesory Feature is update! Are you sure?', 'Accessory Feature is update! Are you sure?');
             }
-        })
-        aj.ajaxCall('call');
-    }
+        }
+        return false;
+
+    })
+
     /**
     * reset Accessory Feature Name Form
     * @returns {undefined}
@@ -948,34 +1108,17 @@ $(document).ready(function () {
     */
 
     window.resetAccessoryNameForm = function () {
-        $("#loading-image-accessoryname").loadImager('removeLoadImage');
-        $("#loading-image-accessoryname").loadImager('appendImage');
+        $("#loading-image-accessorynameform").loadImager('removeLoadImage');
+        $("#loading-image-accessorynameform").loadImager('appendImage');
 
+        selectedAccessorynameId = 0;
         $('#accessorynameForm').validationEngine('hide');
 
-        $("#loading-image-accessoryname").loadImager('removeLoadImage');
+        $("#loading-image-accessorynameform").loadImager('removeLoadImage');
 
         //yeni kayda açık, tablar kapatılıyor
         tab_disable();
 
-        return false;
-    }
-
-
-    /**
-    * insert Accessory Feature Name Wrapper
-    * @returns {Boolean}
-    * @author Gül Özdemir
-    * @since 13/09/2018
-    */
-
-    window.insertAccessoryNameWrapper = function (e) {
-        e.preventDefault();
-
-        if ($("#accessorynameForm").validationEngine('validate')) {
-
-            insertAccessoryName();
-        }
         return false;
     }
 
@@ -991,14 +1134,59 @@ $(document).ready(function () {
         $("#loading-image-accessoryname").loadImager('removeLoadImage');
         $("#loading-image-accessoryname").loadImager('appendImage');
 
-        document.getElementById("txt-featurename-bo").value = data.StoreState;
-        document.getElementById("txt-featurename-sm").value = data.StoreCity;
+        document.getElementById("txt-featurename-bo").value = data.name_bo;
+        document.getElementById("txt-featurename-sm").value = data.name_sm;
 
         $("#loading-image-accessoryname").loadImager('removeLoadImage');
 
         tab_active()
 
         return false;
+    }
+
+
+    window.activepassiveAccessoryName = function (accessoryname_id, active) {
+        $("#loading-image-accessorynameGrid").loadImager('removeLoadImage');
+        $("#loading-image-accessorynameGrid").loadImager('appendImage');
+
+        var transactionSuccessMessage;
+
+        if (active === 1) {
+            //active
+            transactionSuccessMessage = window.lang.translate('Active successful');
+        } else {
+            //pasive
+            transactionSuccessMessage = window.lang.translate('Passive successful');
+        }
+
+        var ajax_activepassiveaccessorynamelist = $('#ajaxACL-accessorynamelist').ajaxCallWidget({
+            failureLoadImage: true,
+            loadingImageID: "loading-image-accessorynameGrid",
+            triggerSuccessAuto: true,
+            transactionSuccessText: transactionSuccessMessage,
+            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            proxy: '/Accessory/ActivePassiveAccessoryFeature',
+            type: "POST",
+            data: JSON.stringify({
+                id: accessoryname_id,
+                pk: "GsZVzEYe50uGgNM",
+                url: "pkUpdateMakeActiveOrPassive_sysaccdeff"
+            }),
+
+        });
+        ajax_activepassiveaccessorynamelist.ajaxCallWidget({
+            onReset: function (event, data) {
+            },
+            onSuccess: function (event, data) {
+            },
+            onAfterSuccess: function (event, data) {
+                $("#gridContainer_accessoryname").dxDataGrid("instance").refresh();
+                $("#loading-image-accessorynameGrid").loadImager('removeLoadImage');
+            }
+        })
+        ajax_activepassiveaccessorynamelist.ajaxCallWidget('call');
+
     }
 });
 

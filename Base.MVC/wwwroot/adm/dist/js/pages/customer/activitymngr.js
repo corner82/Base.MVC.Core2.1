@@ -706,9 +706,11 @@ $(document).ready(function () {
 
                         },
                         onAfterSuccess: function (event, data) {
-                            $("#gridContainer_activity").dxDataGrid("instance").refresh();
-                            resetActivityForm();
+                            //$("#gridContainer_activity").dxDataGrid("instance").refresh();
                             $("#loading-image-activity").loadImager('removeLoadImage');
+                            resetActivityForm();
+                            $('#activityList').click();
+                           
                         }
                     })
                     ajax.ajaxCallWidget('call');
@@ -761,9 +763,11 @@ $(document).ready(function () {
 
                                 },
                                 onAfterSuccess: function (event, data) {
-                                    $("#gridContainer_activity").dxDataGrid("instance").refresh();
-                                    resetActivityForm();
+                                    //$("#gridContainer_activity").dxDataGrid("instance").refresh();
                                     $("#loading-image-activity").loadImager('removeLoadImage');
+                                    resetActivityForm();
+                                    $('#activityList').click();
+                                    
                                 }
                             })
                             ajax.ajaxCallWidget('call');
