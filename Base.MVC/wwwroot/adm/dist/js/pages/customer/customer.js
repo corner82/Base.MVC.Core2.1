@@ -222,13 +222,12 @@
                 search: true,
                 searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
-                    //alert("geldim country selected");
+
                     $('#dropdownProvince').ddslick('destroy');
-                    //alert("geldim country selected " + selectedData.selectedData.value);
+
                     if (selectedData.selectedData.value > 0) {
 
                         ddslick_countryId = selectedData.selectedData.value;
-                        //alert("geldim country selected :" + ddslick_countryId);
 
                         $('#loading-image-province').loadImager('removeLoadImage');
                         $('#loading-image-province').loadImager('appendImage');
@@ -258,7 +257,7 @@
 
                             },
                             onSuccess: function (event, dataprovince) {
-                                //alert("geldim 2");
+   
                                 var cbdata_province = $.parseJSON(dataprovince);
                                 cbdata_province.splice(0, 0,
                                     { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
@@ -305,7 +304,6 @@
 
                                                 },
                                                 onSuccess: function (event, datacity) {
-                                                    alert("geldim 3");
                                                     var cbdata_city = $.parseJSON(datacity);
                                                     cbdata_city.splice(0, 0,
                                                         { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
@@ -320,6 +318,7 @@
 
                                                     })
                                                     if (filldropdown === true) {
+                                                        //alert(ddslick_cityId);
                                                         $('#dropdownCity').ddslick('selectByValue',
                                                             {
                                                                 index: ddslick_cityId,
@@ -333,7 +332,7 @@
                                                     $('#loading-image-city').loadImager('removeLoadImage');
                                                 },
                                                 onError: function (event, data) {
-                                                    //alert("geldim hata city");
+              
                                                 }
                                             })
                                             ajaxACLResources_getcity.ajaxCallWidget('call');
@@ -353,7 +352,7 @@
                             },
 
                             onAfterSuccess: function (event, data) {
-                                //alert('geldim AfterSuccess province');
+     
 
                                 $('#loading-image-province').loadImager('removeLoadImage');
                             },
@@ -2801,8 +2800,8 @@
  * @since 14/07/2016
  */
     window.resetCustomerInfoForm = function () {
-        $("#loading-image-cstInfo").loadImager('removeLoadImage');
-        $("#loading-image-cstInfo").loadImager('appendImage');
+    //    $("#loading-image-cstInfo").loadImager('removeLoadImage');
+    //    $("#loading-image-cstInfo").loadImager('appendImage');
 
         selectedCustomerId = 0;
 
@@ -2817,22 +2816,19 @@
 
 
         $('#customerInfoForm').validationEngine('hide');
-        
-        //$('#dropdownCountry').ddslick('select', { index: String(0) });
-        
+
         $('#dropdownCountry').ddslick('selectByValue',
             {
-                    index: ddslick_countryId,
-                    value: ddslick_country_name
+                index: ddslick_countryId,
+                value: ddslick_country_name
             }
         );
-        
+
         $('#dropdownProvince').ddslick('destroy');
         $('#dropdownCity').ddslick('destroy');
 
         $('#dropdownSegment').ddslick('select', { index: String(0) });
         $('#dropdownSector').ddslick('select', { index: String(0) });
-
         $('#dropdownCredibility').ddslick('select', { index: String(0) });
         $('#dropdownApplicationType').ddslick('select', { index: String(0) });
         $('#dropdownCustomerCategory').ddslick('select', { index: String(0) });
@@ -2840,10 +2836,12 @@
         $('#dropdownTotalEmployees').ddslick('select', { index: String(0) });
         $('#dropdownAnnuelRevenue').ddslick('select', { index: String(0) });
 
-        $("#loading-image-cstInfo").loadImager('removeLoadImage');
+     //   $("#loading-image-cstInfo").loadImager('removeLoadImage');
+
+        //$('#dropdownCountry').ddslick('select', { index: String(0) });
+
         resetCustomerPurchaseForm();
-        
-    
+            
         //yeni kayda açık, tablar kapatılıyor
         tab_disable();
         //$("#customer_tab").organizeTabs('disableAllTabs');
@@ -2859,8 +2857,8 @@
  * @since 14/10/2018
  */
     window.fillCustomerInfoForm = function (data) {
-        $("#loading-image-cstInfo").loadImager('removeLoadImage');
-        $("#loading-image-cstInfo").loadImager('appendImage');
+        //$("#loading-image-cstInfo").loadImager('removeLoadImage');
+        //$("#loading-image-cstInfo").loadImager('appendImage');
 
         selectedCustomerId = data.id;
 
@@ -3076,7 +3074,7 @@
         resetContactPersonForm();
         $('#contactpersonList').click();
 
-        $("#loading-image-cstInfo").loadImager('removeLoadImage');
+        //$("#loading-image-cstInfo").loadImager('removeLoadImage');
         tab_active();
         //$("#customer_tab").organizeTabs('enableAllTabs');
 
