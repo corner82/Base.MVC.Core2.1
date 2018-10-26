@@ -18,6 +18,7 @@ namespace Base.MVC.Models.HttpRequest
         public string cost_national { get; set; }
         public string part_num_local { get; set; }
         public string part_num_nat { get; set; }
+        public string accessory_embrace_no { get; set; }
         public string pk { get; set; }
     }
 

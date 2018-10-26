@@ -22,6 +22,7 @@ namespace Base.MVC.Models.HttpRequest
         public string tel { get; set; }
         public string fax { get; set; }
         public string email { get; set; }
+        public string supplier_embrace_no { get; set; }
         public string pk { get; set; }
     }
 

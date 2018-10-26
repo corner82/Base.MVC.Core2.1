@@ -178,9 +178,9 @@ $(document).ready(function () {
                 searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
 
-                    if (selectedData.selectedData.value > 0) {
+                   // if (selectedData.selectedData.value > 0) {
                        
-                    }
+                   // }
                 }
             });
 
