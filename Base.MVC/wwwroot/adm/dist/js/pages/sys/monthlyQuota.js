@@ -606,12 +606,12 @@ DevExpress.localization.locale(langCode);
         $('#ddslickQuotaMonth').ddslick('select', { index: 2 });
         document.getElementById("txt-QuotaMonth-limit").value = data.quantity;
 
-        //$('#ddslickQuotaType').ddslick('selectByValue',
-        //    {
-        //        index: '' + data.id + '',
-        //        text: '' + data.name + ''
-        //    }
-        //);
+        $('#ddslickQuotaType').ddslick('selectByValue',
+            {
+                index: '' + data.sis_quota_id + '',
+                text: '' + data.name + ''
+            }
+        );
 
         $('#ddslickQuotaYear').ddslick('selectByValue',
             {

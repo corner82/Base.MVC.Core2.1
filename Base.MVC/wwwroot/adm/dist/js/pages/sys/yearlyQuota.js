@@ -467,13 +467,13 @@ $(document).ready(function () {
 
         document.getElementById("txt-QuotaYear-limit").value = data.value;
 
-        //$('#ddslickQuotaType').ddslick('selectByValue',
-        //    {
-        //        index: '' + data.id + '',
-        //        text: '' + data.name + ''
-        //    }
-        //);
-        $('#ddslickQuotaType').ddslick('select', { text: data.name });
+        $('#ddslickQuotaType').ddslick('selectByValue',
+            {
+                index: '' + data.sis_quota_id + '',
+                text: '' + data.name + ''
+            }
+        );
+
         $('#ddslickQuotaYear').ddslick('selectByValue',
             {
                 index: '' + data.year + '',

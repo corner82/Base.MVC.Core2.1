@@ -735,7 +735,7 @@ $(document).ready(function () {
             encodeHtml: false,
             dataField: "vehicle_group" 
         }, {
-            caption: window.lang.translate('Vehicle model end group') + "...",
+            caption: window.lang.translate('Vehicle model') + "...",
             encodeHtml: false,
             dataField: "model_description"
         }, {
