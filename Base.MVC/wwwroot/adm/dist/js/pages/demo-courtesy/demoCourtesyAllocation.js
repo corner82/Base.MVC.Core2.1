@@ -641,62 +641,126 @@ $(document).ready(function () {
             //$("#loadingImage_yearlyQuota").loadImager('appendImage');
 
 
-            //var ddDataQuotaType = $('#ddslickQuotaType').data('ddslick');
-            //if (!ddDataQuotaType.selectedData.value > 0) {
-            //    wm.warningMessage('resetOnShown');
-            //    wm.warningMessage('show', window.lang.translate("Please select Quota type"),
-            //        window.lang.translate("Please select Quota type"));
-            //    $('#loadingImage_DdslickQuotaType').loadImager('removeLoadImage');
-            //    return false;
-            //}
-            //var sis_quota_id = ddDataQuotaType.selectedData.value;
 
-            //var ddDataQuotayear = $('#ddslickQuotaYear').data('ddslick');
-            //if (!ddDataQuotayear.selectedData.value > 0) {
-            //    wm.warningMessage('resetOnShown');
-            //    wm.warningMessage('show', window.lang.translate("Please select Quota year"),
-            //        window.lang.translate("Please select Quota year"));
-            //    $('#loadingImage_DdslickQuotaYear').loadImager('removeLoadImage');
-            //    return false;
-            //}
-            //var year = ddDataQuotayear.selectedData.text;
+            var ddDataModel = $('#ddslickModel').data('ddslick');
+            var model_id;
+            if (ddDataModel.selectedData.value > 0) {
+                model_id = ddDataModel.selectedData.value;
+            }
 
-            //var value = $('#txt-QuotaYear-limit').val();
+            var ddDataVhc = $('#ddslickVehicle').data('ddslick');
+            var vhc_id;
+            if (ddDataVhc.selectedData.value > 0) {
+                vhc_id = ddDataVhc.selectedData.value;
+            }
+            else {
+                vhc_id = "";
+            }
 
-            ////http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_syssisquotasmatrix&sis_quota_id=1&year=2017&value=150&id=4&pk=GsZVzEYe50uGgNM
-            ////&sis_quota_id=1
-            ////&year=2017
-            ////&value=150&
-            ////id=4
-            ////&pk=GsZVzEYe50uGgNM  
+            var ddDataCry = $('#ddslickCurrency').data('ddslick');
+            var cry_id;
+            if (ddDataCry.selectedData.value > 0) {
+                cry_id = ddDataCry.selectedData.value;
+            }
 
-            //var ajax_InsertYearlyQuota = $('#ajaxACL-yearlyQuota').ajaxCallWidget({
-            //    failureLoadImage: true,
-            //    loadingImageID: "loadingImage_yearlyQuota",
-            //    triggerSuccessAuto: true,
-            //    transactionSuccessText: window.lang.translate('Transaction successful'),
-            //    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            //    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            var ddDataWr = $('#ddslickWarranty').data('ddslick');
+            var wr_id;
+            if (ddDataWr.selectedData.value > 0) {
+                wr_id = ddDataWr.selectedData.value;
+            }
+            else {
+                wr_id = "";
+            }
 
-            //    proxy: '/Sys/AddYearlyQuota',
-            //    type: 'POST',
-            //    data: JSON.stringify({
-            //        url: "pkInsertAct_syssisquotasmatrix",
-            //        sis_quota_id: sis_quota_id,
-            //        year: year,
-            //        value: value,
-            //        pk: "GsZVzEYe50uGgNM",
-            //    })
-            //});
-            //ajax_InsertYearlyQuota.ajaxCallWidget({
-            //    onReset: function (event, data) {
-            //        resetDemoCourAlloForm();
-            //    },
-            //    onAfterSuccess: function (event, data) {
-            //        $("#gridContainer_DemoCourAllocation").dxDataGrid("instance").refresh();
-            //    }
-            //})
-            //ajax_InsertYearlyQuota.ajaxCallWidget('call');
+            var price = $('#txt-fc-price').val();
+            var fc_name = $('#txt-fc-name').val();
+
+            var start_date = $('#start-datepicker').val();
+
+            var is_all_vehicle = 2;
+
+            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?
+            //url=pkInsertAct_sysfixedsalescosts
+            //&name=gitgel%20cost
+            //&vehicle_gruop_id=1--
+            //&vehicle_second_group_id=--
+            //&vvalue=1111=&--
+            //currency_type_id=16--
+            //&start_date=2018-10-10--
+            //&is_all_vehicle=1--
+            //warranty_matrix_id=--
+            //&pk=GsZVzEYe50uGgNM--
+            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateAct_sysfixedsalescosts&name=gitgel%20cost&vehicle_gruop_id=1&vehicle_second_group_id=&vvalue=1111=&currency_type_id=16&start_date=2018-10-10&is_all_vehicle=1=warranty_matrix_id=&pk=GsZVzEYe50uGgNM&id=4
+            if (!fixedCostId == "") {//update
+                var ajax_InsertFixedCost = $('#ajaxACL-fixedCostList').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loadingImage_FixedCost",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+
+                    proxy: '/Sys/AddFixedCost',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        url: "pkUpdateAct_sysfixedsalescosts",
+                        id: fixedCostId,
+                        name: fc_name,
+                        vehicle_gruop_id: model_id,
+                        vehicle_second_group_id: vhc_id,
+                        currency_type_id: cry_id,
+                        start_date: start_date,
+                        vvalue: price,
+                        warranty_matrix_id: wr_id,
+                        is_all_vehicle: is_all_vehicle,
+                        pk: "GsZVzEYe50uGgNM"
+                    })
+                });
+                ajax_InsertFixedCost.ajaxCallWidget({
+                    onReset: function (event, data) {
+                        resetFixedCostForm();
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_fixedCostList").dxDataGrid("instance").refresh();
+                    }
+                })
+                ajax_InsertFixedCost.ajaxCallWidget('call');
+            }
+            else {//insert
+                var ajax_InsertFixedCost = $('#ajaxACL-fixedCostList').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loadingImage_FixedCost",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+
+                    proxy: '/Sys/AddFixedCost',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        url: "pkInsertAct_sysfixedsalescosts",
+                        name: fc_name,
+                        vehicle_gruop_id: model_id,
+                        vehicle_second_group_id: vhc_id,
+                        currency_type_id: cry_id,
+                        start_date: start_date,
+                        vvalue: price,
+                        warranty_matrix_id: wr_id,
+                        is_all_vehicle: is_all_vehicle,
+                        pk: "GsZVzEYe50uGgNM"
+                    })
+                });
+                ajax_InsertFixedCost.ajaxCallWidget({
+                    onReset: function (event, data) {
+                        resetFixedCostForm();
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_fixedCostList").dxDataGrid("instance").refresh();
+                    }
+                })
+                ajax_InsertFixedCost.ajaxCallWidget('call');
+            }
+            fixedCostId = "";
             return false;
         }
     })
