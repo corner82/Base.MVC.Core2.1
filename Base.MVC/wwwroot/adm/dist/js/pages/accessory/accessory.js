@@ -194,7 +194,7 @@ $(document).ready(function () {
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
 
-            $('#ddslickVehicleModel').ddslick({
+            $('#dropdownVehicleModel').ddslick({
                 data: cbdata_model,
                 width: '100%',
                 search: true,
@@ -204,7 +204,7 @@ $(document).ready(function () {
                     if (selectedData.selectedData.value > 0) {
                         //vehicleModel = selectedData.selectedData.text;
                         //ddslick_vehicleModelId = selectedData.selectedData.value;
-                    else {
+                    } else {
                         //vehicleModel = "";
                     }
                 }
@@ -223,6 +223,7 @@ $(document).ready(function () {
 
 
     //4x2, 4x4, 6x4, 8x4, 6x6, 8x8, 8x4/4
+/*
     var cbdata_kp = [
         {
             text: window.lang.translate('Please select') + "...",
@@ -301,9 +302,60 @@ $(document).ready(function () {
         },
     })
     ajaxACLResources_kp.ajaxCallWidget('call');
+    */
+
+    //KP
+    $('#loading-image-kp').loadImager('removeLoadImage');
+    $('#loading-image-kp').loadImager('appendImage');
+
+    var ajaxACLResources_kp = $('#ajaxACL-kp').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loading-image-kp",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Vehicle/SysVehicleKPNumbers/',
+        type: 'POST',
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkKpnumbersDdList_syskpnumbers",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
+    ajaxACLResources_kp.ajaxCallWidget({
+        onSuccess: function (event, datakp) {
+            var cbdata_kp = $.parseJSON(datakp);
+            cbdata_kp.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+            $('#dropdownKPNo').ddslick({
+                data: cbdata_kp,
+                width: '100%',
+                search: true,
+                searchText: window.lang.translate('Search'),
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            $("#loading-image-kp").loadImager('removeLoadImage');
+        },
+        onReset: function (event, data) {
+
+        },
+        onAfterSuccess: function (event, data) {
+            $("#loading-image-kp").loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_kp.ajaxCallWidget('call');
+
 
     //supplier
-    var cbdata_supplier = [
+/*    var cbdata_supplier = [
         {
             text: window.lang.translate('Please select') + "...",
             value: 1,
@@ -376,10 +428,63 @@ $(document).ready(function () {
         },
     })
     ajaxACLResources_supplier.ajaxCallWidget('call');
+*/
 
+
+    //SysSupplierDdslick
+
+    $('#loading-image-supplier').loadImager('removeLoadImage');
+    $('#loading-image-supplier').loadImager('appendImage');
+
+    var ajaxACLResources_supplier = $('#ajaxACL-supplier').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loading-image-supplier",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Sys/SysSupplierDdslick/',
+        type: 'POST',
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkSupplierLongDdList_syssupplier",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
+    ajaxACLResources_supplier.ajaxCallWidget({
+        onSuccess: function (event, datasp) {
+            var cbdata_sp = $.parseJSON(datasp);
+            cbdata_sp.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+            $('#dropdownSupplier').ddslick({
+                data: cbdata_sp,
+                width: '100%',
+                search: true,
+                searchText: window.lang.translate('Search'),
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+
+                    }
+                }
+            });
+
+            $("#loading-image-supplier").loadImager('removeLoadImage');
+        },
+        onReset: function (event, data) {
+
+        },
+        onAfterSuccess: function (event, data) {
+            $("#loading-image-supplier").loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_supplier.ajaxCallWidget('call');
 
     //Feature accessory Name (Back office / Salesman)
     //Servisten Name ve Description Alanları dolu gelecek. Biri Backoffice, diğeri Salesman için. 
+    //AccessoryFeatureNameDdslick
+    //pkAccDeffSaBoDdList_sysaccdeff 
 
     var cbdata_faccessoryname = [
         {
