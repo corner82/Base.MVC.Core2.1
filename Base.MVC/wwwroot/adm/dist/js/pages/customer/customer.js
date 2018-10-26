@@ -3097,16 +3097,19 @@
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         var target = $(e.target).attr("href") // activated tab
         //alert(target);
+
         if (target == "#tab_3") {
             // grid refresh olması gerektiği için kullanıldı.
             //$(gridContainer_tab).dxDataGrid("updateDimensions");
-            $('#contactpersonList').click();
+            //$('#contactpersonList').click();
+            $("#gridContainer_contactperson").dxDataGrid("instance").refresh();
 
         }
         if (target == "#tab_4") {
             // grid refresh olması gerektiği için kullanıldı.
             //$(gridContainer_tab).dxDataGrid("updateDimensions");
-            $('#customerActivityList').click();
+            //$('#customerActivityList').click();
+            $("#gridContainer_activity").dxDataGrid("instance").refresh();
         }
     });
 

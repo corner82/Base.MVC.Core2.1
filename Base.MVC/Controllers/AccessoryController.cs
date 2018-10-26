@@ -88,32 +88,36 @@ namespace Base.MVC.Controllers
                 throw new Exception("Model satate is not valid");
             }
         }
-        /*
-                /// <summary>
-                /// get vehicle CKD CBU
-                /// Vehicle kit type (CKD, CBU)
-                /// Gül Özdemir
-                /// </summary>
-                /// 
-                /// <returns></returns>
-                //[SessionTimeOut]
-                [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
-                [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
-                [HttpPost]
-                public async Task<string> SysVehicleCKDCBU([FromBody] DefaultPostModel postModel)
-                {
-                    var headers = new Dictionary<string, string>();
-                    var tokenGenerated = HttpContext.Session.GetHmacToken();
-                    headers.Add("X-Hmac", tokenGenerated);
-                    headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-                    string queryStr = _queryCreater.GetQueryStringFromObject(postModel);
-                    //url = pkVehicleCkdCbuDdList_sysvehicleckdcbu & language_code = en & pk = GsZVzEYe50uGgNM
-                    var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
-                    var data = response.Content.ReadAsStringAsync().Result;
-                    return data.ToString();
-                }
 
-        */
+
+        /// <summary>
+        /// Dropdown Accessory Options DdSlick
+        /// Gül Özdemir
+        /// </summary>
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkAccessoryOptionsDdList_sysaccessoryoptions&language_code=en&pk=GsZVzEYe50uGgNM
+        //[SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> AccessoryOptionsDdslick([FromBody] DefaultPostModel postModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(postModel);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model satate is not valid");
+            }
+        }
+
         /// <summary>
         /// get AccessoryFeature List
         /// Gül Özdemir

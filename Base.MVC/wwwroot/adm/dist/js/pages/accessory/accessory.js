@@ -41,6 +41,7 @@ $(document).ready(function () {
 
 
     var selectedAccessorynameId = 0;
+    var selectedAccessoryId = 0;
 
     var langCode = $("#langCode").val();
     //alert(langCode);
@@ -76,96 +77,6 @@ $(document).ready(function () {
 
 
     //CLA, TGM, TGS, VW, XHCV
-    /*
-    var cbdata_model = [
-        {
-            text: window.lang.translate('Please select') + "...",
-            value: 1,
-            selected: true
-        },
-        {
-            text: "ALL",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "CLA",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "TGM",
-            value: 4,
-            selected: false
-        },
-        {
-            text: "TGS",
-            value: 5,
-            selected: false
-        },
-        {
-            text: "VW",
-            value: 6,
-            selected: false
-        },
-        {
-            text: "XHCV",
-            value: 7,
-            selected: false
-        }
-    ];
-
-    $('#loading-image-vehiclemodel').loadImager('removeLoadImage');
-    $("#loading-image-vehiclemodel").loadImager('appendImage');
-
-    var ajaxACLResources_vehiclemodel = $('#ajaxACL-vehiclemodel').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
-    });
-
-    ajaxACLResources_vehiclemodel.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-vehiclemodel').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
-        },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
-            $('#dropdownVehicleModel').ddslick({
-                //height: 150,
-                data: cbdata_model,
-                width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 1) {
-                    }
-                }
-            });
-
-            $("#loading-image-vehiclemodel").loadImager('removeLoadImage');
-        },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-vehiclemodel').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('vehiclemodel bulunamamıştır...'), window.lang.translate('vehiclemodel  bulunamamıştır...'));
-        }
-    })
-    ajaxACLResources_vehiclemodel.ajaxCallWidget('call');
-
-    */
 
     $('#loading-image-vehiclemodel').loadImager('removeLoadImage');
     $('#loading-image-vehiclemodel').loadImager('appendImage');
@@ -355,83 +266,6 @@ $(document).ready(function () {
 
 
     //supplier
-/*    var cbdata_supplier = [
-        {
-            text: window.lang.translate('Please select') + "...",
-            value: 1,
-            selected: true
-        },
-        {
-            text: "XXXXXXXXXXX",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "YYYYYYYYYYY",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "ZZZZZZZZZZZZ",
-            value: 4,
-            selected: false
-        },
-    ];
-
-    $('#loading-image-supplier').loadImager('removeLoadImage');
-    $("#loading-image-supplier").loadImager('appendImage');
-
-    var ajaxACLResources_supplier = $('#ajaxACL-supplier').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
-    });
-
-    ajaxACLResources_supplier.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-supplier').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
-        },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
-            $('#dropdownSupplier').ddslick({
-                //height: 150,
-                data: cbdata_supplier,
-                width: '100%',
-
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loading-image-supplier").loadImager('removeLoadImage');
-        },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-supplier').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Supplier bulunamamıştır...'), window.lang.translate('Supplier  bulunamamıştır...'));
-        },
-    })
-    ajaxACLResources_supplier.ajaxCallWidget('call');
-*/
-
-
-    //SysSupplierDdslick
 
     $('#loading-image-supplier').loadImager('removeLoadImage');
     $('#loading-image-supplier').loadImager('appendImage');
@@ -486,57 +320,36 @@ $(document).ready(function () {
     //AccessoryFeatureNameDdslick
     //pkAccDeffSaBoDdList_sysaccdeff 
 
-    var cbdata_faccessoryname = [
-        {
-            text: window.lang.translate('Please select') + "...",
-            description : "",
-            value: 1,
-            selected: true
-        },
-        {
-            text: "Backoffice Accessory Name 1",
-            description: "Salesman Accessory Name 1",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "Backoffice Accessory Name 2",
-            description: "Salesman Accessory Name 2",
-            value: 3,
-            selected: false
-        }
-    ];
-
     $('#loading-image-faccessoryname').loadImager('removeLoadImage');
-    $("#loading-image-faccessoryname").loadImager('appendImage');
+    $('#loading-image-faccessoryname').loadImager('appendImage');
 
     var ajaxACLResources_faccessoryname = $('#ajaxACL-faccessoryname').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
+        failureLoadImage: true,
+        loadingImageID: "loading-image-faccessoryname",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Accessory/AccessoryFeatureNameDdslick/',
+        type: 'POST',
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkAccDeffSaBoDdList_sysaccdeff",
+            pkIdentity: $("#publicKey").val()
+        })
     });
-
     ajaxACLResources_faccessoryname.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-faccessoryname').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
-        },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
+        onSuccess: function (event, dataaccessoryname) {
+            var cbdata_accessoryname = $.parseJSON(dataaccessoryname);
+            cbdata_accessoryname.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#dropdownFAccessoryName').ddslick({
-                //height: 150,
-                data: cbdata_faccessoryname,
+                data: cbdata_accessoryname,
                 width: '100%',
-
+                search: true,
+                searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
 
@@ -546,82 +359,47 @@ $(document).ready(function () {
 
             $("#loading-image-faccessoryname").loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-faccessoryname').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('faccessoryname bulunamamıştır...'), window.lang.translate('faccessoryname  bulunamamıştır...'));
+        onReset: function (event, data) {
+
         },
+        onAfterSuccess: function (event, data) {
+            $("#loading-image-faccessoryname").loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_faccessoryname.ajaxCallWidget('call');
 
-    //options
-    var cbdata_options = [
-        {
-            text: window.lang.translate('Please select') + "...",
-            value: 1,
-            selected: true
-        },
-        {
-            text: "Canvas",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "Concave",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "Film",
-            value: 4,
-            selected: false
-        },
-        {
-            text: "Elektro",
-            value: 4,
-            selected: false
-        },
-        {
-            text: "Gama",
-            value: 4,
-            selected: false
-        },
-    ];
+//Options
 
     $('#loading-image-options').loadImager('removeLoadImage');
-    $("#loading-image-options").loadImager('appendImage');
+    $('#loading-image-options').loadImager('appendImage');
 
     var ajaxACLResources_options = $('#ajaxACL-options').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
+        failureLoadImage: true,
+        loadingImageID: "loading-image-options",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Accessory/AccessoryOptionsDdslick/',
+        type: 'POST',
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkAccessoryOptionsDdList_sysaccessoryoptions",
+            pkIdentity: $("#publicKey").val()
+        })
     });
-
     ajaxACLResources_options.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
-
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-options').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis  bulunamamıştır...'));
-        },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
-
+        onSuccess: function (event, dataoptions) {
+            var cbdata_options = $.parseJSON(dataoptions);
+            cbdata_options.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
             $('#dropdownOptions').ddslick({
-                //height: 150,
                 data: cbdata_options,
                 width: '100%',
-
+                search: true,
+                searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
 
@@ -631,241 +409,431 @@ $(document).ready(function () {
 
             $("#loading-image-options").loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loading-image-options').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Options bulunamamıştır...'), window.lang.translate('Supplier  bulunamamıştır...'));
+        onReset: function (event, data) {
+
         },
+        onAfterSuccess: function (event, data) {
+            $("#loading-image-options").loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_options.ajaxCallWidget('call');
 
 
-
-
-    /* devexgrid */
-/*    var orders = new DevExpress.data.CustomStore({
-        load: function (loadOptions) {
-            var deferred = $.Deferred(),
-                args = {};
-
-            if (loadOptions.sort) {
-                args.orderby = loadOptions.sort[0].selector;
-                if (loadOptions.sort[0].desc)
-                    args.orderby += " desc";
-            }
-
-            args.skip = loadOptions.skip || 0;
-            args.take = loadOptions.take || 12;
-
-            $.ajax({
-                url: "https://js.devexpress.com/Demos/WidgetsGallery/data/orderItems",
-                dataType: "json",
-                data: args,
-                success: function (result) {
-                    deferred.resolve(result.items, { totalCount: result.totalCount });
-                },
-                error: function () {
-                    deferred.reject("Data Loading Error");
-                },
-                timeout: 5000
-            });
-
-            return deferred.promise();
-        }
-    });
-
-    DevExpress.localization.locale(langCode);
-
-
-    $("#gridContainer_accessory").dxDataGrid({
-
-        showColumnLines: true,
-
-        showRowLines: true,
-
-        showBorders: true,
-
-        dataSource: orders,
-
-        columnHidingEnabled: true,
-
-        selection: {
-            mode: "single"
-        },
-
-        hoverStateEnabled: true,
-
-        editing: {
-            //mode: "batch"
-            mode: "form",
-            allowAdding: true,
-            allowUpdating: true,
-            allowDeleting: true,
-            useIcons: true
-        },
-
-        "export": {
-            enabled: true,
-            fileName: window.lang.translate('Accessory')
-        },
-
-        grouping: {
-            contextMenuEnabled: true,
-            expandMode: "rowClick"
-        },
-
-        groupPanel: {
-            emptyPanelText: window.lang.translate('Use the context menu of header columns to group data'),
-            visible: true
-        },
-
-        pager: {
-            allowedPageSizes: [5, 8, 15, 30],
-            showInfo: true,
-            showNavigationButtons: true,
-            showPageSizeSelector: true,
-            visible: true
-        },
-
-        paging: {
-            pageSize: 8
-        },
-
-        filterRow: {
-            visible: true,
-            applyFilter: "auto"
-        },
-
-        searchPanel: {
-            visible: true,
-            width: 240,
-            placeholder: window.lang.translate('Search') + "...",
-        },
-
-        headerFilter: {
-            visible: true
-        },
-
-        columnChooser: {
-            enabled: true,
-            mode: "select"
-        },
-
-        columns: [{
-            caption: "Accessory",
-            dataField: "StoreCity"
-            },
-            {
-            caption: "Accessory 2",
-            dataField: "StoreState"
-            },
-            {
-                caption: "Employee",
-                dataField: "Employee"
-            }
-        ],
-
-        onSelectionChanged: function (selectedItems) {
-            var data = selectedItems.selectedRowsData[0];
-            if (data) {
-                fillAccessoryForm(data);
-            }
-        }
-
-    });
-    
-    function logEvent(eventName) {
-         var logList = $("#events ul"),
-             newItem = $("<li>", { text: eventName });
-
-         logList.prepend(newItem);
-     }
-*/
+    //////////////////////////////////////////////////////////////////////////////////////////////
     /**
- * insertAccessory
+    * accessoryList Refresh
+    * @returns 
+    * @author Gül Özdemir
+    * @since 26/10/2018
+    */
+
+    $('#accessoryList').click(function () {
+
+        /* devexgrid */
+        var accessory_data = new DevExpress.data.CustomStore({
+            load: function (loadOptions) {
+                var deferred = $.Deferred(),
+                    args = {};
+
+                if (loadOptions.sort) {
+                    args.orderby = loadOptions.sort[0].selector;
+                    if (loadOptions.sort[0].desc)
+                        args.orderby += " desc";
+                }
+
+                args.skip = loadOptions.skip || 0;
+                args.take = loadOptions.take || 12;
+
+                $.ajax({
+                    url: '/Accessory/AccessoryGridList',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        language_code: $("#langCode").val(),
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkFillAccMatrixGridx_sysaccessoriesmatrix",
+                        pkIdentity: $("#publicKey").val(),
+                        page: "",
+                        rows: "",
+                        sort: "",
+                        order: "", //args.orderby,
+                        skip: args.skip,
+                        take: args.take
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                    },
+                    error: function () {
+                        deferred.reject("Data Loading Error");
+                    },
+                    timeout: 30000
+                });
+
+                return deferred.promise();
+            },
+            remove: function (key) {
+                var deferred = $.Deferred();
+
+                return $.ajax({
+                    url: '/Accessory/DeleteAccessory',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        id: selectedAccessoryId,
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkDeletedAct_sysaccessoriesmatrix"
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                    },
+                    error: function () {
+                        deferred.reject("Data remove Error");
+                    },
+                    timeout: 30000
+                });
+            }
+        });
+
+        //DevExpress.localization.locale(langCode);
+
+        $(function () {
+            $("#gridContainer_accessory").dxDataGrid({
+
+                showColumnLines: true,
+
+                showRowLines: true,
+
+                showBorders: true,
+
+                dataSource: accessory_data,
+
+                columnHidingEnabled: true,
+
+                selection: {
+                    mode: "single"
+                },
+
+                hoverStateEnabled: true,
+
+                editing: {
+                    //mode: "batch"
+                    mode: "form",
+                    //allowAdding: true,
+                    //allowUpdating: true,
+                    allowDeleting: true,
+                    useIcons: true
+                },
+
+                "export": {
+                    enabled: true,
+                    fileName: window.lang.translate('AccessoryList')
+                },
+
+                grouping: {
+                    contextMenuEnabled: true,
+                    expandMode: "rowClick"
+                },
+
+                groupPanel: {
+                    emptyPanelText: window.lang.translate('Use the context menu of header columns to group data'),
+                    visible: true
+                },
+
+                pager: {
+                    allowedPageSizes: [5, 8, 15, 30],
+                    showInfo: true,
+                    showNavigationButtons: true,
+                    showPageSizeSelector: true,
+                    visible: true
+                },
+
+                paging: {
+                    pageSize: 8
+                },
+                OnCellPrepared: function (options) {
+
+                    var fieldData = options.value;
+                    fieldHtml = "";
+
+                    fieldHtml = fieldData.value;
+                    options.cellElement.html(fieldHtml);
+
+                },
+
+                filterRow: {
+                    visible: true,
+                    applyFilter: "auto"
+                },
+
+                searchPanel: {
+                    visible: true,
+                    width: 240,
+                    placeholder: window.lang.translate('Search') + "...",
+                },
+
+                headerFilter: {
+                    visible: true
+                },
+
+                columnChooser: {
+                    enabled: true,
+                    mode: "select"
+                },
+
+                columns: [
+                    {
+                        caption: window.lang.translate('Active/Passive'),
+                        width: 40,
+                        alignment: 'center',
+
+                        cellTemplate: function (container, options) {
+                            var fieldHtml;
+                            var accessory_id = options.data.id;
+
+                            if (options.data.active === 1) {
+                                //active
+                                $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
+                                    activepassiveAccessory(accessory_id, options.data.active);
+
+                                }).appendTo(container);
+                            } else if (options.data.active === 0) {
+
+                                //passive
+                                $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
+                                    activepassiveAccessory(accessory_id, options.data.active);
+
+                                }).appendTo(container);
+                            }
+
+                            //$('<img />').addClass('dx-link').attr('src', "/adm/dist/img/icons.png").on('click', function () {
+                            //    dm.dangerMessage('show', window.lang.translate('dangerMessage...'), window.lang.translate('dangerMessage...'));
+                            //}).appendTo(container); 
+
+                        }
+
+                    }, {
+                        caption: window.lang.translate('Vehicle model'),
+                        dataField: "vehicle_group",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('KP number'),
+                        dataField: "kp",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Option'),
+                        dataField: "name_acc_opt",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Feature name (Salesman)'),
+                        dataField: "name_acc_deff_sm",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Feature name (Backoffice)'),
+                        dataField: "name_acc_deff_bo",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Supplier name'),
+                        dataField: "supplier_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Embrace number'),
+                        dataField: "accessory_embrace_no",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Cost local'),
+                        dataField: "cost_local",
+                        encodeHtml: false,
+                        alignment: "right"
+                    }, {
+                        caption: window.lang.translate('Cost national'),
+                        dataField: "cost_national",
+                        encodeHtml: false,
+                        alignment: "right"
+                    }, {
+                        caption: window.lang.translate('Part number local'),
+                        dataField: "part_num_local",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Part number national'),
+                        dataField: "part_num_nat",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('List Price'),
+                        dataField: "list_price",
+                        encodeHtml: false,
+                        alignment: "right"
+                    }
+                ],
+                rowPrepared: function (rowElement, rowInfo) {
+                    return false;
+                    //if (rowInfo.data.key === 1)
+                    //    rowElement.css('background', 'green');
+                    //else if (rowInfo.data.key === 0)
+                    //    rowElement.css('background', 'yellow');
+
+                },
+
+                onSelectionChanged: function (selectedItems) {
+                    var data = selectedItems.selectedRowsData[0];
+                    if (data) {
+                        selectedAccessoryId = data.id;
+
+                        fillAccessoryForm(data);
+
+                    }
+                },
+
+                onRowRemoving: function (e) {
+                    selectedAccessoryId = e.key.id;
+
+                },
+
+                onRowRemoved: function (e) {
+                    $("#gridContainer_accessory").dxDataGrid("instance").refresh();
+                },
+
+            });
+        });
+    })
+
+    $('#accessoryList').click();
+
+
+/**
+ * Insert Accessory
  * @returns {undefined}
  * @author Gül Özdemir
- * @since 03/09/2018
+ * @since 24/10/2018
  */
-/*
-    window.insertAccessory = function () {
-        $("#loading-image-accessory").loadImager('removeLoadImage');
-        $("#loading-image-accessory").loadImager('appendImage');
 
-        var backoffice_accessory_name = $('#txt-backofficeaccessoryname').val();
-        var salesman_accessory_name = $('#txt-salesmanaccessoryname').val();
+    $("#btn-accessory-save").on("click", function (e) {
+        e.preventDefault();
 
-        var aj = $(window).ajaxCall({
-            proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
-            data: {
-                url: 'pkInsert_sysaccessory',
-                
-                name: accessory_name,
-                pk: $("#pk").val()
-            }
-        })
-        aj.ajaxCall({
-            onError: function (event, textStatus, errorThrown) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Accessory Ekleme İşlemi Başarısız...',
-                    'Accessory Ekleme İşlemi Başarısız..., sistem yöneticisi ile temasa geçiniz... ')
-                console.error('"pkInsert_sysAccessory" servis hatası->' + textStatus);
-                $("#loading-image-accessory").loadImager('removeLoadImage');
-            },
-            onSuccess: function (event, data) {
-                console.log(data);
-                var data = data;
-                sm.successMessage({
-                    onShown: function (event, data) {
-                        $('#accessoryForm')[0].reset();
+        if ($("#accessoryForm").validationEngine('validate')) {
 
-                        $("#loading-image-accessory").loadImager('removeLoadImage');
+            $("#loading-image-accessoryform").loadImager('removeLoadImage');
+            $("#loading-image-accessoryform").loadImager('appendImage');
+
+            var ddData_vehiclemodel = $('#dropdownVehicleModel').data('ddslick')
+            var vehiclemodel_id = ddData_vehiclemodel.selectedData.value;
+
+            var ddData_kp = $('#dropdownKPNo').data('ddslick')
+            var kp_id = ddData_kp.selectedData.value;
+
+            var ddData_supplier = $('#dropdownSupplier').data('ddslick')
+            var supplier_id = ddData_supplier.selectedData.value;
+
+            var ddData_accfname = $('#dropdownFAccessoryName').data('ddslick')
+            var accessoryname_id = ddData_accfname.selectedData.value;
+
+            var ddData_options = $('#dropdownOptions').data('ddslick')
+            var options_id = ddData_options.selectedData.value;
+
+            var embrace_number = $('#txt-embrace-number').val();
+            var cost_local = $('#txt-cost-local').val();
+            var cost_national = $('#txt-cost-national').val();
+            var partnumber_local = $('#txt-partnumber-local').val();
+            var partnumber_national = $('#txt-partnumber-international').val();
+            var list_price = $('#txt-list-price').val();
+
+            var ajax;
+            if (selectedAccessoryId === 0) {
+                //alert("yeni kayıt");
+                //Yeni kayıt
+                ajax = $('#ajaxACL-accessory').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loading-image-accessoryform",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    proxy: '/Accessory/InsertAccessory',
+                    type: "POST",
+                    data: JSON.stringify({
+                        url: "pkInsertAct_sysaccessoriesmatrix",
+                        vehicle_group_id: vehiclemodel_id ,
+                        kpnumber_id: kp_id,
+                        supplier_id: supplier_id,
+                        acc_deff_id: accessoryname_id,
+                        accessory_option_id: options_id,
+                        cost_local: cost_local,
+                        cost_national: cost_national,
+                        part_num_local: partnumber_local,
+                        part_num_nat: partnumber_national,
+                        accessory_embrace_no: embrace_number,
+                        list_price: list_price,
+                        pk: "GsZVzEYe50uGgNM"
+                    })
+                });
+
+                ajax.ajaxCallWidget({
+                    onReset: function (event, data) {
+
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_accessory").dxDataGrid("instance").refresh();
+                        $("#loadingImage_accessoryform").loadImager('removeLoadImage');
+                        resetAccessoryForm();
 
                     }
-                });
-                sm.successMessage('show', 'Accessory Kayıt İşlemi Başarılı...',
-                    'Accessory kayıt işlemini gerçekleştirdiniz... ',
-                    data);
-                $("#loading-image-accessory").loadImager('removeLoadImage');
+                })
+                ajax.ajaxCallWidget('call');
 
-            },
-            onErrorDataNull: function (event, data) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Accessory Kayıt İşlemi Başarısız...',
-                    'Accessory kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysAccessory" servis datası boştur!!');
-                $("#loading-image-accessory").loadImager('removeLoadImage');
-            },
-            onErrorMessage: function (event, data) {
-                dm.dangerMessage('resetOnShown');
-                dm.dangerMessage('show', 'Accessory Kayıt İşlemi Başarısız...',
-                    'Accessory kayıt işlemi başarısız, sistem yöneticisi ile temasa geçiniz... ');
-                console.error('"pkInsert_sysAccessory" servis datası boştur!!');
-                $("#loading-image-accessory").loadImager('removeLoadImage');
-            },
-            onError23503: function (event, data) {
-                dm.dangerMessage('Error23503');
-                $("#loading-image-accessory").loadImager('removeLoadImage');
-            },
-            onError23505: function (event, data) {
-                dm.dangerMessage({
-                    onShown: function (event, data) {
-                        $('#accessoryForm')[0].reset();
-                        $("#loading-image-accessory").loadImager('removeLoadImage');
+            } else {
+                //update
+                alert("update");
+
+                wcm.warningComplexMessage({
+                    onConfirm: function (event, data) {
+                        ajax = $('#ajaxACL-accessory').ajaxCallWidget({
+                            failureLoadImage: true,
+                            loadingImageID: "loading-image-accessoryform",
+                            triggerSuccessAuto: true,
+                            transactionSuccessText: window.lang.translate('Transaction successful'),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            proxy: '/Accessory/UpdateAccessory',
+                            type: "POST",
+                            data: JSON.stringify({
+                                id: selectedAccessoryId,
+                                url: "pkUpdateAct_sysaccessoriesmatrix",
+                                vehicle_group_id: vehiclemodel_id,
+                                kpnumber_id: kp_id,
+                                supplier_id: supplier_id,
+                                acc_deff_id: accessoryname_id,
+                                accessory_option_id: options_id,
+                                cost_local: cost_local,
+                                cost_national: cost_national,
+                                part_num_local: partnumber_local,
+                                part_num_nat: partnumber_national,
+                                accessory_embrace_no: embrace_number,
+                                list_price: list_price,
+                                pk: "GsZVzEYe50uGgNM"
+                            })
+                        });
+
+                        ajax.ajaxCallWidget({
+                            onReset: function (event, data) {
+
+                            },
+                            onAfterSuccess: function (event, data) {
+                                $("#gridContainer_accessory").dxDataGrid("instance").refresh();
+                                $("#loadingImage_accessoryform").loadImager('removeLoadImage');
+                                resetAccessoryForm();
+                            }
+                        })
+                        ajax.ajaxCallWidget('call');
                     }
                 });
-                dm.dangerMessage('show', 'Kayıt İşlemi Başarısız...',
-                    'Aynı isim ile accessory kaydı yapılmıştır, yeni bir accessory kaydı deneyiniz... ');
-                $("#loading-image-accessory").loadImager('removeLoadImage');
+                wcm.warningComplexMessage('show', 'Accesory is update! Are you sure?', 'Accessory is update! Are you sure?');
             }
-        })
-        aj.ajaxCall('call');
-    }
-    */
+        }
+        return false;
+
+    })
+
  /**
  * reset Accessory Form
  * @returns {undefined}
@@ -877,34 +845,18 @@ $(document).ready(function () {
         $("#loading-image-accessory").loadImager('removeLoadImage');
         $("#loading-image-accessory").loadImager('appendImage');
 
+        selectedAccessoryId = 0;
+
         $('#accessoryForm').validationEngine('hide');
 
         $('#dropdownVehicleModel').ddslick('select', { index: String(0) });
         $('#dropdownKPNo').ddslick('select', { index: String(0) });
         $('#dropdownSupplier').ddslick('select', { index: String(0) });
         $('#dropdownOptions').ddslick('select', { index: String(0) });
-        $('#dropdownOnsiteOffsite').ddslick('select', { index: String(0) });
+        $('#dropdownFAccessoryName').ddslick('select', { index: String(0) });
         
         $("#loading-image-accessory").loadImager('removeLoadImage');
 
-        return false;
-    }
-
-
-    /**
-    * insert Accessory Wrapper
-    * @returns {Boolean}
-    * @author Gül Özdemir
-    * @since 03/09/2018
-    */
-
-    window.insertAccessoryWrapper = function (e) {
-        e.preventDefault();
-
-        if ($("#accessoryForm").validationEngine('validate')) {
-
-            insertAccessory();
-        }
         return false;
     }
 
@@ -920,17 +872,141 @@ $(document).ready(function () {
         $("#loading-image-accessory").loadImager('removeLoadImage');
         $("#loading-image-accessory").loadImager('appendImage');
 
-        
-        $('#dropdownVehicleModel').ddslick('select', { index: 1 });
-        $('#dropdownKPNo').ddslick('select', { index: 1 });
-        $('#dropdownSupplier').ddslick('select', { index: 1 });
-        $('#dropdownFeatureName').ddslick('select', { index: 1 });
-        $('#dropdownOptions').ddslick('select', { index: 1 });
+        if (data.accessory_embrace_no) {
+            document.getElementById("txt-embrace-number").value = data.accessory_embrace_no;
+        } else {
+            document.getElementById("txt-embrace-number").value = "";
+        }
+
+        if (data.cost_local) {
+            document.getElementById("txt-cost-local").value = data.cost_local;
+        } else {
+            document.getElementById("txt-cost-local").value = "";
+        }
+
+        if (data.cost_national) {
+            document.getElementById("txt-cost-national").value = data.cost_national;
+        } else {
+            document.getElementById("txt-cost-national").value = "";
+        }
+
+        if (data.part_num_local) {
+            document.getElementById("txt-partnumber-local").value = data.part_num_local;
+        } else {
+            document.getElementById("txt-partnumber-local").value = "";
+        }
+
+        if (data.part_num_nat) {
+            document.getElementById("txt-partnumber-international").value = data.part_num_nat;
+        } else {
+            document.getElementById("txt-partnumber-international").value = "";
+        }
+
+        if (data.list_price) {
+            document.getElementById("txt-list-price").value = data.list_price;
+        } else {
+            document.getElementById("txt-list-price").value = "";
+        }
+
+        if (data.vehicle_group_id) {
+            $('#dropdownVehicleModel').ddslick('selectByValue',
+                {
+                    index: data.vehicle_group_id,
+                    value: data.vehicle_group
+                }
+            );
+        }
+
+        if (data.kpnumber_id) {
+            $('#dropdownKPNo').ddslick('selectByValue',
+                {
+                    index: data.kpnumber_id,
+                    value: data.kp
+                }
+            );
+        }
+
+        if (data.supplier_id) {
+            $('#dropdownSupplier').ddslick('selectByValue',
+                {
+                    index: data.supplier_id,
+                    value: data.supplier_name
+                }
+            );
+        }
+
+        if (data.acc_deff_id) {
+            $('#dropdownFAccessoryName').ddslick('selectByValue',
+                {
+                    index: data.acc_deff_id,
+                    value: data.name_acc_deff_sm
+                }
+            );
+        }
+
+        if (data.accessory_option_id) {
+            $('#dropdownOptions').ddslick('selectByValue',
+                {
+                    index: data.accessory_option_id,
+                    value: data.name_acc_opt
+                }
+            );
+        }
         
         $("#loading-image-accessory").loadImager('removeLoadImage');
 
         return false;
     }
+
+
+    window.activepassiveAccessory = function (accessory_id, active) {
+        $("#loading-image-accessoryGrid").loadImager('removeLoadImage');
+        $("#loading-image-accessoryGrid").loadImager('appendImage');
+
+        var transactionSuccessMessage;
+
+        if (active === 1) {
+            //active
+            transactionSuccessMessage = window.lang.translate('Active successful');
+        } else {
+            //pasive
+            transactionSuccessMessage = window.lang.translate('Passive successful');
+        }
+
+        var ajax_activepassiveaccessorylist = $('#ajaxACL-accessorylist').ajaxCallWidget({
+            failureLoadImage: true,
+            loadingImageID: "loading-image-accessoryGrid",
+            triggerSuccessAuto: true,
+            transactionSuccessText: transactionSuccessMessage,
+            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            proxy: '/Accessory/ActivePassiveAccessory',
+            type: "POST",
+            data: JSON.stringify({
+                id: accessory_id,
+                pk: "GsZVzEYe50uGgNM",
+                url: "pkUpdateMakeActiveOrPassive_sysaccessoriesmatrix"
+            }),
+
+        });
+        ajax_activepassiveaccessorylist.ajaxCallWidget({
+            onReset: function (event, data) {
+            },
+            onSuccess: function (event, data) {
+
+            },
+            onAfterSuccess: function (event, data) {
+                $("#gridContainer_accessory").dxDataGrid("instance").refresh();
+                $("#loading-image-accessoryGrid").loadImager('removeLoadImage');
+            },
+            onError: function (event, data) {
+
+            },
+        })
+        ajax_activepassiveaccessorylist.ajaxCallWidget('call');
+
+    }
+
 
     //////////////////////////////////////////////////////////////////////////////////////////////
     /**
@@ -1170,7 +1246,7 @@ $(document).ready(function () {
 
     $('#accessorynameList').click();
 
-    /**
+/**
  * Insert AccessoryFeatureName
  * @returns {undefined}
  * @author Gül Özdemir
@@ -1356,5 +1432,31 @@ $(document).ready(function () {
         ajax_activepassiveaccessorynamelist.ajaxCallWidget('call');
 
     }
+
+
+ /*
+ * accessory tab click grid refresh
+ * @returns {undefined}
+ * @author Gül Özdemir
+ * @since 26/10/2018
+ */
+
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        var target = $(e.target).attr("href") // activated tab
+        //alert(target);
+        if (target == "#tab_1") {
+            // grid refresh olması gerektiği için kullanıldı.
+            //$(gridContainer_tab).dxDataGrid("updateDimensions");
+            //$('#accessorynameList').click();
+            $("#gridContainer_accessoryname").dxDataGrid("instance").refresh();
+        }
+        if (target == "#tab_2") {
+            // grid refresh olması gerektiği için kullanıldı.
+            //$(gridContainer_tab).dxDataGrid("updateDimensions");
+            //$('#accessoryList').click();
+            $("#gridContainer_accessory").dxDataGrid("instance").refresh();
+        }
+    });
+
 });
 

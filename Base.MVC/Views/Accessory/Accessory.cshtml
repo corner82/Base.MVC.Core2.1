@@ -124,7 +124,7 @@
                                     <!-- Training Info form -->
                                     <form id='accessoryForm' method="get">
                                         <div class="row" id="loading-image-accessory">
-                                            <div class="col-md-6">
+                                            <div class="col-md-6" id="ajaxACL-accessory">
                                                 <div class="form-group">
                                                     <label><span lang="en">Vehicle model</span></label>
 
@@ -222,7 +222,7 @@
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-money"></i>
                                                         </div>
-                                                        <input type="text" class="form-control validate[required]" placeholder="Cost-national / onsite" id="txt-cost-local">
+                                                        <input type="number" class="form-control validate[required]" placeholder="Cost-national / onsite" id="txt-cost-local">
                                                         <!--<input type="number" step="0.01" name="amount" placeholder="0.00">-->
                                                         <span class="input-group-addon">ZAR</span>
                                                     </div>
@@ -234,7 +234,7 @@
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-money"></i>
                                                         </div>
-                                                        <input type="text" class="form-control validate[required]" placeholder="Cost-national / offsite" id="txt-cost-national">
+                                                        <input type="number" class="form-control validate[required]" placeholder="Cost-national / offsite" id="txt-cost-national">
                                                         <span class="input-group-addon">ZAR</span>
                                                     </div>
                                                 </div>
@@ -265,7 +265,7 @@
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-money"></i>
                                                         </div>
-                                                        <input type="text" class="form-control validate[required]" placeholder="List price" id="txt-list-price">
+                                                        <input type="number" class="form-control validate[required]" placeholder="List price" id="txt-list-price">
                                                         <span class="input-group-addon">ZAR</span>
                                                     </div>
                                                 </div>
@@ -276,16 +276,17 @@
                                         </div>
                                         <div class="box-footer">
                                             <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-accessory-clear" onclick="resetAccessoryForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                            <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-accessory-save" onclick="insertAccessoryWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                            <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-accessory-save">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
                                         </div>
                                     </form>
                                     <!-- Devex datagrid -->
-                                    <div class="box box-info">
+                                    <div class="box box-info" id="ajaxACL-accessorylist">
                                         <div class="box-header">
                                             <i class="fa fa-comments-o"></i>
                                             <h3 class="box-title"><span lang="en">Accessory list</span></h3>
 
                                             <div class="box-tools pull-right">
+                                                <button class="btn bg-teal btn-sm btn-small-miya" data-widget="refresh" id="accessoryList"><i class="fa fa-refresh"></i></button>
                                                 <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                                 <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
                                             </div>
