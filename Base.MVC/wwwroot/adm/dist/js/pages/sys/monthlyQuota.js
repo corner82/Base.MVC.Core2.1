@@ -496,36 +496,71 @@ DevExpress.localization.locale(langCode);
             //&month_id=12
             //&quantity=12--
             //&pk=GsZVzEYe50uGgNM
+            //pkInsertAct_syssismonthlyquotas
+            if (!QuotaMonthID == "") {//update
+                var ajax_InsertYearlyQuota = $('#ajaxACL-monthlyQuota').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loadingImage_monthlyQuota",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
 
-            var ajax_InsertYearlyQuota = $('#ajaxACL-monthlyQuota').ajaxCallWidget({
-                failureLoadImage: true,
-                loadingImageID: "loadingImage_monthlyQuota",
-                triggerSuccessAuto: true,
-                transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-
-                proxy: '/Sys/AddMonthlyQuota',
-                type: 'POST',
-                data: JSON.stringify({
-                    url: "pkInsertAct_syssismonthlyquotas",
-                    sis_quota_id: sis_quota_id,
-                    model_id: model_id,
-                    year: year,
-                    month_id: month_id,
-                    quantity: quantity,
-                    pk: "GsZVzEYe50uGgNM",
+                    proxy: '/Sys/AddMonthlyQuota',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        url: "pkUpdateAct_syssismonthlyquotas",
+                        id: QuotaMonthID,
+                        sis_quota_id: sis_quota_id,
+                        model_id: model_id,
+                        year: year,
+                        month_id: month_id,
+                        quantity: quantity,
+                        pk: "GsZVzEYe50uGgNM",
+                    })
+                });
+                ajax_InsertYearlyQuota.ajaxCallWidget({
+                    onReset: function (event, data) {
+                        resetQuotaMonthForm();
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_QuotaMonth").dxDataGrid("instance").refresh();
+                    }
                 })
-            });
-            ajax_InsertYearlyQuota.ajaxCallWidget({
-                onReset: function (event, data) {
-                    resetQuotaMonthForm();
-                },
-                onAfterSuccess: function (event, data) {
-                    $("#gridContainer_QuotaMonth").dxDataGrid("instance").refresh();
-                }
-            })
-            ajax_InsertYearlyQuota.ajaxCallWidget('call');
+                ajax_InsertYearlyQuota.ajaxCallWidget('call');
+            }
+            else  {//insert
+                var ajax_InsertYearlyQuota = $('#ajaxACL-monthlyQuota').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "pkInsertAct_syssismonthlyquotas",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+
+                    proxy: '/Sys/AddMonthlyQuota',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        url: "pkInsertAct_syssismonthlyquotas",
+                        sis_quota_id: sis_quota_id,
+                        model_id: model_id,
+                        year: year,
+                        month_id: month_id,
+                        quantity: quantity,
+                        pk: "GsZVzEYe50uGgNM",
+                    })
+                });
+                ajax_InsertYearlyQuota.ajaxCallWidget({
+                    onReset: function (event, data) {
+                        resetQuotaMonthForm();
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_QuotaMonth").dxDataGrid("instance").refresh();
+                    }
+                })
+                ajax_InsertYearlyQuota.ajaxCallWidget('call');
+            }
+            QuotaMonthID = "";
             return false;
         }
     })
@@ -571,16 +606,17 @@ DevExpress.localization.locale(langCode);
         $('#ddslickQuotaMonth').ddslick('select', { index: 2 });
         document.getElementById("txt-QuotaMonth-limit").value = data.quantity;
 
-        //$('#ddslickQuotaType').ddslick('selectByValue',
-        //    {
-        //        index: '' + data.id + '',
-        //        text: '' + data.name + ''
-        //    }
-        //);
+        $('#ddslickQuotaType').ddslick('selectByValue',
+            {
+                index: '' + data.sis_quota_id + '',
+                text: '' + data.name + ''
+            }
+        );
 
         $('#ddslickQuotaYear').ddslick('selectByValue',
             {
-                index: '' + data.year + ''
+                index: '' + data.year + '',
+                text: '' + data.year + ''
             }
         );
         $('#ddslickQuotaMonth').ddslick('selectByValue',

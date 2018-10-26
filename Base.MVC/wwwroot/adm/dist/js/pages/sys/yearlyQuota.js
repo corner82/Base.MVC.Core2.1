@@ -367,34 +367,67 @@ $(document).ready(function () {
             //&value=150&
             //id=4
             //&pk=GsZVzEYe50uGgNM  
+            if (!QuotaYearID == "") {//update
+                var ajax_InsertYearlyQuota = $('#ajaxACL-yearlyQuota').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loadingImage_yearlyQuota",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
 
-            var ajax_InsertYearlyQuota = $('#ajaxACL-yearlyQuota').ajaxCallWidget({
-                failureLoadImage: true,
-                loadingImageID: "loadingImage_yearlyQuota",
-                triggerSuccessAuto: true,
-                transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-
-                proxy: '/Sys/AddYearlyQuota',
-                type: 'POST',
-                data: JSON.stringify({
-                    url: "pkInsertAct_syssisquotasmatrix",
-                    sis_quota_id: sis_quota_id,
-                    year: year,
-                    value: value,
-                    pk: "GsZVzEYe50uGgNM",
+                    proxy: '/Sys/AddYearlyQuota',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        url: "pkUpdateAct_syssisquotasmatrix",
+                        id: QuotaYearID,
+                        sis_quota_id: sis_quota_id,
+                        year: year,
+                        value: value,
+                        pk: "GsZVzEYe50uGgNM",
+                    })
+                });
+                ajax_InsertYearlyQuota.ajaxCallWidget({
+                    onReset: function (event, data) {
+                        resetQuotaYearForm();
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_QuotaYear").dxDataGrid("instance").refresh();
+                    }
                 })
-            });
-            ajax_InsertYearlyQuota.ajaxCallWidget({
-                onReset: function (event, data) {
-                    resetQuotaYearForm();
-                },
-                onAfterSuccess: function (event, data) {
-                    $("#gridContainer_QuotaYear").dxDataGrid("instance").refresh();
-                }
-            })
-            ajax_InsertYearlyQuota.ajaxCallWidget('call');
+                ajax_InsertYearlyQuota.ajaxCallWidget('call');
+            }
+            else {//insert
+                var ajax_InsertYearlyQuota = $('#ajaxACL-yearlyQuota').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loadingImage_yearlyQuota",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+
+                    proxy: '/Sys/AddYearlyQuota',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        url: "pkInsertAct_syssisquotasmatrix",
+                        sis_quota_id: sis_quota_id,
+                        year: year,
+                        value: value,
+                        pk: "GsZVzEYe50uGgNM",
+                    })
+                });
+                ajax_InsertYearlyQuota.ajaxCallWidget({
+                    onReset: function (event, data) {
+                        resetQuotaYearForm();
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_QuotaYear").dxDataGrid("instance").refresh();
+                    }
+                })
+                ajax_InsertYearlyQuota.ajaxCallWidget('call');
+            }
+
+            QuotaYearID = "";
             return false;
         }
     })
@@ -436,13 +469,15 @@ $(document).ready(function () {
 
         $('#ddslickQuotaType').ddslick('selectByValue',
             {
-                index: '' + data.id + '',
+                index: '' + data.sis_quota_id + '',
                 text: '' + data.name + ''
             }
         );
+
         $('#ddslickQuotaYear').ddslick('selectByValue',
             {
-                index: '' + data.year + ''
+                index: '' + data.year + '',
+                text: '' + data.year + ''
             }
         );
         $("#loadingImage_yearlyQuota").loadImager('removeLoadImage');

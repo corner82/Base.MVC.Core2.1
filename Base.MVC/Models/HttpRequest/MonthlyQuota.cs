@@ -8,6 +8,7 @@ namespace Base.MVC.Models.HttpRequest
     public class MonthlyQuota
     {
         public string url { get; set; }
+        public int? id { get; set; }
         public string sis_quota_id { get; set; }
         public string model_id { get; set; }
         public string year { get; set; }

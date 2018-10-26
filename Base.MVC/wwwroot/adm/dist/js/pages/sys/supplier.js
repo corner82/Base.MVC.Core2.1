@@ -86,6 +86,7 @@ $(document).ready(function () {
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
 
+            //alert("geldim 1");
             $('#dropdownCountry').ddslick({
                 data: cbdata_country,
                 width: '100%',
@@ -127,6 +128,7 @@ $(document).ready(function () {
 
                             },
                             onSuccess: function (event, dataprovince) {
+
                                 var cbdata_province = $.parseJSON(dataprovince);
                                 cbdata_province.splice(0, 0,
                                     { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
@@ -173,7 +175,6 @@ $(document).ready(function () {
 
                                                 },
                                                 onSuccess: function (event, datacity) {
-                                                    
                                                     var cbdata_city = $.parseJSON(datacity);
                                                     cbdata_city.splice(0, 0,
                                                         { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
@@ -188,14 +189,12 @@ $(document).ready(function () {
 
                                                     })
                                                     if (filldropdown === true) {
-                                                        if (ddslick_cityId) {
-                                                            $('#dropdownCity').ddslick('selectByValue',
-                                                                {
+                                                        //alert(ddslick_cityId);
+                                                        $('#dropdownCity').ddslick('selectByValue',
+                                                            {
                                                                 index: ddslick_cityId,
                                                                 value: ddslick_city_name
-                                                                }
-                                                            );
-                                                        }
+                                                            });
                                                         filldropdown = false;
                                                     }
                                                     $('#loading-image-city').loadImager('removeLoadImage');
@@ -204,7 +203,7 @@ $(document).ready(function () {
                                                     $('#loading-image-city').loadImager('removeLoadImage');
                                                 },
                                                 onError: function (event, data) {
-    
+
                                                 }
                                             })
                                             ajaxACLResources_getcity.ajaxCallWidget('call');
@@ -212,26 +211,24 @@ $(document).ready(function () {
                                         }
                                     }
                                 })
-                                if (filldropdown === true) {                                    
-                                    if (ddslick_provinceId) {
-                                        $('#dropdownProvince').ddslick('selectByValue',
-                                            {
-                                                index: ddslick_provinceId,
-                                                value: ddslick_province_name
-                                            }
-                                        );
-                                    }
+                                if (filldropdown === true) {
+                                    $('#dropdownProvince').ddslick('selectByValue',
+                                        {
+                                            index: ddslick_provinceId,
+                                            value: ddslick_province_name
+                                        }
+                                    );
                                 }
                                 $('#loading-image-province').loadImager('removeLoadImage');
                             },
 
                             onAfterSuccess: function (event, data) {
-                                //alert('geldim AfterSuccess province');
+
 
                                 $('#loading-image-province').loadImager('removeLoadImage');
                             },
                             onError: function (event, data) {
-                                //alert("geldim hata province");
+                                alert("geldim hata province");
                             }
                         })
                         ajaxACLResources_getprovince.ajaxCallWidget('call');
@@ -257,7 +254,7 @@ $(document).ready(function () {
             $('#loading-image-country').loadImager('removeLoadImage');
         },
         onError: function (event, data) {
-            //alert("geldim hata");
+            alert("geldim hata");
         }
     })
     ajaxACLResources_country.ajaxCallWidget('call');
@@ -615,10 +612,10 @@ $(document).ready(function () {
             var supplierEmbraceNo = $('#txt-embrace-no').val();
             var address1 = $('#txt-supplier-address1').val();
             var address2 = $('#txt-supplier-address2').val();
-            var address3 = $('#txt-suplier-address3').val();
+            var address3 = $('#txt-supplier-address3').val();
             //txt-location-ptcode
             var postalCode = $('#txt-location-ptcode').val();
-            var tel = $('#txt-supplier-tel').val();
+            var tel = $('#txt-supplier-phone').val();
             var fax = $('#txt-supplier-fax').val();
             var email = $('#txt-supplier-email').val();
 
@@ -659,6 +656,7 @@ $(document).ready(function () {
                         url: "pkInsertAct_syssupplier",
                         name: supplierName,
                         name_short: supplierShortName,
+                        abbrevation: "",
                         supplier_embrace_no: supplierEmbraceNo,
                         address1: address1,
                         address2: address2,
@@ -706,6 +704,7 @@ $(document).ready(function () {
                                 url: "pkUpdateAct_syssupplier",
                                 name: supplierName,
                                 name_short: supplierShortName,
+                                abbrevation:"",
                                 supplier_embrace_no: supplierEmbraceNo,
                                 address1: address1,
                                 address2: address2,
@@ -748,8 +747,8 @@ $(document).ready(function () {
     */
 
     window.fillSupplierForm = function (data) {
-        $("#loading-image-supplier").loadImager('removeLoadImage');
-        $("#loading-image-supplier").loadImager('appendImage');
+        //$("#loading-image-supplier").loadImager('removeLoadImage');
+        //$("#loading-image-supplier").loadImager('appendImage');
 
         selectedSupplierId = data.id;
 
@@ -767,11 +766,17 @@ $(document).ready(function () {
         ddslick_countryId = data.country_id;
         ddslick_country_name = data.country_name;
 
-        ddslick_provinceId = data.country_region_id;
+        ddslick_provinceId = data.region_id;
         ddslick_province_name = data.region;
 
         ddslick_cityId = data.city_id;
         ddslick_city_name = data.city_name;
+
+        //alert(ddslick_countryId);
+        //alert(ddslick_provinceId);
+        //alert(ddslick_cityId);
+
+
         if (ddslick_countryId) {
             $('#dropdownCountry').ddslick('selectByValue',
                 {
@@ -785,7 +790,7 @@ $(document).ready(function () {
         }
         //province ve city otomatik tetikleniyor.
         
-        $("#loading-image-supplier").loadImager('removeLoadImage');
+        //$("#loading-image-supplier").loadImager('removeLoadImage');
 
         return false;
     }

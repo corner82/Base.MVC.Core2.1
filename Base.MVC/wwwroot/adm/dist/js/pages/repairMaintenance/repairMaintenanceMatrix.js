@@ -136,8 +136,8 @@ $(document).ready(function () {
                                 if (filldropdown === true) {
                                     $('#ddslickVehicle').ddslick('selectByValue',
                                         {
-                                            index: '' + ddslick_vehicleId + ''
-                                           // value: '' + ddslick_vehicle_name + ''
+                                            index: '' + ddslick_vehicleId + '',
+                                            value: '' + ddslick_vehicle_name + ''
                                         });
                                     filldropdown = false;
                                 }
@@ -525,14 +525,14 @@ $(document).ready(function () {
                     }).appendTo(container);
                 }
             }
-        //}, {
-        //    caption: window.lang.translate('Vehicle model group') + "...",
-        //    encodeHtml: false,
-        //    dataField: "customer_type_name"//Düzeltilecek
         }, {
-            caption: window.lang.translate('Vehicle model description') + "...",
+            caption: window.lang.translate('Vehicle model group') + "...",
             encodeHtml: false,
-            dataField: "model_description"
+            dataField: "vehicle_group_name"
+        }, {
+            caption: window.lang.translate('Vehicle end model group') + "...",
+            encodeHtml: false,
+            dataField: "vehicle_gt_model_name"
         }, {
             caption: window.lang.translate('Application type') + "...",
             encodeHtml: false,
@@ -787,18 +787,18 @@ $(document).ready(function () {
         document.getElementById("txt-rmMatrix-price").value = data.mothly_price;
 
         ddslick_modelId = data.vehicle_group_id;
-        //ddslick_model_name = data.vehicle_group;
+        ddslick_model_name = data.vehicle_group_name;
 
         ddslick_vehicleId = data.vehicle_gt_model_id;
-        //ddslick_vehicle_name = data.model_description;
+        ddslick_vehicle_name = data.vehicle_gt_model_name;
 
         ddslick_vehicletypeId = data.rm_type_id;
         ddslick_vehicletype_name = data.rm_type_name;
 
         $('#ddslickModel').ddslick('selectByValue',
             {
-                index: '' + data.vehicle_group_id + ''
-                //text: '' + data.vehicle_group + ''
+                index: '' + data.vehicle_group_id + '',
+                text: '' + data.vehicle_group + ''
             }
         );
         $('#ddslickMileage').ddslick('selectByValue',
