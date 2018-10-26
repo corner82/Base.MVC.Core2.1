@@ -13,7 +13,32 @@
     @*ViewData["Title"] = Localizer["Login Page"];*@
     var currentUser = Context.Session.Get<SessionUserModel>("CurrentUser");
     ViewData["Title"] = Localizer["Miya Sales Program Dashboard"];
+
+    ViewData["Roles"] = currentUser.Roles;
     ViewData["UserName"] = currentUser.Email;
+}
+
+
+@{
+    if (ViewData["Roles"] != null)
+    {
+        if (ViewData.Values != null && ViewData.Values.Count() > 0)
+        {
+            foreach (var item in ViewData["Roles"] as List<string>)
+            {
+
+                if (item == "Admin")
+                {
+                    <!--<p style="color:red;">ahanda admin</p>-->
+
+                }
+
+
+            }
+
+        }
+
+    }
 
 }
 

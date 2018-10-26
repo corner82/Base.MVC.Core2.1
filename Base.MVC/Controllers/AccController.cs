@@ -16,6 +16,7 @@ using Newtonsoft.Json;
 using Base.Core.Entities.Identity;
 using Base.Core.Extensions.Session;
 using Base.Filters.Log.RabbitMQ;
+using System.Text.RegularExpressions;
 
 namespace Base.MVC.Controllers
 {
@@ -45,7 +46,6 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         public IActionResult Login()
         {
-            
             return View();
         }
         [HttpGet]
@@ -69,10 +69,58 @@ namespace Base.MVC.Controllers
             return "role not found";
         }
 
+        [HttpGet("Acc/CheckCreateRole/{roleStr}")]
+        //[HttpGet]
+        public async Task<string> CheckCreateRole(string roleStr)
+        {
+
+            var t = roleStr.Trim().ToUpper();
+            t = Regex.Replace(t, @"\s", "");
+            //t.Replace(" ", String.Empty);
+            //t.Replace("_", String.Empty);
+            //return t;
+            // Back Office Order Management
+            var roleQueryRes = _roleManager.Roles.Where(p => p.NormalizedName == t).FirstOrDefault();
+            if (roleQueryRes == null)
+            //if (!_roleManager.RoleExistsAsync(t).Result)
+            {
+                CustomIdentityRole role = new CustomIdentityRole
+                {
+                    Name = roleStr,
+                    NormalizedName = t
+                };
+
+                IdentityResult roleResult = _roleManager.CreateAsync(role).Result;
+
+                if (!roleResult.Succeeded)
+                {
+                    ModelState.AddModelError("", "We can't add the role");
+                    return "we cannot add the role";
+                }
+                else if (roleResult.Succeeded)
+                {
+                    await _roleManager.AddClaimAsync(role, new Claim(ClaimsIdentity.DefaultRoleClaimType, "deal.edit"));
+                    await _roleManager.AddClaimAsync(role, new Claim(ClaimsIdentity.DefaultRoleClaimType, "deal.delete"));
+                    await _roleManager.AddClaimAsync(role, new Claim(ClaimsIdentity.DefaultRoleClaimType, "deal.list"));
+                    await _roleManager.AddClaimAsync(role, new Claim(ClaimsIdentity.DefaultRoleClaimType, "deal.invoice"));
+                    await _roleManager.AddClaimAsync(role, new Claim(ClaimsIdentity.DefaultRoleClaimType, "deal.documantcontrol"));
+                    await _roleManager.AddClaimAsync(role, new Claim(ClaimsIdentity.DefaultRoleClaimType, "deal.list"));
+                }
+                //return View();
+                return "Role creation success";
+            } else
+            {
+                return "Role already created";
+            }
+
+            
+        }
+
         //[HttpGet("Acc/CreateRole/{roleStr}")]
         [HttpGet]
         public async Task<string> CreateRole(string roleStr)
         {
+            
             if (!_roleManager.RoleExistsAsync("Back Office Order Management").Result)
             {
                 CustomIdentityRole role = new CustomIdentityRole
