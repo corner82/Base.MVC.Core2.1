@@ -161,7 +161,7 @@ $(document).ready(function () {
     $("#loadingImage_DdslickParkoffType").loadImager('removeLoadImage');
     $("#loadingImage_DdslickParkoffType").loadImager('appendImage');
 
-    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkCurrencyTypesDdList_syscurrencytypes&language_code=en&pk=GsZVzEYe50uGgNM
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkParkoffTypeDdList_sysparkofftypes&language_code=en&pk=GsZVzEYe50uGgNM
     var ajaxACLResources_parkoffType = $('#ajax_DdslickParkoffType').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loadingImage_DdslickParkoffType",
@@ -174,7 +174,7 @@ $(document).ready(function () {
         data: JSON.stringify({
             language_code: $("#langCode").val(),
             pk: "GsZVzEYe50uGgNM",
-            url: "pkCurrencyTypesDdList_syscurrencytypes",
+            url: "pkParkoffTypeDdList_sysparkofftypes",
             pkIdentity: $("#publicKey").val()
         })
     });
@@ -260,7 +260,7 @@ $(document).ready(function () {
     });
 
         //parkoff grid
-        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFixedSalesCostsGridx_sysfixedsalescosts&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
+        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillParkOffGridx_infostockparkoff&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
     var parkoff = new DevExpress.data.CustomStore({
         load: function (loadOptions) {
             var deferred = $.Deferred(),
@@ -281,7 +281,7 @@ $(document).ready(function () {
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
-                    url: "pkFixedSalesCostsGridx_sysfixedsalescosts",
+                    url: "pkFillParkOffGridx_infostockparkoff",
                     pkIdentity: $("#publicKey").val(),
                     page: "",
                     rows: "",
@@ -399,19 +399,24 @@ $(document).ready(function () {
         columns: [{
             caption: window.lang.translate('Park off type') + "...",
             encodeHtml: false,
-            dataField: "vehicle_gruop_name"
+            dataField: "parkoff_type_name"
         }, {
             caption: window.lang.translate('Branch') + "...",
             encodeHtml: false,
-            dataField: "model_description"  
+            dataField: "branch_dealer_name"  
         }, {
             caption: window.lang.translate('Chassis') + "...",
             encodeHtml: false,
-            dataField: "name"
+            dataField: "chassis_no"
         }, {
             caption: window.lang.translate('Park off completed') + "...",
             encodeHtml: false,
-            dataField: "vvalue"
+            dataField: "complete_name"
+        }, {
+            caption: window.lang.translate('Man entry date') + "...",
+            encodeHtml: false,
+            dataType: "date",
+            dataField: "man_entry_date"
         }],
 
         onSelectionChanged: function (selectedItems) {
@@ -490,16 +495,13 @@ $(document).ready(function () {
             }
 
             //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?
-            //url=pkInsertAct_sysfixedsalescosts
-            //&name=gitgel%20cost
-            //&vehicle_gruop_id=1--
-            //&vehicle_second_group_id=--
-            //&vvalue=1111=&--
-            //currency_type_id=16--
-            //&start_date=2018-10-10--
-            //&is_all_vehicle=1--
-            //warranty_matrix_id=--
-            //&pk=GsZVzEYe50uGgNM--
+            //url=pkInsertAct_infostockparkoff
+            //&stock_id=1
+            //&start_date=2018-08-08
+            //&end_date=
+            //&parkoff_type_id=2
+            //&is_complete=0
+            //&pk=GsZVzEYe50uGgNM
             if (!parkoffId == "") {//update
                 var ajax_Insertparkoff = $('#ajaxACL-parkoffList').ajaxCallWidget({
                     failureLoadImage: true,
@@ -512,12 +514,14 @@ $(document).ready(function () {
                     proxy: '/ParkOff/AddParkoff',
                     type: 'POST',
                     data: JSON.stringify({
-                        url: "pkInsertAct_sysfixedsalescosts",
+                        url: "pkUpdateAct_infostockparkoff",
                         id: parkoffId,
-                        parkoffType_id: parkoffType_id,
-                        branch_id: branch_id,
-                        chassis_id: chassis_id,
-                        completed_id: completed_id,
+                        parkoff_type_id: parkoffType_id,
+                        start_date: parkoffType_id,
+                        end_date: parkoffType_id,
+                        //branch_id: branch_id,
+                        stock_id: chassis_id,
+                        is_complete: completed_id,
                         pk: "GsZVzEYe50uGgNM"
                     })
                 });
@@ -543,11 +547,13 @@ $(document).ready(function () {
                     proxy: '/ParkOff/AddParkoff',
                     type: 'POST',
                     data: JSON.stringify({
-                        url: "pkInsertAct_sysfixedsalescosts",
-                        parkoffType_id: parkoffType_id,
-                        branch_id: branch_id,
-                        chassis_id: chassis_id,
-                        completed_id: completed_id,
+                        url: "pkInsertAct_infostockparkoff",
+                        parkoff_type_id: parkoffType_id,
+                        start_date: parkoffType_id,
+                        end_date: parkoffType_id,
+                        //branch_id: branch_id,
+                        stock_id: chassis_id,
+                        is_complete: completed_id,
                         pk: "GsZVzEYe50uGgNM"
                     })
                 });

@@ -156,7 +156,7 @@ $(document).ready(function () {
 
                     if (selectedData.selectedData.value > 0) {
                         ddslick_modelId = selectedData.selectedData.value;
-
+                        VhType = selectedData.selectedData.text;
                         //Vehicle
                         $("#loadingImage_DdslickVehicle").loadImager('removeLoadImage');
                         $("#loadingImage_DdslickVehicle").loadImager('appendImage');
@@ -216,7 +216,12 @@ $(document).ready(function () {
                         ajaxACLResources_vehicle.ajaxCallWidget('call');
                         //Vehicle End
                     }
+                    else {
+                        VhType = "";
+                    }
+                    document.getElementById("txt-wrUnique-name").value = "Factory" + VhType + Model + Mil1 + Mil2 + WrType + WrRM;
                 }
+
             })
             $('#loadingImage_DdslickModel').loadImager('removeLoadImage');
         },
@@ -885,7 +890,9 @@ $(document).ready(function () {
                 var ismaintenance = ddDataIsmaintenance.selectedData.value;
             }
 
-            var unique_code = $('#txt-wrUnique-name').val();
+            //var unique_code = $('#txt-wrUnique-name').val();
+            var unique_code ="Factory";
+
             var price_in_euros = $('#txt-wrPrice-name').val();
 
             //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_syswarrantymatrix
