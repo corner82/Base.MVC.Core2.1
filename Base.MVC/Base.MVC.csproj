@@ -41,6 +41,9 @@
     <Content Update="Views\BuybackTradeback\BuybackReturn.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Campaign\Campaign.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Customer\ActivityMngr.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -243,6 +246,7 @@
 
   <ItemGroup>
     <Folder Include="Models\HttpRequest\Stock\" />
+    <Folder Include="Views\Target\" />
     <Folder Include="wwwroot\adm\plugins\font-awesome-5.1.1\" />
     <Folder Include="wwwroot\adm\plugins\node_js\modules\" />
     <Folder Include="wwwroot\sa\images\login_slider\" />
