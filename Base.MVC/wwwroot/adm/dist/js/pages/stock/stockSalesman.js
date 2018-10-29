@@ -210,7 +210,8 @@ $(document).ready(function () {
 
 // Stock Grid
     $('#stockStockSmRefresh').click(function () {
-        //Quota month Grid
+        $("#gridContainer_stockStockSm").dxDataGrid("instance").refresh();
+    });
         //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillSisMonthlyQuotasGridx_syssismonthlyquotas&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
         var stockSm = new DevExpress.data.CustomStore({
             load: function (loadOptions) {
@@ -276,7 +277,7 @@ $(document).ready(function () {
             //    });
             //}
         });
-        //Quota month Grid
+        
         $("#gridContainer_stockStockSm").dxDataGrid({
 
             showColumnLines: true,
@@ -427,14 +428,12 @@ $(document).ready(function () {
                 //$("#gridContainer_QuotaMonth").dxDataGrid("instance").refresh();
             },
         });
-    });
-
-    $('#stockStockSmRefresh').click();
 // Stock Grid End
 
 // Demo Grid
     $('#demoStockSmRefresh').click(function () {
-        //Quota month Grid
+        $("#gridContainer_demoStockSm").dxDataGrid("instance").refresh();
+    });
         //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillSisMonthlyQuotasGridx_syssismonthlyquotas&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
         var demoSm = new DevExpress.data.CustomStore({
             load: function (loadOptions) {
@@ -500,7 +499,7 @@ $(document).ready(function () {
             //    });
             //}
         });
-        //Quota month Grid
+
         $("#gridContainer_demoStockSm").dxDataGrid({
 
             showColumnLines: true,
@@ -651,14 +650,12 @@ $(document).ready(function () {
                 //$("#gridContainer_QuotaMonth").dxDataGrid("instance").refresh();
             },
         });
-    });
-
-    $('#demoStockSmRefresh').click();
 // Demo Grid End
 
 // Demo Grid
     $('#truckstogoStockSmRefresh').click(function () {
-        //Quota month Grid
+        $("#gridContainer_truckstogoStockSm").dxDataGrid("instance").refresh();
+    });
         //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillSisMonthlyQuotasGridx_syssismonthlyquotas&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
         var truckstogoSm = new DevExpress.data.CustomStore({
             load: function (loadOptions) {
@@ -724,7 +721,7 @@ $(document).ready(function () {
             //    });
             //}
         });
-        //Quota month Grid
+
         $("#gridContainer_truckstogoStockSm").dxDataGrid({
 
             showColumnLines: true,
@@ -879,9 +876,7 @@ $(document).ready(function () {
                 //$("#gridContainer_QuotaMonth").dxDataGrid("instance").refresh();
             },
         });
-    });
 
-    $('#truckstogoStockSmRefresh').click();
 // Demo Grid End
 
 //    /**

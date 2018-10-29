@@ -440,9 +440,6 @@ $(document).ready(function () {
         },
     });
 
-    //});
-
-    //$('#ParkoffRefresh').click();
 
     /**
     * insert Parkoff

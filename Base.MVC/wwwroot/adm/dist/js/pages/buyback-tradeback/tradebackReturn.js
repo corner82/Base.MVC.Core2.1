@@ -65,71 +65,77 @@ $(document).ready(function () {
     //alert(langCode);
 
     //Return
-    var cbdata_return = [
-        {
-            text: window.lang.translate('Please select') + "...",
-            value: 1,
-            selected: true
-        },
-        {
-            text: "Yes, it will return",
-            value: 2,
-            selected: false
-        },
-        {
-            text: "No customer wants extension",
-            value: 3,
-            selected: false
-        },
-        {
-            text: "No, it won’t return",
-            value: 4,
-            selected: false
-        }
-    ];
-
+    //var cbdata_return = [
+    //    {
+    //        text: window.lang.translate('Please select') + "...",
+    //        value: 1,
+    //        selected: true
+    //    },
+    //    {
+    //        text: "Yes, it will return",
+    //        value: 2,
+    //        selected: false
+    //    },
+    //    {
+    //        text: "No customer wants extension",
+    //        value: 3,
+    //        selected: false
+    //    },
+    //    {
+    //        text: "No, it won’t return",
+    //        value: 4,
+    //        selected: false
+    //    }
+    //];
+    //Return
     $('#loadingImage_DdslickReturn').loadImager('removeLoadImage');
     $("#loadingImage_DdslickReturn").loadImager('appendImage');
-
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkReturnTypeDdList_sysreturntypes&language_code=en&pk=GsZVzEYe50uGgNM
     var ajaxACLResources_Return = $('#ajax_DdslickReturn').ajaxCallWidget({
-        proxy: 'https://jsonplaceholder.typicode.com/todos/',
-        data: {
-            url: '1'
-            //pk: $("#pk").val()
-        }
-
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickReturn",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkReturnTypeDdList_sysreturntypes",
+            pkIdentity: $("#publicKey").val()
+        })
     });
 
     ajaxACLResources_Return.ajaxCallWidget({
-        onError: function (event, textStatus, errorThrown) {
+        onReset: function (event, data) {
 
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickReturn').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Servis  bulunamamıştır...'), window.lang.translate('Servis bulunamamıştır...'));
         },
-        onSuccess: function (event, data) {
-            //var data = $.parseJSON(cbdata);
+        onSuccess: function (event, datareturn) {
+
+            var cbdata_return = $.parseJSON(datareturn);
+            cbdata_return.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
 
             $('#ddslickReturn').ddslick({
-                //height: 150,
                 data: cbdata_return,
                 width: '100%',
-
+                //search: true,
+                //searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
-                        expText = selectedData.selectedData.text;
-                        if (expText == 'No, it won’t return') {
+                        var  expText_id = selectedData.selectedData.value;
+                        if (expText_id == 3) {
                             document.getElementById("txt-tbreturn-explanation").disabled = false;
                             //document.getElementById("txt-tbreturn-file").disabled = true;
                         }
-                        else if (expText == 'No customer wants extension') {
+                        else if (expText_id == 2) {
                             document.getElementById("txt-tbreturn-explanation").disabled = false;
                             // document.getElementById("txt-tbreturn-file").disabled = true;
                         }
-                        else if (expText == 'Yes, it will return') {
+                        else if (expText_id == 1) {
                             document.getElementById("txt-tbreturn-explanation").disabled = true;
                             //document.getElementById("txt-tbreturn-file").disabled = false;
                         }
@@ -138,20 +144,13 @@ $(document).ready(function () {
                             //document.getElementById("txt-tbreturn-file").disabled = true;
                         }
                     }
-                }
-            });
-
-            $("#loadingImage_DdslickReturn").loadImager('removeLoadImage');
+            }
+            })
+            $('#loadingImage_DdslickReturn').loadImager('removeLoadImage');
         },
-        onErrorDataNull: function (event, data) {
-            console.log("Error : " + event + " -data :" + data);
-            dm.dangerMessage({
-                onShown: function () {
-                    $('#loadingImage_DdslickReturn').loadImager('removeLoadImage');
-                }
-            });
-            dm.dangerMessage('show', window.lang.translate('Return bulunamamıştır...'), window.lang.translate('Return bulunamamıştır...'));
-        },
+        onAfterSuccess: function (event, data) {
+            $('#loadingImage_DdslickReturn').loadImager('removeLoadImage');
+        }
     })
     ajaxACLResources_Return.ajaxCallWidget('call');
     //Return End
@@ -708,7 +707,7 @@ $(document).ready(function () {
 
 
         $("#loadingImage_TbReturnInfo").loadImager('removeLoadImage');
-        $('#ddslickReturn').ddslick('select', { index: 2 });
+        //$('#ddslickReturn').ddslick('select', { index: 2 });
 
         tab_active();
         return false;
@@ -723,7 +722,7 @@ $(document).ready(function () {
         //document.getElementById("txt-tbreturn-dealDate").value = data.OrderDate;
 
         $("#loadingImage_TbReturnInfo").loadImager('removeLoadImage');
-        $('#ddslickReturn').ddslick('select', { index: 3 });
+        $('#ddslickReturn').ddslick('select', { index: 1 });
         document.getElementById("txt-tbreturn-vehicle").value = 'WAGP21ZZ2FT022928';
         document.getElementById("txt-tbreturn-vehicleReturnDate").value = data.man_entry_date;
 
