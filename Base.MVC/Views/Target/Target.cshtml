@@ -47,7 +47,7 @@
                 <div class="box box-info">
                     <div class="box-header">
                         <i class="fa fa-comments-o"></i>
-                        <h3 class="box-title"><span lang="en">Stock list Back Office form</span></h3>
+                        <h3 class="box-title"><span lang="en">Stock list HOS form</span></h3>
 
                         <div class="box-tools pull-right">
                             <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -55,10 +55,10 @@
                         </div>
                     </div>
                     <div class="box-body">
-                        <form id='stockBackOfficeForm' method="get">
-                            <div class="row" id="loadingImage_stockBo">
+                        <form id='stockHosForm' method="get">
+                            <div class="row" id="loadingImage_stockHos">
 
-                                <div class="col-md-6" id="ajaxACL-stockBo">
+                                <div class="col-md-6" id="ajaxACL-stockHos">
                                     <div class="form-group">
                                         <label><span lang="en">Vehicle list</span></label>
                                         <div class="" id="ajax_DdslickVehicleList">
@@ -97,89 +97,63 @@
                                 <!-- /.col -->
 
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label><span lang="en">MANEC Spec(PDF)</span></label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-map-pin"></i>
-                                            </div>
-                                            <input type="file" class="form-control validate[required]" placeholder="Manec file upload" id="txt-stockBo-fileManec" lang="en">
-                                        </div>
-                                        <div class="form-group">
-                                            <label><span lang="en">Brochure(PDF)</span></label>
-                                            <div class="input-group">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-map-pin"></i>
-                                                </div>
-                                                <input type="file" class="form-control validate[required]" placeholder="Brochure file upload" id="txt-stockBo-fileBrochure" lang="en">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label><span lang="en">Natis Control Certificate(PDF)</span></label>
-                                            <div class="input-group">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-map-pin"></i>
-                                                </div>
-                                                <input type="file" class="form-control validate[required]" placeholder="Natis Control Certificate file upload" id="txt-stockBo-fileNatis" lang="en">
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </div><!-- /.col -->
                             </div>
-                            <div class="box-footer">
-                                <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-stockBo-clear">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-stockBo-save">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
-                            </div>
+                            @*<div class="box-footer">
+                                <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-stockHos-clear">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-stockHos-save">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                            </div>*@
                         </form>
 
-                        <div class="box box-info" id="ajaxACL-stockStockBo">
+                        <div class="box box-info" id="ajaxACL-stockStockHos">
                             <div class="box-header">
                                 <i class="fa fa-comments-o"></i>
-                                <h3 class="box-title"><span lang="en">Stock list Back Office</span></h3>
+                                <h3 class="box-title"><span lang="en">Stock list HOS</span></h3>
 
                                 <div class="box-tools pull-right">
-                                    <button class="btn bg-teal btn-sm btn-small-miya" data-widget="refresh" id="stockStockBoRefresh"><i class="fa fa-refresh"></i></button>
+                                    <button class="btn bg-teal btn-sm btn-small-miya" data-widget="refresh" id="stockStockHosRefresh"><i class="fa fa-refresh"></i></button>
                                     <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                     <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
                                 </div>
                             </div>
 
-                            <div class="box-body" id="loadingImage_DdslickStockStockBoGrid">
-                                <div id="gridContainer_stockStockBo"></div>
+                            <div class="box-body" id="loadingImage_DdslickStockStockHosGrid">
+                                <div id="gridContainer_stockStockHos"></div>
                             </div>
                         </div>
 
-                        <div class="box box-info" id="ajaxACL-stockDemoBo">
+                        <div class="box box-info" id="ajaxACL-stockDemoHos">
                             <div class="box-header">
                                 <i class="fa fa-comments-o"></i>
-                                <h3 class="box-title"><span lang="en">Stock Demo list Back Office</span></h3>
+                                <h3 class="box-title"><span lang="en">Stock Demo list HOS</span></h3>
 
                                 <div class="box-tools pull-right">
-                                    <button class="btn bg-teal btn-sm btn-small-miya" data-widget="refresh" id="demoStockBoRefresh"><i class="fa fa-refresh"></i></button>
+                                    <button class="btn bg-teal btn-sm btn-small-miya" data-widget="refresh" id="demoStockHosRefresh"><i class="fa fa-refresh"></i></button>
                                     <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                     <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
                                 </div>
                             </div>
 
-                            <div class="box-body" id="loadingImage_DdslickDemoStockBoGrid">
-                                <div id="gridContainer_demoStockBo"></div>
+                            <div class="box-body" id="loadingImage_DdslickDemoStockHosGrid">
+                                <div id="gridContainer_demoStockHos"></div>
                             </div>
                         </div>
 
-                        <div class="box box-info" id="ajaxACL-stockTruckstogoBo">
+                        <div class="box box-info" id="ajaxACL-stockTruckstogoHos">
                             <div class="box-header">
                                 <i class="fa fa-comments-o"></i>
-                                <h3 class="box-title"><span lang="en">Stock Trucks to go list Back Office</span></h3>
+                                <h3 class="box-title"><span lang="en">Stock Trucks to go list HOS</span></h3>
 
                                 <div class="box-tools pull-right">
-                                    <button class="btn bg-teal btn-sm btn-small-miya" data-widget="refresh" id="truckstogoStockBoRefresh"><i class="fa fa-refresh"></i></button>
+                                    <button class="btn bg-teal btn-sm btn-small-miya" data-widget="refresh" id="truckstogoStockHosRefresh"><i class="fa fa-refresh"></i></button>
                                     <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                     <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
                                 </div>
                             </div>
 
-                            <div class="box-body" id="loadingImage_DdslickTruckstogoStockBoGrid">
-                                <div id="gridContainer_truckstogoStockBo"></div>
+                            <div class="box-body" id="loadingImage_DdslickTruckstogoStockHosGrid">
+                                <div id="gridContainer_truckstogoStockHos"></div>
                             </div>
                         </div>
 
@@ -230,7 +204,7 @@
     <script src="@ViewBag.defaultDevExLangPath"></script>
 
 
-    <script src="~/adm/dist/js/pages/stock/stockBackOffice.js" type="text/javascript"></script>
+    <script src="~/adm/dist/js/pages/stock/stockHos.js" type="text/javascript"></script>
 
     <script>
         $(document).ready(function () {

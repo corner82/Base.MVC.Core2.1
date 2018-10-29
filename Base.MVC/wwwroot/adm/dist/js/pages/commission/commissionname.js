@@ -1,0 +1,540 @@
+﻿/*
+* Commission Name Form
+* @author Gül Özdemir
+* @since 29/10/2018
+*/
+$(document).ready(function () {
+
+    "use strict";
+
+    var sm = $(window).successMessage();
+    var dm = $(window).dangerMessage();
+    var wm = $(window).warningMessage();
+    var wcm = $(window).warningComplexMessage({
+        denyButtonLabel: 'Vazgeç',
+        actionButtonLabel: 'İşleme devam et'
+    });
+
+
+    var selectedCommissionnameId = 0;
+
+    /*
+    * Commission LoadImager
+    * @author Gül Özdemir
+    * @since 13/08/2016
+    */
+    //to Commission form
+    $("#loading-image-commissionname").loadImager();
+    //to Commission form grid loading-image
+    $("#loading-image-commissionnameGrid").loadImager();
+
+    $("#loading-image-role").loadImager();
+   
+    var langCode = $("#langCode").val();
+    //alert(langCode);
+
+
+    $('#commissionnameForm').validationEngine();
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    /**
+    * Role ddSlick
+    * @returns 
+    * @author Gül Özdemir
+    * @since 29/10/2018
+    */
+    $('#loading-image-role').loadImager('removeLoadImage');
+    $('#loading-image-role').loadImager('appendImage');
+
+    //role servisi gelince değişecek
+    var ajaxACLResources_role = $('#ajaxACL-role').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loading-image-role",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Vehicle/SysVehicleGroups/',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkVehicleGroupsDdList_sysvehiclegroups",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
+
+    ajaxACLResources_role.ajaxCallWidget({
+        onSuccess: function (event, datarole) {
+            var cbdata_role = $.parseJSON(datarole);
+            cbdata_role.splice(0, 0,
+                { text: window.lang.translate('ALL'), value: 0, selected: true, description: "" }
+            );
+
+            $('#dropdownRole').ddslick({
+                data: cbdata_role,
+                width: '100%',
+                search: true,
+                searchText: window.lang.translate('Search'),
+                onSelected: function (selectedData) {
+
+                    if (selectedData.selectedData.value > 0) {
+
+                    } else {
+
+                    }
+                }
+            });
+
+            $("#loading-image-role").loadImager('removeLoadImage');
+        },
+        onReset: function (event, data) {
+
+        },
+        onAfterSuccess: function (event, data) {
+            $("#loadingImage_DdslickRole").loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_role.ajaxCallWidget('call');
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    /**
+    * commissionNameList Refresh
+    * @returns 
+    * @author Gül Özdemir
+    * @since 29/10/2018
+    */
+
+    $('#commissionnameList').click(function () {
+
+        /* devexgrid */
+        var commissionname_data = new DevExpress.data.CustomStore({
+            load: function (loadOptions) {
+                var deferred = $.Deferred(),
+                    args = {};
+
+                if (loadOptions.sort) {
+                    args.orderby = loadOptions.sort[0].selector;
+                    if (loadOptions.sort[0].desc)
+                        args.orderby += " desc";
+                }
+
+                args.skip = loadOptions.skip || 0;
+                args.take = loadOptions.take || 12;
+
+                $.ajax({
+                    url: '/Commission/CommissionNameGridList',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        language_code: $("#langCode").val(),
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkFillCommissionDefinitionsGridx_syscommissiondefinitions",
+                        pkIdentity: $("#publicKey").val(),
+                        page: "",
+                        rows: "",
+                        sort: "",
+                        order: "", //args.orderby,
+                        skip: args.skip,
+                        take: args.take
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                    },
+                    error: function () {
+                        deferred.reject("Data Loading Error");
+                    },
+                    timeout: 30000
+                });
+
+                return deferred.promise();
+            },
+            remove: function (key) {
+                var deferred = $.Deferred();
+
+                return $.ajax({
+                    url: '/Commission/DeleteCommissionName',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        id: selectedCommissionnameId,
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkDeletedAct_syscommissiondefinition"
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                    },
+                    error: function () {
+                        deferred.reject("Data remove Error");
+                    },
+                    timeout: 30000
+                });
+            }
+        });
+
+        //DevExpress.localization.locale(langCode);
+
+        $(function () {
+            $("#gridContainer_commissionname").dxDataGrid({
+
+                showColumnLines: true,
+
+                showRowLines: true,
+
+                showBorders: true,
+
+                dataSource: commissionname_data,
+
+                columnHidingEnabled: true,
+
+                selection: {
+                    mode: "single"
+                },
+
+                hoverStateEnabled: true,
+
+                editing: {
+                    //mode: "batch"
+                    mode: "form",
+                    //allowAdding: true,
+                    //allowUpdating: true,
+                    allowDeleting: true,
+                    useIcons: true
+                },
+
+                "export": {
+                    enabled: true,
+                    fileName: window.lang.translate('CommissionNameList')
+                },
+
+                grouping: {
+                    contextMenuEnabled: true,
+                    expandMode: "rowClick"
+                },
+
+                groupPanel: {
+                    emptyPanelText: window.lang.translate('Use the context menu of header columns to group data'),
+                    visible: true
+                },
+
+                pager: {
+                    allowedPageSizes: [5, 8, 15, 30],
+                    showInfo: true,
+                    showNavigationButtons: true,
+                    showPageSizeSelector: true,
+                    visible: true
+                },
+
+                paging: {
+                    pageSize: 8
+                },
+                OnCellPrepared: function (options) {
+
+                    var fieldData = options.value;
+                    fieldHtml = "";
+
+                    fieldHtml = fieldData.value;
+                    options.cellElement.html(fieldHtml);
+
+                },
+
+                filterRow: {
+                    visible: true,
+                    applyFilter: "auto"
+                },
+
+                searchPanel: {
+                    visible: true,
+                    width: 240,
+                    placeholder: window.lang.translate('Search') + "...",
+                },
+
+                headerFilter: {
+                    visible: true
+                },
+
+                columnChooser: {
+                    enabled: true,
+                    mode: "select"
+                },
+
+                columns: [
+                    {
+                        caption: window.lang.translate('Active/Passive'),
+                        width: 40,
+                        alignment: 'center',
+
+                        cellTemplate: function (container, options) {
+                            var fieldHtml;
+                            var commissionname_id = options.data.id;
+
+                            if (options.data.active === 1) {
+                                //active
+                                $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
+                                    activepassiveCommissionName(commissionname_id, options.data.active);
+
+                                }).appendTo(container);
+                            } else if (options.data.active === 0) {
+
+                                //passive
+                                $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
+                                    activepassiveCommissionName(commissionname_id, options.data.active);
+
+                                }).appendTo(container);
+                            }
+
+                            //$('<img />').addClass('dx-link').attr('src', "/adm/dist/img/icons.png").on('click', function () {
+                            //    dm.dangerMessage('show', window.lang.translate('dangerMessage...'), window.lang.translate('dangerMessage...'));
+                            //}).appendTo(container); 
+
+                        }
+
+                    }, {
+                        caption: window.lang.translate('Role name'),
+                        dataField: "role_name",
+                        encodeHtml: false
+                    }, {
+                        caption: window.lang.translate('Commission name'),
+                        dataField: "name",
+                        encodeHtml: false
+                    }
+                ],
+                rowPrepared: function (rowElement, rowInfo) {
+                    return false;
+                    //if (rowInfo.data.key === 1)
+                    //    rowElement.css('background', 'green');
+                    //else if (rowInfo.data.key === 0)
+                    //    rowElement.css('background', 'yellow');
+
+                },
+
+                onSelectionChanged: function (selectedItems) {
+                    var data = selectedItems.selectedRowsData[0];
+                    if (data) {
+                        selectedCommissionnameId = data.id;
+
+                        fillCommissionNameForm(data);
+
+                    }
+                },
+
+                onRowRemoving: function (e) {
+                    selectedCommissionnameId = e.key.id;
+
+                },
+
+                onRowRemoved: function (e) {
+                    $("#gridContainer_commissionname").dxDataGrid("instance").refresh();
+                },
+
+            });
+        });
+    })
+
+    $('#commissionnameList').click();
+
+    /**
+     * Insert CommissionName
+     * @returns {undefined}
+     * @author Gül Özdemir
+     * @since 24/10/2018
+     */
+
+    $("#btn-commissionname-save").on("click", function (e) {
+        e.preventDefault();
+
+        if ($("#commissionnameForm").validationEngine('validate')) {
+
+            $("#loading-image-commissionname").loadImager('removeLoadImage');
+            $("#loading-image-commissionname").loadImager('appendImage');
+
+            var commission_name = $('#txt-commission-name').val();
+
+            var ddData_role = $('#dropdownRole').data('ddslick')
+            var role_id = ddData_role.selectedData.value;
+
+            var ajax;
+            if (selectedCommissionnameId === 0) {
+                //alert("yeni kayıt");
+                //Yeni kayıt
+                ajax = $('#ajaxACL-commissionname').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loading-image-commissionname",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    proxy: '/Commission/InsertCommissionName',
+                    type: "POST",
+                    data: JSON.stringify({
+                        url: "pkInsertAct_syscommissiondefinitions",
+                        role_id: role_id,
+                        name: commission_name,
+                        pk: "GsZVzEYe50uGgNM"
+                    })
+                });
+
+                ajax.ajaxCallWidget({
+                    onReset: function (event, data) {
+
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_commissionname").dxDataGrid("instance").refresh();
+                        $("#loadingImage_commissionname").loadImager('removeLoadImage');
+                        resetCommissionNameForm();
+
+                    }
+                })
+                ajax.ajaxCallWidget('call');
+
+            } else {
+                //update
+                //alert("update");
+
+                wcm.warningComplexMessage({
+                    onConfirm: function (event, data) {
+                        ajax = $('#ajaxACL-commissionname').ajaxCallWidget({
+                            failureLoadImage: true,
+                            loadingImageID: "loading-image-commissionname",
+                            triggerSuccessAuto: true,
+                            transactionSuccessText: window.lang.translate('Transaction successful'),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            proxy: '/Accessory/UpdateCommissionName',
+                            type: "POST",
+                            data: JSON.stringify({
+                                id: selectedCommissionnameId,
+                                url: "pkUpdateAct_syscommissiondefinitions",
+                                role_id: role_id,
+                                name: commission_name,
+                                pk: "GsZVzEYe50uGgNM"
+                            })
+                        });
+
+                        ajax.ajaxCallWidget({
+                            onReset: function (event, data) {
+
+                            },
+                            onAfterSuccess: function (event, data) {
+                                $("#gridContainer_commissionname").dxDataGrid("instance").refresh();
+                                $("#loadingImage_commissionname").loadImager('removeLoadImage');
+                                resetCommissionNameForm();
+                            }
+                        })
+                        ajax.ajaxCallWidget('call');
+                    }
+                });
+                wcm.warningComplexMessage('show', 'Commission name is update! Are you sure?', 'Commission name is update! Are you sure?');
+            }
+        }
+        return false;
+
+    })
+
+    /**
+    * reset Commission Name Form
+    * @returns {undefined}
+    * @author Gül Özdemir
+    * @since 29/10/2018
+    */
+
+    window.resetCommissionNameForm = function () {
+        $("#loading-image-commissionname").loadImager('removeLoadImage');
+        $("#loading-image-commissionname").loadImager('appendImage');
+
+        selectedCommissionnameId = 0;
+        $('#commissionnameForm').validationEngine('hide');
+        document.getElementById("txt-commission-name").value = "";
+
+        $('#dropdownRole').ddslick('select', { index: String(0) });
+
+        $("#loading-image-commissionname").loadImager('removeLoadImage');
+
+        //yeni kayda açık, tablar kapatılıyor
+        tab_disable();
+
+        return false;
+    }
+
+
+    /**
+    * Fill Commission Name form
+    * @returns {Boolean}
+    * @author Gül Özdemir
+    * @since 13/09/2018
+    */
+
+    window.fillCommissionNameForm = function (data) {
+        $("#loading-image-commissionname").loadImager('removeLoadImage');
+        $("#loading-image-commissionname").loadImager('appendImage');
+
+        document.getElementById("txt-commission-name").value = data.name;
+
+        if (data.role_id) {
+            $('#dropdownRole').ddslick('selectByValue',
+                {
+                    index: data.role_id,
+                    value: data.role_name
+                }
+            );
+        } else {
+            $('#dropdownRole').ddslick('select', { index: String(0) });
+        }
+        
+        $("#loading-image-commissionname").loadImager('removeLoadImage');
+
+        return false;
+    }
+
+
+    window.activepassiveCommissionName = function (commissionname_id, active) {
+        $("#loading-image-commissionnameGrid").loadImager('removeLoadImage');
+        $("#loading-image-commissionnameGrid").loadImager('appendImage');
+
+        var transactionSuccessMessage;
+
+        if (active === 1) {
+            //active
+            transactionSuccessMessage = window.lang.translate('Active successful');
+        } else {
+            //pasive
+            transactionSuccessMessage = window.lang.translate('Passive successful');
+        }
+
+        var ajax_activepassivecommissionnamelist = $('#ajaxACL-commissionnamelist').ajaxCallWidget({
+            failureLoadImage: true,
+            loadingImageID: "loading-image-commissionnameGrid",
+            triggerSuccessAuto: true,
+            transactionSuccessText: transactionSuccessMessage,
+            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            proxy: '/Commission/ActivePassiveCommissionName',
+            type: "POST",
+            data: JSON.stringify({
+                id: commissionname_id,
+                pk: "GsZVzEYe50uGgNM",
+                url: "pkUpdateMakeActiveOrPassive_syscommissiondefinitions"
+            }),
+
+        });
+        ajax_activepassivecommissionnamelist.ajaxCallWidget({
+            onReset: function (event, data) {
+            },
+            onSuccess: function (event, data) {
+            },
+            onAfterSuccess: function (event, data) {
+                $("#gridContainer_commissionname").dxDataGrid("instance").refresh();
+                $("#loading-image-commissionnameGrid").loadImager('removeLoadImage');
+            }
+        })
+        ajax_activepassivecommissionnamelist.ajaxCallWidget('call');
+
+    }
+
+
+});
+

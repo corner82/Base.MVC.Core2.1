@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Base.MVC.Models.HttpRequest
+namespace Base.MVC.Models.HttpRequest.Campaign
 {
- 
-    public class BodyFeaturePostModel
+    public class CampaignName
     {
         public string url { get; set; }
-        public string acc_body_type_id { get; set; }
+        public int? id { get; set; }
         public string name { get; set; }
         public string pk { get; set; }
     }
-
 }
