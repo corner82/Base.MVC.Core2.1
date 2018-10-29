@@ -8,6 +8,7 @@ namespace Base.MVC.Models.HttpRequest.Training
     public class TrainingInfo
     {
         public string url { get; set; }
+        public int? id { get; set; }
         public string address1 { get; set; }
         public string address2 { get; set; }
         public string address3 { get; set; }

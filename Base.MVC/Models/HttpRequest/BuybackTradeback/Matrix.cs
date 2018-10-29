@@ -8,6 +8,7 @@ namespace Base.MVC.Models.HttpRequest.BuybackTradeback
     public class Matrix
     {
         public string url { get; set; }
+        public int? id { get; set; }
         public string model_id { get; set; }
         public string terrain_id { get; set; }
         public string month_id { get; set; }

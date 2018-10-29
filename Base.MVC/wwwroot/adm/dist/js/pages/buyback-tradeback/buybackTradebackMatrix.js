@@ -1104,412 +1104,15 @@ $(document).ready(function () {
 
 //Buyback Grid
     $('#buybackListRefresh').click(function () {
-        var buybackGrid = new DevExpress.data.CustomStore({
-            load: function (loadOptions) {
-                var deferred = $.Deferred(),
-                    args = {};
-
-                if (loadOptions.sort) {
-                    args.orderby = loadOptions.sort[0].selector;
-                    if (loadOptions.sort[0].desc)
-                        args.orderby += " desc";
-                }
-
-                args.skip = loadOptions.skip || 0;
-                args.take = loadOptions.take || 12;
-
-                $.ajax({
-                    url: '/BuybackTradeback/SysBbMatrixGrid',
-                    dataType: "json",
-                    data: JSON.stringify({
-                        language_code: $("#langCode").val(),
-                        pk: "GsZVzEYe50uGgNM",
-                        url: "pkFillBuybackMatrixGridx_sysbuybackmatrix",
-                        pkIdentity: $("#publicKey").val(),
-                        page: "",
-                        rows: "",
-                        sort: "",
-                        order: "", //args.orderby,
-                        skip: args.skip,
-                        take: args.take
-                    }),
-                    type: 'POST',
-                    contentType: 'application/json',
-                    success: function (result) {
-                        deferred.resolve(result.items, { totalCount: result.totalCount });
-                    },
-                    error: function () {
-                        deferred.reject("Data Loading Error");
-                    },
-                    timeout: 10000
-                });
-                return deferred.promise();
-            },
-            remove: function (key) {
-                var deferred = $.Deferred();
-
-                return $.ajax({
-                    url: '/BuybackTradeback/SysDeleteBbTb',
-                    dataType: "json",
-                    data: JSON.stringify({
-                        id: buybackId,
-                        pk: "GsZVzEYe50uGgNM",
-                        url: "pkDeletedAct_sysbuybackmatrix"
-                    }),
-                    type: 'POST',
-                    contentType: 'application/json',
-                    success: function (result) {
-                        deferred.resolve(result.items, { totalCount: result.totalCount });
-                    },
-                    error: function () {
-                        deferred.reject("Data remove Error");
-                    },
-                    timeout: 10000
-                });
-            }
-        });
-
-    $("#gridContainer_bbMatrix").dxDataGrid({
-
-        showColumnLines: true,
-        showRowLines: true,
-        showBorders: true,
-        dataSource: buybackGrid,
-        columnHidingEnabled: true,
-        selection: {
-            mode: "single"
-        },
-        hoverStateEnabled: true,
-        editing: {
-            //mode: "batch"
-            mode: "form",
-            //allowAdding: true,
-            //allowUpdating: true,
-            allowDeleting: true,
-            useIcons: true
-        },
-        "export": {
-            enabled: true,
-            fileName: "BuybackMatrix"
-        },
-        grouping: {
-            contextMenuEnabled: true,
-            expandMode: "rowClick"
-        },
-        groupPanel: {
-            emptyPanelText: "Use the context menu of header columns to group data",
-            visible: true
-        },
-        pager: {
-            allowedPageSizes: [5, 8, 15, 30],
-            showInfo: true,
-            showNavigationButtons: true,
-            showPageSizeSelector: true,
-            visible: true
-        },
-        paging: {
-            pageSize: 8
-        },
-        OnCellPrepared: function (options) {
-
-            var fieldData = options.value;
-            fieldHtml = "";
-
-            fieldHtml = fieldData.value;
-            options.cellElement.html(fieldHtml);
-
-        },
-        filterRow: {
-            visible: true,
-            applyFilter: "auto"
-        },
-        searchPanel: {
-            visible: true,
-            width: 240,
-            placeholder: window.lang.translate('Search') + "...",
-        },
-        headerFilter: {
-            visible: true
-        },
-        columnChooser: {
-            enabled: true,
-            mode: "select"
-        },
-        columnWidth: {
-            autoWidth: false
-        },
-        columns: [{
-            caption: window.lang.translate('Active/Passive'),
-            width: 40,
-            alignment: 'center',
-            encodeHtml: false,
-
-            cellTemplate: function (container, options) {
-                var fieldHtml;
-                var buyback_id = options.data.id;
-
-                if (options.data.active === 1) {
-                    //active
-                    $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
-                        activepasiveBuyback(buyback_id, options.data.active);
-                        //dm.successMessage('show', window.lang.translate('Active success message...'), window.lang.translate('Active success message...'));
-                    }).appendTo(container);
-                } else if (options.data.active === 0) {
-                    //pasive
-                    $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
-                        activepasiveBuyback(buyback_id, options.data.active);
-                        //dm.successMessage('show', window.lang.translate('Pasive success message...'), window.lang.translate('Pasive success message...'));
-                    }).appendTo(container);
-                }
-            }
-        }, {
-            caption: window.lang.translate('Customer type') + "...",
-            dataField: "customer_type_name"
-        }, {
-            caption: window.lang.translate('ComfortSuper') + "...",
-            dataField: "comfort_super_name"
-        }, {
-            caption: window.lang.translate('% Off road') + "...",
-            dataField: "terrain_name"
-        }, {
-            caption: window.lang.translate('Truck Type') + "...",
-            dataField: "vahicle_description"
-        }, {
-            caption: window.lang.translate('Hydraulics') + "...",
-            dataField: "hydraulics_name"
-        }, {
-            caption: window.lang.translate('Mileage per annum (km)') + "...",
-            dataField: "mileage_type_name"
-        }, {
-            caption: window.lang.translate('Months') + "...",
-            dataField: "month_name"
-        }, {
-            caption: window.lang.translate('Price') + "...",
-            dataField: "price"
-        }],
-        onSelectionChanged: function (selectedItems) {
-            var data = selectedItems.selectedRowsData[0];
-            if (data) {
-                buybackId = data.id;
-                fillBbMatrixForm(data);
-            }
-        },
-        onRowRemoving: function (e) {
-            buybackId = e.key.id;
-        },
-        onRowRemoved: function (e) {
-            $("#gridContainer_bbMatrix").dxDataGrid("instance").refresh();
-        },
-
-    });
+        $("#gridContainer_bbMatrix").dxDataGrid("instance").refresh();
     });
 
 //Buyback Grid End
 
 //Tradeback Grid
     $('#tradebackListRefresh').click(function () {
-        var tradebackGrid = new DevExpress.data.CustomStore({
-            load: function (loadOptions) {
-                var deferred = $.Deferred(),
-                    args = {};
-
-                if (loadOptions.sort) {
-                    args.orderby = loadOptions.sort[0].selector;
-                    if (loadOptions.sort[0].desc)
-                        args.orderby += " desc";
-                }
-
-                args.skip = loadOptions.skip || 0;
-                args.take = loadOptions.take || 12;
-
-                $.ajax({
-                    url: '/BuybackTradeback/SysTbMatrixGrid',
-                    dataType: "json",
-                    data: JSON.stringify({
-                        language_code: $("#langCode").val(),
-                        pk: "GsZVzEYe50uGgNM",
-                        url: "pkFillTradebackMatrixGridx_sysbuybackmatrix",
-                        pkIdentity: $("#publicKey").val(),
-                        page: "",
-                        rows: "",
-                        sort: "",
-                        order: "", //args.orderby,
-                        skip: args.skip,
-                        take: args.take
-                    }),
-                    type: 'POST',
-                    contentType: 'application/json',
-                    success: function (result) {
-                        deferred.resolve(result.items, { totalCount: result.totalCount });
-                    },
-                    error: function () {
-                        deferred.reject("Data Loading Error");
-                    },
-                    timeout: 10000
-                });
-                return deferred.promise();
-            },
-            remove: function (key) {
-                var deferred = $.Deferred();
-
-                return $.ajax({
-                    url: '/BuybackTradeback/SysDeleteBbTb',
-                    dataType: "json",
-                    data: JSON.stringify({
-                        id: tradebackId,
-                        pk: "GsZVzEYe50uGgNM",
-                        url: "pkDeletedAct_sysbuybackmatrix"
-                    }),
-                    type: 'POST',
-                    contentType: 'application/json',
-                    success: function (result) {
-                        deferred.resolve(result.items, { totalCount: result.totalCount });
-                    },
-                    error: function () {
-                        deferred.reject("Data remove Error");
-                    },
-                    timeout: 10000
-                });
-            }
-        });
-
-    $("#gridContainer_tbMatrix").dxDataGrid({
-
-            showColumnLines: true,
-            showRowLines: true,
-            showBorders: true,
-            dataSource: tradebackGrid,
-            columnHidingEnabled: true,
-            selection: {
-                mode: "single"
-            },
-            hoverStateEnabled: true,
-            editing: {
-                //mode: "batch"
-                mode: "form",
-                //allowAdding: true,
-                //allowUpdating: true,
-                allowDeleting: true,
-                useIcons: true
-            },
-            "export": {
-                enabled: true,
-                fileName: window.lang.translate('Tradeback List')
-            },
-            grouping: {
-                contextMenuEnabled: true,
-                expandMode: "rowClick"
-            },
-            groupPanel: {
-                emptyPanelText: "Use the context menu of header columns to group data",
-                visible: true
-            },
-            pager: {
-                allowedPageSizes: [5, 8, 15, 30],
-                showInfo: true,
-                showNavigationButtons: true,
-                showPageSizeSelector: true,
-                visible: true
-            },
-            paging: {
-                pageSize: 8
-            },
-            OnCellPrepared: function (options) {
-
-                var fieldData = options.value;
-                fieldHtml = "";
-
-                fieldHtml = fieldData.value;
-                options.cellElement.html(fieldHtml);
-
-            },
-            filterRow: {
-                visible: true,
-                applyFilter: "auto"
-            },
-            searchPanel: {
-                visible: true,
-                width: 240,
-                placeholder: window.lang.translate('Search') + "...",
-            },
-            headerFilter: {
-                visible: true
-            },
-            columnChooser: {
-                enabled: true,
-                mode: "select"
-            },
-            columnWidth: {
-                autoWidth: false
-            },
-            columns: [{
-                caption: window.lang.translate('Active/Passive'),
-                width: 40,
-                alignment: 'center',
-                encodeHtml: false,
-
-                cellTemplate: function (container, options) {
-                    var fieldHtml;
-                    var tradeback_id = options.data.id;
-
-                    if (options.data.active === 1) {
-                        //active
-                        $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
-                            activepasiveTradeback(tradeback_id, options.data.active);
-                            //dm.successMessage('show', window.lang.translate('Active success message...'), window.lang.translate('Active success message...'));
-                        }).appendTo(container);
-                    } else if (options.data.active === 0) {
-                        //pasive
-                        $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
-                            activepasiveTradeback(tradeback_id, options.data.active);
-                            //dm.successMessage('show', window.lang.translate('Pasive success message...'), window.lang.translate('Pasive success message...'));
-                        }).appendTo(container);
-                    }
-                }
-            }, {
-                caption: window.lang.translate('Customer type') + "...",
-                dataField: "customer_type_name"
-            }, {
-                caption: window.lang.translate('ComfortSuper') + "...",
-                dataField: "comfort_super_name"
-            }, {
-                caption: window.lang.translate('% Off road') + "...",
-                dataField: "terrain_name"
-            }, {
-                caption: window.lang.translate('Truck Type') + "...",
-                dataField: "vahicle_description"
-            }, {
-                caption: window.lang.translate('Hydraulics') + "...",
-                dataField: "hydraulics_name"
-            }, {
-                caption: window.lang.translate('Mileage per annum (km)') + "...",
-                dataField: "mileage_type_name"
-            }, {
-                caption: window.lang.translate('Months') + "...",
-                dataField: "month_name"
-            }, {
-                caption: window.lang.translate('Price') + "...",
-                dataField: "price"
-            }],
-
-            onSelectionChanged: function (selectedItems) {
-                var data = selectedItems.selectedRowsData[0];
-                if (data) {
-                    tradebackId = data.id;
-                    fillTbMatrixForm(data);
-                }
-            },
-            onRowRemoving: function (e) {
-                tradebackId = e.key.id;
-            },
-            onRowRemoved: function (e) {
-                $("#gridContainer_tbMatrix").dxDataGrid("instance").refresh();
-            },
-        });
+        $("#gridContainer_tbMatrix").dxDataGrid("instance").refresh();
     });
-
-    //$('#buybackListRefresh').click();
-    //$('#tradebackListRefresh').click();
 
     ///////////////////////BUYBACK MATRİS /////////////////////
 
@@ -1596,38 +1199,77 @@ $(document).ready(function () {
             //customer_type_id 
 
             //& model_id=3 & terrain_id=2 & month_id=35 & mileage_id=38 & price=500000 & comfort_super_id=0 & hydraulics=0 & customer_type_id=1 & pk=GsZVzEYe50uGgNM
+            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateAct_sysaccdeff&name_bo=apple&name_sm=apple%20apple&id=19&pk=GsZVzEYe50uGgNM
+            if (!buybackId == "") {//update
+                var ajax_InsertMatrix = $('#ajaxACL-insertBuyback').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loadingImage_bbInfo",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
 
-            var ajax_InsertMatrix = $('#ajaxACL-insertBuyback').ajaxCallWidget({
-                failureLoadImage: true,
-                loadingImageID: "loadingImage_bbInfo",
-                triggerSuccessAuto: true,
-                transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-
-                proxy: '/BuybackTradeBack/AddMatrix',
-                type: 'POST',
-                data: JSON.stringify({
-                    url: "pkInsertBBAct_sysbuybackmatrix",
-                    model_id: model_id,
-                    terrain_id: terrain_id,
-                    month_id: month_id,
-                    mileage_id: mileage_id,
-                    price: price,
-                    comfort_super_id: comfort_super_id,
-                    hydraulics: hydraulics,
-                    customer_type_id: customer_type_id,
-                    pk: "GsZVzEYe50uGgNM"
+                    proxy: '/BuybackTradeBack/AddMatrix',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        url: "pkUpdateBBAct_sysbuybackmatrix",
+                        id: buybackId,
+                        model_id: model_id,
+                        terrain_id: terrain_id,
+                        month_id: month_id,
+                        mileage_id: mileage_id,
+                        price: price,
+                        comfort_super_id: comfort_super_id,
+                        hydraulics: hydraulics,
+                        customer_type_id: customer_type_id,
+                        pk: "GsZVzEYe50uGgNM"
+                    })
+                });
+                ajax_InsertMatrix.ajaxCallWidget({
+                    onReset: function (event, data) {
+                        resetBbMatrixForm();
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_bbMatrix").dxDataGrid("instance").refresh();
+                    }
                 })
-            });
-            ajax_InsertMatrix.ajaxCallWidget({
-                onReset: function (event, data) {
-                    //resetBbMatrixForm();
-                },
-            })
-            ajax_InsertMatrix.ajaxCallWidget('call');
-            $("#gridContainer_bbMatrix").dxDataGrid("instance").refresh();
-           // $('#buybackListRefresh').click();
+                ajax_InsertMatrix.ajaxCallWidget('call');
+            }
+            else {//insert
+                var ajax_InsertMatrix = $('#ajaxACL-insertBuyback').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loadingImage_bbInfo",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+
+                    proxy: '/BuybackTradeBack/AddMatrix',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        url: "pkInsertBBAct_sysbuybackmatrix",
+                        model_id: model_id,
+                        terrain_id: terrain_id,
+                        month_id: month_id,
+                        mileage_id: mileage_id,
+                        price: price,
+                        comfort_super_id: comfort_super_id,
+                        hydraulics: hydraulics,
+                        customer_type_id: customer_type_id,
+                        pk: "GsZVzEYe50uGgNM"
+                    })
+                });
+                ajax_InsertMatrix.ajaxCallWidget({
+                    onReset: function (event, data) {
+                        resetBbMatrixForm();
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_bbMatrix").dxDataGrid("instance").refresh();
+                    }
+                })
+                ajax_InsertMatrix.ajaxCallWidget('call');
+            }
+
             return false;
         }
     })
@@ -1789,36 +1431,76 @@ $(document).ready(function () {
             //hydraulics
             //customer_type_id 
 
-            var ajax_InsertMatrix = $('#ajaxACL-insertTradeback').ajaxCallWidget({
-                failureLoadImage: true,
-                loadingImageID: "loadingImage_tbInfo",
-                triggerSuccessAuto: true,
-                transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            //pkUpdateTBAct_sysbuybackmatrix
+            if (!tradebackId == "") {//update
+                var ajax_InsertMatrix = $('#ajaxACL-insertTradeback').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loadingImage_tbInfo",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
 
-                proxy: '/BuybackTradeBack/AddMatrix',
-                type: 'POST',
-                data: JSON.stringify({
-                    url: "pkInsertTBAct_sysbuybackmatrix",
-                    model_id: model_id,
-                    terrain_id: terrain_id,
-                    month_id: month_id,
-                    mileage_id: mileage_id,
-                    price: price,
-                    comfort_super_id: comfort_super_id,
-                    hydraulics: hydraulics,
-                    customer_type_id: customer_type_id,
-                    pk: "GsZVzEYe50uGgNM"
+                    proxy: '/BuybackTradeBack/AddMatrix',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        url: "pkUpdateTBAct_sysbuybackmatrix",
+                        id: tradebackId,
+                        model_id: model_id,
+                        terrain_id: terrain_id,
+                        month_id: month_id,
+                        mileage_id: mileage_id,
+                        price: price,
+                        comfort_super_id: comfort_super_id,
+                        hydraulics: hydraulics,
+                        customer_type_id: customer_type_id,
+                        pk: "GsZVzEYe50uGgNM"
+                    })
+                });
+                ajax_InsertMatrix.ajaxCallWidget({
+                    onReset: function (event, data) {
+                        //resetTbMatrixForm();
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_tbMatrix").dxDataGrid("instance").refresh();
+                    }
                 })
-            });
-            ajax_InsertMatrix.ajaxCallWidget({
-                onReset: function (event, data) {
-                    //resetTbMatrixForm();
-                },
-            })
-            ajax_InsertMatrix.ajaxCallWidget('call');
-             $('#tradebackListRefresh').click();
+                ajax_InsertMatrix.ajaxCallWidget('call');
+            }
+            else {
+                var ajax_InsertMatrix = $('#ajaxACL-insertTradeback').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loadingImage_tbInfo",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+
+                    proxy: '/BuybackTradeBack/AddMatrix',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        url: "pkInsertTBAct_sysbuybackmatrix",
+                        model_id: model_id,
+                        terrain_id: terrain_id,
+                        month_id: month_id,
+                        mileage_id: mileage_id,
+                        price: price,
+                        comfort_super_id: comfort_super_id,
+                        hydraulics: hydraulics,
+                        customer_type_id: customer_type_id,
+                        pk: "GsZVzEYe50uGgNM"
+                    })
+                });
+                ajax_InsertMatrix.ajaxCallWidget({
+                    onReset: function (event, data) {
+                        //resetTbMatrixForm();
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_tbMatrix").dxDataGrid("instance").refresh();
+                    }
+                })
+                ajax_InsertMatrix.ajaxCallWidget('call');
+            }
             return false;
         }
     })
