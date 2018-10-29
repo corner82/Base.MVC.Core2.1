@@ -10,8 +10,8 @@ namespace Base.MVC.Models.HttpRequest
     {
         public string url { get; set; }
         public string id { get; set; }
-        public string name_bo { get; set; }
-        public string name_sm { get; set; }
+        public string acc_body_type_id { get; set; }
+        public string name { get; set; }
         public string pk { get; set; }
     }
 

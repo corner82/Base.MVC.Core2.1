@@ -783,7 +783,7 @@ $(document).ready(function () {
 
             } else {
                 //update
-                alert("update");
+                //alert("update");
 
                 wcm.warningComplexMessage({
                     onConfirm: function (event, data) {
