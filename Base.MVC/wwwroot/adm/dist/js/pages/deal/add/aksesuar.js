@@ -622,13 +622,13 @@
         if ($("#deal_hidden").deal()) {
             dealID = $("#deal_hidden").deal("getDealID");
         }
-        if (dealID == null || dealID == "" || dealID <= 0) {
+        /*if (dealID == null || dealID == "" || dealID <= 0) {
             $(window).warningMessage('resetOnShown');
             $(window).warningMessage('show', "Please select deal",
                 "Please select deal");
             $('#tab_Aksesuar').loadImager('removeLoadImage');
             return false;
-        }
+        }*/
 
         if ($("#addAksesuarForm").validationEngine('validate')) {
             var ddDataVehicleGroups = $('#ddslickVehicleGroupsAksesuar').data('ddslick');
@@ -652,6 +652,7 @@
                     url: "pkInsertAct_infoprojectacc",
                     pkIdentity: $("#publicKey").val(),
                     project_id: dealID,
+                    //project_id: 1,
                     vehicles_group_id: parseInt(ddDataVehicleGroups.selectedData.value),
                     vehicle_gt_model_id: parseInt(ddDataVehicleType.selectedData.value),
                     acc_option_id: parseInt(ddDataAksesuarOptions.selectedData.value),

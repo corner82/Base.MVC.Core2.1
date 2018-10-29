@@ -89,13 +89,13 @@
         if ($("#deal_hidden").deal()) {
             dealID = $("#deal_hidden").deal("getDealID");
         }
-        if (dealID == null || dealID == "" || dealID <= 0) {
+        /*if (dealID == null || dealID == "" || dealID <= 0) {
             $(window).warningMessage('resetOnShown');
             $(window).warningMessage('show', "Please select deal",
                 "Please select deal");
             $('#tab_TradeIn').loadImager('removeLoadImage');
             return false;
-        }
+        }*/
 
         if ($("#addTradeInForm").validationEngine('validate')) {
             var ddDataOverAllowanceType = $('#ddslickOverAllowanceType').data('ddslick');
@@ -113,7 +113,8 @@
                     pk: "GsZVzEYe50uGgNM",
                     url: "pkInsertAct_infoprojecttradein",
                     pkIdentity: $("#publicKey").val(),
-                    project_id: dealID,
+                    //project_id: dealID,
+                    project_id: 1,
                     quantity: $("#quantity_vehicleNumbers").val(),
                     over_allowance: $("#price_overAllowance").val(),
                     topused: $("#price_topusedOffer").val(),
@@ -461,13 +462,13 @@
         if ($("#deal_hidden").deal()) {
             dealID = $("#deal_hidden").deal("getDealID");
         }
-        if (dealID == null || dealID == "" || dealID <= 0) {
+        /*if (dealID == null || dealID == "" || dealID <= 0) {
             $(window).warningMessage('resetOnShown');
             $(window).warningMessage('show', "Please select deal",
                 "Please select deal");
             $('#tab_TradeInVehicle').loadImager('removeLoadImage');
             return false;
-        }
+        }*/
 
         if ($("#addTradeInVehicleForm").validationEngine('validate')) {
             
@@ -478,7 +479,7 @@
                 transactionSuccessText: window.lang.translate('Transaction successful'),
                 transactionFailureText: window.lang.translate("Service URL not found, please report error"),
                 dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-                proxy: '/Deal/AddBodyProxyService',
+                proxy: '/Deal/AddTradeInVehicleProxyService',
                 type: "POST",
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
@@ -486,6 +487,7 @@
                     url: "pkInsertAct_infoprojectvehiclemodels",
                     pkIdentity: $("#publicKey").val(),
                     project_id: parseInt(dealID),
+                    //project_id : 1,
                     engine_number: $("#number_engineTradeIn").val(),
                     vin_number: $("#number_vinTradeIn").val(),
                     km: $("#number_kmTradeIn").val(),
@@ -500,6 +502,7 @@
                     vehicle_location: $("#text_vehiclelocationTradeIn").val(),
                     vehicle_up_desc: $("#text_bodyInfoTradeIn").val(),
                     vehicle_type_of_body: $("#text_bodyTypeTradeIn").val(),
+                    
                    
                 })
             });

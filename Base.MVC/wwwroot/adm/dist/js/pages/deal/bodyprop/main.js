@@ -396,13 +396,7 @@
             }
 
             var ddDataVehicleGroupProducts = $('#ddslickDealVehicleGroupProducts').data('ddslick');
-            if (!ddDataVehicleGroupProducts.selectedData.value > 0) {
-                $(window).warningMessage('resetOnShown');
-                $(window).warningMessage('show', window.lang.translate("Please select vehicle group product"),
-                    window.lang.translate("Please select vehicle group product"));
-                $('#loadingImage_BodyProposal').loadImager('removeLoadImage');
-                return false;
-            }
+            
 
             var ajax = $('#add_body_proposal').ajaxCallWidget({
                 failureLoadImage: true,

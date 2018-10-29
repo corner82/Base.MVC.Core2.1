@@ -763,13 +763,13 @@
         if ($("#deal_hidden").deal()) {
             dealID = $("#deal_hidden").deal("getDealID");
         }
-        if (dealID == null || dealID == "" || dealID <= 0) {
+        /*if (dealID == null || dealID == "" || dealID <= 0) {
             $(window).warningMessage('resetOnShown');
             $(window).warningMessage('show', "Please select deal",
                 "Please select deal");
             $('#tab_Warranty').loadImager('removeLoadImage');
             return false;
-        }
+        }*/
 
         if ($("#addWarrantyForm").validationEngine('validate')) {
             var ddDataVehicleGroups = $('#ddslickVehicleGroupsWarranty').data('ddslick');

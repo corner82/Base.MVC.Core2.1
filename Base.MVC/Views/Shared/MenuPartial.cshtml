@@ -13,7 +13,6 @@
     @*ViewData["Title"] = Localizer["Login Page"];*@
     var currentUser = Context.Session.Get<SessionUserModel>("CurrentUser");
     ViewData["Title"] = Localizer["Miya Sales Program Dashboard"];
-
     ViewData["Roles"] = currentUser.Roles;
     ViewData["UserName"] = currentUser.Email;
 }
@@ -29,17 +28,11 @@
 
                 if (item == "Admin")
                 {
-                    <!--<p style="color:red;">ahanda admin</p>-->
-
+                    <!--<p style="color:red;">admin</p>-->
                 }
-
-
             }
-
         }
-
     }
-
 }
 
 <ul class="sidebar-menu">

@@ -666,7 +666,7 @@
      * add aksesuar click event handler
      * @author Mustafa Zeynel Dağlı
      * */
-    $("#add_aksesuar").on("click", function (e) {
+    $("#add_rm").on("click", function (e) {
         e.preventDefault();
         $('#tab_Aksesuar').loadImager('removeLoadImage');
         $("#tab_Aksesuar").loadImager('appendImage');
@@ -734,7 +734,7 @@
     })
 
     // add aksesuar reset
-    $("#add_aksesuar_reset").on("click", function (e) {
+    $("#add_rm_reset").on("click", function (e) {
         e.preventDefault();
         resetAksesuarAddDealForm();
         return false;
