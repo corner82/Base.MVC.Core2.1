@@ -44,6 +44,9 @@
     <Content Update="Views\Campaign\Campaign.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Commission\CommissionName.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Customer\ActivityMngr.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
