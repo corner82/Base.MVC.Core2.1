@@ -30,6 +30,7 @@ $(document).ready(function () {
 //to Buyback Return form grid loading-image
     $("#loadingImage_DdslickBuybackReturnDealGrid").loadImager();
     $("#loadingImage_DdslickBuybackVehicleList").loadImager();
+    $("#loadingImage_DdslickBuybackVehicleAttachmentList").loadImager();
 
     var tab_active = function () {
         //Update & View Mode
@@ -124,19 +125,19 @@ $(document).ready(function () {
                         expText = selectedData.selectedData.text;
                         if (expText == 'No, it won’t return') {
                             document.getElementById("txt-bbreturn-explanation").disabled = false;
-                            document.getElementById("txt-bbreturn-file").disabled = true;
+                            //document.getElementById("txt-bbreturn-file").disabled = true;
                         }
                         else if (expText == 'No customer wants extension') {
                             document.getElementById("txt-bbreturn-explanation").disabled = false;
-                            document.getElementById("txt-bbreturn-file").disabled = true;
+                           // document.getElementById("txt-bbreturn-file").disabled = true;
                         }
                         else if (expText == 'Yes, it will return') {
                             document.getElementById("txt-bbreturn-explanation").disabled = true;
-                            document.getElementById("txt-bbreturn-file").disabled = false;
+                            //document.getElementById("txt-bbreturn-file").disabled = false;
                         }
                         else {
                             document.getElementById("txt-bbreturn-explanation").disabled = true;
-                            document.getElementById("txt-bbreturn-file").disabled = true;
+                            //document.getElementById("txt-bbreturn-file").disabled = true;
                         }
                     }
                 }
@@ -362,19 +363,17 @@ $(document).ready(function () {
             dataField: "SaleAmount"
         }, {
             caption: window.lang.translate('Deal date') + "...",
-                dataField: "OrderDate"
+            dataField: "OrderDate"
         }, {
             caption: window.lang.translate('Vehicle return date') + "...",
-                dataField: "OrderDate"
-            }, {
+            dataField: "OrderDate"
+        }, {
             caption: window.lang.translate('Vehicle') + "...",
-                //dataField: "WAGP21ZZ2FT022928"
+            //dataField: "WAGP21ZZ2FT022928"
             data: "WAGP21ZZ2FT022928"
         }, {
-            name: 'Vehicle return',
             caption: "Vehicle return",
-            //dataField: "active",
-            dataType: "boolean"
+            dataField: "OrderDate"
         }],
         onSelectionChanged: function (selectedItems) {
             var data = selectedItems.selectedRowsData[0];
@@ -384,12 +383,97 @@ $(document).ready(function () {
         }
     });
 
-    function logEvent(eventName) {
-        var logList = $("#events ul"),
-            newItem = $("<li>", { text: eventName });
+    $("#gridContainer_buybackVehicleAttachmentList").dxDataGrid({
 
-        logList.prepend(newItem);
-    }
+        showColumnLines: true,
+
+        showRowLines: true,
+
+        showBorders: true,
+
+        dataSource: orders,
+
+        columnHidingEnabled: true,
+
+        selection: {
+            mode: "single"
+        },
+
+        hoverStateEnabled: true,
+
+        editing: {
+            //mode: "batch"
+            mode: "form",
+            allowAdding: true,
+            allowUpdating: true,
+            allowDeleting: true,
+            useIcons: true
+        },
+
+        "export": {
+            enabled: true,
+            fileName: "buybackVehicle"
+        },
+
+        grouping: {
+            contextMenuEnabled: true,
+            expandMode: "rowClick"
+        },
+
+        groupPanel: {
+            emptyPanelText: "Use the context menu of header columns to group data",
+            visible: true
+        },
+
+        pager: {
+            allowedPageSizes: [5, 8, 15, 30],
+            showInfo: true,
+            showNavigationButtons: true,
+            showPageSizeSelector: true,
+            visible: true
+        },
+
+        paging: {
+            pageSize: 8
+        },
+
+        filterRow: {
+            visible: true,
+            applyFilter: "auto"
+        },
+
+        searchPanel: {
+            visible: true,
+            width: 240,
+            placeholder: window.lang.translate('Search') + "...",
+        },
+
+        headerFilter: {
+            visible: true
+        },
+
+        columnChooser: {
+            enabled: true,
+            mode: "select"
+        },
+
+        columns: [{
+            caption: window.lang.translate('Vehicle') + "...",
+                //dataField: "WAGP21ZZ2FT022928"
+            data: "WAGP21ZZ2FT022928"
+        }, {
+            caption: "Attachment",
+            //dataField: "active",
+            dataField: "StoreCity"
+        }],
+        onSelectionChanged: function (selectedItems) {
+            var data = selectedItems.selectedRowsData[0];
+            if (data) {
+                //fillVehicleBuybackForm(data);
+            }
+        }
+    });
+
 
 
  /**

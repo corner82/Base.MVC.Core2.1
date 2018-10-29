@@ -149,6 +149,9 @@
     <Content Update="Views\Sys\PriceListHos.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Target\Target.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Training\Training.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -246,7 +249,6 @@
 
   <ItemGroup>
     <Folder Include="Models\HttpRequest\Stock\" />
-    <Folder Include="Views\Target\" />
     <Folder Include="wwwroot\adm\plugins\font-awesome-5.1.1\" />
     <Folder Include="wwwroot\adm\plugins\node_js\modules\" />
     <Folder Include="wwwroot\sa\images\login_slider\" />
