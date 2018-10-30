@@ -55,12 +55,12 @@ $(document).ready(function () {
         transactionSuccessText: window.lang.translate('Transaction successful'),
         transactionFailureText: window.lang.translate("Service URL not found, please report error"),
         dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-        proxy: '/Vehicle/SysVehicleGroups/',
+        proxy: '/Commission/RoleDdslick/',
         type: "POST",
         data: JSON.stringify({
             language_code: $("#langCode").val(),
             pk: "GsZVzEYe50uGgNM",
-            url: "pkVehicleGroupsDdList_sysvehiclegroups",
+            url: "pkCommissionRolesDdList_syscommissionroles",
             pkIdentity: $("#publicKey").val()
         })
     });
@@ -69,7 +69,7 @@ $(document).ready(function () {
         onSuccess: function (event, datarole) {
             var cbdata_role = $.parseJSON(datarole);
             cbdata_role.splice(0, 0,
-                { text: window.lang.translate('ALL'), value: 0, selected: true, description: "" }
+                { text: window.lang.translate('Please select'), value: 0, selected: true, description: "" }
             );
 
             $('#dropdownRole').ddslick({
@@ -161,7 +161,7 @@ $(document).ready(function () {
                     data: JSON.stringify({
                         id: selectedCommissionnameId,
                         pk: "GsZVzEYe50uGgNM",
-                        url: "pkDeletedAct_syscommissiondefinition"
+                        url: "pkDeletedAct_syscommissiondefinitions"
                     }),
                     type: 'POST',
                     contentType: 'application/json',
@@ -357,6 +357,9 @@ $(document).ready(function () {
             var ddData_role = $('#dropdownRole').data('ddslick')
             var role_id = ddData_role.selectedData.value;
 
+            //alert(commission_name);
+            //alert(role_id);
+
             var ajax;
             if (selectedCommissionnameId === 0) {
                 //alert("yeni kayıt");
@@ -379,6 +382,9 @@ $(document).ready(function () {
                 });
 
                 ajax.ajaxCallWidget({
+                    onSuccess: function (event, data) {
+                        //alert("ok");
+                    },
                     onReset: function (event, data) {
 
                     },
@@ -404,7 +410,7 @@ $(document).ready(function () {
                             transactionSuccessText: window.lang.translate('Transaction successful'),
                             transactionFailureText: window.lang.translate("Service URL not found, please report error"),
                             dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-                            proxy: '/Accessory/UpdateCommissionName',
+                            proxy: '/Commission/UpdateCommissionName',
                             type: "POST",
                             data: JSON.stringify({
                                 id: selectedCommissionnameId,
@@ -453,9 +459,6 @@ $(document).ready(function () {
         $('#dropdownRole').ddslick('select', { index: String(0) });
 
         $("#loading-image-commissionname").loadImager('removeLoadImage');
-
-        //yeni kayda açık, tablar kapatılıyor
-        tab_disable();
 
         return false;
     }

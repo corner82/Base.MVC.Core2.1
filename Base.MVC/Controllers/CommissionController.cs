@@ -59,7 +59,7 @@ namespace Base.MVC.Controllers
         /// Dropdown Body type DdSlick
         /// Gül Özdemir
         /// </summary>
-        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkBodyFeatureTypesDdList_sysaccbodytypes&language_code=en&pk=GsZVzEYe50uGgNM
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkCommissionRolesDdList_syscommissionroles&language_code=en&pk=GsZVzEYe50uGgNM
         //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
@@ -138,7 +138,7 @@ namespace Base.MVC.Controllers
         }
 
         /// <summary>
-        /// Delete BodyFeature
+        /// Delete commissionname
         /// Gül Özdemir
         /// </summary>
         /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_syscommissiondefinition&id=29&pk=GsZVzEYe50uGgNM
