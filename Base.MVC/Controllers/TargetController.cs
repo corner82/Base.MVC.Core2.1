@@ -16,16 +16,16 @@ using Base.Core.Http.HttpRequest.Concrete;
 using Microsoft.AspNetCore.Http.Extensions;
 using Base.MVC.Models.HttpRequest;
 using Base.MVC.Models.HttpRequest.Training;
-using Base.MVC.Models.HttpRequest.ParkOff;
+using Base.MVC.Models.HttpRequest.Campaign;
 
 namespace Base.MVC.Controllers
 {
-    public class ParkOffController : Controller
+    public class TargetController : Controller
     {
         private readonly IDistributedCache _distributedCache;
         private QueryCreater _queryCreater;
 
-        public ParkOffController(IDistributedCache distributedCache,
+        public TargetController(IDistributedCache distributedCache,
                               QueryCreater queryCreater)
         {
             _distributedCache = distributedCache;
@@ -41,14 +41,13 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
 
-        public async Task<IActionResult> ParkOff()
+        public async Task<IActionResult> Target()
         {
             return View();
         }
 
-
         /// <summary>
-        /// get ParkOff grid 
+        /// get target grid 
         /// Ceydacan Seyrek
         /// </summary>
         /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFixedSalesCostsGridx_sysfixedsalescosts&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
@@ -57,7 +56,7 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> ParkoffGrid([FromBody] DefaultPostModelGridList gridModel)
+        public async Task<string> TargetGrid([FromBody] DefaultPostModelGridList gridModel)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +77,7 @@ namespace Base.MVC.Controllers
         }
 
         /// <summary>
-        /// Delete ParkOff
+        /// Delete Target
         ///Ceydacan Seyrek
         /// </summary>
         /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_sysfixedsalescosts&id=33&pk=GsZVzEYe50uGgNM
@@ -87,7 +86,7 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> DeleteParkoff([FromBody] DeletePostModel deleteModel)
+        public async Task<string> DeleteTarget([FromBody] DeletePostModel deleteModel)
         {
             var headers = new Dictionary<string, string>();
             var tokenGenerated = HttpContext.Session.GetHmacToken();
@@ -100,7 +99,7 @@ namespace Base.MVC.Controllers
         }
 
         /// <summary>
-        /// add ParkOff
+        /// add Target
         /// Ceydacan Seyrek
         /// </summary>
         /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_sysfixedsalescosts&name=gitgel%20cost&vehicle_gruop_id=1&vehicle_second_group_id=&vvalue=1111=&currency_type_id=16&start_date=2018-10-10&is_all_vehicle=1=warranty_matrix_id=&pk=GsZVzEYe50uGgNM
@@ -109,7 +108,7 @@ namespace Base.MVC.Controllers
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> AddParkoff ([FromBody] ParkOff parkoff)
+        public async Task<string> AddTarget([FromBody] Campaign campaign)
         {
             if (ModelState.IsValid)
             {
@@ -117,7 +116,7 @@ namespace Base.MVC.Controllers
                 var tokenGenerated = HttpContext.Session.GetHmacToken();
                 headers.Add("X-Hmac", tokenGenerated);
                 headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-                string queryStr = _queryCreater.GetQueryStringFromObject(parkoff);
+                string queryStr = _queryCreater.GetQueryStringFromObject(campaign);
                 var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
                 var data = response.Content.ReadAsStringAsync().Result;
                 return data.ToString();
@@ -130,34 +129,27 @@ namespace Base.MVC.Controllers
         }
 
         /// <summary>
-        ///  ParkOff branch chassis
-        /// Ceydacan Seyrek
+        /// Active/Pasive Target
+        /// /// Ceydacan Seyrek
         /// </summary>
-        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_sysfixedsalescosts&name=gitgel%20cost&vehicle_gruop_id=1&vehicle_second_group_id=&vvalue=1111=&currency_type_id=16&start_date=2018-10-10&is_all_vehicle=1=warranty_matrix_id=&pk=GsZVzEYe50uGgNM
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateMakeActiveOrPassive_syswarranties&id=29&pk=GsZVzEYe50uGgNM
         /// <returns></returns>
         //[AjaxSessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
         [HttpPost]
-        public async Task<string> ParkoffChassis([FromBody] ParkoffChassis parkoffchassis)
+        public async Task<string> SysActivePasiveTarget([FromBody] ActivePassivePostModel actModel)
         {
-            if (ModelState.IsValid)
-            {
-                var headers = new Dictionary<string, string>();
-                var tokenGenerated = HttpContext.Session.GetHmacToken();
-                headers.Add("X-Hmac", tokenGenerated);
-                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
-                string queryStr = _queryCreater.GetQueryStringFromObject(parkoffchassis);
-                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
-                var data = response.Content.ReadAsStringAsync().Result;
-                return data.ToString();
-            }
-            else
-            {
-                throw new Exception("Model state is not valid");
-            }
-
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            string queryStr = _queryCreater.GetQueryStringFromObject(actModel);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
         }
+
 
     }
 }

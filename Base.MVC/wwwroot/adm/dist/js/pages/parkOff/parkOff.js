@@ -93,7 +93,7 @@ $(document).ready(function () {
                         $("#loadingImage_DdslickChassis").loadImager('removeLoadImage');
                         $("#loadingImage_DdslickChassis").loadImager('appendImage');
 
-                        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkVehiclesEndgroupsFixCostDdList_sysvehiclesendgroups&language_code=en&pk=GsZVzEYe50uGgNM&vehicle_groups_id=1
+                        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkStockVehiclesDdList_infostock&language_code=en&pk=GsZVzEYe50uGgNM&branch_dealers_id=1
                         var ajaxACLResources_chassis = $('#ajax_DdslickChassis').ajaxCallWidget({
                             failureLoadImage: true,
                             loadingImageID: "loadingImage_DdslickChassis",
@@ -101,13 +101,13 @@ $(document).ready(function () {
                             transactionSuccessText: window.lang.translate('Transaction successful'),
                             transactionFailureText: window.lang.translate("Service URL not found, please report error"),
                             dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-                            proxy: '/DefaultPost/DefaultPostModel',
+                            proxy: '/ParkOff/ParkoffChassis',
                             type: "POST",
                             data: JSON.stringify({
                                 language_code: $("#langCode").val(),
                                 pk: "GsZVzEYe50uGgNM",
                                 url: "pkStockVehiclesDdList_infostock",
-                                vehicle_group_id: ddslick_branchId,
+                                branch_dealers_id : ddslick_branchId,
                                 pkIdentity: $("#publicKey").val()
                             })
                         });
@@ -616,7 +616,7 @@ $(document).ready(function () {
 
         ddslick_branchId = data.branch_no;
         ddslick_branch_name = data.branch_dealer_name;
-        ddslick_chassisId = 0;
+        ddslick_chassisId = data.stock_id;
         ddslick_chassis_name = data.chassis_no;
 
         $('#ddslickParkoffType').ddslick('selectByValue',
@@ -628,7 +628,7 @@ $(document).ready(function () {
 
         $('#ddslickBranch').ddslick('selectByValue',
             {
-                index: '' + data.branch_no + '',
+                index: '' + data.branch_dealers_id + '',
                 text: '' + data.branch_dealer_name + ''
             }
         );

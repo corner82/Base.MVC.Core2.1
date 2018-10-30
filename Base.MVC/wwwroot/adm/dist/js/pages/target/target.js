@@ -17,38 +17,36 @@ $(document).ready(function () {
 
     var filldropdown = false;
 
-    var ddslick_modelId = 0;
-    var ddslick_model_name = "";
-    var ddslick_vehicleId = 0;
-    var ddslick_vehicle_name = "";
+    var ddslick_roleId = 0;
+    var ddslick_role_name = "";
+    var ddslick_userId = 0;
+    var ddslick_user_name = "";
     /*
     * Monthly Quota LoadImager
     * @author Ceydacan Seyrek
     * @since 17/09/2018
     */
     //to Monthly Quota form
-    $("#loadingImage_DdslickModel").loadImager();
-    $("#loadingImage_DdslickVehicle").loadImager();
-    $("#loadingImage_DdslickVehicleList").loadImager();
+    $("#loadingImage_DdslickTargetType").loadImager();
+    $("#loadingImage_DdslickRoleType").loadImager();
+    $("#loadingImage_DdslickUser").loadImager();
 
     //to Monthly Quota form grid loading-image
-    $("#loadingImage_DdslickStockStockHosGrid").loadImager();
-    $("#loadingImage_DdslickDemoStockHosGrid").loadImager();
-    $("#loadingImage_DdslickTruckstogoStockHosGrid").loadImager();
+    $("#loadingImage_targetGrid").loadImager();
 
     var langCode = $("#langCode").val();
     var QuotaMonthID;
     //alert(langCode);
 
-    $('#stockHosForm').validationEngine();
+    $('#targetForm').validationEngine();
 
-    //vehicle list
-    $('#loadingImage_DdslickVehicleList').loadImager('removeLoadImage');
-    $("#loadingImage_DdslickVehicleList").loadImager('appendImage');
+    //TargetType list
+    $('#loadingImage_DdslickTargetType').loadImager('removeLoadImage');
+    $("#loadingImage_DdslickTargetType").loadImager('appendImage');
     //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkAccBodyDeffDdList_sysaccbodydeff&language_code=en&pk=GsZVzEYe50uGgNM
-    var ajaxACLResources_VehicleList = $('#ajax_DdslickVehicleList').ajaxCallWidget({
+    var ajaxACLResources_TargetType = $('#ajax_DdslickTargetType').ajaxCallWidget({
         failureLoadImage: true,
-        loadingImageID: "loadingImage_DdslickVehicleList",
+        loadingImageID: "loadingImage_DdslickTargetType",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
         transactionFailureText: window.lang.translate("Service URL not found, please report error"),
@@ -63,7 +61,7 @@ $(document).ready(function () {
         })
     });
 
-    ajaxACLResources_VehicleList.ajaxCallWidget({
+    ajaxACLResources_TargetType.ajaxCallWidget({
         onReset: function (event, data) {
 
         },
@@ -74,29 +72,29 @@ $(document).ready(function () {
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
 
-            $('#ddslickVehicleList').ddslick({
+            $('#ddslickTargetType').ddslick({
                 data: cbdata_quotayear,
                 width: '100%'
                 //search: true,
                 //searchText: window.lang.translate('Search'),
             })
-            $('#loadingImage_DdslickVehicleList').loadImager('removeLoadImage');
+            $('#loadingImage_DdslickTargetType').loadImager('removeLoadImage');
         },
         onAfterSuccess: function (event, data) {
-            $('#loadingImage_DdslickVehicleList').loadImager('removeLoadImage');
+            $('#loadingImage_DdslickTargetType').loadImager('removeLoadImage');
         }
     })
-    ajaxACLResources_VehicleList.ajaxCallWidget('call');
-    //vehicle list End
+    ajaxACLResources_TargetType.ajaxCallWidget('call');
+    //TargetType End
 
-    //Model Group --> warranty name --> Vehicle End Group
-    $("#loadingImage_DdslickModel").loadImager('removeLoadImage');
-    $("#loadingImage_DdslickModel").loadImager('appendImage');
+    //Role Type --> user
+    $("#loadingImage_DdslickRoleType").loadImager('removeLoadImage');
+    $("#loadingImage_DdslickRoleType").loadImager('appendImage');
 
     //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkVehicleGroupsDdList_sysvehiclegroups&language_code=en&pk=GsZVzEYe50uGgNM
-    var ajaxACLResources_model = $('#ajax_DdslickModel').ajaxCallWidget({
+    var ajaxACLResources_RoleType = $('#ajax_DdslickRoleType').ajaxCallWidget({
         failureLoadImage: true,
-        loadingImageID: "loadingImage_DdslickModel",
+        loadingImageID: "loadingImage_DdslickRoleType",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
         transactionFailureText: window.lang.translate("Service URL not found, please report error"),
@@ -111,7 +109,7 @@ $(document).ready(function () {
         })
     });
 
-    ajaxACLResources_model.ajaxCallWidget({
+    ajaxACLResources_RoleType.ajaxCallWidget({
         onReset: function (event, data) {
 
         },
@@ -122,14 +120,13 @@ $(document).ready(function () {
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
 
-            $('#ddslickModel').ddslick({
+            $('#ddslickRoleType').ddslick({
                 data: cbdata_model,
                 width: '100%',
                 //search: true,
                 //searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
 
-                    $('#ddslickWarranty').ddslick('destroy');
                     $('#ddslickVehicle').ddslick('destroy');
 
                     if (selectedData.selectedData.value > 0) {
@@ -196,13 +193,13 @@ $(document).ready(function () {
                     }
                 }
             })
-            $('#loadingImage_DdslickModel').loadImager('removeLoadImage');
+            $('#loadingImage_DdslickRoleType').loadImager('removeLoadImage');
         },
         onAfterSuccess: function (event, data) {
-            $('#loadingImage_DdslickModel').loadImager('removeLoadImage');
+            $('#loadingImage_DdslickRoleType').loadImager('removeLoadImage');
         }
     })
-    ajaxACLResources_model.ajaxCallWidget('call');
+    ajaxACLResources_RoleType.ajaxCallWidget('call');
     //Model Group --> Vehicle End Group End
 
     /* devexgrid */
