@@ -82,7 +82,7 @@
                                                 <div class="form-group">
                                                     <label><span lang="en">Commission name</span></label>
 
-                                                    <div class="" id="ajaxACL-commissionname-1">
+                                                    <div class="" id="ajaxACL-commissionname">
                                                         <div id="loading-image-commissionname-1" class="input-group zeyn-load-imager">
                                                             <div class="input-group-addon">
                                                                 <i class="fa fa-bank"></i>
@@ -124,17 +124,7 @@
                                                         <span class="input-group-addon">ZAR</span>
                                                     </div>
                                                 </div>
-                                                <!--
-                                                    <div class="form-group">
-                                                        <label><span lang="en">Feature name (Backoffice)</span></label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-user"></i>
-                                                            </div>
-                                                            <input type="text" class="form-control validate[required]" placeholder="Feature name (Backoffice)" id="txt-featurename-bo">
-                                                        </div>
-                                                    </div>
-                                                -->
+                                                
                                             </div>
                                             <!-- /.col -->
 
@@ -174,22 +164,123 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <!-- commission type / Komisyon tipi (araç başına, toplu)-->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Commission type</span></label>
+
+                                                    <div class="" id="ajaxACL-commissiontype-1">
+                                                        <div id="loading-image-commissiontype-1" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownCommissionType1" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- payment type / komisyon ödeme şekli (yüzde, fiyat)-->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Payment type</span></label>
+
+                                                    <div class="" id="ajaxACL-paymenttype-1">
+                                                        <div id="loading-image-paymenttype-1" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownPaymentType1" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-bank"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control validate[required]" placeholder="Payment" id="txt-commission-payment">
+                                                    </div>
+                                                </div>
+
                                             </div>
 
                                             <!-- /.col -->
 
                                             <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label><span lang="en">xxxxxxxxxxxxxxx</span></label>
 
-                                                    <div class="input-group datetime">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-calendar"></i>
+                                                <!-- Is there commission deduction / ödenecek komisyondan kesinti olacak mı? (yes, no)-->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Is there commission deduction</span></label>
+
+                                                    <div class="" id="ajaxACL-commissiondeduction-1">
+                                                        <div id="loading-image-commissiondeduction-1" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownCommissionDeduction1" class="form-control validate[required]"></div>
                                                         </div>
-                                                        <input type="text" class="form-control pull-right" name="start-datetimepicker1" id="start-datetimepicker1">
+                                                    </div>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-bank"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control validate[required]" placeholder="" id="txt-commission-deduction1">
                                                     </div>
                                                 </div>
 
+
+                                                <!-- commission deduction term/ kesinti ödeme dönemi? (aylık, çeyrek yıl, yıllık)-->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Commission deduction term</span></label>
+
+                                                    <div class="" id="ajaxACL-commissiondeductionterm-1">
+                                                        <div id="loading-image-commissiondeductionterm-1" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownCommissionDeductionTerm1" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Vehicle model -->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Vehicle model</span></label>
+
+                                                    <div class="" id="ajaxACL-vehiclemodel-1">
+                                                        <div id="loading-image-vehiclemodel-1" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="dropdownVehicleModel1" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Şase -->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Chassis</span></label>
+
+                                                    <div class="" id="ajaxACL-chassis-1">
+                                                        <div id="loading-image-chassis-1" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="dropdownChassis1" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Kullanıcı diğer komisyon koşullarının geçerli olup olmadığını comboboxtan seçer  -->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Is other commission will be paid</span></label>
+
+                                                    <div class="" id="ajaxACL-willbepaid-1">
+                                                        <div id="loading-image-willbepaid-1" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownWillbePaid1" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                             </div>
 
@@ -278,7 +369,6 @@
                                             <!-- /.col -->
 
                                             <div class="col-md-4">
-
                                                 <div class="form-group">
                                                     <label><span lang="en">Start date/time</span></label>
 
@@ -300,7 +390,8 @@
                                                         <input type="text" class="form-control pull-right" name="finish-datetimepicker2" id="finish-datetimepicker2">
                                                     </div>
                                                 </div>
-                                                <!-- commission condition -->
+
+                                                <!-- commission condition / Komisyon şartı (araç başına, aylık, yıllık, çeyrek)-->
                                                 <div class="form-group">
                                                     <label><span lang="en">Commission condition</span></label>
 
@@ -313,21 +404,123 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <!-- /.col -->
-                                            <div class="col-md-4">
+                                                <!-- commission type / Komisyon tipi (araç başına, toplu)-->
                                                 <div class="form-group">
-                                                    <label><span lang="en">xxxxxxxxxxxxxxx</span></label>
+                                                    <label><span lang="en">Commission type</span></label>
 
-                                                    <div class="input-group datetime">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-calendar"></i>
+                                                    <div class="" id="ajaxACL-commissiontype-2">
+                                                        <div id="loading-image-commissiontype-2" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownCommissionType2" class="form-control validate[required]"></div>
                                                         </div>
-                                                        <input type="text" class="form-control pull-right" name="start-datetimepicker1" id="start-datetimepicker1">
                                                     </div>
                                                 </div>
 
+                                                <!-- payment type / komisyon ödeme şekli (yüzde, fiyat)-->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Payment type</span></label>
+
+                                                    <div class="" id="ajaxACL-paymenttype-2">
+                                                        <div id="loading-image-paymenttype-2" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownPaymentType2" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-bank"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control validate[required]" placeholder="Payment" id="txt-commission-payment2">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- /.col -->
+
+                                            <div class="col-md-4">
+
+                                                <!-- Is there commission deduction / ödenecek komisyondan kesinti olacak mı? (yes, no)-->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Is there commission deduction</span></label>
+
+                                                    <div class="" id="ajaxACL-commissiondeduction-2">
+                                                        <div id="loading-image-commissiondeduction-2" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownCommissionDeduction2" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-bank"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control validate[required]" placeholder="" id="txt-commission-deduction2">
+                                                    </div>
+                                                </div>
+
+
+                                                <!-- commission deduction term/ kesinti ödeme dönemi? (aylık, çeyrek yıl, yıllık)-->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Commission deduction term</span></label>
+
+                                                    <div class="" id="ajaxACL-commissiondeductionterm-2">
+                                                        <div id="loading-image-commissiondeductionterm-2" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownCommissionDeductionTerm2" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Vehicle model -->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Vehicle model</span></label>
+
+                                                    <div class="" id="ajaxACL-vehiclemodel-2">
+                                                        <div id="loading-image-vehiclemodel-2" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="dropdownVehicleModel2" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Şase -->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Chassis</span></label>
+
+                                                    <div class="" id="ajaxACL-chassis-2">
+                                                        <div id="loading-image-chassis-2" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="dropdownChassis2" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Kullanıcı diğer komisyon koşullarının geçerli olup olmadığını comboboxtan seçer  -->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Is other commission will be paid</span></label>
+
+                                                    <div class="" id="ajaxACL-willbepaid-2">
+                                                        <div id="loading-image-willbepaid-2" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownWillbePaid2" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                             </div>
 
@@ -446,7 +639,7 @@
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-calendar"></i>
                                                         </div>
-                                                        <input type="text" class="form-control pull-right" name="start-datetimepicker3" id="start-datetimepicker3">
+                                                        <input type="text" class="form-control pull-right" name="start-datetimepicker1" id="start-datetimepicker3">
                                                     </div>
                                                 </div>
 
@@ -457,10 +650,11 @@
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-calendar"></i>
                                                         </div>
-                                                        <input type="text" class="form-control pull-right" name="finish-datetimepicker3" id="finish-datetimepicker3">
+                                                        <input type="text" class="form-control pull-right" name="finish-datetimepicker1" id="finish-datetimepicker3">
                                                     </div>
                                                 </div>
-                                                <!-- commission condition -->
+
+                                                <!-- commission condition / Komisyon şartı (araç başına, aylık, yıllık, çeyrek)-->
                                                 <div class="form-group">
                                                     <label><span lang="en">Commission condition</span></label>
 
@@ -473,21 +667,123 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <!-- /.col -->
-                                            <div class="col-md-4">
+                                                <!-- commission type / Komisyon tipi (araç başına, toplu)-->
                                                 <div class="form-group">
-                                                    <label><span lang="en">xxxxxxxxxxxxxxx</span></label>
+                                                    <label><span lang="en">Commission type</span></label>
 
-                                                    <div class="input-group datetime">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-calendar"></i>
+                                                    <div class="" id="ajaxACL-commissiontype-3">
+                                                        <div id="loading-image-commissiontype-3" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownCommissionType3" class="form-control validate[required]"></div>
                                                         </div>
-                                                        <input type="text" class="form-control pull-right" name="start-datetimepicker1" id="start-datetimepicker1">
                                                     </div>
                                                 </div>
 
+                                                <!-- payment type / komisyon ödeme şekli (yüzde, fiyat)-->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Payment type</span></label>
+
+                                                    <div class="" id="ajaxACL-paymenttype-3">
+                                                        <div id="loading-image-paymenttype-3" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownPaymentType3" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-bank"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control validate[required]" placeholder="Payment" id="txt-commission-payment3">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- /.col -->
+
+                                            <div class="col-md-4">
+
+                                                <!-- Is there commission deduction / ödenecek komisyondan kesinti olacak mı? (yes, no)-->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Is there commission deduction</span></label>
+
+                                                    <div class="" id="ajaxACL-commissiondeduction-3">
+                                                        <div id="loading-image-commissiondeduction-3" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownCommissionDeduction3" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-bank"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control validate[required]" placeholder="" id="txt-commission-deduction3">
+                                                    </div>
+                                                </div>
+
+
+                                                <!-- commission deduction term/ kesinti ödeme dönemi? (aylık, çeyrek yıl, yıllık)-->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Commission deduction term</span></label>
+
+                                                    <div class="" id="ajaxACL-commissiondeductionterm-3">
+                                                        <div id="loading-image-commissiondeductionterm-3" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownCommissionDeductionTerm3" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Vehicle model -->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Vehicle model</span></label>
+
+                                                    <div class="" id="ajaxACL-vehiclemodel-3">
+                                                        <div id="loading-image-vehiclemodel-3" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="dropdownVehicleModel3" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Şase -->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Chassis</span></label>
+
+                                                    <div class="" id="ajaxACL-chassis-3">
+                                                        <div id="loading-image-chassis-3" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="dropdownChassis3" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Kullanıcı diğer komisyon koşullarının geçerli olup olmadığını comboboxtan seçer  -->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Is other commission will be paid</span></label>
+
+                                                    <div class="" id="ajaxACL-willbepaid-3">
+                                                        <div id="loading-image-willbepaid-3" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownWillbePaid3" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                             </div>
 
@@ -607,7 +903,6 @@
                                                         </div>
                                                         <input type="text" class="form-control pull-right" name="start-datetimepicker4" id="start-datetimepicker4">
                                                     </div>
-                                                    <!-- /.input group -->
                                                 </div>
 
                                                 <div class="form-group">
@@ -619,10 +914,9 @@
                                                         </div>
                                                         <input type="text" class="form-control pull-right" name="finish-datetimepicker4" id="finish-datetimepicker4">
                                                     </div>
-                                                    <!-- /.input group -->
                                                 </div>
 
-                                                <!-- commission condition -->
+                                                <!-- commission condition / Komisyon şartı (araç başına, aylık, yıllık, çeyrek)-->
                                                 <div class="form-group">
                                                     <label><span lang="en">Commission condition</span></label>
 
@@ -636,21 +930,122 @@
                                                     </div>
                                                 </div>
 
-                                            </div>
-
-                                            <!-- /.col -->
-                                            <div class="col-md-4">
+                                                <!-- commission type / Komisyon tipi (araç başına, toplu)-->
                                                 <div class="form-group">
-                                                    <label><span lang="en">xxxxxxxxxxxxxxx</span></label>
+                                                    <label><span lang="en">Commission type</span></label>
 
-                                                    <div class="input-group datetime">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-calendar"></i>
+                                                    <div class="" id="ajaxACL-commissiontype-4">
+                                                        <div id="loading-image-commissiontype-4" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownCommissionType4" class="form-control validate[required]"></div>
                                                         </div>
-                                                        <input type="text" class="form-control pull-right" name="start-datetimepicker1" id="start-datetimepicker1">
                                                     </div>
                                                 </div>
 
+                                                <!-- payment type / komisyon ödeme şekli (yüzde, fiyat)-->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Payment type</span></label>
+
+                                                    <div class="" id="ajaxACL-paymenttype-4">
+                                                        <div id="loading-image-paymenttype-4" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownPaymentType4" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-bank"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control validate[required]" placeholder="Payment" id="txt-commission-payment4">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- /.col -->
+
+                                            <div class="col-md-4">
+
+                                                <!-- Is there commission deduction / ödenecek komisyondan kesinti olacak mı? (yes, no)-->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Is there commission deduction</span></label>
+
+                                                    <div class="" id="ajaxACL-commissiondeduction-4">
+                                                        <div id="loading-image-commissiondeduction-4" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownCommissionDeduction4" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-bank"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control validate[required]" placeholder="" id="txt-commission-deduction">
+                                                    </div>
+                                                </div>
+
+
+                                                <!-- commission deduction term/ kesinti ödeme dönemi? (aylık, çeyrek yıl, yıllık)-->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Commission deduction term</span></label>
+
+                                                    <div class="" id="ajaxACL-commissiondeductionterm-4">
+                                                        <div id="loading-image-commissiondeductionterm-4" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownCommissionDeductionTerm4" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Vehicle model -->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Vehicle model</span></label>
+
+                                                    <div class="" id="ajaxACL-vehiclemodel-4">
+                                                        <div id="loading-image-vehiclemodel-4" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="dropdownVehicleModel4" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Şase -->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Chassis</span></label>
+
+                                                    <div class="" id="ajaxACL-chassis-4">
+                                                        <div id="loading-image-chassis-4" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="dropdownChassis4" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Kullanıcı diğer komisyon koşullarının geçerli olup olmadığını comboboxtan seçer  -->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Is other commission will be paid</span></label>
+
+                                                    <div class="" id="ajaxACL-willbepaid-4">
+                                                        <div id="loading-image-willbepaid-4" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownWillbePaid4" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                             </div>
 
@@ -758,7 +1153,6 @@
                                                         </div>
                                                         <input type="text" class="form-control pull-right" name="start-datetimepicker5" id="start-datetimepicker5">
                                                     </div>
-                                                    <!-- /.input group -->
                                                 </div>
 
                                                 <div class="form-group">
@@ -770,10 +1164,9 @@
                                                         </div>
                                                         <input type="text" class="form-control pull-right" name="finish-datetimepicker5" id="finish-datetimepicker5">
                                                     </div>
-                                                    <!-- /.input group -->
                                                 </div>
 
-                                                <!-- commission condition -->
+                                                <!-- commission condition / Komisyon şartı (araç başına, aylık, yıllık, çeyrek)-->
                                                 <div class="form-group">
                                                     <label><span lang="en">Commission condition</span></label>
 
@@ -787,21 +1180,122 @@
                                                     </div>
                                                 </div>
 
-                                            </div>
-
-                                            <!-- /.col -->
-                                            <div class="col-md-4">
+                                                <!-- commission type / Komisyon tipi (araç başına, toplu)-->
                                                 <div class="form-group">
-                                                    <label><span lang="en">xxxxxxxxxxxxxxx</span></label>
+                                                    <label><span lang="en">Commission type</span></label>
 
-                                                    <div class="input-group datetime">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-calendar"></i>
+                                                    <div class="" id="ajaxACL-commissiontype-5">
+                                                        <div id="loading-image-commissiontype-5" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownCommissionType5" class="form-control validate[required]"></div>
                                                         </div>
-                                                        <input type="text" class="form-control pull-right" name="start-datetimepicker1" id="start-datetimepicker1">
                                                     </div>
                                                 </div>
 
+                                                <!-- payment type / komisyon ödeme şekli (yüzde, fiyat)-->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Payment type</span></label>
+
+                                                    <div class="" id="ajaxACL-paymenttype-5">
+                                                        <div id="loading-image-paymenttype-5" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownPaymentType5" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-bank"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control validate[required]" placeholder="Payment" id="txt-commission-payment5">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- /.col -->
+
+                                            <div class="col-md-4">
+
+                                                <!-- Is there commission deduction / ödenecek komisyondan kesinti olacak mı? (yes, no)-->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Is there commission deduction</span></label>
+
+                                                    <div class="" id="ajaxACL-commissiondeduction-5">
+                                                        <div id="loading-image-commissiondeduction-5" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownCommissionDeduction5" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-bank"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control validate[required]" placeholder="" id="txt-commission-deduction5">
+                                                    </div>
+                                                </div>
+
+
+                                                <!-- commission deduction term/ kesinti ödeme dönemi? (aylık, çeyrek yıl, yıllık)-->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Commission deduction term</span></label>
+
+                                                    <div class="" id="ajaxACL-commissiondeductionterm-5">
+                                                        <div id="loading-image-commissiondeductionterm-5" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownCommissionDeductionTerm5" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Vehicle model -->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Vehicle model</span></label>
+
+                                                    <div class="" id="ajaxACL-vehiclemodel-5">
+                                                        <div id="loading-image-vehiclemodel-5" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="dropdownVehicleModel5" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Şase -->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Chassis</span></label>
+
+                                                    <div class="" id="ajaxACL-chassis-5">
+                                                        <div id="loading-image-chassis-5" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="dropdownChassis5" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Kullanıcı diğer komisyon koşullarının geçerli olup olmadığını comboboxtan seçer  -->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Is other commission will be paid</span></label>
+
+                                                    <div class="" id="ajaxACL-willbepaid-5">
+                                                        <div id="loading-image-willbepaid-5" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownWillbePaid5" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                             </div>
 
@@ -887,7 +1381,6 @@
                                                         </div>
                                                         <input type="text" class="form-control pull-right" name="start-datetimepicker6" id="start-datetimepicker6">
                                                     </div>
-                                                    <!-- /.input group -->
                                                 </div>
 
                                                 <div class="form-group">
@@ -899,10 +1392,9 @@
                                                         </div>
                                                         <input type="text" class="form-control pull-right" name="finish-datetimepicker6" id="finish-datetimepicker6">
                                                     </div>
-                                                    <!-- /.input group -->
                                                 </div>
 
-                                                <!-- commission condition -->
+                                                <!-- commission condition / Komisyon şartı (araç başına, aylık, yıllık, çeyrek)-->
                                                 <div class="form-group">
                                                     <label><span lang="en">Commission condition</span></label>
 
@@ -915,21 +1407,123 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <!-- /.col -->
-                                            <div class="col-md-4">
+                                                <!-- commission type / Komisyon tipi (araç başına, toplu)-->
                                                 <div class="form-group">
-                                                    <label><span lang="en">xxxxxxxxxxxxxxx</span></label>
+                                                    <label><span lang="en">Commission type</span></label>
 
-                                                    <div class="input-group datetime">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-calendar"></i>
+                                                    <div class="" id="ajaxACL-commissiontype-6">
+                                                        <div id="loading-image-commissiontype-6" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownCommissionType6" class="form-control validate[required]"></div>
                                                         </div>
-                                                        <input type="text" class="form-control pull-right" name="start-datetimepicker1" id="start-datetimepicker1">
                                                     </div>
                                                 </div>
 
+                                                <!-- payment type / komisyon ödeme şekli (yüzde, fiyat)-->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Payment type</span></label>
+
+                                                    <div class="" id="ajaxACL-paymenttype-6">
+                                                        <div id="loading-image-paymenttype-6" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownPaymentType6" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-bank"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control validate[required]" placeholder="Payment" id="txt-commission-payment6">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- /.col -->
+
+                                            <div class="col-md-4">
+
+                                                <!-- Is there commission deduction / ödenecek komisyondan kesinti olacak mı? (yes, no)-->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Is there commission deduction</span></label>
+
+                                                    <div class="" id="ajaxACL-commissiondeduction-6">
+                                                        <div id="loading-image-commissiondeduction-6" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownCommissionDeduction6" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-bank"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control validate[required]" placeholder="" id="txt-commission-deduction6">
+                                                    </div>
+                                                </div>
+
+
+                                                <!-- commission deduction term/ kesinti ödeme dönemi? (aylık, çeyrek yıl, yıllık)-->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Commission deduction term</span></label>
+
+                                                    <div class="" id="ajaxACL-commissiondeductionterm-6">
+                                                        <div id="loading-image-commissiondeductionterm-6" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownCommissionDeductionTerm6" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Vehicle model -->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Vehicle model</span></label>
+
+                                                    <div class="" id="ajaxACL-vehiclemodel-6">
+                                                        <div id="loading-image-vehiclemodel-6" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="dropdownVehicleModel6" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Şase -->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Chassis</span></label>
+
+                                                    <div class="" id="ajaxACL-chassis-6">
+                                                        <div id="loading-image-chassis-6" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="dropdownChassis6" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Kullanıcı diğer komisyon koşullarının geçerli olup olmadığını comboboxtan seçer  -->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Is other commission will be paid</span></label>
+
+                                                    <div class="" id="ajaxACL-willbepaid-6">
+                                                        <div id="loading-image-willbepaid-6" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownWillbePaid6" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                             </div>
 
@@ -1062,7 +1656,7 @@
                                                     </div>
                                                 </div>
 
-                                                <!-- commission condition -->
+                                                <!-- commission condition / Komisyon şartı (araç başına, aylık, yıllık, çeyrek)-->
                                                 <div class="form-group">
                                                     <label><span lang="en">Commission condition</span></label>
 
@@ -1076,21 +1670,122 @@
                                                     </div>
                                                 </div>
 
-                                            </div>
-
-                                            <!-- /.col -->
-                                            <div class="col-md-4">
+                                                <!-- commission type / Komisyon tipi (araç başına, toplu)-->
                                                 <div class="form-group">
-                                                    <label><span lang="en">xxxxxxxxxxxxxxx</span></label>
+                                                    <label><span lang="en">Commission type</span></label>
 
-                                                    <div class="input-group datetime">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-calendar"></i>
+                                                    <div class="" id="ajaxACL-commissiontype-7">
+                                                        <div id="loading-image-commissiontype-7" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownCommissionType7" class="form-control validate[required]"></div>
                                                         </div>
-                                                        <input type="text" class="form-control pull-right" name="start-datetimepicker1" id="start-datetimepicker1">
                                                     </div>
                                                 </div>
 
+                                                <!-- payment type / komisyon ödeme şekli (yüzde, fiyat)-->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Payment type</span></label>
+
+                                                    <div class="" id="ajaxACL-paymenttype-7">
+                                                        <div id="loading-image-paymenttype-7" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownPaymentType7" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-bank"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control validate[required]" placeholder="Payment" id="txt-commission-payment7">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- /.col -->
+
+                                            <div class="col-md-4">
+
+                                                <!-- Is there commission deduction / ödenecek komisyondan kesinti olacak mı? (yes, no)-->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Is there commission deduction</span></label>
+
+                                                    <div class="" id="ajaxACL-commissiondeduction-7">
+                                                        <div id="loading-image-commissiondeduction-7" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownCommissionDeduction7" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-bank"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control validate[required]" placeholder="" id="txt-commission-deduction7">
+                                                    </div>
+                                                </div>
+
+
+                                                <!-- commission deduction term/ kesinti ödeme dönemi? (aylık, çeyrek yıl, yıllık)-->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Commission deduction term</span></label>
+
+                                                    <div class="" id="ajaxACL-commissiondeductionterm-7">
+                                                        <div id="loading-image-commissiondeductionterm-7" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownCommissionDeductionTerm7" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Vehicle model -->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Vehicle model</span></label>
+
+                                                    <div class="" id="ajaxACL-vehiclemodel-7">
+                                                        <div id="loading-image-vehiclemodel-7" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="dropdownVehicleModel7" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Şase -->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Chassis</span></label>
+
+                                                    <div class="" id="ajaxACL-chassis-7">
+                                                        <div id="loading-image-chassis-7" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-truck"></i>
+                                                            </div>
+                                                            <div id="dropdownChassis7" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Kullanıcı diğer komisyon koşullarının geçerli olup olmadığını comboboxtan seçer  -->
+                                                <div class="form-group">
+                                                    <label><span lang="en">Is other commission will be paid</span></label>
+
+                                                    <div class="" id="ajaxACL-willbepaid-7">
+                                                        <div id="loading-image-willbepaid-7" class="input-group zeyn-load-imager">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-bank"></i>
+                                                            </div>
+                                                            <div id="dropdownWillbePaid7" class="form-control validate[required]"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                             </div>
 
