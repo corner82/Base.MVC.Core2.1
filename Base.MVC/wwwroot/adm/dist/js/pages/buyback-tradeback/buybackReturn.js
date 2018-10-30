@@ -16,7 +16,7 @@ $(document).ready(function () {
     });
 
     var expText = "";
-
+    var bbId = "";
 /*
 * Buyback Return LoadImager
 * @author Ceydacan Seyrek
@@ -31,6 +31,17 @@ $(document).ready(function () {
     $("#loadingImage_DdslickBuybackReturnDealGrid").loadImager();
     $("#loadingImage_DdslickBuybackVehicleList").loadImager();
     $("#loadingImage_DdslickBuybackVehicleAttachmentList").loadImager();
+
+    /*
+* datepicker format
+* @author Ceydacan Seyrek
+* @since 29/08/2016
+*/
+    $('#return-datepicker').datepicker({
+        //autoclose: true,
+        locale: langCode,
+        format: 'yyyy/mm/dd'
+    });
 
     var tab_active = function () {
         //Update & View Mode
@@ -106,19 +117,19 @@ $(document).ready(function () {
                         var expText_id = selectedData.selectedData.value;
                         if (expText_id == 3) {
                             document.getElementById("txt-bbreturn-explanation").disabled = false;
-                            //document.getElementById("txt-tbreturn-file").disabled = true;
+                            document.getElementById("return-datepicker").disabled = true;
                         }
                         else if (expText_id == 2) {
                             document.getElementById("txt-bbreturn-explanation").disabled = false;
-                            // document.getElementById("txt-tbreturn-file").disabled = true;
+                            document.getElementById("return-datepicker").disabled = false;
                         }
                         else if (expText_id == 1) {
                             document.getElementById("txt-bbreturn-explanation").disabled = true;
-                            //document.getElementById("txt-tbreturn-file").disabled = false;
+                            document.getElementById("return-datepicker").disabled = true;
                         }
                         else {
                             document.getElementById("txt-bbreturn-explanation").disabled = true;
-                            //document.getElementById("txt-tbreturn-file").disabled = true;
+                            document.getElementById("return-datepicker").disabled = true;
                         }
                     }
                 }
@@ -184,7 +195,7 @@ $(document).ready(function () {
             });
             return deferred.promise();
         }
-    });
+    });     //DÜZELTİLECEK
 
     $("#gridContainer_buybackDealList").dxDataGrid({
 
@@ -261,10 +272,10 @@ $(document).ready(function () {
 
 //bb return vehicle grid
     $('#bbVehicleListRefresh').click(function () {
-        $("#gridContainer_buybackVehicleList").dxDataGrid("instance").refresh();
-    });
+       // $("#gridContainer_buybackVehicleList").dxDataGrid("instance").refresh();
+    //});
 
-    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillParkOffGridx_infostockparkoff&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillBuybackReturnGridx_infoprojectbuybackreturn&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
     var bbVehicle = new DevExpress.data.CustomStore({
         load: function (loadOptions) {
             var deferred = $.Deferred(),
@@ -280,12 +291,12 @@ $(document).ready(function () {
             args.take = loadOptions.take || 12;
 
             $.ajax({
-                url: '/ParkOff/ParkoffGrid',
+                url: '/BuybackTradeback/BbTbReturnGrid',
                 dataType: "json",
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
-                    url: "pkFillParkOffGridx_infostockparkoff",
+                    url: "pkFillBuybackReturnGridx_infoprojectbuybackreturn",
                     pkIdentity: $("#publicKey").val(),
                     page: "",
                     rows: "",
@@ -293,6 +304,7 @@ $(document).ready(function () {
                     order: "", //args.orderby,
                     skip: args.skip,
                     take: args.take
+                    //deal_id: deal_id
                 }),
                 type: 'POST',
                 contentType: 'application/json',
@@ -366,31 +378,33 @@ $(document).ready(function () {
             mode: "select"
         },
         columns: [{
-            caption: window.lang.translate('Deal Number') + "...",
-            dataField: "chassis_no"
-        }, {
-            caption: window.lang.translate('Deal date') + "...",
-            dataField: "man_entry_date"
-        }, {
+        //    caption: window.lang.translate('Deal Number') + "...",
+        //    dataField: "deal_sis_key"
+        //}, {
+        //    caption: window.lang.translate('Deal date') + "...",
+        //    dataField: "man_entry_date"
+        //}, {
             caption: window.lang.translate('Vehicle return date') + "...",
-            dataField: "man_entry_date"
+            dataField: "new_return_date"
         }, {
             caption: window.lang.translate('Chassis') + "...",
             //dataField: "WAGP21ZZ2FT022928"
-            dataField: "chassis_no"
+            dataField: "vin_no"
         }, {
             caption: window.lang.translate('Vehicle return') + "...",
-            dataField: "man_entry_date"
+            dataField: "new_return_date"
         }, {
             caption: window.lang.translate('Explanation') + "...",
-            dataField: "man_entry_date"
+            dataField: "description"
         }],
         onSelectionChanged: function (selectedItems) {
             var data = selectedItems.selectedRowsData[0];
             if (data) {
+                bbId = data.id;
                 fillVehicleBuybackForm(data);
             }
         }
+        });
     });
 //bb return vehicle grid end
 
@@ -569,18 +583,19 @@ $(document).ready(function () {
 
             var return_date = $('#return-datepicker').val();
             var explanation = $('#txt-bbreturn-explanation').val();
-            var chassis_id = $('#txt-bbreturn-vehicle').val();
+            //var chassis_id = $('#txt-bbreturn-vehicle').val();
 
             //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?
-            //url=pkInsertAct_infostockparkoff
-            //&stock_id=1
-            //&start_date=2018-08-08
-            //&end_date=
-            //&parkoff_type_id=2
-            //&is_complete=0
+            //url=pkInsertAct_infoprojectbuybackreturn
+            //&project_id=80
+            //&return_type_id=2
+            //&description=fffddf
+            //&new_return_date=2018-12-12
+            //&stock_id=7
             //&pk=GsZVzEYe50uGgNM
-            if (!parkoffId == "") {//update
-                var ajax_InsertbbReturn = $('#ajaxACL-parkoffList').ajaxCallWidget({
+            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateAct_infoprojectbuybackreturn&project_id=80&return_type_id=1&description=fffddf&new_return_date=2018-12-12&stock_id=7&pk=GsZVzEYe50uGgNM&id=4
+            if (!bbId == "") {//update
+                var ajax_InsertbbReturn = $('#ajaxACL-vehiclelist').ajaxCallWidget({
                     failureLoadImage: true,
                     loadingImageID: "loadingImage_BbReturnInfo",
                     triggerSuccessAuto: true,
@@ -588,15 +603,16 @@ $(document).ready(function () {
                     transactionFailureText: window.lang.translate("Service URL not found, please report error"),
                     dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
 
-                    proxy: '/ParkOff/AddParkoff',
+                    proxy: '/BuybackTradeback/AddBbTbReturn',
                     type: 'POST',
                     data: JSON.stringify({
-                        url: "pkUpdateAct_infostockparkoff",
-                        id: parkoffId,
-                        return_id: return_id,
-                        return_date: return_date,
-                        explanation: explanation,
-                        chassis_id: chassis_id,
+                        url: "pkUpdateAct_infoprojectbuybackreturn",
+                        id: bbId,
+                        project_id: deal_id,
+                        return_type_id: return_id,
+                        description: explanation,
+                        new_return_date: return_date,
+                        stock_id: stock_id,
                         pk: "GsZVzEYe50uGgNM"
                     })
                 });
@@ -611,7 +627,7 @@ $(document).ready(function () {
                 ajax_InsertbbReturn.ajaxCallWidget('call');
             }
             else { //insert
-                var ajax_InsertbbReturn = $('#ajaxACL-parkoffList').ajaxCallWidget({
+                var ajax_InsertbbReturn = $('#ajaxACL-vehiclelist').ajaxCallWidget({
                     failureLoadImage: true,
                     loadingImageID: "loadingImage_BbReturnInfo",
                     triggerSuccessAuto: true,
@@ -619,16 +635,15 @@ $(document).ready(function () {
                     transactionFailureText: window.lang.translate("Service URL not found, please report error"),
                     dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
 
-                    proxy: '/ParkOff/AddParkoff',
+                    proxy: '/BuybackTradeback/AddBbTbReturn',
                     type: 'POST',
                     data: JSON.stringify({
-                        url: "pkInsertAct_infostockparkoff",
-                        parkoff_type_id: parkoffType_id,
-                        end_date: control_date,
-                        start_date: "",
-                        //branch_id: branch_id,
-                        stock_id: chassis_id,
-                        is_complete: completed_id,
+                        url: "pkInsertAct_infoprojectbuybackreturn",
+                        project_id: project_id,
+                        return_type_id: return_id,
+                        description: explanation,
+                        new_return_date: return_date,
+                        stock_id: stock_id,
                         pk: "GsZVzEYe50uGgNM"
                     })
                 });
@@ -675,6 +690,8 @@ $(document).ready(function () {
 * @author Ceydacan Seyrek
 * @since 10/09/2018
 */
+    var deal_id = "";
+    var stock_id = "";
     window.fillBbreturnForm = function (data) {
         $("#loadingImage_BbReturnInfo").loadImager('removeLoadImage');
         $("#loadingImage_BbReturnInfo").loadImager('appendImage');
@@ -682,7 +699,9 @@ $(document).ready(function () {
         //document.getElementById("txt-bbreturn-price").value = data.SaleAmount;
         document.getElementById("txt-bbreturn-dealNo").value = data.chassis_no;
         document.getElementById("txt-bbreturn-dealDate").value = data.man_entry_date;
-        
+        deal_id = 82;//data.chassis_no;
+        stock_id = 8;//data.stock_id;
+        $('#bbVehicleListRefresh').click();
 
         $("#loadingImage_BbReturnInfo").loadImager('removeLoadImage');
         
@@ -699,9 +718,22 @@ $(document).ready(function () {
         //document.getElementById("txt-bbreturn-dealDate").value = data.OrderDate;
 
         $("#loadingImage_BbReturnInfo").loadImager('removeLoadImage');
-        $('#ddslickReturn').ddslick('select', { index: 1 });
-        document.getElementById("txt-bbreturn-vehicle").value = 'WAGP21ZZ2FT022928';
-        document.getElementById("txt-bbreturn-vehicleReturnDate").value = data.man_entry_date;
+        if (!data.return_type_id == "") {
+            $('#ddslickReturn').ddslick('selectByValue',
+                {
+                    index: '' + data.return_type_id + '',
+                    text: '' + data.return_type_name + ''
+                }
+            );
+        }
+        else {
+            $('#ddslickReturn').ddslick('select', { index: 0 });
+        }
+        
+        document.getElementById("txt-bbreturn-vehicle").value = data.vehicle_description;
+        document.getElementById("txt-bbreturn-vehicleReturnDate").value = data.new_return_date;
+        document.getElementById("txt-bbreturn-explanation").value = data.description;
+        stock_id = data.stock_id;
 
         tab_active();
         return false;
@@ -721,12 +753,16 @@ $(document).ready(function () {
      * @since 19/10/2018
      * */
     window.openAddAttachmentPopUpWrapper = function (e) {
-        //alert("popup submit click");
+        //alert("popup submit click"); 
 
         if ($("#buybackReturnVehicleInfoForm").validationEngine('validate')) {
             alert('test mest 1');
+            //var file = $('#bbreturn-file').val();
+            var fileToLoad = document.getElementById("bbreturn-file").files[0];
+            var fileReader = new FileReader();
+            fileReader.readAsText(fileToLoad, "UTF-8");
         } else {
-            alert('test mest 2');
+            alert('Attachment do not save, try again!');
         }
         e.preventDefault();
         return false;
@@ -754,7 +790,7 @@ $(document).ready(function () {
                                                                 <div class="input-group-addon">\n\
                                                                     <i class="fa fa-map-pin"></i>\n\
                                                                 </div>\n\
-                                                                <input type="file" class="form-control validate[required]" placeholder="file upload" id="txt-bbreturn-file" lang="en">\n\
+                                                                <input type="file" class="form-control validate[required]" placeholder="file upload" id="bbreturn-file" lang="en">\n\
                                                             </div>\n\
                                                         </div>\n\
                                                          <div class="hr-line-dashed"></div>\n\
