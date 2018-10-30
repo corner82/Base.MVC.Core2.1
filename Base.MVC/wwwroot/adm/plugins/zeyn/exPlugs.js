@@ -785,11 +785,11 @@
                     cssClass: 'btn-success',
                     action: function (dialogItself) {
                         dialogItself.close();
-                        self._trigger('onConfirm', event, { data: data });
+                        self._trigger('onConfirm', window.event, { data: data });
                     }
                 }],
                 onhide: function () {
-                    self._trigger('onHide', event, { data: data });
+                    self._trigger('onHide', window.event, { data: data });
                 }
             });
         },
@@ -830,7 +830,7 @@
                     cssClass: 'btn-warning',
                     action: function (dialogItself) {
                         dialogItself.close();
-                        self._trigger('onGiveup', event, { data: data });
+                        self._trigger('onGiveup', window.event, { data: data });
 
                     }
                 }, {
@@ -839,11 +839,11 @@
                     cssClass: 'btn-success',
                     action: function (dialogItself) {
                         dialogItself.close();
-                        self._trigger('onConfirm', event, { data: data });
+                        self._trigger('onConfirm', window.event, { data: data });
                     }
                 }],
                 onhide: function () {
-                    self._trigger('onHide', event, { data: data });
+                    self._trigger('onHide', window.event, { data: data });
                 }
             });
 
@@ -876,10 +876,10 @@
                 message: message,
                 type: BootstrapDialog.TYPE_WARNING,
                 onhide: function () {
-                    self._trigger('onHide', event, { data: data });
+                    self._trigger('onHide', window.event, { data: data });
                 }
             });
-            self._trigger('onShown', event, { data: data });
+            self._trigger('onShown', window.event, { data: data });
         },
         resetOnShown: function () {
             this.options.onShown = function () {
@@ -921,11 +921,11 @@
                     cssClass: 'btn-success',
                     action: function (dialogItself) {
                         dialogItself.close();
-                        self._trigger('onShown', event, { data: data });
+                        self._trigger('onShown', window.event, { data: data });
                     }
                 }],
                 onhide: function () {
-                    self._trigger('onHide', event, { data: data });
+                    self._trigger('onHide', window.event, { data: data });
                 }
             });
         },
@@ -963,11 +963,11 @@
                     cssClass: 'btn-danger',
                     action: function (dialogItself) {
                         dialogItself.close();
-                        self._trigger('onShown', event, { data: data });
+                        self._trigger('onShown', window.event, { data: data });
                     }
                 }],
                 onhide: function () {
-                    self._trigger('onHide', event, { data: data });
+                    self._trigger('onHide', window.event, { data: data });
                 }
             });
         },
@@ -1520,18 +1520,18 @@
                 success: function (data, textStatus, jqXHR) {
                     if (data.length !== 0) {
                         if (data.found) {
-                            self._trigger('onSuccess', event, data);
+                            self._trigger('onSuccess', window.event, data);
                         } else {
                             if (data.errorInfo == 23505) {
-                                self._trigger('onError23505', event, data);
+                                self._trigger('onError23505', window.event, data);
                             } else if (data.errorInfo == 23503) {
-                                self._trigger('onError23503', event, data);
+                                self._trigger('onError23503', window.event, data);
                             } else if (data.errorInfo == 22001) {
-                                self._trigger('onError22001', event, data);
+                                self._trigger('onError22001', window.event, data);
                             } else if (data.errorInfo == 23502) {
-                                self._trigger('onError23502', event, data);
+                                self._trigger('onError23502', window.event, data);
                             } else {
-                                self._trigger('onErrorMessage', event, data);
+                                self._trigger('onErrorMessage', window.event, data);
                             }
                         }
                     } else {
@@ -1539,7 +1539,7 @@
                     }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    self._trigger('onError', event, textStatus, errorThrown);
+                    self._trigger('onError', window.event, textStatus, errorThrown);
                 }
             });
         },
@@ -1714,91 +1714,92 @@
                     var jsonString = JSON.stringify(data);
                     if (data.length !== 0) {
                         if (data.found) {
-                            self._trigger('onSuccess', event, {
+                            self._trigger('onSuccess', window.event, {
                                 text: self.options.transactionSuccessText,
                                 imageLoadingID: self.options.loadingImageID
                             });
                             self._trigger('onAfterSuccess', event, jsonString);
-                            self._trigger('onReset', event, jsonString);
+                            self._trigger('onReset', window.event, jsonString);
                         } else if (data.errorInfo == 99999) {
-                            self._trigger('onError99999', event, {
+                            self._trigger('onError99999', window.event, {
                                 text: self.options.dataModelCorruptFailureText,
                                 imageLoadingID: self.options.loadingImageID
                             });
-                            self._trigger('onReset', event, jsonString);
+                            self._trigger('onReset', window.event, jsonString);
                         } else if (data.errorInfo == 23505) {
-                            self._trigger('onError'+23505, event, {
+                            self._trigger('onError' + 23505, window.event, {
                                 text: self.options.dataAlreadyExistsText,
                                 imageLoadingID: self.options.loadingImageID
                             });
-                            self._trigger('onReset', event, jsonString);
+                            self._trigger('onReset', window.event, jsonString);
                         } else if (data.errorInfo == 23503) {
-                            self._trigger('onError23503', event, {
+                            self._trigger('onError23503', window.event, {
                                 text: self.options.foregnKeyExistsText,
                                 imageLoadingID: self.options.loadingImageID
                             });
-                            self._trigger('onReset', event, jsonString);
+                            self._trigger('onReset', window.event, jsonString);
                         } else if (data.errorInfo == 22001) {
-                            self._trigger('onError22001', event, {
+                            self._trigger('onError22001', window.event, {
                                 text: self.options.columnSizeFailureText,
                                 imageLoadingID: self.options.loadingImageID
                             });
-                            self._trigger('onReset', event, jsonString);
+                            self._trigger('onReset', window.event, jsonString);
                         } else if (data.errorInfo == 22012) {
-                            self._trigger('onError22012', event, {
+                            self._trigger('onError22012', window.event, {
                                 text: self.options.divisionByZeroFailureText,
                                 imageLoadingID: self.options.loadingImageID
                             });
-                            self._trigger('onReset', event, jsonString);
+                            self._trigger('onReset', window.event, jsonString);
                         } else if (data.errorInfo == 22007) {
-                            self._trigger('onError22007', event, {
+                            self._trigger('onError22007', window.event, {
                                 text: self.options.dateFormatFailureText,
                                 imageLoadingID: self.options.loadingImageID
                             });
-                            self._trigger('onReset', event, jsonString);
+                            self._trigger('onReset', window.event, jsonString);
                         } else if (data.errorInfo == 22005) {
-                            self._trigger('onError22005', event, {
+                            self._trigger('onError22005', window.event, {
                                 text: self.options.sqlSyntaxDecodeFailureText,
                                 imageLoadingID: self.options.loadingImageID
                             });
-                            self._trigger('onReset', event, jsonString);
+                            self._trigger('onReset', window.event, jsonString);
                         } else if (data.errorInfo == 22003) {
-                            self._trigger('onError22003', event, {
+                            self._trigger('onError22003', window.event, {
                                 text: self.options.numericValueOutofRangeFailureText,
                                 imageLoadingID: self.options.loadingImageID
                             });
-                            self._trigger('onReset', event, jsonString);
+                            self._trigger('onReset', window.event, jsonString);
                         }
                         else if (data.errorInfo == 22003) {
-                            self._trigger('onError22003', event, {
+                            self._trigger('onError22003', window.event, {
                                 text: self.options.numericValueOutofRangeFailureText,
                                 imageLoadingID: self.options.loadingImageID
                             });
-                            self._trigger('onReset', event, jsonString);
+                            self._trigger('onReset', window.event, jsonString);
                         }
 
                         else {
-                            self._trigger('onSuccessWithoutDataFormat', event, jsonString);
-                            //self._trigger('onSuccess', event, jsonString);
+                            //self._trigger('onSuccessWithoutDataFormat', event, jsonString);
+                            self._trigger('onSuccess', window.event, jsonString);
+                            
                         }
 
                     } else {
-                        self._trigger('onErrorDataNull', event, {
+                        self._trigger('onErrorDataNull', window.event, {
                             text: self.options.noDataFailureText,
                             imageLoadingID: self.options.loadingImageID
                                                                 });
-                        self._trigger('onReset', event, jsonString);
+                        self._trigger('onReset', window.window.event, jsonString);
                     }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    self._trigger('onError', event, {
+                    self._trigger('onError', window.event, {
                         status: textStatus,
                         error: errorThrown,
                         text: self.options.transactionFailureText,
                         imageLoadingID: self.options.loadingImageID,
                         failureLoadImage: self.options.failureLoadImage,
                     });
-                    self._trigger('onReset', event, {
+                    self._trigger('onReset', window.event, {
                         status: textStatus,
                         error: errorThrown,
                         text: self.options.transactionFailureText,
@@ -1855,13 +1856,13 @@
                     /*$('#menuContainer').loadImager('removeLoadImage');
                     $('#menuContainer').loadImager('appendImage');*/
 
-                    var target = $(event.target);
+                    var target = $(window.event.target);
                     var menuElement = target.closest("li");
                     if (menuElement.is("li")) {
                         this.setSubMenu(menuElement);
                     }
-                    event.preventDefault();
-                    this._trigger('onMenuItemClicked', event, {
+                    window.event.preventDefault();
+                    this._trigger('onMenuItemClicked', window.event, {
                         element: menuElement,
                     });
                 }
@@ -2410,11 +2411,11 @@
                 hrefAtt = hrefAtt.slice(1);
                 //alert(hrefAtt);
                 var eventType = "onAfter" + hrefAtt;
-                self._trigger(eventType, event);
+                self._trigger(eventType, window.event);
 
             });
 
-            $('#'+self.options.tabID+' a').click(function (event) {
+            $('#' + self.options.tabID + ' a').click(function (event) {
                 //alert('click tag');
                 if ($(this).hasClass("disabled")) {
                     event.preventDefault();
@@ -2615,12 +2616,12 @@
         open: function () {
             var self = this;
             if (self.options.slide) {
-                self._trigger('onOpening', event, self.element);
+                self._trigger('onOpening', window.event, self.element);
 
                 self.element.css('left', '0');
                 self.element.addClass('control-sidebar-custom-open');
 
-                self._trigger('onOpened', event, { data: self.element });
+                self._trigger('onOpened', window.event, { data: self.element });
                 
             } else {
             }
@@ -2634,12 +2635,12 @@
         close: function () {
             var self = this;
             if (self.options.slide) {
-                self._trigger('onClosing', event, { data: self.element });
+                self._trigger('onClosing', window.event, { data: self.element });
 
                 self.element.css('left', '-' + self.options.width + 'px');
                 self.element.removeClass('control-sidebar-custom-open');
 
-                self._trigger('onClosed', event, { data: self.element });
+                self._trigger('onClosed', window.event, { data: self.element });
             } else {
             }
         },
@@ -2652,19 +2653,19 @@
         toggle: function () {
             var self = this;
             if (self.element.hasClass('control-sidebar-custom-open')) {
-                self._trigger('onClosing', event, { data: self.element });
+                self._trigger('onClosing', window.event, { data: self.element });
 
                 self.element.css('left', '-' + self.options.width + 'px');
                 self.element.removeClass('control-sidebar-custom-open');
 
-                self._trigger('onClosed', event, { data: self.element });
+                self._trigger('onClosed', window.event, { data: self.element });
             } else {
-                self._trigger('onOpening', event,  self.element );
+                self._trigger('onOpening', window.event,  self.element );
 
                 self.element.css('left', '0px');
                 self.element.addClass('control-sidebar-custom-open');
 
-                self._trigger('onOpened', event, { data: self.element });
+                self._trigger('onOpened', window.event, { data: self.element });
             }
         },
 
@@ -2740,12 +2741,12 @@
         open: function () {
             var self = this;
             if (self.options.slide) {
-                self._trigger('onOpening', event, self.element);
+                self._trigger('onOpening', window.event, self.element);
 
                 self.element.css('right', '0');
                 self.element.addClass('control-sidebar-custom-open');
 
-                self._trigger('onOpened', event, { data: self.element });
+                self._trigger('onOpened', window.event, { data: self.element });
 
             } else {
             }
@@ -2759,12 +2760,12 @@
         close: function () {
             var self = this;
             if (self.options.slide) {
-                self._trigger('onClosing', event, { data: self.element });
+                self._trigger('onClosing', window.event, { data: self.element });
 
                 self.element.css('right', '-' + self.options.width + 'px');
                 self.element.removeClass('control-sidebar-custom-open');
 
-                self._trigger('onClosed', event, { data: self.element });
+                self._trigger('onClosed', window.event, { data: self.element });
             } else {
                 
             }
@@ -2778,20 +2779,20 @@
         toggle: function () {
             var self = this;
             if (self.element.hasClass('control-sidebar-custom-open')) {
-                self._trigger('onClosing', event, { data: self.element });
+                self._trigger('onClosing', window.event, { data: self.element });
 
                 self.element.css('right', '-' + self.options.width + 'px');
                 self.element.removeClass('control-sidebar-custom-open');
 
-                self._trigger('onClosed', event, { data : self.element });
+                self._trigger('onClosed', window.event, { data : self.element });
 
             } else {
-                self._trigger('onOpening', event, { data: self.element });
+                self._trigger('onOpening', window.event, { data: self.element });
 
                 self.element.css('right', '0px');
                 self.element.addClass('control-sidebar-custom-open');
 
-                self._trigger('onOpened', event, { data: self.element });
+                self._trigger('onOpened', window.event, { data: self.element });
             }
         },
 
