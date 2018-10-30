@@ -321,6 +321,8 @@
     DevExpress.localization.locale(langCode);
 
     $('#trNameListRefresh').click(function () {
+        $("#gridContainer_trainingName").dxDataGrid("instance").refresh();
+    });
     //Training Name Grid
     //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillEducationDefinitionsGridx_syseducationdefinitions&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
     var trainingDef = new DevExpress.data.CustomStore({
@@ -504,9 +506,11 @@
             $("#gridContainer_trainingName").dxDataGrid("instance").refresh();
         },
     });
-});
+
 
     $('#trListRefresh').click(function () {
+        $("#gridContainer_trainingInfo").dxDataGrid("instance").refresh();
+    });
     //Traning Info grid
     //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillEducationsSalesmanGridx_syseducationssalesman&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
     var trainingSalesman = new DevExpress.data.CustomStore({
@@ -742,11 +746,6 @@
         },
     });
 
-    });
-
-    $('#trNameListRefresh').click();
-
-    $('#trListRefresh').click();
 
 /////////////////////Training Name/////////////////////
 
@@ -772,34 +771,67 @@
             //        window.lang.translate("Please select vehicle type"));
             //    $('#tab_VehicleType').loadImager('removeLoadImage');
             //    return false;
-            //}
+            //} 
             //alert(trainingname);
 
             //http://proxy.mansis.co.za:18443/SlimProxyBoot.php? url= pkInsertAct_syseducationdefinitions &name=aracdescriptioni &pk=GsZVzEYe50uGgNM
+            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateAct_syseducationdefinitions&name=appleee&pk=GsZVzEYe50uGgNM&id=3
 
-            var ajax_InsertTrainingName = $('#ajaxACL-insertTrainingName').ajaxCallWidget({
-                failureLoadImage: true,
-                loadingImageID: "loading-image-trInfo",
-                triggerSuccessAuto: true,
-                transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            if (!TrainingNameID == "") {//update
+                var ajax_InsertTrainingName = $('#ajaxACL-insertTrainingName').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loading-image-trInfo",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
 
-                proxy: '/Training/AddTrainingName',
-                type: 'POST',
-                data: JSON.stringify({
-                    url: "pkInsertAct_syseducationdefinitions",
-                    name: trainingname,
-                    pk: "GsZVzEYe50uGgNM",
+                    proxy: '/Training/AddTrainingName',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        url: "pkUpdateAct_syseducationdefinitions",
+                        id: TrainingNameID,
+                        name: trainingname,
+                        pk: "GsZVzEYe50uGgNM",
+                    })
+                });
+                ajax_InsertTrainingName.ajaxCallWidget({
+                    onReset: function (event, data) {
+                        resetTrainingIdentForm();
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_trainingName").dxDataGrid("instance").refresh();
+                    }
                 })
-            });
-            ajax_InsertTrainingName.ajaxCallWidget({
-                onReset: function (event, data) {
-                    resetTrainingIdentForm();
-                },
-            })
-            ajax_InsertTrainingName.ajaxCallWidget('call');
-            $('#trNameListRefresh').click();
+                ajax_InsertTrainingName.ajaxCallWidget('call');
+            }
+            else {//insert
+                var ajax_InsertTrainingName = $('#ajaxACL-insertTrainingName').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loading-image-trInfo",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+
+                    proxy: '/Training/AddTrainingName',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        url: "pkInsertAct_syseducationdefinitions",
+                        name: trainingname,
+                        pk: "GsZVzEYe50uGgNM",
+                    })
+                });
+                ajax_InsertTrainingName.ajaxCallWidget({
+                    onReset: function (event, data) {
+                        resetTrainingIdentForm();
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_trainingName").dxDataGrid("instance").refresh();
+                    }
+                })
+                ajax_InsertTrainingName.ajaxCallWidget('call');
+            }
             return false;
         }
     })
@@ -943,39 +975,81 @@
             //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url= pkInsertAct_syseducationssalesman &=asd%20sok &address2=no%2011 &address3=dai%205 &postalcode=061010
             //& description=asdaasdasdasd &education_definition_id=1 &user_id=1 & city_id=1 &education_value=10 &edu_start_date=11/10/2018 &$eduEndDate=12/10/2018 &pk=GsZVzEYe50uGgN
 
-            var ajax_InsertTrainingInfo = $('#ajaxACL-insertTrainingInfo').ajaxCallWidget({
-                failureLoadImage: true,
-                loadingImageID: "loading-image-truser",
-                triggerSuccessAuto: true,
-                transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            if (!TrainingInfoID == "") {//update
+                var ajax_InsertTrainingInfo = $('#ajaxACL-insertTrainingInfo').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loading-image-truser",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
 
-                proxy: '/Training/AddTrainingInfo',
-                type: 'POST',
-                data: JSON.stringify({
-                    url: "pkInsertAct_syseducationssalesman",
-                    address1: address1, //$('#txt-TrAdr1-name').val(),
-                    address2: address2, //$('#txt-TrAdr2-name').val(),
-                    address3: address3, //$('#txt-TrAdr3-name').val(),
-                    postalcode: postalcode, //$('#txt-PtCode-name').val(),
-                    description: description, //$('#txt-Explanation-name').val(),
-                    education_definition_id: trNameId,
-                    user_id: user_id, //ddDataUser.selectedData.value,
-                    city_id: city_id,//ddDataCity.selectedData.value,
-                    education_value: education_value,// $('#txt-Grade-name').val(),
-                    edu_start_date: edu_start_date, //"10/10/2018", //$('#start-datepicker').val(),
-                    edu_end_date: edu_end_date,//"10/10/2018", //$('#end-datepicker').val(),
-                    pk: "GsZVzEYe50uGgNM"
+                    proxy: '/Training/AddTrainingInfo',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        url: "pkInsertAct_syseducationssalesman",
+                        id: TrainingInfoID,
+                        address1: address1, //$('#txt-TrAdr1-name').val(),
+                        address2: address2, //$('#txt-TrAdr2-name').val(),
+                        address3: address3, //$('#txt-TrAdr3-name').val(),
+                        postalcode: postalcode, //$('#txt-PtCode-name').val(),
+                        description: description, //$('#txt-Explanation-name').val(),
+                        education_definition_id: trNameId,
+                        user_id: user_id, //ddDataUser.selectedData.value,
+                        city_id: city_id,//ddDataCity.selectedData.value,
+                        education_value: education_value,// $('#txt-Grade-name').val(),
+                        edu_start_date: edu_start_date, //"10/10/2018", //$('#start-datepicker').val(),
+                        edu_end_date: edu_end_date,//"10/10/2018", //$('#end-datepicker').val(),
+                        pk: "GsZVzEYe50uGgNM"
+                    })
+                });
+                ajax_InsertTrainingInfo.ajaxCallWidget({
+                    onReset: function (event, data) {
+                        resetTraningInfoForm();
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_trainingInfo").dxDataGrid("instance").refresh();
+                    }
                 })
-            });
-            ajax_InsertTrainingInfo.ajaxCallWidget({
-                onReset: function (event, data) {
-                    resetTraningInfoForm();
-                },
-            })
-            ajax_InsertTrainingInfo.ajaxCallWidget('call');
-            $('#trListRefresh').click();
+                ajax_InsertTrainingInfo.ajaxCallWidget('call');
+            }
+            else {//insert
+                var ajax_InsertTrainingInfo = $('#ajaxACL-insertTrainingInfo').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loading-image-truser",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+
+                    proxy: '/Training/AddTrainingInfo',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        url: "pkInsertAct_syseducationssalesman",
+                        address1: address1, //$('#txt-TrAdr1-name').val(),
+                        address2: address2, //$('#txt-TrAdr2-name').val(),
+                        address3: address3, //$('#txt-TrAdr3-name').val(),
+                        postalcode: postalcode, //$('#txt-PtCode-name').val(),
+                        description: description, //$('#txt-Explanation-name').val(),
+                        education_definition_id: trNameId,
+                        user_id: user_id, //ddDataUser.selectedData.value,
+                        city_id: city_id,//ddDataCity.selectedData.value,
+                        education_value: education_value,// $('#txt-Grade-name').val(),
+                        edu_start_date: edu_start_date, //"10/10/2018", //$('#start-datepicker').val(),
+                        edu_end_date: edu_end_date,//"10/10/2018", //$('#end-datepicker').val(),
+                        pk: "GsZVzEYe50uGgNM"
+                    })
+                });
+                ajax_InsertTrainingInfo.ajaxCallWidget({
+                    onReset: function (event, data) {
+                        resetTraningInfoForm();
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_trainingInfo").dxDataGrid("instance").refresh();
+                    }
+                })
+                ajax_InsertTrainingInfo.ajaxCallWidget('call');
+            }
             return false;
         }
     })

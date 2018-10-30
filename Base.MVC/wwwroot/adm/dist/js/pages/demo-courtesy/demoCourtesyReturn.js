@@ -175,6 +175,11 @@ $(document).ready(function () {
                             document.getElementById("exStart-datepicker").disabled = false;
                             document.getElementById("exEnd-datepicker").disabled = false;
                         }
+                        else {
+                            document.getElementById("txt-demoCourReturn-reasonExt").disabled = true;
+                            document.getElementById("exStart-datepicker").disabled = true;
+                            document.getElementById("exEnd-datepicker").disabled = true;
+                        }
                     }
                 }
             });

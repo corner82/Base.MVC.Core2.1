@@ -19,8 +19,8 @@
     var SelectedProductInterestId = 0;
 
     var filldropdown = false;
-
-    var ddslick_countryId = 1;
+    var newload = true;
+    var ddslick_countryId = 107;
     var ddslick_country_name = "South Africa";
     var ddslick_provinceId = 0;
     var ddslick_province_name = "";
@@ -215,6 +215,7 @@
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
 
+            //alert("geldim 1");
             $('#dropdownCountry').ddslick({
                 data: cbdata_country,
                 width: '100%',
@@ -227,7 +228,6 @@
                     if (selectedData.selectedData.value > 0) {
 
                         ddslick_countryId = selectedData.selectedData.value;
-
 
                         $('#loading-image-province').loadImager('removeLoadImage');
                         $('#loading-image-province').loadImager('appendImage');
@@ -257,7 +257,7 @@
 
                             },
                             onSuccess: function (event, dataprovince) {
-
+   
                                 var cbdata_province = $.parseJSON(dataprovince);
                                 cbdata_province.splice(0, 0,
                                     { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
@@ -304,7 +304,6 @@
 
                                                 },
                                                 onSuccess: function (event, datacity) {
-
                                                     var cbdata_city = $.parseJSON(datacity);
                                                     cbdata_city.splice(0, 0,
                                                         { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
@@ -319,6 +318,7 @@
 
                                                     })
                                                     if (filldropdown === true) {
+                                                        //alert(ddslick_cityId);
                                                         $('#dropdownCity').ddslick('selectByValue',
                                                             {
                                                                 index: ddslick_cityId,
@@ -330,6 +330,9 @@
                                                 },
                                                 onAfterSuccess: function (event, data) {
                                                     $('#loading-image-city').loadImager('removeLoadImage');
+                                                },
+                                                onError: function (event, data) {
+              
                                                 }
                                             })
                                             ajaxACLResources_getcity.ajaxCallWidget('call');
@@ -349,24 +352,51 @@
                             },
 
                             onAfterSuccess: function (event, data) {
-                                //alert('geldim AfterSuccess province');
+     
 
                                 $('#loading-image-province').loadImager('removeLoadImage');
+                            },
+                            onError: function (event, data) {
+                                alert("geldim hata province");
                             }
                         })
                         ajaxACLResources_getprovince.ajaxCallWidget('call');
                         //province bitti
                     }
+
+                    if (newload === true) {
+                        newload = false;
+                        $('#dropdownCountry').ddslick('selectByValue',
+                            {
+                                index: ddslick_countryId,
+                                value: ddslick_country_name
+                            }
+                        );
+                    }
+
+                    if (ddslick_country_name === "South Africa") {
+                        //txt-cst-regnumber format NNNN/NNNNNN/NN
+                        $('txt-cst-regnumber').mask('0000/000000/00', { 'translation': { 0: { pattern: /[0-9]/ } } });
+                    } else {
+                        //‘A’: {pattern: /[a-zA-Z0-9]/}
+                       // $('txt-cst-regnumber').mask('', { 'translation': { A: { pattern: /[a-zA-Z0-9]/ } } });
+                       
+                    }
+
+
+                    $('#loading-image-country').loadImager('removeLoadImage');
                 }
             })
         },
         onAfterSuccess: function (event, data) {
             //alert('geldim AfterSuccess country');
             $('#loading-image-country').loadImager('removeLoadImage');
+        },
+        onError: function (event, data) {
+            alert("geldim hata");
         }
     })
     ajaxACLResources_country.ajaxCallWidget('call');
-
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1152,13 +1182,18 @@
             selected: true
         },
         {
-            text: "Mrs.",
+            text: "Ms.",
             value: 1,
             selected: false
         },
         {
-            text: "Mr.",
+            text: "Mrs.",
             value: 2,
+            selected: false
+        },
+        {
+            text: "Mr.",
+            value: 3,
             selected: false
         }
     ];
@@ -2770,12 +2805,12 @@
  * @since 14/07/2016
  */
     window.resetCustomerInfoForm = function () {
-        $("#loading-image-cstInfo").loadImager('removeLoadImage');
-        $("#loading-image-cstInfo").loadImager('appendImage');
+    //    $("#loading-image-cstInfo").loadImager('removeLoadImage');
+    //    $("#loading-image-cstInfo").loadImager('appendImage');
 
         selectedCustomerId = 0;
 
-        ddslick_countryId = 1;
+        ddslick_countryId = 107;
         ddslick_country_name = "South Africa";
 
         ddslick_provinceId = 0;
@@ -2786,14 +2821,19 @@
 
 
         $('#customerInfoForm').validationEngine('hide');
-        
-        $('#dropdownCountry').ddslick('select', { index: String(0) });
+
+        $('#dropdownCountry').ddslick('selectByValue',
+            {
+                index: ddslick_countryId,
+                value: ddslick_country_name
+            }
+        );
+
         $('#dropdownProvince').ddslick('destroy');
         $('#dropdownCity').ddslick('destroy');
 
         $('#dropdownSegment').ddslick('select', { index: String(0) });
         $('#dropdownSector').ddslick('select', { index: String(0) });
-
         $('#dropdownCredibility').ddslick('select', { index: String(0) });
         $('#dropdownApplicationType').ddslick('select', { index: String(0) });
         $('#dropdownCustomerCategory').ddslick('select', { index: String(0) });
@@ -2801,10 +2841,12 @@
         $('#dropdownTotalEmployees').ddslick('select', { index: String(0) });
         $('#dropdownAnnuelRevenue').ddslick('select', { index: String(0) });
 
-        resetCustomerPurchaseForm();
+     //   $("#loading-image-cstInfo").loadImager('removeLoadImage');
 
-        $("#loading-image-cstInfo").loadImager('removeLoadImage');
-    
+        //$('#dropdownCountry').ddslick('select', { index: String(0) });
+
+        resetCustomerPurchaseForm();
+            
         //yeni kayda açık, tablar kapatılıyor
         tab_disable();
         //$("#customer_tab").organizeTabs('disableAllTabs');
@@ -2820,8 +2862,8 @@
  * @since 14/10/2018
  */
     window.fillCustomerInfoForm = function (data) {
-        $("#loading-image-cstInfo").loadImager('removeLoadImage');
-        $("#loading-image-cstInfo").loadImager('appendImage');
+        //$("#loading-image-cstInfo").loadImager('removeLoadImage');
+        //$("#loading-image-cstInfo").loadImager('appendImage');
 
         selectedCustomerId = data.id;
 
@@ -3037,7 +3079,7 @@
         resetContactPersonForm();
         $('#contactpersonList').click();
 
-        $("#loading-image-cstInfo").loadImager('removeLoadImage');
+        //$("#loading-image-cstInfo").loadImager('removeLoadImage');
         tab_active();
         //$("#customer_tab").organizeTabs('enableAllTabs');
 
@@ -3055,16 +3097,19 @@
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         var target = $(e.target).attr("href") // activated tab
         //alert(target);
+
         if (target == "#tab_3") {
             // grid refresh olması gerektiği için kullanıldı.
             //$(gridContainer_tab).dxDataGrid("updateDimensions");
-            $('#contactpersonList').click();
+            //$('#contactpersonList').click();
+            $("#gridContainer_contactperson").dxDataGrid("instance").refresh();
 
         }
         if (target == "#tab_4") {
             // grid refresh olması gerektiği için kullanıldı.
             //$(gridContainer_tab).dxDataGrid("updateDimensions");
-            $('#customerActivityList').click();
+            //$('#customerActivityList').click();
+            $("#gridContainer_activity").dxDataGrid("instance").refresh();
         }
     });
 

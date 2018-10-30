@@ -100,6 +100,21 @@ namespace Base.MVC.Controllers
             return View();
         }
 
+        public async Task<IActionResult> VehicleKitModel()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> VehicleKitModelModeltype()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> VehicleKitModelModeltypeTonnage()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> TNofVehicles()
         {
             return View();
@@ -181,16 +196,6 @@ namespace Base.MVC.Controllers
         }
 
         public async Task<IActionResult> AccessoryFeatureName()
-        {
-            return View();
-        }
-
-        public async Task<IActionResult> Accessory()
-        {
-            return View();
-        }
-
-        public async Task<IActionResult> Body()
         {
             return View();
         }
@@ -993,7 +998,182 @@ namespace Base.MVC.Controllers
             var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
             var data = response.Content.ReadAsStringAsync().Result;
             return data.ToString();
+        }    
+    
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///Supplier
+        /// <summary>
+        /// get Supplier List
+        /// Gül Özdemir
+        /// </summary>
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillSupplierGridx_syssupplier&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
+        /// <returns></returns>
+        //[SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SupplierGridList([FromBody] DefaultPostModelGridList gridModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(gridModel);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model satate is not valid");
+            }
+
         }
+
+
+        /// <summary>
+        /// Active/Passive Supplier
+        /// Gül Özdemir
+        /// </summary>
+        /// 
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateMakeActiveOrPassive_syssupplier&pk=GsZVzEYe50uGgNM&id=6
+        /// <returns></returns>
+        //[AjaxSessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> ActivePassiveSupplier([FromBody] ActivePassivePostModel activepassiveModel)
+        {
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            string queryStr = _queryCreater.GetQueryStringFromObject(activepassiveModel);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
+
+        /// <summary>
+        /// Delete Supplier
+        /// Gül Özdemir
+        /// </summary>
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_syssupplier&id=6&pk=GsZVzEYe50uGgNM
+        /// <returns></returns>
+        //[AjaxSessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> DeleteSupplier([FromBody] DeletePostModel deleteModel)
+        {
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            string queryStr = _queryCreater.GetQueryStringFromObject(deleteModel);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
+
+
+        /// <summary>
+        /// Insert Supplier
+        /// Gül Özdemir
+        /// </summary>
+        ///
+        ///http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkInsertAct_syssupplier&name=ddsd&name_short=dd&abbrevation=d&country_id=0&city_id=0&address1=&address2=&address3=&postalcode=&tel=&fax=&email=&pk=GsZVzEYe50uGgNM
+        /// <returns></returns>
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> InsertSupplier([FromBody] SupplierPostModel supplierModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(supplierModel);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model satate is not valid");
+            }
+
+        }
+
+        /// <summary>
+        /// Update Supplier
+        /// Gül Özdemir
+        /// </summary>
+        ///
+        ///http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateAct_syssupplier&name=dzdusd&name_short=dd&abbrevation=d&country_id=0&city_id=0&address1=&address2=&address3=&postalcode=&tel=&fax=&email=&pk=GsZVzEYe50uGgNM&id=2
+        /// <returns></returns>
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> UpdateSupplier([FromBody] SupplierUpdateModel supplierModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(supplierModel);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model satate is not valid");
+            }
+
+        }
+
+        /// <summary>
+        /// //////////////////////////////////////////////////////////////////////////////////////////////////
+
+        /// <summary>
+        /// Dropdown Supplier
+        /// Gül Özdemir
+        /// </summary>
+        /// Longname
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkSupplierLongDdList_syssupplier&language_code=en&pk=GsZVzEYe50uGgNM
+        /// Shortname
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkSupplierShortDdList_syssupplier&language_code=en&pk=GsZVzEYe50uGgNM
+        //[SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> SysSupplierDdslick([FromBody] DefaultPostModel postModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(postModel);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model satate is not valid");
+            }
+        }
+
     }
+
 
 }

@@ -42,6 +42,18 @@
     <Content Update="Views\BuybackTradeback\BuybackReturn.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Campaign\Campaign.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Commission\Commission.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Commission\CommissionName.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Customer\ActivityMngr.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Deal\InvReq.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -57,6 +69,15 @@
     <Content Update="Views\DemoCourtesy\DemoCourtesyReturn.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\ParkOff\ParkOff.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\RepairMaintenance\RepairMaintenanceMatrix.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Stock\VehicleOrderTracking.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Stock\StockTopUsed.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -69,6 +90,18 @@
     <Content Update="Views\Stock\StockHos.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Sys\Supplier.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Sys\VehicleKitModelModeltypeTonnage.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Sys\VehicleKitModelModeltype.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Sys\VehicleKitModel.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Sys\YearlyQuota.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -76,9 +109,6 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\BuybackTradeback\BuybackTradebackMatrix.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Customer\ActivityMngr.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Customer\Activity.cshtml">
@@ -96,16 +126,10 @@
     <Content Update="Views\Sys\AnnualRevenue.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Views\Sys\Accessory.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Sys\AccessoryFeatureName.cshtml">
+    <Content Update="Views\Accessory\Accessory.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Sys\Province.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Sys\Supplier.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Sys\Terrain.cshtml">
@@ -130,6 +154,9 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Sys\PriceListHos.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Target\Target.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Training\Training.cshtml">
@@ -219,6 +246,9 @@
     <Content Update="Views\Shared\AdminBreadCrumbPartial.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Warranty\FactoryWarrantyIdent.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Warranty\WarrantyIdent.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -228,6 +258,8 @@
     <Folder Include="Models\HttpRequest\Stock\" />
     <Folder Include="wwwroot\adm\plugins\font-awesome-5.1.1\" />
     <Folder Include="wwwroot\adm\plugins\node_js\modules\" />
+    <Folder Include="wwwroot\sa\images\login_slider\" />
+    <Folder Include="wwwroot\sa\plugins\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -37,6 +37,462 @@
      */
     $("#deal_hidden").organizeTabs({
         onAftertab_Aksesuar: function (e) {
+
+
+            //----------------------------------dropdowns begin-------------------------------------------------
+
+            /**
+            * ddslick vehicle groups (body) dropdown 
+            * @author Mustafa Zeynel Dağlı
+            * @since 16/10/2018
+            */
+            $('#loadingImage_DdslickVehicleGroupsAksesuar').loadImager('removeLoadImage');
+            $("#loadingImage_DdslickVehicleGroupsAksesuar").loadImager('appendImage');
+            //var selectedContTerrainTypeBuyBack = false;
+            var ajax_DdslickVehicleGroupsAksesuar = $('#ajax_DdslickVehicleGroupsAksesuar').ajaxCallWidget({
+                proxy: '/DefaultPost/DefaultPostModel',
+                type: "POST",
+                failureLoadImage: true,
+                loadingImageID: "loadingImage_DdslickVehicleGroupsAksesuar",
+                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                noDataFailureText: window.lang.translate("No data returned from service"),
+                data: JSON.stringify({
+                    language_code: $("#langCode").val(),
+                    pk: "GsZVzEYe50uGgNM",
+                    url: "pkVehicleGroupsDdList_sysvehiclegroups",
+                    pkIdentity: $("#publicKey").val()
+                })
+
+            });
+            ajax_DdslickVehicleGroupsAksesuar.ajaxCallWidget({
+                onSuccess: function (event, data) {
+                    var data = $.parseJSON(data);
+                    data.splice(0, 0,
+                        { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                    );
+                    $('#ddslickVehicleGroupsAksesuar').ddslick({
+                        //height: 150,
+                        data: data,
+                        width: '100%',
+                        onSelected: function (selectedData) {
+                            /*if (selectedContTerrainTypeBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
+                            selectedContTerrainTypeBuyBack = true;*/
+                            if (selectedData.selectedData.value > 0) {
+                                //getDealVehicleTypeDdslick();
+                            }
+                        }
+                    });
+
+                    $("#loadingImage_DdslickVehicleGroupsAksesuar").loadImager('removeLoadImage');
+                },
+            })
+            ajax_DdslickVehicleGroupsAksesuar.ajaxCallWidget('call');
+
+
+            /**
+           * ddslick deal vehicle type dropdown (aksesuar)
+           * @author Mustafa Zeynel Dağlı
+           * @since 17/10/2018
+           */
+            var ddslickDealVehicleTypeAksesuarData = [
+                {
+                    text: 'Please select',
+                    value: 0,
+                    selected: true
+                },
+            ];
+            $('#loadingImage_DdslickDealVehicleTypeAksesuar').loadImager('removeLoadImage');
+            $("#loadingImage_DdslickDealVehicleTypeAksesuar").loadImager('appendImage');
+            //var selectedContRepMainBuyBack = false;
+            $('#ddslickDealVehicleTypeAksesuar').ddslick({
+                //height: 150,
+                data: ddslickDealVehicleTypeAksesuarData,
+                width: '100%',
+                onSelected: function (selectedData) {
+                    /*if (selectedContRepMainBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
+                    selectedContRepMainBuyBack = true;*/
+                    if (selectedData.selectedData.value > 0) {
+                        //$("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
+
+                    }
+                }
+            });
+            $("#loadingImage_DdslickDealVehicleTypeAksesuar").loadImager('removeLoadImage');
+
+
+            /**
+          * ddslick deal aksesuar type dropdown (aksesuar)
+          * @author Mustafa Zeynel Dağlı
+          * @since 17/10/2018
+          */
+            var ddslickDealAksesuarTypeData = [
+                {
+                    text: 'Please select',
+                    value: 0,
+                    selected: true
+                },
+            ];
+            $('#loadingImage_DdslickAksesuarType').loadImager('removeLoadImage');
+            $("#loadingImage_DdslickAksesuarType").loadImager('appendImage');
+            var ajax_DdslickAksesuarT = $('#ajax_DdslickAksesuarType').ajaxCallWidget({
+                proxy: '/DefaultPost/DefaultPostModel',
+                type: "POST",
+                failureLoadImage: true,
+                loadingImageID: "loadingImage_DdslickAksesuarType",
+                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                noDataFailureText: window.lang.translate("No data returned from service"),
+                data: JSON.stringify({
+                    language_code: $("#langCode").val(),
+                    pk: "GsZVzEYe50uGgNM",
+                    url: "pkAccDeffSalesmanDdList_sysaccdeff",
+                    pkIdentity: $("#publicKey").val()
+                })
+
+            });
+            ajax_DdslickAksesuarT.ajaxCallWidget({
+                onSuccess: function (event, data) {
+                    var data = $.parseJSON(data);
+                    data.splice(0, 0,
+                        { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                    );
+                    $('#ddslickAksesuarType').ddslick({
+                        //height: 150,
+                        data: data,
+                        width: '100%',
+                        onSelected: function (selectedData) {
+                            /*if (selectedContTerrainTypeBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
+                            selectedContTerrainTypeBuyBack = true;*/
+                            if (selectedData.selectedData.value > 0) {
+                                //getDealVehicleTypeDdslick();
+                            }
+                        }
+                    });
+
+                    $("#loadingImage_DdslickAksesuarType").loadImager('removeLoadImage');
+                },
+            })
+            ajax_DdslickAksesuarT.ajaxCallWidget('call');
+
+
+
+            /**
+          * ddslick deal aksesuar options dropdown (aksesuar)
+          * @author Mustafa Zeynel Dağlı
+          * @since 17/10/2018
+          */
+            var ddslickDealAksesuarOptionsData = [
+                {
+                    text: 'Please select',
+                    value: 0,
+                    selected: true
+                },
+            ];
+            $('#loadingImage_DdslickAksesuarOptions').loadImager('removeLoadImage');
+            $("#loadingImage_DdslickAksesuarOptions").loadImager('appendImage');
+            var ajax_DdslickAksesuarO = $('#ajax_DdslickAksesuarOptions').ajaxCallWidget({
+                proxy: '/DefaultPost/DefaultPostModel',
+                type: "POST",
+                failureLoadImage: true,
+                loadingImageID: "loadingImage_DdslickAksesuarType",
+                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                noDataFailureText: window.lang.translate("No data returned from service"),
+                data: JSON.stringify({
+                    language_code: $("#langCode").val(),
+                    pk: "GsZVzEYe50uGgNM",
+                    url: "pkAccessoryOptionsDdList_sysaccessoryoptions",
+                    pkIdentity: $("#publicKey").val()
+                })
+
+            });
+            ajax_DdslickAksesuarO.ajaxCallWidget({
+                onSuccess: function (event, data) {
+                    var data = $.parseJSON(data);
+                    data.splice(0, 0,
+                        { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                    );
+                    $('#ddslickAksesuarOptions').ddslick({
+                        //height: 150,
+                        data: data,
+                        width: '100%',
+                        onSelected: function (selectedData) {
+                        }
+                    });
+
+                    $("#loadingImage_DdslickAksesuarOptions").loadImager('removeLoadImage');
+                },
+            })
+            ajax_DdslickAksesuarO.ajaxCallWidget('call');
+
+
+
+            /**
+          * ddslick deal aksesuar options dropdown (aksesuar)
+          * @author Mustafa Zeynel Dağlı
+          * @since 17/10/2018
+          */
+            var ddslickDealAksesuarSuppliersData = [
+                {
+                    text: 'Please select',
+                    value: 0,
+                    selected: true
+                },
+            ];
+            $('#loadingImage_DdslickAksesuarSuppliers').loadImager('removeLoadImage');
+            $("#loadingImage_DdslickAksesuarSuppliers").loadImager('appendImage');
+            var ajax_DdslickS = $('#ajax_DdslickAksesuarSuppliers').ajaxCallWidget({
+                proxy: '/DefaultPost/DefaultPostModel',
+                type: "POST",
+                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                noDataFailureText: window.lang.translate("No data returned from service"),
+                loadingImageID: "loadingImage_DdslickAksesuarSuppliers",
+                data: JSON.stringify({
+                    language_code: $("#langCode").val(),
+                    pk: "GsZVzEYe50uGgNM",
+                    url: "pkCustomerDdList_infocustomer",
+                    pkIdentity: $("#publicKey").val()
+                })
+
+            });
+            ajax_DdslickS.ajaxCallWidget({
+                onSuccess: function (event, data) {
+                    var data = $.parseJSON(data);
+                    data.splice(0, 0,
+                        { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                    );
+
+                    $('#ddslickAksesuarSuppliers').ddslick({
+                        //height: 150,
+                        data: data,
+                        width: '100%',
+                    });
+
+                    $("#loadingImage_DdslickAksesuarSuppliers").loadImager('removeLoadImage');
+                },
+            })
+            ajax_DdslickS.ajaxCallWidget('call');
+
+            /**
+           * ddslick deal vehicle type dropdown function (body)
+           * @author Mustafa Zeynel Dağlı
+           * @since 16/08/2018
+           */
+            var getDealVehicleTypeDdslick = function () {
+                if (parseInt($("#deal_hidden").deal("getDealID")) > 0) {
+                    $('#loadingImage_DdslickDealVehicleTypeBody').loadImager('removeLoadImage');
+                    $("#loadingImage_DdslickDealVehicleTypeBody").loadImager('appendImage');
+                    var ddDataVehicleGroupsBody = $('#ddslickVehicleGroupsBody').data("ddslick");
+                    var ajax_DdslickDealVehicleTypeBody = $('#ajax_DdslickDealVehicleTypeBody').ajaxCallWidget({
+                        proxy: '/Deal/DdslickGetDealVehicleTypeProxyService',
+                        type: "POST",
+                        failureLoadImage: true,
+                        loadingImageID: "loadingImage_DdslickDealVehicleTypeBody",
+                        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                        noDataFailureText: window.lang.translate("No data returned from service"),
+                        data: JSON.stringify({
+                            language_code: $("#langCode").val(),
+                            pk: "GsZVzEYe50uGgNM",
+                            url: "pkVehicleGroupsDdList_sysvehiclegroups",
+                            pkIdentity: $("#publicKey").val(),
+                            project_id: parseInt($("#deal_hidden").deal("getDealID")),
+                            vehicle_groups_id: parseInt(ddDataVehicleGroupsBody.selectedData.value)
+                        })
+
+                    });
+                    ajax_DdslickDealVehicleTypeBody.ajaxCallWidget({
+                        onSuccess: function (event, data) {
+                            var data = $.parseJSON(data);
+                            data.splice(0, 0,
+                                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                            );
+                            $('#ddslickDealVehicleTypeBody').ddslick({
+                                //height: 150,
+                                data: data,
+                                width: '100%',
+                                onSelected: function (selectedData) {
+                                    if (selectedData.selectedData.value > 0) {
+                                        //vehicleKitTypeForDefineFields(selectedData.selectedData.text);
+                                    }
+                                }
+                            });
+                            $("#loadingImage_DdslickDealVehicleTypeBody").loadImager('removeLoadImage');
+                        },
+                    })
+                    ajax_DdslickDealVehicleTypeBody.ajaxCallWidget('call');
+                } else {
+                    /*$('#tab_VehicleType').loadImager('removeLoadImage');
+                    $('#tab_VehicleType').loadImager('appendImage');*/
+                    //alert("deal id < 0");
+                    $(window).warningMessage('resetOnShown');
+                    $(window).warningMessage('show', "Please select deal",
+                        "Please select deal");
+                }
+
+
+            };
+
+            //----------------------------------dropdowns end-------------------------------------------------
+
+
+            //----------------------------------grid begin-------------------------------------------------
+
+            /* 
+            * warranty grid data source
+            * @author Mustafa Zeynel dağlı
+            * @since 12/10/2018
+            * */
+            var warrantyMatrix_grid_datasource = new DevExpress.data.CustomStore({
+                load: function (loadOptions) {
+                    var deferred = $.Deferred(),
+                        args = {};
+
+                    if (loadOptions.sort) {
+                        args.orderby = loadOptions.sort[0].selector;
+                        if (loadOptions.sort[0].desc)
+                            args.orderby += " desc";
+                    }
+
+                    args.skip = loadOptions.skip || 0;
+                    args.take = loadOptions.take || 12;
+
+                    /*var customerType = window.getSelectedDDslickValueOrDefaultVal("ddslickVehicleGroupsWarranty");
+                    var terrainType = window.getSelectedDDslickValueOrDefaultVal("ddslickDealVehicleTypeWarranty");
+                    var repmainType = window.getSelectedDDslickValueOrDefaultVal("ddslickWarrantyType");
+                    var hydraType = window.getSelectedDDslickValueOrDefaultVal("ddslickWarrantyTerm");
+                    var vehicleType = window.getSelectedDDslickValueOrDefaultVal("ddslickWarrantyKm");*/
+
+                    $.ajax({
+                        url: '/DefaultPost/DefaultGridPostModel',
+                        dataType: "json",
+                        data: JSON.stringify({
+                            language_code: $("#langCode").val(),
+                            pk: "GsZVzEYe50uGgNM",
+                            url: "pkFillProjectVehicleAccGridx_infoprojectacc",
+                            pkIdentity: $("#publicKey").val(),
+                            project_id: parseInt($("#deal_hidden").deal("getDealID")),
+                            //project_id : parseInt(80),
+                            page: "",
+                            rows: "",
+                            sort: "",
+                            order: "",
+
+                        }),
+                        type: 'POST',
+                        contentType: 'application/json',
+                        success: function (result) {
+                            deferred.resolve(result.items, { totalCount: result.totalCount });
+                        },
+                        error: function () {
+                            deferred.reject("Data Loading Error");
+                        },
+                        timeout: 30000
+                    });
+
+                    return deferred.promise();
+                }
+            });
+            DevExpress.localization.locale($('#langCode').val());
+            $("#gridContainer_Aksesuar").dxDataGrid({
+                showColumnLines: true,
+                showRowLines: true,
+                rowAlternationEnabled: true,
+                showBorders: true,
+                // dataSource: orders,
+                dataSource: warrantyMatrix_grid_datasource,
+                columnHidingEnabled: false,
+                editing: {
+                    //mode: "batch"
+                    mode: "row",
+                    //allowAdding: false,
+                    allowUpdating: false,
+                    allowDeleting: false,
+                    useIcons: false
+                },
+                "export": {
+                    enabled: true,
+                    fileName: "Orders"
+                },
+                grouping: {
+                    contextMenuEnabled: true,
+                    expandMode: "rowClick"
+                },
+                groupPanel: {
+                    emptyPanelText: "Use the context menu of header columns to group data",
+                    visible: true
+                },
+                pager: {
+                    allowedPageSizes: [5, 8, 15, 30],
+                    showInfo: true,
+                    showNavigationButtons: true,
+                    showPageSizeSelector: true,
+                    visible: true
+                },
+                paging: {
+                    pageSize: 8
+                },
+                filterRow: {
+                    visible: true,
+                    applyFilter: "auto"
+                },
+                searchPanel: {
+                    visible: true,
+                    width: 240,
+                    //placeholder: "Search..."
+                    placeholder: window.lang.translate("Search")
+                },
+                headerFilter: {
+                    visible: true
+                },
+                columnChooser: {
+                    enabled: true,
+                    mode: "select"
+                },
+                selection: {
+                    mode: "single"
+                },
+                onSelectionChanged: function (selectedItems) {
+                    var data = selectedItems.selectedRowsData[0];
+                    console.log(data);
+                    /*if (data) {
+                        selectedBranchId = data.id;
+                        filldropdown = true;
+                        fillBranchForm(data);
+                        //filldropdown = false;
+                    }*/
+                },
+                columns: [
+                    {
+                        //allowGrouping: false,
+                        caption: "Option",
+                        dataField: "option_name"
+                    },
+                    {
+                        caption: "Supplier",
+                        dataField: "supplier_name"
+                    },
+                    {
+                        caption: "tag name",
+                        dataField: "tag_name"
+                    },
+                    {
+                        caption: "model name",
+                        dataField: "vehicle_gt_model_name"
+                    },
+                    {
+                        caption: "Other brand name",
+                        dataField: "other_acc_brand"
+                    },
+
+                ],
+                customizeColumns: function (columns) {
+                    //columns[5].format = { type: "currency", currency: "EUR" };
+                },
+
+
+            });
+
+            //----------------------------------grid end-------------------------------------------------
+
+
             $('#loadingImage_DdslickDealVehicleTypeAksesuar').loadImager('removeLoadImage');
             $("#loadingImage_DdslickDealVehicleTypeAksesuar").loadImager('appendImage');
             if (parseInt($("#deal_hidden").deal("getDealID")) > 0) {
@@ -59,8 +515,8 @@
                     noDataFailureText: window.lang.translate("No data returned from service"),
                     loadingImageID: "loadingImage_DdslickDealVehicleTypeAksesuar",
                     data: JSON.stringify({
-                        //url: "pkProjectVehicleModelsDdList_infoprojectvehiclemodels",
-                        url: "pkProjectVehicleModelsTradeDdList_infoprojectbuybacks",
+                        url: "pkProjectVehicleModelsDdList_infoprojectvehiclemodels",
+                        //url: "pkProjectVehicleModelsTradeDdList_infoprojectbuybacks",
                         language_code: $("#langCode").val(),
                         pk: "GsZVzEYe50uGgNM",
                         project_id: $("#deal_hidden").deal("getDealID"),
@@ -72,6 +528,7 @@
                 //var selectedContVehicleTypeBuyBack = false;
                 ajax_DdslickVehicleTypeAksesuar.ajaxCallWidget({
                     onSuccess: function (event, data) {
+                        $("#ddslickDealVehicleTypeAksesuar").ddslick('destroy');
                         var data = $.parseJSON(data);
                         data.splice(0, 0,
                             { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
@@ -98,245 +555,17 @@
                 $(window).warningMessage('resetOnShown');
                 $(window).warningMessage('show', window.lang.translate("Please select deal"),
                     window.lang.translate("Please select deal"));
-                // $('#loadingImage_DdslickVehicleTypeBuyBack').loadImager('removeLoadImage');
+                $('#loadingImage_DdslickDealVehicleTypeAksesuar').loadImager('removeLoadImage');
             }
         },
         
     });
 
-    //----------------------------------dropdowns begin-------------------------------------------------
 
-    /**
-    * ddslick vehicle groups (body) dropdown 
-    * @author Mustafa Zeynel Dağlı
-    * @since 16/10/2018
-    */
-    $('#loadingImage_DdslickVehicleGroupsAksesuar').loadImager('removeLoadImage');
-    $("#loadingImage_DdslickVehicleGroupsAksesuar").loadImager('appendImage');
-    //var selectedContTerrainTypeBuyBack = false;
-    var ajax_DdslickVehicleGroupsAksesuar = $('#ajax_DdslickVehicleGroupsAksesuar').ajaxCallWidget({
-        proxy: '/DefaultPost/DefaultPostModel',
-        type: "POST",
-        failureLoadImage: true,
-        loadingImageID: "loadingImage_DdslickVehicleGroupsAksesuar",
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        noDataFailureText: window.lang.translate("No data returned from service"),
-        data: JSON.stringify({
-            language_code: $("#langCode").val(),
-            pk: "GsZVzEYe50uGgNM",
-            url: "pkVehicleGroupsDdList_sysvehiclegroups",
-            pkIdentity: $("#publicKey").val()
-        })
-
-    });
-    ajax_DdslickVehicleGroupsAksesuar.ajaxCallWidget({
-        onSuccess: function (event, data) {
-            var data = $.parseJSON(data);
-            data.splice(0, 0,
-                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-            );
-            $('#ddslickVehicleGroupsAksesuar').ddslick({
-                //height: 150,
-                data: data,
-                width: '100%',
-                onSelected: function (selectedData) {
-                    /*if (selectedContTerrainTypeBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
-                    selectedContTerrainTypeBuyBack = true;*/
-                    if (selectedData.selectedData.value > 0) {
-                        //getDealVehicleTypeDdslick();
-                    }
-                }
-            });
-
-            $("#loadingImage_DdslickVehicleGroupsAksesuar").loadImager('removeLoadImage');
-        },
-    })
-    ajax_DdslickVehicleGroupsAksesuar.ajaxCallWidget('call');
+    
 
 
-    /**
-   * ddslick deal vehicle type dropdown (aksesuar)
-   * @author Mustafa Zeynel Dağlı
-   * @since 17/10/2018
-   */
-    var ddslickDealVehicleTypeAksesuarData = [
-        {
-            text: 'Please select',
-            value: 0,
-            selected: true
-        },
-    ];
-    $('#loadingImage_DdslickDealVehicleTypeAksesuar').loadImager('removeLoadImage');
-    $("#loadingImage_DdslickDealVehicleTypeAksesuar").loadImager('appendImage');
-    //var selectedContRepMainBuyBack = false;
-    $('#ddslickDealVehicleTypeAksesuar').ddslick({
-        //height: 150,
-        data: ddslickDealVehicleTypeAksesuarData,
-        width: '100%',
-        onSelected: function (selectedData) {
-            /*if (selectedContRepMainBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
-            selectedContRepMainBuyBack = true;*/
-            if (selectedData.selectedData.value > 0) {
-                //$("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
-
-            }
-        }
-    });
-    $("#loadingImage_DdslickDealVehicleTypeAksesuar").loadImager('removeLoadImage');
-
-
-    /**
-  * ddslick deal aksesuar type dropdown (aksesuar)
-  * @author Mustafa Zeynel Dağlı
-  * @since 17/10/2018
-  */
-    var ddslickDealAksesuarTypeData = [
-        {
-            text: 'Please select',
-            value: 0,
-            selected: true
-        },
-    ];
-    $('#loadingImage_DdslickAksesuarType').loadImager('removeLoadImage');
-    $("#loadingImage_DdslickAksesuarType").loadImager('appendImage');
-    //var selectedContRepMainBuyBack = false;
-    $('#ddslickAksesuarType').ddslick({
-        //height: 150,
-        data: ddslickDealAksesuarTypeData,
-        width: '100%',
-        onSelected: function (selectedData) {
-            /*if (selectedContRepMainBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
-            selectedContRepMainBuyBack = true;*/
-            if (selectedData.selectedData.value > 0) {
-                //$("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
-
-            }
-        }
-    });
-    $("#loadingImage_DdslickAksesuarType").loadImager('removeLoadImage');
-
-
-    /**
-  * ddslick deal aksesuar options dropdown (aksesuar)
-  * @author Mustafa Zeynel Dağlı
-  * @since 17/10/2018
-  */
-    var ddslickDealAksesuarOptionsData = [
-        {
-            text: 'Please select',
-            value: 0,
-            selected: true
-        },
-    ];
-    $('#loadingImage_DdslickAksesuarOptions').loadImager('removeLoadImage');
-    $("#loadingImage_DdslickAksesuarOptions").loadImager('appendImage');
-    //var selectedContRepMainBuyBack = false;
-    $('#ddslickAksesuarOptions').ddslick({
-        //height: 150,
-        data: ddslickDealAksesuarOptionsData,
-        width: '100%',
-        onSelected: function (selectedData) {
-            /*if (selectedContRepMainBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
-            selectedContRepMainBuyBack = true;*/
-            if (selectedData.selectedData.value > 0) {
-                //$("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
-
-            }
-        }
-    });
-    $("#loadingImage_DdslickAksesuarOptions").loadImager('removeLoadImage');
-
-    /**
-  * ddslick deal aksesuar options dropdown (aksesuar)
-  * @author Mustafa Zeynel Dağlı
-  * @since 17/10/2018
-  */
-    var ddslickDealAksesuarSuppliersData = [
-        {
-            text: 'Please select',
-            value: 0,
-            selected: true
-        },
-    ];
-    $('#loadingImage_DdslickAksesuarSuppliers').loadImager('removeLoadImage');
-    $("#loadingImage_DdslickAksesuarSuppliers").loadImager('appendImage');
-    //var selectedContRepMainBuyBack = false;
-    $('#ddslickAksesuarSuppliers').ddslick({
-        //height: 150,
-        data: ddslickDealAksesuarSuppliersData,
-        width: '100%',
-        onSelected: function (selectedData) {
-            /*if (selectedContRepMainBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
-            selectedContRepMainBuyBack = true;*/
-            if (selectedData.selectedData.value > 0) {
-                //$("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
-
-            }
-        }
-    });
-    $("#loadingImage_DdslickAksesuarSuppliers").loadImager('removeLoadImage');
-
-
-    /**
-   * ddslick deal vehicle type dropdown function (body)
-   * @author Mustafa Zeynel Dağlı
-   * @since 16/08/2018
-   */
-    var getDealVehicleTypeDdslick = function () {
-        if (parseInt($("#deal_hidden").deal("getDealID")) > 0) {
-            $('#loadingImage_DdslickDealVehicleTypeBody').loadImager('removeLoadImage');
-            $("#loadingImage_DdslickDealVehicleTypeBody").loadImager('appendImage');
-            var ddDataVehicleGroupsBody = $('#ddslickVehicleGroupsBody').data("ddslick");
-            var ajax_DdslickDealVehicleTypeBody = $('#ajax_DdslickDealVehicleTypeBody').ajaxCallWidget({
-                proxy: '/Deal/DdslickGetDealVehicleTypeProxyService',
-                type: "POST",
-                failureLoadImage: true,
-                loadingImageID: "loadingImage_DdslickDealVehicleTypeBody",
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                noDataFailureText: window.lang.translate("No data returned from service"),
-                data: JSON.stringify({
-                    language_code: $("#langCode").val(),
-                    pk: "GsZVzEYe50uGgNM",
-                    url: "pkVehicleGroupsDdList_sysvehiclegroups",
-                    pkIdentity: $("#publicKey").val(),
-                    project_id: parseInt($("#deal_hidden").deal("getDealID")),
-                    vehicle_groups_id: parseInt(ddDataVehicleGroupsBody.selectedData.value)
-                })
-
-            });
-            ajax_DdslickDealVehicleTypeBody.ajaxCallWidget({
-                onSuccess: function (event, data) {
-                    var data = $.parseJSON(data);
-                    data.splice(0, 0,
-                        { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-                    );
-                    $('#ddslickDealVehicleTypeBody').ddslick({
-                        //height: 150,
-                        data: data,
-                        width: '100%',
-                        onSelected: function (selectedData) {
-                            if (selectedData.selectedData.value > 0) {
-                                //vehicleKitTypeForDefineFields(selectedData.selectedData.text);
-                            }
-                        }
-                    });
-                    $("#loadingImage_DdslickDealVehicleTypeBody").loadImager('removeLoadImage');
-                },
-            })
-            ajax_DdslickDealVehicleTypeBody.ajaxCallWidget('call');
-        } else {
-            /*$('#tab_VehicleType').loadImager('removeLoadImage');
-            $('#tab_VehicleType').loadImager('appendImage');*/
-            //alert("deal id < 0");
-            $(window).warningMessage('resetOnShown');
-            $(window).warningMessage('show', "Please select deal",
-                "Please select deal");
-        }
-
-
-    };
-
-    //----------------------------------dropdowns end-------------------------------------------------
+   
 
 
     //----------------------------------add aksesuar to deal begin-------------------------------------------------
@@ -353,8 +582,6 @@
     var resetAksesuarAddDealForm = function () {
         $('#addAksesuarForm').validationEngine('hide');
         $('#addAksesuarForm')[0].reset();
-        //$('#ddslickDealVehicleTypeBody').ddslick("select", { index: '0' });
-
     }
 
     /**
@@ -396,115 +623,56 @@
         if ($("#deal_hidden").deal()) {
             dealID = $("#deal_hidden").deal("getDealID");
         }
-        if (dealID == null || dealID == "" || dealID <= 0) {
+        /*if (dealID == null || dealID == "" || dealID <= 0) {
             $(window).warningMessage('resetOnShown');
             $(window).warningMessage('show', "Please select deal",
                 "Please select deal");
             $('#tab_Aksesuar').loadImager('removeLoadImage');
             return false;
-        }
+        }*/
 
         if ($("#addAksesuarForm").validationEngine('validate')) {
             var ddDataVehicleGroups = $('#ddslickVehicleGroupsAksesuar').data('ddslick');
-            if (!ddDataVehicleGroups.selectedData.value > 0) {
-                $(window).warningMessage('resetOnShown');
-                $(window).warningMessage('show', window.lang.translate("Please select vehicle group"),
-                    window.lang.translate("Please select vehicle group"));
-                $('#tab_Aksesuar').loadImager('removeLoadImage');
-                return false;
-            }
-
             var ddDataVehicleType = $('#ddslickDealVehicleTypeAksesuar').data('ddslick');
-            if (!ddDataVehicleType.selectedData.value > 0) {
-                $(window).warningMessage('resetOnShown');
-                $(window).warningMessage('show', window.lang.translate("Please select vehicle type"),
-                    window.lang.translate("Please select vehicle type"));
-                $('#tab_Aksesuar').loadImager('removeLoadImage');
-                return false;
-            }
-
             var ddDataAksesuarType = $('#ddslickAksesuarType').data('ddslick');
-            if (!ddDataAksesuarType.selectedData.value > 0) {
-                $(window).warningMessage('resetOnShown');
-                $(window).warningMessage('show', window.lang.translate("Please select accessory type"),
-                    window.lang.translate("Please select accessory type"));
-                $('#tab_Aksesuar').loadImager('removeLoadImage');
-                return false;
-            }
-
             var ddDataAksesuarOptions = $('#ddslickAksesuarOptions').data('ddslick');
-            if (!ddDataAksesuarOptions.selectedData.value > 0) {
-                $(window).warningMessage('resetOnShown');
-                $(window).warningMessage('show', window.lang.translate("Please select accessory options"),
-                    window.lang.translate("Please select accessory options"));
-                $('#tab_Aksesuar').loadImager('removeLoadImage');
-                return false;
-            }
-
             var ddDataAksesuarSuppliers = $('#ddslickAksesuarSuppliers').data('ddslick');
-            if (!ddDataAksesuarSuppliers.selectedData.value > 0) {
-                $(window).warningMessage('resetOnShown');
-                $(window).warningMessage('show', window.lang.translate("Please select accessory supplier"),
-                    window.lang.translate("Please select accessory supplier"));
-                $('#tab_Aksesuar').loadImager('removeLoadImage');
-                return false;
-            }
-
-            //alert(ddDataVehicleType.selectedData.value);
-            if ($("#tagcabin_VehicleAksesuarlar").tagCabin('findSpecificTags', ddDataVehicleType.selectedData.value, 'data-attribute') != true) {
-                /*tagBuilderChemicalPropGroup.tagCabin('addTagManuallyDataAttr', selectedItem.value,
-                    selectedItem.text,*/
-                $(window).warningMessage('resetOnShown');
-                $(window).warningMessage('show', "Please select another accessory type",
-                    "Please select another accessory type");
-                $('#tab_Aksesuar').loadImager('removeLoadImage');
-                return false;
-            }
-
+            
             var ajax = $('#add_aksesuar').ajaxCallWidget({
                 failureLoadImage: true,
-                loadingImageID: "tab_Body",
+                loadingImageID: "tab_Aksesuar",
                 triggerSuccessAuto: true,
                 transactionSuccessText: window.lang.translate('Transaction successful'),
                 transactionFailureText: window.lang.translate("Service URL not found, please report error"),
                 dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-                proxy: '/Deal/AddBodyProxyService',
+                proxy: '/Deal/AddAksesuarProxyService',
                 type: "POST",
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
-                    url: "pkInsertAct_infoprojectvehiclemodels",
+                    url: "pkInsertAct_infoprojectacc",
                     pkIdentity: $("#publicKey").val(),
                     project_id: dealID,
-                    is_house_deal: 0,
-                    vehicle_gt_model_id: ddDataVehicleType.selectedData.value,
+                    //project_id: 1,
+                    vehicles_group_id: parseInt(ddDataVehicleGroups.selectedData.value),
+                    vehicle_gt_model_id: parseInt(ddDataVehicleType.selectedData.value),
+                    acc_option_id: parseInt(ddDataAksesuarOptions.selectedData.value),
+                    acc_supplier_id: parseInt(ddDataAksesuarSuppliers.selectedData.value),
+                    accessories_matrix_id: 1,
+                    deal_acc_newvalue: $("#aksesuar_new_price").val(),
                     quantity: $("#quantity").val(),
-                    delivery_date: "10/10/2018",
                 })
 
             });
             ajax.ajaxCallWidget({
                 onReset: function (event, data) {
-                    resetVehicleTypeAddDealForm();
+                    resetAksesuarAddDealForm();
                 },
                 onAfterSuccess: function (event, data) {
-                    $("#deal_hidden").deal("addVehicleType", { vehicleType: ddDataVehicleType.selectedData.value, count: $("#quantity").val() });
-                    $("#tagcabin_DealBodies").tagCabin('addTagManuallyDataAttr', ddDataVehicleType.selectedData.value,
-                        ddDataVehicleType.selectedData.text + " / " + $("#quantity").val(),
-
-                    );
-
-                    /*var tagBuilderChemicalPropGroup = $('#chemical-property-group-cabin').tagCabin({
-                        tagCopy: false,
-                        tagDeletable: true,
-                        tagDeletableAll: false,
-                        tagBox: $('.tag-container-chemical-property-group').find('ul'),
-    
-                    });*/
-
+                    $("#gridContainer_Aksesuar").dxDataGrid("instance").refresh();
                 }
             })
-            //ajax.ajaxCallWidget('call');
+            ajax.ajaxCallWidget('call');
 
         } else {
             $('#tab_Aksesuar').loadImager('removeLoadImage');

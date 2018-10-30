@@ -15,6 +15,7 @@ namespace Base.MVC.Models.HttpRequest
         public string contact_person_id { get; set; }
         public string cs_activation_type_id { get; set; }
         public string cs_statu_types_id { get; set; }
+        public string planned_unplaned_id { get; set; }
         public string cs_act_statutype_id { get; set; }
         public string customer_segment_type_id { get; set; }
         public string vehicle_model_id { get; set; }
