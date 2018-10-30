@@ -153,7 +153,7 @@ $(document).ready(function () {
         $("#gridContainer_buybackDealList").dxDataGrid("instance").refresh();
     });
 
-    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillParkOffGridx_infostockparkoff&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillProjectOptionalGridx_infoproject&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM&
     var bbDeal = new DevExpress.data.CustomStore({
         load: function (loadOptions) {
             var deferred = $.Deferred(),
@@ -169,12 +169,12 @@ $(document).ready(function () {
             args.take = loadOptions.take || 12;
 
             $.ajax({
-                url: '/ParkOff/ParkoffGrid',
+                url: '/BuybackTradeback/BbTbReturnGrid',
                 dataType: "json",
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
-                    url: "pkFillParkOffGridx_infostockparkoff",
+                    url: "pkFillProjectOptionalGridx_infoproject",
                     pkIdentity: $("#publicKey").val(),
                     page: "",
                     rows: "",
@@ -195,7 +195,7 @@ $(document).ready(function () {
             });
             return deferred.promise();
         }
-    });     //DÜZELTİLECEK
+    });     //DÜZELTİLECEK buyback parametreli değil
 
     $("#gridContainer_buybackDealList").dxDataGrid({
 
@@ -256,10 +256,10 @@ $(document).ready(function () {
         },
         columns: [{
             caption: window.lang.translate('Deal Number') + "...",
-            dataField: "chassis_no"
+            dataField: "apid"
         }, {
             caption: window.lang.translate('Deal date') + "...",
-            dataField: "man_entry_date"
+            dataField: "date_saved"
         }],
         onSelectionChanged: function (selectedItems) {
             var data = selectedItems.selectedRowsData[0];
@@ -410,9 +410,8 @@ $(document).ready(function () {
 
 //bb return attachment grid
     $('#attachmentListRefresh').click(function () {
-        $("#gridContainer_buybackVehicleAttachmentList").dxDataGrid("instance").refresh();
-    });
-
+    //    $("#gridContainer_buybackVehicleAttachmentList").dxDataGrid("instance").refresh();
+    //});
     //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillParkOffGridx_infostockparkoff&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
     var bbAtt = new DevExpress.data.CustomStore({
         load: function (loadOptions) {
@@ -553,6 +552,7 @@ $(document).ready(function () {
                 //fillVehicleBuybackForm(data);
             }
         }
+        });
     });
 //bb return attachment grid end
 

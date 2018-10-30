@@ -413,12 +413,10 @@ $(document).ready(function () {
 
             },
             onAfterSuccess: function (event, data) {
-                $("#gridContainer_trainingName").dxDataGrid("instance").refresh();
-                //$('#trListRefresh').click();
+                $("#gridContainer_Fxrate").dxDataGrid("instance").refresh();
             }
         })
         ajax_activepasivefxrate.ajaxCallWidget('call');
-        $('#trNameListRefresh').click();
     }
 });
 
