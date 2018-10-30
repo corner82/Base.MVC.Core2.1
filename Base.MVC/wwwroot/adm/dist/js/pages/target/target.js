@@ -35,7 +35,7 @@ $(document).ready(function () {
     $("#loadingImage_targetGrid").loadImager();
 
     var langCode = $("#langCode").val();
-    var QuotaMonthID;
+    var targetID;
     //alert(langCode);
 
     $('#targetForm').validationEngine();
@@ -127,19 +127,19 @@ $(document).ready(function () {
                 //searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
 
-                    $('#ddslickVehicle').ddslick('destroy');
+                    $('#ddslickUser').ddslick('destroy');
 
                     if (selectedData.selectedData.value > 0) {
-                        ddslick_modelId = selectedData.selectedData.value;
+                        ddslick_roleId = selectedData.selectedData.value;
 
-                        //Vehicle
-                        $("#loadingImage_DdslickVehicle").loadImager('removeLoadImage');
-                        $("#loadingImage_DdslickVehicle").loadImager('appendImage');
+                        //user
+                        $("#loadingImage_DdslickUser").loadImager('removeLoadImage');
+                        $("#loadingImage_DdslickUser").loadImager('appendImage');
 
                         //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkVehiclesEndgroupsFixCostDdList_sysvehiclesendgroups&language_code=en&pk=GsZVzEYe50uGgNM&vehicle_groups_id=1
-                        var ajaxACLResources_vehicle = $('#ajax_DdslickVehicle').ajaxCallWidget({
+                        var ajaxACLResources_user = $('#ajax_DdslickVehicle').ajaxCallWidget({
                             failureLoadImage: true,
-                            loadingImageID: "loadingImage_DdslickVehicle",
+                            loadingImageID: "loadingImage_DdslickUser",
                             triggerSuccessAuto: true,
                             transactionSuccessText: window.lang.translate('Transaction successful'),
                             transactionFailureText: window.lang.translate("Service URL not found, please report error"),
@@ -150,46 +150,46 @@ $(document).ready(function () {
                                 language_code: $("#langCode").val(),
                                 pk: "GsZVzEYe50uGgNM",
                                 url: "pkVehiclesEndgroupsFixCostDdList_sysvehiclesendgroups",
-                                vehicle_group_id: ddslick_modelId,
+                                vehicle_groups_id: ddslick_roleId,
                                 pkIdentity: $("#publicKey").val()
                             })
                         });
 
-                        ajaxACLResources_vehicle.ajaxCallWidget({
+                        ajaxACLResources_user.ajaxCallWidget({
                             onReset: function (event, data) {
 
                             },
-                            onSuccess: function (event, datavehicle) {
+                            onSuccess: function (event, datauser) {
 
-                                var cbdata_vehicle = $.parseJSON(datavehicle);
-                                cbdata_vehicle.splice(0, 0,
+                                var cbdata_user = $.parseJSON(datauser);
+                                cbdata_user.splice(0, 0,
                                     { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
                                 );
 
-                                $('#ddslickVehicle').ddslick({
-                                    data: cbdata_vehicle,
+                                $('#ddslickUser').ddslick({
+                                    data: cbdata_user,
                                     width: '100%'
                                     //search: true,
                                     //searchText: window.lang.translate('Search'),
                                    
                                 })
                                 if (filldropdown === true) {
-                                    $('#ddslickVehicle').ddslick('selectByValue',
+                                    $('#ddslickUser').ddslick('selectByValue',
                                         {
-                                            index: '' + ddslick_vehicleId + '',
-                                            value: '' + ddslick_vehicle_name + ''
+                                            index: '' + ddslick_userId + '',
+                                            value: '' + ddslick_user_name + ''
                                         });
                                     filldropdown = false;
                                 }
 
-                                $('#loadingImage_DdslickVehicle').loadImager('removeLoadImage');
+                                $('#loadingImage_DdslickUser').loadImager('removeLoadImage');
                             },
                             onAfterSuccess: function (event, data) {
-                                $('#loadingImage_DdslickVehicle').loadImager('removeLoadImage');
+                                $('#loadingImage_DdslickUser').loadImager('removeLoadImage');
                             }
                         })
-                        ajaxACLResources_vehicle.ajaxCallWidget('call');
-                        //Vehicle End
+                        ajaxACLResources_user.ajaxCallWidget('call');
+                        //User End
                     }
                 }
             })
@@ -200,16 +200,112 @@ $(document).ready(function () {
         }
     })
     ajaxACLResources_RoleType.ajaxCallWidget('call');
-    //Model Group --> Vehicle End Group End
+    //Role Type --> user End
+
+    //Month
+    $('#loadingImage_DdslickMonth').loadImager('removeLoadImage');
+    $("#loadingImage_DdslickMonth").loadImager('appendImage');
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkJustMonthsDdList_sysmonths&language_code=en&pk=GsZVzEYe50uGgNM
+    var ajaxACLResources_Month = $('#ajax_DdslickMonth').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickMonth",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkJustMonthsDdList_sysmonths",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
+
+    ajaxACLResources_Month.ajaxCallWidget({
+        onReset: function (event, data) {
+
+        },
+        onSuccess: function (event, datamonth) {
+
+            var cbdata_month = $.parseJSON(datamonth);
+            cbdata_month.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+
+            $('#ddslickMonth').ddslick({
+                data: cbdata_month,
+                width: '100%',
+                //search: true,
+                //searchText: window.lang.translate('Search'),
+            })
+            $('#loadingImage_DdslickMonth').loadImager('removeLoadImage');
+        },
+        onAfterSuccess: function (event, data) {
+            $('#loadingImage_DdslickMonth').loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_Month.ajaxCallWidget('call');
+    //Month End
+
+    // Year
+    $('#loadingImage_DdslickYear').loadImager('removeLoadImage');
+    $("#loadingImage_DdslickYear").loadImager('appendImage');
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkJustYearsDdList_sysmonths&pk=GsZVzEYe50uGgNM&id=55
+    var ajaxACLResources_Year = $('#ajax_DdslickYear').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickYear",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkJustYearsDdList_sysmonths",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
+
+    ajaxACLResources_Year.ajaxCallWidget({
+        onReset: function (event, data) {
+
+        },
+        onSuccess: function (event, datayear) {
+
+            var cbdata_year = $.parseJSON(datayear);
+            cbdata_year.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+
+            $('#ddslickYear').ddslick({
+                data: cbdata_year,
+                width: '100%',
+                //search: true,
+                //searchText: window.lang.translate('Search'),
+            })
+            $('#loadingImage_DdslickYear').loadImager('removeLoadImage');
+        },
+        onAfterSuccess: function (event, data) {
+            $('#loadingImage_DdslickYear').loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_Year.ajaxCallWidget('call');
+    // Year End
 
     /* devexgrid */
     DevExpress.localization.locale(langCode);
 
-// Stock Grid
-    $('#stockStockHosRefresh').click(function () {
-        //Quota month Grid
-        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillSisMonthlyQuotasGridx_syssismonthlyquotas&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
-        var stockHos = new DevExpress.data.CustomStore({
+// target Grid
+    $('#targetListRefresh').click(function () {
+        $("#gridContainer_targetList").dxDataGrid("instance").refresh();
+    });
+
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillSisMonthlyQuotasGridx_syssismonthlyquotas&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
+    var target = new DevExpress.data.CustomStore({
             load: function (loadOptions) {
                 var deferred = $.Deferred(),
                     args = {};
@@ -273,13 +369,13 @@ $(document).ready(function () {
             //    });
             //}
         });
-        //Quota month Grid
-        $("#gridContainer_stockStockHos").dxDataGrid({
+
+    $("#gridContainer_targetList").dxDataGrid({
 
             showColumnLines: true,
             showRowLines: true,
             showBorders: true,
-            dataSource: stockHos,
+            dataSource: target,
             columnHidingEnabled: true,
             selection: {
                 mode: "single"
@@ -295,7 +391,7 @@ $(document).ready(function () {
             },
             "export": {
                 enabled: true,
-                fileName: "stockHos"
+                fileName: "target"
             },
             grouping: {
                 contextMenuEnabled: true,
@@ -340,119 +436,15 @@ $(document).ready(function () {
                 enabled: true,
                 mode: "select"
             },
-            //columnWidth: {
-            //    autoWidth: true
-            //},
+            columnWidth: {
+                autoWidth: true
+            },
             columns: [{
-            //    caption: window.lang.translate('Active/Passive'),
-            //    width: 40,
-            //    alignment: 'center',
-            //    encodeHtml: false,
-
-            //    cellTemplate: function (container, options) {
-            //        var fieldHtml;
-            //        var quotamonth_id = options.data.id;
-
-            //        if (options.data.active === 1) {
-            //            //active
-            //            $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
-            //                activepasiveQuotaMonth(quotamonth_id, options.data.active);
-            //                //dm.successMessage('show', window.lang.translate('Active success message...'), window.lang.translate('Active success message...'));
-            //            }).appendTo(container);
-            //        } else if (options.data.active === 0) {
-            //            //pasive
-            //            $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
-            //                activepasiveQuotaMonth(quotamonth_id, options.data.active);
-            //                //dm.successMessage('show', window.lang.translate('Pasive success message...'), window.lang.translate('Pasive success message...'));
-            //            }).appendTo(container);
-            //        }
-            //    }
-            //}, {
-                caption: window.lang.translate('KP no') + "...",
+                caption: window.lang.translate('Target type') + "...",
                 dataField: "quantity",
                 encodeHtml: false
             }, {
-                caption: window.lang.translate('Chassis no') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Order no') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Body&extra') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Expected CBU Date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Days in stock') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Production date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Expected ship arrival date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('expected CBU date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Soll reg date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Required delivery date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Park Off') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Location') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Sold/unsold') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Comment') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Price') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('TBA1') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('TBA2') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('EngineType') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Gearbox type') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('FrontTyreMake') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Channel') + "...",
+                caption: window.lang.translate('Role type') + "...",
                 dataField: "quantity",
                 encodeHtml: false
             }, {
@@ -460,20 +452,16 @@ $(document).ready(function () {
                 dataField: "quantity",
                 encodeHtml: false
             }, {
-                caption: window.lang.translate('Dealer') + "...",
+                caption: window.lang.translate('Target') + "...",
                 dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('MANEC') + "...",
-                dataField: "quantity",
-                encodeHtml: false
+                encodeHtml: false          
             }],
 
             onSelectionChanged: function (selectedItems) {
                 var data = selectedItems.selectedRowsData[0];
                 if (data) {
-                    //QuotaMonthID = data.id;
-                    //fillMonthlyQuotaForm(data);
+                    targetID = data.id;
+                    fillTargetForm(data);
                 }
             },
             onRowRemoving: function (e) {
@@ -484,676 +472,152 @@ $(document).ready(function () {
                 //$("#gridContainer_QuotaMonth").dxDataGrid("instance").refresh();
             },
         });
-    });
 
-    $('#stockStockHosRefresh').click();
-// Stock Grid End
+ //target Grid End
 
-// Demo Grid
-    $('#demoStockHosRefresh').click(function () {
-        //Quota month Grid
-        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillSisMonthlyQuotasGridx_syssismonthlyquotas&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
-        var demoHos = new DevExpress.data.CustomStore({
-            load: function (loadOptions) {
-                var deferred = $.Deferred(),
-                    args = {};
 
-                if (loadOptions.sort) {
-                    args.orderby = loadOptions.sort[0].selector;
-                    if (loadOptions.sort[0].desc)
-                        args.orderby += " desc";
-                }
+    /**
+    * Target insert
+    * @author Ceydacan Seyrek
+    * @since 17/09/2018
+    */
 
-                args.skip = loadOptions.skip || 0;
-                args.take = loadOptions.take || 12;
+    $("#btn-target-save").on("click", function (e) {
+        e.preventDefault();
+        //alert("geldim click");
+        if ($("#targetForm").validationEngine('validate')) {
 
-                $.ajax({
-                    url: '/Sys/SysYearlyQuotaGrid',
-                    dataType: "json",
-                    data: JSON.stringify({
-                        language_code: $("#langCode").val(),
-                        pk: "GsZVzEYe50uGgNM",
-                        url: "pkFillSisMonthlyQuotasGridx_syssismonthlyquotas",
-                        pkIdentity: $("#publicKey").val(),
-                        page: "",
-                        rows: "",
-                        sort: "",
-                        order: "", //args.orderby,
-                        skip: args.skip,
-                        take: args.take
-                    }),
+            $("#loadingImage_target").loadImager('removeLoadImage');
+            $("#loadingImage_target").loadImager('appendImage');
+
+            var ddDataTargetType = $('#ddslickTargetType').data('ddslick');
+            if (!ddDataTargetType.selectedData.value > 0) {
+                wm.warningMessage('resetOnShown');
+                wm.warningMessage('show', window.lang.translate("Please select Target Type"),
+                    window.lang.translate("Please select Target type"));
+                $('#loadingImage_DdslickTargetType').loadImager('removeLoadImage');
+                return false;
+            }
+            var target_id = ddDataTargetType.selectedData.value;
+
+            var ddDataRoleType = $('#ddslickRoleType').data('ddslick');
+            if (!ddDataRoleType.selectedData.value > 0) {
+                wm.warningMessage('resetOnShown');
+                wm.warningMessage('show', window.lang.translate("Please select Role Type"),
+                    window.lang.translate("Please select Role Type"));
+                $('#loadingImage_DdslickRoleType').loadImager('removeLoadImage');
+                return false;
+            }
+            var role_id = ddDataRoleType.selectedData.value;
+
+            var ddDataUser = $('#ddslickUser').data('ddslick');
+            if (!ddDataUser.selectedData.value > 0) {
+                wm.warningMessage('resetOnShown');
+                wm.warningMessage('show', window.lang.translate("Please select Salesman"),
+                    window.lang.translate("Please select Salesman"));
+                $('#loadingImage_DdslickQuotaYear').loadImager('removeLoadImage');
+                return false;
+            }
+            var user_id = ddDataUser.selectedData.value;
+
+            var ddDataMonth = $('#ddslickMonth').data('ddslick');
+            if (!ddDataMonth.selectedData.value > 0) {
+                wm.warningMessage('resetOnShown');
+                wm.warningMessage('show', window.lang.translate("Please select Month"),
+                    window.lang.translate("Please select Month"));
+                $('#loadingImage_DdslickMonth').loadImager('removeLoadImage');
+                return false;
+            }
+            var month_id = ddDataMonth.selectedData.value;
+
+            var ddDataYear = $('#ddslickYear').data('ddslick');
+            if (!ddDataYear.selectedData.value > 0) {
+                wm.warningMessage('resetOnShown');
+                wm.warningMessage('show', window.lang.translate("Please select Year"),
+                    window.lang.translate("Please select Year"));
+                $('#loadingImage_DdslickMonth').loadImager('removeLoadImage');
+                return false;
+            }
+            var year_id = ddDataYear.selectedData.value;
+
+            var target = $('#txt-target-target').val();
+
+            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?
+            //url=pkInsertAct_syssismonthlyquotas
+            //&sis_quota_id=1--
+            //&model_id=2--
+            //&year=2018--
+            //&month_id=12
+            //&quantity=12--
+            //&pk=GsZVzEYe50uGgNM
+
+            if (!targetID == "") {//update
+                var ajax_InsertTarget = $('#ajaxACL-monthlyQuota').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loadingImage_target",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+
+                    proxy: '/Sys/AddMonthlyQuota',
                     type: 'POST',
-                    contentType: 'application/json',
-                    success: function (result) {
-                        deferred.resolve(result.items, { totalCount: result.totalCount });
-                    },
-                    error: function () {
-                        deferred.reject("Data Loading Error");
-                    },
-                    timeout: 10000
-                });
-                return deferred.promise();
-            },
-            //remove: function (key) {
-            //    var deferred = $.Deferred();
-            //    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_syssismonthlyquotas&id=33&pk=GsZVzEYe50uGgNM
-            //    return $.ajax({
-            //        url: '/Sys/SysDeleteYearlyQuota',
-            //        dataType: "json",
-            //        data: JSON.stringify({
-            //            id: QuotaMonthID,
-            //            pk: "GsZVzEYe50uGgNM",
-            //            url: "pkDeletedAct_syssismonthlyquotas"
-            //        }),
-            //        type: 'POST',
-            //        contentType: 'application/json',
-            //        success: function (result) {
-            //            deferred.resolve(result.items, { totalCount: result.totalCount });
-            //        },
-            //        error: function () {
-            //            deferred.reject("Data remove Error");
-            //        },
-            //        timeout: 10000
-            //    });
-            //}
-        });
-        //Quota month Grid
-        $("#gridContainer_demoStockHos").dxDataGrid({
-
-            showColumnLines: true,
-            showRowLines: true,
-            showBorders: true,
-            dataSource: demoHos,
-            columnHidingEnabled: true,
-            selection: {
-                mode: "single"
-            },
-            hoverStateEnabled: true,
-            editing: {
-                //mode: "batch"
-                mode: "row",
-                //allowAdding: true,
-                //allowUpdating: true,
-                //allowDeleting: true,
-                useIcons: true
-            },
-            "export": {
-                enabled: true,
-                fileName: "demostockHos"
-            },
-            grouping: {
-                contextMenuEnabled: true,
-                expandMode: "rowClick"
-            },
-            groupPanel: {
-                emptyPanelText: "Use the context menu of header columns to group data",
-                visible: true
-            },
-            pager: {
-                allowedPageSizes: [5, 8, 15, 30],
-                showInfo: true,
-                showNavigationButtons: true,
-                showPageSizeSelector: true,
-                visible: true
-            },
-            paging: {
-                pageSize: 8
-            },
-            OnCellPrepared: function (options) {
-
-                var fieldData = options.value;
-                fieldHtml = "";
-
-                fieldHtml = fieldData.value;
-                options.cellElement.html(fieldHtml);
-
-            },
-            filterRow: {
-                visible: true,
-                applyFilter: "auto"
-            },
-            searchPanel: {
-                visible: true,
-                width: 240,
-                placeholder: window.lang.translate('Search') + "...",
-            },
-            headerFilter: {
-                visible: true
-            },
-            columnChooser: {
-                enabled: true,
-                mode: "select"
-            },
-            //columnWidth: {
-            //    autoWidth: true
-            //},
-            columns: [{
-                //    caption: window.lang.translate('Active/Passive'),
-                //    width: 40,
-                //    alignment: 'center',
-                //    encodeHtml: false,
-
-                //    cellTemplate: function (container, options) {
-                //        var fieldHtml;
-                //        var quotamonth_id = options.data.id;
-
-                //        if (options.data.active === 1) {
-                //            //active
-                //            $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
-                //                activepasiveQuotaMonth(quotamonth_id, options.data.active);
-                //                //dm.successMessage('show', window.lang.translate('Active success message...'), window.lang.translate('Active success message...'));
-                //            }).appendTo(container);
-                //        } else if (options.data.active === 0) {
-                //            //pasive
-                //            $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
-                //                activepasiveQuotaMonth(quotamonth_id, options.data.active);
-                //                //dm.successMessage('show', window.lang.translate('Pasive success message...'), window.lang.translate('Pasive success message...'));
-                //            }).appendTo(container);
-                //        }
-                //    }
-                //}, {
-                caption: window.lang.translate('KP no') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Chassis no') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Order no') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Body&extra') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Expected CBU Date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Days in stock') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Production date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Expected ship arrival date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('expected CBU date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Soll reg date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Required delivery date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Park Off') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Location') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Sold/unsold') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Comment') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Price') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('TBA1') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('TBA2') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('EngineType') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Gearbox type') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('FrontTyreMake') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Channel') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Salesman') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Dealer') + "...",
-                dataField: "quantity",
-                    encodeHtml: false
-            }, {
-                caption: window.lang.translate('MANEC') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }],
-
-            onSelectionChanged: function (selectedItems) {
-                var data = selectedItems.selectedRowsData[0];
-                if (data) {
-                    //QuotaMonthID = data.id;
-                    //fillMonthlyQuotaForm(data);
-                }
-            },
-            onRowRemoving: function (e) {
-                //QuotaMonthID = e.key.id;
-                //deleteTrName(trName_id);
-            },
-            onRowRemoved: function (e) {
-                //$("#gridContainer_QuotaMonth").dxDataGrid("instance").refresh();
-            },
-        });
-    });
-
-    $('#demoStockHosRefresh').click();
-// Demo Grid End
-
-// Demo Grid
-    $('#truckstogoStockHosRefresh').click(function () {
-        //Quota month Grid
-        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillSisMonthlyQuotasGridx_syssismonthlyquotas&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
-        var truckstogoHos = new DevExpress.data.CustomStore({
-            load: function (loadOptions) {
-                var deferred = $.Deferred(),
-                    args = {};
-
-                if (loadOptions.sort) {
-                    args.orderby = loadOptions.sort[0].selector;
-                    if (loadOptions.sort[0].desc)
-                        args.orderby += " desc";
-                }
-
-                args.skip = loadOptions.skip || 0;
-                args.take = loadOptions.take || 12;
-
-                $.ajax({
-                    url: '/Sys/SysYearlyQuotaGrid',
-                    dataType: "json",
                     data: JSON.stringify({
-                        language_code: $("#langCode").val(),
+                        url: "pkInsertAct_syssismonthlyquotas",
+                        id: targetID,
+                        target_type_id: target_id,
+                        month_id: month_id,
+                        year_id: year_id,
+                        user_id: user_id,
+                        target: target,
                         pk: "GsZVzEYe50uGgNM",
-                        url: "pkFillSisMonthlyQuotasGridx_syssismonthlyquotas",
-                        pkIdentity: $("#publicKey").val(),
-                        page: "",
-                        rows: "",
-                        sort: "",
-                        order: "", //args.orderby,
-                        skip: args.skip,
-                        take: args.take
-                    }),
-                    type: 'POST',
-                    contentType: 'application/json',
-                    success: function (result) {
-                        deferred.resolve(result.items, { totalCount: result.totalCount });
-                    },
-                    error: function () {
-                        deferred.reject("Data Loading Error");
-                    },
-                    timeout: 10000
+                    })
                 });
-                return deferred.promise();
-            },
-            //remove: function (key) {
-            //    var deferred = $.Deferred();
-            //    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_syssismonthlyquotas&id=33&pk=GsZVzEYe50uGgNM
-            //    return $.ajax({
-            //        url: '/Sys/SysDeleteYearlyQuota',
-            //        dataType: "json",
-            //        data: JSON.stringify({
-            //            id: QuotaMonthID,
-            //            pk: "GsZVzEYe50uGgNM",
-            //            url: "pkDeletedAct_syssismonthlyquotas"
-            //        }),
-            //        type: 'POST',
-            //        contentType: 'application/json',
-            //        success: function (result) {
-            //            deferred.resolve(result.items, { totalCount: result.totalCount });
-            //        },
-            //        error: function () {
-            //            deferred.reject("Data remove Error");
-            //        },
-            //        timeout: 10000
-            //    });
-            //}
-        });
-        //Quota month Grid
-        $("#gridContainer_truckstogoStockHos").dxDataGrid({
+                ajax_InsertTarget.ajaxCallWidget({
+                    onReset: function (event, data) {
+                        resetQuotaMonthForm();
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_targetList").dxDataGrid("instance").refresh();
+                    }
+                })
+                ajax_InsertTarget.ajaxCallWidget('call');
+            }
+            else {//insert
+                var ajax_InsertTarget = $('#ajaxACL-monthlyQuota').ajaxCallWidget({
+                    failureLoadImage: true,
+                    loadingImageID: "loadingImage_target",
+                    triggerSuccessAuto: true,
+                    transactionSuccessText: window.lang.translate('Transaction successful'),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
 
-            showColumnLines: true,
-            showRowLines: true,
-            showBorders: true,
-            dataSource: truckstogoHos,
-            columnHidingEnabled: true,
-            selection: {
-                mode: "single"
-            },
-            hoverStateEnabled: true,
-            editing: {
-                //mode: "batch"
-                mode: "row",
-                //allowAdding: true,
-                //allowUpdating: true,
-                //allowDeleting: true,
-                useIcons: true
-            },
-            "export": {
-                enabled: true,
-                fileName: "truckstogostockHos"
-            },
-            grouping: {
-                contextMenuEnabled: true,
-                expandMode: "rowClick"
-            },
-            groupPanel: {
-                emptyPanelText: "Use the context menu of header columns to group data",
-                visible: true
-            },
-            pager: {
-                allowedPageSizes: [5, 8, 15, 30],
-                showInfo: true,
-                showNavigationButtons: true,
-                showPageSizeSelector: true,
-                visible: true
-            },
-            paging: {
-                pageSize: 8
-            },
-            OnCellPrepared: function (options) {
-
-                var fieldData = options.value;
-                fieldHtml = "";
-
-                fieldHtml = fieldData.value;
-                options.cellElement.html(fieldHtml);
-
-            },
-            filterRow: {
-                visible: true,
-                applyFilter: "auto"
-            },
-            searchPanel: {
-                visible: true,
-                width: 240,
-                placeholder: window.lang.translate('Search') + "...",
-            },
-            headerFilter: {
-                visible: true
-            },
-            columnChooser: {
-                enabled: true,
-                mode: "select"
-            },
-            //columnWidth: {
-            //    autoWidth: true
-            //},
-            columns: [{
-                //    caption: window.lang.translate('Active/Passive'),
-                //    width: 40,
-                //    alignment: 'center',
-                //    encodeHtml: false,
-
-                //    cellTemplate: function (container, options) {
-                //        var fieldHtml;
-                //        var quotamonth_id = options.data.id;
-
-                //        if (options.data.active === 1) {
-                //            //active
-                //            $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
-                //                activepasiveQuotaMonth(quotamonth_id, options.data.active);
-                //                //dm.successMessage('show', window.lang.translate('Active success message...'), window.lang.translate('Active success message...'));
-                //            }).appendTo(container);
-                //        } else if (options.data.active === 0) {
-                //            //pasive
-                //            $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
-                //                activepasiveQuotaMonth(quotamonth_id, options.data.active);
-                //                //dm.successMessage('show', window.lang.translate('Pasive success message...'), window.lang.translate('Pasive success message...'));
-                //            }).appendTo(container);
-                //        }
-                //    }
-                //}, {
-                caption: window.lang.translate('KP no') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Chassis no') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Order no') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Body&extra') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Expected CBU Date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Days in stock') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Production date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Expected ship arrival date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('expected CBU date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Soll reg date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Required delivery date') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Park Off') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Location') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Sold/unsold') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Comment') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Price') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('TBA1') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('TBA2') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('EngineType') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Gearbox type') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('FrontTyreMake') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Channel') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Salesman') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('Dealer') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }, {
-                caption: window.lang.translate('MANEC') + "...",
-                dataField: "quantity",
-                encodeHtml: false
-            }],
-
-            onSelectionChanged: function (selectedItems) {
-                var data = selectedItems.selectedRowsData[0];
-                if (data) {
-                    //QuotaMonthID = data.id;
-                    //fillMonthlyQuotaForm(data);
-                }
-            },
-            onRowRemoving: function (e) {
-                //QuotaMonthID = e.key.id;
-                //deleteTrName(trName_id);
-            },
-            onRowRemoved: function (e) {
-                //$("#gridContainer_QuotaMonth").dxDataGrid("instance").refresh();
-            },
-        });
-    });
-
-    $('#truckstogoStockHosRefresh').click();
-// Demo Grid End
-
-//    /**
-//    * Monthly Quota Form
-//    * @author Ceydacan Seyrek
-//    * @since 17/09/2018
-//    */
-
-//    $("#btn-QuotaMonth-save").on("click", function (e) {
-//        e.preventDefault();
-//        //alert("geldim click");
-//        if ($("#monthlyQuotaForm").validationEngine('validate')) {
-
-//            $("#loadingImage_monthlyQuota").loadImager('removeLoadImage');
-//            $("#loadingImage_monthlyQuota").loadImager('appendImage');
-
-//            var ddDataQuotaType = $('#ddslickQuotaType').data('ddslick');
-//            if (!ddDataQuotaType.selectedData.value > 0) {
-//                wm.warningMessage('resetOnShown');
-//                wm.warningMessage('show', window.lang.translate("Please select Quota type"),
-//                    window.lang.translate("Please select Quota type"));
-//                $('#loadingImage_DdslickQuotaType').loadImager('removeLoadImage');
-//                return false;
-//            }
-//            var sis_quota_id = ddDataQuotaType.selectedData.value;
-
-//            var ddDataVehicleModel = $('#ddslickVehicleModel').data('ddslick');
-//            if (!ddDataVehicleModel.selectedData.value > 0) {
-//                wm.warningMessage('resetOnShown');
-//                wm.warningMessage('show', window.lang.translate("Please select Vehicle Model"),
-//                    window.lang.translate("Please select Quota type"));
-//                $('#loadingImage_DdslickVehicleModel').loadImager('removeLoadImage');
-//                return false;
-//            }
-//            var model_id = ddDataVehicleModel.selectedData.value;
-
-//            var ddDataQuotayear = $('#ddslickQuotaYear').data('ddslick');
-//            if (!ddDataQuotayear.selectedData.value > 0) {
-//                wm.warningMessage('resetOnShown');
-//                wm.warningMessage('show', window.lang.translate("Please select Quota year"),
-//                    window.lang.translate("Please select Quota year"));
-//                $('#loadingImage_DdslickQuotaYear').loadImager('removeLoadImage');
-//                return false;
-//            }
-//            var year = ddDataQuotayear.selectedData.value;
-
-//            var ddDataQuotamonth = $('#ddslickQuotaMonth').data('ddslick');
-//            if (!ddDataQuotamonth.selectedData.value > 0) {
-//                wm.warningMessage('resetOnShown');
-//                wm.warningMessage('show', window.lang.translate("Please select Quota month"),
-//                    window.lang.translate("Please select Quota year"));
-//                $('#loadingImage_DdslickQuotaYear').loadImager('removeLoadImage');
-//                return false;
-//            }
-//            var month_id = ddDataQuotamonth.selectedData.value;
-
-//            var quantity = $('#txt-QuotaMonth-limit').val();
-
-//            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?
-//            //url=pkInsertAct_syssismonthlyquotas
-//            //&sis_quota_id=1--
-//            //&model_id=2--
-//            //&year=2018--
-//            //&month_id=12
-//            //&quantity=12--
-//            //&pk=GsZVzEYe50uGgNM
-
-//            var ajax_InsertYearlyQuota = $('#ajaxACL-monthlyQuota').ajaxCallWidget({
-//                failureLoadImage: true,
-//                loadingImageID: "loadingImage_monthlyQuota",
-//                triggerSuccessAuto: true,
-//                transactionSuccessText: window.lang.translate('Transaction successful'),
-//                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-//                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-
-//                proxy: '/Sys/AddMonthlyQuota',
-//                type: 'POST',
-//                data: JSON.stringify({
-//                    url: "pkInsertAct_syssismonthlyquotas",
-//                    sis_quota_id: sis_quota_id,
-//                    model_id: model_id,
-//                    year: year,
-//                    month_id: month_id,
-//                    quantity: quantity,
-//                    pk: "GsZVzEYe50uGgNM",
-//                })
-//            });
-//            ajax_InsertYearlyQuota.ajaxCallWidget({
-//                onReset: function (event, data) {
-//                    resetQuotaMonthForm();
-//                },
-//                onAfterSuccess: function (event, data) {
-//                    $("#gridContainer_QuotaMonth").dxDataGrid("instance").refresh();
-//                }
-//            })
-//            ajax_InsertYearlyQuota.ajaxCallWidget('call');
-//            return false;
-//        }
-//    })
+                    proxy: '/Sys/AddMonthlyQuota',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        url: "pkInsertAct_syssismonthlyquotas",
+                        target_type_id: target_id,
+                        month_id: month_id,
+                        year_id: year_id,
+                        user_id: user_id,
+                        target: target,
+                        pk: "GsZVzEYe50uGgNM",
+                    })
+                });
+                ajax_InsertTarget.ajaxCallWidget({
+                    onReset: function (event, data) {
+                        resetQuotaMonthForm();
+                    },
+                    onAfterSuccess: function (event, data) {
+                        $("#gridContainer_targetList").dxDataGrid("instance").refresh();
+                    }
+                })
+                ajax_InsertTarget.ajaxCallWidget('call');
+            }
+            targetID = "";
+            return false;
+        }
+    })
 
 //    /**
 //    * reset Monthly Quota Form
@@ -1167,8 +631,8 @@ $(document).ready(function () {
 //    })
 
 //    var resetQuotaMonthForm = function () {
-//        $("#loadingImage_monthlyQuota").loadImager('removeLoadImage');
-//        $("#loadingImage_monthlyQuota").loadImager('appendImage');
+//        $("#loadingImage_target").loadImager('removeLoadImage');
+//        $("#loadingImage_target").loadImager('appendImage');
 
 //        $('#monthlyQuotaForm').validationEngine('hide');
 //        $('#ddslickVehicleModel').ddslick('select', { index: String(0) });
@@ -1176,7 +640,7 @@ $(document).ready(function () {
 //        $('#ddslickQuotaMonth').ddslick('select', { index: String(0) });
 //        $('#ddslickQuotaType').ddslick('select', { index: String(0) });
 
-//        $("#loadingImage_MonthlyQuota").loadImager('removeLoadImage');
+//        $("#loadingImage_target").loadImager('removeLoadImage');
 
 //        return false;
 //    }
@@ -1188,8 +652,8 @@ $(document).ready(function () {
 //    */
 
 //    window.fillMonthlyQuotaForm = function (data) {
-//        $("#loadingImage_MonthlyQuota").loadImager('removeLoadImage');
-//        $("#loadingImage_MonthlyQuota").loadImager('appendImage');
+//        $("#loadingImage_target").loadImager('removeLoadImage');
+//        $("#loadingImage_target").loadImager('appendImage');
 
 //        $('#ddslickVehicleModel').ddslick('select', { index: 3 });
 //        $('#ddslickQuotaYear').ddslick('select', { index: 2 });
@@ -1214,53 +678,9 @@ $(document).ready(function () {
 //            }
 //        );
 
-//        $("#loadingImage_MonthlyQuota").loadImager('removeLoadImage');
+//        $("#loadingImage_target").loadImager('removeLoadImage');
 //        return false;
 //    }
 
-//    /**
-//* Active Passive Monthly Quota Form
-//* @author Ceydacan Seyrek
-//* @since 16/10/2018 activepasiveQuotaMonth(quotamonth_id,
-//*/
-//    window.activepasiveQuotaMonth = function (quotamonth_id, active) {
-
-//        var transactionSuccessMessage;
-
-//        if (active === 1) {
-//            //active
-//            transactionSuccessMessage = window.lang.translate('Active successful');
-//        } else {
-//            //pasive
-//            transactionSuccessMessage = window.lang.translate('Pasive successful');
-//        }
-
-//        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateMakeActiveOrPassive_syssismonthlyquotas&id=29&pk=GsZVzEYe50uGgNM
-//        var ajax_activepasiveTrInfolist = $('#ajaxACL-QuotaMonth').ajaxCallWidget({
-//            failureLoadImage: true,
-//            loadingImageID: "loadingImage_DdslickQuotaMonthGrid",
-//            triggerSuccessAuto: true,
-//            transactionSuccessText: window.lang.translate('Transaction successful'),
-//            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-//            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-//            proxy: '/Sys/SysActivePassiveYearlyQuota',
-//            type: "POST",
-//            data: JSON.stringify({
-//                id: quotamonth_id,
-//                pk: "GsZVzEYe50uGgNM",
-//                url: "pkUpdateMakeActiveOrPassive_syssismonthlyquotas"
-//            }),
-
-//        });
-//        ajax_activepasiveTrInfolist.ajaxCallWidget({
-//            onReset: function (event, data) {
-
-//            },
-//            onAfterSuccess: function (event, data) {
-//                $("#gridContainer_stockHos").dxDataGrid("instance").refresh();
-//            }
-//        })
-//        ajax_activepasiveTrInfolist.ajaxCallWidget('call');
-//    }
 });
 

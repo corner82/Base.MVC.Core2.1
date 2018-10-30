@@ -52,55 +52,8 @@ $(document).ready(function () {
     $('#campaignForm').validationEngine(); 
     $('#campaignNameForm').validationEngine(); 
 
-//Chassis
-    $("#loadingImage_DdslickChassis").loadImager('removeLoadImage');
-    $("#loadingImage_DdslickChassis").loadImager('appendImage');
 
-    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkStockVehiclesDdList_infostock&language_code=en&pk=GsZVzEYe50uGgNM
-    var ajaxACLResources_chassis = $('#ajax_DdslickChassis').ajaxCallWidget({
-        failureLoadImage: true,
-        loadingImageID: "loadingImage_DdslickChassis",
-        triggerSuccessAuto: true,
-        transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-        proxy: '/DefaultPost/DefaultPostModel',
-        type: "POST",
-        data: JSON.stringify({
-            language_code: $("#langCode").val(),
-            pk: "GsZVzEYe50uGgNM",
-            url: "pkStockVehiclesDdList_infostock",
-            pkIdentity: $("#publicKey").val()
-        })
-    });
-
-    ajaxACLResources_chassis.ajaxCallWidget({
-        onReset: function (event, data) {
-
-        },
-        onSuccess: function (event, datachassis) {
-
-            var cbdata_chassis = $.parseJSON(datachassis);
-            cbdata_chassis.splice(0, 0,
-                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-            );
-
-            $('#ddslickChassis').ddslick({
-                data: cbdata_chassis,
-                width: '100%',
-                search: true,
-                searchText: window.lang.translate('Search'),
-            })
-            $('#loadingImage_DdslickChassis').loadImager('removeLoadImage');
-        },
-        onAfterSuccess: function (event, data) {
-            $('#loadingImage_DdslickChassis').loadImager('removeLoadImage');
-        }
-    })
-    ajaxACLResources_chassis.ajaxCallWidget('call');
-//Chassis End
-
-//model
+    //model
     $('#loadingImage_DdslickModel').loadImager('removeLoadImage');
     $("#loadingImage_DdslickModel").loadImager('appendImage');
 
@@ -138,6 +91,63 @@ $(document).ready(function () {
                 //search: true,
                 //searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
+
+                    $('#ddslickChassis').ddslick('destroy');
+
+                    if (selectedData.selectedData.value > 0) {
+
+
+                        var vehicle_groups_id = selectedData.selectedData.value;
+
+                        //Chassis
+                        $("#loadingImage_DdslickChassis").loadImager('removeLoadImage');
+                        $("#loadingImage_DdslickChassis").loadImager('appendImage');
+
+                        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkStockVehiclesDdList_infostock&language_code=en&pk=GsZVzEYe50uGgNM
+                        var ajaxACLResources_chassis = $('#ajax_DdslickChassis').ajaxCallWidget({
+                            failureLoadImage: true,
+                            loadingImageID: "loadingImage_DdslickChassis",
+                            triggerSuccessAuto: true,
+                            transactionSuccessText: window.lang.translate('Transaction successful'),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            proxy: '/Campaign/CampaignChassis',
+                            type: "POST",
+                            data: JSON.stringify({
+                                language_code: $("#langCode").val(),
+                                pk: "GsZVzEYe50uGgNM",
+                                url: "pkStockForVehiclesGroupDdList_infostock",
+                                pkIdentity: $("#publicKey").val(),
+                                vehicle_groups_id: vehicle_groups_id
+                            })
+                        });
+
+                        ajaxACLResources_chassis.ajaxCallWidget({
+                            onReset: function (event, data) {
+
+                            },
+                            onSuccess: function (event, datachassis) {
+
+                                var cbdata_chassis = $.parseJSON(datachassis);
+                                cbdata_chassis.splice(0, 0,
+                                    { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                                );
+
+                                $('#ddslickChassis').ddslick({
+                                    data: cbdata_chassis,
+                                    width: '100%',
+                                    search: true,
+                                    searchText: window.lang.translate('Search'),
+                                })
+                                $('#loadingImage_DdslickChassis').loadImager('removeLoadImage');
+                            },
+                            onAfterSuccess: function (event, data) {
+                                $('#loadingImage_DdslickChassis').loadImager('removeLoadImage');
+                            }
+                        })
+                        ajaxACLResources_chassis.ajaxCallWidget('call');
+                        //Chassis End
+                    }
                 }
             })
             $('#loadingImage_DdslickModel').loadImager('removeLoadImage');
