@@ -78,12 +78,13 @@ $(document).ready(function () {
                 search: true,
                 searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
-
+                    /*
                     if (selectedData.selectedData.value > 0) {
 
                     } else {
 
                     }
+                    */
                 }
             });
 
@@ -93,7 +94,7 @@ $(document).ready(function () {
 
         },
         onAfterSuccess: function (event, data) {
-            $("#loadingImage_DdslickRole").loadImager('removeLoadImage');
+            $("#loading-image-role").loadImager('removeLoadImage');
         }
     })
     ajaxACLResources_role.ajaxCallWidget('call');
