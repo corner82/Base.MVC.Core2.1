@@ -78,12 +78,13 @@ $(document).ready(function () {
                 search: true,
                 searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
-
+                    /*
                     if (selectedData.selectedData.value > 0) {
 
                     } else {
 
                     }
+                    */
                 }
             });
 

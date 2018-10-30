@@ -34,9 +34,93 @@ $(document).ready(function () {
     //alert(langCode);
 
 
-    $('#commissionnameForm').validationEngine();
+    $('#commissionForm').validationEngine();
 
+    $('#start-datetimepicker1').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
+    $('#start-datetimepicker2').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
+    $('#start-datetimepicker3').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
+    $('#start-datetimepicker4').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
+    $('#start-datetimepicker5').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
+    $('#start-datetimepicker6').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
+    $('#start-datetimepicker7').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
 
+    $('#finish-datetimepicker1').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
+    $('#finish-datetimepicker2').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
+    $('#finish-datetimepicker3').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
+    $('#finish-datetimepicker4').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
+    $('#finish-datetimepicker5').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
+    $('#finish-datetimepicker6').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
+    $('#finish-datetimepicker7').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
     //////////////////////////////////////////////////////////////////////////////////////////////
     /**
     * CommissionName ddSlick
@@ -78,12 +162,13 @@ $(document).ready(function () {
                 search: true,
                 searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
-
+                    /*
                     if (selectedData.selectedData.value > 0) {
 
                     } else {
 
                     }
+                    */
                 }
             });
 

@@ -14,7 +14,9 @@
     <link href="~/adm/plugins/iCheck/minimal/minimal.css" rel="stylesheet" type="text/css" />
 
     <!-- Date Picker -->
-    <link href="~/adm/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet">
+    <!--<link href="~/adm/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet">-->
+    <!-- Date time Picker -->
+    <link href="~/adm/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet">
 
     <!-- devex -->
     <link rel="stylesheet" type="text/css" href="~/adm/plugins/devextreme/css/dx.spa.css" />
@@ -123,16 +125,16 @@
                                                     </div>
                                                 </div>
                                                 <!--
-            <div class="form-group">
-                <label><span lang="en">Feature name (Backoffice)</span></label>
-                <div class="input-group">
-                    <div class="input-group-addon">
-                        <i class="fa fa-user"></i>
-                    </div>
-                    <input type="text" class="form-control validate[required]" placeholder="Feature name (Backoffice)" id="txt-featurename-bo">
-                </div>
-            </div>
-        -->
+                                                    <div class="form-group">
+                                                        <label><span lang="en">Feature name (Backoffice)</span></label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-user"></i>
+                                                            </div>
+                                                            <input type="text" class="form-control validate[required]" placeholder="Feature name (Backoffice)" id="txt-featurename-bo">
+                                                        </div>
+                                                    </div>
+                                                -->
                                             </div>
                                             <!-- /.col -->
 
@@ -188,7 +190,7 @@
                                                     </div>
                                                 </div>
 
-                                                
+
                                             </div>
 
                                             <!-- /.col -->
@@ -354,7 +356,6 @@
                                         </div>
                                     </div>
                                 </div><!-- /.tab-content -->
-
                                 <!--Key Account Manager -->
                                 <div class="tab-pane" id="tab_3">
                                     <form id='commissionForm3' method="get">
@@ -515,7 +516,6 @@
                                         </div>
                                     </div>
                                 </div><!-- /.tab-content -->
-                                
                                 <!--Head of Key Account -->
                                 <div class="tab-pane" id="tab_4">
                                     <form id='commissionForm4' method="get">
@@ -679,7 +679,6 @@
                                         </div>
                                     </div>
                                 </div><!-- /.tab-content -->
-                                
                                 <!--PCD Salesman -->
                                 <div class="tab-pane" id="tab_5">
                                     <form id='commissionForm5' method="get">
@@ -831,7 +830,6 @@
                                         </div>
                                     </div>
                                 </div><!-- /.tab-content -->
-                                
                                 <!--PCD Coordinator -->
                                 <div class="tab-pane" id="tab_6">
                                     <form id='commissionForm6' method="get">
@@ -960,7 +958,6 @@
                                         </div>
                                     </div>
                                 </div><!-- /.tab-content -->
-                                
                                 <!--Head of PCD -->
                                 <div class="tab-pane" id="tab_7">
                                     <form id='commissionForm7' method="get">
@@ -1123,8 +1120,8 @@
                                     </div>
                                 </div><!-- /.tab-content -->
                             </div>
+                        </div>
                     </div>
-                </div>
 
             </section><!-- /.Left col -->
 
@@ -1142,6 +1139,8 @@
 
     <!-- datepicker -->
     <script src="~/adm/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.js" type="text/javascript"></script>
+    <!-- datetimepicker -->
+    <script src="~/adm/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" type="text/javascript"></script>
 
     <!-- Slimscroll -->
     <script src="~/adm/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
@@ -1170,7 +1169,7 @@
     <script src="@ViewBag.defaultDevExLangPath"></script>
 
 
-    <script src="~/adm/dist/js/pages/commission/commissionname.js" type="text/javascript"></script>
+    <script src="~/adm/dist/js/pages/commission/commission.js" type="text/javascript"></script>
 
     <script>
         $(document).ready(function () {
