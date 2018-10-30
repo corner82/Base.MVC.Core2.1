@@ -1624,6 +1624,9 @@
             onSuccess: function (e, data) {
                 $(e.target).ajaxCallWidget("evaluateSuccessMessage", e, data);
             },
+            onSuccessWithoutDataFormat: function (e, data) {
+                
+            },
             
         },
 
@@ -1775,8 +1778,8 @@
                         }
 
                         else {
-                            
-                            self._trigger('onSuccess', event, jsonString);
+                            self._trigger('onSuccessWithoutDataFormat', event, jsonString);
+                            //self._trigger('onSuccess', event, jsonString);
                         }
 
                     } else {

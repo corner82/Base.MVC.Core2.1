@@ -17,7 +17,7 @@ namespace Base.MVC.Models.HttpRequest.Deal
         public string vin_number { get; set; }
         public string km { get; set; }
         public string brand { get; set; }
-        public string vehicle_brand { get; set; }
+        //public string vehicle_brand { get; set; }
         public string vehicle_model { get; set; }
         public string license_plate { get; set; }
         public string model_year { get; set; }
@@ -27,6 +27,7 @@ namespace Base.MVC.Models.HttpRequest.Deal
         public string vehicle_location { get; set; }
         public string vehicle_up_desc { get; set; }
         public string vehicle_type_of_body { get; set; }
+
 
     }
 }

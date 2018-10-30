@@ -254,6 +254,7 @@
                             url: "pkFillProjectVehicleTIGridx_infoprojecttradeinvehicle",
                             pkIdentity: $("#publicKey").val(),
                             project_id: parseInt($("#deal_hidden").deal("getDealID")),
+                            //project_id: parseInt(80),
                             page: "",
                             rows: "",
                             sort: "",
@@ -349,7 +350,7 @@
                     {
                         //allowGrouping: false,
                         caption: "Vehicle brand",
-                        dataField: "vehicle_brand"
+                        dataField: "brand"
                     },
                     {
                         caption: "Vehicle loc.",
@@ -484,15 +485,15 @@
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
-                    url: "pkInsertAct_infoprojectvehiclemodels",
+                    url: "pkInsertAct_infoprojecttradeinvehicle",
                     pkIdentity: $("#publicKey").val(),
                     project_id: parseInt(dealID),
-                    //project_id : 1,
+                    //project_id : 80,
                     engine_number: $("#number_engineTradeIn").val(),
                     vin_number: $("#number_vinTradeIn").val(),
                     km: $("#number_kmTradeIn").val(),
-                    brand: $("#text_vehicleBrandTradeIn").val(),
-                    vehicle_brand: $("#text_vehicleBrandTradeIn").val(),
+                    brand: $("#text_brandTradeIn").val(),
+                    //vehicle_brand: $("#text_vehicleBrandTradeIn").val(),
                     vehicle_model: $("#text_modelTradeIn").val(),
                     license_plate: $("#text_licenseTradeIn").val(),
                     model_year: $("#text_modelYearTradeIn").val(),

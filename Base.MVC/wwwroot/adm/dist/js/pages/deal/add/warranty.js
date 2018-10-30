@@ -367,6 +367,7 @@
                             url: "pkFillProjectWarrantiesGridx_infoprojectwarranties",
                             pkIdentity: $("#publicKey").val(),
                             project_id: parseInt($("#deal_hidden").deal("getDealID")),
+                            //project_id : parseInt(80),
                             page: "",
                             rows: "",
                             sort: "",
