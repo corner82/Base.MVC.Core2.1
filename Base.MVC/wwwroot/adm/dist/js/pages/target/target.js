@@ -30,6 +30,9 @@ $(document).ready(function () {
     $("#loadingImage_DdslickTargetType").loadImager();
     $("#loadingImage_DdslickRoleType").loadImager();
     $("#loadingImage_DdslickUser").loadImager();
+    $("#loadingImage_DdslickMonth").loadImager();
+    $("#loadingImage_DdslickYear").loadImager();
+    $("#loadingImage_target").loadImager();
 
     //to Monthly Quota form grid loading-image
     $("#loadingImage_targetGrid").loadImager();
@@ -137,20 +140,19 @@ $(document).ready(function () {
                         $("#loadingImage_DdslickUser").loadImager('appendImage');
 
                         //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkVehiclesEndgroupsFixCostDdList_sysvehiclesendgroups&language_code=en&pk=GsZVzEYe50uGgNM&vehicle_groups_id=1
-                        var ajaxACLResources_user = $('#ajax_DdslickVehicle').ajaxCallWidget({
+                        var ajaxACLResources_user = $('#ajax_DdslickUser').ajaxCallWidget({
                             failureLoadImage: true,
                             loadingImageID: "loadingImage_DdslickUser",
                             triggerSuccessAuto: true,
                             transactionSuccessText: window.lang.translate('Transaction successful'),
                             transactionFailureText: window.lang.translate("Service URL not found, please report error"),
                             dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-                            proxy: '/Vehicle/SysVehicleEndGroup',
+                            proxy: '/DefaultPost/DefaultPostModel',
                             type: "POST",
                             data: JSON.stringify({
                                 language_code: $("#langCode").val(),
                                 pk: "GsZVzEYe50uGgNM",
-                                url: "pkVehiclesEndgroupsFixCostDdList_sysvehiclesendgroups",
-                                vehicle_groups_id: ddslick_roleId,
+                                url: "pkJustYearsDdList_sysmonths",
                                 pkIdentity: $("#publicKey").val()
                             })
                         });
@@ -345,7 +347,7 @@ $(document).ready(function () {
                     timeout: 10000
                 });
                 return deferred.promise();
-            },
+            }
             //remove: function (key) {
             //    var deferred = $.Deferred();
             //    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_syssismonthlyquotas&id=33&pk=GsZVzEYe50uGgNM
@@ -441,15 +443,23 @@ $(document).ready(function () {
             },
             columns: [{
                 caption: window.lang.translate('Target type') + "...",
-                dataField: "quantity",
+                dataField: "name",
                 encodeHtml: false
             }, {
                 caption: window.lang.translate('Role type') + "...",
-                dataField: "quantity",
+                dataField: "vehicle_groups_name",
                 encodeHtml: false
             }, {
                 caption: window.lang.translate('Salesman') + "...",
-                dataField: "quantity",
+                dataField: "name",
+                encodeHtml: false
+            }, {
+                caption: window.lang.translate('Month') + "...",
+                dataField: "month_name",
+                encodeHtml: false
+            }, {
+                caption: window.lang.translate('Year') + "...",
+                dataField: "year",
                 encodeHtml: false
             }, {
                 caption: window.lang.translate('Target') + "...",
@@ -575,7 +585,7 @@ $(document).ready(function () {
                 });
                 ajax_InsertTarget.ajaxCallWidget({
                     onReset: function (event, data) {
-                        resetQuotaMonthForm();
+                        resetTargetForm();
                     },
                     onAfterSuccess: function (event, data) {
                         $("#gridContainer_targetList").dxDataGrid("instance").refresh();
@@ -606,7 +616,7 @@ $(document).ready(function () {
                 });
                 ajax_InsertTarget.ajaxCallWidget({
                     onReset: function (event, data) {
-                        resetQuotaMonthForm();
+                        resetTargetForm();
                     },
                     onAfterSuccess: function (event, data) {
                         $("#gridContainer_targetList").dxDataGrid("instance").refresh();
@@ -619,68 +629,81 @@ $(document).ready(function () {
         }
     })
 
-//    /**
-//    * reset Monthly Quota Form
-//    * @author Ceydacan Seyrek
-//    * @since 10/09/2018
-//    */
-//    $("#btn-QuotaMonth-clear").on("click", function (e) {
-//        e.preventDefault();
-//        resetQuotaMonthForm();
-//        return false;
-//    })
+    /**
+    * reset Target Form
+    * @author Ceydacan Seyrek
+    * @since 30/10/2018
+    */
+    $("#btn-target-clear").on("click", function (e) {
+        e.preventDefault();
+        resetTargetForm();
+        return false;
+    })
 
-//    var resetQuotaMonthForm = function () {
-//        $("#loadingImage_target").loadImager('removeLoadImage');
-//        $("#loadingImage_target").loadImager('appendImage');
+    var resetTargetForm = function () {
+        $("#loadingImage_target").loadImager('removeLoadImage');
+        $("#loadingImage_target").loadImager('appendImage');
 
-//        $('#monthlyQuotaForm').validationEngine('hide');
-//        $('#ddslickVehicleModel').ddslick('select', { index: String(0) });
-//        $('#ddslickQuotaYear').ddslick('select', { index: String(0) });
-//        $('#ddslickQuotaMonth').ddslick('select', { index: String(0) });
-//        $('#ddslickQuotaType').ddslick('select', { index: String(0) });
+        $('#monthlyQuotaForm')[0].reset(); 
+        $('#monthlyQuotaForm').validationEngine('hide');
 
-//        $("#loadingImage_target").loadImager('removeLoadImage');
+        $('#ddslickUser').ddslick('destroy');
+        $('#ddslickTargetType').ddslick('select', { index: String(0) });
+        $('#ddslickYear').ddslick('select', { index: String(0) });
+        $('#ddslickMonth').ddslick('select', { index: String(0) });
+        $('#ddslickRoleType').ddslick('select', { index: String(0) });
 
-//        return false;
-//    }
+        $("#loadingImage_target").loadImager('removeLoadImage');
 
-//    /**
-//    * Fill Monthly Quota Form form
-//    * @author Ceydacan Seyrek
-//    * @since 17/09/2018
-//    */
+        return false;
+    }
 
-//    window.fillMonthlyQuotaForm = function (data) {
-//        $("#loadingImage_target").loadImager('removeLoadImage');
-//        $("#loadingImage_target").loadImager('appendImage');
+    /**
+    * Fill Target form
+    * @author Ceydacan Seyrek
+    * @since 30/10/2018
+    */
 
-//        $('#ddslickVehicleModel').ddslick('select', { index: 3 });
-//        $('#ddslickQuotaYear').ddslick('select', { index: 2 });
-//        $('#ddslickQuotaMonth').ddslick('select', { index: 2 });
-//        document.getElementById("txt-QuotaMonth-limit").value = data.quantity;
+    window.fillTargetForm = function (data) {
+        $("#loadingImage_target").loadImager('removeLoadImage');
+        $("#loadingImage_target").loadImager('appendImage');
 
-//        //$('#ddslickQuotaType').ddslick('selectByValue',
-//        //    {
-//        //        index: '' + data.id + '',
-//        //        text: '' + data.name + ''
-//        //    }
-//        //);
+        //ddslick_roleId = data.region_id;
+        //ddslick_role_name = data.region_name;
 
-//        $('#ddslickQuotaYear').ddslick('selectByValue',
-//            {
-//                index: '' + data.year + ''
-//            }
-//        );
-//        $('#ddslickQuotaMonth').ddslick('selectByValue',
-//            {
-//                index: '' + data.month_id + ''
-//            }
-//        );
+        //ddslick_userId = data.city_id;
+        //ddslick_user_name = data.city_name;
 
-//        $("#loadingImage_target").loadImager('removeLoadImage');
-//        return false;
-//    }
+        //$('#ddslickRoleType').ddslick('selectByValue',
+        //    {
+        //        index: '' + data.country_id + '',
+        //        text: '' + data.country_name + ''
+        //    }
+        //);
+
+        //$('#ddslickTargetType').ddslick('selectByValue',
+        //    {
+        //        index: '' + data.country_id + '',
+        //        text: '' + data.country_name + ''
+        //    }
+        //);
+
+        //$('#ddslickYear').ddslick('selectByValue',
+        //    {
+        //        index: '' + data.year + ''
+        //    }
+        //);
+
+        //$('#ddslickMonth').ddslick('selectByValue',
+        //    {
+        //        index: '' + data.month_id + ''
+        //    }
+        //);
+        //document.getElementById("txt-target-target").value = data.quantity;
+
+        $("#loadingImage_target").loadImager('removeLoadImage');
+        return false;
+    }
 
 });
 
