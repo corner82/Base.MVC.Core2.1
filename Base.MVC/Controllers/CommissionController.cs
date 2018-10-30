@@ -56,7 +56,7 @@ namespace Base.MVC.Controllers
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         /// <summary>
-        /// Dropdown Body type DdSlick
+        /// Dropdown Role DdSlick
         /// Gül Özdemir
         /// </summary>
         /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkCommissionRolesDdList_syscommissionroles&language_code=en&pk=GsZVzEYe50uGgNM
@@ -83,6 +83,34 @@ namespace Base.MVC.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Dropdown Commissionname DdSlick
+        /// Gül Özdemir
+        /// </summary>
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkCommissionDefinitionsDdList_syscommissiondefinitions&language_code=en&pk=GsZVzEYe50uGgNM
+        //[SessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> CommissionNameDdslick([FromBody] DefaultPostModel postModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(postModel);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model satate is not valid");
+            }
+        }
         /// <summary>
         /// get CommissionName List
         /// Gül Özdemir
