@@ -28,75 +28,160 @@ $(document).ready(function () {
     //to Commission form grid loading-image
     $("#loading-image-commissionnameGrid").loadImager();
 
-    $("#loading-image-role").loadImager();
+    $("#loading-image-commissionname").loadImager();
    
     var langCode = $("#langCode").val();
     //alert(langCode);
 
 
-    $('#commissionnameForm').validationEngine();
+    $('#commissionForm').validationEngine();
 
+    $('#start-datetimepicker1').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
+    $('#start-datetimepicker2').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
+    $('#start-datetimepicker3').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
+    $('#start-datetimepicker4').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
+    $('#start-datetimepicker5').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
+    $('#start-datetimepicker6').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
+    $('#start-datetimepicker7').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
 
+    $('#finish-datetimepicker1').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
+    $('#finish-datetimepicker2').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
+    $('#finish-datetimepicker3').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
+    $('#finish-datetimepicker4').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
+    $('#finish-datetimepicker5').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
+    $('#finish-datetimepicker6').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
+    $('#finish-datetimepicker7').datetimepicker({
+        locale: langCode,
+        format: 'yyyy/mm/dd hh:ii',
+        autoclose: true,
+        todayBtn: true
+    });
     //////////////////////////////////////////////////////////////////////////////////////////////
     /**
-    * Role ddSlick
+    * CommissionName ddSlick
     * @returns 
     * @author Gül Özdemir
-    * @since 29/10/2018
+    * @since 31/10/2018
     */
-    $('#loading-image-role').loadImager('removeLoadImage');
-    $('#loading-image-role').loadImager('appendImage');
+    $('#loading-image-commissionname').loadImager('removeLoadImage');
+    $('#loading-image-commissionname').loadImager('appendImage');
 
     //role servisi gelince değişecek
-    var ajaxACLResources_role = $('#ajaxACL-role').ajaxCallWidget({
+    var ajaxACLResources_commissionname = $('#ajaxACL-commissionname').ajaxCallWidget({
         failureLoadImage: true,
-        loadingImageID: "loading-image-role",
+        loadingImageID: "loading-image-commissionname",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
         transactionFailureText: window.lang.translate("Service URL not found, please report error"),
         dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-        proxy: '/Vehicle/SysVehicleGroups/',
+        proxy: '/Commission/CommissionNameDdslick/',
         type: "POST",
         data: JSON.stringify({
             language_code: $("#langCode").val(),
             pk: "GsZVzEYe50uGgNM",
-            url: "pkVehicleGroupsDdList_sysvehiclegroups",
+            url: "pkCommissionDefinitionsDdList_syscommissiondefinitions",
             pkIdentity: $("#publicKey").val()
         })
     });
 
-    ajaxACLResources_role.ajaxCallWidget({
-        onSuccess: function (event, datarole) {
-            var cbdata_role = $.parseJSON(datarole);
-            cbdata_role.splice(0, 0,
+    ajaxACLResources_commissionname.ajaxCallWidget({
+        onSuccess: function (event, datacommissionname) {
+            var cbdata_commissionname = $.parseJSON(datacommissionname);
+            cbdata_commissionname.splice(0, 0,
                 { text: window.lang.translate('ALL'), value: 0, selected: true, description: "" }
             );
 
-            $('#dropdownRole').ddslick({
-                data: cbdata_role,
+            $('#dropdownCommissionname').ddslick({
+                data: cbdata_commissionname,
                 width: '100%',
                 search: true,
                 searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
-
+                    /*
                     if (selectedData.selectedData.value > 0) {
 
                     } else {
 
                     }
+                    */
                 }
             });
 
-            $("#loading-image-role").loadImager('removeLoadImage');
+            $("#loading-image-commissionname").loadImager('removeLoadImage');
         },
         onReset: function (event, data) {
 
         },
         onAfterSuccess: function (event, data) {
-            $("#loadingImage_DdslickRole").loadImager('removeLoadImage');
+            $("#loading-image-commissionname").loadImager('removeLoadImage');
         }
     })
-    ajaxACLResources_role.ajaxCallWidget('call');
+    ajaxACLResources_commissionname.ajaxCallWidget('call');
 
 
     //////////////////////////////////////////////////////////////////////////////////////////////

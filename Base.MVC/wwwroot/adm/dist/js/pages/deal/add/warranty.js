@@ -38,6 +38,7 @@
     $("#deal_hidden").organizeTabs({
         onAftertab_Warranty: function (e) {
 
+
             //----------------------------------dropdowns begin-------------------------------------------------
             /**
             * ddslick vehicle groups (body) dropdown 
