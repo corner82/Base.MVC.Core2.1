@@ -24,23 +24,22 @@ $(document).ready(function () {
     //to body form
     //to body feature name form
     
-    $("#loading-image-bodyname").loadImager();
-    $("#loading-image-body").loadImager();
-    $("#loading-image-bodytype").loadImager();
-    $("#loading-image-vehiclemodel").loadImager();
+    $("#loading-image-bodyextraname").loadImager();
+    $("#loading-image-bodyextra").loadImager();
     $("#loading-image-supplier").loadImager();
-    $("#loading-image-fbodyname").loadImager();
+    $("#loading-image-fbodyextraname").loadImager();
 
     $("#loading-image-featurename").loadImager();
 
     //to body feature name form grid loading-image
-    $("#loading-image-bodynameGrid").loadImager();
+    $("#loading-image-bodyextranameGrid").loadImager();
     //to body form grid loading-image
-    $("#loading-image-bodyGrid").loadImager();
+    $("#loading-image-bodyextraGrid").loadImager();
 
 
-    var selectedBodynameId = 0;
-    var selectedBodyId = 0;
+    var selectedBodyextranameId = 0;
+    var selectedBodyextraname = "";
+    var selectedBodyextraId = 0;
 
     var langCode = $("#langCode").val();
     //alert(langCode);
@@ -71,119 +70,10 @@ $(document).ready(function () {
 
     tab_disable();
 
-    $('#bodynameForm').validationEngine();
-    $('#bodyForm').validationEngine();
+    $('#bodyextranameForm').validationEngine();
+    $('#bodyextraForm').validationEngine();
 
-
-
-    //Body Type
-    //Options
-
-    $('#loading-image-bodytype').loadImager('removeLoadImage');
-    $('#loading-image-bodytype').loadImager('appendImage');
-
-    var ajaxACLResources_bodytype = $('#ajaxACL-bodytype').ajaxCallWidget({
-        failureLoadImage: true,
-        loadingImageID: "loading-image-bodytype",
-        triggerSuccessAuto: true,
-        transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-        proxy: '/Accessory/BodyTypeDdslick/',
-        type: 'POST',
-        data: JSON.stringify({
-            language_code: $("#langCode").val(),
-            pk: "GsZVzEYe50uGgNM",
-            url: "pkBodyFeatureTypesDdList_sysaccbodytypes",
-            pkIdentity: $("#publicKey").val()
-        })
-    });
-    ajaxACLResources_bodytype.ajaxCallWidget({
-        onSuccess: function (event, databodytype) {
-            var cbdata_bodytype = $.parseJSON(databodytype);
-            cbdata_bodytype.splice(0, 0,
-                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-            );
-            $('#dropdownBodyType').ddslick({
-                data: cbdata_bodytype,
-                width: '100%',
-                search: true,
-                searchText: window.lang.translate('Search'),
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loading-image-bodytype").loadImager('removeLoadImage');
-        },
-        onReset: function (event, data) {
-
-        },
-        onAfterSuccess: function (event, data) {
-            $("#loading-image-bodytype").loadImager('removeLoadImage');
-        }
-    })
-    ajaxACLResources_bodytype.ajaxCallWidget('call');
-
-
-    //CLA, TGM, TGS, VW, XHCV
-
-    $('#loading-image-vehiclemodel').loadImager('removeLoadImage');
-    $('#loading-image-vehiclemodel').loadImager('appendImage');
-
-    var ajaxACLResources_vehiclemodel = $('#ajaxACL-vehiclemodel').ajaxCallWidget({
-        failureLoadImage: true,
-        loadingImageID: "loading-image-vehiclemodel",
-        triggerSuccessAuto: true,
-        transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-        proxy: '/Vehicle/SysVehicleGroups/',
-        type: "POST",
-        data: JSON.stringify({
-            language_code: $("#langCode").val(),
-            pk: "GsZVzEYe50uGgNM",
-            url: "pkVehicleGroupsDdList_sysvehiclegroups",
-            pkIdentity: $("#publicKey").val()
-        })
-    });
-
-    ajaxACLResources_vehiclemodel.ajaxCallWidget({
-        onSuccess: function (event, datamodel) {
-            var cbdata_model = $.parseJSON(datamodel);
-            cbdata_model.splice(0, 0,
-                { text: window.lang.translate('ALL'), value: 0, selected: true, description: "" }
-            );
-
-            $('#dropdownVehicleModel').ddslick({
-                data: cbdata_model,
-                width: '100%',
-                search: true,
-                searchText: window.lang.translate('Search'),
-                onSelected: function (selectedData) {
-
-                    if (selectedData.selectedData.value > 0) {
-                        //vehicleModel = selectedData.selectedData.text;
-                        //ddslick_vehicleModelId = selectedData.selectedData.value;
-                    } else {
-                        //vehicleModel = "";
-                    }
-                }
-            });
-
-            $("#loading-image-vehiclemodel").loadImager('removeLoadImage');
-        },
-        onReset: function (event, data) {
-
-        },
-        onAfterSuccess: function (event, data) {
-            $("#loadingImage_DdslickVehicleModel").loadImager('removeLoadImage');
-        }
-    })
-    ajaxACLResources_vehiclemodel.ajaxCallWidget('call');
-
+    
     //supplier
 
     $('#loading-image-supplier').loadImager('removeLoadImage');
@@ -234,72 +124,19 @@ $(document).ready(function () {
     })
     ajaxACLResources_supplier.ajaxCallWidget('call');
 
-    //Feature body Name (Back office / Salesman)
-    //Servisten Name ve Description Alanları dolu gelecek. Biri Backoffice, diğeri Salesman için. 
-    //BodyFeatureNameDdslick
-    //pkAccDeffSaBoDdList_sysaccdeff 
-
-    $('#loading-image-fbodyname').loadImager('removeLoadImage');
-    $('#loading-image-fbodyname').loadImager('appendImage');
-
-    var ajaxACLResources_fbodyname = $('#ajaxACL-fbodyname').ajaxCallWidget({
-        failureLoadImage: true,
-        loadingImageID: "loading-image-fbodyname",
-        triggerSuccessAuto: true,
-        transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-        proxy: '/Accessory/AccessoryFeatureNameDdslick/',
-        type: 'POST',
-        data: JSON.stringify({
-            language_code: $("#langCode").val(),
-            pk: "GsZVzEYe50uGgNM",
-            url: "pkAccBodyDeffDdList_sysaccbodydeff",
-            pkIdentity: $("#publicKey").val()
-        })
-    });
-    ajaxACLResources_fbodyname.ajaxCallWidget({
-        onSuccess: function (event, databodyname) {
-            var cbdata_bodyname = $.parseJSON(databodyname);
-            cbdata_bodyname.splice(0, 0,
-                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-            );
-            $('#dropdownFBodyName').ddslick({
-                data: cbdata_badyname,
-                width: '100%',
-                search: true,
-                searchText: window.lang.translate('Search'),
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loading-image-fbodyname").loadImager('removeLoadImage');
-        },
-        onReset: function (event, data) {
-
-        },
-        onAfterSuccess: function (event, data) {
-            $("#loading-image-fbodyname").loadImager('removeLoadImage');
-        }
-    })
-    ajaxACLResources_fbodyname.ajaxCallWidget('call');
-
 
     //////////////////////////////////////////////////////////////////////////////////////////////
     /**
-    * bodyList Refresh
+    * bodyextraList Refresh
     * @returns 
     * @author Gül Özdemir
-    * @since 26/10/2018
+    * @since 31/10/2018
     */
 
-    $('#bodyList').click(function () {
+    $('#bodyextraList').click(function () {
 
         /* devexgrid */
-        var body_data = new DevExpress.data.CustomStore({
+        var bodyextra_data = new DevExpress.data.CustomStore({
             load: function (loadOptions) {
                 var deferred = $.Deferred(),
                     args = {};
@@ -314,12 +151,12 @@ $(document).ready(function () {
                 args.take = loadOptions.take || 12;
 
                 $.ajax({
-                    url: '/Accessory/BodyGridList',
+                    url: '/Accessory/BodyextraGridList',
                     dataType: "json",
                     data: JSON.stringify({
                         language_code: $("#langCode").val(),
                         pk: "GsZVzEYe50uGgNM",
-                        url: "pkFillAccBodyDeffGridx_sysaccbodydeff",
+                        url: "pkFillBodyExtrasMatrixGridx_sysaccbodymatrix",
                         pkIdentity: $("#publicKey").val(),
                         page: "",
                         rows: "",
@@ -345,7 +182,7 @@ $(document).ready(function () {
                 var deferred = $.Deferred();
 
                 return $.ajax({
-                    url: '/Accessory/DeleteBody',
+                    url: '/Accessory/DeleteBodyextra',
                     dataType: "json",
                     data: JSON.stringify({
                         id: selectedBodyId,
@@ -368,7 +205,7 @@ $(document).ready(function () {
         //DevExpress.localization.locale(langCode);
 
         $(function () {
-            $("#gridContainer_body").dxDataGrid({
+            $("#gridContainer_bodyextra").dxDataGrid({
 
                 showColumnLines: true,
 
@@ -376,7 +213,7 @@ $(document).ready(function () {
 
                 showBorders: true,
 
-                dataSource: body_data,
+                dataSource: bodyextra_data,
 
                 columnHidingEnabled: true,
 
@@ -397,7 +234,7 @@ $(document).ready(function () {
 
                 "export": {
                     enabled: true,
-                    fileName: window.lang.translate('BodyList')
+                    fileName: window.lang.translate('BodyextraList')
                 },
 
                 grouping: {
@@ -459,19 +296,19 @@ $(document).ready(function () {
 
                         cellTemplate: function (container, options) {
                             var fieldHtml;
-                            var body_id = options.data.id;
+                            var bodyextra_id = options.data.id;
 
                             if (options.data.active === 1) {
                                 //active
                                 $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
-                                    activepassiveBody(body_id, options.data.active);
+                                    activepassiveBodyextra(bodyextra_id, options.data.active);
 
                                 }).appendTo(container);
                             } else if (options.data.active === 0) {
 
                                 //passive
                                 $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
-                                    activepassiveBody(body_id, options.data.active);
+                                    activepassiveBodyextra(bodyextra_id, options.data.active);
 
                                 }).appendTo(container);
                             }
@@ -499,24 +336,12 @@ $(document).ready(function () {
                          "language_id":"385","op_user_id":16}
                          */
                     }, {
-                        caption: window.lang.translate('Body type name'),
-                        dataField: "body_type_name",
-                        encodeHtml: false
-                    }, {
-                        caption: window.lang.translate('Body name'),
+                        caption: window.lang.translate('Body extra name'),
                         dataField: "body_deff_name",
-                        encodeHtml: false
-                    }, {
-                        caption: window.lang.translate('Vehicle model'),
-                        dataField: "vehicle_gtname",
                         encodeHtml: false
                     }, {
                         caption: window.lang.translate('Supplier name'),
                         dataField: "supplier_name",
-                        encodeHtml: false
-                    }, {
-                        caption: window.lang.translate('Embrace number'),
-                        dataField: "body_embrace_no",
                         encodeHtml: false
                     }, {
                         caption: window.lang.translate('Cost'),
@@ -525,9 +350,13 @@ $(document).ready(function () {
                         alignment: "right"
                     }, {
                         caption: window.lang.translate('List Price'),
-                        dataField: "cost",
+                        dataField: "list_price",
                         encodeHtml: false,
                         alignment: "right"
+                    }, {
+                        caption: window.lang.translate('Embrace number'),
+                        dataField: "embrace_no",
+                        encodeHtml: false
                     }
                 ],
                 //{"id":"3","apid":3,"vehicle_gtname":"LMC6 - 26.280",
@@ -550,92 +379,74 @@ $(document).ready(function () {
                 onSelectionChanged: function (selectedItems) {
                     var data = selectedItems.selectedRowsData[0];
                     if (data) {
-                        selectedBodyId = data.id;
+                        selectedBodyextraId = data.id;
 
-                        fillBodyForm(data);
+                        fillBodyextraForm(data);
 
                     }
                 },
 
                 onRowRemoving: function (e) {
-                    selectedBodyId = e.key.id;
+                    selectedBodyextraId = e.key.id;
 
                 },
 
                 onRowRemoved: function (e) {
-                    $("#gridContainer_body").dxDataGrid("instance").refresh();
+                    $("#gridContainer_bodyextra").dxDataGrid("instance").refresh();
                 },
 
             });
         });
     })
 
-    $('#bodyList').click();
+    $('#bodyextraList').click();
 
 
 /**
- * Insert Body
+ * Insert Bodyextra
  * @returns {undefined}
  * @author Gül Özdemir
  * @since 24/10/2018
  */
 
-    $("#btn-body-save").on("click", function (e) {
+    $("#btn-bodyextra-save").on("click", function (e) {
         e.preventDefault();
 
-        if ($("#bodyForm").validationEngine('validate')) {
+        if ($("#bodyextraForm").validationEngine('validate')) {
 
-            $("#loading-image-bodyform").loadImager('removeLoadImage');
-            $("#loading-image-bodyform").loadImager('appendImage');
-
-            var ddData_vehiclemodel = $('#dropdownVehicleModel').data('ddslick')
-            var vehiclemodel_id = ddData_vehiclemodel.selectedData.value;
-
-            var ddData_kp = $('#dropdownKPNo').data('ddslick')
-            var kp_id = ddData_kp.selectedData.value;
+            $("#loading-image-bodyextraform").loadImager('removeLoadImage');
+            $("#loading-image-bodyextraform").loadImager('appendImage');
 
             var ddData_supplier = $('#dropdownSupplier').data('ddslick')
             var supplier_id = ddData_supplier.selectedData.value;
 
-            var ddData_accfname = $('#dropdownFBodyName').data('ddslick')
-            var bodyname_id = ddData_accfname.selectedData.value;
-
-            var ddData_options = $('#dropdownOptions').data('ddslick')
-            var options_id = ddData_options.selectedData.value;
-
-            var embrace_number = $('#txt-embrace-number').val();
-            var cost_local = $('#txt-cost-local').val();
-            var cost_national = $('#txt-cost-national').val();
-            var partnumber_local = $('#txt-partnumber-local').val();
-            var partnumber_national = $('#txt-partnumber-international').val();
+            var bodyextra_name = $('#txt-bodyextraname').val();
+            var cost = $('#txt-cost').val();
             var list_price = $('#txt-list-price').val();
+            var embrace_number = $('#txt-embrace-number').val();
+
+            alert(cost);
 
             var ajax;
-            if (selectedBodyId === 0) {
+            if (selectedBodyextraId === 0) {
                 //alert("yeni kayıt");
                 //Yeni kayıt
-                ajax = $('#ajaxACL-body').ajaxCallWidget({
+                ajax = $('#ajaxACL-bodyextra').ajaxCallWidget({
                     failureLoadImage: true,
-                    loadingImageID: "loading-image-bodyform",
+                    loadingImageID: "loading-image-bodyextraform",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
                     transactionFailureText: window.lang.translate("Service URL not found, please report error"),
                     dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-                    proxy: '/Accessory/InsertBody',
+                    proxy: '/Accessory/InsertBodyextra',
                     type: "POST",
                     data: JSON.stringify({
-                        url: "pkInsertAct_sysaccbodymatrix",
-                        vehicle_group_id: vehiclemodel_id ,
-                        kpnumber_id: kp_id,
+                        url: "pkInsertAct_sysaccbodymatrix", //bakılacak
                         supplier_id: supplier_id,
-                        acc_deff_id: bodyname_id,
-                        body_option_id: options_id,
-                        cost_local: cost_local,
-                        cost_national: cost_national,
-                        part_num_local: partnumber_local,
-                        part_num_nat: partnumber_national,
-                        body_embrace_no: embrace_number,
+                        acc_body_deff_id: selectedBodyextranameId,
+                        cost: cost,
                         list_price: list_price,
+                        embrace_no: embrace_number,
                         pk: "GsZVzEYe50uGgNM"
                     })
                 });
@@ -645,9 +456,9 @@ $(document).ready(function () {
 
                     },
                     onAfterSuccess: function (event, data) {
-                        $("#gridContainer_body").dxDataGrid("instance").refresh();
-                        $("#loadingImage_bodyform").loadImager('removeLoadImage');
-                        resetBodyForm();
+                        $("#gridContainer_bodyextra").dxDataGrid("instance").refresh();
+                        $("#loadingImage_bodyextraform").loadImager('removeLoadImage');
+                        resetBodyextraForm();
 
                     }
                 })
@@ -659,29 +470,23 @@ $(document).ready(function () {
 
                 wcm.warningComplexMessage({
                     onConfirm: function (event, data) {
-                        ajax = $('#ajaxACL-body').ajaxCallWidget({
+                        ajax = $('#ajaxACL-bodyextra').ajaxCallWidget({
                             failureLoadImage: true,
-                            loadingImageID: "loading-image-bodyform",
+                            loadingImageID: "loading-image-bodyextraform",
                             triggerSuccessAuto: true,
                             transactionSuccessText: window.lang.translate('Transaction successful'),
                             transactionFailureText: window.lang.translate("Service URL not found, please report error"),
                             dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-                            proxy: '/Accessory/UpdateBody',
+                            proxy: '/Accessory/UpdateBodyextra',
                             type: "POST",
                             data: JSON.stringify({
-                                id: selectedAccessoryId,
-                                url: "pkUpdateAct_sysaccbodydeff",
-                                vehicle_group_id: vehiclemodel_id,
-                                kpnumber_id: kp_id,
+                                id: selectedBodyextraId,
+                                url: "pkUpdateAct_sysaccbodydeff", 
+                                acc_body_deff_id: selectedBodyextranameId,
                                 supplier_id: supplier_id,
-                                acc_deff_id: bodyname_id,
-                                accessory_option_id: options_id,
-                                cost_local: cost_local,
-                                cost_national: cost_national,
-                                part_num_local: partnumber_local,
-                                part_num_nat: partnumber_national,
-                                accessory_embrace_no: embrace_number,
+                                cost: cost,
                                 list_price: list_price,
+                                embrace_no: embrace_number,
                                 pk: "GsZVzEYe50uGgNM"
                             })
                         });
@@ -691,15 +496,15 @@ $(document).ready(function () {
 
                             },
                             onAfterSuccess: function (event, data) {
-                                $("#gridContainer_accessory").dxDataGrid("instance").refresh();
-                                $("#loadingImage_accessoryform").loadImager('removeLoadImage');
-                                resetAccessoryForm();
+                                $("#gridContainer_bodyextra").dxDataGrid("instance").refresh();
+                                $("#loadingImage_bodyextraform").loadImager('removeLoadImage');
+                                resetBodyextraForm();
                             }
                         })
                         ajax.ajaxCallWidget('call');
                     }
                 });
-                wcm.warningComplexMessage('show', 'Body is update! Are you sure?', 'Body is update! Are you sure?');
+                wcm.warningComplexMessage('show', 'Body extra is update! Are you sure?', 'Body extra is update! Are you sure?');
             }
         }
         return false;
@@ -707,84 +512,60 @@ $(document).ready(function () {
     })
 
  /**
- * reset Body Form
+ * reset Body extra Form
  * @returns {undefined}
  * @author Gül Özdemir
- * @since 03/09/2018
+ * @since 31/10/2018
  */
 
-    window.resetBodyForm = function () {
-        $("#loading-image-body").loadImager('removeLoadImage');
-        $("#loading-image-body").loadImager('appendImage');
+    window.resetBodyextraForm = function () {
+        $("#loading-image-bodyextra").loadImager('removeLoadImage');
+        $("#loading-image-bodyextra").loadImager('appendImage');
 
-        selectedBodyId = 0;
+        selectedBodyextraId = 0;
 
-        $('#bodyForm').validationEngine('hide');
+        $('#bodyextraForm').validationEngine('hide');
 
-        $('#dropdownVehicleModel').ddslick('select', { index: String(0) });
+        document.getElementById("txt-bodyextra-name").value = selectedBodyextraname;
+
+        //$('#dropdownFBodyextraName').ddslick('select', { index: String(0) });
         $('#dropdownSupplier').ddslick('select', { index: String(0) });
-        $('#dropdownFBodyName').ddslick('select', { index: String(0) });
-        
-        $("#loading-image-body").loadImager('removeLoadImage');
+
+        $("#loading-image-bodyextra").loadImager('removeLoadImage');
 
         return false;
     }
 
 
     /**
-    * Fill Body form
+    * Fill Body extra form
     * @returns {Boolean}
     * @author Gül Özdemir
     * @since 03/09/2018
     */
 
-    window.fillBodyForm = function (data) {
-        $("#loading-image-body").loadImager('removeLoadImage');
-        $("#loading-image-body").loadImager('appendImage');
+    window.fillBodyextraForm = function (data) {
+        $("#loading-image-bodyextra").loadImager('removeLoadImage');
+        $("#loading-image-bodyextra").loadImager('appendImage');
 
-        if (data.body_embrace_no) {
-            document.getElementById("txt-embrace-number").value = data.body_embrace_no;
+        document.getElementById("txt-bodyextra-name").value = selectedBodyextraname;
+
+        if (data.embrace_no) {
+            document.getElementById("txt-embrace-number").value = data.embrace_no;
         } else {
             document.getElementById("txt-embrace-number").value = "";
         }
 
-        if (data.cost_local) {
-            document.getElementById("txt-cost-local").value = data.cost_local;
+        if (data.cost) {
+            document.getElementById("txt-cost").value = data.cost;
         } else {
-            document.getElementById("txt-cost-local").value = "";
-        }
-
-        if (data.cost_national) {
-            document.getElementById("txt-cost-national").value = data.cost_national;
-        } else {
-            document.getElementById("txt-cost-national").value = "";
-        }
-
-        if (data.part_num_local) {
-            document.getElementById("txt-partnumber-local").value = data.part_num_local;
-        } else {
-            document.getElementById("txt-partnumber-local").value = "";
-        }
-
-        if (data.part_num_nat) {
-            document.getElementById("txt-partnumber-international").value = data.part_num_nat;
-        } else {
-            document.getElementById("txt-partnumber-international").value = "";
+            document.getElementById("txt-cost").value = "";
         }
 
         if (data.list_price) {
             document.getElementById("txt-list-price").value = data.list_price;
         } else {
             document.getElementById("txt-list-price").value = "";
-        }
-
-        if (data.vehicle_group_id) {
-            $('#dropdownVehicleModel').ddslick('selectByValue',
-                {
-                    index: data.vehicle_group_id,
-                    value: data.vehicle_group
-                }
-            );
         }
 
         if (data.supplier_id) {
@@ -795,34 +576,16 @@ $(document).ready(function () {
                 }
             );
         }
-
-        if (data.acc_deff_id) {
-            $('#dropdownFBodyName').ddslick('selectByValue',
-                {
-                    index: data.acc_deff_id,
-                    value: data.name_acc_deff_sm
-                }
-            );
-        }
-
-        if (data.body_option_id) {
-            $('#dropdownOptions').ddslick('selectByValue',
-                {
-                    index: data.body_option_id,
-                    value: data.name_acc_opt
-                }
-            );
-        }
         
-        $("#loading-image-body").loadImager('removeLoadImage');
+        $("#loading-image-bodyextra").loadImager('removeLoadImage');
 
         return false;
     }
 
 
-    window.activepassiveBody = function (body_id, active) {
-        $("#loading-image-bodyGrid").loadImager('removeLoadImage');
-        $("#loading-image-bodyGrid").loadImager('appendImage');
+    window.activepassiveBodyextra = function (bodyextra_id, active) {
+        $("#loading-image-bodyextraGrid").loadImager('removeLoadImage');
+        $("#loading-image-bodyextraGrid").loadImager('appendImage');
 
         var transactionSuccessMessage;
 
@@ -834,14 +597,14 @@ $(document).ready(function () {
             transactionSuccessMessage = window.lang.translate('Passive successful');
         }
 
-        var ajax_activepassivebodylist = $('#ajaxACL-bodylist').ajaxCallWidget({
+        var ajax_activepassivebodyextralist = $('#ajaxACL-bodyextralist').ajaxCallWidget({
             failureLoadImage: true,
-            loadingImageID: "loading-image-bodyGrid",
+            loadingImageID: "loading-image-bodyextraGrid",
             triggerSuccessAuto: true,
             transactionSuccessText: transactionSuccessMessage,
             transactionFailureText: window.lang.translate("Service URL not found, please report error"),
             dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-            proxy: '/Accessory/ActivePassiveBody',
+            proxy: '/Accessory/ActivePassiveBodyextra',
             type: "POST",
             data: JSON.stringify({
                 id: body_id,
@@ -850,37 +613,35 @@ $(document).ready(function () {
             }),
 
         });
-        ajax_activepassivebodylist.ajaxCallWidget({
+        ajax_activepassivebodyextralist.ajaxCallWidget({
             onReset: function (event, data) {
             },
             onSuccess: function (event, data) {
 
             },
             onAfterSuccess: function (event, data) {
-                $("#gridContainer_body").dxDataGrid("instance").refresh();
-                $("#loading-image-bodyGrid").loadImager('removeLoadImage');
+                $("#gridContainer_bodyextra").dxDataGrid("instance").refresh();
+                $("#loading-image-bodyextraGrid").loadImager('removeLoadImage');
             },
             onError: function (event, data) {
 
             },
         })
-        ajax_activepassivebodylist.ajaxCallWidget('call');
-
+        ajax_activepassivebodyextralist.ajaxCallWidget('call');
     }
-
 
     //////////////////////////////////////////////////////////////////////////////////////////////
     /**
-    * bodynameList Refresh
+    * bodyextranameList Refresh
     * @returns 
     * @author Gül Özdemir
     * @since 24/10/2018
     */
 
-    $('#bodynameList').click(function () {
+    $('#bodyextranameList').click(function () {
 
         /* devexgrid */
-        var bodyname_data = new DevExpress.data.CustomStore({
+        var bodyextraname_data = new DevExpress.data.CustomStore({
             load: function (loadOptions) {
                 var deferred = $.Deferred(),
                     args = {};
@@ -895,12 +656,12 @@ $(document).ready(function () {
                 args.take = loadOptions.take || 12;
 
                 $.ajax({
-                    url: '/Accessory/BodyFeatureGridList',
+                    url: '/Accessory/BodyextraFeatureGridList',
                     dataType: "json",
                     data: JSON.stringify({
                         language_code: $("#langCode").val(),
                         pk: "GsZVzEYe50uGgNM",
-                        url: "pkFillAccBodyDeffGridx_sysaccbodydeff",
+                        url: "pkFillAccDeffExtrasGridx_sysaccbodydeff", 
                         pkIdentity: $("#publicKey").val(),
                         page: "",
                         rows: "",
@@ -926,12 +687,12 @@ $(document).ready(function () {
                 var deferred = $.Deferred();
                
                 return $.ajax({
-                    url: '/Accessory/DeleteBodyFeature',
+                    url: '/Accessory/DeleteBodyextraFeature',
                     dataType: "json",
                     data: JSON.stringify({
-                        id: selectedBodynameId,
+                        id: selectedBodyextranameId,
                         pk: "GsZVzEYe50uGgNM",
-                        url: "pkDeletedAct_sysaccbodydeff"
+                        url: "pkDeletedAct_sysaccbodydeff"  //Bakılacak
                     }),
                     type: 'POST',
                     contentType: 'application/json',
@@ -949,7 +710,7 @@ $(document).ready(function () {
         //DevExpress.localization.locale(langCode);
 
         $(function () {
-            $("#gridContainer_bodyname").dxDataGrid({
+            $("#gridContainer_bodyextraname").dxDataGrid({
 
                 showColumnLines: true,
 
@@ -957,7 +718,7 @@ $(document).ready(function () {
 
                 showBorders: true,
 
-                dataSource: bodyname_data,
+                dataSource: bodyextraname_data,
 
                 columnHidingEnabled: true,
 
@@ -978,7 +739,7 @@ $(document).ready(function () {
 
                 "export": {
                     enabled: true,
-                    fileName: window.lang.translate('BodyFeatureList')
+                    fileName: window.lang.translate('BodyextraFeatureList')
                 },
 
                 grouping: {
@@ -1040,19 +801,19 @@ $(document).ready(function () {
 
                         cellTemplate: function (container, options) {
                             var fieldHtml;
-                            var bodyname_id = options.data.id;
+                            var bodyextraname_id = options.data.id;
 
                             if (options.data.active === 1) {
                                 //active
                                 $('<div />').addClass('dx-link').attr('class', "fa fa-minus-square fa-2x").on('click', function () {
-                                    activepassiveBodyName(bodyname_id, options.data.active);
+                                    activepassiveBodyextraName(bodyextraname_id, options.data.active);
 
                                 }).appendTo(container);
                             } else if (options.data.active === 0) {
 
                                 //passive
                                 $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
-                                    activepassiveBodyName(bodyname_id, options.data.active);
+                                    activepassiveBodyextraName(bodyextraname_id, options.data.active);
 
                                 }).appendTo(container);
                             }
@@ -1081,65 +842,61 @@ $(document).ready(function () {
                 onSelectionChanged: function (selectedItems) {
                     var data = selectedItems.selectedRowsData[0];
                     if (data) {
-                        selectedBodynameId = data.id;
-                        
-                        fillBodyNameForm(data);
+                        selectedBodyextranameId = data.id;
+                        selectedBodyextraname = data.name;
+                        fillBodyextraNameForm(data);
 
                     }
                 },
 
                 onRowRemoving: function (e) {
-                    selectedBodynameId = e.key.id;
+                    selectedBodyextranameId = e.key.id;
 
                 },
 
                 onRowRemoved: function (e) {
-                    $("#gridContainer_bodyname").dxDataGrid("instance").refresh();
+                    $("#gridContainer_bodyextraname").dxDataGrid("instance").refresh();
                 },
 
             });
         });
     })
 
-    $('#bodynameList').click();
+    $('#bodyextranameList').click();
 
 /**
- * Insert BodyFeatureName
+ * Insert BodyextraFeatureName
  * @returns {undefined}
  * @author Gül Özdemir
  * @since 24/10/2018
  */
 
-    $("#btn-bodyname-save").on("click", function (e) {
+    $("#btn-bodyextraname-save").on("click", function (e) {
         e.preventDefault();
 
-        if ($("#bodynameForm").validationEngine('validate')) {
+        if ($("#bodyextranameForm").validationEngine('validate')) {
 
-            $("#loading-image-bodynameform").loadImager('removeLoadImage');
-            $("#loading-image-bodynameform").loadImager('appendImage');
+            $("#loading-image-bodyextranameform").loadImager('removeLoadImage');
+            $("#loading-image-bodyextranameform").loadImager('appendImage');
 
-            var body_featurename = $('#txt-body-featurename').val();
-
-            var ddData_bodytype = $('#dropdownBodyType').data('ddslick')
-            var bodytype_id = ddData_bodytype.selectedData.value;
+            var bodyextra_featurename = $('#txt-bodyextra-featurename').val();
 
             var ajax;
-            if (selectedBodynameId === 0) {
+            if (selectedBodyextranameId === 0) {
                 //alert("yeni kayıt");
                 //Yeni kayıt
-                ajax = $('#ajaxACL-bodyname').ajaxCallWidget({
+                ajax = $('#ajaxACL-bodyextraname').ajaxCallWidget({
                     failureLoadImage: true,
-                    loadingImageID: "loading-image-bodynameform",
+                    loadingImageID: "loading-image-bodyextranameform",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
                     transactionFailureText: window.lang.translate("Service URL not found, please report error"),
                     dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-                    proxy: '/Accessory/InsertBodyFeature',
+                    proxy: '/Accessory/InsertBodyextraFeature',
                     type: "POST",
                     data: JSON.stringify({
-                        url: "pkInsertAct_sysaccbodydeff",
-                        acc_body_type_id: bodytype_id,
-                        name: body_featurename,
+                        url: "pkInsertActExtras_sysaccbodydeff",
+                        name: bodyextra_featurename,
                         pk: "GsZVzEYe50uGgNM"
                     })
                 });
@@ -1149,9 +906,9 @@ $(document).ready(function () {
 
                     },
                     onAfterSuccess: function (event, data) {
-                        $("#gridContainer_bodyname").dxDataGrid("instance").refresh();
-                        $("#loadingImage_bodynameform").loadImager('removeLoadImage');
-                        resetBodyNameForm();
+                        $("#gridContainer_bodyextraname").dxDataGrid("instance").refresh();
+                        $("#loadingImage_bodyextranameform").loadImager('removeLoadImage');
+                        resetBodyextraNameForm();
                        
                     }
                 })
@@ -1163,20 +920,19 @@ $(document).ready(function () {
 
                 wcm.warningComplexMessage({
                     onConfirm: function (event, data) {
-                        ajax = $('#ajaxACL-bodyname').ajaxCallWidget({
+                        ajax = $('#ajaxACL-bodyextraname').ajaxCallWidget({
                             failureLoadImage: true,
-                            loadingImageID: "loading-image-bodynameform",
+                            loadingImageID: "loading-image-bodyextranameform",
                             triggerSuccessAuto: true,
                             transactionSuccessText: window.lang.translate('Transaction successful'),
                             transactionFailureText: window.lang.translate("Service URL not found, please report error"),
                             dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-                            proxy: '/Accessory/UpdateBodyFeature',
+                            proxy: '/Accessory/UpdateBodyextraFeature',
                             type: "POST",
                             data: JSON.stringify({
-                                id: selectedBodynameId,
-                                url: "pkUpdateAct_sysaccbodydeff",
-                                acc_body_type_id: bodytype_id,
-                                name: body_featurename,                                
+                                id: selectedBodyextranameId,
+                                url: "pkUpdateActExtras_sysaccbodydeff",
+                                name: bodyextra_featurename,                                
                                 pk: "GsZVzEYe50uGgNM"
                             })
                         });
@@ -1186,15 +942,15 @@ $(document).ready(function () {
 
                             },
                             onAfterSuccess: function (event, data) {
-                                $("#gridContainer_bodyname").dxDataGrid("instance").refresh();
-                                $("#loadingImage_bodynameform").loadImager('removeLoadImage');
-                                resetBodyNameForm();
+                                $("#gridContainer_bodyextraname").dxDataGrid("instance").refresh();
+                                $("#loadingImage_bodyextranameform").loadImager('removeLoadImage');
+                                resetBodyextraNameForm();
                             }
                         })
                         ajax.ajaxCallWidget('call');
                     }
                 });
-                wcm.warningComplexMessage('show', 'Body Feature is update! Are you sure?', 'Body Feature is update! Are you sure?');
+                wcm.warningComplexMessage('show', 'Body extra feature is update! Are you sure?', 'Body extra feature is update! Are you sure?');
             }
         }
         return false;
@@ -1202,23 +958,21 @@ $(document).ready(function () {
     })
 
     /**
-    * reset Body Feature Name Form
+    * reset Bodyextra Feature Name Form
     * @returns {undefined}
     * @author Gül Özdemir
     * @since 13/09/2018
     */
 
-    window.resetBodyNameForm = function () {
-        $("#loading-image-bodynameform").loadImager('removeLoadImage');
-        $("#loading-image-bodynameform").loadImager('appendImage');
+    window.resetBodyextraNameForm = function () {
+        $("#loading-image-bodyextranameform").loadImager('removeLoadImage');
+        $("#loading-image-bodyextranameform").loadImager('appendImage');
 
-        selectedBodynameId = 0;
+        selectedBodyextranameId = 0;
         $('#bodynameForm').validationEngine('hide');
-        document.getElementById("txt-body-featurename").value = "";
+        document.getElementById("txt-bodyextra-featurename").value = "";
 
-        $('#dropdownBodyType').ddslick('select', { index: String(0) });
-
-        $("#loading-image-bodynameform").loadImager('removeLoadImage');
+        $("#loading-image-bodyextranameform").loadImager('removeLoadImage');
 
         //yeni kayda açık, tablar kapatılıyor
         tab_disable();
@@ -1228,33 +982,22 @@ $(document).ready(function () {
 
 
     /**
-    * Fill Body Feature Name form
+    * Fill Body extra Feature Name form
     * @returns {Boolean}
     * @author Gül Özdemir
     * @since 13/09/2018
     */
 
-    window.fillBodyNameForm = function (data) {
-        $("#loading-image-bodyname").loadImager('removeLoadImage');
-        $("#loading-image-bodyname").loadImager('appendImage');
+    window.fillBodyextraNameForm = function (data) {
+        $("#loading-image-bodyextraname").loadImager('removeLoadImage');
+        $("#loading-image-bodyextraname").loadImager('appendImage');
 
-        document.getElementById("txt-body-featurename").value = data.name;
+        document.getElementById("txt-bodyextra-featurename").value = data.name;
 
-        if (data.acc_body_type_id) {
-            $('#dropdownBodyType').ddslick('selectByValue',
-                {
-                    index: data.acc_body_type_id,
-                    value: data.body_type_name
-                }
-            );
-        } else {
-            $('#dropdownBodyType').ddslick('select', { index: String(0) });
-        } 
+        document.getElementById("txt-bodyextra-name").value = data.name;
 
-        document.getElementById("txt-body-name").value = data.name;
-        document.getElementById("txt-body-type").value = data.body_type_name;
 
-        $("#loading-image-bodyname").loadImager('removeLoadImage');
+        $("#loading-image-bodyextraname").loadImager('removeLoadImage');
 
         tab_active()
 
@@ -1262,9 +1005,9 @@ $(document).ready(function () {
     }
 
 
-    window.activepassiveBodyName = function (bodyname_id, active) {
-        $("#loading-image-bodynameGrid").loadImager('removeLoadImage');
-        $("#loading-image-bodynameGrid").loadImager('appendImage');
+    window.activepassiveBodyextraName = function (bodyextraname_id, active) {
+        $("#loading-image-bodyextranameGrid").loadImager('removeLoadImage');
+        $("#loading-image-bodyextranameGrid").loadImager('appendImage');
 
         var transactionSuccessMessage;
 
@@ -1276,39 +1019,39 @@ $(document).ready(function () {
             transactionSuccessMessage = window.lang.translate('Passive successful');
         }
 
-        var ajax_activepassivebodynamelist = $('#ajaxACL-bodynamelist').ajaxCallWidget({
+        var ajax_activepassivebodyextranamelist = $('#ajaxACL-bodyextranamelist').ajaxCallWidget({
             failureLoadImage: true,
-            loadingImageID: "loading-image-bodynameGrid",
+            loadingImageID: "loading-image-bodyextranameGrid",
             triggerSuccessAuto: true,
             transactionSuccessText: transactionSuccessMessage,
             transactionFailureText: window.lang.translate("Service URL not found, please report error"),
             dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-            proxy: '/Accessory/ActivePassiveBodyFeature',
+            proxy: '/Accessory/ActivePassiveBodyextraFeature',
             type: "POST",
             data: JSON.stringify({
-                id: bodyname_id,
+                id: bodyextraname_id,
                 pk: "GsZVzEYe50uGgNM",
-                url: "pkUpdateMakeActiveOrPassive_sysaccbodydeff"
+                url: "pkUpdateMakeActiveOrPassive_sysaccbodydeff" //bakılacak
             }),
 
         });
-        ajax_activepassivebodynamelist.ajaxCallWidget({
+        ajax_activepassivebodyextranamelist.ajaxCallWidget({
             onReset: function (event, data) {
             },
             onSuccess: function (event, data) {
             },
             onAfterSuccess: function (event, data) {
-                $("#gridContainer_bodyname").dxDataGrid("instance").refresh();
-                $("#loading-image-bodynameGrid").loadImager('removeLoadImage');
+                $("#gridContainer_bodyextraname").dxDataGrid("instance").refresh();
+                $("#loading-image-bodyextranameGrid").loadImager('removeLoadImage');
             }
         })
-        ajax_activepassivebodynamelist.ajaxCallWidget('call');
+        ajax_activepassivebodyextranamelist.ajaxCallWidget('call');
 
     }
 
 
  /*
- * body tab click grid refresh
+ * body extra tab click grid refresh
  * @returns {undefined}
  * @author Gül Özdemir
  * @since 26/10/2018
@@ -1321,13 +1064,13 @@ $(document).ready(function () {
             // grid refresh olması gerektiği için kullanıldı.
             //$(gridContainer_tab).dxDataGrid("updateDimensions");
             //$('#bodynameList').click();
-            $("#gridContainer_bodyname").dxDataGrid("instance").refresh();
+            $("#gridContainer_bodyextraname").dxDataGrid("instance").refresh();
         }
         if (target == "#tab_2") {
             // grid refresh olması gerektiği için kullanıldı.
             //$(gridContainer_tab).dxDataGrid("updateDimensions");
             //$('#bodyList').click();
-            $("#gridContainer_body").dxDataGrid("instance").refresh();
+            $("#gridContainer_bodyextra").dxDataGrid("instance").refresh();
         }
     });
 
