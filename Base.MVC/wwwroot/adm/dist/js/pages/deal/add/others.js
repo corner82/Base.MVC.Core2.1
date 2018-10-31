@@ -7,8 +7,8 @@
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
     var wcm = $(window).warningComplexMessage({
-        denyButtonLabel: 'Vazgeç',
-        actionButtonLabel: 'İşleme devam et'
+        denyButtonLabel: 'No thanks',
+        actionButtonLabel: 'Proceed'
     });
 
     /**
@@ -18,9 +18,6 @@
      * */
     $("#deal_hidden").organizeTabs({ tabID: "deals_tab" });
     //$("#deal_hidden").organizeTabs('disableAllTabsButOne');
-
-    
-
 
     //Make the dashboard widgets sortable Using jquery UI
     $(".connectedSortable").sortable({
@@ -255,150 +252,13 @@
 
    
 
-    //----------------------------------add buyback to deal begin-------------------------------------------------
-
     
-
-    
-
-    
-
-    
-
-    // add deal reset
-    $("#add_buyBack_reset").on("click", function (e) {
-        e.preventDefault();
-        resetBuyBackForm();
-        return false;
-    })
-
-    //----------------------------------add buyBack to deal end-------------------------------------------------
 
 
    
 
 
-    //----------------------------------add body to deal begin-------------------------------------------------
-
-    /**
-     * loading image for add vehicle type process
-     * */
-    $('#tab_Body').loadImager();
-
-    /**
-     * add deal form body reset
-     * @author Mustafa Zeynel Dağlı
-     * */
-    var resetBodyAddDealForm = function () {
-        $('#addTabForm').validationEngine('hide');
-        $('#addBodyForm')[0].reset();
-        $('#ddslickDealVehicleTypeBody').ddslick("select", { index: '0' });
-
-    }
-
-    /**
-     * add vehicle type form validation engine activated
-     * @author Mustafa Zeynel Dağlı
-     * */
-    $("#addBodyForm").validationEngine();
-
-    /**
-     * add deal click event handler
-     * @author Mustafa Zeynel Dağlı
-     * @todo deal is js lokal değişkenden alınacak
-     * */
-    $("#add_body").on("click", function (e) {
-        e.preventDefault();
-        $('#tab_Body').loadImager('removeLoadImage');
-        $("#tab_Body").loadImager('appendImage');
-
-        var dealID = null;
-        if ($("#deal_hidden").deal()) {
-            dealID = $("#deal_hidden").deal("getDealID");
-        }
-        if (dealID == null || dealID == "" || dealID <= 0) {
-            wm.warningMessage('resetOnShown');
-            wm.warningMessage('show', "Please select deal",
-                "Please select deal");
-            $('#tab_Body').loadImager('removeLoadImage');
-            return false;
-        }
-
-        var ddDataVehicleType = $('#ddslickDealVehicleTypeBody').data('ddslick');
-        if (!ddDataVehicleType.selectedData.value > 0) {
-            wm.warningMessage('resetOnShown');
-            wm.warningMessage('show', window.lang.translate("Please select vehicle type"),
-                window.lang.translate("Please select vehicle type"));
-            $('#tab_Body').loadImager('removeLoadImage');
-            return false;
-        }
-
-        //alert(ddDataVehicleType.selectedData.value);
-        if ($("#tagcabin_DealBodies").tagCabin('findSpecificTags', ddDataVehicleType.selectedData.value, 'data-attribute') != true) {
-            /*tagBuilderChemicalPropGroup.tagCabin('addTagManuallyDataAttr', selectedItem.value,
-                selectedItem.text,*/
-            wm.warningMessage('resetOnShown');
-            wm.warningMessage('show', "Please select another vehicle type",
-                "Please select another vehicle type");
-            $('#tab_Body').loadImager('removeLoadImage');
-            return false;
-        }
-
-        var ajax = $('#add_body').ajaxCallWidget({
-            failureLoadImage: true,
-            loadingImageID: "tab_Body",
-            triggerSuccessAuto: true,
-            transactionSuccessText: window.lang.translate('Transaction successful'),
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-            proxy: '/Deal/AddBodyProxyService',
-            type: "POST",
-            data: JSON.stringify({
-                language_code: $("#langCode").val(),
-                pk: "GsZVzEYe50uGgNM",
-                url: "pkInsertAct_infoprojectvehiclemodels",
-                pkIdentity: $("#publicKey").val(),
-                project_id: dealID,
-                is_house_deal: 0,
-                vehicle_gt_model_id: ddDataVehicleType.selectedData.value,
-                quantity: $("#quantity").val(),
-                delivery_date: "10/10/2018",
-            })
-
-        });
-        ajax.ajaxCallWidget({
-            onReset: function (event, data) {
-                resetVehicleTypeAddDealForm();
-            },
-            onAfterSuccess: function (event, data) {
-                $("#deal_hidden").deal("addVehicleType", { vehicleType: ddDataVehicleType.selectedData.value, count: $("#quantity").val() });
-                $("#tagcabin_DealBodies").tagCabin('addTagManuallyDataAttr', ddDataVehicleType.selectedData.value,
-                    ddDataVehicleType.selectedData.text + " / " + $("#quantity").val(),
-
-                );
-
-                /*var tagBuilderChemicalPropGroup = $('#chemical-property-group-cabin').tagCabin({
-                    tagCopy: false,
-                    tagDeletable: true,
-                    tagDeletableAll: false,
-                    tagBox: $('.tag-container-chemical-property-group').find('ul'),
-
-                });*/
-
-            }
-        })
-        //ajax.ajaxCallWidget('call');
-        return false;
-    })
-
-    // add deal reset
-    $("#add_body_reset").on("click", function (e) {
-        e.preventDefault();
-        resetBodyAddDealForm();
-        return false;
-    })
-
-    //----------------------------------add body to deal end-------------------------------------------------
+    
 
 
 });

@@ -25,12 +25,6 @@
     */
     $('#loadingImage_DdslickPriority').loadImager();
 
-    
-
-    
-
-    
-
 
     /**
     * ddslick campaign dropdown load imager
@@ -297,7 +291,6 @@
     });
     $('#loadingImage_DdslickAddBodyType').loadImager('removeLoadImage');
 
-    
 
     /**
     * ddslick vehicle groups (body) dropdown 
@@ -445,7 +438,6 @@
 
     //add deal-campaign aside tab form elements begin
     
-
 
     /**
     * ddslick vehicle type dropdown 

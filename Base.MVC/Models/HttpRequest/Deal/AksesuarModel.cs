@@ -19,5 +19,6 @@ namespace Base.MVC.Models.HttpRequest.Deal
         public int accessories_matrix_id { get; set; }
         public string deal_acc_newvalue { get; set; }
         public string quantity { get; set; }
+        public int? id { get; set; }
     }
 }

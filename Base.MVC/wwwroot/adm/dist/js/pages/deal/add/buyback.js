@@ -1323,8 +1323,8 @@
                 });
 
 
-                $('#loadingImage_DdslickDealVehicleTypeBuyBack').loadImager('removeLoadImage');
-                $("#loadingImage_DdslickDealVehicleTypeBuyBack").loadImager('appendImage');
+                $('#loadingImage_DdslickDealVehicleTypeBuyBackPopup').loadImager('removeLoadImage');
+                $("#loadingImage_DdslickDealVehicleTypeBuyBackPopup").loadImager('appendImage');
                 var ajax_DdslickVehicleTypeBuyBack = $('#ajax_DdslickDealVehicleTypeBuyBackPopup').ajaxCallWidget({
                     proxy: '/Deal/DdslickGetDealVehicleTypeProxyService/',
                     transactionFailureText: window.lang.translate("Service URL not found, please report error"),
