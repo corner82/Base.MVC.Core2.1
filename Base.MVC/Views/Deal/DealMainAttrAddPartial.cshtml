@@ -587,19 +587,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12 ">
-                        <div class="form-group">
-                            <label>Deal tradeback</label>
-                            <div class="">
-                                <div id="loadingImage_TagCabinDealTradeBacks" class="input-group zeyn-load-imager">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-hand-o-right"></i>
-                                    </div>
-                                    <div style="margin-bottom: -10px;width:96%" class="tag-container-tradebacks">
-                                        <ul id="tagcabin_DealTradeBacks" class="tag-box"></ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div id="gridContainer_TradeBackDeal"></div>
                     </div>
                 </div>
                 <div class="row">
@@ -688,20 +676,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12 ">
-                        <div class="form-group">
-                            <label>@Localizer["Deal buyback"]</label>
-                            <div class="">
-                                <div id="loadingImage_TagCabinDealBuyBacks" class="input-group zeyn-load-imager">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-hand-o-right"></i>
-                                    </div>
-                                    <div style="margin-bottom: -10px;width:96%" class="tag-container-buybacks">
-                                        <ul id="tagcabin_DealBuyBacks" class="tag-box"></ul>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
+                        <div id="gridContainer_BuyBackDeal"></div>
                     </div>
                 </div>
                 <div class="row">
@@ -733,7 +708,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input class="datepicker form-control" data-date-format="mm/dd/yyyy">
+                                    <input id="date_vehicleType" class="datepicker form-control" data-date-format="mm/dd/yyyy">
                                 </div>
                             </div>
                         </div>
@@ -752,22 +727,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12 ">
-                        <div class="form-group">
-                            <label>Deal vehicle types</label>
-                            <div class="">
-                                <div id="loadingImage_TagCabinDealVehicles" class="input-group zeyn-load-imager">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-hand-o-right"></i>
-                                    </div>
-                                    <div style="margin-bottom: -10px;width:96%" class="tag-container">
-                                        <ul id="tagcabin_DealVehicles" class="tag-box"></ul>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
+                        <div id="gridContainer_VehicleTypeDeal"></div>
                     </div>
-
                 </div>
                 <div class="row">
                     <button type="submit" class="btn btn-primary btn-md pull-right " style="margin-right:10px;margin-top:20px;" id="add_vehicleType_reset">&nbsp;<i class="fa fa-minus"></i>&nbsp;&nbsp;@Localizer["Reset"]&nbsp;&nbsp;</button>

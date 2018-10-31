@@ -23,7 +23,6 @@
     $("#deal_hidden").organizeTabs({
         onAftertab_RM: function (e) {
 
-
             //----------------------------------grid begin-------------------------------------------------
             /* 
             * deal warranty grid data source
@@ -331,17 +330,13 @@
             $("#loadingImage_DdslickDealVehicleTypeRM").loadImager('appendImage');
             if (parseInt($("#deal_hidden").deal("getDealID")) > 0) {
 
-                var vehicleTypes = $("#deal_hidden").deal("getVehicleTypes");
+                /*var vehicleTypes = $("#deal_hidden").deal("getVehicleTypes");
                 if (vehicleTypes.length == 0) {
-
-                    /*$('#tab_BuyBack').loadImager('removeLoadImage');
-                    $('#tab_BuyBack').loadImager('appendImage');*/
-
                     $(window).warningMessage('resetOnShown');
                     $(window).warningMessage('show', window.lang.translate("You must add at least one vehicle type to deal"),
                         window.lang.translate("You must add at least one vehicle type to deal"));
                     return false;
-                }
+                }*/
 
                 var ajax_DdslickVehicleTypeAksesuar = $('#ajax_DdslickDealVehicleTypeRM').ajaxCallWidget({
                     proxy: '/Deal/DdslickGetDealVehicleTypeProxyService/',
@@ -528,7 +523,6 @@
                         onSelected: function (selectedData) {
                         }
                     });
-
                     $("#loadingImage_DdslickRMType").loadImager('removeLoadImage');
                 },
             })
@@ -567,7 +561,6 @@
                         onSelected: function (selectedData) {
                         }
                     });
-
                     $("#loadingImage_DdslickRMKm").loadImager('removeLoadImage');
                 },
             })
