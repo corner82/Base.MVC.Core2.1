@@ -131,7 +131,7 @@
              * @author Mustafa Zeynel dağlı
              * @since 16/10/2018
              * */
-            var dealCampaigns_grid_datasource = new DevExpress.data.CustomStore({
+            var campaignsMatrix_grid_datasource = new DevExpress.data.CustomStore({
                 load: function (loadOptions) {
                     var deferred = $.Deferred(),
                         args = {};
@@ -151,164 +151,10 @@
                         data: JSON.stringify({
                             language_code: $("#langCode").val(),
                             pk: "GsZVzEYe50uGgNM",
-                            url: "pkFillProjectVehicleTIGridx_infoprojecttradeinvehicle",
+                            url: "pkFillCampaignVehiclesGridx_syscampaignvehicles",
                             pkIdentity: $("#publicKey").val(),
-                            project_id: parseInt(dealID),
-                            page: "",
-                            rows: "",
-                            sort: "",
-                            order: "",
-                        }),
-                        type: 'POST',
-                        contentType: 'application/json',
-                        success: function (result) {
-                            deferred.resolve(result.items, { totalCount: result.totalCount });
-                        },
-                        error: function () {
-                            deferred.reject("Data Loading Error");
-                        },
-                        timeout: 30000
-                    });
-
-                    return deferred.promise();
-                }
-            });
-            DevExpress.localization.locale($('#langCode').val());
-            $("#gridContainer_DealCampaigns").dxDataGrid({
-                showColumnLines: true,
-                showRowLines: true,
-                rowAlternationEnabled: true,
-                showBorders: true,
-                dataSource: dealCampaigns_grid_datasource,
-                columnHidingEnabled: false,
-                editing: {
-                    //mode: "batch"
-                    mode: "row",
-                    //allowAdding: false,
-                    allowUpdating: false,
-                    allowDeleting: false,
-                    useIcons: false
-                },
-                "export": {
-                    enabled: true,
-                    fileName: "Orders"
-                },
-                grouping: {
-                    contextMenuEnabled: true,
-                    expandMode: "rowClick"
-                },
-                groupPanel: {
-                    emptyPanelText: "Use the context menu of header columns to group data",
-                    visible: true
-                },
-                pager: {
-                    allowedPageSizes: [5, 8, 15, 30],
-                    showInfo: true,
-                    showNavigationButtons: true,
-                    showPageSizeSelector: true,
-                    visible: true
-                },
-                paging: {
-                    pageSize: 8
-                },
-                filterRow: {
-                    visible: true,
-                    applyFilter: "auto"
-                },
-                searchPanel: {
-                    visible: true,
-                    width: 240,
-                    //placeholder: "Search..."
-                    placeholder: window.lang.translate("Search")
-                },
-                headerFilter: {
-                    visible: true
-                },
-                columnChooser: {
-                    enabled: true,
-                    mode: "select"
-                },
-                selection: {
-                    mode: "single"
-                },
-                onSelectionChanged: function (selectedItems) {
-                },
-                onRowClick: function (selectedItems) {
-                    var data = selectedItems.data
-                    console.log(data);
-                    console.log(data.op_username);
-                    $("#add_tradein_vehicle_deal").addClass("hidden");
-                    $("#update_tradein_vehicle_deal").removeClass("hidden");
-                    $("#upload_tradein_vehicle_deal").removeClass("hidden");
-                    $("#add_tradein_vehicle_reset").removeClass("hidden");
-                    //var data = selectedItems[0]["op_username"];
-                    //console.log(data);
-
-                },
-                columns: [
-                    {
-                        //allowGrouping: false,
-                        caption: "Campaign",
-                        dataField: "campaign_name"
-                    },
-                    {
-                        caption: "Germany support",
-                        dataField: "germany_support"
-                    },
-                    {
-                        caption: "Local support",
-                        dataField: "local_support"
-                    },
-                    {
-                        caption: "MFS support",
-                        dataField: "mfs_support"
-                    },
-                    {
-                        caption: "Vehicle",
-                        dataField: "vehicle_description"
-                    },
-                    {
-                        caption: "Model",
-                        dataField: "vehicle_gt_model_name"
-                    }
-
-                ],
-                customizeColumns: function (columns) {
-                    //columns[5].format = { type: "currency", currency: "EUR" };
-                },
-                /*scrolling: {
-                    mode: "virtual"
-                },*/
-            });
-
-            /* 
-             * deal campaigns grid data source
-             * @author Mustafa Zeynel dağlı
-             * @since 16/10/2018
-             * */
-            var campaigns_grid_datasource = new DevExpress.data.CustomStore({
-                load: function (loadOptions) {
-                    var deferred = $.Deferred(),
-                        args = {};
-
-                    if (loadOptions.sort) {
-                        args.orderby = loadOptions.sort[0].selector;
-                        if (loadOptions.sort[0].desc)
-                            args.orderby += " desc";
-                    }
-
-                    args.skip = loadOptions.skip || 0;
-                    args.take = loadOptions.take || 12;
-
-                    $.ajax({
-                        url: '/DefaultPost/DefaultGridPostModel',
-                        dataType: "json",
-                        data: JSON.stringify({
-                            language_code: $("#langCode").val(),
-                            pk: "GsZVzEYe50uGgNM",
-                            url: "pkFillProjectVehicleTIGridx_infoprojecttradeinvehicle",
-                            pkIdentity: $("#publicKey").val(),
-                            project_id: parseInt(dealID),
+                            //project_id: parseInt(dealID),
+                            project_id: parseInt(80),
                             page: "",
                             rows: "",
                             sort: "",
@@ -334,7 +180,163 @@
                 showRowLines: true,
                 rowAlternationEnabled: true,
                 showBorders: true,
-                dataSource: campaigns_grid_datasource,
+                dataSource: campaignsMatrix_grid_datasource,
+                columnHidingEnabled: false,
+                editing: {
+                    //mode: "batch"
+                    mode: "row",
+                    //allowAdding: false,
+                    allowUpdating: false,
+                    allowDeleting: false,
+                    useIcons: false
+                },
+                "export": {
+                    enabled: true,
+                    fileName: "Orders"
+                },
+                grouping: {
+                    contextMenuEnabled: true,
+                    expandMode: "rowClick"
+                },
+                groupPanel: {
+                    emptyPanelText: "Use the context menu of header columns to group data",
+                    visible: true
+                },
+                pager: {
+                    allowedPageSizes: [5, 8, 15, 30],
+                    showInfo: true,
+                    showNavigationButtons: true,
+                    showPageSizeSelector: true,
+                    visible: true
+                },
+                paging: {
+                    pageSize: 8
+                },
+                filterRow: {
+                    visible: true,
+                    applyFilter: "auto"
+                },
+                searchPanel: {
+                    visible: true,
+                    width: 240,
+                    //placeholder: "Search..."
+                    placeholder: window.lang.translate("Search")
+                },
+                headerFilter: {
+                    visible: true
+                },
+                columnChooser: {
+                    enabled: true,
+                    mode: "select"
+                },
+                selection: {
+                    mode: "single"
+                },
+                onSelectionChanged: function (selectedItems) {
+                },
+                onRowClick: function (selectedItems) {
+                    var data = selectedItems.data
+                    console.log(data);
+                    console.log(data.op_username);
+                    /*$("#add_tradein_vehicle_deal").addClass("hidden");
+                    $("#update_tradein_vehicle_deal").removeClass("hidden");
+                    $("#upload_tradein_vehicle_deal").removeClass("hidden");
+                    $("#add_tradein_vehicle_reset").removeClass("hidden");*/
+                    //var data = selectedItems[0]["op_username"];
+                    //console.log(data);
+
+                },
+                columns: [
+                    {
+                        //allowGrouping: false,
+                        caption: "Campaign",
+                        dataField: "campaign_name"
+                    },
+                    {
+                        caption: "Vehicle group name",
+                        dataField: "vehichle_group_name"
+                    },
+                    {
+                        caption: "Local support",
+                        dataField: "local_support"
+                    },
+                    {
+                        caption: "MFS support",
+                        dataField: "mfs_support"
+                    },
+                    {
+                        caption: "Vehicle",
+                        dataField: "vehicle_description"
+                    },
+                    {
+                        caption: "Model",
+                        dataField: "model_description"
+                    }
+
+                ],
+                customizeColumns: function (columns) {
+                    //columns[5].format = { type: "currency", currency: "EUR" };
+                },
+                /*scrolling: {
+                    mode: "virtual"
+                },*/
+            });
+
+            /* 
+             * deal campaigns grid data source
+             * @author Mustafa Zeynel dağlı
+             * @since 16/10/2018
+             * */
+            var campaignsDeal_grid_datasource = new DevExpress.data.CustomStore({
+                load: function (loadOptions) {
+                    var deferred = $.Deferred(),
+                        args = {};
+
+                    if (loadOptions.sort) {
+                        args.orderby = loadOptions.sort[0].selector;
+                        if (loadOptions.sort[0].desc)
+                            args.orderby += " desc";
+                    }
+
+                    args.skip = loadOptions.skip || 0;
+                    args.take = loadOptions.take || 12;
+
+                    $.ajax({
+                        url: '/DefaultPost/DefaultGridPostModel',
+                        dataType: "json",
+                        data: JSON.stringify({
+                            language_code: $("#langCode").val(),
+                            pk: "GsZVzEYe50uGgNM",
+                            url: "pkFillProjectCampaignGridx_infoprojectcampaign",
+                            pkIdentity: $("#publicKey").val(),
+                            //project_id: parseInt(dealID),
+                            project_id: parseInt(80),
+                            page: "",
+                            rows: "",
+                            sort: "",
+                            order: "",
+                        }),
+                        type: 'POST',
+                        contentType: 'application/json',
+                        success: function (result) {
+                            deferred.resolve(result.items, { totalCount: result.totalCount });
+                        },
+                        error: function () {
+                            deferred.reject("Data Loading Error");
+                        },
+                        timeout: 30000
+                    });
+
+                    return deferred.promise();
+                }
+            });
+            DevExpress.localization.locale($('#langCode').val());
+            $("#gridContainer_DealCampaigns").dxDataGrid({
+                showColumnLines: true,
+                showRowLines: true,
+                rowAlternationEnabled: true,
+                showBorders: true,
+                dataSource: campaignsDeal_grid_datasource,
                 columnHidingEnabled: false,
                 editing: {
                     //mode: "batch"
@@ -407,16 +409,16 @@
                         dataField: "campaign_name"
                     },
                     {
-                        caption: "Germany support",
-                        dataField: "germany_support"
+                        caption: "Vehicle group name",
+                        dataField: "vehichle_group_name"
                     },
                     {
                         caption: "Local support",
                         dataField: "local_support"
                     },
                     {
-                        caption: "MFS support",
-                        dataField: "mfs_support"
+                        caption: "Germany support",
+                        dataField: "germany_support"
                     },
                     {
                         caption: "Vehicle",
@@ -573,13 +575,13 @@
         if ($("#deal_hidden").deal()) {
             dealID = $("#deal_hidden").deal("getDealID");
         }
-        if (dealID == null || dealID == "" || dealID <= 0) {
+        /*if (dealID == null || dealID == "" || dealID <= 0) {
             $(window).warningMessage('resetOnShown');
             $(window).warningMessage('show', "Please select deal",
                 "Please select deal");
             $('#tab_Campaign').loadImager('removeLoadImage');
             return false;
-        }
+        }*/
 
         if ($("#addCampaignForm").validationEngine('validate')) {
             var ddDataVehicleGroups = $('#ddslickVehicleGroupCampaign').data('ddslick');
@@ -593,12 +595,14 @@
 
             var ddDataVehicleType = $('#ddslickVehicleTypeCampaign').data('ddslick');
             if (!ddDataVehicleType.selectedData.value > 0) {
-                $(window).warningMessage('resetOnShown');
+                /*$(window).warningMessage('resetOnShown');
                 $(window).warningMessage('show', window.lang.translate("Please select vehicle type"),
                     window.lang.translate("Please select vehicle type"));
                 $('#tab_Campaign').loadImager('removeLoadImage');
-                return false;
+                return false;*/
             }
+            var rows = $("#gridContainer_DealCampaigns").dxDataGrid('getSelectedRowsData');
+
             var ajax = $('#add_campaign').ajaxCallWidget({
                 failureLoadImage: true,
                 loadingImageID: "tab_Body",
@@ -613,11 +617,13 @@
                     pk: "GsZVzEYe50uGgNM",
                     url: "pkInsertAct_infoprojectcampaign",
                     pkIdentity: $("#publicKey").val(),
-                    project_id: dealID,
+                    //project_id: parseInt(dealID),
+                    project_id: parseInt(80),
                     vehicle_group_id: ddDataVehicleGroups.selectedData.value,
                     vehicles_endgroup_id: ddDataVehicleType.selectedData.value,
                     quantity: parseInt($("#number_vehicleCount").val()),
-                    campaign_vehicle_id : 1,
+                    //campaign_vehicle_id : 1,
+                    campaign_vehicle_id : parseInt(rows[0].id)
                 })
             });
             ajax.ajaxCallWidget({
@@ -625,9 +631,11 @@
                     resetCampaignAddForm();
                 },
                 onAfterSuccess: function (event, data) {
+                    $('#tab_Campaign').loadImager('removeLoadImage');
+                    $("#gridContainer_DealCampaigns").dxDataGrid('instance').refresh();
                 }
             })
-            //ajax.ajaxCallWidget('call');
+            ajax.ajaxCallWidget('call');
         } else {
             $('#tab_Campaign').loadImager('removeLoadImage');
         }

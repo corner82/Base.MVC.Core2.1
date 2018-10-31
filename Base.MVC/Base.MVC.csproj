@@ -257,7 +257,6 @@
     <Folder Include="Models\HttpRequest\Stock\" />
     <Folder Include="wwwroot\adm\plugins\font-awesome-5.1.1\" />
     <Folder Include="wwwroot\adm\plugins\node_js\modules\" />
-    <Folder Include="wwwroot\sa\images\login_slider\" />
     <Folder Include="wwwroot\sa\plugins\" />
   </ItemGroup>
 

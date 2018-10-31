@@ -178,6 +178,71 @@
         return false;
     })
 
+    /**
+     * update deal click event handler
+     * @author Mustafa Zeynel Dağlı
+     * @ajax call değişkeni standart lokal değişken yapılacak
+     * */
+    $("#update_deal").on("click", function (e) {
+        e.preventDefault();
+        $('#tab_DealAttr').loadImager('removeLoadImage');
+        $("#tab_DealAttr").loadImager('appendImage');
+
+        var ddDataCustomer = $('#ddslickCustomer').data('ddslick');
+        var ddDataPriority = $('#ddslickPriority').data('ddslick');
+        var ddDataRealizationRate = $('#ddslickRealizationRate').data('ddslick');
+
+        if ($("#addDealForm").validationEngine("validate")) {
+            if (!ddDataCustomer.selectedData.value > 0) {
+                wm.warningMessage('resetOnShown');
+                wm.warningMessage('show', window.lang.translate("Please select customer"),
+                    window.lang.translate("Please select customer"));
+                $('#tab_DealAttr').loadImager('removeLoadImage');
+                return false;
+            }
+            var ajax_DdslickDealUpdate = $('#update_deal').ajaxCallWidget({
+                proxy: '/Deal/AddDealProxyService',
+                type: "POST",
+                triggerSuccessAuto: true,
+                transactionSuccessText: window.lang.translate('Transaction successful'),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                loadingImageID: "tab_DealAttr",
+                data: JSON.stringify({
+                    language_code: $("#langCode").val(),
+                    pk: "GsZVzEYe50uGgNM",
+                    deal_name: $("#deal_name").val(),
+                    url: "pkUpdateAct_infoproject",
+                    pkIdentity: $("#publicKey").val(),
+                    customer_id: ddDataCustomer.selectedData.value,
+                    is_house_deal: 0,
+                    probability_id: ddDataPriority.selectedData.value,
+                    reliability_id: ddDataRealizationRate.selectedData.value,
+                    description: $("#description").val(),
+                    discount_rate: $("#description").val()
+                })
+
+            });
+            ajax_DdslickDealUpdate.ajaxCallWidget({
+                onAfterSuccess: function (event, data) {
+                    var data = $.parseJSON(data);
+                    $("#gridContainer_vehicle").dxDataGrid("instance").refresh();
+                },
+                onReset: function () {
+                    //resetDealAddForm();
+                }
+
+            })
+            //ajax_DdslickDealUpdate.ajaxCallWidget('call');
+            return false;
+        } else {
+            $('#tab_DealAttr').loadImager('removeLoadImage');
+        }
+
+
+        return false;
+    })
+
     // add deal reset
     $("#add_deal_reset").on("click", function (e) {
         e.preventDefault();
@@ -188,318 +253,17 @@
     //----------------------------------add  deal end-------------------------------------------------
 
 
-    //----------------------------------add vehicle type to deal begin-------------------------------------------------
-
-    /**
-     * loading image for add vehicle type process
-     * */
-    $('#tab_VehicleType').loadImager();
-
-    /**
-     * add deal form vehicle type reset
-     * @author Mustafa Zeynel Dağlı
-     * */
-    var resetVehicleTypeAddDealForm = function () {
-        $('#addVehicleTypeForm').validationEngine('hide');
-        $('#addVehicleTypeForm')[0].reset();
-        $('#ddslickVehicleType').ddslick("select", { index: '0' });
-
-    }
-
-    /**
-     * add vehicle type form validation engine activated
-     * @author Mustafa Zeynel Dağlı
-     * */
-    $("#addVehicleTypeForm").validationEngine();
-
-    /**
-     * add deal click event handler
-     * @author Mustafa Zeynel Dağlı
-     * @todo deal is js lokal değişkenden alınacak
-     * */
-    $("#add_vehicleType").on("click", function (e) {
-        e.preventDefault();
-        $('#tab_VehicleType').loadImager('removeLoadImage');
-        $("#tab_VehicleType").loadImager('appendImage');
-
-        var dealID = null;
-        if ($("#deal_hidden").deal()) {
-            dealID = $("#deal_hidden").deal("getDealID");
-        }
-        if (dealID == null || dealID == "" || dealID <= 0) {
-            wm.warningMessage('resetOnShown');
-            wm.warningMessage('show', "Please select deal",
-                "Please select deal");
-            $('#tab_VehicleType').loadImager('removeLoadImage');
-            return false;
-        }
-
-        var ddDataVehicleType = $('#ddslickVehicleType').data('ddslick');
-        if (!ddDataVehicleType.selectedData.value > 0) {
-            wm.warningMessage('resetOnShown');
-            wm.warningMessage('show', window.lang.translate("Please select vehicle type"),
-                                      window.lang.translate("Please select vehicle type"));
-            $('#tab_VehicleType').loadImager('removeLoadImage');
-            return false;
-        }
-
-        //alert(ddDataVehicleType.selectedData.value);
-        if ($("#tagcabin_DealVehicles").tagCabin('findSpecificTags', ddDataVehicleType.selectedData.value, 'data-attribute') != true) {
-            /*tagBuilderChemicalPropGroup.tagCabin('addTagManuallyDataAttr', selectedItem.value,
-                selectedItem.text,*/
-            wm.warningMessage('resetOnShown');
-            wm.warningMessage('show', "Please select another vehicle type",
-                "Please select another vehicle type");
-            $('#tab_VehicleType').loadImager('removeLoadImage');
-            return false;
-        }
-
-        var ajax = $('#add_vehicleType').ajaxCallWidget({
-            failureLoadImage: true,
-            loadingImageID: "tab_VehicleType",
-            triggerSuccessAuto: true,
-            transactionSuccessText: window.lang.translate('Transaction successful'),
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-            proxy: '/Deal/AddVehicleTypeProxyService',
-            type: "POST",
-            data: JSON.stringify({
-                language_code: $("#langCode").val(),
-                pk: "GsZVzEYe50uGgNM",
-                url: "pkInsertAct_infoprojectvehiclemodels",
-                pkIdentity: $("#publicKey").val(),
-                project_id: parseInt(dealID),
-                is_house_deal: 0,
-                vehicle_gt_model_id: ddDataVehicleType.selectedData.value,
-                quantity: $("#quantity_vehicleType").val(),
-                delivery_date: "10/10/2018",
-            })
-
-        });
-        ajax.ajaxCallWidget({
-            onReset: function (event, data) {
-                resetVehicleTypeAddDealForm();
-            },
-            onAfterSuccess: function (event, data) {
-                $("#deal_hidden").deal("addVehicleType", { vehicleType: ddDataVehicleType.selectedData.value, count: $("#quantity").val() });
-                $("#tagcabin_DealVehicles").tagCabin('addTagManuallyDataAttr', ddDataVehicleType.selectedData.value,
-                    ddDataVehicleType.selectedData.text + " / " + $("#quantity_vehicleType").val(),
-
-                );
-
-                /*var tagBuilderChemicalPropGroup = $('#chemical-property-group-cabin').tagCabin({
-                    tagCopy: false,
-                    tagDeletable: true,
-                    tagDeletableAll: false,
-                    tagBox: $('.tag-container-chemical-property-group').find('ul'),
-
-                });*/
-
-                console.log($("#deal_hidden").deal("option", "dealID"));
-            }
-        })
-        ajax.ajaxCallWidget('call');
-        return false;
-    })
-
-    // add deal reset
-    $("#add_vehicleType_reset").on("click", function (e) {
-        e.preventDefault();
-        resetDealAddForm();
-        return false;
-    })
-
-    //----------------------------------add vehicle type to deal end-------------------------------------------------
-
+   
 
     //----------------------------------add buyback to deal begin-------------------------------------------------
 
-    /**
-     * loading image for add vehicle type process
-     * */
-    $('#tab_BuyBack').loadImager();
+    
 
-    /**
-     * add deal buyback form vehicle type reset
-     * @author Mustafa Zeynel Dağlı
-     * */
-    var resetBuyBackForm = function () {
-        //$('#addBuyBackForm').validationEngine('hide');
-        $('#addBuyBackForm')[0].reset();
-        $('#ddslickDealVehicleTypeBuyBack').ddslick("select", { index: '0' });
-        $('#ddslickCustomerTypeBuyBack').ddslick("select", { index: '0' });
-        //$('#ddslickTruckTypeBuyBack').ddslick("select", { index: '0' });
-        $('#ddslickTerrainTypeBuyBack').ddslick("select", { index: '0' });
-        $('#ddslickRepMainBuyBack').ddslick("select", { index: '0' });
-        $('#ddslickHydraBuyBack').ddslick("select", { index: '0' });
-    }
+    
 
-    /**
-     * add buyback form validation engine activated
-     * @author Mustafa Zeynel Dağlı
-     * */
-    $("#addBuyBackForm").validationEngine();
+    
 
-    /**
-     * add deal click event handler
-     * @author Mustafa Zeynel Dağlı
-     * @todo deal is js lokal değişkenden alınacak
-     * */
-    $("#add_buyBack").on("click", function (e) {
-        e.preventDefault();
-        $('#tab_BuyBack').loadImager('removeLoadImage');
-        $("#tab_BuyBack").loadImager('appendImage');
-
-
-        /*if ($("#tagcabin_DealVehicles").tagCabin('findSpecificTags', ddDataVehicleType.selectedData.value, 'data-attribute') != true) {
-            /*tagBuilderChemicalPropGroup.tagCabin('addTagManuallyDataAttr', selectedItem.value,
-                selectedItem.text,*/
-            /*wm.warningMessage('resetOnShown');
-            wm.warningMessage('show', "Please select another vehicle type",
-                "Please select another vehicle type");
-            $('#tab_VehicleType').loadImager('removeLoadImage');
-            return false;
-        }*/
-
-
-        var dealID = null;
-        if ($("#deal_hidden").deal()) {
-            dealID = $("#deal_hidden").deal("getDealID");
-        }
-        if (dealID == null || dealID == "" || dealID <= 0) {
-            wm.warningMessage('resetOnShown');
-            wm.warningMessage('show', window.lang.translate("Please select deal"),
-                window.lang.translate("Please select deal"));
-            $('#tab_BuyBack').loadImager('removeLoadImage');
-            return false;
-        }
-
-        var selectedRows = $("#gridContainer_BuyBack").dxDataGrid("getSelectedRowsData");
-        console.log(selectedRows);
-        if (selectedRows.length <= 0) {
-            wm.warningMessage('resetOnShown');
-            wm.warningMessage('show', window.lang.translate("Please select buy back matrix"),
-                window.lang.translate("Please select buy back matrix"));
-            $('#tab_BuyBack').loadImager('removeLoadImage');
-            return false;
-        }
-
-        var ddDataVehicleType = $('#ddslickDealVehicleTypeBuyBack').data('ddslick');
-        if (typeof ddDataVehicleType != "undefined") {
-            if (ddDataVehicleType.selectedData.value <= 0) {
-                wm.warningMessage('resetOnShown');
-                wm.warningMessage('show', window.lang.translate("Please select vehicle type"),
-                    window.lang.translate("Please select vehicle type"));
-                $('#tab_BuyBack').loadImager('removeLoadImage');
-                return false;
-            } else {
-
-            }
-        } else {
-            wm.warningMessage('resetOnShown');
-            wm.warningMessage('show', window.lang.translate("Please select vehicle type"),
-                window.lang.translate("Please select vehicle type"));
-            $('#tab_BuyBack').loadImager('removeLoadImage');
-            return false;
-        }
-
-        var ddDataCustomerType = $('#ddslickCustomerTypeBuyBack').data('ddslick');
-        if (!ddDataCustomerType.selectedData.value > 0) {
-            wm.warningMessage('resetOnShown');
-            wm.warningMessage('show', window.lang.translate("Please select customer type"),
-                window.lang.translate("Please select customer type"));
-            $('#tab_BuyBack').loadImager('removeLoadImage');
-            return false;
-        }
-
-        /*var ddDataTruckType = $('#ddslickTruckTypeBuyBack').data('ddslick');
-        if (!ddDataTruckType.selectedData.value > 0) {
-            wm.warningMessage('resetOnShown');
-            wm.warningMessage('show', window.lang.translate("Please select truck type"),
-                window.lang.translate("Please select truck type"));
-            $('#tab_BuyBack').loadImager('removeLoadImage');
-            return false;
-        }*/
-
-        var ddDataTerrainType = $('#ddslickTerrainTypeBuyBack').data('ddslick');
-        if (!ddDataTerrainType.selectedData.value > 0) {
-            wm.warningMessage('resetOnShown');
-            wm.warningMessage('show', window.lang.translate("Please select terrain type"),
-                window.lang.translate("Please select terrain type"));
-            $('#tab_BuyBack').loadImager('removeLoadImage');
-            return false;
-        }
-
-        var ddDataRepairMaintainance = $('#ddslickRepMainBuyBack').data('ddslick');
-        if (!ddDataRepairMaintainance.selectedData.value > 0) {
-            wm.warningMessage('resetOnShown');
-            wm.warningMessage('show', window.lang.translate("Please select R&M "),
-                window.lang.translate("Please select R&M"));
-            $('#tab_BuyBack').loadImager('removeLoadImage');
-            return false;
-        }
-
-        var ddDataHydralics = $('#ddslickHydraBuyBack').data('ddslick');
-        if (!ddDataHydralics.selectedData.value > 0) {
-            wm.warningMessage('resetOnShown');
-            wm.warningMessage('show', window.lang.translate("Please select hydraulics "),
-                window.lang.translate("Please select R&M"));
-            $('#tab_BuyBack').loadImager('removeLoadImage');
-            return false;
-        }
-
-        var ajax = $('#add_buyBack').ajaxCallWidget({
-            failureLoadImage: true,
-            loadingImageID: "tab_BuyBack",
-            triggerSuccessAuto: true,
-            transactionSuccessText: window.lang.translate('Transaction successful'),
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-            proxy: '/Deal/AddBuyBackProxyService',
-            type: "POST",
-            data: JSON.stringify({
-                language_code: $("#langCode").val(),
-                pk: "GsZVzEYe50uGgNM",
-                url: "pkInsertAct_infoprojectbuybacks",
-                pkIdentity: $("#publicKey").val(),
-                project_id: parseInt(dealID),
-                vehicles_trade_id: ddDataVehicleType.selectedData.value,
-                customer_type_id: ddDataCustomerType.selectedData.value,
-                comfort_super_id: ddDataRepairMaintainance.selectedData.value,
-                hydraulics_id: ddDataHydralics.selectedData.value,
-                buyback_matrix_id: selectedRows[0].id,
-                quantity: parseInt($("#quantity_buyback").val()),
-                is_other: 0,
-                other_month_value: 0,
-                other_milages_value: 0,
-                other_description: ""
-            })
-
-        });
-        ajax.ajaxCallWidget({
-            onReset: function (event, data) {
-                //resetVehicleTypeAddDealForm();
-                $('#ddslickDealVehicleTypeBuyBack').ddslick("select", { index: '0' });
-            },
-            onAfterSuccess: function (event, data) {
-                $("#deal_hidden").deal("addBuyBack", {
-                    vehicles_trade_id: ddDataVehicleType.selectedData.value,
-                    customer_type_id: ddDataCustomerType.selectedData.value,
-                    comfort_super_id: ddDataRepairMaintainance.selectedData,
-                    hydraulics_id: ddDataHydralics.selectedData.value,
-                    buyback_matrix_id: ddDataRepairMaintainance.selectedData.value,
-                    quantity: $("#quantity_buyback").val(),
-                });
-                $("#tagcabin_DealBuyBacks").tagCabin('addTagManuallyDataAttr', ddDataVehicleType.selectedData.value,
-                    ddDataVehicleType.selectedData.text + " / " + $("#quantity_buyback").val() + " / " + selectedRows[0].vahicle_description + " / " + selectedRows[0].price,
-
-                );
-                //console.log($("#deal_hidden").deal("option", "dealID"));
-            }
-        })
-        ajax.ajaxCallWidget('call');
-        return false;
-    })
+    
 
     // add deal reset
     $("#add_buyBack_reset").on("click", function (e) {
