@@ -61,7 +61,7 @@
                                     <div class="box box-info" id="ajaxACL-invoiceProformaBoList">
                                         <div class="box-header">
                                             <i class="fa fa-comments-o"></i>
-                                            <h3 class="box-title"><span lang="en">invoice/Proforma back office list</span></h3>
+                                            @*<h3 class="box-title"><span lang="en">invoice/Proforma back office list</span></h3>*@
 
                                             <div class="box-tools pull-right">
                                                 <button class="btn bg-teal btn-sm btn-small-miya" data-widget="refresh" id="invoiceProformaBoListRefresh"><i class="fa fa-refresh"></i></button>
@@ -105,23 +105,23 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label><span lang="en">Currency</span></label>
-                                        <div class="" id="ajax_DdslickCurrency">
-                                            <div id="loadingImage_DdslickCurrency" class="input-group zeyn-load-imager">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-copyright"></i>
-                                                </div>
-                                                <div id="ddslickCurrency" class="form-control"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label><span lang="en">Price</span></label>
+                                        <label><span lang="en">OTP numbers</span></label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-map-pin"></i>
                                             </div>
-                                            <input type="text" class="form-control validate[required]" placeholder="Price" id="txt-invoiceProformaBo-price" disabled>
+                                            <input type="text" class="form-control validate[required]" placeholder="OTP numbers" id="txt-invoiceProformaBo-OtpNo" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span lang="en">Chassis</span></label>
+                                        <div class="" id="ajax_DdslickChassis">
+                                            <div id="loadingImage_DdslickChassis" class="input-group zeyn-load-imager">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <div id="ddslickChassis" class="form-control"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -176,23 +176,23 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label><span lang="en">OTP numbers</span></label>
+                                        <label><span lang="en">Currency</span></label>
+                                        <div class="" id="ajax_DdslickCurrency">
+                                            <div id="loadingImage_DdslickCurrency" class="input-group zeyn-load-imager">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <div id="ddslickCurrency" class="form-control"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span lang="en">Price</span></label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-map-pin"></i>
                                             </div>
-                                            <input type="text" class="form-control validate[required]" placeholder="OTP numbers" id="txt-invoiceProformaBo-OtpNo" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label><span lang="en">Chassis</span></label>
-                                        <div class="" id="ajax_DdslickChassis">
-                                            <div id="loadingImage_DdslickChassis" class="input-group zeyn-load-imager">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-copyright"></i>
-                                                </div>
-                                                <div id="ddslickChassis" class="form-control"></div>
-                                            </div>
+                                            <input type="text" class="form-control validate[required]" placeholder="Price" id="txt-invoiceProformaBo-price" disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -238,7 +238,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-map-pin"></i>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Deposit amount" id="txt-invoiceProformaBo-deposit">
+                                            <input type="text" class="form-control" placeholder="Deposit amount" id="txt-invoiceProformaBo-deposit" onChange="depositOnChange()">
                                         </div>
                                     </div>
                                     <div class="form-group">
