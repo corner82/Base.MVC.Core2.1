@@ -40,7 +40,12 @@ $(document).ready(function () {
 
 
     var selectedBodynameId = 0;
+    var selectedBodyname = "";
+
     var selectedBodyId = 0;
+
+    var selectedBodytypeId = "";
+    var selectedBodytype = "";
 
     var langCode = $("#langCode").val();
     //alert(langCode);
@@ -233,60 +238,6 @@ $(document).ready(function () {
         }
     })
     ajaxACLResources_supplier.ajaxCallWidget('call');
-
-    //Feature body Name (Back office / Salesman)
-    //Servisten Name ve Description Alanları dolu gelecek. Biri Backoffice, diğeri Salesman için. 
-    //BodyFeatureNameDdslick
-    //pkAccDeffSaBoDdList_sysaccdeff 
-
-    $('#loading-image-fbodyname').loadImager('removeLoadImage');
-    $('#loading-image-fbodyname').loadImager('appendImage');
-
-    var ajaxACLResources_fbodyname = $('#ajaxACL-fbodyname').ajaxCallWidget({
-        failureLoadImage: true,
-        loadingImageID: "loading-image-fbodyname",
-        triggerSuccessAuto: true,
-        transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-        proxy: '/Accessory/AccessoryFeatureNameDdslick/',
-        type: 'POST',
-        data: JSON.stringify({
-            language_code: $("#langCode").val(),
-            pk: "GsZVzEYe50uGgNM",
-            url: "pkAccBodyDeffDdList_sysaccbodydeff",
-            pkIdentity: $("#publicKey").val()
-        })
-    });
-    ajaxACLResources_fbodyname.ajaxCallWidget({
-        onSuccess: function (event, databodyname) {
-            var cbdata_bodyname = $.parseJSON(databodyname);
-            cbdata_bodyname.splice(0, 0,
-                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-            );
-            $('#dropdownFBodyName').ddslick({
-                data: cbdata_badyname,
-                width: '100%',
-                search: true,
-                searchText: window.lang.translate('Search'),
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-
-                    }
-                }
-            });
-
-            $("#loading-image-fbodyname").loadImager('removeLoadImage');
-        },
-        onReset: function (event, data) {
-
-        },
-        onAfterSuccess: function (event, data) {
-            $("#loading-image-fbodyname").loadImager('removeLoadImage');
-        }
-    })
-    ajaxACLResources_fbodyname.ajaxCallWidget('call');
-
 
     //////////////////////////////////////////////////////////////////////////////////////////////
     /**
@@ -515,10 +466,6 @@ $(document).ready(function () {
                         dataField: "supplier_name",
                         encodeHtml: false
                     }, {
-                        caption: window.lang.translate('Embrace number'),
-                        dataField: "body_embrace_no",
-                        encodeHtml: false
-                    }, {
                         caption: window.lang.translate('Cost'),
                         dataField: "cost",
                         encodeHtml: false,
@@ -528,6 +475,10 @@ $(document).ready(function () {
                         dataField: "list_price",
                         encodeHtml: false,
                         alignment: "right"
+                    }, {
+                        caption: window.lang.translate('Embrace number'),
+                        dataField: "embrace_no",
+                        encodeHtml: false
                     }
                 ],
                 //{"id":"3","apid":3,"vehicle_gtname":"LMC6 - 26.280",
@@ -591,23 +542,14 @@ $(document).ready(function () {
             var ddData_vehiclemodel = $('#dropdownVehicleModel').data('ddslick')
             var vehiclemodel_id = ddData_vehiclemodel.selectedData.value;
 
-            var ddData_kp = $('#dropdownKPNo').data('ddslick')
-            var kp_id = ddData_kp.selectedData.value;
-
             var ddData_supplier = $('#dropdownSupplier').data('ddslick')
             var supplier_id = ddData_supplier.selectedData.value;
 
             var ddData_accfname = $('#dropdownFBodyName').data('ddslick')
             var bodyname_id = ddData_accfname.selectedData.value;
 
-            var ddData_options = $('#dropdownOptions').data('ddslick')
-            var options_id = ddData_options.selectedData.value;
-
-            var embrace_number = $('#txt-embrace-number').val();
-            var cost_local = $('#txt-cost-local').val();
-            var cost_national = $('#txt-cost-national').val();
-            var partnumber_local = $('#txt-partnumber-local').val();
-            var partnumber_national = $('#txt-partnumber-international').val();
+            var embrace_number = $('#txt-embrace-no').val();
+            var cost = $('#txt-cost').val();
             var list_price = $('#txt-list-price').val();
 
             var ajax;
@@ -626,16 +568,11 @@ $(document).ready(function () {
                     data: JSON.stringify({
                         url: "pkInsertAct_sysaccbodymatrix",
                         vehicle_group_id: vehiclemodel_id ,
-                        kpnumber_id: kp_id,
                         supplier_id: supplier_id,
                         acc_deff_id: bodyname_id,
-                        body_option_id: options_id,
-                        cost_local: cost_local,
-                        cost_national: cost_national,
-                        part_num_local: partnumber_local,
-                        part_num_nat: partnumber_national,
-                        body_embrace_no: embrace_number,
-                        list_price: list_price,
+                        cost: cost,
+                        list_price: list_price,                        
+                        embrace_no: embrace_number,
                         pk: "GsZVzEYe50uGgNM"
                     })
                 });
@@ -672,15 +609,9 @@ $(document).ready(function () {
                                 id: selectedBodyId,
                                 url: "pkUpdateAct_sysaccbodydeff",
                                 vehicle_group_id: vehiclemodel_id,
-                                kpnumber_id: kp_id,
                                 supplier_id: supplier_id,
                                 acc_deff_id: bodyname_id,
-                                accessory_option_id: options_id,
-                                cost_local: cost_local,
-                                cost_national: cost_national,
-                                part_num_local: partnumber_local,
-                                part_num_nat: partnumber_national,
-                                embrace_no: embrace_number,
+                                cost: cost,
                                 list_price: list_price,
                                 pk: "GsZVzEYe50uGgNM"
                             })
@@ -721,9 +652,9 @@ $(document).ready(function () {
 
         $('#bodyForm').validationEngine('hide');
 
+        
         $('#dropdownVehicleModel').ddslick('select', { index: String(0) });
         $('#dropdownSupplier').ddslick('select', { index: String(0) });
-        $('#dropdownFBodyName').ddslick('select', { index: String(0) });
         
         $("#loading-image-body").loadImager('removeLoadImage');
 
@@ -742,34 +673,19 @@ $(document).ready(function () {
         $("#loading-image-body").loadImager('removeLoadImage');
         $("#loading-image-body").loadImager('appendImage');
 
-        if (data.body_embrace_no) {
-            document.getElementById("txt-embrace-number").value = data.body_embrace_no;
+        document.getElementById("txt-body-name").value = data.body_deff_name;
+        document.getElementById("txt-body-type").value = data.body_type_name;
+
+        if (data.embrace_no) {
+            document.getElementById("txt-embrace-no").value = data.embrace_no;
         } else {
-            document.getElementById("txt-embrace-number").value = "";
+            document.getElementById("txt-embrace-no").value = "";
         }
 
-        if (data.cost_local) {
-            document.getElementById("txt-cost-local").value = data.cost_local;
+        if (data.cost) {
+            document.getElementById("txt-cost").value = data.cost;
         } else {
-            document.getElementById("txt-cost-local").value = "";
-        }
-
-        if (data.cost_national) {
-            document.getElementById("txt-cost-national").value = data.cost_national;
-        } else {
-            document.getElementById("txt-cost-national").value = "";
-        }
-
-        if (data.part_num_local) {
-            document.getElementById("txt-partnumber-local").value = data.part_num_local;
-        } else {
-            document.getElementById("txt-partnumber-local").value = "";
-        }
-
-        if (data.part_num_nat) {
-            document.getElementById("txt-partnumber-international").value = data.part_num_nat;
-        } else {
-            document.getElementById("txt-partnumber-international").value = "";
+            document.getElementById("txt-cost").value = "";
         }
 
         if (data.list_price) {
@@ -792,24 +708,6 @@ $(document).ready(function () {
                 {
                     index: data.supplier_id,
                     value: data.supplier_name
-                }
-            );
-        }
-
-        if (data.acc_deff_id) {
-            $('#dropdownFBodyName').ddslick('selectByValue',
-                {
-                    index: data.acc_deff_id,
-                    value: data.name_acc_deff_sm
-                }
-            );
-        }
-
-        if (data.body_option_id) {
-            $('#dropdownOptions').ddslick('selectByValue',
-                {
-                    index: data.body_option_id,
-                    value: data.name_acc_opt
                 }
             );
         }
@@ -1082,7 +980,9 @@ $(document).ready(function () {
                     var data = selectedItems.selectedRowsData[0];
                     if (data) {
                         selectedBodynameId = data.id;
-                        
+                        selectedBodyname = data.name;
+                        selectedBodytypeId = data.acc_body_type_id;
+                        selectedBodytype = data.body_type_name;
                         fillBodyNameForm(data);
 
                     }
@@ -1213,19 +1113,22 @@ $(document).ready(function () {
         $("#loading-image-bodynameform").loadImager('appendImage');
 
         selectedBodynameId = 0;
-        $('#bodynameForm').validationEngine('hide');
-        document.getElementById("txt-body-featurename").value = "";
+        selectedBodyname = "";
+        selectedBodytypeId = 0;
+        selectedBodytype = "";
 
+        $('#bodynameForm').validationEngine('hide');
+        
         $('#dropdownBodyType').ddslick('select', { index: String(0) });
 
         $("#loading-image-bodynameform").loadImager('removeLoadImage');
 
+        resetBodyForm();
         //yeni kayda açık, tablar kapatılıyor
         tab_disable();
        
         return false;
     }
-
 
     /**
     * Fill Body Feature Name form
@@ -1327,6 +1230,10 @@ $(document).ready(function () {
             // grid refresh olması gerektiği için kullanıldı.
             //$(gridContainer_tab).dxDataGrid("updateDimensions");
             //$('#bodyList').click();
+
+            //document.getElementById("txt-body-name").value = selectedBodyname;
+            //document.getElementById("txt-body-type").value = selectedBodytype;
+
             $("#gridContainer_body").dxDataGrid("instance").refresh();
         }
     });
