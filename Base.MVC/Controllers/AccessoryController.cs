@@ -881,7 +881,7 @@ namespace Base.MVC.Controllers
         /// get Bodyextra List
         /// Gül Özdemir
         /// </summary>
-        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillBodyMatrixGridx_sysaccbodymatrix&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillBodyExtrasMatrixGridx_sysaccbodymatrix&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
         /// <returns></returns>
         //[SessionTimeOut]
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]

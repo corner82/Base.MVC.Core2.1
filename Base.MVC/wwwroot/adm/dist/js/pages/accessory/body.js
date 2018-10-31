@@ -525,7 +525,7 @@ $(document).ready(function () {
                         alignment: "right"
                     }, {
                         caption: window.lang.translate('List Price'),
-                        dataField: "cost",
+                        dataField: "list_price",
                         encodeHtml: false,
                         alignment: "right"
                     }
@@ -669,7 +669,7 @@ $(document).ready(function () {
                             proxy: '/Accessory/UpdateBody',
                             type: "POST",
                             data: JSON.stringify({
-                                id: selectedAccessoryId,
+                                id: selectedBodyId,
                                 url: "pkUpdateAct_sysaccbodydeff",
                                 vehicle_group_id: vehiclemodel_id,
                                 kpnumber_id: kp_id,
@@ -680,7 +680,7 @@ $(document).ready(function () {
                                 cost_national: cost_national,
                                 part_num_local: partnumber_local,
                                 part_num_nat: partnumber_national,
-                                accessory_embrace_no: embrace_number,
+                                embrace_no: embrace_number,
                                 list_price: list_price,
                                 pk: "GsZVzEYe50uGgNM"
                             })
