@@ -532,7 +532,7 @@ DevExpress.localization.locale(langCode);
             else  {//insert
                 var ajax_InsertYearlyQuota = $('#ajaxACL-monthlyQuota').ajaxCallWidget({
                     failureLoadImage: true,
-                    loadingImageID: "pkInsertAct_syssismonthlyquotas",
+                    loadingImageID: "loadingImage_monthlyQuota",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
                     transactionFailureText: window.lang.translate("Service URL not found, please report error"),

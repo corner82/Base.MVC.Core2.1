@@ -57,7 +57,7 @@
                     <div class="box-body">
                         <form id='FxrateForm' method="get">
                             <div class="row" id="loading-image-Fxrate">
-                                <div class="col-md-6">
+                                <div class="col-md-6" id="ajaxACL-fxrate">
 
                                     <div class="form-group">
                                         <label><span lang="en">Fx rate start date</span></label>
@@ -84,7 +84,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-money"></i>
                                             </div>
-                                            <input type="number" class="form-control validate[required]" placeholder="Rate" id="txt-fxrate-name">
+                                            <input type="number" class="form-control validate[required]" placeholder="Rate" id="txt-fxrate-fxrate">
                                         </div>
                                     </div>
                                     <!-- /.col -->
@@ -96,20 +96,20 @@
                                 <!-- /.col -->
                             </div>
                             <div class="box-footer">
-                                <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-fxrate-clear" onclick="resetFxrateForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-fxrate-save" onclick="insertFxrateWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-fxrate-clear">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-fxrate-save">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
                             </div>
                         </form>
 
 
-                        <div class="box box-info">
+                        <div class="box box-info" id="ajaxACL-fxratelist">
                             <div class="box-header">
                                 <i class="fa fa-comments-o"></i>
                                 <h3 class="box-title"><span lang="en">Fx rate List</span></h3>
 
                                 <div class="box-tools pull-right">
+                                    <button class="btn bg-teal btn-sm btn-small-miya" data-widget="refresh" id="fxrateListRefresh"><i class="fa fa-refresh"></i></button>
                                     <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                    <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
                                 </div>
                             </div>
                             <div class="box-body" id="loading-image-FxrateGrid">
@@ -168,7 +168,7 @@
 /* BEGIN EXTERNAL SOURCE */
 /**/
 
-                $(document).ready(function () {
+        $(document).ready(function () { });
 
     </script>
 }

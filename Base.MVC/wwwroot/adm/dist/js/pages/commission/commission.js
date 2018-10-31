@@ -28,8 +28,10 @@ $(document).ready(function () {
     //to Commission form grid loading-image
     $("#loading-image-commissionnameGrid").loadImager();
 
-    $("#loading-image-commissionname").loadImager();
-   
+    $("#loading-image-commissionname-1").loadImager();
+    $("#loading-image-role").loadImager();
+    $('#loading-image-commissioncondition-1').loadImager();
+
     var langCode = $("#langCode").val();
     //alert(langCode);
 
@@ -128,13 +130,12 @@ $(document).ready(function () {
     * @author Gül Özdemir
     * @since 31/10/2018
     */
-    $('#loading-image-commissionname').loadImager('removeLoadImage');
-    $('#loading-image-commissionname').loadImager('appendImage');
+    $('#loading-image-commissionname-1').loadImager('removeLoadImage');
+    $('#loading-image-commissionname-1').loadImager('appendImage');
 
-    //role servisi gelince değişecek
     var ajaxACLResources_commissionname = $('#ajaxACL-commissionname').ajaxCallWidget({
         failureLoadImage: true,
-        loadingImageID: "loading-image-commissionname",
+        loadingImageID: "loading-image-commissionname-1",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
         transactionFailureText: window.lang.translate("Service URL not found, please report error"),
@@ -144,8 +145,8 @@ $(document).ready(function () {
         data: JSON.stringify({
             language_code: $("#langCode").val(),
             pk: "GsZVzEYe50uGgNM",
-            url: "pkCommissionDefinitionsDdList_syscommissiondefinitions",
-            pkIdentity: $("#publicKey").val()
+            url: "pkCommissionDefinitionsDdList_syscommissiondefinitions"
+            //pkIdentity: $("#publicKey").val()
         })
     });
 
@@ -153,10 +154,12 @@ $(document).ready(function () {
         onSuccess: function (event, datacommissionname) {
             var cbdata_commissionname = $.parseJSON(datacommissionname);
             cbdata_commissionname.splice(0, 0,
-                { text: window.lang.translate('ALL'), value: 0, selected: true, description: "" }
+                { text: window.lang.translate('Please select'), value: 0, selected: true, description: "" }
             );
 
-            $('#dropdownCommissionname').ddslick({
+            console.log(cbdata_commissionname);
+
+            $('#dropdownCommissionName1').ddslick({
                 data: cbdata_commissionname,
                 width: '100%',
                 search: true,
@@ -172,27 +175,239 @@ $(document).ready(function () {
                 }
             });
 
-            $("#loading-image-commissionname").loadImager('removeLoadImage');
+            $('#dropdownCommissionName2').ddslick({
+                data: cbdata_commissionname,
+                width: '100%',
+                search: true,
+                searchText: window.lang.translate('Search'),
+                onSelected: function (selectedData) {
+                    /*
+                    if (selectedData.selectedData.value > 0) {
+
+                    } else {
+
+                    }
+                    */
+                }
+            });
+
+            $('#dropdownCommissionName3').ddslick({
+                data: cbdata_commissionname,
+                width: '100%',
+                search: true,
+                searchText: window.lang.translate('Search'),
+                onSelected: function (selectedData) {
+                    /*
+                    if (selectedData.selectedData.value > 0) {
+
+                    } else {
+
+                    }
+                    */
+                }
+            });
+
+            $('#dropdownCommissionName4').ddslick({
+                data: cbdata_commissionname,
+                width: '100%',
+                search: true,
+                searchText: window.lang.translate('Search'),
+                onSelected: function (selectedData) {
+                    /*
+                    if (selectedData.selectedData.value > 0) {
+
+                    } else {
+
+                    }
+                    */
+                }
+            });
+
+            $('#dropdownCommissionName5').ddslick({
+                data: cbdata_commissionname,
+                width: '100%',
+                search: true,
+                searchText: window.lang.translate('Search'),
+                onSelected: function (selectedData) {
+                    /*
+                    if (selectedData.selectedData.value > 0) {
+
+                    } else {
+
+                    }
+                    */
+                }
+            });
+
+            $('#dropdownCommissionName6').ddslick({
+                data: cbdata_commissionname,
+                width: '100%',
+                search: true,
+                searchText: window.lang.translate('Search'),
+                onSelected: function (selectedData) {
+                    /*
+                    if (selectedData.selectedData.value > 0) {
+
+                    } else {
+
+                    }
+                    */
+                }
+            });
+
+            $('#dropdownCommissionName7').ddslick({
+                data: cbdata_commissionname,
+                width: '100%',
+                search: true,
+                searchText: window.lang.translate('Search'),
+                onSelected: function (selectedData) {
+                    /*
+                    if (selectedData.selectedData.value > 0) {
+
+                    } else {
+
+                    }
+                    */
+                }
+            });
+            $("#loading-image-commissionname-1").loadImager('removeLoadImage');
         },
         onReset: function (event, data) {
 
         },
         onAfterSuccess: function (event, data) {
-            $("#loading-image-commissionname").loadImager('removeLoadImage');
+            $("#loading-image-commissionname-1").loadImager('removeLoadImage');
+        },
+        onError: function (event, data) {
+            alert("hata");
         }
+
     })
     ajaxACLResources_commissionname.ajaxCallWidget('call');
 
 
+    /**
+ * Commision condition
+ * @returns {undefined}
+ * @author Gül Özdemir
+ * @since 30/10/2018
+ */
+     //Komisyon şartı / Commision condition
+    //per vehicle
+    //monthly
+    //quarter
+    //yearly   
+    var cbdata_commisioncondition = [
+        {
+            text: window.lang.translate('Please select') + "...",
+            value: 0,
+            selected: true
+        },
+        {
+            text: "Per vehicle",
+            value: 1,
+            selected: false
+        },
+        {
+            text: "Monthly",
+            value: 2,
+            selected: false
+        },
+        {
+            text: "Quarter",
+            value: 3,
+            selected: false
+        },
+        {
+            text: "Yearly",
+            value: 4,
+            selected: false
+        }
+    ];
+
+    $('#loading-image-commissioncondition-1').loadImager('removeLoadImage');
+    $("#loading-image-commissioncondition-1").loadImager('appendImage');
+
+    $('#dropdownCommissionCondition1').ddslick({
+        data: cbdata_commisioncondition,
+        width: '100%',
+
+        onSelected: function (selectedData) {
+            if (selectedData.selectedData.value > 1) {
+            }
+        }
+    });
+
+    $('#dropdownCommissionCondition2').ddslick({
+        data: cbdata_commisioncondition,
+        width: '100%',
+
+        onSelected: function (selectedData) {
+            if (selectedData.selectedData.value > 1) {
+            }
+        }
+    });
+
+    $('#dropdownCommissionCondition3').ddslick({
+        data: cbdata_commisioncondition,
+        width: '100%',
+
+        onSelected: function (selectedData) {
+            if (selectedData.selectedData.value > 1) {
+            }
+        }
+    });
+
+    $('#dropdownCommissionCondition4').ddslick({
+        data: cbdata_commisioncondition,
+        width: '100%',
+
+        onSelected: function (selectedData) {
+            if (selectedData.selectedData.value > 1) {
+            }
+        }
+    });
+
+    $('#dropdownCommissionCondition5').ddslick({
+        data: cbdata_commisioncondition,
+        width: '100%',
+
+        onSelected: function (selectedData) {
+            if (selectedData.selectedData.value > 1) {
+            }
+        }
+    });
+
+    $('#dropdownCommissionCondition6').ddslick({
+        data: cbdata_commisioncondition,
+        width: '100%',
+
+        onSelected: function (selectedData) {
+            if (selectedData.selectedData.value > 1) {
+            }
+        }
+    });
+
+    $('#dropdownCommissionCondition7').ddslick({
+        data: cbdata_commisioncondition,
+        width: '100%',
+
+        onSelected: function (selectedData) {
+            if (selectedData.selectedData.value > 1) {
+            }
+        }
+    });
+    $('#loading-image-commissioncondition-1').loadImager('removeLoadImage');
+
     //////////////////////////////////////////////////////////////////////////////////////////////
     /**
-    * commissionNameList Refresh
+    * commissionList1 Refresh
     * @returns 
     * @author Gül Özdemir
     * @since 29/10/2018
     */
 
-    $('#commissionnameList').click(function () {
+    $('#commissionList1').click(function () {
 
         /* devexgrid */
         var commissionname_data = new DevExpress.data.CustomStore({
