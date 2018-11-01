@@ -239,6 +239,8 @@ $(document).ready(function () {
     })
     ajaxACLResources_supplier.ajaxCallWidget('call');
 
+    DevExpress.localization.locale(langCode);
+
     //////////////////////////////////////////////////////////////////////////////////////////////
     /**
     * bodyList Refresh
@@ -270,7 +272,7 @@ $(document).ready(function () {
                     data: JSON.stringify({
                         language_code: $("#langCode").val(),
                         pk: "GsZVzEYe50uGgNM",
-                        url: "pkFillAccBodyDeffGridx_sysaccbodydeff",
+                        url: "pkFillBodyMatrixGridx_sysaccbodymatrix",
                         pkIdentity: $("#publicKey").val(),
                         page: "",
                         rows: "",
@@ -316,7 +318,6 @@ $(document).ready(function () {
             }
         });
 
-        //DevExpress.localization.locale(langCode);
 
         $(function () {
             $("#gridContainer_body").dxDataGrid({
@@ -433,21 +434,14 @@ $(document).ready(function () {
 
                         }
                         /*
-                         {"id":"3","apid":3,
-                         "vehicle_gtname":"LMC6 - 26.280",
-                         "supplier_name":"ANCHOR (SPECS ARE DIFF)",
+                         {"id":"1","apid":1,
+                         "vehicle_models_name":"CLA",
+                         "supplier_name":"MOTOR TRAIL INC",
                          "body_deff_name":"Drop side body 7.2m",
-                         "body_type_name":"Body Feature",
-                         "vehicle_gt_models_id":1,
-                         "supplier_id":3,
-                         "cost":"22.000",
-                         "acc_body_deff_id":1,
-                         "acc_body_type_id":1,
-                         "op_username":"mustafa.zeynel.admin@ostim.com.tr",
-                         "active":0,
-                         "state_active":"Active","date_saved":"2018-09-23 21:59:49",
-                         "date_modified":null,"language_code":"en","language_name":"English",
-                         "language_id":"385","op_user_id":16}
+                         "body_type_name":"Standart Body","vehicle_models_id":1,"supplier_id":1,
+                         "cost":"123.00","acc_body_deff_id":1,"acc_body_type_id":6,
+                         "list_price":null,
+                         "embrace_no":null,"op_username":"mustafa.zeynel.admin@ostim.com.tr","active":0,"state_active":"Active","date_saved":"2018-09-23 17:15:04","date_modified":null,"language_code":"en","language_name":"English","language_id":"385","op_user_id":16}
                          */
                     }, {
                         caption: window.lang.translate('Body type name'),
@@ -459,7 +453,7 @@ $(document).ready(function () {
                         encodeHtml: false
                     }, {
                         caption: window.lang.translate('Vehicle model'),
-                        dataField: "vehicle_gtname",
+                        dataField: "vehicle_models_name",
                         encodeHtml: false
                     }, {
                         caption: window.lang.translate('Supplier name'),
@@ -545,8 +539,8 @@ $(document).ready(function () {
             var ddData_supplier = $('#dropdownSupplier').data('ddslick')
             var supplier_id = ddData_supplier.selectedData.value;
 
-            var ddData_accfname = $('#dropdownFBodyName').data('ddslick')
-            var bodyname_id = ddData_accfname.selectedData.value;
+            //var ddData_accfname = $('#dropdownFBodyName').data('ddslick')
+            //var bodyname_id = ddData_accfname.selectedData.value;
 
             var embrace_number = $('#txt-embrace-no').val();
             var cost = $('#txt-cost').val();
@@ -567,9 +561,11 @@ $(document).ready(function () {
                     type: "POST",
                     data: JSON.stringify({
                         url: "pkInsertAct_sysaccbodymatrix",
-                        vehicle_group_id: vehiclemodel_id ,
+                        acc_body_deff_id: selectedBodynameId,
+                        body_type_id: selectedBodytypeId,
+                        vehicle_models_id: vehiclemodel_id ,
                         supplier_id: supplier_id,
-                        acc_deff_id: bodyname_id,
+                        acc_body_deff_id: selectedBodynameId,
                         cost: cost,
                         list_price: list_price,                        
                         embrace_no: embrace_number,
@@ -607,12 +603,15 @@ $(document).ready(function () {
                             type: "POST",
                             data: JSON.stringify({
                                 id: selectedBodyId,
-                                url: "pkUpdateAct_sysaccbodydeff",
-                                vehicle_group_id: vehiclemodel_id,
+                                url: "pkUpdateAct_sysaccbodymatrix",
+                                acc_body_deff_id: selectedBodynameId,
+                                body_type_id: selectedBodytypeId,
+                                vehicle_models_id: vehiclemodel_id,
                                 supplier_id: supplier_id,
-                                acc_deff_id: bodyname_id,
+                                acc_body_deff_id: selectedBodynameId,
                                 cost: cost,
                                 list_price: list_price,
+                                embrace_no: embrace_number,
                                 pk: "GsZVzEYe50uGgNM"
                             })
                         });
@@ -622,9 +621,9 @@ $(document).ready(function () {
 
                             },
                             onAfterSuccess: function (event, data) {
-                                $("#gridContainer_accessory").dxDataGrid("instance").refresh();
-                                $("#loadingImage_accessoryform").loadImager('removeLoadImage');
-                                resetAccessoryForm();
+                                $("#gridContainer_body").dxDataGrid("instance").refresh();
+                                $("#loadingImage_bodyform").loadImager('removeLoadImage');
+                                resetBodyForm();
                             }
                         })
                         ajax.ajaxCallWidget('call');
@@ -649,6 +648,13 @@ $(document).ready(function () {
         $("#loading-image-body").loadImager('appendImage');
 
         selectedBodyId = 0;
+        selectedBodynameId = 0;
+        selectedBodyname = "";
+        selectedBodytypeId = 0;
+        selectedBodytype = "";
+
+        document.getElementById("txt-body-name").value = "";
+        document.getElementById("txt-body-type").value = "";
 
         $('#bodyForm').validationEngine('hide');
 
@@ -673,6 +679,11 @@ $(document).ready(function () {
         $("#loading-image-body").loadImager('removeLoadImage');
         $("#loading-image-body").loadImager('appendImage');
 
+        selectedBodynameId = data.acc_body_deff_id;
+        selectedBodyname = data.body_deff_name;
+        selectedBodytypeId = data.acc_body_type_id;
+        selectedBodytype = data.body_type_name;
+
         document.getElementById("txt-body-name").value = data.body_deff_name;
         document.getElementById("txt-body-type").value = data.body_type_name;
 
@@ -694,11 +705,11 @@ $(document).ready(function () {
             document.getElementById("txt-list-price").value = "";
         }
 
-        if (data.vehicle_group_id) {
+        if (data.vehicle_models_id) {
             $('#dropdownVehicleModel').ddslick('selectByValue',
                 {
-                    index: data.vehicle_group_id,
-                    value: data.vehicle_group
+                    index: data.vehicle_models_id,
+                    value: data.vehicle_models_name
                 }
             );
         }
@@ -766,6 +777,7 @@ $(document).ready(function () {
 
     }
 
+    //DevExpress.localization.locale(langCode);
 
     //////////////////////////////////////////////////////////////////////////////////////////////
     /**
@@ -844,7 +856,6 @@ $(document).ready(function () {
             }
         });
 
-        //DevExpress.localization.locale(langCode);
 
         $(function () {
             $("#gridContainer_bodyname").dxDataGrid({
@@ -962,6 +973,10 @@ $(document).ready(function () {
                         }
 
                     }, {
+                        caption: window.lang.translate('Body type name'),
+                        dataField: "acc_body_type_name",
+                        encodeHtml: false
+                    }, {
                         caption: window.lang.translate('Feature name'),
                         dataField: "name",
                         encodeHtml: false
@@ -982,7 +997,7 @@ $(document).ready(function () {
                         selectedBodynameId = data.id;
                         selectedBodyname = data.name;
                         selectedBodytypeId = data.acc_body_type_id;
-                        selectedBodytype = data.body_type_name;
+                        selectedBodytype = data.acc_body_type_name;
                         fillBodyNameForm(data);
 
                     }
@@ -1147,7 +1162,7 @@ $(document).ready(function () {
             $('#dropdownBodyType').ddslick('selectByValue',
                 {
                     index: data.acc_body_type_id,
-                    value: data.body_type_name
+                    value: data.acc_body_type_name
                 }
             );
         } else {
@@ -1155,7 +1170,7 @@ $(document).ready(function () {
         } 
 
         document.getElementById("txt-body-name").value = data.name;
-        document.getElementById("txt-body-type").value = data.body_type_name;
+        document.getElementById("txt-body-type").value = data.acc_body_type_name;
 
         $("#loading-image-bodyname").loadImager('removeLoadImage');
 
