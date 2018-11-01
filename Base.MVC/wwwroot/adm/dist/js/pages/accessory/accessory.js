@@ -41,6 +41,7 @@ $(document).ready(function () {
 
 
     var selectedAccessorynameId = 0;
+    var selectedAccessoryname = "";
     var selectedAccessoryId = 0;
 
     var langCode = $("#langCode").val();
@@ -1381,6 +1382,18 @@ $(document).ready(function () {
         document.getElementById("txt-featurename-bo").value = data.name_bo;
         document.getElementById("txt-featurename-sm").value = data.name_sm;
 
+        selectedAccessorynameId = data.id;
+        selectedAccessoryname = data.name_sm;
+        /*
+        if (data.id) {
+            $('#dropdownFAccessoryName').ddslick('selectByValue',
+                {
+                    index: data.id,
+                    value: data.name_sm
+                }
+            );
+        }
+        */
         $("#loading-image-accessoryname").loadImager('removeLoadImage');
 
         tab_active()
@@ -1454,6 +1467,14 @@ $(document).ready(function () {
             // grid refresh olması gerektiği için kullanıldı.
             //$(gridContainer_tab).dxDataGrid("updateDimensions");
             //$('#accessoryList').click();
+            /*
+            $('#dropdownFAccessoryName').ddslick('selectByValue',
+                {
+                    index: selectedAccessorynameId,
+                    value: selectedAccessoryname
+                }
+            );
+            */
             $("#gridContainer_accessory").dxDataGrid("instance").refresh();
         }
     });

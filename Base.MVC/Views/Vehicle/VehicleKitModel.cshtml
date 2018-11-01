@@ -54,11 +54,24 @@
                             <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
                         </div>
                     </div>
-                    <div class="box-body">
+                    <div class="box-body" id="ajaxACL-vehiclekitmodel">
                         <form id='vehiclekitmodelForm' method="get">
 
-                            <div class="row" id="loading-image-vehiclekitmodel">
+                            <div class="row" id="loadingImage_vehiclekitmodel">
                                 <div class="col-md-6">
+                                    <!-- Kullanım amacı-->
+                                    <div class="form-group">
+                                        <label><span lang="en">Purpose of</span></label>
+
+                                        <div class="" id="ajax_DdslickPurposeOf">
+                                            <div id="loadingImage_purposeof" class="input-group zeyn-load-imager">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <div id="ddslickPurposeOf" class="form-control validate[required]"></div>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <div class="form-group">
                                         <label><span lang="en">Vehicle kit type </span></label>
@@ -77,7 +90,7 @@
                                         <label><span lang="en">Vehicle model name</span></label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
-                                                <i class="fa fa-user"></i>
+                                                <i class="fa fa-truck"></i>
                                             </div>
                                             <input type="text" class="form-control validate[required]" placeholder="Vehicle model Name" id="txt-vehiclemodel-name">
                                         </div>
@@ -110,12 +123,13 @@
             <!-- Left col -->
             <section class="col-lg-12 connectedSortable">
 
-                <div class="box box-info">
+                <div class="box box-info" id="ajaxACL-vehiclekitmodellist">
                     <div class="box-header">
                         <i class="fa fa-comments-o"></i>
                         <h3 class="box-title">Vehicle Kit - Model List</h3>
 
                         <div class="box-tools pull-right">
+                            <button class="btn bg-teal btn-sm btn-small-miya" data-widget="refresh" id="vehiclekitmodelList"><i class="fa fa-refresh"></i></button>
                             <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
                             <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
                         </div>
@@ -169,7 +183,7 @@
     <script src="@ViewBag.defaultDevExLangPath"></script>
 
 
-    <script src="~/adm/dist/js/pages/sys/vehiclekitmodel.js" type="text/javascript"></script>
+    <script src="~/adm/dist/js/pages/vehicle/vehiclekitmodel.js" type="text/javascript"></script>
 
     <script>
         $(document).ready(function () {
