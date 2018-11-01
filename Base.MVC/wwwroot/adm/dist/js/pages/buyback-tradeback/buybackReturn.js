@@ -236,7 +236,7 @@ $(document).ready(function () {
             visible: true
         },
         paging: {
-            pageSize: 8
+            pageSize: 5
         },
         filterRow: {
             visible: true,
@@ -269,292 +269,6 @@ $(document).ready(function () {
         }
     });
 //bb return deal grid end
-
-//bb return vehicle grid
-    $('#bbVehicleListRefresh').click(function () {
-       // $("#gridContainer_buybackVehicleList").dxDataGrid("instance").refresh();
-    //});
-
-    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillBuybackReturnGridx_infoprojectbuybackreturn&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
-    var bbVehicle = new DevExpress.data.CustomStore({
-        load: function (loadOptions) {
-            var deferred = $.Deferred(),
-                args = {};
-
-            if (loadOptions.sort) {
-                args.orderby = loadOptions.sort[0].selector;
-                if (loadOptions.sort[0].desc)
-                    args.orderby += " desc";
-            }
-
-            args.skip = loadOptions.skip || 0;
-            args.take = loadOptions.take || 12;
-
-            $.ajax({
-                url: '/BuybackTradeback/BbTbReturnGrid',
-                dataType: "json",
-                data: JSON.stringify({
-                    language_code: $("#langCode").val(),
-                    pk: "GsZVzEYe50uGgNM",
-                    url: "pkFillBuybackReturnGridx_infoprojectbuybackreturn",
-                    pkIdentity: $("#publicKey").val(),
-                    page: "",
-                    rows: "",
-                    sort: "",
-                    order: "", //args.orderby,
-                    skip: args.skip,
-                    take: args.take
-                    //deal_id: deal_id
-                }),
-                type: 'POST',
-                contentType: 'application/json',
-                success: function (result) {
-                    deferred.resolve(result.items, { totalCount: result.totalCount });
-                },
-                error: function () {
-                    deferred.reject("Data Loading Error");
-                },
-                timeout: 10000
-            });
-            return deferred.promise();
-        }
-    });
-
-    $("#gridContainer_buybackVehicleList").dxDataGrid({
-
-        showColumnLines: true,
-        showRowLines: true,
-        showBorders: true,
-        dataSource: bbVehicle,
-        columnHidingEnabled: true,
-        selection: {
-            mode: "single"
-        },
-        hoverStateEnabled: true,
-        editing: {
-            //mode: "batch"
-            mode: "form",
-            //allowAdding: true,
-            //allowUpdating: true,
-            //allowDeleting: true,
-            useIcons: true
-        },
-        "export": {
-            enabled: true,
-            fileName: "buybackVehicle"
-        },
-        grouping: {
-            contextMenuEnabled: true,
-            expandMode: "rowClick"
-        },
-        groupPanel: {
-            emptyPanelText: "Use the context menu of header columns to group data",
-            visible: true
-        },
-        pager: {
-            allowedPageSizes: [5, 8, 15, 30],
-            showInfo: true,
-            showNavigationButtons: true,
-            showPageSizeSelector: true,
-            visible: true
-        },
-        paging: {
-            pageSize: 8
-        },
-        filterRow: {
-            visible: true,
-            applyFilter: "auto"
-        },
-        searchPanel: {
-            visible: true,
-            width: 240,
-            placeholder: window.lang.translate('Search') + "...",
-        },
-        headerFilter: {
-            visible: true
-        },
-        columnChooser: {
-            enabled: true,
-            mode: "select"
-        },
-        columns: [{
-        //    caption: window.lang.translate('Deal Number') + "...",
-        //    dataField: "deal_sis_key"
-        //}, {
-        //    caption: window.lang.translate('Deal date') + "...",
-        //    dataField: "man_entry_date"
-        //}, {
-            caption: window.lang.translate('Vehicle return date') + "...",
-            dataField: "new_return_date"
-        }, {
-            caption: window.lang.translate('Chassis') + "...",
-            //dataField: "WAGP21ZZ2FT022928"
-            dataField: "vin_no"
-        }, {
-            caption: window.lang.translate('Vehicle return') + "...",
-            dataField: "new_return_date"
-        }, {
-            caption: window.lang.translate('Explanation') + "...",
-            dataField: "description"
-        }],
-        onSelectionChanged: function (selectedItems) {
-            var data = selectedItems.selectedRowsData[0];
-            if (data) {
-                bbId = data.id;
-                fillVehicleBuybackForm(data);
-            }
-        }
-        });
-    });
-//bb return vehicle grid end
-
-//bb return attachment grid
-    $('#attachmentListRefresh').click(function () {
-    //    $("#gridContainer_buybackVehicleAttachmentList").dxDataGrid("instance").refresh();
-    //});
-    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillParkOffGridx_infostockparkoff&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
-    var bbAtt = new DevExpress.data.CustomStore({
-        load: function (loadOptions) {
-            var deferred = $.Deferred(),
-                args = {};
-
-            if (loadOptions.sort) {
-                args.orderby = loadOptions.sort[0].selector;
-                if (loadOptions.sort[0].desc)
-                    args.orderby += " desc";
-            }
-
-            args.skip = loadOptions.skip || 0;
-            args.take = loadOptions.take || 12;
-
-            $.ajax({
-                url: '/ParkOff/ParkoffGrid',
-                dataType: "json",
-                data: JSON.stringify({
-                    language_code: $("#langCode").val(),
-                    pk: "GsZVzEYe50uGgNM",
-                    url: "pkFillParkOffGridx_infostockparkoff",
-                    pkIdentity: $("#publicKey").val(),
-                    page: "",
-                    rows: "",
-                    sort: "",
-                    order: "", //args.orderby,
-                    skip: args.skip,
-                    take: args.take
-                }),
-                type: 'POST',
-                contentType: 'application/json',
-                success: function (result) {
-                    deferred.resolve(result.items, { totalCount: result.totalCount });
-                },
-                error: function () {
-                    deferred.reject("Data Loading Error");
-                },
-                timeout: 10000
-            });
-            return deferred.promise();
-        },
-        remove: function (key) {
-            var deferred = $.Deferred();
-            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_sysfixedsalescosts&id=33&pk=GsZVzEYe50uGgNM
-            return $.ajax({
-                url: '/ParkOff/DeleteParkoff',
-                dataType: "json",
-                data: JSON.stringify({
-                    id: parkoffId,
-                    pk: "GsZVzEYe50uGgNM",
-                    url: "pkDeletedAct_infostockparkoff"
-                }),
-                type: 'POST',
-                contentType: 'application/json',
-                success: function (result) {
-                    deferred.resolve(result.items, { totalCount: result.totalCount });
-                },
-                error: function () {
-                    deferred.reject("Data remove Error");
-                },
-                timeout: 10000
-            });
-        }
-    });
-    $("#gridContainer_buybackVehicleAttachmentList").dxDataGrid({
-
-        showColumnLines: true,
-        showRowLines: true,
-        showBorders: true,
-        dataSource: bbAtt,
-        columnHidingEnabled: true,
-        selection: {
-            mode: "single"
-        },
-        hoverStateEnabled: true,
-        editing: {
-            //mode: "batch"
-            mode: "form",
-            //allowAdding: true,
-            allowUpdating: true,
-            allowDeleting: true,
-            useIcons: true
-        },
-        "export": {
-            enabled: true,
-            fileName: "buyback Vehicle Attachment"
-        },
-        grouping: {
-            contextMenuEnabled: true,
-            expandMode: "rowClick"
-        },
-        groupPanel: {
-            emptyPanelText: "Use the context menu of header columns to group data",
-            visible: true
-        },
-        pager: {
-            allowedPageSizes: [5, 8, 15, 30],
-            showInfo: true,
-            showNavigationButtons: true,
-            showPageSizeSelector: true,
-            visible: true
-        },
-        paging: {
-            pageSize: 8
-        },
-        filterRow: {
-            visible: true,
-            applyFilter: "auto"
-        },
-        searchPanel: {
-            visible: true,
-            width: 240,
-            placeholder: window.lang.translate('Search') + "...",
-        },
-        headerFilter: {
-            visible: true
-        },
-        columnChooser: {
-            enabled: true,
-            mode: "select"
-        },
-        columnWidth: {
-            autoWidth: true
-        },
-        columns: [{
-            caption: window.lang.translate('Vehicle') + "...",
-                //dataField: "WAGP21ZZ2FT022928"
-            dataField: "chassis_no"
-        }, {
-            caption: "Attachment",
-            //dataField: "active",
-            dataField: "chassis_no"
-        }],
-        onSelectionChanged: function (selectedItems) {
-            var data = selectedItems.selectedRowsData[0];
-            if (data) {
-                //fillVehicleBuybackForm(data);
-            }
-        }
-        });
-    });
-//bb return attachment grid end
 
  /**
  * Buyback Return
@@ -701,13 +415,162 @@ $(document).ready(function () {
         document.getElementById("txt-bbreturn-dealDate").value = data.man_entry_date;
         deal_id = 82;//data.chassis_no;
         stock_id = 8;//data.stock_id;
-        $('#bbVehicleListRefresh').click();
 
         $("#loadingImage_BbReturnInfo").loadImager('removeLoadImage');
-        
+        FillGridVehicle();
+
         tab_active();
         return false;
     }
+
+    //bb return vehicle grid
+    $('#bbVehicleListRefresh').click(function () {
+        //$("#gridContainer_buybackVehicleList").dxDataGrid("instance").refresh();
+        FillGridVehicle();
+    });
+
+    var FillGridVehicle = function () {
+        $("#loadingImage_BbReturnInfo").loadImager('removeLoadImage');
+        $("#loadingImage_BbReturnInfo").loadImager('appendImage');
+
+        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillBuybackReturnGridx_infoprojectbuybackreturn&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
+        var bbVehicle = new DevExpress.data.CustomStore({
+            load: function (loadOptions) {
+                var deferred = $.Deferred(),
+                    args = {};
+
+                if (loadOptions.sort) {
+                    args.orderby = loadOptions.sort[0].selector;
+                    if (loadOptions.sort[0].desc)
+                        args.orderby += " desc";
+                }
+
+                args.skip = loadOptions.skip || 0;
+                args.take = loadOptions.take || 12;
+
+                $.ajax({
+                    url: '/BuybackTradeback/BbTbReturnGrid',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        language_code: $("#langCode").val(),
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkFillBuybackReturnGridx_infoprojectbuybackreturn",
+                        pkIdentity: $("#publicKey").val(),
+                        page: "",
+                        rows: "",
+                        sort: "",
+                        order: "", //args.orderby,
+                        skip: args.skip,
+                        take: args.take
+                        //deal_id: deal_id
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                    },
+                    error: function () {
+                        deferred.reject("Data Loading Error");
+                    },
+                    timeout: 10000
+                });
+                return deferred.promise();
+            }
+        });
+
+        $("#gridContainer_buybackVehicleList").dxDataGrid({
+
+            showColumnLines: true,
+            showRowLines: true,
+            showBorders: true,
+            dataSource: bbVehicle,
+            columnHidingEnabled: true,
+            selection: {
+                mode: "single"
+            },
+            hoverStateEnabled: true,
+            editing: {
+                //mode: "batch"
+                mode: "form",
+                //allowAdding: true,
+                //allowUpdating: true,
+                //allowDeleting: true,
+                useIcons: true
+            },
+            "export": {
+                enabled: true,
+                fileName: "buybackVehicle"
+            },
+            grouping: {
+                contextMenuEnabled: true,
+                expandMode: "rowClick"
+            },
+            groupPanel: {
+                emptyPanelText: "Use the context menu of header columns to group data",
+                visible: true
+            },
+            pager: {
+                allowedPageSizes: [5, 8, 15, 30],
+                showInfo: true,
+                showNavigationButtons: true,
+                showPageSizeSelector: true,
+                visible: true
+            },
+            paging: {
+                pageSize: 5
+            },
+            filterRow: {
+                visible: true,
+                applyFilter: "auto"
+            },
+            searchPanel: {
+                visible: true,
+                width: 240,
+                placeholder: window.lang.translate('Search') + "...",
+            },
+            headerFilter: {
+                visible: true
+            },
+            columnChooser: {
+                enabled: true,
+                mode: "select"
+            },
+            columns: [{
+                //    caption: window.lang.translate('Deal Number') + "...",
+                //    dataField: "deal_sis_key"
+                //}, {
+                //    caption: window.lang.translate('Deal date') + "...",
+                //    dataField: "man_entry_date"
+                //}, {
+                caption: window.lang.translate('Vehicle return date') + "...",
+                dataField: "new_return_date"
+            }, {
+                caption: window.lang.translate('Chassis') + "...",
+                //dataField: "WAGP21ZZ2FT022928"
+                dataField: "vin_no"
+            }, {
+                caption: window.lang.translate('Vehicle return') + "...",
+                dataField: "new_return_date"
+            }, {
+                caption: window.lang.translate('Explanation') + "...",
+                dataField: "description"
+            }],
+            onSelectionChanged: function (selectedItems) {
+                var data = selectedItems.selectedRowsData[0];
+                if (data) {
+                    bbId = data.id;
+                    fillVehicleBuybackForm(data);
+                }
+            }
+        });
+
+//bb return vehicle grid end
+
+        $("#loadingImage_BbReturnInfo").loadImager('removeLoadImage');
+
+        return false;
+    }
+
 
     window.fillVehicleBuybackForm = function (data) {
         $("#loadingImage_BbReturnInfo").loadImager('removeLoadImage');
@@ -734,8 +597,166 @@ $(document).ready(function () {
         document.getElementById("txt-bbreturn-vehicleReturnDate").value = data.new_return_date;
         document.getElementById("txt-bbreturn-explanation").value = data.description;
         stock_id = data.stock_id;
+        FillGridVehicleAttachment();
 
         tab_active();
+        return false;
+    }
+
+    var FillGridVehicleAttachment = function () {
+        $("#loadingImage_BbReturnInfo").loadImager('removeLoadImage');
+        $("#loadingImage_BbReturnInfo").loadImager('appendImage');
+
+        //bb return attachment grid
+        $('#attachmentListRefresh').click(function () {
+                $("#gridContainer_buybackVehicleAttachmentList").dxDataGrid("instance").refresh();
+            });
+            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillParkOffGridx_infostockparkoff&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
+        var bbAtt = new DevExpress.data.CustomStore({
+            load: function (loadOptions) {
+                var deferred = $.Deferred(),
+                    args = {};
+
+                if (loadOptions.sort) {
+                    args.orderby = loadOptions.sort[0].selector;
+                    if (loadOptions.sort[0].desc)
+                        args.orderby += " desc";
+                }
+
+                args.skip = loadOptions.skip || 0;
+                args.take = loadOptions.take || 12;
+
+                $.ajax({
+                    url: '/ParkOff/ParkoffGrid',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        language_code: $("#langCode").val(),
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkFillParkOffGridx_infostockparkoff",
+                        pkIdentity: $("#publicKey").val(),
+                        page: "",
+                        rows: "",
+                        sort: "",
+                        order: "", //args.orderby,
+                        skip: args.skip,
+                        take: args.take
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                    },
+                    error: function () {
+                        deferred.reject("Data Loading Error");
+                    },
+                    timeout: 10000
+                });
+                return deferred.promise();
+            },
+            remove: function (key) {
+                var deferred = $.Deferred();
+                //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_sysfixedsalescosts&id=33&pk=GsZVzEYe50uGgNM
+                return $.ajax({
+                    url: '/ParkOff/DeleteParkoff',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        id: parkoffId,
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkDeletedAct_infostockparkoff"
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                    },
+                    error: function () {
+                        deferred.reject("Data remove Error");
+                    },
+                    timeout: 10000
+                });
+            }
+        });
+        $("#gridContainer_buybackVehicleAttachmentList").dxDataGrid({
+
+            showColumnLines: true,
+            showRowLines: true,
+            showBorders: true,
+            dataSource: bbAtt,
+            columnHidingEnabled: true,
+            selection: {
+                mode: "single"
+            },
+            hoverStateEnabled: true,
+            editing: {
+                //mode: "batch"
+                mode: "form",
+                //allowAdding: true,
+                allowUpdating: true,
+                allowDeleting: true,
+                useIcons: true
+            },
+            "export": {
+                enabled: true,
+                fileName: "buyback Vehicle Attachment"
+            },
+            grouping: {
+                contextMenuEnabled: true,
+                expandMode: "rowClick"
+            },
+            groupPanel: {
+                emptyPanelText: "Use the context menu of header columns to group data",
+                visible: true
+            },
+            pager: {
+                allowedPageSizes: [5, 8, 15, 30],
+                showInfo: true,
+                showNavigationButtons: true,
+                showPageSizeSelector: true,
+                visible: true
+            },
+            paging: {
+                pageSize: 5
+            },
+            filterRow: {
+                visible: true,
+                applyFilter: "auto"
+            },
+            searchPanel: {
+                visible: true,
+                width: 240,
+                placeholder: window.lang.translate('Search') + "...",
+            },
+            headerFilter: {
+                visible: true
+            },
+            columnChooser: {
+                enabled: true,
+                mode: "select"
+            },
+            columnWidth: {
+                autoWidth: true
+            },
+            columns: [{
+                caption: window.lang.translate('Vehicle') + "...",
+                //dataField: "WAGP21ZZ2FT022928"
+                dataField: "chassis_no"
+            }, {
+                caption: "Attachment",
+                //dataField: "active",
+                dataField: "chassis_no"
+            }],
+            onSelectionChanged: function (selectedItems) {
+                var data = selectedItems.selectedRowsData[0];
+                if (data) {
+                    //fillVehicleBuybackForm(data);
+                }
+            }
+        });
+        //});
+//bb return attachment grid end
+
+        $("#loadingImage_BbReturnInfo").loadImager('removeLoadImage');
+
         return false;
     }
 

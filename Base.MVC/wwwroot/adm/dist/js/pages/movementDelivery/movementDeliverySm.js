@@ -24,7 +24,7 @@ $(document).ready(function () {
 * @author Ceydacan Seyrek
 * @since 23/10/2016
 */
-    $('#return-datepicker').datepicker({
+    $('#movementDelivery-datepicker').datepicker({
         //autoclose: true,
         locale: langCode,
         format: 'yyyy/mm/dd'
@@ -40,7 +40,7 @@ $(document).ready(function () {
     $("#loadingImage_DdslickTruckstogoList").loadImager();
 
     //Validation
-    $('#truckstogoForm').validationEngine(); 
+    $('#movementDeliveryForm').validationEngine(); 
 
     //Chassis
     $("#loadingImage_DdslickChassis").loadImager('removeLoadImage');
@@ -331,7 +331,7 @@ $(document).ready(function () {
     $("#btn-truckstogo-save").on("click", function (e) {
         e.preventDefault();
         //alert("geldim click");
-        if ($("#truckstogoForm").validationEngine('validate')) {
+        if ($("#movementDeliveryForm").validationEngine('validate')) {
 
             //window.insertTrainingInfo = function () {
             $("#loadingImage_truckstogo").loadImager('removeLoadImage');
@@ -391,7 +391,7 @@ $(document).ready(function () {
                 });
                 ajax_InsertTruckstogo.ajaxCallWidget({
                     onReset: function (event, data) {
-                        resetTruckstogoForm();
+                        resetMovementDeliveryForm();
                     },
                     onAfterSuccess: function (event, data) {
                         $("#gridContainer_truckstogoList").dxDataGrid("instance").refresh();
@@ -421,7 +421,7 @@ $(document).ready(function () {
                 });
                 ajax_InsertTruckstogo.ajaxCallWidget({
                     onReset: function (event, data) {
-                        resetTruckstogoForm();
+                        resetMovementDeliveryForm();
                     },
                     onAfterSuccess: function (event, data) {
                         $("#gridContainer_truckstogoList").dxDataGrid("instance").refresh();
@@ -442,16 +442,16 @@ $(document).ready(function () {
 
     $("#btn-truckstogo-clear").on("click", function (e) {
         e.preventDefault();
-        resetTruckstogoForm();
+        resetMovementDeliveryForm();
         return false;
     })
 
-    var resetTruckstogoForm = function () {
+    var resetMovementDeliveryForm = function () {
         $("#loadingImage_truckstogo").loadImager('removeLoadImage');
         $("#loadingImage_truckstogo").loadImager('appendImage');
 
-        $('#truckstogoForm')[0].reset();
-        $('#truckstogoForm').validationEngine('hide');
+        $('#movementDeliveryForm')[0].reset();
+        $('#movementDeliveryForm').validationEngine('hide');
 
         $('#ddslickChassis').ddslick('select', { index: String(0) });
         $('#ddslickStatu').ddslick('select', { index: String(0) });

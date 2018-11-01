@@ -47,7 +47,7 @@
                 <div class="box box-info">
                     <div class="box-header">
                         <i class="fa fa-comments-o"></i>
-                        <h3 class="box-title"><span lang="en">Trucks to go form</span></h3>
+                        <h3 class="box-title"><span lang="en">Movement&Delivery Salesman form</span></h3>
 
                         <div class="box-tools pull-right">
                             <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -55,81 +55,196 @@
                         </div>
                     </div>
                     <div class="box-body">
-                        <form id='truckstogoForm' method="get">
-                            <div class="row" id="loadingImage_truckstogo">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label><span lang="en">Chassis</span></label>
-                                        <div class="" id="ajax_DdslickChassis">
-                                            <div id="loadingImage_DdslickChassis" class="input-group zeyn-load-imager">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-copyright"></i>
-                                                </div>
-                                                <div id="ddslickChassis" class="form-control"></div>
+                        <form id='movementDeliveryForm' method="get">
+                            <div class="row" id="loadingImage_movementDelivery">
+
+                                <div class="col-md-12">
+                                    <div class="box box-info" id="ajaxACL-movementDeliveryList">
+                                        <div class="box-header">
+                                            <i class="fa fa-comments-o"></i>
+                                            @*<h3 class="box-title"><span lang="en">invoice/Proforma back office list</span></h3>*@
+
+                                            <div class="box-tools pull-right">
+                                                <button class="btn bg-teal btn-sm btn-small-miya" data-widget="refresh" id="movementDeliveryListRefresh"><i class="fa fa-refresh"></i></button>
+                                                <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                                <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label><span lang="en">Extras(accessories & body)</span></label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-map-pin"></i>
-                                            </div>
-                                            <input type="text" class="form-control validate[required]" placeholder="Extras(accessories & body)" id="txt-truckstogo-extras">
+
+                                        <div class="box-body" id="loadingImage_movementDeliveryList">
+                                            <div id="gridContainer_movementDeliveryList"></div>
                                         </div>
                                     </div>
-                                    
                                 </div>
                                 <!-- /.col -->
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label><span lang="en">Vehicle return date</span></label>
-                                        <div class="input-group date">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
-                                            </div>
-                                            <input type="text" class="form-control pull-right validate[required]" name="return-datepicker" id="return-datepicker" placeholder="Return Date">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label><span lang="en">Vehicle Status</span></label>
-                                        <div class="" id="ajax_DdslickStatu">
-                                            <div id="loadingImage_DdslickStatu" class="input-group zeyn-load-imager">
+                                <div class="col-md-12">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label><span lang="en">Statu</span></label>
+                                            <div class="input-group">
                                                 <div class="input-group-addon">
-                                                    <i class="fa fa-copyright"></i>
+                                                    <i class="fa fa-truck"></i>
                                                 </div>
-                                                <div id="ddslickStatu" class="form-control"></div>
+                                                <input type="text" class="form-control validate[required]" placeholder="Statu" id="txt-movementDelivery-statu" disabled>
+                                            </div>
+                                            <div class="form-group">
+                                                <label><span lang="en">Vehicle(s) to deliver</span></label>
+                                                <div class="" id="ajax_DdslickChassis">
+                                                    <div id="loadingImage_DdslickChassis" class="input-group zeyn-load-imager">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-truck"></i>
+                                                        </div>
+                                                        <div id="ddslickChassis" class="form-control"></div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div><!-- /.col -->
-                            </div>
+                                    <!-- /.col -->
 
-                            <div class="box-footer">
-                                <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-truckstogo-clear">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-truckstogo-save">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
-                            </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label><span lang="en">Request Type</span></label>
+                                            <div class="" id="ajax_DdslickReqType">
+                                                <div id="loadingImage_DdslickReqType" class="input-group zeyn-load-imager">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-truck"></i>
+                                                    </div>
+                                                    <div id="ddslickReqType" class="form-control"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label><span lang="en">Deliver to</span></label>
+                                            <div class="" id="ajax_DdslickDeliver">
+                                                <div id="loadingImage_DdslickDeliver" class="input-group zeyn-load-imager">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-truck"></i>
+                                                    </div>
+                                                    <div id="ddslickDeliver" class="form-control"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!-- /.col -->
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label><span lang="en">Customer name</span></label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-truck"></i>
+                                                </div>
+                                                <input type="text" class="form-control validate[required]" placeholder="Customer name" id="txt-movementDelivery-cusName" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label><span lang="en">Contact person name</span></label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-truck"></i>
+                                                </div>
+                                                <input type="text" class="form-control validate[required]" placeholder="Contact person nam" id="txt-movementDelivery-contName" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label><span lang="en">Email</span></label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-truck"></i>
+                                                </div>
+                                                <input type="text" class="form-control validate[required]" placeholder="Email" id="txt-movementDelivery-email" disabled>
+                                            </div>
+                                        </div>
 
-                            <div class="box box-info" id="ajaxACL-truckstogoList">
-                                <div class="box-header">
-                                    <i class="fa fa-comments-o"></i>
-                                    <h3 class="box-title"><span lang="en">Trucks to go list</span></h3>
+                                    </div><!-- /.col -->
 
-                                    <div class="box-tools pull-right">
-                                        <button class="btn bg-teal btn-sm btn-small-miya" data-widget="refresh" id="truckstogoListRefresh"><i class="fa fa-refresh"></i></button>
-                                        <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                        <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label><span lang="en">Address 1</span></label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-map-pin"></i>
+                                                </div>
+                                                <input type="text" class="form-control validate[required]" placeholder="Address 1" id="txt-movementDelivery-adr1" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label><span lang="en">Address 2</span></label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-map-pin"></i>
+                                                </div>
+                                                <input type="text" class="form-control validate[required]" placeholder="Address 2" id="txt-movementDelivery-adr2" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label><span lang="en">Address 3</span></label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-map-pin"></i>
+                                                </div>
+                                                <input type="text" class="form-control validate[required]" placeholder="Address 3" id="txt-movementDelivery-adr3" disabled>
+                                            </div>
+                                        </div>
+
+                                    </div><!-- /.col -->
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label><span lang="en">Phone number</span></label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-truck"></i>
+                                                </div>
+                                                <input type="text" class="form-control validate[required]" placeholder="Phone number" id="txt-movementDelivery-telNo" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label><span lang="en">Attachment</span></label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-truck"></i>
+                                                </div>
+                                                <input type="file" class="form-control" placeholder="file upload" id="txt-movementDelivery-file" lang="en" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label><span lang="en">Delivery date</span></label>
+                                            <div class="input-group date">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+                                                <input type="text" class="form-control pull-right" name="movementDelivery-datepicker" id="movementDelivery-datepicker" placeholder="Delivery Date">
+                                            </div>
+                                        </div>
+                                    </div><!-- /.col -->
+                                </div>
+                                </div>
+
+                                <div class="box-footer">
+                                    <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-truckstogo-clear">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                    <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-truckstogo-save">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                </div>
+
+                                <div class="box box-info" id="ajaxACL-vehicleList">
+                                    <div class="box-header">
+                                        <i class="fa fa-comments-o"></i>
+                                        <h3 class="box-title"><span lang="en">Vehicle list</span></h3>
+
+                                        <div class="box-tools pull-right">
+                                            <button class="btn bg-teal btn-sm btn-small-miya" data-widget="refresh" id="vehicleListRefresh"><i class="fa fa-refresh"></i></button>
+                                            <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                            <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                                        </div>
+                                    </div>
+
+                                    <div class="box-body" id="loadingImage_vehicleList">
+                                        <div id="gridContainer_vehicleList"></div>
                                     </div>
                                 </div>
-
-                                <div class="box-body" id="loadingImage_DdslickTruckstogoList">
-                                    <div id="gridContainer_truckstogoList"></div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                            </form>
                 </div>
+            </div>
 
             </section><!-- /.Left col -->
         </div><!-- /.row (main row) -->
@@ -177,7 +292,7 @@
     <script src="@ViewBag.defaultDevExLangPath"></script>
 
 
-    <script src="~/adm/dist/js/pages/truckstogo/truckstogo.js" type="text/javascript"></script>
+    <script src="~/adm/dist/js/pages/movementDelivery/movementDeliverySm.js" type="text/javascript"></script>
 
     <script>
         $(document).ready(function () {
