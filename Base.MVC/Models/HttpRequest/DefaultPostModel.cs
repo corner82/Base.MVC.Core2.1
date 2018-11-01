@@ -13,5 +13,6 @@ namespace Base.MVC.Models.HttpRequest
         public string url { get; set; }
 
         public int? project_id { get; set; }
+        public int? acc_body_types_id { get; set; }
     }
 }

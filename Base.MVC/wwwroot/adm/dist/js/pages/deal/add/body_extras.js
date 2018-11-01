@@ -189,7 +189,7 @@
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
-                    url: "pkCustomerDdList_infocustomer",
+                    url: "pkBodyFeatureTypesDdList_sysaccbodytypes",
                     pkIdentity: $("#publicKey").val()
                 })
 
@@ -205,71 +205,60 @@
                         //height: 150,
                         data: data,
                         width: '100%',
+                        onSelected: function (selectedData) {
+                            if (selectedData.selectedData.value > 0) {
+                                $('#ddslickBodyDepositExt').ddslick('destroy');
+                                $('#loadingImage_DdslickBodyDepositExt').loadImager('removeLoadImage');
+                                $("#loadingImage_DdslickBodyDepositExt").loadImager('appendImage');
+                                var ajax_DdslickS = $('#ajax_DdslickBodyDepositExt').ajaxCallWidget({
+                                    proxy: '/DefaultPost/DefaultPostModel',
+                                    type: "POST",
+                                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                                    noDataFailureText: window.lang.translate("No data returned from service"),
+                                    loadingImageID: "loadingImage_DdslickBodyDepositExt",
+                                    data: JSON.stringify({
+                                        language_code: $("#langCode").val(),
+                                        pk: "GsZVzEYe50uGgNM",
+                                        url: "pkDepositTypesDdList_sysprojectdeposittypes",
+                                        pkIdentity: $("#publicKey").val(),
+                                        acc_body_types_id: selectedData.selectedData.value
+                                    })
+                                });
+                                ajax_DdslickS.ajaxCallWidget({
+                                    onSuccess: function (event, data) {
+                                        var data = $.parseJSON(data);
+                                        data.splice(0, 0,
+                                            { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                                        );
+
+                                        $('#ddslickBodyDepositExt').ddslick({
+                                            //height: 150,
+                                            data: data,
+                                            width: '100%',
+                                        });
+
+                                        $("#loadingImage_DdslickBodyDepositExt").loadImager('removeLoadImage');
+                                    },
+                                })
+                                ajax_DdslickS.ajaxCallWidget('call');
+                                //vehicleKitTypeForDefineFields(selectedData.selectedData.text);
+                            }
+                        }
                     });
+
+                    
 
                     $("#loadingImage_DdslickBodyTypesExt").loadImager('removeLoadImage');
                 },
             })
             ajax_DdslickS.ajaxCallWidget('call');
 
-            /**
-          * ddslick deal aksesuar options dropdown (aksesuar)
-          * @author Mustafa Zeynel Dağlı
-          * @since 17/10/2018
-          */
-            var ddslickDealAksesuarSuppliersData = [
-                {
-                    text: 'Please select',
-                    value: 0,
-                    selected: true
-                },
-            ];
-            /*$('#loadingImage_DdslickBodyOptExt').loadImager('removeLoadImage');
-            $("#loadingImage_DdslickBodyOptExt").loadImager('appendImage');
-            var ajax_DdslickS = $('#ajax_DdslickBodyOptExt').ajaxCallWidget({
-                proxy: '/DefaultPost/DefaultPostModel',
-                type: "POST",
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                noDataFailureText: window.lang.translate("No data returned from service"),
-                loadingImageID: "loadingImage_DdslickBodyOptExt",
-                data: JSON.stringify({
-                    language_code: $("#langCode").val(),
-                    pk: "GsZVzEYe50uGgNM",
-                    url: "pkCustomerDdList_infocustomer",
-                    pkIdentity: $("#publicKey").val()
-                })
-
-            });
-            ajax_DdslickS.ajaxCallWidget({
-                onSuccess: function (event, data) {
-                    var data = $.parseJSON(data);
-                    data.splice(0, 0,
-                        { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-                    );
-
-                    $('#ddslickBodyOptExt').ddslick({
-                        //height: 150,
-                        data: data,
-                        width: '100%',
-                    });
-
-                    $("#loadingImage_DdslickBodyOptExt").loadImager('removeLoadImage');
-                },
-            })
-            ajax_DdslickS.ajaxCallWidget('call');*/
 
             /**
           * ddslick deal aksesuar options dropdown (aksesuar)
           * @author Mustafa Zeynel Dağlı
           * @since 17/10/2018
           */
-            var ddslickDealAksesuarSuppliersData = [
-                {
-                    text: 'Please select',
-                    value: 0,
-                    selected: true
-                },
-            ];
             $('#loadingImage_DdslickBodyExtrasExt').loadImager('removeLoadImage');
             $("#loadingImage_DdslickBodyExtrasExt").loadImager('appendImage');
             var ajax_DdslickS = $('#ajax_DdslickBodyExtrasExt').ajaxCallWidget({
@@ -281,7 +270,7 @@
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
-                    url: "pkCustomerDdList_infocustomer",
+                    url: "pkAccBodyExtrasDeffDdList_sysaccbodydeff",
                     pkIdentity: $("#publicKey").val()
                 })
 
@@ -304,47 +293,7 @@
             })
             ajax_DdslickS.ajaxCallWidget('call');
 
-            /**
-          * ddslick deal aksesuar options dropdown (aksesuar)
-          * @author Mustafa Zeynel Dağlı
-          * @since 17/10/2018
-          */
-            $('#loadingImage_DdslickBodyExtrasExt').loadImager('removeLoadImage');
-            $("#loadingImage_DdslickBodyExtrasExt").loadImager('appendImage');
-            var ajax_DdslickS = $('#ajax_DdslickBodyExtrasExt').ajaxCallWidget({
-                proxy: '/DefaultPost/DefaultPostModel',
-                type: "POST",
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                noDataFailureText: window.lang.translate("No data returned from service"),
-                loadingImageID: "loadingImage_DdslickBodyExtrasExt",
-                data: JSON.stringify({
-                    language_code: $("#langCode").val(),
-                    pk: "GsZVzEYe50uGgNM",
-                    url: "pkCustomerDdList_infocustomer",
-                    pkIdentity: $("#publicKey").val()
-                })
 
-            });
-            ajax_DdslickS.ajaxCallWidget({
-                onSuccess: function (event, data) {
-                    var data = $.parseJSON(data);
-                    data.splice(0, 0,
-                        { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-                    );
-
-                    $('#ddslickBodyExtrasExt').ddslick({
-                        //height: 150,
-                        data: data,
-                        width: '100%',
-                    });
-
-                    $("#loadingImage_DdslickBodyExtrasExt").loadImager('removeLoadImage');
-                },
-            })
-            ajax_DdslickS.ajaxCallWidget('call');
-
-                
-           
             $('#loadingImage_DdslickBodySupplierExt').loadImager('removeLoadImage');
             $("#loadingImage_DdslickBodySupplierExt").loadImager('appendImage');
             var ajax_DdslickS = $('#ajax_DdslickBodySupplierExt').ajaxCallWidget({
@@ -356,7 +305,7 @@
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
-                    url: "pkCustomerDdList_infocustomer",
+                    url: "pkSupplierLongDdList_syssupplier",
                     pkIdentity: $("#publicKey").val()
                 })
 
@@ -372,6 +321,45 @@
                         //height: 150,
                         data: data,
                         width: '100%',
+                        onSelected: function (selectedData) {
+                            if (selectedData.selectedData.value > 0) {
+                                $('#ddslickBodyExtrasExt').ddslick('destroy');
+                                $('#loadingImage_DdslickBodyExtrasExt').loadImager('removeLoadImage');
+                                $("#loadingImage_DdslickBodyExtrasExt").loadImager('appendImage');
+                                var ajax_DdslickS = $('#ajax_DdslickBodyExtrasExt').ajaxCallWidget({
+                                    proxy: '/DefaultPost/DefaultPostModel',
+                                    type: "POST",
+                                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                                    noDataFailureText: window.lang.translate("No data returned from service"),
+                                    loadingImageID: "loadingImage_DdslickBodyExtrasExt",
+                                    data: JSON.stringify({
+                                        language_code: $("#langCode").val(),
+                                        pk: "GsZVzEYe50uGgNM",
+                                        url: "pkAccBodyExtrasDeffDdList_sysaccbodydeff",
+                                        pkIdentity: $("#publicKey").val()
+                                        //buraya seçilen id değişkeni gelmeli
+                                    })
+
+                                });
+                                ajax_DdslickS.ajaxCallWidget({
+                                    onSuccess: function (event, data) {
+                                        var data = $.parseJSON(data);
+                                        data.splice(0, 0,
+                                            { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                                        );
+
+                                        $('#ddslickBodyExtrasExt').ddslick({
+                                            //height: 150,
+                                            data: data,
+                                            width: '100%',
+                                        });
+
+                                        $("#loadingImage_DdslickBodyExtrasExt").loadImager('removeLoadImage');
+                                    },
+                                })
+                                ajax_DdslickS.ajaxCallWidget('call');
+                            }
+                        }
                     });
 
                     $("#loadingImage_DdslickBodySupplierExt").loadImager('removeLoadImage');
@@ -399,21 +387,37 @@
             ];
             $('#loadingImage_DdslickBodyDepositExt').loadImager('removeLoadImage');
             $("#loadingImage_DdslickBodyDepositExt").loadImager('appendImage');
-            //var selectedContRepMainBuyBack = false;
-            $('#ddslickBodyDepositExt').ddslick({
-                //height: 150,
-                data: ddslickDealVehicleTypeAksesuarData,
-                width: '100%',
-                onSelected: function (selectedData) {
-                    /*if (selectedContRepMainBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
-                    selectedContRepMainBuyBack = true;*/
-                    if (selectedData.selectedData.value > 0) {
-                        //$("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
-
-                    }
-                }
+            var ajax_DdslickS = $('#ajax_DdslickBodyDepositExt').ajaxCallWidget({
+                proxy: '/DefaultPost/DefaultPostModel',
+                type: "POST",
+                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                noDataFailureText: window.lang.translate("No data returned from service"),
+                loadingImageID: "loadingImage_DdslickBodyDepositExt",
+                data: JSON.stringify({
+                    language_code: $("#langCode").val(),
+                    pk: "GsZVzEYe50uGgNM",
+                    url: "pkDepositTypesDdList_sysprojectdeposittypes",
+                    pkIdentity: $("#publicKey").val(),
+                    acc_body_types_id : 5
+                })
             });
-            $("#loadingImage_DdslickBodyDepositExt").loadImager('removeLoadImage');
+            ajax_DdslickS.ajaxCallWidget({
+                onSuccess: function (event, data) {
+                    var data = $.parseJSON(data);
+                    data.splice(0, 0,
+                        { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                    );
+
+                    $('#ddslickBodyDepositExt').ddslick({
+                        //height: 150,
+                        data: data,
+                        width: '100%',
+                    });
+
+                    $("#loadingImage_DdslickBodyDepositExt").loadImager('removeLoadImage');
+                },
+            })
+            ajax_DdslickS.ajaxCallWidget('call');
 
             /**
            * ddslick deal vehicle type dropdown function (body)
@@ -510,10 +514,10 @@
                         data: JSON.stringify({
                             language_code: $("#langCode").val(),
                             pk: "GsZVzEYe50uGgNM",
-                            url: "pkFillProjectVehicleAccGridx_infoprojectacc",
+                            url: "pkFillProjectVehicleBodyExtrasGridx_infoprojectaccbody",
                             pkIdentity: $("#publicKey").val(),
-                            //project_id: parseInt($("#deal_hidden").deal("getDealID")),
-                            project_id: parseInt(80),
+                            project_id: parseInt($("#deal_hidden").deal("getDealID")),
+                            //project_id: parseInt(80),
                             page: "",
                             rows: "",
                             sort: "",
@@ -578,7 +582,6 @@
                 searchPanel: {
                     visible: true,
                     width: 240,
-                    //placeholder: "Search..."
                     placeholder: window.lang.translate("Search")
                 },
                 headerFilter: {
@@ -593,63 +596,30 @@
                 },
                 onSelectionChanged: function (selectedItems) {
                     var data = selectedItems.selectedRowsData[0];
-                    console.log(data);
-                    /*if (data) {
-                        selectedBranchId = data.id;
-                        filldropdown = true;
-                        fillBranchForm(data);
-                        //filldropdown = false;
-                    }*/
+                    //console.log(data);
                 },
                 columns: [
                     {
                         //allowGrouping: false,
-                        caption: "Option",
-                        dataField: "option_name"
+                        caption: "Body type",
+                        dataField: "body_type_name"
                     },
                     {
-                        caption: "Supplier",
-                        dataField: "supplier_name"
+                        caption: "Deposit",
+                        dataField: "depozit_type_name"
                     },
                     {
-                        caption: "tag name",
-                        dataField: "tag_name"
+                        caption: "Ext. list price",
+                        dataField: "extras_list_price"
                     },
                     {
-                        caption: "model name",
-                        dataField: "vehicle_gt_model_name"
+                        caption: "Ext. cost",
+                        dataField: "extras_cost"
                     },
                     {
-                        caption: "Other brand name",
-                        dataField: "other_acc_brand"
+                        caption: "Model",
+                        dataField: "model_description"
                     },
-                    {
-                        caption: window.lang.translate('Update'),
-                        width: 40,
-                        alignment: 'center',
-
-                        cellTemplate: function (container, options) {
-                            var fieldHtml;
-                            var vehicle_id = options.data.id;
-                            var data = options.data;
-                            $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
-                                openUpdateAksesuarPopUp({
-                                    deal_acc_oldvalue: data.deal_acc_oldvalue,
-                                    deal_acc_newvalue: data.deal_acc_newvalue,
-                                    quantity: data.quantity,
-                                    list_price: data.list_price,
-                                    deal_acc_newvalue: data.deal_acc_newvalue,
-                                    option_name: data.option_name,
-                                    acc_option_id: data.acc_option_id,
-                                    acc_supplier_id: data.acc_supplier_id,
-                                    supplier_name: data.supplier_name,
-                                    vehicle_gt_model_name: data.vehicle_gt_model_name,
-                                    vehicle_gt_model_id: data.vehicle_gt_model_id,
-                                    id: data.id
-                                });
-                            }).appendTo(container);
-                        }
-                    }
 
                 ],
                 customizeColumns: function (columns) {
@@ -798,25 +768,24 @@
             transactionSuccessText: window.lang.translate('Transaction successful'),
             transactionFailureText: window.lang.translate("Service URL not found, please report error"),
             dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-            proxy: '/Deal/AddBodyProxyService',
+            proxy: '/Deal/AddBodyExtrasProxyService',
             type: "POST",
             data: JSON.stringify({
                 language_code: $("#langCode").val(),
                 pk: "GsZVzEYe50uGgNM",
-                url: "pkInsertAct_infoprojectvehiclemodels",
+                url: "pkInsertActExtras_infoprojectaccbody",
                 pkIdentity: $("#publicKey").val(),
                 project_id: dealID,
-                is_house_deal: 0,
-                vehicle_gt_model_id: ddDataVehicleGroups.selectedData.value,
-                vehicle_gt_model_id: ddDataVehicleType.selectedData.value,
-                vehicle_gt_model_id: ddDataBodyTypes.selectedData.value,
-                //vehicle_gt_model_id: ddDataBodyOpt.selectedData.value,
-                vehicle_gt_model_id: ddDataBodyExt.selectedData.value,
-                vehicle_gt_model_id: ddDataBodySupplier.selectedData.value,
-                vehicle_gt_model_id: ddDataBodyDeposit.selectedData.value,
+                vehicles_group_id: ddDataVehicleGroups.selectedData.value,
+                vehicles_endgroup_id: ddDataVehicleType.selectedData.value,
+                body_type_id : ddDataBodyTypes.selectedData.value,
+                body_supplier_id : ddDataBodySupplier.selectedData.value,
+                depozit_type_id : ddDataBodyDeposit.selectedData.value,
                 quantity: $("#quantity_bodyExt").val(),
-                quantity: $("#price_listBodyExt").val(),
-                quantity: $("#price_newBodyExt").val(),
+                list_price : $("#price_listBodyExt").val(),
+                new_price: $("#price_newBodyExt").val(),
+                body_extras_matrix_id: ddDataBodyExt.selectedData.value,
+                
             })
 
         });
@@ -828,7 +797,7 @@
 
             }
         })
-        //ajax.ajaxCallWidget('call');
+        ajax.ajaxCallWidget('call');
         return false;
     })
 

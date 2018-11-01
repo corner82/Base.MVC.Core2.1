@@ -189,7 +189,7 @@
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
-                    url: "pkCustomerDdList_infocustomer",
+                    url: "pkBodyFeatureTypesDdList_sysaccbodytypes",
                     pkIdentity: $("#publicKey").val()
                 })
 
@@ -205,6 +205,45 @@
                         //height: 150,
                         data: data,
                         width: '100%',
+                        onSelected: function (selectedData) {
+                            if (selectedData.selectedData.value > 0) {
+                                $('#ddslickBodyDepositFea').ddslick('destroy');
+                                $('#loadingImage_DdslickBodyDepositFea').loadImager('removeLoadImage');
+                                $("#loadingImage_DdslickBodyDepositFea").loadImager('appendImage');
+                                var ajax_DdslickS = $('#ajax_DdslickBodyDepositFea').ajaxCallWidget({
+                                    proxy: '/DefaultPost/DefaultPostModel',
+                                    type: "POST",
+                                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                                    noDataFailureText: window.lang.translate("No data returned from service"),
+                                    loadingImageID: "loadingImage_DdslickBodyDepositFea",
+                                    data: JSON.stringify({
+                                        language_code: $("#langCode").val(),
+                                        pk: "GsZVzEYe50uGgNM",
+                                        url: "pkDepositTypesDdList_sysprojectdeposittypes",
+                                        pkIdentity: $("#publicKey").val(),
+                                        acc_body_types_id: selectedData.selectedData.value
+                                    })
+                                });
+                                ajax_DdslickS.ajaxCallWidget({
+                                    onSuccess: function (event, data) {
+                                        var data = $.parseJSON(data);
+                                        data.splice(0, 0,
+                                            { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                                        );
+
+                                        $('#ddslickBodyDepositFea').ddslick({
+                                            //height: 150,
+                                            data: data,
+                                            width: '100%',
+                                        });
+
+                                        $("#loadingImage_DdslickBodyDepositFea").loadImager('removeLoadImage');
+                                    },
+                                })
+                                ajax_DdslickS.ajaxCallWidget('call');
+                                //vehicleKitTypeForDefineFields(selectedData.selectedData.text);
+                            }
+                        }
                     });
 
                     $("#loadingImage_DdslickBodyTypesFea").loadImager('removeLoadImage');
@@ -281,7 +320,7 @@
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
-                    url: "pkCustomerDdList_infocustomer",
+                    url: "pkSupplierLongDdList_syssupplier",
                     pkIdentity: $("#publicKey").val()
                 })
 
@@ -316,7 +355,7 @@
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
-                    url: "pkCustomerDdList_infocustomer",
+                    url: "pkSupplierLongDdList_syssupplier",
                     pkIdentity: $("#publicKey").val()
                 })
 
@@ -332,6 +371,45 @@
                         //height: 150,
                         data: data,
                         width: '100%',
+                        onSelected: function (selectedData) {
+                            if (selectedData.selectedData.value > 0) {
+                                $('#ddslickBodyFeaturesFea').ddslick('destroy');
+                                $('#loadingImage_DdslickBodyFeaturesFea').loadImager('removeLoadImage');
+                                $("#loadingImage_DdslickBodyFeaturesFea").loadImager('appendImage');
+                                var ajax_DdslickS = $('#ajax_DdslickBodyFeaturesFea').ajaxCallWidget({
+                                    proxy: '/DefaultPost/DefaultPostModel',
+                                    type: "POST",
+                                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                                    noDataFailureText: window.lang.translate("No data returned from service"),
+                                    loadingImageID: "loadingImage_DdslickBodyFeaturesFea",
+                                    data: JSON.stringify({
+                                        language_code: $("#langCode").val(),
+                                        pk: "GsZVzEYe50uGgNM",
+                                        url: "pkSupplierLongDdList_syssupplier",
+                                        pkIdentity: $("#publicKey").val()
+                                        //buraya seçilen id değişkeni gelmeli
+                                    })
+
+                                });
+                                ajax_DdslickS.ajaxCallWidget({
+                                    onSuccess: function (event, data) {
+                                        var data = $.parseJSON(data);
+                                        data.splice(0, 0,
+                                            { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                                        );
+
+                                        $('#ddslickBodyFeaturesFea').ddslick({
+                                            //height: 150,
+                                            data: data,
+                                            width: '100%',
+                                        });
+
+                                        $("#loadingImage_DdslickBodyFeaturesFea").loadImager('removeLoadImage');
+                                    },
+                                })
+                                ajax_DdslickS.ajaxCallWidget('call');
+                            }
+                        }
                     });
 
                     $("#loadingImage_DdslickBodySupplierFea").loadImager('removeLoadImage');
@@ -359,21 +437,38 @@
             ];
             $('#loadingImage_DdslickBodyDepositFea').loadImager('removeLoadImage');
             $("#loadingImage_DdslickBodyDepositFea").loadImager('appendImage');
-            //var selectedContRepMainBuyBack = false;
-            $('#ddslickBodyDepositFea').ddslick({
-                //height: 150,
-                data: ddslickDealVehicleTypeAksesuarData,
-                width: '100%',
-                onSelected: function (selectedData) {
-                    /*if (selectedContRepMainBuyBack == true) $("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
-                    selectedContRepMainBuyBack = true;*/
-                    if (selectedData.selectedData.value > 0) {
-                        //$("#gridContainer_BuyBack").dxDataGrid("instance").refresh();
+            var ajax_DdslickS = $('#ajax_DdslickBodyDepositFea').ajaxCallWidget({
+                proxy: '/DefaultPost/DefaultPostModel',
+                type: "POST",
+                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+                noDataFailureText: window.lang.translate("No data returned from service"),
+                loadingImageID: "loadingImage_DdslickBodyDepositFea",
+                data: JSON.stringify({
+                    language_code: $("#langCode").val(),
+                    pk: "GsZVzEYe50uGgNM",
+                    url: "pkDepositTypesDdList_sysprojectdeposittypes",
+                    pkIdentity: $("#publicKey").val(),
+                    acc_body_types_id: 5
+                })
 
-                    }
-                }
             });
-            $("#loadingImage_DdslickBodyDepositFea").loadImager('removeLoadImage');
+            ajax_DdslickS.ajaxCallWidget({
+                onSuccess: function (event, data) {
+                    var data = $.parseJSON(data);
+                    data.splice(0, 0,
+                        { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                    );
+
+                    $('#ddslickBodyDepositFea').ddslick({
+                        //height: 150,
+                        data: data,
+                        width: '100%',
+                    });
+
+                    $("#loadingImage_DdslickBodyDepositFea").loadImager('removeLoadImage');
+                },
+            })
+            ajax_DdslickS.ajaxCallWidget('call');
 
             /**
            * ddslick deal vehicle type dropdown function (body)
@@ -470,7 +565,7 @@
                         data: JSON.stringify({
                             language_code: $("#langCode").val(),
                             pk: "GsZVzEYe50uGgNM",
-                            url: "pkFillProjectVehicleAccGridx_infoprojectacc",
+                            url: "pkFillProjectVehicleBodyFeatureGridx_infoprojectaccbody",
                             pkIdentity: $("#publicKey").val(),
                             //project_id: parseInt($("#deal_hidden").deal("getDealID")),
                             project_id: parseInt(80),
@@ -697,20 +792,21 @@
             data: JSON.stringify({
                 language_code: $("#langCode").val(),
                 pk: "GsZVzEYe50uGgNM",
-                url: "pkInsertAct_infoprojectvehiclemodels",
+                url: "pkInsertActExtras_infoprojectaccbody",
                 pkIdentity: $("#publicKey").val(),
                 project_id: dealID,
-                is_house_deal: 0,
-                vehicle_gt_model_id: ddDataVehicleGroups.selectedData.value,
-                vehicle_gt_model_id: ddDataVehicleType.selectedData.value,
-                vehicle_gt_model_id: ddDataBodyTypes.selectedData.value,
+                vehicles_group_id: ddDataVehicleGroups.selectedData.value,
+                vehicles_endgroup_id: ddDataVehicleType.selectedData.value,
+                body_type_id: ddDataBodyTypes.selectedData.value,
                 //vehicle_gt_model_id: ddDataBodyOpt.selectedData.value,
                 vehicle_gt_model_id: ddDataBodyExt.selectedData.value,
-                vehicle_gt_model_id: ddDataBodySupplier.selectedData.value,
-                vehicle_gt_model_id: ddDataBodyDeposit.selectedData.value,
+                body_supplier_id: ddDataBodySupplier.selectedData.value,
+                depozit_type_id: ddDataBodyDeposit.selectedData.value,
                 quantity: $("#quantity_bodyFea").val(),
-                quantity: $("#price_listBodyFea").val(),
-                quantity: $("#price_newBodyFea").val(),
+                list_price: $("#price_listBodyFea").val(),
+                new_price: $("#price_newBodyFea").val(),
+                body_features_matrix_id: 1
+
             })
 
         });
