@@ -71,6 +71,12 @@
     <Content Update="Views\InvoiceProforma\InvoiceProformaBo.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\MovementDelivery\MovementDeliveryBo.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\MovementDelivery\MovementDeliverySm.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\ParkOff\ParkOff.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
