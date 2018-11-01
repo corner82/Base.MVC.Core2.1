@@ -185,7 +185,7 @@ $(document).ready(function () {
                     url: '/Accessory/DeleteBodyextra',
                     dataType: "json",
                     data: JSON.stringify({
-                        id: selectedBodyId,
+                        id: selectedBodyextraId,
                         pk: "GsZVzEYe50uGgNM",
                         url: "pkDeletedAct_sysaccbodymatrix"
                     }),
@@ -423,9 +423,9 @@ $(document).ready(function () {
             var bodyextra_name = $('#txt-bodyextraname').val();
             var cost = $('#txt-cost').val();
             var list_price = $('#txt-list-price').val();
-            var embrace_number = $('#txt-embrace-number').val();
+            var embrace_number = $('#txt-embrace-no').val();
 
-            alert(cost);
+            //alert(embrace_number);
 
             var ajax;
             if (selectedBodyextraId === 0) {
@@ -536,7 +536,6 @@ $(document).ready(function () {
         return false;
     }
 
-
     /**
     * Fill Body extra form
     * @returns {Boolean}
@@ -547,13 +546,17 @@ $(document).ready(function () {
     window.fillBodyextraForm = function (data) {
         $("#loading-image-bodyextra").loadImager('removeLoadImage');
         $("#loading-image-bodyextra").loadImager('appendImage');
+        
+        selectedBodyextraname = data.body_deff_name;
+        selectedBodyextranameId = data.acc_body_deff_id;
+        selectedBodyextraId = data.id;
 
-        document.getElementById("txt-bodyextra-name").value = selectedBodyextraname;
+        document.getElementById("txt-bodyextra-name").value = data.body_deff_name;
 
         if (data.embrace_no) {
-            document.getElementById("txt-embrace-number").value = data.embrace_no;
+            document.getElementById("txt-embrace-no").value = data.embrace_no;
         } else {
-            document.getElementById("txt-embrace-number").value = "";
+            document.getElementById("txt-embrace-no").value = "";
         }
 
         if (data.cost) {
@@ -607,7 +610,7 @@ $(document).ready(function () {
             proxy: '/Accessory/ActivePassiveBodyextra',
             type: "POST",
             data: JSON.stringify({
-                id: body_id,
+                id: bodyextra_id,
                 pk: "GsZVzEYe50uGgNM",
                 url: "pkUpdateMakeActiveOrPassive_sysaccbodymatrix"
             }),
@@ -970,10 +973,10 @@ $(document).ready(function () {
 
         selectedBodyextranameId = 0;
         $('#bodynameForm').validationEngine('hide');
-        document.getElementById("txt-bodyextra-featurename").value = "";
-
+        
         $("#loading-image-bodyextranameform").loadImager('removeLoadImage');
 
+        resetBodyextraForm();
         //yeni kayda açık, tablar kapatılıyor
         tab_disable();
        
