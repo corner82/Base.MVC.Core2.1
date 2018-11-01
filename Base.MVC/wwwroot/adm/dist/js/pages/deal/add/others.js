@@ -11,6 +11,35 @@
         actionButtonLabel: 'Proceed'
     });
 
+
+
+
+    var tt = $(window).ajaxCallWidget({
+        proxy: 'https://reqres.in/api/users/2',
+        type: "POST",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        
+
+    });
+    tt.ajaxCallWidget({
+        onAfterSuccess: function (event, data) {
+            
+        },
+        onReset: function () {
+            //resetDealAddForm();
+        }
+
+    })
+    tt.ajaxCallWidget('call');
+
+
+
+
+
+
     /**
      * only add deal tab is active at the beginning
      *  @author Mustafa Zeynel Dağlı
@@ -230,7 +259,7 @@
                 }
 
             })
-            //ajax_DdslickDealUpdate.ajaxCallWidget('call');
+            ajax_DdslickDealUpdate.ajaxCallWidget('call');
             return false;
         } else {
             $('#tab_DealAttr').loadImager('removeLoadImage');

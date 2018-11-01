@@ -10,7 +10,7 @@
     */
     $('#loadingImage_DdslickDealVehicleTypeBodyFea').loadImager();
     $("#loadingImage_DdslickBodyTypesFea").loadImager();
-    $("#loadingImage_DdslickBodyOptFea").loadImager();
+    //$("#loadingImage_DdslickBodyOptFea").loadImager();
     $('#loadingImage_DdslickBodyFeaturesFea').loadImager();
     $('#loadingImage_DdslickBodySupplierFea').loadImager();
     $('#loadingImage_DdslickBodyDepositFea').loadImager();
@@ -224,7 +224,7 @@
                     selected: true
                 },
             ];
-            $('#loadingImage_DdslickBodyOptFea').loadImager('removeLoadImage');
+           /* $('#loadingImage_DdslickBodyOptFea').loadImager('removeLoadImage');
             $("#loadingImage_DdslickBodyOptFea").loadImager('appendImage');
             var ajax_DdslickS = $('#ajax_DdslickBodyOptFea').ajaxCallWidget({
                 proxy: '/DefaultPost/DefaultPostModel',
@@ -256,7 +256,7 @@
                     $("#loadingImage_DdslickBodyOptFea").loadImager('removeLoadImage');
                 },
             })
-            ajax_DdslickS.ajaxCallWidget('call');
+            ajax_DdslickS.ajaxCallWidget('call');*/
 
             /**
           * ddslick deal aksesuar options dropdown (aksesuar)
@@ -679,7 +679,7 @@
         }
 
         var ddDataBodyTypes = $('#ddslickBodyTypesFea').data('ddslick');
-        var ddDataBodyOpt = $('#ddslickBodyOptFea').data('ddslick');
+        //var ddDataBodyOpt = $('#ddslickBodyOptFea').data('ddslick');
         var ddDataBodyExt = $('#ddslickBodyExtrasFea').data('ddslick');
         var ddDataBodySupplier = $('#ddslickBodySupplierFea').data('ddslick');
         var ddDataBodyDeposit = $('#ddslickBodyDepositFea').data('ddslick');
@@ -704,7 +704,7 @@
                 vehicle_gt_model_id: ddDataVehicleGroups.selectedData.value,
                 vehicle_gt_model_id: ddDataVehicleType.selectedData.value,
                 vehicle_gt_model_id: ddDataBodyTypes.selectedData.value,
-                vehicle_gt_model_id: ddDataBodyOpt.selectedData.value,
+                //vehicle_gt_model_id: ddDataBodyOpt.selectedData.value,
                 vehicle_gt_model_id: ddDataBodyExt.selectedData.value,
                 vehicle_gt_model_id: ddDataBodySupplier.selectedData.value,
                 vehicle_gt_model_id: ddDataBodyDeposit.selectedData.value,

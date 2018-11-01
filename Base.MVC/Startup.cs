@@ -153,7 +153,10 @@ namespace Base.MVC
             services.AddMvc()
                 .AddViewLocalization()
                 .AddDataAnnotationsLocalization();
-                //.AddXmlSerializerFormatters();
+            //.AddXmlSerializerFormatters();
+
+            //CORS enabled
+            services.AddCors();
 
             services.AddScoped<AjaxSessionTimeOutAttribute>();
             services.AddScoped<HmacTokenGeneratorAttribute>();
@@ -202,11 +205,21 @@ namespace Base.MVC
             // session
             app.UseSession();
 
-
             // Identity
             app.UseAuthentication();
 
-
+            
+            // CORS enable
+            app.UseCors(
+                options => options.WithOrigins(new string[] { "https://reqres.in",
+                                                        "https://localhost/slim2_wkhtmltopdf_snapy/," +
+                                                        "http://slim.mansis.co.za:9990/" })
+                                .AllowAnyMethod()
+                                .AllowAnyOrigin()
+                                .AllowAnyHeader()
+                                .AllowAnyMethod()
+            );
+               
 
             // route globalizasyon cultureInfo ayarlar
             app.UseRouter(routes =>
