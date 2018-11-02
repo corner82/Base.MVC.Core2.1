@@ -14,5 +14,6 @@ namespace Base.MVC.Models.HttpRequest
 
         public int? project_id { get; set; }
         public int? acc_body_types_id { get; set; }
+        public int? supplier_id { get; set; }
     }
 }

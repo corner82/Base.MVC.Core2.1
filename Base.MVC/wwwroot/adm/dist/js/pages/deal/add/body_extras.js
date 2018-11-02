@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
 
     //----------------------------------loadImager begin-------------------------------------------------
-    $('#tab_Body').loadImager();
+    $('#tab_BodyExt').loadImager();
     $('#loadingImage_DdslickVehicleGroupsBodyExt').loadImager();
     /**
     * ddslick vehicle type dropdown(buyback) load imager
@@ -270,26 +270,43 @@
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
-                    url: "pkAccBodyExtrasDeffDdList_sysaccbodydeff",
-                    pkIdentity: $("#publicKey").val()
+                    url: "pkAccBodyExtrasDdList_sysaccbodymatrix",
+                    pkIdentity: $("#publicKey").val(),
+                    supplier_id: 1
                 })
 
             });
             ajax_DdslickS.ajaxCallWidget({
                 onSuccess: function (event, data) {
-                    var data = $.parseJSON(data);
-                    data.splice(0, 0,
-                        { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-                    );
+                        //alert('data length>0');
+                        var data = $.parseJSON(data);
+                        data.splice(0, 0,
+                            { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                        );
 
-                    $('#ddslickBodyExtrasExt').ddslick({
-                        //height: 150,
-                        data: data,
-                        width: '100%',
-                    });
-
+                        $('#ddslickBodyExtrasExt').ddslick({
+                            //height: 150,
+                            data: data,
+                            width: '100%',
+                        });
                     $("#loadingImage_DdslickBodyExtrasExt").loadImager('removeLoadImage');
                 },
+                onErrorDataNull: function (event, data) {
+                    //alert('data length==0');
+                    var defaultData = [
+                        {
+                            text: 'Please select',
+                            value: 0,
+                            selected: true
+                        },
+                    ]
+                    $('#ddslickBodyExtrasExt').ddslick({
+                        //height: 150,
+                        data: defaultData,
+                        width: '100%',
+                    });
+                    $("#loadingImage_DdslickBodyExtrasExt").loadImager('removeLoadImage');
+                }
             })
             ajax_DdslickS.ajaxCallWidget('call');
 
@@ -335,25 +352,26 @@
                                     data: JSON.stringify({
                                         language_code: $("#langCode").val(),
                                         pk: "GsZVzEYe50uGgNM",
-                                        url: "pkAccBodyExtrasDeffDdList_sysaccbodydeff",
-                                        pkIdentity: $("#publicKey").val()
-                                        //buraya seçilen id değişkeni gelmeli
+                                        url: "pkAccBodyExtrasDdList_sysaccbodymatrix",
+                                        pkIdentity: $("#publicKey").val(),
+                                        supplier_id: selectedData.selectedData.value 
                                     })
 
                                 });
                                 ajax_DdslickS.ajaxCallWidget({
                                     onSuccess: function (event, data) {
-                                        var data = $.parseJSON(data);
-                                        data.splice(0, 0,
-                                            { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-                                        );
+                                        if (data.length > 0) {
+                                            var data = $.parseJSON(data);
+                                            data.splice(0, 0,
+                                                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+                                            );
 
-                                        $('#ddslickBodyExtrasExt').ddslick({
-                                            //height: 150,
-                                            data: data,
-                                            width: '100%',
-                                        });
-
+                                            $('#ddslickBodyExtrasExt').ddslick({
+                                                //height: 150,
+                                                data: data,
+                                                width: '100%',
+                                            });
+                                        }
                                         $("#loadingImage_DdslickBodyExtrasExt").loadImager('removeLoadImage');
                                     },
                                 })
@@ -706,6 +724,10 @@
         $('#addBodyExtForm').validationEngine('hide');
         $('#addBodyExtForm')[0].reset();
         $('#ddslickDealVehicleTypeBodyExt').ddslick("select", { index: '0' });
+        $('#ddslickVehicleGroupsBodyExt').ddslick("select", { index: '0' });
+        $('#ddslickBodyDepositExt').ddslick("select", { index: '0' });
+        $('#ddslickBodySupplierExt').ddslick("select", { index: '0' });
+        $('#ddslickBodyTypesExt').ddslick("select", { index: '0' });
     }
 
     /**
@@ -737,7 +759,7 @@
          }*/
 
         var ddDataVehicleGroups = $('#ddslickVehicleGroupsBodyExt').data('ddslick');
-        if (!ddDataVehicleType.selectedData.value > 0) {
+        if (!ddDataVehicleGroups.selectedData.value > 0) {
             wm.warningMessage('resetOnShown');
             wm.warningMessage('show', window.lang.translate("Please select vehicle group"),
                 window.lang.translate("Please select vehicle group"));
@@ -785,16 +807,15 @@
                 list_price : $("#price_listBodyExt").val(),
                 new_price: $("#price_newBodyExt").val(),
                 body_extras_matrix_id: ddDataBodyExt.selectedData.value,
-                
             })
 
         });
         ajax.ajaxCallWidget({
             onReset: function (event, data) {
-                resetVehicleTypeAddDealForm();
+                resetBodyExtAddDealForm();
             },
             onAfterSuccess: function (event, data) {
-
+                $("#gridContainer_BodyExt").dxDataGrid('instance').refresh();
             }
         })
         ajax.ajaxCallWidget('call');
