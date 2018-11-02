@@ -1,7 +1,7 @@
 ﻿/*
-* Monthly Quota Form
+* topused stock Form
 * @author Ceydacan Seyrek
-* @since 17/09/2018
+* @since 20/10/2018
 */
 $(document).ready(function () {
 
@@ -16,36 +16,56 @@ $(document).ready(function () {
     });
 
     /*
-    * Monthly Quota LoadImager
+    * topused stock LoadImager
     * @author Ceydacan Seyrek
-    * @since 17/09/2018
+    * @since 20/10/2018
     */
-    //to Monthly Quota form
-    $("#loadingImage_onthlyQuota").loadImager();
-    $("#loadingImage_DdslickVehicleModel").loadImager();
-    //$("#loadingImage_DdslickQuotaYear").loadImager();
-    $("#loadingImage_DdslickQuotaMonth").loadImager();
-    $("#loadingImage_DdslickQuotaType").loadImager();
-    $("#loadingImage_monthlyQuota").loadImager();
+    //to topused stock form
+    $("#loadingImage_topUsedStock").loadImager();
+    $("#loadingImage_DdslickStockType").loadImager();
+    $("#loadingImage_DdslickVehicleStock").loadImager();
+    $("#loadingImage_DdslickIntake").loadImager();
+    $("#loadingImage_DdslickVehicleLocation").loadImager();
+    $("#loadingImage_DdslickSold").loadImager();
+    $("#loadingImage_topUsedStock2").loadImager();
 
-    //to Monthly Quota form grid loading-image
-    $("#loadingImage_DdslickQuotaMonthGrid").loadImager();
+    //to topused stock form grid loading-image
+    $("#loadingImage_TopUsedStockGrid").loadImager();
+    $("#loading-image-costGrid").loadImager();
+    $("#loading-image-rentalGrid").loadImager();
+    $("#loading-image-repairCostGrid").loadImager();
 
     var langCode = $("#langCode").val();
-    var QuotaMonthID;
+    var topusedStockID;
     //alert(langCode);
+
+
+    /*
+    * datepicker format
+    * @author Ceydacan Seyrek
+    * @since 29/08/2016
+    */
+    $('#dateinStock-datepicker').datepicker({
+        //autoclose: true,
+        locale: langCode,
+        format: 'yyyy/mm/dd'
+    });
+    $('#drivilineDate-datepicker').datepicker({
+        //autoclose: true,
+        locale: langCode,
+        format: 'yyyy/mm/dd'
+    });
 
     $('#topUsedStockForm').validationEngine();
 
 
+//stock type model
+    $('#loadingImage_DdslickStockType').loadImager('removeLoadImage');
+    $("#loadingImage_DdslickStockType").loadImager('appendImage');
 
-    //Vehicle model
-    $('#loadingImage_DdslickVehicleModel').loadImager('removeLoadImage');
-    $("#loadingImage_DdslickVehicleModel").loadImager('appendImage');
-
-    var ajaxACLResources_VehicleModel = $('#ajax_DdslickVehicleModel').ajaxCallWidget({
+    var ajaxACLResources_StockType = $('#ajax_DdslickStockType').ajaxCallWidget({
         failureLoadImage: true,
-        loadingImageID: "loadingImage_DdslickVehicleModel",
+        loadingImageID: "loadingImage_DdslickStockType",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
         transactionFailureText: window.lang.translate("Service URL not found, please report error"),
@@ -60,43 +80,41 @@ $(document).ready(function () {
         })
     });
 
-    ajaxACLResources_VehicleModel.ajaxCallWidget({
+    ajaxACLResources_StockType.ajaxCallWidget({
         onReset: function (event, data) {
 
         },
-        onSuccess: function (event, datamodelname) {
+        onSuccess: function (event, dataStockType) {
 
-            var cbdata_modelname = $.parseJSON(datamodelname);
-            cbdata_modelname.splice(0, 0,
+            var cbdata_StockType = $.parseJSON(dataStockType);
+            cbdata_StockType.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
 
-            $('#ddslickVehicleModel').ddslick({
-                data: cbdata_modelname,
+            $('#ddslickStockType').ddslick({
+                data: cbdata_StockType,
                 width: '100%',
                 //search: true,
                 //searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
                 }
             })
-            $('#loadingImage_DdslickVehicleModel').loadImager('removeLoadImage');
+            $('#loadingImage_DdslickStockType').loadImager('removeLoadImage');
         },
         onAfterSuccess: function (event, data) {
-            $('#loadingImage_DdslickVehicleModel').loadImager('removeLoadImage');
+            $('#loadingImage_DdslickStockType').loadImager('removeLoadImage');
         }
     })
-    ajaxACLResources_VehicleModel.ajaxCallWidget('call');
+    ajaxACLResources_StockType.ajaxCallWidget('call');
+//stock type end
 
-    //VehicleModel end
-
-    //Quota Year
-//Quota Year
-    $('#loadingImage_DdslickQuotaYear').loadImager('removeLoadImage');
-    $("#loadingImage_DdslickQuotaYear").loadImager('appendImage');
+//VehicleStock
+    $('#loadingImage_DdslickVehicleStock').loadImager('removeLoadImage');
+    $("#loadingImage_DdslickVehicleStock").loadImager('appendImage');
     //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkJustYearsDdList_sysmonths&pk=GsZVzEYe50uGgNM&id=55
-    var ajaxACLResources_QuotaYear = $('#ajax_DdslickQuotaYear').ajaxCallWidget({
+    var ajaxACLResources_VehicleStock = $('#ajax_DdslickVehicleStock').ajaxCallWidget({
         failureLoadImage: true,
-        loadingImageID: "loadingImage_DdslickQuotaYear",
+        loadingImageID: "loadingImage_DdslickVehicleStock",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
         transactionFailureText: window.lang.translate("Service URL not found, please report error"),
@@ -111,39 +129,39 @@ $(document).ready(function () {
         })
     });
 
-    ajaxACLResources_QuotaYear.ajaxCallWidget({
+    ajaxACLResources_VehicleStock.ajaxCallWidget({
         onReset: function (event, data) {
 
         },
-        onSuccess: function (event, dataquotayear) {
+        onSuccess: function (event, dataVehicleStock) {
 
-            var cbdata_quotayear = $.parseJSON(dataquotayear);
-            cbdata_quotayear.splice(0, 0,
+            var cbdata_VehicleStock = $.parseJSON(dataVehicleStock);
+            cbdata_VehicleStock.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
 
-            $('#ddslickQuotaYear').ddslick({
-                data: cbdata_quotayear,
+            $('#ddslickVehicleStock').ddslick({
+                data: cbdata_VehicleStock,
                 width: '100%',
                 //search: true,
                 //searchText: window.lang.translate('Search'),
             })
-            $('#loadingImage_DdslickQuotaYear').loadImager('removeLoadImage');
+            $('#loadingImage_DdslickVehicleStock').loadImager('removeLoadImage');
         },
         onAfterSuccess: function (event, data) {
-            $('#loadingImage_DdslickQuotaYear').loadImager('removeLoadImage');
+            $('#loadingImage_DdslickVehicleStock').loadImager('removeLoadImage');
         }
     })
-    ajaxACLResources_QuotaYear.ajaxCallWidget('call');
-    //Quota Year End
+    ajaxACLResources_VehicleStock.ajaxCallWidget('call');
+//VehicleStock End
 
-    //Quota Month
-    $('#loadingImage_DdslickQuotaMonth').loadImager('removeLoadImage');
-    $("#loadingImage_DdslickQuotaMonth").loadImager('appendImage');
+//Intake
+    $('#loadingImage_DdslickIntake').loadImager('removeLoadImage');
+    $("#loadingImage_DdslickIntake").loadImager('appendImage');
     //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkJustMonthsDdList_sysmonths&language_code=en&pk=GsZVzEYe50uGgNM
-    var ajaxACLResources_QuotaMonth = $('#ajax_DdslickQuotaMonth').ajaxCallWidget({
+    var ajaxACLResources_Intake = $('#ajax_DdslickIntake').ajaxCallWidget({
         failureLoadImage: true,
-        loadingImageID: "loadingImage_DdslickQuotaMonth",
+        loadingImageID: "loadingImage_DdslickIntake",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
         transactionFailureText: window.lang.translate("Service URL not found, please report error"),
@@ -158,40 +176,39 @@ $(document).ready(function () {
         })
     });
 
-    ajaxACLResources_QuotaMonth.ajaxCallWidget({
+    ajaxACLResources_Intake.ajaxCallWidget({
         onReset: function (event, data) {
 
         },
-        onSuccess: function (event, dataquotayear) {
+        onSuccess: function (event, dataIntake) {
 
-            var cbdata_quotayear = $.parseJSON(dataquotayear);
-            cbdata_quotayear.splice(0, 0,
+            var cbdata_Intake = $.parseJSON(dataIntake);
+            cbdata_Intake.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
 
-            $('#ddslickQuotaMonth').ddslick({
-                data: cbdata_quotayear,
+            $('#ddslickIntake').ddslick({
+                data: cbdata_Intake,
                 width: '100%',
                 //search: true,
                 //searchText: window.lang.translate('Search'),
             })
-            $('#loadingImage_DdslickQuotaMonth').loadImager('removeLoadImage');
+            $('#loadingImage_DdslickIntake').loadImager('removeLoadImage');
         },
         onAfterSuccess: function (event, data) {
-            $('#loadingImage_DdslickQuotaMonth').loadImager('removeLoadImage');
+            $('#loadingImage_DdslickIntake').loadImager('removeLoadImage');
         }
     })
-    ajaxACLResources_QuotaMonth.ajaxCallWidget('call');
+    ajaxACLResources_Intake.ajaxCallWidget('call');
+//Intake End
 
-    //Quota Month End
-
-//Quota Type
-    $('#loadingImage_DdslickQuotaType').loadImager('removeLoadImage');
-    $("#loadingImage_DdslickQuotaType").loadImager('appendImage');
+//VehicleLocation
+    $('#loadingImage_DdslickVehicleLocation').loadImager('removeLoadImage');
+    $("#loadingImage_DdslickVehicleLocation").loadImager('appendImage');
     //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkSisQuotasDdList_syssisquotas&language_code=en&pk=GsZVzEYe50uGgNM
-    var ajaxACLResources_quotatype = $('#ajax_DdslickQuotaType').ajaxCallWidget({
+    var ajaxACLResources_VehicleLocation = $('#ajax_DdslickVehicleLocation').ajaxCallWidget({
         failureLoadImage: true,
-        loadingImageID: "loadingImage_DdslickQuotaType",
+        loadingImageID: "loadingImage_DdslickVehicleLocation",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
         transactionFailureText: window.lang.translate("Service URL not found, please report error"),
@@ -206,31 +223,79 @@ $(document).ready(function () {
         })
     });
 
-    ajaxACLResources_quotatype.ajaxCallWidget({
+    ajaxACLResources_VehicleLocation.ajaxCallWidget({
         onReset: function (event, data) {
 
         },
-        onSuccess: function (event, dataquotatype) {
+        onSuccess: function (event, dataVehicleLocation) {
 
-            var cbdata_quotatype = $.parseJSON(dataquotatype);
-            cbdata_quotatype.splice(0, 0,
+            var cbdata_VehicleLocation = $.parseJSON(dataVehicleLocation);
+            cbdata_VehicleLocation.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
 
-            $('#ddslickQuotaType').ddslick({
-                data: cbdata_quotatype,
+            $('#ddslickVehicleLocation').ddslick({
+                data: cbdata_VehicleLocation,
                 width: '100%',
                 //search: true,
                 //searchText: window.lang.translate('Search'),
             })
-            $('#loadingImage_DdslickQuotaType').loadImager('removeLoadImage');
+            $('#loadingImage_DdslickVehicleLocation').loadImager('removeLoadImage');
         },
         onAfterSuccess: function (event, data) {
-            $('#loadingImage_DdslickQuotaType').loadImager('removeLoadImage');
+            $('#loadingImage_DdslickVehicleLocation').loadImager('removeLoadImage');
         }
     })
-    ajaxACLResources_quotatype.ajaxCallWidget('call');
-    //Quota Type End
+    ajaxACLResources_VehicleLocation.ajaxCallWidget('call');
+//VehicleLocation End
+
+//Sold
+    $('#loadingImage_DdslickSold').loadImager('removeLoadImage');
+    $("#loadingImage_DdslickSold").loadImager('appendImage');
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkSisQuotasDdList_syssisquotas&language_code=en&pk=GsZVzEYe50uGgNM
+    var ajaxACLResources_Sold = $('#ajax_DdslickSold').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickSold",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "fillYesNoTypes_sysSpecificDefinitions",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
+
+    ajaxACLResources_Sold.ajaxCallWidget({
+        onReset: function (event, data) {
+
+        },
+        onSuccess: function (event, dataSold) {
+
+            var cbdata_Sold = $.parseJSON(dataSold);
+            cbdata_Sold.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+
+            $('#ddslickSold').ddslick({
+                data: cbdata_Sold,
+                width: '100%',
+                //search: true,
+                //searchText: window.lang.translate('Search'),
+            })
+            $('#loadingImage_DdslickSold').loadImager('removeLoadImage');
+        },
+        onAfterSuccess: function (event, data) {
+            $('#loadingImage_DdslickSold').loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_Sold.ajaxCallWidget('call');
+//Sold End
+
 
     /* devexgrid */
 DevExpress.localization.locale(langCode);
@@ -243,6 +308,8 @@ DevExpress.localization.locale(langCode);
  */
 //Stock grid
     $('#topUsedStockRefresh').click(function () {
+        $("#gridContainer_topUsedStock").dxDataGrid("instance").refresh();
+    });
         //stock Grid
         //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillSisMonthlyQuotasGridx_syssismonthlyquotas&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
         var quotaMonth = new DevExpress.data.CustomStore({
@@ -600,9 +667,9 @@ DevExpress.localization.locale(langCode);
                 $("#gridContainer_topUsedStock").dxDataGrid("instance").refresh();
             },
         });
-    });
+    //});
 
-    $('#topUsedStockRefresh').click();
+    //$('#topUsedStockRefresh').click();
 //Stock grid End
 
 //Cost Grid
@@ -1288,9 +1355,9 @@ DevExpress.localization.locale(langCode);
 
 
     /**
-    * Monthly Quota Form
+    * topused stock Form
     * @author Ceydacan Seyrek
-    * @since 17/09/2018
+    * @since 20/10/2018
     */
 
     $("#btn-topUsedStock-save").on("click", function (e) {
@@ -1386,9 +1453,9 @@ DevExpress.localization.locale(langCode);
     })
 
     /**
-    * reset Monthly Quota Form
+    * reset topused stock Form
     * @author Ceydacan Seyrek
-    * @since 10/09/2018
+    * @since 20/10/2018
     */
     $("#btn-topUsedStock-clear").on("click", function (e) {
         e.preventDefault();
@@ -1412,9 +1479,9 @@ DevExpress.localization.locale(langCode);
     }
 
     /**
-    * Fill Monthly Quota Form form
+    * Fill topused stock form
     * @author Ceydacan Seyrek
-    * @since 17/09/2018
+    * @since 20/10/2018
     */
 
     window.fillMonthlyQuotaForm = function (data) {
@@ -1449,9 +1516,9 @@ DevExpress.localization.locale(langCode);
     }
 
     /**
-* Active Passive Monthly Quota Form
+* Active Passive topused stock Form
 * @author Ceydacan Seyrek
-* @since 16/10/2018 activepasiveQuotaMonth(quotamonth_id,
+* @since 20/10/2018 
 */
     window.activepasiveQuotaMonth = function (quotamonth_id, active) {
 

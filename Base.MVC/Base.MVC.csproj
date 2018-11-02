@@ -17,13 +17,13 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.1.1" />
-	<PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.1.2" />
+	<PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
     <PackageReference Include="Microsoft.Extensions.Localization" Version="2.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
@@ -77,6 +77,9 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\MovementDelivery\MovementDeliverySm.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\OrderInTake\Add.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\ParkOff\ParkOff.cshtml">

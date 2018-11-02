@@ -153,7 +153,7 @@ $(document).ready(function () {
         $("#gridContainer_buybackDealList").dxDataGrid("instance").refresh();
     });
 
-    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillProjectOptionalGridx_infoproject&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM&
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillProjectOptionalGridx_infoproject&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
     var bbDeal = new DevExpress.data.CustomStore({
         load: function (loadOptions) {
             var deferred = $.Deferred(),
@@ -255,8 +255,11 @@ $(document).ready(function () {
             mode: "select"
         },
         columns: [{
+            caption: window.lang.translate('Deal Name') + "...",
+            dataField: "deal_name"
+        }, {
             caption: window.lang.translate('Deal Number') + "...",
-            dataField: "apid"
+            dataField: "id"
         }, {
             caption: window.lang.translate('Deal date') + "...",
             dataField: "date_saved"
@@ -411,10 +414,10 @@ $(document).ready(function () {
         $("#loadingImage_BbReturnInfo").loadImager('appendImage');
 
         //document.getElementById("txt-bbreturn-price").value = data.SaleAmount;
-        document.getElementById("txt-bbreturn-dealNo").value = data.chassis_no;
-        document.getElementById("txt-bbreturn-dealDate").value = data.man_entry_date;
-        deal_id = 82;//data.chassis_no;
-        stock_id = 8;//data.stock_id;
+        document.getElementById("txt-bbreturn-dealNo").value = data.apid;
+        document.getElementById("txt-bbreturn-dealDate").value = data.date_saved;
+        deal_id = data.id;//data.chassis_no; 82
+        //stock_id = 8;//data.stock_id;
 
         $("#loadingImage_BbReturnInfo").loadImager('removeLoadImage');
         FillGridVehicle();
@@ -434,6 +437,8 @@ $(document).ready(function () {
         $("#loadingImage_BbReturnInfo").loadImager('appendImage');
 
         //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillBuybackReturnGridx_infoprojectbuybackreturn&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
+        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillBuybackReturnGridx_infoprojectbuybackreturn&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM&project_id=80
+
         var bbVehicle = new DevExpress.data.CustomStore({
             load: function (loadOptions) {
                 var deferred = $.Deferred(),
@@ -461,8 +466,8 @@ $(document).ready(function () {
                         sort: "",
                         order: "", //args.orderby,
                         skip: args.skip,
-                        take: args.take
-                        //deal_id: deal_id
+                        take: args.take,
+                        project_id: deal_id
                     }),
                     type: 'POST',
                     contentType: 'application/json',
