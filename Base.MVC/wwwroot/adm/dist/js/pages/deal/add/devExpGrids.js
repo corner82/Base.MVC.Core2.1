@@ -174,6 +174,9 @@
             window.openDetails({
                 'id' : data.id
             });
+            window.openSummary({
+                'id': data.id
+            });
             
         },
         selection: {
