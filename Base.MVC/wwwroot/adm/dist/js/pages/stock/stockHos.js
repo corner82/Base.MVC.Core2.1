@@ -1,7 +1,7 @@
 /*
-* Monthly Quota Form
+* Stock hos  Form
 * @author Ceydacan Seyrek
-* @since 17/09/2018
+* @since 17/10/2018
 */
 $(document).ready(function () {
 
@@ -22,16 +22,16 @@ $(document).ready(function () {
     var ddslick_vehicleId = 0;
     var ddslick_vehicle_name = "";
     /*
-    * Monthly Quota LoadImager
+    * Stock hos LoadImager
     * @author Ceydacan Seyrek
-    * @since 17/09/2018
+    * @since 17/10/2018
     */
-    //to Monthly Quota form
+    //to Stock bo form
     $("#loadingImage_DdslickModel").loadImager();
     $("#loadingImage_DdslickVehicle").loadImager();
     $("#loadingImage_DdslickVehicleList").loadImager();
 
-    //to Monthly Quota form grid loading-image
+    //to Stock hos form grid loading-image
     $("#loadingImage_DdslickStockStockHosGrid").loadImager();
     $("#loadingImage_DdslickDemoStockHosGrid").loadImager();
     $("#loadingImage_DdslickTruckstogoStockHosGrid").loadImager();
@@ -45,7 +45,7 @@ $(document).ready(function () {
     //vehicle list
     $('#loadingImage_DdslickVehicleList').loadImager('removeLoadImage');
     $("#loadingImage_DdslickVehicleList").loadImager('appendImage');
-    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkAccBodyDeffDdList_sysaccbodydeff&language_code=en&pk=GsZVzEYe50uGgNM
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkStockListTypesDdList_sysstocklisttypes&language_code=en&pk=GsZVzEYe50uGgNM&acc_body_types_id=5
     var ajaxACLResources_VehicleList = $('#ajax_DdslickVehicleList').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loadingImage_DdslickVehicleList",
@@ -58,7 +58,7 @@ $(document).ready(function () {
         data: JSON.stringify({
             language_code: $("#langCode").val(),
             pk: "GsZVzEYe50uGgNM",
-            url: "pkAccBodyDeffDdList_sysaccbodydeff",
+            url: "pkStockListTypesDdList_sysstocklisttypes",
             pkIdentity: $("#publicKey").val()
         })
     });
@@ -67,15 +67,15 @@ $(document).ready(function () {
         onReset: function (event, data) {
 
         },
-        onSuccess: function (event, dataquotayear) {
+        onSuccess: function (event, datavehiclelist) {
 
-            var cbdata_quotayear = $.parseJSON(dataquotayear);
-            cbdata_quotayear.splice(0, 0,
+            var cbdata_vehiclelist = $.parseJSON(datavehiclelist);
+            cbdata_vehiclelist.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
 
             $('#ddslickVehicleList').ddslick({
-                data: cbdata_quotayear,
+                data: cbdata_vehiclelist,
                 width: '100%'
                 //search: true,
                 //searchText: window.lang.translate('Search'),
@@ -210,7 +210,7 @@ $(document).ready(function () {
 
 // Stock Grid
     $('#stockStockHosRefresh').click(function () {
-        //Quota month Grid
+
         //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillSisMonthlyQuotasGridx_syssismonthlyquotas&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
         var stockHos = new DevExpress.data.CustomStore({
             load: function (loadOptions) {
@@ -276,7 +276,7 @@ $(document).ready(function () {
             //    });
             //}
         });
-        //Quota month Grid
+
         $("#gridContainer_stockStockHos").dxDataGrid({
 
             showColumnLines: true,
@@ -494,7 +494,7 @@ $(document).ready(function () {
 
 // Demo Grid
     $('#demoStockHosRefresh').click(function () {
-        //Quota month Grid
+
         //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillSisMonthlyQuotasGridx_syssismonthlyquotas&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
         var demoHos = new DevExpress.data.CustomStore({
             load: function (loadOptions) {
@@ -560,7 +560,7 @@ $(document).ready(function () {
             //    });
             //}
         });
-        //Quota month Grid
+
         $("#gridContainer_demoStockHos").dxDataGrid({
 
             showColumnLines: true,
@@ -778,7 +778,7 @@ $(document).ready(function () {
 
 // Demo Grid
     $('#truckstogoStockHosRefresh').click(function () {
-        //Quota month Grid
+
         //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillSisMonthlyQuotasGridx_syssismonthlyquotas&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
         var truckstogoHos = new DevExpress.data.CustomStore({
             load: function (loadOptions) {
@@ -844,7 +844,7 @@ $(document).ready(function () {
             //    });
             //}
         });
-        //Quota month Grid
+
         $("#gridContainer_truckstogoStockHos").dxDataGrid({
 
             showColumnLines: true,
@@ -1060,210 +1060,5 @@ $(document).ready(function () {
     $('#truckstogoStockHosRefresh').click();
 // Demo Grid End
 
-//    /**
-//    * Monthly Quota Form
-//    * @author Ceydacan Seyrek
-//    * @since 17/09/2018
-//    */
-
-//    $("#btn-QuotaMonth-save").on("click", function (e) {
-//        e.preventDefault();
-//        //alert("geldim click");
-//        if ($("#monthlyQuotaForm").validationEngine('validate')) {
-
-//            $("#loadingImage_monthlyQuota").loadImager('removeLoadImage');
-//            $("#loadingImage_monthlyQuota").loadImager('appendImage');
-
-//            var ddDataQuotaType = $('#ddslickQuotaType').data('ddslick');
-//            if (!ddDataQuotaType.selectedData.value > 0) {
-//                wm.warningMessage('resetOnShown');
-//                wm.warningMessage('show', window.lang.translate("Please select Quota type"),
-//                    window.lang.translate("Please select Quota type"));
-//                $('#loadingImage_DdslickQuotaType').loadImager('removeLoadImage');
-//                return false;
-//            }
-//            var sis_quota_id = ddDataQuotaType.selectedData.value;
-
-//            var ddDataVehicleModel = $('#ddslickVehicleModel').data('ddslick');
-//            if (!ddDataVehicleModel.selectedData.value > 0) {
-//                wm.warningMessage('resetOnShown');
-//                wm.warningMessage('show', window.lang.translate("Please select Vehicle Model"),
-//                    window.lang.translate("Please select Quota type"));
-//                $('#loadingImage_DdslickVehicleModel').loadImager('removeLoadImage');
-//                return false;
-//            }
-//            var model_id = ddDataVehicleModel.selectedData.value;
-
-//            var ddDataQuotayear = $('#ddslickQuotaYear').data('ddslick');
-//            if (!ddDataQuotayear.selectedData.value > 0) {
-//                wm.warningMessage('resetOnShown');
-//                wm.warningMessage('show', window.lang.translate("Please select Quota year"),
-//                    window.lang.translate("Please select Quota year"));
-//                $('#loadingImage_DdslickQuotaYear').loadImager('removeLoadImage');
-//                return false;
-//            }
-//            var year = ddDataQuotayear.selectedData.value;
-
-//            var ddDataQuotamonth = $('#ddslickQuotaMonth').data('ddslick');
-//            if (!ddDataQuotamonth.selectedData.value > 0) {
-//                wm.warningMessage('resetOnShown');
-//                wm.warningMessage('show', window.lang.translate("Please select Quota month"),
-//                    window.lang.translate("Please select Quota year"));
-//                $('#loadingImage_DdslickQuotaYear').loadImager('removeLoadImage');
-//                return false;
-//            }
-//            var month_id = ddDataQuotamonth.selectedData.value;
-
-//            var quantity = $('#txt-QuotaMonth-limit').val();
-
-//            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?
-//            //url=pkInsertAct_syssismonthlyquotas
-//            //&sis_quota_id=1--
-//            //&model_id=2--
-//            //&year=2018--
-//            //&month_id=12
-//            //&quantity=12--
-//            //&pk=GsZVzEYe50uGgNM
-
-//            var ajax_InsertYearlyQuota = $('#ajaxACL-monthlyQuota').ajaxCallWidget({
-//                failureLoadImage: true,
-//                loadingImageID: "loadingImage_monthlyQuota",
-//                triggerSuccessAuto: true,
-//                transactionSuccessText: window.lang.translate('Transaction successful'),
-//                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-//                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-
-//                proxy: '/Sys/AddMonthlyQuota',
-//                type: 'POST',
-//                data: JSON.stringify({
-//                    url: "pkInsertAct_syssismonthlyquotas",
-//                    sis_quota_id: sis_quota_id,
-//                    model_id: model_id,
-//                    year: year,
-//                    month_id: month_id,
-//                    quantity: quantity,
-//                    pk: "GsZVzEYe50uGgNM",
-//                })
-//            });
-//            ajax_InsertYearlyQuota.ajaxCallWidget({
-//                onReset: function (event, data) {
-//                    resetQuotaMonthForm();
-//                },
-//                onAfterSuccess: function (event, data) {
-//                    $("#gridContainer_QuotaMonth").dxDataGrid("instance").refresh();
-//                }
-//            })
-//            ajax_InsertYearlyQuota.ajaxCallWidget('call');
-//            return false;
-//        }
-//    })
-
-//    /**
-//    * reset Monthly Quota Form
-//    * @author Ceydacan Seyrek
-//    * @since 10/09/2018
-//    */
-//    $("#btn-QuotaMonth-clear").on("click", function (e) {
-//        e.preventDefault();
-//        resetQuotaMonthForm();
-//        return false;
-//    })
-
-//    var resetQuotaMonthForm = function () {
-//        $("#loadingImage_monthlyQuota").loadImager('removeLoadImage');
-//        $("#loadingImage_monthlyQuota").loadImager('appendImage');
-
-//        $('#monthlyQuotaForm').validationEngine('hide');
-//        $('#ddslickVehicleModel').ddslick('select', { index: String(0) });
-//        $('#ddslickQuotaYear').ddslick('select', { index: String(0) });
-//        $('#ddslickQuotaMonth').ddslick('select', { index: String(0) });
-//        $('#ddslickQuotaType').ddslick('select', { index: String(0) });
-
-//        $("#loadingImage_MonthlyQuota").loadImager('removeLoadImage');
-
-//        return false;
-//    }
-
-//    /**
-//    * Fill Monthly Quota Form form
-//    * @author Ceydacan Seyrek
-//    * @since 17/09/2018
-//    */
-
-//    window.fillMonthlyQuotaForm = function (data) {
-//        $("#loadingImage_MonthlyQuota").loadImager('removeLoadImage');
-//        $("#loadingImage_MonthlyQuota").loadImager('appendImage');
-
-//        $('#ddslickVehicleModel').ddslick('select', { index: 3 });
-//        $('#ddslickQuotaYear').ddslick('select', { index: 2 });
-//        $('#ddslickQuotaMonth').ddslick('select', { index: 2 });
-//        document.getElementById("txt-QuotaMonth-limit").value = data.quantity;
-
-//        //$('#ddslickQuotaType').ddslick('selectByValue',
-//        //    {
-//        //        index: '' + data.id + '',
-//        //        text: '' + data.name + ''
-//        //    }
-//        //);
-
-//        $('#ddslickQuotaYear').ddslick('selectByValue',
-//            {
-//                index: '' + data.year + ''
-//            }
-//        );
-//        $('#ddslickQuotaMonth').ddslick('selectByValue',
-//            {
-//                index: '' + data.month_id + ''
-//            }
-//        );
-
-//        $("#loadingImage_MonthlyQuota").loadImager('removeLoadImage');
-//        return false;
-//    }
-
-//    /**
-//* Active Passive Monthly Quota Form
-//* @author Ceydacan Seyrek
-//* @since 16/10/2018 activepasiveQuotaMonth(quotamonth_id,
-//*/
-//    window.activepasiveQuotaMonth = function (quotamonth_id, active) {
-
-//        var transactionSuccessMessage;
-
-//        if (active === 1) {
-//            //active
-//            transactionSuccessMessage = window.lang.translate('Active successful');
-//        } else {
-//            //pasive
-//            transactionSuccessMessage = window.lang.translate('Pasive successful');
-//        }
-
-//        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateMakeActiveOrPassive_syssismonthlyquotas&id=29&pk=GsZVzEYe50uGgNM
-//        var ajax_activepasiveTrInfolist = $('#ajaxACL-QuotaMonth').ajaxCallWidget({
-//            failureLoadImage: true,
-//            loadingImageID: "loadingImage_DdslickQuotaMonthGrid",
-//            triggerSuccessAuto: true,
-//            transactionSuccessText: window.lang.translate('Transaction successful'),
-//            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-//            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-//            proxy: '/Sys/SysActivePassiveYearlyQuota',
-//            type: "POST",
-//            data: JSON.stringify({
-//                id: quotamonth_id,
-//                pk: "GsZVzEYe50uGgNM",
-//                url: "pkUpdateMakeActiveOrPassive_syssismonthlyquotas"
-//            }),
-
-//        });
-//        ajax_activepasiveTrInfolist.ajaxCallWidget({
-//            onReset: function (event, data) {
-
-//            },
-//            onAfterSuccess: function (event, data) {
-//                $("#gridContainer_stockHos").dxDataGrid("instance").refresh();
-//            }
-//        })
-//        ajax_activepasiveTrInfolist.ajaxCallWidget('call');
-//    }
 });
 
