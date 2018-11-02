@@ -78,6 +78,9 @@
     <Content Update="Views\MovementDelivery\MovementDeliverySm.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\OrderInTake\Add.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\ParkOff\ParkOff.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
