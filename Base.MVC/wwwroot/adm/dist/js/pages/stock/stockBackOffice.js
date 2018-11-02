@@ -27,6 +27,7 @@ $(document).ready(function () {
     * @since 18/10/2018
     */
     //to Stock form
+    $("#loadingImage_stockBo").loadImager();
     $("#loadingImage_DdslickModel").loadImager();
     $("#loadingImage_DdslickVehicle").loadImager();
     $("#loadingImage_DdslickVehicleList").loadImager();
@@ -46,7 +47,7 @@ $(document).ready(function () {
     //vehicle list
     $('#loadingImage_DdslickVehicleList').loadImager('removeLoadImage');
     $("#loadingImage_DdslickVehicleList").loadImager('appendImage');
-    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkAccBodyDeffDdList_sysaccbodydeff&language_code=en&pk=GsZVzEYe50uGgNM
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkStockListTypesDdList_sysstocklisttypes&language_code=en&pk=GsZVzEYe50uGgNM
     var ajaxACLResources_VehicleList = $('#ajax_DdslickVehicleList').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loadingImage_DdslickVehicleList",
@@ -59,7 +60,7 @@ $(document).ready(function () {
         data: JSON.stringify({
             language_code: $("#langCode").val(),
             pk: "GsZVzEYe50uGgNM",
-            url: "pkAccBodyDeffDdList_sysaccbodydeff",
+            url: "pkStockListTypesDdList_sysstocklisttypes",
             pkIdentity: $("#publicKey").val()
         })
     });
@@ -68,15 +69,15 @@ $(document).ready(function () {
         onReset: function (event, data) {
 
         },
-        onSuccess: function (event, dataquotayear) {
+        onSuccess: function (event, datavehiclelist) {
 
-            var cbdata_quotayear = $.parseJSON(dataquotayear);
-            cbdata_quotayear.splice(0, 0,
+            var cbdata_vehiclelist = $.parseJSON(datavehiclelist);
+            cbdata_vehiclelist.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
 
             $('#ddslickVehicleList').ddslick({
-                data: cbdata_quotayear,
+                data: cbdata_vehiclelist,
                 width: '100%'
                 //search: true,
                 //searchText: window.lang.translate('Search'),
@@ -1259,8 +1260,8 @@ $(document).ready(function () {
     */
 
     window.fillStockBoForm = function (data) {
-        $("#loadingImage_MonthlyQuota").loadImager('removeLoadImage');
-        $("#loadingImage_MonthlyQuota").loadImager('appendImage');
+        $("#loadingImage_stockBo").loadImager('removeLoadImage');
+        $("#loadingImage_stockBo").loadImager('appendImage');
 
         ddslick_modelId = data.vehicle_gruop_id;
         ddslick_model_name = data.vehicle_gruop_name;
@@ -1275,7 +1276,14 @@ $(document).ready(function () {
             }
         );
 
-        $("#loadingImage_MonthlyQuota").loadImager('removeLoadImage');
+        $('#ddslickVehicleList').ddslick('selectByValue',
+            {
+                index: '' + data.vehicle_gruop_id + '',
+                text: '' + data.vehicle_gruop_name + ''
+            }
+        );
+
+        $("#loadingImage_stockBo").loadImager('removeLoadImage');
         return false;
     }
 
