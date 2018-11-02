@@ -137,7 +137,7 @@ $(document).ready(function () {
                                             index: '' + ddslick_vehicleId + '',
                                             value: '' + ddslick_vehicle_name + ''
                                         });
-                                    filldropdown = false;
+                                    //filldropdown = false;
                                 }
                                 $('#loadingImage_DdslickVehicle').loadImager('removeLoadImage');
                             },
@@ -556,8 +556,14 @@ $(document).ready(function () {
 
             var start_date = $('#start-datepicker').val();
 
-            var is_all_vehicle = 2;
-
+            var is_all_vehicle = "";
+            var chk = document.getElementById('chk_allVehicle').checked;
+            if (chk == true) {
+                is_all_vehicle = 1;
+            }
+            else {
+                is_all_vehicle = 2;
+            }
             //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?
             //url=pkInsertAct_sysfixedsalescosts
             //&name=gitgel%20cost

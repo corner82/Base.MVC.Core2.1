@@ -139,7 +139,7 @@
                                     <!-- Training Info form -->
                                     <form id='bodyForm' method="get">
                                         <div class="row" id="loading-image-body">
-                                            <div class="col-md-6">
+                                            <div class="col-md-6" id="ajaxACL-body">
                                                 <div class="form-group">
                                                     <label><span lang="en">Body Feature Name</span></label>
                                                     <div class="input-group">
@@ -196,7 +196,7 @@
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-money"></i>
                                                         </div>
-                                                        <input type="number" class="form-control validate[required]" placeholder="Cost-national / offsite" id="txt-cost-national">
+                                                        <input type="number" class="form-control validate[required]" placeholder="Cost" id="txt-cost">
                                                         <span class="input-group-addon">ZAR</span>
                                                     </div>
                                                 </div>
@@ -228,7 +228,7 @@
                                         </div>
                                         <div class="box-footer">
                                             <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-body-clear" onclick="resetBodyForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                            <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-body-save" onclick="insertBodyWrapper();">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                            <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-body-save">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
                                         </div>
                                     </form>
                                     <!-- Devex datagrid -->

@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.1.1" />
@@ -69,6 +70,15 @@
     <Content Update="Views\DemoCourtesy\DemoCourtesyReturn.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\InvoiceProforma\InvoiceProformaBo.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\MovementDelivery\MovementDeliveryBo.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\MovementDelivery\MovementDeliverySm.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\ParkOff\ParkOff.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -93,13 +103,13 @@
     <Content Update="Views\Sys\Supplier.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Views\Sys\VehicleKitModelModeltypeTonnage.cshtml">
+    <Content Update="Views\Vehicle\VehicleKitModelModeltypeTonnage.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Views\Sys\VehicleKitModelModeltype.cshtml">
+    <Content Update="Views\Vehicle\VehicleKitModelModeltype.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Views\Sys\VehicleKitModel.cshtml">
+    <Content Update="Views\Vehicle\VehicleKitModel.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Sys\YearlyQuota.cshtml">
@@ -169,12 +179,6 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Vehicle\Vehicle.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Sys\VehicleModel.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Views\Sys\VehicleKitType.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Sys\CPRole.cshtml">
@@ -258,7 +262,6 @@
     <Folder Include="Models\HttpRequest\Stock\" />
     <Folder Include="wwwroot\adm\plugins\font-awesome-5.1.1\" />
     <Folder Include="wwwroot\adm\plugins\node_js\modules\" />
-    <Folder Include="wwwroot\sa\images\login_slider\" />
     <Folder Include="wwwroot\sa\plugins\" />
   </ItemGroup>
 

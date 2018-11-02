@@ -47,7 +47,6 @@ $(document).ready(function () {
     $('#loading-image-role').loadImager('removeLoadImage');
     $('#loading-image-role').loadImager('appendImage');
 
-    //role servisi gelince değişecek
     var ajaxACLResources_role = $('#ajaxACL-role').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loading-image-role",

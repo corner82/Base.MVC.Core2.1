@@ -83,7 +83,6 @@
         showRowLines: true,
         rowAlternationEnabled: true,
         showBorders: true,
-        //dataSource: dealGridDataSource,
         dataSource: deals_grid_datasource,
         columnHidingEnabled: true,
         editing: {
@@ -132,10 +131,41 @@
             enabled: true,
             mode: "select"
         },
+        onRowClick: function (selectedItems) {
+            var data = selectedItems.data
+            console.log(data);
+            $("#add_deal").addClass("hidden");
+            $("#update_deal").removeClass("hidden");
+            $("#deal_hidden").deal("setDealID", data.id);
+            console.log($("#deal_hidden").deal("getDealID"));
+            $("#deal_name").val(data.deal_name);
+            $("#discount_rate").val(data.discount_rate);
+            $("#deal_name").val(data.deal_name);
+            $('#ddslickRealizationRate').ddslick('selectByValue',
+                {
+                    index: '' + data.probability_id + '',
+                    text: '' + data.probability_name + ''
+                });
+            $('#ddslickPriority').ddslick('selectByValue',
+                {
+                    index: '' + data.reliability_id + '',
+                    text: '' + data.reliability_name + ''
+                });
+            $('#ddslickCustomer').ddslick('selectByValue',
+                {
+                    index: '' + data.customer_id + '',
+                    //text: '' + data.reliability_name + ''
+                });
+            $("#deal_hidden").organizeTabs('activateTabByOrder', 9);
+            
+        },
+        selection: {
+            mode: "single"
+        },
         columns: [
         {
-        caption: "Deal name",
-        dataField: "deal_name"
+            caption: "Deal name",
+            dataField: "deal_name"
         },
         {
             caption: "Customer",
@@ -158,6 +188,20 @@
         }, {
             dataField: "reliability_name",
             caption: "Reliability",
+            },
+        {
+                caption: window.lang.translate('Update'),
+                width: 40,
+                alignment: 'center',
+
+                cellTemplate: function (container, options) {
+                    var fieldHtml;
+                    var vehicle_id = options.data.id;
+                    var data = options.data;
+                    $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
+                        quotation();
+                    }).appendTo(container);
+                }
             }
         ],
         customizeColumns: function (columns) {
@@ -175,6 +219,25 @@
         }
 
     });
+
+    var quotation = function () {
+        var minNumber = 1; // le minimum
+        var maxNumber = 100; // le maximum
+        var randomnumber = Math.floor(Math.random() * (maxNumber + 1) + minNumber);
+        if (randomnumber % 2 == 0) {
+            $(window).warningComplexMessage({
+                onConfirm: function (event, data) {
+                    window.open('/sa/QuoteForm.pdf', '_blank', 'fullscreen=yes');
+                }
+            });
+            $(window).warningComplexMessage('show', 'Quotation request!',
+                'Do you want to proceed?...');
+        } else {
+            $(window).warningMessage('resetOnShown');
+            $(window).warningMessage('show', 'Deal is over priced', 'Deal is over priced!');
+        }
+    }
+
 
     window.getSelectedDDslickValueOrDefaultVal = function (id) {
         var customerType;

@@ -65,29 +65,6 @@ $(document).ready(function () {
     //alert(langCode);
 
     //Return
-    //var cbdata_return = [
-    //    {
-    //        text: window.lang.translate('Please select') + "...",
-    //        value: 1,
-    //        selected: true
-    //    },
-    //    {
-    //        text: "Yes, it will return",
-    //        value: 2,
-    //        selected: false
-    //    },
-    //    {
-    //        text: "No customer wants extension",
-    //        value: 3,
-    //        selected: false
-    //    },
-    //    {
-    //        text: "No, it won’t return",
-    //        value: 4,
-    //        selected: false
-    //    }
-    //];
-    //Return
     $('#loadingImage_DdslickReturn').loadImager('removeLoadImage');
     $("#loadingImage_DdslickReturn").loadImager('appendImage');
     //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkReturnTypeDdList_sysreturntypes&language_code=en&pk=GsZVzEYe50uGgNM
@@ -247,7 +224,7 @@ $(document).ready(function () {
             visible: true
         },
         paging: {
-            pageSize: 8
+            pageSize: 5
         },
         filterRow: {
             visible: true,
@@ -281,288 +258,6 @@ $(document).ready(function () {
     });
     //tb return deal grid end
 
-    //tb return vehicle grid
-    $('#tbVehicleListRefresh').click(function () {
-        $("#gridContainer_tradebackVehicleList").dxDataGrid("instance").refresh();
-    });
-
-    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillParkOffGridx_infostockparkoff&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
-    var tbVehicle = new DevExpress.data.CustomStore({
-        load: function (loadOptions) {
-            var deferred = $.Deferred(),
-                args = {};
-
-            if (loadOptions.sort) {
-                args.orderby = loadOptions.sort[0].selector;
-                if (loadOptions.sort[0].desc)
-                    args.orderby += " desc";
-            }
-
-            args.skip = loadOptions.skip || 0;
-            args.take = loadOptions.take || 12;
-
-            $.ajax({
-                url: '/ParkOff/ParkoffGrid',
-                dataType: "json",
-                data: JSON.stringify({
-                    language_code: $("#langCode").val(),
-                    pk: "GsZVzEYe50uGgNM",
-                    url: "pkFillParkOffGridx_infostockparkoff",
-                    pkIdentity: $("#publicKey").val(),
-                    page: "",
-                    rows: "",
-                    sort: "",
-                    order: "", //args.orderby,
-                    skip: args.skip,
-                    take: args.take
-                }),
-                type: 'POST',
-                contentType: 'application/json',
-                success: function (result) {
-                    deferred.resolve(result.items, { totalCount: result.totalCount });
-                },
-                error: function () {
-                    deferred.reject("Data Loading Error");
-                },
-                timeout: 10000
-            });
-            return deferred.promise();
-        }
-    });
-
-    $("#gridContainer_tradebackVehicleList").dxDataGrid({
-
-        showColumnLines: true,
-        showRowLines: true,
-        showBorders: true,
-        dataSource: tbVehicle,
-        columnHidingEnabled: true,
-        selection: {
-            mode: "single"
-        },
-        hoverStateEnabled: true,
-        editing: {
-            //mode: "batch"
-            mode: "form",
-            //allowAdding: true,
-            //allowUpdating: true,
-            //allowDeleting: true,
-            useIcons: true
-        },
-        "export": {
-            enabled: true,
-            fileName: "tradebackVehicle"
-        },
-        grouping: {
-            contextMenuEnabled: true,
-            expandMode: "rowClick"
-        },
-        groupPanel: {
-            emptyPanelText: "Use the context menu of header columns to group data",
-            visible: true
-        },
-        pager: {
-            allowedPageSizes: [5, 8, 15, 30],
-            showInfo: true,
-            showNavigationButtons: true,
-            showPageSizeSelector: true,
-            visible: true
-        },
-        paging: {
-            pageSize: 8
-        },
-        filterRow: {
-            visible: true,
-            applyFilter: "auto"
-        },
-        searchPanel: {
-            visible: true,
-            width: 240,
-            placeholder: window.lang.translate('Search') + "...",
-        },
-        headerFilter: {
-            visible: true
-        },
-        columnChooser: {
-            enabled: true,
-            mode: "select"
-        },
-        columns: [{
-            caption: window.lang.translate('Deal Number') + "...",
-            dataField: "chassis_no"
-        }, {
-            caption: window.lang.translate('Deal date') + "...",
-            dataField: "man_entry_date"
-        }, {
-            caption: window.lang.translate('Vehicle return date') + "...",
-            dataField: "man_entry_date"
-        }, {
-            caption: window.lang.translate('Chassis') + "...",
-            //dataField: "WAGP21ZZ2FT022928"
-            dataField: "chassis_no"
-        }, {
-            caption: window.lang.translate('Vehicle return') + "...",
-            dataField: "man_entry_date"
-        }, {
-            caption: window.lang.translate('Explanation') + "...",
-            dataField: "man_entry_date"
-        }],
-        onSelectionChanged: function (selectedItems) {
-            var data = selectedItems.selectedRowsData[0];
-            if (data) {
-                fillVehicleTradebackForm(data);
-            }
-        }
-    });
-    //tb return vehicle grid end
-
-    //tb return attachment grid
-    $('#attachmentListRefresh').click(function () {
-        $("#gridContainer_tradebackVehicleAttachmentList").dxDataGrid("instance").refresh();
-    });
-
-    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillParkOffGridx_infostockparkoff&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
-    var tbAtt = new DevExpress.data.CustomStore({
-        load: function (loadOptions) {
-            var deferred = $.Deferred(),
-                args = {};
-
-            if (loadOptions.sort) {
-                args.orderby = loadOptions.sort[0].selector;
-                if (loadOptions.sort[0].desc)
-                    args.orderby += " desc";
-            }
-
-            args.skip = loadOptions.skip || 0;
-            args.take = loadOptions.take || 12;
-
-            $.ajax({
-                url: '/ParkOff/ParkoffGrid',
-                dataType: "json",
-                data: JSON.stringify({
-                    language_code: $("#langCode").val(),
-                    pk: "GsZVzEYe50uGgNM",
-                    url: "pkFillParkOffGridx_infostockparkoff",
-                    pkIdentity: $("#publicKey").val(),
-                    page: "",
-                    rows: "",
-                    sort: "",
-                    order: "", //args.orderby,
-                    skip: args.skip,
-                    take: args.take
-                }),
-                type: 'POST',
-                contentType: 'application/json',
-                success: function (result) {
-                    deferred.resolve(result.items, { totalCount: result.totalCount });
-                },
-                error: function () {
-                    deferred.reject("Data Loading Error");
-                },
-                timeout: 10000
-            });
-            return deferred.promise();
-        },
-        remove: function (key) {
-            var deferred = $.Deferred();
-            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_sysfixedsalescosts&id=33&pk=GsZVzEYe50uGgNM
-            return $.ajax({
-                url: '/ParkOff/DeleteParkoff',
-                dataType: "json",
-                data: JSON.stringify({
-                    id: parkoffId,
-                    pk: "GsZVzEYe50uGgNM",
-                    url: "pkDeletedAct_infostockparkoff"
-                }),
-                type: 'POST',
-                contentType: 'application/json',
-                success: function (result) {
-                    deferred.resolve(result.items, { totalCount: result.totalCount });
-                },
-                error: function () {
-                    deferred.reject("Data remove Error");
-                },
-                timeout: 10000
-            });
-        }
-    });
-    $("#gridContainer_tradebackVehicleAttachmentList").dxDataGrid({
-
-        showColumnLines: true,
-        showRowLines: true,
-        showBorders: true,
-        dataSource: tbAtt,
-        columnHidingEnabled: true,
-        selection: {
-            mode: "single"
-        },
-        hoverStateEnabled: true,
-        editing: {
-            //mode: "batch"
-            mode: "form",
-            //allowAdding: true,
-            allowUpdating: true,
-            allowDeleting: true,
-            useIcons: true
-        },
-        "export": {
-            enabled: true,
-            fileName: "tradeback Vehicle Attachment"
-        },
-        grouping: {
-            contextMenuEnabled: true,
-            expandMode: "rowClick"
-        },
-        groupPanel: {
-            emptyPanelText: "Use the context menu of header columns to group data",
-            visible: true
-        },
-        pager: {
-            allowedPageSizes: [5, 8, 15, 30],
-            showInfo: true,
-            showNavigationButtons: true,
-            showPageSizeSelector: true,
-            visible: true
-        },
-        paging: {
-            pageSize: 8
-        },
-        filterRow: {
-            visible: true,
-            applyFilter: "auto"
-        },
-        searchPanel: {
-            visible: true,
-            width: 240,
-            placeholder: window.lang.translate('Search') + "...",
-        },
-        headerFilter: {
-            visible: true
-        },
-        columnChooser: {
-            enabled: true,
-            mode: "select"
-        },
-        columnWidth: {
-            autoWidth: true
-        },
-        columns: [{
-            caption: window.lang.translate('Vehicle') + "...",
-            //dataField: "WAGP21ZZ2FT022928"
-            dataField: "chassis_no"
-        }, {
-            caption: "Attachment",
-            //dataField: "active",
-            dataField: "chassis_no"
-        }],
-        onSelectionChanged: function (selectedItems) {
-            var data = selectedItems.selectedRowsData[0];
-            if (data) {
-                //fillVehicleTradebackForm(data);
-            }
-        }
-    });
-    //tb return attachment grid end
 
     /**
     * Tradeback Return
@@ -708,10 +403,158 @@ $(document).ready(function () {
 
         $("#loadingImage_TbReturnInfo").loadImager('removeLoadImage');
         //$('#ddslickReturn').ddslick('select', { index: 2 });
+        FillGridVehicle();
 
         tab_active();
         return false;
     }
+
+    var FillGridVehicle = function () {
+        $("#loadingImage_TbReturnInfo").loadImager('removeLoadImage');
+        $("#loadingImage_TbReturnInfo").loadImager('appendImage');
+
+        //tb return vehicle grid
+        $('#tbVehicleListRefresh').click(function () {
+            $("#gridContainer_tradebackVehicleList").dxDataGrid("instance").refresh();
+        });
+
+
+        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillParkOffGridx_infostockparkoff&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
+        var tbVehicle = new DevExpress.data.CustomStore({
+            load: function (loadOptions) {
+                var deferred = $.Deferred(),
+                    args = {};
+
+                if (loadOptions.sort) {
+                    args.orderby = loadOptions.sort[0].selector;
+                    if (loadOptions.sort[0].desc)
+                        args.orderby += " desc";
+                }
+
+                args.skip = loadOptions.skip || 0;
+                args.take = loadOptions.take || 12;
+
+                $.ajax({
+                    url: '/ParkOff/ParkoffGrid',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        language_code: $("#langCode").val(),
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkFillParkOffGridx_infostockparkoff",
+                        pkIdentity: $("#publicKey").val(),
+                        page: "",
+                        rows: "",
+                        sort: "",
+                        order: "", //args.orderby,
+                        skip: args.skip,
+                        take: args.take
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                    },
+                    error: function () {
+                        deferred.reject("Data Loading Error");
+                    },
+                    timeout: 10000
+                });
+                return deferred.promise();
+            }
+        });
+
+        $("#gridContainer_tradebackVehicleList").dxDataGrid({
+
+            showColumnLines: true,
+            showRowLines: true,
+            showBorders: true,
+            dataSource: tbVehicle,
+            columnHidingEnabled: true,
+            selection: {
+                mode: "single"
+            },
+            hoverStateEnabled: true,
+            editing: {
+                //mode: "batch"
+                mode: "form",
+                //allowAdding: true,
+                //allowUpdating: true,
+                //allowDeleting: true,
+                useIcons: true
+            },
+            "export": {
+                enabled: true,
+                fileName: "tradebackVehicle"
+            },
+            grouping: {
+                contextMenuEnabled: true,
+                expandMode: "rowClick"
+            },
+            groupPanel: {
+                emptyPanelText: "Use the context menu of header columns to group data",
+                visible: true
+            },
+            pager: {
+                allowedPageSizes: [5, 8, 15, 30],
+                showInfo: true,
+                showNavigationButtons: true,
+                showPageSizeSelector: true,
+                visible: true
+            },
+            paging: {
+                pageSize: 5
+            },
+            filterRow: {
+                visible: true,
+                applyFilter: "auto"
+            },
+            searchPanel: {
+                visible: true,
+                width: 240,
+                placeholder: window.lang.translate('Search') + "...",
+            },
+            headerFilter: {
+                visible: true
+            },
+            columnChooser: {
+                enabled: true,
+                mode: "select"
+            },
+            columns: [{
+                caption: window.lang.translate('Deal Number') + "...",
+                dataField: "chassis_no"
+            }, {
+                caption: window.lang.translate('Deal date') + "...",
+                dataField: "man_entry_date"
+            }, {
+                caption: window.lang.translate('Vehicle return date') + "...",
+                dataField: "man_entry_date"
+            }, {
+                caption: window.lang.translate('Chassis') + "...",
+                //dataField: "WAGP21ZZ2FT022928"
+                dataField: "chassis_no"
+            }, {
+                caption: window.lang.translate('Vehicle return') + "...",
+                dataField: "man_entry_date"
+            }, {
+                caption: window.lang.translate('Explanation') + "...",
+                dataField: "man_entry_date"
+            }],
+            onSelectionChanged: function (selectedItems) {
+                var data = selectedItems.selectedRowsData[0];
+                if (data) {
+                    fillVehicleTradebackForm(data);
+                }
+            }
+        });
+    //tb return vehicle grid end
+
+        $("#loadingImage_TbReturnInfo").loadImager('removeLoadImage');
+
+        return false;
+    }
+
+
 
     window.fillVehicleTradebackForm = function (data) {
         $("#loadingImage_TbReturnInfo").loadImager('removeLoadImage');
@@ -725,10 +568,170 @@ $(document).ready(function () {
         $('#ddslickReturn').ddslick('select', { index: 1 });
         document.getElementById("txt-tbreturn-vehicle").value = 'WAGP21ZZ2FT022928';
         document.getElementById("txt-tbreturn-vehicleReturnDate").value = data.man_entry_date;
+        FillGridVehicleAttachment();
 
         tab_active();
         return false;
     }
+
+    var FillGridVehicleAttachment = function () {
+        $("#loadingImage_TbReturnInfo").loadImager('removeLoadImage');
+        $("#loadingImage_TbReturnInfo").loadImager('appendImage');
+
+        //tb return attachment grid
+        $('#attachmentListRefresh').click(function () {
+            $("#gridContainer_tradebackVehicleAttachmentList").dxDataGrid("instance").refresh();
+        });
+
+        //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillParkOffGridx_infostockparkoff&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
+        var tbAtt = new DevExpress.data.CustomStore({
+            load: function (loadOptions) {
+                var deferred = $.Deferred(),
+                    args = {};
+
+                if (loadOptions.sort) {
+                    args.orderby = loadOptions.sort[0].selector;
+                    if (loadOptions.sort[0].desc)
+                        args.orderby += " desc";
+                }
+
+                args.skip = loadOptions.skip || 0;
+                args.take = loadOptions.take || 12;
+
+                $.ajax({
+                    url: '/ParkOff/ParkoffGrid',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        language_code: $("#langCode").val(),
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkFillParkOffGridx_infostockparkoff",
+                        pkIdentity: $("#publicKey").val(),
+                        page: "",
+                        rows: "",
+                        sort: "",
+                        order: "", //args.orderby,
+                        skip: args.skip,
+                        take: args.take
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                    },
+                    error: function () {
+                        deferred.reject("Data Loading Error");
+                    },
+                    timeout: 10000
+                });
+                return deferred.promise();
+            },
+            remove: function (key) {
+                var deferred = $.Deferred();
+                //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkDeletedAct_sysfixedsalescosts&id=33&pk=GsZVzEYe50uGgNM
+                return $.ajax({
+                    url: '/ParkOff/DeleteParkoff',
+                    dataType: "json",
+                    data: JSON.stringify({
+                        id: parkoffId,
+                        pk: "GsZVzEYe50uGgNM",
+                        url: "pkDeletedAct_infostockparkoff"
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        deferred.resolve(result.items, { totalCount: result.totalCount });
+                    },
+                    error: function () {
+                        deferred.reject("Data remove Error");
+                    },
+                    timeout: 10000
+                });
+            }
+        });
+        $("#gridContainer_tradebackVehicleAttachmentList").dxDataGrid({
+
+            showColumnLines: true,
+            showRowLines: true,
+            showBorders: true,
+            dataSource: tbAtt,
+            columnHidingEnabled: true,
+            selection: {
+                mode: "single"
+            },
+            hoverStateEnabled: true,
+            editing: {
+                //mode: "batch"
+                mode: "form",
+                //allowAdding: true,
+                allowUpdating: true,
+                allowDeleting: true,
+                useIcons: true
+            },
+            "export": {
+                enabled: true,
+                fileName: "tradeback Vehicle Attachment"
+            },
+            grouping: {
+                contextMenuEnabled: true,
+                expandMode: "rowClick"
+            },
+            groupPanel: {
+                emptyPanelText: "Use the context menu of header columns to group data",
+                visible: true
+            },
+            pager: {
+                allowedPageSizes: [5, 8, 15, 30],
+                showInfo: true,
+                showNavigationButtons: true,
+                showPageSizeSelector: true,
+                visible: true
+            },
+            paging: {
+                pageSize: 5
+            },
+            filterRow: {
+                visible: true,
+                applyFilter: "auto"
+            },
+            searchPanel: {
+                visible: true,
+                width: 240,
+                placeholder: window.lang.translate('Search') + "...",
+            },
+            headerFilter: {
+                visible: true
+            },
+            columnChooser: {
+                enabled: true,
+                mode: "select"
+            },
+            columnWidth: {
+                autoWidth: true
+            },
+            columns: [{
+                caption: window.lang.translate('Vehicle') + "...",
+                //dataField: "WAGP21ZZ2FT022928"
+                dataField: "chassis_no"
+            }, {
+                caption: "Attachment",
+                //dataField: "active",
+                dataField: "chassis_no"
+            }],
+            onSelectionChanged: function (selectedItems) {
+                var data = selectedItems.selectedRowsData[0];
+                if (data) {
+                    //fillVehicleTradebackForm(data);
+                }
+            }
+        });
+    //tb return attachment grid end
+
+        $("#loadingImage_TbReturnInfo").loadImager('removeLoadImage');
+
+        return false;
+    }
+
+
 
     //----------------------------------popup begin-------------------------------------------------
     $("#btn-attachmentAdd-save").on("click", function (e) {

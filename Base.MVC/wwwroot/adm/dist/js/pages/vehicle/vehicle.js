@@ -1,7 +1,7 @@
 ﻿/*
 * Vehicle Form
 * @author Gül Özdemir
-* @since 15/08/2016
+* @since 15/08/2018
 */
 $(document).ready(function () {
 
@@ -31,15 +31,17 @@ $(document).ready(function () {
     /*
     * Vehicle LoadImager
     * @author Gül Özdemir
-    * @since 15/08/2016
+    * @since 15/08/2018
     */
     //to vehicle form
     $("#loadingImage_FormVehicle").loadImager();
-    
+
+    $("#loadingImage_purposeof").loadImager();
     $("#loadingImage_DdslickVehicleKitType").loadImager();
     $("#loadingImage_DdslickVehicleModel").loadImager();
     $("#loadingImage_DdslickVehicleModelGr").loadImager();
     $("#loadingImage_DdslickVehicleModelGrTonaj").loadImager();
+    $("#loadingImage_DdslickGVM").loadImager();
     $("#loadingImage_DdslickHorsepower").loadImager();
     $("#loadingImage_DdslickConfig").loadImager();
     $("#loadingImage_DdslickVehicleVariant").loadImager();
@@ -58,6 +60,56 @@ $(document).ready(function () {
 
     var vehicleModel = "";
     var vehicleType = "";
+
+    $('#loadingImage_purposeof').loadImager('removeLoadImage');
+    $('#loadingImage_purposeof').loadImager('appendImage');
+    //Vehicle Order / General
+    var ajaxACLResources_purposeof = $('#ajax_DdslickPurposeOf').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_purposeof",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/Vehicle/SysVehiclePurposeOf/',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkPlaceOfUseDdList_sysplaceofuse",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
+
+    ajaxACLResources_purposeof.ajaxCallWidget({
+        onSuccess: function (event, datapurposeof) {
+            var cbdata_purposeof = $.parseJSON(datapurposeof);
+            cbdata_purposeof.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+            $('#ddslickPurposeOf').ddslick({
+                data: cbdata_purposeof,
+                width: '100%',
+
+                onSelected: function (selectedData) {
+                    if (selectedData.selectedData.value > 0) {
+                        //alert(selectedData.selectedData.text);
+
+                    }
+
+                }
+            });
+
+            $("#loadingImage_purposeof").loadImager('removeLoadImage');
+        },
+        onReset: function (event, data) {
+
+        },
+        onAfterSuccess: function (event, data) {
+            $("#loadingImage_purposeof").loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_purposeof.ajaxCallWidget('call');
 
     $('#loadingImage_DdslickVehicleKitType').loadImager('removeLoadImage');
     $('#loadingImage_DdslickVehicleKitType').loadImager('appendImage');

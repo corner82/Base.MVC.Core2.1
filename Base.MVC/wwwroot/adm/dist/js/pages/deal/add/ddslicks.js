@@ -25,17 +25,6 @@
     */
     $('#loadingImage_DdslickPriority').loadImager();
 
-    
-
-    /**
-    * ddslick vehicle type dropdown load imager
-    * @author Mustafa Zeynel Dağlı
-    * @since 15/08/2018
-    */
-    $('#loadingImage_DdslickVehicleType').loadImager();
-
-    
-
 
     /**
     * ddslick campaign dropdown load imager
@@ -253,51 +242,7 @@
     ajax_DdslickRealizationRate.ajaxCallWidget('call');
     //Deal tab form elements end
 
-    //add vehicle type tab form elements begin
-    /**
-    * ddslick vehicle type dropdown 
-    * @author Mustafa Zeynel Dağlı
-    * @since 15/08/2018
-    */
     
-    $('#loadingImage_DdslickVehicleType').loadImager('removeLoadImage');
-    $("#loadingImage_DdslickVehicleType").loadImager('appendImage');
-    var ajax_DdslickVehicleType = $('#ajax_DdslickVehicleType').ajaxCallWidget({
-        proxy: '/DefaultPost/DefaultPostModel',
-        type: "POST",
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        noDataFailureText: window.lang.translate("No data returned from service"),
-        loadingImageID: "loadingImage_DdslickVehicleType",
-        data: JSON.stringify({
-            language_code: $("#langCode").val(),
-            pk: "GsZVzEYe50uGgNM",
-            url: "pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups",
-            pkIdentity: $("#publicKey").val()
-        })
-
-    });
-    ajax_DdslickVehicleType.ajaxCallWidget({
-        onSuccess: function (event, data) {
-            var data = $.parseJSON(data);
-            data.splice(0, 0,
-                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
-            );
-            $('#ddslickVehicleType').ddslick({
-                //height: 150,
-                data: data,
-                width: '100%',
-                onSelected: function (selectedData) {
-                    if (selectedData.selectedData.value > 0) {
-                        //vehicleKitTypeForDefineFields(selectedData.selectedData.text);
-                    }
-                }
-            });
-            $("#loadingImage_DdslickVehicleType").loadImager('removeLoadImage');
-        },
-    })
-    ajax_DdslickVehicleType.ajaxCallWidget('call');
-
-    //add vehicle type tab form elements end
 
 
     
@@ -346,7 +291,6 @@
     });
     $('#loadingImage_DdslickAddBodyType').loadImager('removeLoadImage');
 
-    
 
     /**
     * ddslick vehicle groups (body) dropdown 
@@ -494,7 +438,6 @@
 
     //add deal-campaign aside tab form elements begin
     
-
 
     /**
     * ddslick vehicle type dropdown 

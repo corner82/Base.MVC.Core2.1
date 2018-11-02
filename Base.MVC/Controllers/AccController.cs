@@ -310,7 +310,10 @@ namespace Base.MVC.Controllers
                     throw new RedisManagerException(ex);
 
                 }
+                //return Redirect("http://localhost:51769/Adm/Dsh");
                 return Redirect("~/Adm/Dsh");
+                //return RedirectToAction("Dsh", "Adm");
+                //return RedirectToAction(WebUtility.UrlEncode(returnUrl));
             } else
             {
                 ModelState.AddModelError("hata", "status not verified");

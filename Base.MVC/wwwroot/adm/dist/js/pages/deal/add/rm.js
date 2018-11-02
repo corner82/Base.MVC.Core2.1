@@ -23,7 +23,6 @@
     $("#deal_hidden").organizeTabs({
         onAftertab_RM: function (e) {
 
-
             //----------------------------------grid begin-------------------------------------------------
             /* 
             * deal warranty grid data source
@@ -331,17 +330,13 @@
             $("#loadingImage_DdslickDealVehicleTypeRM").loadImager('appendImage');
             if (parseInt($("#deal_hidden").deal("getDealID")) > 0) {
 
-                var vehicleTypes = $("#deal_hidden").deal("getVehicleTypes");
+                /*var vehicleTypes = $("#deal_hidden").deal("getVehicleTypes");
                 if (vehicleTypes.length == 0) {
-
-                    /*$('#tab_BuyBack').loadImager('removeLoadImage');
-                    $('#tab_BuyBack').loadImager('appendImage');*/
-
                     $(window).warningMessage('resetOnShown');
                     $(window).warningMessage('show', window.lang.translate("You must add at least one vehicle type to deal"),
                         window.lang.translate("You must add at least one vehicle type to deal"));
                     return false;
-                }
+                }*/
 
                 var ajax_DdslickVehicleTypeAksesuar = $('#ajax_DdslickDealVehicleTypeRM').ajaxCallWidget({
                     proxy: '/Deal/DdslickGetDealVehicleTypeProxyService/',
@@ -528,7 +523,6 @@
                         onSelected: function (selectedData) {
                         }
                     });
-
                     $("#loadingImage_DdslickRMType").loadImager('removeLoadImage');
                 },
             })
@@ -567,7 +561,6 @@
                         onSelected: function (selectedData) {
                         }
                     });
-
                     $("#loadingImage_DdslickRMKm").loadImager('removeLoadImage');
                 },
             })
@@ -762,6 +755,22 @@
         return false;
     }
 
+
+
+    window.addRMFilePopupWrapper = function (e) {
+        //alert("popup submit click");
+
+        if ($("#aksesuarProposalForm").validationEngine('validate')) {
+            alert('test mest 1');
+        } else {
+            alert('test mest 2');
+        }
+        e.preventDefault();
+        return false;
+    }
+
+
+
     /**
      * add accessory proposal popup window opener
      * @author Mustafa Zeynel Dağlı
@@ -833,36 +842,110 @@
                                                                  </div>\n\
                                                              </div>\n\
                                                          </div>\n\
-                                                         <div class="form-group">\n\
-                                                             <label class="col-sm-2 control-label">Km</label>\n\
-                                                             <div id="mach-prod-box-popup" class="col-sm-10">\n\
-                                                                 <div class="input-group">\n\
-                                                                     <div class="input-group-addon">\n\
-                                                                         <i class="fa fa-hand-o-right"></i>\n\
-                                                                     </div>\n\
-                                                                     <input type="file" class="form-control " id="file" name="file"  />\n\
-                                                                 </div>\n\
-                                                             </div>\n\
-                                                         </div>\n\
                                                          <div class="hr-line-dashed"></div>\n\
                                                          <div class="form-group">\n\
                                                              <div class="col-sm-10 col-sm-offset-2">\n\
                                                              <button id="add_aksesuar_proposal" class="btn btn-primary" type="button" onclick="return addRMProposalPopupWrapper(event);" >\n\
                                                                  <i class="fa fa-save"></i> Add proposal </button>\n\
-                                                         </div>\n\
-                                                     </div>\n\
-                                                 </form>\n\
+                                                            </div>\n\
+                                                            </form>\n\
+                                                        </div >\n\
+                                                    <form enctype="multipart/form-data" id="fupForm" >\n\
+                                                        <p class="statusMsg"></p>\n\
+                                                        <p class="uploadedFiles"></p>\n\
+                                                        <div class="form-group">\n\
+                                                            <label class="col-sm-2 control-label">Km</label>\n\
+                                                            <div id="mach-prod-box-popup" class="col-sm-10">\n\
+                                                                <div class="input-group">\n\
+                                                                    <div class="input-group-addon">\n\
+                                                                        <i class="fa fa-hand-o-right"></i>\n\
+                                                                    </div>\n\
+                                                                    <input type="file" class="form-control " id="file" name="file"  />\n\
+                                                                </div>\n\
+                                                            </div>\n\
+                                                        </div>\n\
+                                                        <div class="form-group">\n\
+                                                             <div class="col-sm-10 col-sm-offset-2">\n\
+                                                             <button id="add_file_RM" class="btn btn-primary" type="submit"  >\n\
+                                                                 <i class="fa fa-save"></i>Upload file </button>\n\
+                                                            </div>\n\
+                                                        </div >\n\
+                                                    </form>\n\
                                              </div>\n\
                                          </div>\n\
                                      </div>');
                 return $message;
             },
             type: BootstrapDialog.TYPE_PRIMARY,
-            onshow: function (dialogRef) {  
+            onshow: function (dialogRef) { 
             },
             onshown: function () {
                 $('#rmProposalForm').validationEngine();
                 $('#loadingImage_AddRMProposal').loadImager();
+
+                $(document).on('submit', '#fupForm', function (e) {
+                    //alert('submit test');
+                    //alert($("#file").val());
+                    e.preventDefault();
+
+
+                    $.ajax({
+                        type: 'POST',
+                        url: 'https://test.wkhtmltopdf.com/index.php/uploadTest',
+                        //url: 'https://localhost/slim2_wkhtmltopdf_snapy/index.php/uploadTest',
+                        //url : 'http://slim.mansis.co.za:9990/fileupload.php/uploadTest',
+                        /*headers: {
+                            'Access-Control-Allow-Origin': true,
+                        },*/
+                        //crossDomain: true,
+                        //dataType: 'jsonp',
+                        data: new FormData(this),
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        beforeSend: function () {
+                            
+                            $('#add_file_RM').attr("disabled", "disabled");
+                            $('#fupForm').css("opacity", ".5");
+                        },
+                        success: function (msg) {
+                            alert('success');
+                            $(".uploadedFiles").append("<a onclick='window.open(\"https://test.wkhtmltopdf.com/uploads/" + msg +"\", \"_blank\", \"fullscreen=yes\");' href='#' >"+msg+"</a></br>");
+                            $('.statusMsg').html('');
+                            if (msg != 'error') {
+                                $('#fupForm')[0].reset();
+                                $('.statusMsg').html('<span style="font-size:18px;color:#34A853">Form data submitted successfully.</span>');
+                            } else {
+                                $('.statusMsg').html('<span style="font-size:18px;color:#EA4335">Some problem occurred, please try again.</span>');
+                            }
+                            $('#fupForm').css("opacity", "");
+                            $("#add_file_RM").removeAttr("disabled");
+                        },
+                        done: function (msg) {
+                            alert('done');
+                        }
+                    });
+                });
+
+
+                //file type validation
+                $(document).on('change', '#file', function () {
+                    //alert('test onchange');
+                    var file = this.files[0];
+                    var imagefile = file.type;
+                    var match = ["image/jpeg", "image/png", "image/jpg", "application/pdf"];
+                    //var match = ["image/jpeg", "image/png", "image/jpg"];
+                    if (!((imagefile == match[0]) ||
+                        (imagefile == match[1]) ||
+                        (imagefile == match[2]) ||
+                        (imagefile == match[3]))){
+                        $("#file").val('');
+                        alert('Please select a valid image file (JPEG/JPG/PNG).');
+                        alert($("#file").val());
+                        return false;
+                    }
+                });
+
 
 
                 /**
@@ -1013,6 +1096,8 @@
             },
         });
     }
+
+   
 
     //----------------------------------popup end-------------------------------------------------
 

@@ -22,5 +22,6 @@ namespace Base.MVC.Models.HttpRequest.Deal
         public int other_month_value { get; set; }
         public int other_milages_value { get; set; }
         public string other_description { get; set; }
+        public int? id { get; set; }
     }
 }

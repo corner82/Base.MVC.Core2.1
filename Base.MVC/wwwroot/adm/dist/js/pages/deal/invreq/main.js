@@ -70,6 +70,7 @@
                     url: "pkFillProjectGridx_infoproject",
                     pkIdentity: $("#publicKey").val(),
                     //project_id: dealID,
+                    project_id: parseInt(80),
                     page: "",
                     rows: "",
                     sort: "",
@@ -89,24 +90,6 @@
             return deferred.promise();
         }
     });
-    // deal list grid
-    var dealGridDataSource = {
-        store: {
-            type: 'array',
-            data: [{ "OrderNumber": 35703, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Harv Mudd", "OrderDate": "2013/11/12" },
-            { "OrderNumber": 35706, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Harv Mudd", "OrderDate": "2013/11/14" },
-            { "OrderNumber": 35709, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Harv Mudd", "OrderDate": "2013/11/18" },
-            { "OrderNumber": 35711, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Jim Packard", "OrderDate": "2013/11/22" },
-            { "OrderNumber": 35714, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Harv Mudd", "OrderDate": "2013/11/30" },
-            { "OrderNumber": 35789, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Clark Morgan", "OrderDate": "2013/12/01" },
-            { "OrderNumber": 35983, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Todd Hoffman", "OrderDate": "2013/12/03" },
-            { "OrderNumber": 36488, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Todd Hoffman", "OrderDate": "2013/12/05" },
-            { "OrderNumber": 36987, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Clark Morgan", "OrderDate": "2013/12/07" },
-            { "OrderNumber": 37642, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Clark Morgan", "OrderDate": "2013/12/08" },
-            { "OrderNumber": 38466, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Harv Mudd", "OrderDate": "2013/12/10" },
-            { "OrderNumber": 38775, "Customer": "South Africa Corp.", "StoreCity": "Johannesburg", "Salesman": "Lucky Sanderson", "Employee": "Harv Mudd", "OrderDate": "2013/12/15" }]
-        }
-    };
     /* 
     * body proposal grid 
     * @author Mustafa Zeynel dağlı
@@ -909,13 +892,14 @@
             }
 
             var ddDataVehicleType = $('#ddslickDealVehicleGroupProducts').data('ddslick');
-            if (!ddDataVehicleType.selectedData.value > 0) {
+            /*if (!ddDataVehicleType.selectedData.value > 0) {
                 $(window).warningMessage('resetOnShown');
                 $(window).warningMessage('show', window.lang.translate("Please select vehicle group product"),
                     window.lang.translate("Please select vehicle group product"));
                 $('#loadingImage_BodyProposal').loadImager('removeLoadImage');
                 return false;
-            }
+            }*/
+            var rows = $("#gridContainer_vehicle").dxDataGrid('getSelectedRowsData');
 
             var ajax = $('#add_body_proposal').ajaxCallWidget({
                 failureLoadImage: true,
