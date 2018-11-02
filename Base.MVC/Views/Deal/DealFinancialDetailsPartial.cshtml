@@ -1,0 +1,48 @@
+﻿@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject IHttpContextAccessor HttpContextAccessor
+@using System
+@using System.Text
+@using Base.Core.Entities.Session
+@using Base.Core.Extensions.Session
+@using Microsoft.AspNetCore.Http
+@{
+    var currentUser = Context.Session.Get<SessionUserModel>("CurrentUser");
+}
+
+
+<!--hidden data block 1 -->
+<div class="row">
+    <!--<section class="col-lg-7 connectedSortable">-->
+    <div class="col-md-12">
+        <!--<div class="box" id="panel_hidden1" >  -->
+        <div class="box" id="panel_hidden1" style="display: none;" >
+            <div class="box-header with-border">
+                <h3 class="box-title" id="panel_hidden1_title" lang="en"></h3>
+                <div class="box-tools pull-right">
+                    <!--<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>-->
+                    
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+            </div><!-- /.box-header -->
+            <div class="box-body" style="display: block;">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div id="gridContainer_det1"></div>
+                        <div id="gridContainer_det2"></div>
+                        <div id="gridContainer_det3"></div>
+                        <div id="gridContainer_det4"></div>
+                        <div id="gridContainer_det5"></div>
+
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- ./box-body -->
+            <div class="box-footer" style="display: block;">
+            </div><!-- /.box-footer -->
+        </div><!-- /.box -->
+    </div>
+    <!--</section>  -->
+</div>
+<!--hidden data block 1 son-->

@@ -19,7 +19,7 @@
      *  @since 08/10/2018
      * */
     $("#deal_hidden").organizeTabs({ tabID: "deals_tab" });
-    //$("#deal_hidden").organizeTabs('disableAllTabsButOne');
+    $("#deal_hidden").organizeTabs('disableAllTabsButOne');
 
     //Make the dashboard widgets sortable Using jquery UI
     $(".connectedSortable").sortable({
