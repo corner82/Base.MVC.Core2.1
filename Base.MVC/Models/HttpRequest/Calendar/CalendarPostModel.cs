@@ -9,6 +9,7 @@ namespace Base.MVC.Models.HttpRequest.Calendar
     {
         public string url { get; set; }
         public string description { get; set; }
+        public string vehicle_gt_model_id { get; set; }
         public string pk { get; set; }
     }
 }

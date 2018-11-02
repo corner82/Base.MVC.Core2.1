@@ -42,128 +42,24 @@
         <!-- Main row -->
         <div class="row">
             <!-- Left col -->
-            <section class="col-lg-6 connectedSortable">
+            <section class="col-lg-12 connectedSortable">
+
                 <div class="box box-info">
                     <div class="box-header">
                         <i class="fa fa-comments-o"></i>
-                        <h3 class="box-title">Target</h3>
+                        <h3 class="box-title">Salesman Dashboard</h3>
 
                         <div class="box-tools pull-right">
                             <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
                             <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
                         </div>
                     </div>
-                    <div class="box-body" id="loading-image-segmentGrid">
-                        <table class="table table-striped" id="salesman-target-table">
-                            <thead>
-                                <tr>
-                                    <th scope="col" rowspan="2">#</th>
-                                    <th class="text-center" scope="col" colspan="2">Actual</th>
-                                    <th class="text-center" scope="col" colspan="2">YTD</th>
-                                </tr>
-                                <tr>
-                                    <th class="text-center" scope="col">Actual</th>
-                                    <th class="text-center" scope="col">Target</th>
-                                    <th class="text-center" scope="col">Actual</th>
-                                    <th class="text-center" scope="col">Target</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">Order In Take</th>
-                                    <td class="text-center" id="or-mon-actual"></td>
-                                    <td class="text-center" id="or-mon-target"></td>
-                                    <td class="text-center" id="or-yr-actual"></td>
-                                    <td class="text-center" id="or-yr-target"></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Sales</th>
-                                    <td class="text-center" id="sl-mon-actual"></td>
-                                    <td class="text-center" id="sl-mon-target"></td>
-                                    <td class="text-center" id="sl-yr-actual"></td>
-                                    <td class="text-center" id="sl-yr-target"></td>
-                                </tr>
-                        </table>
-                    </div>
-                </div>
-            </section>
-            <section class="col-lg-6 connectedSortable">
-                <div class="box box-info">
-                    <div class="box-header">
-                        <i class="fa fa-comments-o"></i>
-                        <h3 class="box-title">Activities</h3>
+                    <div class="box-body">
 
-                        <div class="box-tools pull-right">
-                            <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                            <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
-                        </div>
-                    </div>
-                    <div class="box-body" id="loading-image-segmentGrid">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <!-- small box -->
-                                <div class="small-box bg-aqua salesman-activites" id="salesman-activites-planned">
-                                    <div class="inner">
-                                        <h3>0</h3>
-                                        <p>Planned Activity</p>
-                                    </div>
-                                    <div class="icon">
-                                        <i class="ion ion-bag"></i>
-                                    </div>
-                                    <a href="#" class="small-box-footer">@Localizer["More Info"]<i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <!-- small box -->
-                                <div class="small-box bg-green" id="salesman-activites-completed">
-                                    <div class="inner">
-                                        <h3>0</h3>
-                                        <p>Completed Activity</p>
-                                    </div>
-                                    <div class="icon">
-                                        <i class="ion ion-bag"></i>
-                                    </div>
-                                    <a href="#" class="small-box-footer">@Localizer["More Info"]<i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
-            </section>
-        </div>
-        <div class="row">
-            <section class="col-lg-6 connectedSortable">
-                <div class="box box-info">
-                    <div class="box-header">
-                        <i class="fa fa-comments-o"></i>
-                        <h3 class="box-title">Daily Activity</h3>
+            </section><!-- /.Left col -->
 
-                        <div class="box-tools pull-right">
-                            <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                            <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
-                        </div>
-                    </div>
-                    <div class="box-body" id="loading-image-segmentGrid">
-                        <div id="gridContainer_dailyactivity"></div>
-                    </div>
-                </div>
-            </section>
-            <section class="col-lg-6 connectedSortable">
-                <div class="box box-info">
-                    <div class="box-header">
-                        <i class="fa fa-comments-o"></i>
-                        <h3 class="box-title">Announcements</h3>
-
-                        <div class="box-tools pull-right">
-                            <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                            <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
-                        </div>
-                    </div>
-                    <div class="box-body" id="loading-image-segmentGrid">
-                        <div id="gridContainer_announcements"></div>
-                    </div>
-                </div>
-            </section>
         </div><!-- /.row (main row) -->
     </section><!-- /.content -->
 
@@ -207,12 +103,12 @@
     <script src="~/adm/dist/js/pages/dashboard/salesman.js" type="text/javascript"></script>
 
     <script>
-/**/
-/* END EXTERNAL SOURCE */
-/* BEGIN EXTERNAL SOURCE */
-/**/
+        /**/
+        /* END EXTERNAL SOURCE */
+        /* BEGIN EXTERNAL SOURCE */
+        /**/
 
-                $(document).ready(function () {
+        $(document).ready(function () { });
 
     </script>
 }
