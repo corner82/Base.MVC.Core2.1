@@ -23,10 +23,16 @@
     $("#loadingImage_DdslickModel").loadImager();
     $("#loadingImage_DdslickVehicle").loadImager();
     $("#loadingImage_DdslickWarranty").loadImager();
-    $("#loadingImage_DdslickBodyOption").loadImager();
+    $("#loadingImage_DdslickBodyOptionE").loadImager();
+    $("#loadingImage_DdslickBodyOptionF").loadImager();
     $("#loadingImage_DdslickVehicleList").loadImager();
     $("#loadingImage_DdslickChassisNumber").loadImager();
     $("#loadingImage_DdslickPriceForRole").loadImager();
+    $("#loadingImage_DdslickYear").loadImager();
+    $("#loadingImage_DdslickMonth").loadImager();
+    $("#loadingImage_DdslickCampaign1").loadImager();
+    $("#loadingImage_DdslickCampaign2").loadImager();
+    $("#loadingImage_DdslickCampaign3").loadImager();
 
     var filldropdown = false;
 
@@ -203,27 +209,27 @@
                  onSelected: function (selectedData) {
                     list = selectedData.selectedData.value;
                    
-                    if (roleId == 0) {//Salesman                        
-                        refreshGridSM();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                    }
-                    else if (roleId == 1) {//AS
-                        refreshGridASM();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                    }
-                    else if (roleId == 2) {//PCD
-                        refreshGridPCD();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                    }
-                    else if (roleId == 3) {//KAM
-                        refreshGridKAM();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                    }
-                    else if (roleId == 4) {//PCD VW
-                        refreshGridPCDVW();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                    }
-                    else if (roleId == 5) {//CH
-                        refreshGridCH();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                    }
-                    else if (roleId == 6) {//MAN PCD
-                        refreshGridMANPCD();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                    }
+                    //if (roleId == 0) {//Salesman                        
+                    //    refreshGridSM();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
+                    //else if (roleId == 1) {//AS
+                    //    refreshGridASM();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
+                    //else if (roleId == 2) {//PCD
+                    //    refreshGridPCD();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
+                    //else if (roleId == 3) {//KAM
+                    //    refreshGridKAM();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
+                    //else if (roleId == 4) {//PCD VW
+                    //    refreshGridPCDVW();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
+                    //else if (roleId == 5) {//CH
+                    //    refreshGridCH();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
+                    //else if (roleId == 6) {//MAN PCD
+                    //    refreshGridMANPCD();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
 
                 }
             })
@@ -284,27 +290,27 @@
 
                         vhModel = selectedData.selectedData.value;
 
-                        if (roleId == 0) {//Salesman                        
-                            refreshGridSM();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                        }
-                        else if (roleId == 1) {//AS
-                            refreshGridASM();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                        }
-                        else if (roleId == 2) {//PCD
-                            refreshGridPCD();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                        }
-                        else if (roleId == 3) {//KAM
-                            refreshGridKAM();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                        }
-                        else if (roleId == 4) {//PCD VW
-                            refreshGridPCDVW();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                        }
-                        else if (roleId == 5) {//CH
-                            refreshGridCH();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                        }
-                        else if (roleId == 6) {//MAN PCD
-                            refreshGridMANPCD();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                        }
+                        //if (roleId == 0) {//Salesman                        
+                        //    refreshGridSM();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                        //}
+                        //else if (roleId == 1) {//AS
+                        //    refreshGridASM();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                        //}
+                        //else if (roleId == 2) {//PCD
+                        //    refreshGridPCD();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                        //}
+                        //else if (roleId == 3) {//KAM
+                        //    refreshGridKAM();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                        //}
+                        //else if (roleId == 4) {//PCD VW
+                        //    refreshGridPCDVW();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                        //}
+                        //else if (roleId == 5) {//CH
+                        //    refreshGridCH();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                        //}
+                        //else if (roleId == 6) {//MAN PCD
+                        //    refreshGridMANPCD();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                        //}
 
                         //Vehicle
                         $("#loadingImage_DdslickVehicle").loadImager('removeLoadImage');
@@ -348,27 +354,27 @@
                                     onSelected: function (selectedData) {
                                         vhEndModel = selectedData.selectedData.value;
 
-                                        if (roleId == 0) {//Salesman                        
-                                            refreshGridSM();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                                        }
-                                        else if (roleId == 1) {//AS
-                                            refreshGridASM();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                                        }
-                                        else if (roleId == 2) {//PCD
-                                            refreshGridPCD();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                                        }
-                                        else if (roleId == 3) {//KAM
-                                            refreshGridKAM();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                                        }
-                                        else if (roleId == 4) {//PCD VW
-                                            refreshGridPCDVW();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                                        }
-                                        else if (roleId == 5) {//CH
-                                            refreshGridCH();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                                        }
-                                        else if (roleId == 6) {//MAN PCD
-                                            refreshGridMANPCD();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                                        }
+                                        //if (roleId == 0) {//Salesman                        
+                                        //    refreshGridSM();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                                        //}
+                                        //else if (roleId == 1) {//AS
+                                        //    refreshGridASM();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                                        //}
+                                        //else if (roleId == 2) {//PCD
+                                        //    refreshGridPCD();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                                        //}
+                                        //else if (roleId == 3) {//KAM
+                                        //    refreshGridKAM();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                                        //}
+                                        //else if (roleId == 4) {//PCD VW
+                                        //    refreshGridPCDVW();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                                        //}
+                                        //else if (roleId == 5) {//CH
+                                        //    refreshGridCH();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                                        //}
+                                        //else if (roleId == 6) {//MAN PCD
+                                        //    refreshGridMANPCD();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                                        //}
                                     }
                                 })
                                 if (filldropdown === true) {
@@ -431,27 +437,27 @@
                                     onSelected: function (selectedData) {
                                         warranty = selectedData.selectedData.value;
 
-                                        if (roleId == 0) {//Salesman                        
-                                            refreshGridSM();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                                        }
-                                        else if (roleId == 1) {//AS
-                                            refreshGridASM();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                                        }
-                                        else if (roleId == 2) {//PCD
-                                            refreshGridPCD();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                                        }
-                                        else if (roleId == 3) {//KAM
-                                            refreshGridKAM();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                                        }
-                                        else if (roleId == 4) {//PCD VW
-                                            refreshGridPCDVW();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                                        }
-                                        else if (roleId == 5) {//CH
-                                            refreshGridCH();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                                        }
-                                        else if (roleId == 6) {//MAN PCD
-                                            refreshGridMANPCD();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                                        }
+                                        //if (roleId == 0) {//Salesman                        
+                                        //    refreshGridSM();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                                        //}
+                                        //else if (roleId == 1) {//AS
+                                        //    refreshGridASM();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                                        //}
+                                        //else if (roleId == 2) {//PCD
+                                        //    refreshGridPCD();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                                        //}
+                                        //else if (roleId == 3) {//KAM
+                                        //    refreshGridKAM();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                                        //}
+                                        //else if (roleId == 4) {//PCD VW
+                                        //    refreshGridPCDVW();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                                        //}
+                                        //else if (roleId == 5) {//CH
+                                        //    refreshGridCH();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                                        //}
+                                        //else if (roleId == 6) {//MAN PCD
+                                        //    refreshGridMANPCD();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                                        //}
                                     }
                                 })
                                 if (filldropdown === true) {
@@ -483,13 +489,85 @@
     ajaxACLResources_model.ajaxCallWidget('call');
     //Model Group --> warranty name --> Vehicle End Group End
 
-    //Body
-    $('#loadingImage_DdslickBodyOption').loadImager('removeLoadImage');
-    $("#loadingImage_DdslickBodyOption").loadImager('appendImage');
-    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkAccBodyDeffDdList_sysaccbodydeff&language_code=en&pk=GsZVzEYe50uGgNM
-    var ajaxACLResources_BodyOption = $('#ajax_DdslickBodyOption').ajaxCallWidget({
+    //Body Extras
+    $('#loadingImage_DdslickBodyOptionE').loadImager('removeLoadImage');
+    $("#loadingImage_DdslickBodyOptionE").loadImager('appendImage');
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkAccBodyExtrasDeffDdList_sysaccbodydeff&language_code=en&pk=GsZVzEYe50uGgNM
+    var ajaxACLResources_BodyOptionE = $('#ajax_DdslickBodyOptionE').ajaxCallWidget({
         failureLoadImage: true,
-        loadingImageID: "loadingImage_DdslickBodyOption",
+        loadingImageID: "loadingImage_DdslickBodyOptionE",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkAccBodyExtrasDeffDdList_sysaccbodydeff",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
+
+    ajaxACLResources_BodyOptionE.ajaxCallWidget({
+        onReset: function (event, data) {
+
+        },
+        onSuccess: function (event, databodyE) {
+
+            var cbdata_bodyE = $.parseJSON(databodyE);
+            cbdata_bodyE.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+
+            $('#ddslickBodyOptionE').ddslick({
+                data: cbdata_bodyE,
+                width: '100%',
+                search: true,
+                searchText: window.lang.translate('Search'),
+                onSelected: function (selectedData) {
+                    body = selectedData.selectedData.value;
+
+                    //if (roleId == 0) {//Salesman                        
+                    //    refreshGridSM();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
+                    //else if (roleId == 1) {//AS
+                    //    refreshGridASM();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
+                    //else if (roleId == 2) {//PCD
+                    //    refreshGridPCD();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
+                    //else if (roleId == 3) {//KAM
+                    //    refreshGridKAM();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
+                    //else if (roleId == 4) {//PCD VW
+                    //    refreshGridPCDVW();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
+                    //else if (roleId == 5) {//CH
+                    //    refreshGridCH();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
+                    //else if (roleId == 6) {//MAN PCD
+                    //    refreshGridMANPCD();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
+                }
+            })
+            $('#loadingImage_DdslickBodyOptionE').loadImager('removeLoadImage');
+        },
+        onAfterSuccess: function (event, data) {
+            $('#loadingImage_DdslickBodyOptionE').loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_BodyOptionE.ajaxCallWidget('call');
+    //Body End
+
+    //Body Feature
+    $('#loadingImage_DdslickBodyOptionF').loadImager('removeLoadImage');
+    $("#loadingImage_DdslickBodyOptionF").loadImager('appendImage');
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkAccBodyDeffDdList_sysaccbodydeff&language_code=en&pk=GsZVzEYe50uGgNM
+    var ajaxACLResources_BodyOptionF = $('#ajax_DdslickBodyOptionF').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickBodyOptionF",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
         transactionFailureText: window.lang.translate("Service URL not found, please report error"),
@@ -504,56 +582,57 @@
         })
     });
 
-    ajaxACLResources_BodyOption.ajaxCallWidget({
+    ajaxACLResources_BodyOptionF.ajaxCallWidget({
         onReset: function (event, data) {
 
         },
-        onSuccess: function (event, dataquotayear) {
+        onSuccess: function (event, databodyF) {
 
-            var cbdata_quotayear = $.parseJSON(dataquotayear);
-            cbdata_quotayear.splice(0, 0,
+            var cbdata_bodyF = $.parseJSON(databodyF);
+            cbdata_bodyF.splice(0, 0,
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
 
-            $('#ddslickBodyOption').ddslick({
-                data: cbdata_quotayear,
+            $('#ddslickBodyOptionF').ddslick({
+                data: cbdata_bodyF,
                 width: '100%',
                 search: true,
                 searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
                     body = selectedData.selectedData.value;
 
-                    if (roleId == 0) {//Salesman                        
-                        refreshGridSM();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                    }
-                    else if (roleId == 1) {//AS
-                        refreshGridASM();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                    }
-                    else if (roleId == 2) {//PCD
-                        refreshGridPCD();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                    }
-                    else if (roleId == 3) {//KAM
-                        refreshGridKAM();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                    }
-                    else if (roleId == 4) {//PCD VW
-                        refreshGridPCDVW();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                    }
-                    else if (roleId == 5) {//CH
-                        refreshGridCH();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                    }
-                    else if (roleId == 6) {//MAN PCD
-                        refreshGridMANPCD();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                    }
+                    //if (roleId == 0) {//Salesman                        
+                    //    refreshGridSM();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
+                    //else if (roleId == 1) {//AS
+                    //    refreshGridASM();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
+                    //else if (roleId == 2) {//PCD
+                    //    refreshGridPCD();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
+                    //else if (roleId == 3) {//KAM
+                    //    refreshGridKAM();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
+                    //else if (roleId == 4) {//PCD VW
+                    //    refreshGridPCDVW();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
+                    //else if (roleId == 5) {//CH
+                    //    refreshGridCH();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
+                    //else if (roleId == 6) {//MAN PCD
+                    //    refreshGridMANPCD();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
                 }
             })
-            $('#loadingImage_DdslickBodyOption').loadImager('removeLoadImage');
+            $('#loadingImage_DdslickBodyOptionF').loadImager('removeLoadImage');
         },
         onAfterSuccess: function (event, data) {
-            $('#loadingImage_DdslickBodyOption').loadImager('removeLoadImage');
+            $('#loadingImage_DdslickBodyOptionF').loadImager('removeLoadImage');
         }
     })
-    ajaxACLResources_BodyOption.ajaxCallWidget('call');
-    //Body End
+    ajaxACLResources_BodyOptionF.ajaxCallWidget('call');
+    //Body Feature End
+
 
     //ChassisNumber
     $('#loadingImage_DdslickChassisNumber').loadImager('removeLoadImage');
@@ -595,27 +674,27 @@
                 onSelected: function (selectedData) {
                     chassis = selectedData.selectedData.value;
 
-                    if (roleId == 0) {//Salesman                        
-                        refreshGridSM();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                    }
-                    else if (roleId == 1) {//AS
-                        refreshGridASM();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                    }
-                    else if (roleId == 2) {//PCD
-                        refreshGridPCD();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                    }
-                    else if (roleId == 3) {//KAM
-                        refreshGridKAM();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                    }
-                    else if (roleId == 4) {//PCD VW
-                        refreshGridPCDVW();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                    }
-                    else if (roleId == 5) {//CH
-                        refreshGridCH();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                    }
-                    else if (roleId == 6) {//MAN PCD
-                        refreshGridMANPCD();//(list, vhModel, vhEndModel, body, warranty, chassis);
-                    }
+                    //if (roleId == 0) {//Salesman                        
+                    //    refreshGridSM();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
+                    //else if (roleId == 1) {//AS
+                    //    refreshGridASM();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
+                    //else if (roleId == 2) {//PCD
+                    //    refreshGridPCD();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
+                    //else if (roleId == 3) {//KAM
+                    //    refreshGridKAM();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
+                    //else if (roleId == 4) {//PCD VW
+                    //    refreshGridPCDVW();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
+                    //else if (roleId == 5) {//CH
+                    //    refreshGridCH();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
+                    //else if (roleId == 6) {//MAN PCD
+                    //    refreshGridMANPCD();//(list, vhModel, vhEndModel, body, warranty, chassis);
+                    //}
                 }
 
             })
@@ -627,6 +706,244 @@
     })
     ajaxACLResources_ChassisNumber.ajaxCallWidget('call');
     //ChassisNumber End
+
+    //Year
+    $('#loadingImage_DdslickYear').loadImager('removeLoadImage');
+    $("#loadingImage_DdslickYear").loadImager('appendImage');
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkJustYearsDdList_sysmonths&pk=GsZVzEYe50uGgNM&id=55
+    var ajaxACLResources_Year = $('#ajax_DdslickYear').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickYear",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkJustYearsDdList_sysmonths",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
+
+    ajaxACLResources_Year.ajaxCallWidget({
+        onReset: function (event, data) {
+
+        },
+        onSuccess: function (event, datayear) {
+
+            var cbdata_year = $.parseJSON(datayear);
+            cbdata_year.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+
+            $('#ddslickYear').ddslick({
+                data: cbdata_year,
+                width: '100%',
+                //search: true,
+                //searchText: window.lang.translate('Search'),
+            })
+            $('#loadingImage_DdslickYear').loadImager('removeLoadImage');
+        },
+        onAfterSuccess: function (event, data) {
+            $('#loadingImage_DdslickYear').loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_Year.ajaxCallWidget('call');
+    //Year End
+
+    //Month
+    $('#loadingImage_DdslickMonth').loadImager('removeLoadImage');
+    $("#loadingImage_DdslickMonth").loadImager('appendImage');
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkJustMonthsDdList_sysmonths&language_code=en&pk=GsZVzEYe50uGgNM
+    var ajaxACLResources_Month = $('#ajax_DdslickMonth').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickMonth",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkJustMonthsDdList_sysmonths",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
+
+    ajaxACLResources_Month.ajaxCallWidget({
+        onReset: function (event, data) {
+
+        },
+        onSuccess: function (event, datayear) {
+
+            var cbdata_year = $.parseJSON(datayear);
+            cbdata_year.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+
+            $('#ddslickMonth').ddslick({
+                data: cbdata_year,
+                width: '100%',
+                //search: true,
+                //searchText: window.lang.translate('Search'),
+            })
+            $('#loadingImage_DdslickMonth').loadImager('removeLoadImage');
+        },
+        onAfterSuccess: function (event, data) {
+            $('#loadingImage_DdslickMonth').loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_Month.ajaxCallWidget('call');
+    //Month End
+
+    //Campaign 1
+    $('#loadingImage_DdslickCampaign1').loadImager('removeLoadImage');
+    $("#loadingImage_DdslickCampaign1").loadImager('appendImage');
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkCampaignsDdList_syscampaigns&language_code=en&pk=GsZVzEYe50uGgNM
+    var ajaxACLResources_Campaign1 = $('#ajax_DdslickCampaign1').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickCampaign1",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkCampaignsDdList_syscampaigns",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
+
+    ajaxACLResources_Campaign1.ajaxCallWidget({
+        onReset: function (event, data) {
+
+        },
+        onSuccess: function (event, dataCampaign1) {
+
+            var cbdata_Campaign1 = $.parseJSON(dataCampaign1);
+            cbdata_Campaign1.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+
+            $('#ddslickCampaign1').ddslick({
+                data: cbdata_Campaign1,
+                width: '100%',
+                //search: true,
+                //searchText: window.lang.translate('Search'),
+            })
+            $('#loadingImage_DdslickCampaign1').loadImager('removeLoadImage');
+        },
+        onAfterSuccess: function (event, data) {
+            $('#loadingImage_DdslickCampaign1').loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_Campaign1.ajaxCallWidget('call');
+    //Campaign 1 End
+
+    //Campaign 2
+    $('#loadingImage_DdslickCampaign2').loadImager('removeLoadImage');
+    $("#loadingImage_DdslickCampaign2").loadImager('appendImage');
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkCampaignsDdList_syscampaigns&language_code=en&pk=GsZVzEYe50uGgNM
+    var ajaxACLResources_Campaign2 = $('#ajax_DdslickCampaign2').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickCampaign2",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkCampaignsDdList_syscampaigns",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
+
+    ajaxACLResources_Campaign2.ajaxCallWidget({
+        onReset: function (event, data) {
+
+        },
+        onSuccess: function (event, dataCampaign2) {
+
+            var cbdata_Campaign2 = $.parseJSON(dataCampaign2);
+            cbdata_Campaign2.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+
+            $('#ddslickCampaign2').ddslick({
+                data: cbdata_Campaign2,
+                width: '100%',
+                //search: true,
+                //searchText: window.lang.translate('Search'),
+            })
+            $('#loadingImage_DdslickCampaign2').loadImager('removeLoadImage');
+        },
+        onAfterSuccess: function (event, data) {
+            $('#loadingImage_DdslickCampaign2').loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_Campaign2.ajaxCallWidget('call');
+    //Campaign 2 End
+
+    //Campaign 3
+    $('#loadingImage_DdslickCampaign3').loadImager('removeLoadImage');
+    $("#loadingImage_DdslickCampaign3").loadImager('appendImage');
+    //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkCampaignsDdList_syscampaigns&language_code=en&pk=GsZVzEYe50uGgNM
+    var ajaxACLResources_Campaign3 = $('#ajax_DdslickCampaign3').ajaxCallWidget({
+        failureLoadImage: true,
+        loadingImageID: "loadingImage_DdslickCampaign3",
+        triggerSuccessAuto: true,
+        transactionSuccessText: window.lang.translate('Transaction successful'),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        proxy: '/DefaultPost/DefaultPostModel',
+        type: "POST",
+        data: JSON.stringify({
+            language_code: $("#langCode").val(),
+            pk: "GsZVzEYe50uGgNM",
+            url: "pkCampaignsDdList_syscampaigns",
+            pkIdentity: $("#publicKey").val()
+        })
+    });
+
+    ajaxACLResources_Campaign3.ajaxCallWidget({
+        onReset: function (event, data) {
+
+        },
+        onSuccess: function (event, dataCampaign3) {
+
+            var cbdata_Campaign3 = $.parseJSON(dataCampaign3);
+            cbdata_Campaign3.splice(0, 0,
+                { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
+            );
+
+            $('#ddslickCampaign3').ddslick({
+                data: cbdata_Campaign3,
+                width: '100%',
+                //search: true,
+                //searchText: window.lang.translate('Search'),
+            })
+            $('#loadingImage_DdslickCampaign3').loadImager('removeLoadImage');
+        },
+        onAfterSuccess: function (event, data) {
+            $('#loadingImage_DdslickCampaign3').loadImager('removeLoadImage');
+        }
+    })
+    ajaxACLResources_Campaign3.ajaxCallWidget('call');
+    //Campaign 3 End
+
+
+
 
 /* devexgrid */
     DevExpress.localization.locale(langCode);
@@ -2133,9 +2450,7 @@
             enabled: true,
             mode: "select"
         },
-        //columnWidth: {
-        //    autoWidth: false
-        //},
+      
         columns: [{
         //    caption: window.lang.translate('Active/Passive'),
         //    width: 40,
@@ -2393,9 +2708,6 @@
                 enabled: true,
                 mode: "select"
             },
-            //columnWidth: {
-            //    autoWidth: false
-            //},
             columns: [{
                 //    caption: window.lang.translate('Active/Passive'),
                 //    width: 40,
@@ -2653,9 +2965,6 @@
                 enabled: true,
                 mode: "select"
             },
-            //columnWidth: {
-            //    autoWidth: false
-            //},
             columns: [{
                 //    caption: window.lang.translate('Active/Passive'),
                 //    width: 40,
@@ -3026,7 +3335,15 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Campaign 2') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3034,11 +3351,27 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 3') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 3') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
-                    caption: window.lang.translate('Body') + "...",
+                    caption: window.lang.translate('Body(extras)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Body(feature)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Month') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Year') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3084,7 +3417,15 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Campaign 2') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3092,11 +3433,27 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 3') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 3') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
-                    caption: window.lang.translate('Body') + "...",
+                    caption: window.lang.translate('Body(extras)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Body(feature)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Month') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Year') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3142,7 +3499,15 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Campaign 2') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3150,11 +3515,27 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 3') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 3') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
-                    caption: window.lang.translate('Body') + "...",
+                    caption: window.lang.translate('Body(extras)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Body(feature)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Month') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Year') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3211,7 +3592,15 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Campaign 2') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3219,11 +3608,27 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 3') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 3') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
-                    caption: window.lang.translate('Body') + "...",
+                    caption: window.lang.translate('Body(extras)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Body(feature)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Month') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Year') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3277,7 +3682,15 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Campaign 2') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3285,11 +3698,27 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 3') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 3') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
-                    caption: window.lang.translate('Body') + "...",
+                    caption: window.lang.translate('Body(extras)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Body(feature)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Month') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Year') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3343,7 +3772,15 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Campaign 2') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3351,11 +3788,27 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 3') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 3') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
-                    caption: window.lang.translate('Body') + "...",
+                    caption: window.lang.translate('Body(extras)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Body(feature)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Month') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Year') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3404,7 +3857,15 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Campaign 2') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3412,11 +3873,27 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 3') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 3') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
-                    caption: window.lang.translate('Body') + "...",
+                    caption: window.lang.translate('Body(extras)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Body(feature)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Month') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Year') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3462,7 +3939,15 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Campaign 2') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3470,11 +3955,27 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 3') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 3') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
-                    caption: window.lang.translate('Body') + "...",
+                    caption: window.lang.translate('Body(extras)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Body(feature)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Month') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Year') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3520,7 +4021,15 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Campaign 2') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3528,11 +4037,27 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 3') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 3') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
-                    caption: window.lang.translate('Body') + "...",
+                    caption: window.lang.translate('Body(extras)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Body(feature)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Month') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Year') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3585,7 +4110,15 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Campaign 2') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3593,11 +4126,27 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 3') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 3') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
-                    caption: window.lang.translate('Body') + "...",
+                    caption: window.lang.translate('Body(extras)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Body(feature)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Month') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Year') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3647,7 +4196,15 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Campaign 2') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3655,11 +4212,27 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 3') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 3') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
-                    caption: window.lang.translate('Body') + "...",
+                    caption: window.lang.translate('Body(extras)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Body(feature)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Month') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Year') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3709,7 +4282,15 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Campaign 2') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3717,11 +4298,27 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 3') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 3') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
-                    caption: window.lang.translate('Body') + "...",
+                    caption: window.lang.translate('Body(extras)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Body(feature)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Month') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Year') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3770,7 +4367,15 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Campaign 2') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3778,11 +4383,27 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 3') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 3') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
-                    caption: window.lang.translate('Body') + "...",
+                    caption: window.lang.translate('Body(extras)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Body(feature)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Month') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Year') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3828,7 +4449,15 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Campaign 2') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3836,11 +4465,27 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 3') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 3') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
-                    caption: window.lang.translate('Body') + "...",
+                    caption: window.lang.translate('Body(extras)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Body(feature)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Month') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Year') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3886,7 +4531,15 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Campaign 2') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3894,11 +4547,27 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 3') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 3') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
-                    caption: window.lang.translate('Body') + "...",
+                    caption: window.lang.translate('Body(extras)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Body(feature)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Month') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Year') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3948,7 +4617,15 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Campaign 2') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -3956,11 +4633,27 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 3') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 3') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
-                    caption: window.lang.translate('Body') + "...",
+                    caption: window.lang.translate('Body(extras)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Body(feature)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Month') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Year') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -4006,7 +4699,15 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Campaign 2') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -4014,11 +4715,27 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 3') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 3') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
-                    caption: window.lang.translate('Body') + "...",
+                    caption: window.lang.translate('Body(extras)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Body(feature)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Month') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Year') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -4064,7 +4781,15 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Campaign 2') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -4072,11 +4797,27 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 3') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 3') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
-                    caption: window.lang.translate('Body') + "...",
+                    caption: window.lang.translate('Body(extras)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Body(feature)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Month') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Year') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -4126,7 +4867,15 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Campaign 2') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -4134,11 +4883,27 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 3') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 3') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
-                    caption: window.lang.translate('Body') + "...",
+                    caption: window.lang.translate('Body(extras)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Body(feature)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Month') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Year') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -4184,7 +4949,15 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Campaign 2') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -4192,11 +4965,27 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 3') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 3') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
-                    caption: window.lang.translate('Body') + "...",
+                    caption: window.lang.translate('Body(extras)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Body(feature)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Month') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Year') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -4242,7 +5031,15 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 1') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Campaign 2') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -4250,11 +5047,27 @@
                     encodeHtml: false,
                     dataField: "name"
                 }, {
+                    caption: window.lang.translate('Campaign 3') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
                     caption: window.lang.translate('Campaign price 3') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
-                    caption: window.lang.translate('Body') + "...",
+                    caption: window.lang.translate('Body(extras)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Body(feature)') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Month') + "...",
+                    encodeHtml: false,
+                    dataField: "name"
+                }, {
+                    caption: window.lang.translate('Year') + "...",
                     encodeHtml: false,
                     dataField: "name"
                 }, {
@@ -4278,183 +5091,6 @@
         });
     }
 
-
-
-    //window.updateACLRoleDialog = function (id, row) {
-    //    window.gridReloadController = false;
-    //    //console.log(row);
-    //    BootstrapDialog.show({
-    //        title: '"' + row.name + '" ACL rolünü güncellemektesiniz...',
-    //        message: function (dialogRef) {
-    //            var dialogRef = dialogRef;
-    //            var $message = $(' <div class="row">\n\
-    //                                         <div class="col-md-12">\n\
-    //                                             <div id="loading-image-crud-popup" class="box box-primary">\n\
-    //                                                 <form id="aclRoleFormPopup" method="get" class="form-horizontal">\n\
-    //                                                 <input type="hidden" id="machine_tool_group_id_popup" name="machine_tool_group_id_popup"  />\n\
-    //                                                 <div class="hr-line-dashed"></div>\n\
-    //                                                     <div class="form-group" style="margin-top: 20px;">\n\
-    //                                                         <label class="col-sm-2 control-label">Rol Eng.</label>\n\
-    //                                                         <div class="col-sm-10">\n\
-    //                                                             <div class="input-group">\n\
-    //                                                                 <div class="input-group-addon">\n\
-    //                                                                     <i class="fa fa-hand-o-right"></i>\n\
-    //                                                                 </div>\n\
-    //                                                                 <div  class="tag-container-popup">\n\
-    //                                                                     <input data-prompt-position="topLeft:70" class="form-control validate[required]" type="text" value="'+ row.name + '" name="name_popup" id="name_popup"   />\n\
-    //                                                                 </div>\n\
-    //                                                             </div>\n\
-    //                                                         </div>\n\
-    //                                                     </div>\n\
-    //                                                     <div class="form-group" style="margin-top: 20px;">\n\
-    //                                                         <label class="col-sm-2 control-label">Rol</label>\n\
-    //                                                         <div class="col-sm-10">\n\
-    //                                                             <div class="input-group">\n\
-    //                                                                 <div class="input-group-addon">\n\
-    //                                                                     <i class="fa fa-hand-o-right"></i>\n\
-    //                                                                 </div>\n\
-    //                                                                 <div  class="tag-container-popup">\n\
-    //                                                                     <input data-prompt-position="topLeft:70" class="form-control validate[required]" type="text" value="'+ row.name_tr + '" name="name_tr_popup" id="name_tr_popup"   />\n\
-    //                                                                 </div>\n\
-    //                                                             </div>\n\
-    //                                                         </div>\n\
-    //                                                     </div>\n\
-    //                                                     <div class="form-group">\n\
-    //                                                        <label class="col-sm-2 control-label">ACL Resource</label>\n\
-    //                                                        <div class="col-sm-10">\n\
-    //                                                            <div id="mach-prod-box-popup" class="input-group">\n\
-    //                                                                <div class="input-group-addon">\n\
-    //                                                                    <i class="fa fa-hand-o-right"></i>\n\
-    //                                                                </div>\n\
-    //                                                                <div id="dropdownACLResourcesPopup" ></div>\n\
-    //                                                            </div>\n\
-    //                                                        </div>\n\
-    //                                                    </div>\n\
-    //                                                     <div class="form-group">\n\
-    //                                                         <label class="col-sm-2 control-label">Açıklama</label>\n\
-    //                                                         <div  class="col-sm-10">\n\
-    //                                                             <div class="input-group">\n\
-    //                                                                 <div class="input-group-addon">\n\
-    //                                                                     <i class="fa fa-hand-o-right"></i>\n\
-    //                                                                 </div>\n\
-    //                                                                 <textarea data-prompt-position="topLeft:70" class="form-control validate[required]" rows="3" name="description_popup" id="description_popup" placeholder="Açıklama ...">'+ row.description + '</textarea>\n\
-    //                                                             </div>\n\
-    //                                                         </div>\n\
-    //                                                     </div>\n\
-    //                                                     <div class="hr-line-dashed"></div>\n\
-    //                                                     <div class="form-group">\n\
-    //                                                         <div class="col-sm-10 col-sm-offset-2">\n\
-    //                                                         <button id="insertMachPopUp" class="btn btn-primary" type="submit" onclick="return updateACLRoleWrapper(event, '+ id + ');">\n\
-    //                                                             <i class="fa fa-save"></i> Güncelle </button>\n\
-    //                                                         <!--<button id="resetForm" onclick="regulateButtonsPopupInsert();" class="btn btn-flat" type="reset" " >\n\
-    //                                                             <i class="fa fa-remove"></i> Reset </button>-->\n\
-    //                                                     </div>\n\
-    //                                                 </div>\n\
-    //                                             </form>\n\
-    //                                         </div>\n\
-    //                                     </div>\n\
-    //                                 </div>');
-    //            return $message;
-    //        },
-    //        type: BootstrapDialog.TYPE_PRIMARY,
-    //        onshown: function () {
-    //            $('#aclRoleFormPopup').validationEngine();
-
-    //            $("#mach-prod-box-popup").loadImager();
-    //            $("#mach-prod-box-popup").loadImager('appendImage');
-    //            var ddData;
-    //            var ajaxACLResourcesPopup = $(window).ajaxCallWidget({
-    //                proxy: 'https://proxy.codebase_v2.com/SlimProxyBoot.php',
-    //                data: {
-    //                    url: 'pkFillResourcesDdList_sysAclResources',
-    //                    pk: $("#pk").val()
-    //                }
-    //            })
-    //            ajaxACLResourcesPopup.ajaxCallWidget({
-    //                onError: function (event, textStatus, errorThrown) {
-    //                    dm.dangerMessage({
-    //                        onShown: function () {
-    //                            //$('#mach-prod-box').loadImager('removeLoadImage'); 
-    //                        }
-    //                    });
-    //                    dm.dangerMessage('show', 'ACL Resource (Kaynak) Bulunamamıştır...',
-    //                        'ACL resource (kaynak) bulunamamıştır...');
-    //                },
-    //                onSuccess: function (event, data) {
-    //                    var data = $.parseJSON(data);
-    //                    $('#mach-prod-box-popup').loadImager('removeLoadImage');
-    //                    $('#dropdownACLResourcesPopup').ddslick({
-    //                        height: 200,
-    //                        data: data,
-    //                        width: '98%',
-    //                        search: true,
-    //                        multiSelect: true,
-    //                        multiSelectTagID: 'deneme',
-    //                        tagBox: 'tag-container-pop',
-    //                        //imagePosition:"right",
-    //                        onSelected: function (selectedData) {
-    //                            if (selectedData.selectedData.value > 0) {
-    //                            }
-    //                        }
-    //                    });
-
-    //                    ddData = $('#dropdownACLResourcesPopup').data('ddslick');
-    //                    //var resources ='[{"id" : "23", "text" : "test"}, {"id" :"34", "text" : "test2"}]';
-    //                    var multiSelectTagID = $('#dropdownACLResourcesPopup').ddslick('getMultiSelectTagID');
-    //                    var tagBox = $('#dropdownACLResourcesPopup').ddslick('getTagBox');
-    //                    $('#dropdownACLResourcesPopup').ddslick('selectByMultiValues',
-    //                        {
-    //                            id: multiSelectTagID,
-    //                            tagBox: '' + tagBox + ''
-    //                        },
-    //                        data,
-    //                        row.multiSelect
-    //                    );
-    //                },
-    //                onErrorDataNull: function (event, data) {
-    //                    dm.dangerMessage({
-    //                        onShown: function () {
-    //                            //$('#mach-prod-box-popup').loadImager('removeLoadImage'); 
-    //                        }
-    //                    });
-    //                    dm.dangerMessage('show', 'ACL Resource (Kaynak) Bulunamamıştır...',
-    //                        'ACL resource (kaynak) bulunamamıştır...');
-    //                },
-    //            })
-    //            ajaxACLResourcesPopup.ajaxCallWidget('call');
-
-    //        },
-    //        onhide: function () {
-    //            if (window.gridReloadController == true) {
-    //                $('#tt_grid_dynamic').datagrid('reload');
-    //            }
-
-    //        },
-    //    });
-    //    return false;
-    //}
-
-    //$("#btn-priceHos-price").on("click", function (e) {
-    //    e.preventDefault();
-    //    var btn = document.createElement("BUTTON");
-    //    var t = document.createTextNode("CLICK ME");
-
-    //    var inp = document.createElement("INPUT");
-
-    //    btn.appendChild(t);
-
-    //    document.body.appendChild(btn);
-    //    document.body.appendChild(inp);
-    //    //$("#txt-plh-price").appendChild(inp);
-    //    inp.innerHTML =  "Paragraf";
-    //    document.getElementById('testceyda').appendChild(inp); 
-
-    //    //document.getElementById('txt-plh-price').innerHTML = inp;
-
-    //    //document.getElementById('txt-plh-price"').innerHTML = "<h1>" + myyear + "/" + mymonth + "/" + mytoday + "</h1>";
-    //    //document.getElementById('results')
-    //    return false;
-    //})
 });
 
 

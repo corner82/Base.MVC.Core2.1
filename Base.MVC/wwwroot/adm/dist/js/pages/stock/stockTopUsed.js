@@ -39,6 +39,23 @@ $(document).ready(function () {
     var topusedStockID;
     //alert(langCode);
 
+
+    /*
+    * datepicker format
+    * @author Ceydacan Seyrek
+    * @since 29/08/2016
+    */
+    $('#dateinStock-datepicker').datepicker({
+        //autoclose: true,
+        locale: langCode,
+        format: 'yyyy/mm/dd'
+    });
+    $('#drivilineDate-datepicker').datepicker({
+        //autoclose: true,
+        locale: langCode,
+        format: 'yyyy/mm/dd'
+    });
+
     $('#topUsedStockForm').validationEngine();
 
 
@@ -170,7 +187,7 @@ $(document).ready(function () {
                 { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
             );
 
-            $('#ddslickQuotaMonth').ddslick({
+            $('#ddslickIntake').ddslick({
                 data: cbdata_Intake,
                 width: '100%',
                 //search: true,
@@ -291,6 +308,8 @@ DevExpress.localization.locale(langCode);
  */
 //Stock grid
     $('#topUsedStockRefresh').click(function () {
+        $("#gridContainer_topUsedStock").dxDataGrid("instance").refresh();
+    });
         //stock Grid
         //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillSisMonthlyQuotasGridx_syssismonthlyquotas&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
         var quotaMonth = new DevExpress.data.CustomStore({
@@ -648,9 +667,9 @@ DevExpress.localization.locale(langCode);
                 $("#gridContainer_topUsedStock").dxDataGrid("instance").refresh();
             },
         });
-    });
+    //});
 
-    $('#topUsedStockRefresh').click();
+    //$('#topUsedStockRefresh').click();
 //Stock grid End
 
 //Cost Grid
