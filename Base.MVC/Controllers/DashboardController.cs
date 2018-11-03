@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Http.Extensions;
 using Base.Core.Utills.Url;
 using Microsoft.Extensions.Localization;
 using Base.Filters.Session.Ajax;
+using Base.MVC.Models.HttpRequest.Dashboard;
 
 namespace Base.MVC.Controllers
 {
@@ -36,7 +37,52 @@ namespace Base.MVC.Controllers
             _queryCreater = queryCreater;
         }
 
-        public async Task<IActionResult> Salesman()
+        public async Task<IActionResult> Asm()
+        {
+            return View();
+        }
+
+        /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkAsmTargetsDashboard_dashboard&pk=GsZVzEYe50uGgNM&language_code=en
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> AsmData([FromBody] AsmTargetModel asmtargetmodel)
+        {
+            var headers = new Dictionary<string, string>();
+            var tokenGenerated = HttpContext.Session.GetHmacToken();
+            headers.Add("X-Hmac", tokenGenerated);
+            headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+            string queryStr = _queryCreater.GetQueryStringFromObject(asmtargetmodel);
+            var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+            var data = response.Content.ReadAsStringAsync().Result;
+            return data.ToString();
+        }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> AsmDataGridList([FromBody] DefaultPostModelGridList gridModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(gridModel);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model satate is not valid");
+            }
+
+        }
+
+        public async Task<IActionResult> Keyaccountmanager()
         {
             return View();
         }
@@ -46,7 +92,32 @@ namespace Base.MVC.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Areasales()
+        public async Task<IActionResult> Keyaccountchannelhead()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Headofsales()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Pcdmanager()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Pcdsalesman()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Salesman()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Retailchannelhead()
         {
             return View();
         }
