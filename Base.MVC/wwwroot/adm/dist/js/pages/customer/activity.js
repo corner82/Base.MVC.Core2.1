@@ -109,6 +109,10 @@ $(document).ready(function () {
         todayBtn: true
     });
 
+
+
+    //activity_report
+
     //$('#activityReport_collapse').collapse('hide');
 
 
@@ -568,6 +572,8 @@ $(document).ready(function () {
 
 
                             $('#activityReport_collapse').collapse('show');
+                            $("#activity-realization-datetimepicker").prop("disabled", false);
+                            $("#activity_report").prop("disabled", false);
 
                             if (open_collapse) { 
                                 activityReport_collapse.click();
@@ -577,6 +583,9 @@ $(document).ready(function () {
                             //$('#activityReport_collapse').disabled;
 
                             $('#activityReport_collapse').collapse('hide');
+
+                            $("#activity-realization-datetimepicker").prop("disabled", true);
+                            $("#activity_report").prop("disabled", true);
 
                             if (!open_collapse) {
                                 activityReport_collapse.click();
@@ -592,12 +601,14 @@ $(document).ready(function () {
                             }
                             $('#activityReport_collapse').collapse('show');
 
-                            if (!open_collapse) {
-                                activityReport_collapse.click();
-                            }
-                            $('#activityReport_collapse').collapse('hide');
+
                         }
-                        
+                        if (!open_collapse) {
+                            activityReport_collapse.click();
+                        }
+                        $('#activityReport_collapse').collapse('hide');
+                        $("#activity-realization-datetimepicker").prop("disabled", true);
+                        $("#activity_report").prop("disabled", true);
                     }
 
                 }
@@ -1239,6 +1250,10 @@ $(document).ready(function () {
                     mode: "single"
                 },
 
+                //allowColumnResizing: true,
+
+                //columnResizingMode: "widget",
+
                 hoverStateEnabled: true,
 
                 editing: {
@@ -1509,6 +1524,6 @@ $(document).ready(function () {
         ajax_activepassiveactivitylist.ajaxCallWidget('call');
 
     }
-
+    
 });
 
