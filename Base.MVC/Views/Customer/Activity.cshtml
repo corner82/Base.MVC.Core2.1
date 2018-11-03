@@ -56,227 +56,234 @@
                             <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove"><i class="fa fa-times"></i></button>-->
                         </div>
                     </div>
-                    <div class="box-body">
-                        <div class="nav-tabs-custom" id="activity_tab">
-                            <ul class="nav nav-tabs pull-right">
-                                <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true"><span lang="en">Activity</span></a></li>
-                                <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false" class="disable" disabled=""><span lang="en">Report</span></a></li>
-
-                                <li class="pull-left header"><i class="fa fa-th"></i></li>
-                            </ul>
-                            <div class="tab-content" id="ajaxACL-activity">
-                                <div class="tab-pane active" id="tab_1">
-
-                                    <form id='activityForm' method="get">
-                                        <div class="row" id="loading-image-activity">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label><span lang="en">Customer name</span></label>
-                                                    <div class="" id="ajaxACL-act-customername">
-                                                        <div id="loading-image-customername" class="input-group zeyn-load-imager">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-copyright"></i>
-                                                            </div>
-                                                            <div id="dropdownCustomerName" class="form-control validate[required]"></div>
-                                                        </div>
-                                                    </div>
+                    <div class="box-body" id="ajaxACL-activity">
+                        <form id='activityForm' method="get">
+                            <div class="row" id="loading-image-activity">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label><span lang="en">Customer name</span></label>
+                                        <div class="" id="ajaxACL-act-customername">
+                                            <div id="loading-image-customername" class="input-group zeyn-load-imager">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
                                                 </div>
-
-                                                <div class="form-group">
-                                                    <label><span lang="en">Customer contact person</span></label>
-                                                    <div class="" id="ajaxACL-act-contactperson">
-                                                        <div id="loading-image-contactperson" class="input-group zeyn-load-imager">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-copyright"></i>
-                                                            </div>
-                                                            <div id="dropdownContactPerson" class="form-control validate[required]"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label><span lang="en">Activity type</span></label>
-                                                    <div class="" id="ajaxACL-activitytype">
-                                                        <div id="loading-image-activitytype" class="input-group zeyn-load-imager">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-copyright"></i>
-                                                            </div>
-                                                            <div id="dropdownActivityType" class="form-control validate[required]"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label><span lang="en">Activity comment</span></label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-user"></i>
-                                                        </div>
-                                                        <input type="text" class="form-control validate[required]" placeholder="Activity comment" id="txt-activity-comment">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label><span lang="en">Activity active/passive/project status</span></label>
-                                                    <div class="" id="ajaxACL-activitystatus">
-                                                        <div id="loading-image-activitystatus" class="input-group zeyn-load-imager">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-copyright"></i>
-                                                            </div>
-                                                            <div id="dropdownActivityStatus" class="form-control"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label><span lang="en">Planned/Unplanned activity</span></label>
-                                                    <div class="" id="ajaxACL-activityplanned">
-                                                        <div id="loading-image-activityplanned" class="input-group zeyn-load-imager">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-copyright"></i>
-                                                            </div>
-                                                            <div id="dropdownActivityPlanned" class="form-control"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label><span lang="en">Activity date/time</span></label>
-
-                                                    <div class="input-group datetime">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-calendar"></i>
-                                                        </div>
-                                                        <input type="text" class="form-control pull-right" name="activity-datetimepicker" id="activity-datetimepicker">
-                                                    </div>
-                                                    <!-- /.input group -->
-                                                </div>
+                                                <div id="dropdownCustomerName" class="form-control validate[required]"></div>
                                             </div>
-                                            <!-- /.col -->
+                                        </div>
+                                    </div>
 
-                                            <div class="col-md-6">
-
-
-                                                <div class="form-group">
-                                                    <label><span lang="en">Application group / Segment</span></label>
-                                                    <div class="" id="ajaxACL-segment">
-                                                        <div id="loading-image-segment" class="input-group zeyn-load-imager">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-copyright"></i>
-                                                            </div>
-                                                            <div id="dropdownSegment" class="form-control"></div>
-                                                        </div>
-                                                    </div>
+                                    <div class="form-group">
+                                        <label><span lang="en">Customer contact person</span></label>
+                                        <div class="" id="ajaxACL-act-contactperson">
+                                            <div id="loading-image-contactperson" class="input-group zeyn-load-imager">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
                                                 </div>
-
-                                                <div class="form-group">
-                                                    <label><span lang="en">Product of interest</span></label>
-                                                    <div class="" id="ajaxACL-productinterest">
-                                                        <div id="loading-image-productinterest" class="input-group zeyn-load-imager">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-copyright"></i>
-                                                            </div>
-                                                            <div id="dropdownProductInterest" class="form-control"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label><span lang="en">Note to the manager</span></label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-user"></i>
-                                                        </div>
-                                                        <input type="text" class="form-control validate[]" placeholder="Note to the Manager" id="txt-note-manager">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label><span lang="en">Follow up date/time</span></label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-calendar"></i>
-                                                        </div>
-                                                        <input type="text" class="form-control pull-right validate[]" name="followup-datetimepicker" id="followup-datetimepicker">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label><span lang="en">Follow up type</span></label>
-                                                    <div class="" id="ajaxACL-followuptype">
-                                                        <div id="loading-image-followuptype" class="input-group zeyn-load-imager">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-copyright"></i>
-                                                            </div>
-                                                            <div id="dropdownFollowuptype" class="form-control"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                                <div class="form-group">
-                                                    <label><span lang="en">Activity last status</span></label>
-                                                    <div class="" id="ajaxACL-activitylaststatus">
-                                                        <div id="loading-image-activitylaststatus" class="input-group zeyn-load-imager">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-copyright"></i>
-                                                            </div>
-                                                            <div id="dropdownActivityLastStatus" class="form-control"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <div id="dropdownContactPerson" class="form-control validate[required]"></div>
                                             </div>
+                                        </div>
+                                    </div>
 
-                                            <!-- /.col -->
+                                    <div class="form-group">
+                                        <label><span lang="en">Activity type</span></label>
+                                        <div class="" id="ajaxACL-activitytype">
+                                            <div id="loading-image-activitytype" class="input-group zeyn-load-imager">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <div id="dropdownActivityType" class="form-control validate[required]"></div>
+                                            </div>
                                         </div>
-                                        <div class="box-footer">
-                                            <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-activity-clear" onclick="resetActivityForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                            <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-activity-save">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label><span lang="en">Activity comment</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-user"></i>
+                                            </div>
+                                            <input type="text" class="form-control validate[required]" placeholder="Activity comment" id="txt-activity-comment">
                                         </div>
-                                    </form>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label><span lang="en">Activity active/passive/project status</span></label>
+                                        <div class="" id="ajaxACL-activitystatus">
+                                            <div id="loading-image-activitystatus" class="input-group zeyn-load-imager">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <div id="dropdownActivityStatus" class="form-control"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label><span lang="en">Planned/Unplanned activity</span></label>
+                                        <div class="" id="ajaxACL-activityplanned">
+                                            <div id="loading-image-activityplanned" class="input-group zeyn-load-imager">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <div id="dropdownActivityPlanned" class="form-control"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span lang="en">Activity date/time</span></label>
+
+                                        <div class="input-group datetime">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input type="text" class="form-control pull-right" name="activity-datetimepicker" id="activity-datetimepicker">
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+
+                                <div class="col-md-6">
+
+
+                                    <div class="form-group">
+                                        <label><span lang="en">Application group / Segment</span></label>
+                                        <div class="" id="ajaxACL-segment">
+                                            <div id="loading-image-segment" class="input-group zeyn-load-imager">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <div id="dropdownSegment" class="form-control"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label><span lang="en">Product of interest</span></label>
+                                        <div class="" id="ajaxACL-productinterest">
+                                            <div id="loading-image-productinterest" class="input-group zeyn-load-imager">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <div id="dropdownProductInterest" class="form-control"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label><span lang="en">Note to the manager</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-user"></i>
+                                            </div>
+                                            <input type="text" class="form-control validate[]" placeholder="Note to the Manager" id="txt-note-manager">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label><span lang="en">Follow up date/time</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input type="text" class="form-control pull-right validate[]" name="followup-datetimepicker" id="followup-datetimepicker">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label><span lang="en">Follow up type</span></label>
+                                        <div class="" id="ajaxACL-followuptype">
+                                            <div id="loading-image-followuptype" class="input-group zeyn-load-imager">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <div id="dropdownFollowuptype" class="form-control"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <label><span lang="en">Activity last status</span></label>
+                                        <div class="" id="ajaxACL-activitylaststatus">
+                                            <div id="loading-image-activitylaststatus" class="input-group zeyn-load-imager">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
+                                                </div>
+                                                <div id="dropdownActivityLastStatus" class="form-control"></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <!-- /.tab-pane -->
-                                <!-- Tamamlandı Raporu -->
-                                <div class="tab-pane" id="tab_2">
-                                    <form id='aktivityReportForm' method="get">
-                                        <div class="row" id="loading-image-activityReport">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label><span lang="en">Realization date/time</span></label>
+                                <!-- /.col -->
+                            </div>
+                            <div class="box-footer">
+                                <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-activity-clear" onclick="resetActivityForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-activity-save">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                            </div>
+                        </form>
 
-                                                    <div class="input-group datetime">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-calendar"></i>
-                                                        </div>
-                                                        <input type="text" class="form-control pull-right" name="activity-realization-datetimepicker" id="activity-realization-datetimepicker">
-                                                    </div>
+
+                    </div>
+                </div>
+
+            </section><!-- /.Left col -->
+
+        </div><!-- /.row (main row) -->
+        <!-- Main row -->
+        <div class="row">
+            <!-- Left col -->
+            <section class="col-lg-12 connectedSortable">
+
+                <div class="box box-info" id="ajaxACL-activityreport">
+                    <div class="box-header">
+                        <i class="fa fa-comments-o"></i>
+                        <h3 class="box-title">Activity Report</h3>
+
+                        <div class="box-tools pull-right">
+                            <button class="btn bg-teal btn-sm btn-small-miya" data-widget="collapse" id="activityReport_collapse"><i class="fa fa-minus"></i></button>
+                            <!--<button class="btn bg-teal btn-sm btn-small-miya" data-widget="remove" id="activityReport_remove"><i class="fa fa-times"></i></button>-->
+                        </div>
+                    </div>
+                    <div class="box-body" id="loading-image-activityrapor">
+                        <form id='aktivityReportForm' method="get">
+                            <div class="row" id="loading-image-activityReport">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label><span lang="en">Realization date/time</span></label>
+
+                                        <div class="input-group datetime">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input type="text" class="form-control pull-right" name="activity-realization-datetimepicker" id="activity-realization-datetimepicker">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label><span lang="en">Activity report</span></label>
+                                        <div class="" id="ajaxACL-activitytrackingtype">
+                                            <div id="loading-image-activitytrackingtype" class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-copyright"></i>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label><span lang="en">Activity report</span></label>
-                                                    <div class="" id="ajaxACL-activitytrackingtype">
-                                                        <div id="loading-image-activitytrackingtype" class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <i class="fa fa-copyright"></i>
-                                                            </div>
-                                                            <textarea data-prompt-position="topLeft:70" class="form-control validate[required]" rows="10" name="activity_report" id="activity_report" placeholder="Activity report"></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <textarea data-prompt-position="topLeft:70" class="form-control validate[required]" rows="10" name="activity_report" id="activity_report" placeholder="Activity report"></textarea>
                                             </div>
                                         </div>
-                                        <div class="box-footer">
-                                            <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-activityreport-clear" onclick="resetCustomerPurchaseForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
-                                            <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-activityreport-save" >&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
-                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box-footer">
+                                <button type="reset" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-activityreport-clear" onclick="resetCustomerPurchaseForm();">&nbsp;<i class="fa fa-eraser"></i>&nbsp;&nbsp;Clear&nbsp;&nbsp;</button>
+                                <button type="submit" class="btn btn-primary btn-md pull-right" style="margin-right:10px" id="btn-activityreport-save">&nbsp;<i class="fa fa-save"></i>&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                            </div>
 
-                                    </form>
-                                </div><!-- /.tab-pane -->
-
-                            </div><!-- /.tab-content -->
-                        </div>
-
-
+                        </form>
                     </div>
                 </div>
 
