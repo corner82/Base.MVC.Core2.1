@@ -16,7 +16,7 @@ using Base.Core.Culture.RequestCulture;
 
 namespace Base.MVC.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     //[Route("culture?/[controller]")]
     public class AdmController : Controller
     {

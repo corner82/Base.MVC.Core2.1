@@ -1,5 +1,14 @@
 ﻿[
   {
+    "Key": "Role",
+    "LocalizedValue": {
+      "de-DE": "Role",
+      "en-US": "Role",
+      "af-ZA": "Role",
+      "tr-TR": "Rol"
+    }
+  },
+  {
     "Key": "Hello",
     "LocalizedValue": {
       "de-DE": "Bonjour",

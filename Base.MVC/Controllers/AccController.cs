@@ -332,5 +332,84 @@ namespace Base.MVC.Controllers
             //return RedirectToAction("Index");
 
         }
+
+        [HttpGet]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        public IActionResult RegisterUser()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        public async Task<IActionResult> RegisterUser(RegisterWithRoleViewModel registerWithRoleViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                CustomIdentityUser user = new CustomIdentityUser
+                {
+                    UserName = registerWithRoleViewModel.Email,
+                    Email = registerWithRoleViewModel.Email,
+                };
+
+                IdentityResult result = _userManager.CreateAsync(user, registerWithRoleViewModel.Password).Result;
+
+                if (result.Succeeded)
+                {
+                    
+                    // await roleManager.AddClaimAsync(adminRole, new Claim(CustomClaimTypes.Permission, "projects.view"));
+                    //await _userManager.AddClaimAsync(user, new Claim("claimtip", user.Email)); 
+                    CustomIdentityRole  role = await _roleManager.FindByNameAsync(registerWithRoleViewModel.Role.Trim());
+                    if (role == null)
+                    {
+                        await _userManager.DeleteAsync(user);
+                        ModelState.AddModelError("Error", "role not verified");
+                    } else
+                    {
+                        _userManager.AddToRoleAsync(user, registerWithRoleViewModel.Role.Trim()).Wait();
+                    }
+                    // _userManager.AddToRoleAsync(user, "Manager").Wait();
+                    //return RedirectToAction("Login", "Acc");
+
+
+                } else
+                {
+                    List<IdentityError> errors = result.Errors.ToList<IdentityError>();
+                    foreach(var error in errors)
+                    {
+                        ModelState.AddModelError("Error", error.Description);
+                    }
+                }
+            }
+            return View(registerWithRoleViewModel);
+        }
+
+        [HttpGet]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        public IActionResult  DeleteUser()
+        {
+            return   View();
+        }
+
+        [HttpPost]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        public async Task<IActionResult> DeleteUser(DeletUserViewModel deleteUserViewModel)
+        {
+            if(ModelState.IsValid)
+            {
+                CustomIdentityUser user = await _userManager.FindByEmailAsync(deleteUserViewModel.Email.Trim());
+                if(user == null)
+                {
+                    ModelState.TryAddModelError("Error", "User not found");
+                } else
+                {
+                    await _userManager.DeleteAsync(user);
+                }
+            } else
+            {
+                ModelState.AddModelError("Model state not valid", "Model state not valid");
+            }
+            return View(deleteUserViewModel);
+        }
     }
 }

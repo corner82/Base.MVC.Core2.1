@@ -29,262 +29,2096 @@
                 if (item == "Admin")
                 {
                     <!--<p style="color:red;">admin</p>-->
+                    <ul class="sidebar-menu">
+                        <li class="header">MAIN NAVIGATION</li>
+                        <!-- <li class="active treeview">  -->
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-dashboard"></i> <span>System Definitions</span> <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li class="active"><a href="/Sys/AnnualRevenue"><i class="fa fa-circle-o"></i> Annual Revenue</a></li>
+                                <li><a href="/Sys/Brand"><i class="fa fa-circle-o"></i> Brand</a></li>
+                                @*<li><a href="/Sys/Terrain"><i class="fa fa-circle-o"></i> Terrain</a></li>*@
+                                <li><a href="/Sys/Country"><i class="fa fa-circle-o"></i> Country</a></li>
+                                <li><a href="/Sys/Province"><i class="fa fa-circle-o"></i> Province</a></li>
+                                <li><a href="/Sys/City"><i class="fa fa-circle-o"></i> City</a></li>
+                                <li><a href="/Sys/Segment"><i class="fa fa-circle-o"></i> Segment</a></li>
+                                <li><a href="/Sys/Sector"><i class="fa fa-circle-o"></i> Sector</a></li>
+                                <li><a href="/Sys/CPRole"><i class="fa fa-circle-o"></i> Customer Person Role</a></li>
+                                <li><a href="/Sys/CustomerGrp"><i class="fa fa-circle-o"></i> Customer Group</a></li>
+                                <li><a href="/Sys/DemoLocation"><i class="fa fa-circle-o"></i> Branch/Dealer Information</a></li>
+                                @*<li><a href="/Sys/DemoReqType"><i class="fa fa-circle-o"></i> Demo Request Type</a></li>*@
+                                <li><a href="/Sys/FxRate"><i class="fa fa-circle-o"></i> Fx Rate</a></li>
+                                <li><a href="/Sys/Mil"><i class="fa fa-circle-o"></i> Mileage</a></li>
+                                @*<li><a href="/Sys/ParkoffType"><i class="fa fa-circle-o"></i> Park off Type</a></li>*@
+                                <li><a href="/Sys/ReliabilityRate"><i class="fa fa-circle-o"></i> Reliability Rate</a></li>
+                                <li><a href="/Sys/TNofEmployes"><i class="fa fa-circle-o"></i> Total Number of Employes</a></li>
+                                <li><a href="/Sys/TNofVehicles"><i class="fa fa-circle-o"></i> Total Number of Vehicles</a></li>
+                                @*<li><a href="/Sys/TradebackTerrain"><i class="fa fa-circle-o"></i> Tradeback Terrain</a></li>*@
+                                @*<li><a href="/Sys/VehicleKitType"><i class="fa fa-circle-o"></i> Vehicle Kit Type</a></li>*@
+                                @* <li><a href="/Sys/VehicleModel"><i class="fa fa-circle-o"></i> Vehicle Model</a></li>*@
+
+                                @*<li><a href="/Sys/WarrantyName"><i class="fa fa-circle-o"></i> Warranty Name</a></li>*@
+                                @*<li><a href="/Sys/WarrantyType"><i class="fa fa-circle-o"></i> Warranty Type</a></li>*@
+                                <li><a href="/Sys/Branch"><i class="fa fa-circle-o"></i> Branch</a></li>
+                                <li><a href="/Sys/Supplier"><i class="fa fa-circle-o"></i> Supplier</a></li>
+                                @*<li><a href="/Sys/AccessoryFeatureName"><i class="fa fa-circle-o"></i> Accessory Feature Name</a></li>*@
+                                <li><a href="/Sys/FixedCost"><i class="fa fa-circle-o"></i> Fixed Cost</a></li>
+                                <li><a href="/Sys/PriceListHos"><i class="fa fa-circle-o"></i> Price List Hos</a></li>
+                                <li><a href="/Sys/YearlyQuota"><i class="fa fa-circle-o"></i> Yearly Quota</a></li>
+                                <li><a href="/Sys/MonthlyQuota"><i class="fa fa-circle-o"></i> Monthly Quota</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Customer</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Customer/Customer"><i class="fa fa-circle-o"></i> Customer</a></li>
+                                <li><a href="/Customer/Activity"><i class="fa fa-circle-o"></i> Activity</a></li>
+                                <li><a href="/Customer/ActivityMngr"><i class="fa fa-circle-o"></i> Activity for Manager</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Accessory/Body</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Accessory/Accessory"><i class="fa fa-circle-o"></i> Accessory</a></li>
+                                <li><a href="/Accessory/Body"><i class="fa fa-circle-o"></i> Body</a></li>
+                                <li><a href="/Accessory/Bodyextra"><i class="fa fa-circle-o"></i> Body (extras)</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Training</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Training/Training"><i class="fa fa-circle-o"></i> Training</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Vehicle</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Vehicle/VehicleKitModel"><i class="fa fa-circle-o"></i> Vehicle Kit-Model</a></li>
+                                <li><a href="/Vehicle/VehicleKitModelModeltype"><i class="fa fa-circle-o"></i> Vehicle Kit-Model-Model type</a></li>
+                                <li><a href="/Vehicle/VehicleKitModelModeltypeTonnage"><i class="fa fa-circle-o"></i> Vehicle Kit-Md-Md.type-Tng</a></li>
+                                <li><a href="/Vehicle/Vehicle"><i class="fa fa-circle-o"></i> Vehicle</a></li>
+                                <li><a href="/Vehicle/SpecialVehicle"><i class="fa fa-circle-o"></i> Special Vehicle Order</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Warranty</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Warranty/WarrantyIdent"><i class="fa fa-circle-o"></i> Warranty</a></li>
+                                <li><a href="/Warranty/FactoryWarrantyIdent"><i class="fa fa-circle-o"></i> Factory Warranty</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Deal</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Deal/Add"><i class="fa fa-circle-o"></i> Deal List</a></li>
+                                <li><a href="/Deal/BodyProp"><i class="fa fa-circle-o"></i> Body Proposal</a></li>
+                                <li><a href="/Deal/InvReq"><i class="fa fa-circle-o"></i> Invoice Request</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Order in take</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/OrderInTake/Add"><i class="fa fa-circle-o"></i> Order in take</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Buyback&Tradeback</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/BuybackTradeback/BuybackTradebackMatrix"><i class="fa fa-circle-o"></i> Buyback&Tradeback Matrix</a></li>
+                                @*<li><a href="/BuybackTradeback/BuybackMonthlyQuota"><i class="fa fa-circle-o"></i> Buyback Monthly Quota</a></li>
+                                    <li><a href="/BuybackTradeback/BuybackYearlyQuota"><i class="fa fa-circle-o"></i> Buyback Yearly Quota</a></li>*@
+                                <li><a href="/BuybackTradeback/BuybackReturn"><i class="fa fa-circle-o"></i> Buyback Vehicle Return</a></li>
+                                <li><a href="/BuybackTradeback/TradebackReturn"><i class="fa fa-circle-o"></i> Tradeback Vehicle Return</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Stock</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Stock/StockHos"><i class="fa fa-circle-o"></i> Stock HOS</a></li>
+                                <li><a href="/Stock/StockBackOffice"><i class="fa fa-circle-o"></i> Stock Back Office</a></li>
+                                <li><a href="/Stock/StockSalesman"><i class="fa fa-circle-o"></i> Stock Salesman</a></li>
+                                <li><a href="/Stock/StockTopUsed"><i class="fa fa-circle-o"></i> Stock TopUsed</a></li>
+                                <li><a href="/Stock/VehicleOrderTracking"><i class="fa fa-circle-o"></i> Vehicle Order Tracking</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Demo/Courtesy</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/DemoCourtesy/DemoCourtesyReturn"><i class="fa fa-circle-o"></i> Demo Courtesy Return</a></li>
+                                <li><a href="/DemoCourtesy/DemoCourtesyAllocation"><i class="fa fa-circle-o"></i> Demo Courtesy Allocation</a></li>
+                                <li><a href="/DemoCourtesy/DemoCourtesyNewReq"><i class="fa fa-circle-o"></i> Demo Courtesy New Request</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Trucks to Go</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Truckstogo/Truckstogo"><i class="fa fa-circle-o"></i> Trucks to Go</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Repair&Maintenance</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/RepairMaintenance/RepairMaintenanceMatrix"><i class="fa fa-circle-o"></i> Repair&Maintenance Matrix</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Park Off</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Parkoff/ParkOff"><i class="fa fa-circle-o"></i> Park Off</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Campaign</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Campaign/Campaign"><i class="fa fa-circle-o"></i> Campaign</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Commission</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Commission/CommissionName"><i class="fa fa-circle-o"></i> Commission name</a></li>
+                                <li><a href="/Commission/Commission"><i class="fa fa-circle-o"></i> Commission</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Target</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Target/Target"><i class="fa fa-circle-o"></i> Target</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>InvoiceProforma</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/InvoiceProforma/InvoiceProformaBo"><i class="fa fa-circle-o"></i> InvoiceProformaBo</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Movement&Delivery</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/MovementDelivery/MovementDeliveryBo"><i class="fa fa-circle-o"></i> MovementDeliveryBo</a></li>
+                                <li><a href="/MovementDelivery/MovementDeliverySm"><i class="fa fa-circle-o"></i> MovementDeliverySm</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
                 }
+                else if (item == "Salesman")
+                {
+                    <!--<p style="color:red;">salesman</p>-->
+                    <ul class="sidebar-menu">
+                        <li class="header">MAIN NAVIGATION</li>
+                        <!-- <li class="active treeview">  -->
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Customer</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Customer/Customer"><i class="fa fa-circle-o"></i> Customer</a></li>
+                                <li><a href="/Customer/Activity"><i class="fa fa-circle-o"></i> Activity</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Deal</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Deal/Add"><i class="fa fa-circle-o"></i> Deal List</a></li>
+                                <li><a href="/Deal/BodyProp"><i class="fa fa-circle-o"></i> Body Proposal</a></li>
+                                <li><a href="/Deal/InvReq"><i class="fa fa-circle-o"></i> Invoice Request</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Buyback&Tradeback</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/BuybackTradeback/BuybackTradebackMatrix"><i class="fa fa-circle-o"></i> Buyback&Tradeback Matrix</a></li>
+                                @*<li><a href="/BuybackTradeback/BuybackMonthlyQuota"><i class="fa fa-circle-o"></i> Buyback Monthly Quota</a></li>
+                                    <li><a href="/BuybackTradeback/BuybackYearlyQuota"><i class="fa fa-circle-o"></i> Buyback Yearly Quota</a></li>*@
+                                <li><a href="/BuybackTradeback/BuybackReturn"><i class="fa fa-circle-o"></i> Buyback Vehicle Return</a></li>
+                                <li><a href="/BuybackTradeback/TradebackReturn"><i class="fa fa-circle-o"></i> Tradeback Vehicle Return</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Stock</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Stock/StockSalesman"><i class="fa fa-circle-o"></i> Stock Salesman</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Movement&Delivery</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/MovementDelivery/MovementDeliverySm"><i class="fa fa-circle-o"></i> MovementDeliverySm</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                }
+                else if (item == "head of retail")
+                {
+                    <!--<p style="color:red;">head of retail</p>-->
+
+                }
+                else if (item == "head of pcd")
+                {
+                    <!--<p style="color:red;">head of pcd</p>-->
+
+                }
+                else if (item == "head of product management")
+                {
+                    <!--<p style="color:red;">head of product management</p>-->
+                    <ul class="sidebar-menu">
+                        <li class="header">MAIN NAVIGATION</li>
+                        <!-- <li class="active treeview">  -->
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-dashboard"></i> <span>System Definitions</span> <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li class="active"><a href="/Sys/AnnualRevenue"><i class="fa fa-circle-o"></i> Annual Revenue</a></li>
+                                <li><a href="/Sys/Brand"><i class="fa fa-circle-o"></i> Brand</a></li>
+                                @*<li><a href="/Sys/Terrain"><i class="fa fa-circle-o"></i> Terrain</a></li>*@
+                                <li><a href="/Sys/Country"><i class="fa fa-circle-o"></i> Country</a></li>
+                                <li><a href="/Sys/Province"><i class="fa fa-circle-o"></i> Province</a></li>
+                                <li><a href="/Sys/City"><i class="fa fa-circle-o"></i> City</a></li>
+                                <li><a href="/Sys/Segment"><i class="fa fa-circle-o"></i> Segment</a></li>
+                                <li><a href="/Sys/Sector"><i class="fa fa-circle-o"></i> Sector</a></li>
+                                <li><a href="/Sys/CPRole"><i class="fa fa-circle-o"></i> Customer Person Role</a></li>
+                                <li><a href="/Sys/CustomerGrp"><i class="fa fa-circle-o"></i> Customer Group</a></li>
+                                <li><a href="/Sys/DemoLocation"><i class="fa fa-circle-o"></i> Branch/Dealer Information</a></li>
+                                @*<li><a href="/Sys/DemoReqType"><i class="fa fa-circle-o"></i> Demo Request Type</a></li>*@
+                                <li><a href="/Sys/FxRate"><i class="fa fa-circle-o"></i> Fx Rate</a></li>
+                                <li><a href="/Sys/Mil"><i class="fa fa-circle-o"></i> Mileage</a></li>
+                                @*<li><a href="/Sys/ParkoffType"><i class="fa fa-circle-o"></i> Park off Type</a></li>*@
+                                <li><a href="/Sys/ReliabilityRate"><i class="fa fa-circle-o"></i> Reliability Rate</a></li>
+                                <li><a href="/Sys/TNofEmployes"><i class="fa fa-circle-o"></i> Total Number of Employes</a></li>
+                                <li><a href="/Sys/TNofVehicles"><i class="fa fa-circle-o"></i> Total Number of Vehicles</a></li>
+                                @*<li><a href="/Sys/TradebackTerrain"><i class="fa fa-circle-o"></i> Tradeback Terrain</a></li>*@
+                                @*<li><a href="/Sys/VehicleKitType"><i class="fa fa-circle-o"></i> Vehicle Kit Type</a></li>*@
+                                @* <li><a href="/Sys/VehicleModel"><i class="fa fa-circle-o"></i> Vehicle Model</a></li>*@
+
+                                @*<li><a href="/Sys/WarrantyName"><i class="fa fa-circle-o"></i> Warranty Name</a></li>*@
+                                @*<li><a href="/Sys/WarrantyType"><i class="fa fa-circle-o"></i> Warranty Type</a></li>*@
+                                <li><a href="/Sys/Branch"><i class="fa fa-circle-o"></i> Branch</a></li>
+                                <li><a href="/Sys/Supplier"><i class="fa fa-circle-o"></i> Supplier</a></li>
+                                @*<li><a href="/Sys/AccessoryFeatureName"><i class="fa fa-circle-o"></i> Accessory Feature Name</a></li>*@
+                                <li><a href="/Sys/FixedCost"><i class="fa fa-circle-o"></i> Fixed Cost</a></li>
+                                <li><a href="/Sys/PriceListHos"><i class="fa fa-circle-o"></i> Price List Hos</a></li>
+                                <li><a href="/Sys/YearlyQuota"><i class="fa fa-circle-o"></i> Yearly Quota</a></li>
+                                <li><a href="/Sys/MonthlyQuota"><i class="fa fa-circle-o"></i> Monthly Quota</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Customer</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Customer/Customer"><i class="fa fa-circle-o"></i> Customer</a></li>
+                                <li><a href="/Customer/Activity"><i class="fa fa-circle-o"></i> Activity</a></li>
+                                <li><a href="/Customer/ActivityMngr"><i class="fa fa-circle-o"></i> Activity for Manager</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Accessory/Body</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Accessory/Accessory"><i class="fa fa-circle-o"></i> Accessory</a></li>
+                                <li><a href="/Accessory/Body"><i class="fa fa-circle-o"></i> Body</a></li>
+                                <li><a href="/Accessory/Bodyextra"><i class="fa fa-circle-o"></i> Body (extras)</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Training</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Training/Training"><i class="fa fa-circle-o"></i> Training</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Warranty</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Warranty/WarrantyIdent"><i class="fa fa-circle-o"></i> Warranty</a></li>
+                                <li><a href="/Warranty/FactoryWarrantyIdent"><i class="fa fa-circle-o"></i> Factory Warranty</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Deal</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Deal/Add"><i class="fa fa-circle-o"></i> Deal List</a></li>
+                                <li><a href="/Deal/BodyProp"><i class="fa fa-circle-o"></i> Body Proposal</a></li>
+                                <li><a href="/Deal/InvReq"><i class="fa fa-circle-o"></i> Invoice Request</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Buyback&Tradeback</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/BuybackTradeback/BuybackTradebackMatrix"><i class="fa fa-circle-o"></i> Buyback&Tradeback Matrix</a></li>
+                                @*<li><a href="/BuybackTradeback/BuybackMonthlyQuota"><i class="fa fa-circle-o"></i> Buyback Monthly Quota</a></li>
+                                    <li><a href="/BuybackTradeback/BuybackYearlyQuota"><i class="fa fa-circle-o"></i> Buyback Yearly Quota</a></li>*@
+                                <li><a href="/BuybackTradeback/BuybackReturn"><i class="fa fa-circle-o"></i> Buyback Vehicle Return</a></li>
+                                <li><a href="/BuybackTradeback/TradebackReturn"><i class="fa fa-circle-o"></i> Tradeback Vehicle Return</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Stock</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Stock/StockHos"><i class="fa fa-circle-o"></i> Stock HOS</a></li>
+                                <li><a href="/Stock/StockBackOffice"><i class="fa fa-circle-o"></i> Stock Back Office</a></li>
+                                <li><a href="/Stock/StockSalesman"><i class="fa fa-circle-o"></i> Stock Salesman</a></li>
+                                <li><a href="/Stock/StockTopUsed"><i class="fa fa-circle-o"></i> Stock TopUsed</a></li>
+                                <li><a href="/Stock/VehicleOrderTracking"><i class="fa fa-circle-o"></i> Vehicle Order Tracking</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Movement&Delivery</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/MovementDelivery/MovementDeliveryBo"><i class="fa fa-circle-o"></i> MovementDeliveryBo</a></li>
+                                <li><a href="/MovementDelivery/MovementDeliverySm"><i class="fa fa-circle-o"></i> MovementDeliverySm</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+
+                }
+                else if (item == "body builder specialist")
+                {
+                    <!--<p style="color:red;">body builder specialist</p>-->
+
+                }
+                else if (item == "sales admin manager")
+                {
+                    <!--<p style="color:red;">sales admin manager</p>-->
+                    <ul class="sidebar-menu">
+                        <li class="header">MAIN NAVIGATION</li>
+                        <!-- <li class="active treeview">  -->
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-dashboard"></i> <span>System Definitions</span> <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li class="active"><a href="/Sys/AnnualRevenue"><i class="fa fa-circle-o"></i> Annual Revenue</a></li>
+                                <li><a href="/Sys/Brand"><i class="fa fa-circle-o"></i> Brand</a></li>
+                                @*<li><a href="/Sys/Terrain"><i class="fa fa-circle-o"></i> Terrain</a></li>*@
+                                <li><a href="/Sys/Country"><i class="fa fa-circle-o"></i> Country</a></li>
+                                <li><a href="/Sys/Province"><i class="fa fa-circle-o"></i> Province</a></li>
+                                <li><a href="/Sys/City"><i class="fa fa-circle-o"></i> City</a></li>
+                                <li><a href="/Sys/Segment"><i class="fa fa-circle-o"></i> Segment</a></li>
+                                <li><a href="/Sys/Sector"><i class="fa fa-circle-o"></i> Sector</a></li>
+                                <li><a href="/Sys/CPRole"><i class="fa fa-circle-o"></i> Customer Person Role</a></li>
+                                <li><a href="/Sys/CustomerGrp"><i class="fa fa-circle-o"></i> Customer Group</a></li>
+                                <li><a href="/Sys/DemoLocation"><i class="fa fa-circle-o"></i> Branch/Dealer Information</a></li>
+                                @*<li><a href="/Sys/DemoReqType"><i class="fa fa-circle-o"></i> Demo Request Type</a></li>*@
+                                <li><a href="/Sys/FxRate"><i class="fa fa-circle-o"></i> Fx Rate</a></li>
+                                <li><a href="/Sys/Mil"><i class="fa fa-circle-o"></i> Mileage</a></li>
+                                @*<li><a href="/Sys/ParkoffType"><i class="fa fa-circle-o"></i> Park off Type</a></li>*@
+                                <li><a href="/Sys/ReliabilityRate"><i class="fa fa-circle-o"></i> Reliability Rate</a></li>
+                                <li><a href="/Sys/TNofEmployes"><i class="fa fa-circle-o"></i> Total Number of Employes</a></li>
+                                <li><a href="/Sys/TNofVehicles"><i class="fa fa-circle-o"></i> Total Number of Vehicles</a></li>
+                                @*<li><a href="/Sys/TradebackTerrain"><i class="fa fa-circle-o"></i> Tradeback Terrain</a></li>*@
+                                @*<li><a href="/Sys/VehicleKitType"><i class="fa fa-circle-o"></i> Vehicle Kit Type</a></li>*@
+                                @* <li><a href="/Sys/VehicleModel"><i class="fa fa-circle-o"></i> Vehicle Model</a></li>*@
+
+                                @*<li><a href="/Sys/WarrantyName"><i class="fa fa-circle-o"></i> Warranty Name</a></li>*@
+                                @*<li><a href="/Sys/WarrantyType"><i class="fa fa-circle-o"></i> Warranty Type</a></li>*@
+                                <li><a href="/Sys/Branch"><i class="fa fa-circle-o"></i> Branch</a></li>
+                                <li><a href="/Sys/Supplier"><i class="fa fa-circle-o"></i> Supplier</a></li>
+                                @*<li><a href="/Sys/AccessoryFeatureName"><i class="fa fa-circle-o"></i> Accessory Feature Name</a></li>*@
+                                <li><a href="/Sys/FixedCost"><i class="fa fa-circle-o"></i> Fixed Cost</a></li>
+                                <li><a href="/Sys/PriceListHos"><i class="fa fa-circle-o"></i> Price List Hos</a></li>
+                                <li><a href="/Sys/YearlyQuota"><i class="fa fa-circle-o"></i> Yearly Quota</a></li>
+                                <li><a href="/Sys/MonthlyQuota"><i class="fa fa-circle-o"></i> Monthly Quota</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Customer</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Customer/Customer"><i class="fa fa-circle-o"></i> Customer</a></li>
+                                <li><a href="/Customer/Activity"><i class="fa fa-circle-o"></i> Activity</a></li>
+                                <li><a href="/Customer/ActivityMngr"><i class="fa fa-circle-o"></i> Activity for Manager</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Accessory/Body</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Accessory/Accessory"><i class="fa fa-circle-o"></i> Accessory</a></li>
+                                <li><a href="/Accessory/Body"><i class="fa fa-circle-o"></i> Body</a></li>
+                                <li><a href="/Accessory/Bodyextra"><i class="fa fa-circle-o"></i> Body (extras)</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Training</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Training/Training"><i class="fa fa-circle-o"></i> Training</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Warranty</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Warranty/WarrantyIdent"><i class="fa fa-circle-o"></i> Warranty</a></li>
+                                <li><a href="/Warranty/FactoryWarrantyIdent"><i class="fa fa-circle-o"></i> Factory Warranty</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Deal</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Deal/Add"><i class="fa fa-circle-o"></i> Deal List</a></li>
+                                <li><a href="/Deal/BodyProp"><i class="fa fa-circle-o"></i> Body Proposal</a></li>
+                                <li><a href="/Deal/InvReq"><i class="fa fa-circle-o"></i> Invoice Request</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Buyback&Tradeback</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/BuybackTradeback/BuybackTradebackMatrix"><i class="fa fa-circle-o"></i> Buyback&Tradeback Matrix</a></li>
+                                @*<li><a href="/BuybackTradeback/BuybackMonthlyQuota"><i class="fa fa-circle-o"></i> Buyback Monthly Quota</a></li>
+                                    <li><a href="/BuybackTradeback/BuybackYearlyQuota"><i class="fa fa-circle-o"></i> Buyback Yearly Quota</a></li>*@
+                                <li><a href="/BuybackTradeback/BuybackReturn"><i class="fa fa-circle-o"></i> Buyback Vehicle Return</a></li>
+                                <li><a href="/BuybackTradeback/TradebackReturn"><i class="fa fa-circle-o"></i> Tradeback Vehicle Return</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Stock</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Stock/StockHos"><i class="fa fa-circle-o"></i> Stock HOS</a></li>
+                                <li><a href="/Stock/StockBackOffice"><i class="fa fa-circle-o"></i> Stock Back Office</a></li>
+                                <li><a href="/Stock/StockSalesman"><i class="fa fa-circle-o"></i> Stock Salesman</a></li>
+                                <li><a href="/Stock/StockTopUsed"><i class="fa fa-circle-o"></i> Stock TopUsed</a></li>
+                                <li><a href="/Stock/VehicleOrderTracking"><i class="fa fa-circle-o"></i> Vehicle Order Tracking</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Demo/Courtesy</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/DemoCourtesy/DemoCourtesyReturn"><i class="fa fa-circle-o"></i> Demo Courtesy Return</a></li>
+                                <li><a href="/DemoCourtesy/DemoCourtesyAllocation"><i class="fa fa-circle-o"></i> Demo Courtesy Allocation</a></li>
+                                <li><a href="/DemoCourtesy/DemoCourtesyNewReq"><i class="fa fa-circle-o"></i> Demo Courtesy New Request</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Trucks to Go</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Truckstogo/Truckstogo"><i class="fa fa-circle-o"></i> Trucks to Go</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Repair&Maintenance</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/RepairMaintenance/RepairMaintenanceMatrix"><i class="fa fa-circle-o"></i> Repair&Maintenance Matrix</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Park Off</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Parkoff/ParkOff"><i class="fa fa-circle-o"></i> Park Off</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Campaign</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Campaign/Campaign"><i class="fa fa-circle-o"></i> Campaign</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Commission</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Commission/CommissionName"><i class="fa fa-circle-o"></i> Commission name</a></li>
+                                <li><a href="/Commission/Commission"><i class="fa fa-circle-o"></i> Commission</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Target</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Target/Target"><i class="fa fa-circle-o"></i> Target</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>InvoiceProforma</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/InvoiceProforma/InvoiceProformaBo"><i class="fa fa-circle-o"></i> InvoiceProformaBo</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Movement&Delivery</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/MovementDelivery/MovementDeliveryBo"><i class="fa fa-circle-o"></i> MovementDeliveryBo</a></li>
+                                <li><a href="/MovementDelivery/MovementDeliverySm"><i class="fa fa-circle-o"></i> MovementDeliverySm</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                }
+                else if (item == "costing manager")
+                {
+                    <!--<p style="color:red;">costing manager</p>-->
+                    <ul class="sidebar-menu">
+                        <li class="header">MAIN NAVIGATION</li>
+                        <!-- <li class="active treeview">  -->
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-dashboard"></i> <span>System Definitions</span> <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li class="active"><a href="/Sys/AnnualRevenue"><i class="fa fa-circle-o"></i> Annual Revenue</a></li>
+                                <li><a href="/Sys/Brand"><i class="fa fa-circle-o"></i> Brand</a></li>
+                                @*<li><a href="/Sys/Terrain"><i class="fa fa-circle-o"></i> Terrain</a></li>*@
+                                <li><a href="/Sys/Country"><i class="fa fa-circle-o"></i> Country</a></li>
+                                <li><a href="/Sys/Province"><i class="fa fa-circle-o"></i> Province</a></li>
+                                <li><a href="/Sys/City"><i class="fa fa-circle-o"></i> City</a></li>
+                                <li><a href="/Sys/Segment"><i class="fa fa-circle-o"></i> Segment</a></li>
+                                <li><a href="/Sys/Sector"><i class="fa fa-circle-o"></i> Sector</a></li>
+                                <li><a href="/Sys/CPRole"><i class="fa fa-circle-o"></i> Customer Person Role</a></li>
+                                <li><a href="/Sys/CustomerGrp"><i class="fa fa-circle-o"></i> Customer Group</a></li>
+                                <li><a href="/Sys/DemoLocation"><i class="fa fa-circle-o"></i> Branch/Dealer Information</a></li>
+                                @*<li><a href="/Sys/DemoReqType"><i class="fa fa-circle-o"></i> Demo Request Type</a></li>*@
+                                <li><a href="/Sys/FxRate"><i class="fa fa-circle-o"></i> Fx Rate</a></li>
+                                <li><a href="/Sys/Mil"><i class="fa fa-circle-o"></i> Mileage</a></li>
+                                @*<li><a href="/Sys/ParkoffType"><i class="fa fa-circle-o"></i> Park off Type</a></li>*@
+                                <li><a href="/Sys/ReliabilityRate"><i class="fa fa-circle-o"></i> Reliability Rate</a></li>
+                                <li><a href="/Sys/TNofEmployes"><i class="fa fa-circle-o"></i> Total Number of Employes</a></li>
+                                <li><a href="/Sys/TNofVehicles"><i class="fa fa-circle-o"></i> Total Number of Vehicles</a></li>
+                                @*<li><a href="/Sys/TradebackTerrain"><i class="fa fa-circle-o"></i> Tradeback Terrain</a></li>*@
+                                @*<li><a href="/Sys/VehicleKitType"><i class="fa fa-circle-o"></i> Vehicle Kit Type</a></li>*@
+                                @* <li><a href="/Sys/VehicleModel"><i class="fa fa-circle-o"></i> Vehicle Model</a></li>*@
+
+                                @*<li><a href="/Sys/WarrantyName"><i class="fa fa-circle-o"></i> Warranty Name</a></li>*@
+                                @*<li><a href="/Sys/WarrantyType"><i class="fa fa-circle-o"></i> Warranty Type</a></li>*@
+                                <li><a href="/Sys/Branch"><i class="fa fa-circle-o"></i> Branch</a></li>
+                                <li><a href="/Sys/Supplier"><i class="fa fa-circle-o"></i> Supplier</a></li>
+                                @*<li><a href="/Sys/AccessoryFeatureName"><i class="fa fa-circle-o"></i> Accessory Feature Name</a></li>*@
+                                <li><a href="/Sys/FixedCost"><i class="fa fa-circle-o"></i> Fixed Cost</a></li>
+                                <li><a href="/Sys/PriceListHos"><i class="fa fa-circle-o"></i> Price List Hos</a></li>
+                                <li><a href="/Sys/YearlyQuota"><i class="fa fa-circle-o"></i> Yearly Quota</a></li>
+                                <li><a href="/Sys/MonthlyQuota"><i class="fa fa-circle-o"></i> Monthly Quota</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Customer</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Customer/Customer"><i class="fa fa-circle-o"></i> Customer</a></li>
+                                <li><a href="/Customer/Activity"><i class="fa fa-circle-o"></i> Activity</a></li>
+                                <li><a href="/Customer/ActivityMngr"><i class="fa fa-circle-o"></i> Activity for Manager</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Accessory/Body</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Accessory/Accessory"><i class="fa fa-circle-o"></i> Accessory</a></li>
+                                <li><a href="/Accessory/Body"><i class="fa fa-circle-o"></i> Body</a></li>
+                                <li><a href="/Accessory/Bodyextra"><i class="fa fa-circle-o"></i> Body (extras)</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Training</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Training/Training"><i class="fa fa-circle-o"></i> Training</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Warranty</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Warranty/WarrantyIdent"><i class="fa fa-circle-o"></i> Warranty</a></li>
+                                <li><a href="/Warranty/FactoryWarrantyIdent"><i class="fa fa-circle-o"></i> Factory Warranty</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Deal</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Deal/Add"><i class="fa fa-circle-o"></i> Deal List</a></li>
+                                <li><a href="/Deal/BodyProp"><i class="fa fa-circle-o"></i> Body Proposal</a></li>
+                                <li><a href="/Deal/InvReq"><i class="fa fa-circle-o"></i> Invoice Request</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Buyback&Tradeback</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/BuybackTradeback/BuybackTradebackMatrix"><i class="fa fa-circle-o"></i> Buyback&Tradeback Matrix</a></li>
+                                @*<li><a href="/BuybackTradeback/BuybackMonthlyQuota"><i class="fa fa-circle-o"></i> Buyback Monthly Quota</a></li>
+                                    <li><a href="/BuybackTradeback/BuybackYearlyQuota"><i class="fa fa-circle-o"></i> Buyback Yearly Quota</a></li>*@
+                                <li><a href="/BuybackTradeback/BuybackReturn"><i class="fa fa-circle-o"></i> Buyback Vehicle Return</a></li>
+                                <li><a href="/BuybackTradeback/TradebackReturn"><i class="fa fa-circle-o"></i> Tradeback Vehicle Return</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Stock</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Stock/StockBackOffice"><i class="fa fa-circle-o"></i> Stock Back Office</a></li>
+                                <li><a href="/Stock/VehicleOrderTracking"><i class="fa fa-circle-o"></i> Vehicle Order Tracking</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Demo/Courtesy</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/DemoCourtesy/DemoCourtesyReturn"><i class="fa fa-circle-o"></i> Demo Courtesy Return</a></li>
+                                <li><a href="/DemoCourtesy/DemoCourtesyAllocation"><i class="fa fa-circle-o"></i> Demo Courtesy Allocation</a></li>
+                                <li><a href="/DemoCourtesy/DemoCourtesyNewReq"><i class="fa fa-circle-o"></i> Demo Courtesy New Request</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Trucks to Go</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Truckstogo/Truckstogo"><i class="fa fa-circle-o"></i> Trucks to Go</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Repair&Maintenance</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/RepairMaintenance/RepairMaintenanceMatrix"><i class="fa fa-circle-o"></i> Repair&Maintenance Matrix</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Park Off</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Parkoff/ParkOff"><i class="fa fa-circle-o"></i> Park Off</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Campaign</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Campaign/Campaign"><i class="fa fa-circle-o"></i> Campaign</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Commission</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Commission/CommissionName"><i class="fa fa-circle-o"></i> Commission name</a></li>
+                                <li><a href="/Commission/Commission"><i class="fa fa-circle-o"></i> Commission</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Target</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Target/Target"><i class="fa fa-circle-o"></i> Target</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>InvoiceProforma</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/InvoiceProforma/InvoiceProformaBo"><i class="fa fa-circle-o"></i> InvoiceProformaBo</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Movement&Delivery</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/MovementDelivery/MovementDeliveryBo"><i class="fa fa-circle-o"></i> MovementDeliveryBo</a></li>
+                                <li><a href="/MovementDelivery/MovementDeliverySm"><i class="fa fa-circle-o"></i> MovementDeliverySm</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+
+                }
+                else if (item == "head of order management")
+                {
+                    <!--<p style="color:red;">head of order management</p>-->
+                    <ul class="sidebar-menu">
+                        <li class="header">MAIN NAVIGATION</li>
+                        <!-- <li class="active treeview">  -->
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-dashboard"></i> <span>System Definitions</span> <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li class="active"><a href="/Sys/AnnualRevenue"><i class="fa fa-circle-o"></i> Annual Revenue</a></li>
+                                <li><a href="/Sys/Brand"><i class="fa fa-circle-o"></i> Brand</a></li>
+                                @*<li><a href="/Sys/Terrain"><i class="fa fa-circle-o"></i> Terrain</a></li>*@
+                                <li><a href="/Sys/Country"><i class="fa fa-circle-o"></i> Country</a></li>
+                                <li><a href="/Sys/Province"><i class="fa fa-circle-o"></i> Province</a></li>
+                                <li><a href="/Sys/City"><i class="fa fa-circle-o"></i> City</a></li>
+                                <li><a href="/Sys/Segment"><i class="fa fa-circle-o"></i> Segment</a></li>
+                                <li><a href="/Sys/Sector"><i class="fa fa-circle-o"></i> Sector</a></li>
+                                <li><a href="/Sys/CPRole"><i class="fa fa-circle-o"></i> Customer Person Role</a></li>
+                                <li><a href="/Sys/CustomerGrp"><i class="fa fa-circle-o"></i> Customer Group</a></li>
+                                <li><a href="/Sys/DemoLocation"><i class="fa fa-circle-o"></i> Branch/Dealer Information</a></li>
+                                @*<li><a href="/Sys/DemoReqType"><i class="fa fa-circle-o"></i> Demo Request Type</a></li>*@
+                                <li><a href="/Sys/FxRate"><i class="fa fa-circle-o"></i> Fx Rate</a></li>
+                                <li><a href="/Sys/Mil"><i class="fa fa-circle-o"></i> Mileage</a></li>
+                                @*<li><a href="/Sys/ParkoffType"><i class="fa fa-circle-o"></i> Park off Type</a></li>*@
+                                <li><a href="/Sys/ReliabilityRate"><i class="fa fa-circle-o"></i> Reliability Rate</a></li>
+                                <li><a href="/Sys/TNofEmployes"><i class="fa fa-circle-o"></i> Total Number of Employes</a></li>
+                                <li><a href="/Sys/TNofVehicles"><i class="fa fa-circle-o"></i> Total Number of Vehicles</a></li>
+                                @*<li><a href="/Sys/TradebackTerrain"><i class="fa fa-circle-o"></i> Tradeback Terrain</a></li>*@
+                                @*<li><a href="/Sys/VehicleKitType"><i class="fa fa-circle-o"></i> Vehicle Kit Type</a></li>*@
+                                @* <li><a href="/Sys/VehicleModel"><i class="fa fa-circle-o"></i> Vehicle Model</a></li>*@
+
+                                @*<li><a href="/Sys/WarrantyName"><i class="fa fa-circle-o"></i> Warranty Name</a></li>*@
+                                @*<li><a href="/Sys/WarrantyType"><i class="fa fa-circle-o"></i> Warranty Type</a></li>*@
+                                <li><a href="/Sys/Branch"><i class="fa fa-circle-o"></i> Branch</a></li>
+                                <li><a href="/Sys/Supplier"><i class="fa fa-circle-o"></i> Supplier</a></li>
+                                @*<li><a href="/Sys/AccessoryFeatureName"><i class="fa fa-circle-o"></i> Accessory Feature Name</a></li>*@
+                                <li><a href="/Sys/FixedCost"><i class="fa fa-circle-o"></i> Fixed Cost</a></li>
+                                <li><a href="/Sys/PriceListHos"><i class="fa fa-circle-o"></i> Price List Hos</a></li>
+                                <li><a href="/Sys/YearlyQuota"><i class="fa fa-circle-o"></i> Yearly Quota</a></li>
+                                <li><a href="/Sys/MonthlyQuota"><i class="fa fa-circle-o"></i> Monthly Quota</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Customer</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Customer/Customer"><i class="fa fa-circle-o"></i> Customer</a></li>
+                                <li><a href="/Customer/Activity"><i class="fa fa-circle-o"></i> Activity</a></li>
+                                <li><a href="/Customer/ActivityMngr"><i class="fa fa-circle-o"></i> Activity for Manager</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Accessory/Body</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Accessory/Accessory"><i class="fa fa-circle-o"></i> Accessory</a></li>
+                                <li><a href="/Accessory/Body"><i class="fa fa-circle-o"></i> Body</a></li>
+                                <li><a href="/Accessory/Bodyextra"><i class="fa fa-circle-o"></i> Body (extras)</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Training</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Training/Training"><i class="fa fa-circle-o"></i> Training</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Warranty</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Warranty/WarrantyIdent"><i class="fa fa-circle-o"></i> Warranty</a></li>
+                                <li><a href="/Warranty/FactoryWarrantyIdent"><i class="fa fa-circle-o"></i> Factory Warranty</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Deal</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Deal/Add"><i class="fa fa-circle-o"></i> Deal List</a></li>
+                                <li><a href="/Deal/BodyProp"><i class="fa fa-circle-o"></i> Body Proposal</a></li>
+                                <li><a href="/Deal/InvReq"><i class="fa fa-circle-o"></i> Invoice Request</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Buyback&Tradeback</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/BuybackTradeback/BuybackTradebackMatrix"><i class="fa fa-circle-o"></i> Buyback&Tradeback Matrix</a></li>
+                                @*<li><a href="/BuybackTradeback/BuybackMonthlyQuota"><i class="fa fa-circle-o"></i> Buyback Monthly Quota</a></li>
+                                    <li><a href="/BuybackTradeback/BuybackYearlyQuota"><i class="fa fa-circle-o"></i> Buyback Yearly Quota</a></li>*@
+                                <li><a href="/BuybackTradeback/BuybackReturn"><i class="fa fa-circle-o"></i> Buyback Vehicle Return</a></li>
+                                <li><a href="/BuybackTradeback/TradebackReturn"><i class="fa fa-circle-o"></i> Tradeback Vehicle Return</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Stock</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Stock/StockBackOffice"><i class="fa fa-circle-o"></i> Stock Back Office</a></li>
+                                <li><a href="/Stock/VehicleOrderTracking"><i class="fa fa-circle-o"></i> Vehicle Order Tracking</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Demo/Courtesy</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/DemoCourtesy/DemoCourtesyReturn"><i class="fa fa-circle-o"></i> Demo Courtesy Return</a></li>
+                                <li><a href="/DemoCourtesy/DemoCourtesyAllocation"><i class="fa fa-circle-o"></i> Demo Courtesy Allocation</a></li>
+                                <li><a href="/DemoCourtesy/DemoCourtesyNewReq"><i class="fa fa-circle-o"></i> Demo Courtesy New Request</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Trucks to Go</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Truckstogo/Truckstogo"><i class="fa fa-circle-o"></i> Trucks to Go</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Repair&Maintenance</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/RepairMaintenance/RepairMaintenanceMatrix"><i class="fa fa-circle-o"></i> Repair&Maintenance Matrix</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Park Off</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Parkoff/ParkOff"><i class="fa fa-circle-o"></i> Park Off</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Campaign</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Campaign/Campaign"><i class="fa fa-circle-o"></i> Campaign</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Commission</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Commission/CommissionName"><i class="fa fa-circle-o"></i> Commission name</a></li>
+                                <li><a href="/Commission/Commission"><i class="fa fa-circle-o"></i> Commission</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Target</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Target/Target"><i class="fa fa-circle-o"></i> Target</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>InvoiceProforma</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/InvoiceProforma/InvoiceProformaBo"><i class="fa fa-circle-o"></i> InvoiceProformaBo</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Movement&Delivery</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/MovementDelivery/MovementDeliveryBo"><i class="fa fa-circle-o"></i> MovementDeliveryBo</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+
+                }
+                else if (item == "fd")
+                {
+                    <!--<p style="color:red;">fd</p>-->
+                    <ul class="sidebar-menu">
+                        <li class="header">MAIN NAVIGATION</li>
+                        <!-- <li class="active treeview">  -->
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-dashboard"></i> <span>System Definitions</span> <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li class="active"><a href="/Sys/AnnualRevenue"><i class="fa fa-circle-o"></i> Annual Revenue</a></li>
+                                <li><a href="/Sys/Brand"><i class="fa fa-circle-o"></i> Brand</a></li>
+                                @*<li><a href="/Sys/Terrain"><i class="fa fa-circle-o"></i> Terrain</a></li>*@
+                                <li><a href="/Sys/Country"><i class="fa fa-circle-o"></i> Country</a></li>
+                                <li><a href="/Sys/Province"><i class="fa fa-circle-o"></i> Province</a></li>
+                                <li><a href="/Sys/City"><i class="fa fa-circle-o"></i> City</a></li>
+                                <li><a href="/Sys/Segment"><i class="fa fa-circle-o"></i> Segment</a></li>
+                                <li><a href="/Sys/Sector"><i class="fa fa-circle-o"></i> Sector</a></li>
+                                <li><a href="/Sys/CPRole"><i class="fa fa-circle-o"></i> Customer Person Role</a></li>
+                                <li><a href="/Sys/CustomerGrp"><i class="fa fa-circle-o"></i> Customer Group</a></li>
+                                <li><a href="/Sys/DemoLocation"><i class="fa fa-circle-o"></i> Branch/Dealer Information</a></li>
+                                @*<li><a href="/Sys/DemoReqType"><i class="fa fa-circle-o"></i> Demo Request Type</a></li>*@
+                                <li><a href="/Sys/FxRate"><i class="fa fa-circle-o"></i> Fx Rate</a></li>
+                                <li><a href="/Sys/Mil"><i class="fa fa-circle-o"></i> Mileage</a></li>
+                                @*<li><a href="/Sys/ParkoffType"><i class="fa fa-circle-o"></i> Park off Type</a></li>*@
+                                <li><a href="/Sys/ReliabilityRate"><i class="fa fa-circle-o"></i> Reliability Rate</a></li>
+                                <li><a href="/Sys/TNofEmployes"><i class="fa fa-circle-o"></i> Total Number of Employes</a></li>
+                                <li><a href="/Sys/TNofVehicles"><i class="fa fa-circle-o"></i> Total Number of Vehicles</a></li>
+                                @*<li><a href="/Sys/TradebackTerrain"><i class="fa fa-circle-o"></i> Tradeback Terrain</a></li>*@
+                                @*<li><a href="/Sys/VehicleKitType"><i class="fa fa-circle-o"></i> Vehicle Kit Type</a></li>*@
+                                @* <li><a href="/Sys/VehicleModel"><i class="fa fa-circle-o"></i> Vehicle Model</a></li>*@
+
+                                @*<li><a href="/Sys/WarrantyName"><i class="fa fa-circle-o"></i> Warranty Name</a></li>*@
+                                @*<li><a href="/Sys/WarrantyType"><i class="fa fa-circle-o"></i> Warranty Type</a></li>*@
+                                <li><a href="/Sys/Branch"><i class="fa fa-circle-o"></i> Branch</a></li>
+                                <li><a href="/Sys/Supplier"><i class="fa fa-circle-o"></i> Supplier</a></li>
+                                @*<li><a href="/Sys/AccessoryFeatureName"><i class="fa fa-circle-o"></i> Accessory Feature Name</a></li>*@
+                                <li><a href="/Sys/FixedCost"><i class="fa fa-circle-o"></i> Fixed Cost</a></li>
+                                <li><a href="/Sys/PriceListHos"><i class="fa fa-circle-o"></i> Price List Hos</a></li>
+                                <li><a href="/Sys/YearlyQuota"><i class="fa fa-circle-o"></i> Yearly Quota</a></li>
+                                <li><a href="/Sys/MonthlyQuota"><i class="fa fa-circle-o"></i> Monthly Quota</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Customer</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Customer/Customer"><i class="fa fa-circle-o"></i> Customer</a></li>
+                                <li><a href="/Customer/Activity"><i class="fa fa-circle-o"></i> Activity</a></li>
+                                <li><a href="/Customer/ActivityMngr"><i class="fa fa-circle-o"></i> Activity for Manager</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Accessory/Body</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Accessory/Accessory"><i class="fa fa-circle-o"></i> Accessory</a></li>
+                                <li><a href="/Accessory/Body"><i class="fa fa-circle-o"></i> Body</a></li>
+                                <li><a href="/Accessory/Bodyextra"><i class="fa fa-circle-o"></i> Body (extras)</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Training</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Training/Training"><i class="fa fa-circle-o"></i> Training</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Vehicle</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Vehicle/VehicleKitModel"><i class="fa fa-circle-o"></i> Vehicle Kit-Model</a></li>
+                                <li><a href="/Vehicle/VehicleKitModelModeltype"><i class="fa fa-circle-o"></i> Vehicle Kit-Model-Model type</a></li>
+                                <li><a href="/Vehicle/VehicleKitModelModeltypeTonnage"><i class="fa fa-circle-o"></i> Vehicle Kit-Md-Md.type-Tng</a></li>
+                                <li><a href="/Vehicle/Vehicle"><i class="fa fa-circle-o"></i> Vehicle</a></li>
+                                <li><a href="/Vehicle/SpecialVehicle"><i class="fa fa-circle-o"></i> Special Vehicle Order</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Warranty</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Warranty/WarrantyIdent"><i class="fa fa-circle-o"></i> Warranty</a></li>
+                                <li><a href="/Warranty/FactoryWarrantyIdent"><i class="fa fa-circle-o"></i> Factory Warranty</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Deal</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Deal/Add"><i class="fa fa-circle-o"></i> Deal List</a></li>
+                                <li><a href="/Deal/BodyProp"><i class="fa fa-circle-o"></i> Body Proposal</a></li>
+                                <li><a href="/Deal/InvReq"><i class="fa fa-circle-o"></i> Invoice Request</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Order in take</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/OrderInTake/Add"><i class="fa fa-circle-o"></i> Order in take</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Buyback&Tradeback</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/BuybackTradeback/BuybackTradebackMatrix"><i class="fa fa-circle-o"></i> Buyback&Tradeback Matrix</a></li>
+                                @*<li><a href="/BuybackTradeback/BuybackMonthlyQuota"><i class="fa fa-circle-o"></i> Buyback Monthly Quota</a></li>
+                                    <li><a href="/BuybackTradeback/BuybackYearlyQuota"><i class="fa fa-circle-o"></i> Buyback Yearly Quota</a></li>*@
+                                <li><a href="/BuybackTradeback/BuybackReturn"><i class="fa fa-circle-o"></i> Buyback Vehicle Return</a></li>
+                                <li><a href="/BuybackTradeback/TradebackReturn"><i class="fa fa-circle-o"></i> Tradeback Vehicle Return</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Stock</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Stock/StockHos"><i class="fa fa-circle-o"></i> Stock HOS</a></li>
+                                <li><a href="/Stock/StockBackOffice"><i class="fa fa-circle-o"></i> Stock Back Office</a></li>
+                                <li><a href="/Stock/StockSalesman"><i class="fa fa-circle-o"></i> Stock Salesman</a></li>
+                                <li><a href="/Stock/StockTopUsed"><i class="fa fa-circle-o"></i> Stock TopUsed</a></li>
+                                <li><a href="/Stock/VehicleOrderTracking"><i class="fa fa-circle-o"></i> Vehicle Order Tracking</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Demo/Courtesy</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/DemoCourtesy/DemoCourtesyReturn"><i class="fa fa-circle-o"></i> Demo Courtesy Return</a></li>
+                                <li><a href="/DemoCourtesy/DemoCourtesyAllocation"><i class="fa fa-circle-o"></i> Demo Courtesy Allocation</a></li>
+                                <li><a href="/DemoCourtesy/DemoCourtesyNewReq"><i class="fa fa-circle-o"></i> Demo Courtesy New Request</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Trucks to Go</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Truckstogo/Truckstogo"><i class="fa fa-circle-o"></i> Trucks to Go</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Repair&Maintenance</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/RepairMaintenance/RepairMaintenanceMatrix"><i class="fa fa-circle-o"></i> Repair&Maintenance Matrix</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Park Off</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Parkoff/ParkOff"><i class="fa fa-circle-o"></i> Park Off</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Campaign</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Campaign/Campaign"><i class="fa fa-circle-o"></i> Campaign</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Commission</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Commission/CommissionName"><i class="fa fa-circle-o"></i> Commission name</a></li>
+                                <li><a href="/Commission/Commission"><i class="fa fa-circle-o"></i> Commission</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Target</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Target/Target"><i class="fa fa-circle-o"></i> Target</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>InvoiceProforma</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/InvoiceProforma/InvoiceProformaBo"><i class="fa fa-circle-o"></i> InvoiceProformaBo</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Movement&Delivery</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/MovementDelivery/MovementDeliveryBo"><i class="fa fa-circle-o"></i> MovementDeliveryBo</a></li>
+                                <li><a href="/MovementDelivery/MovementDeliverySm"><i class="fa fa-circle-o"></i> MovementDeliverySm</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+
+                }
+                else if (item == "md")
+                {
+                    <!--<p style="color:red;">md</p>-->
+                    <ul class="sidebar-menu">
+                        <li class="header">MAIN NAVIGATION</li>
+                        <!-- <li class="active treeview">  -->
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-dashboard"></i> <span>System Definitions</span> <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li class="active"><a href="/Sys/AnnualRevenue"><i class="fa fa-circle-o"></i> Annual Revenue</a></li>
+                                <li><a href="/Sys/Brand"><i class="fa fa-circle-o"></i> Brand</a></li>
+                                @*<li><a href="/Sys/Terrain"><i class="fa fa-circle-o"></i> Terrain</a></li>*@
+                                <li><a href="/Sys/Country"><i class="fa fa-circle-o"></i> Country</a></li>
+                                <li><a href="/Sys/Province"><i class="fa fa-circle-o"></i> Province</a></li>
+                                <li><a href="/Sys/City"><i class="fa fa-circle-o"></i> City</a></li>
+                                <li><a href="/Sys/Segment"><i class="fa fa-circle-o"></i> Segment</a></li>
+                                <li><a href="/Sys/Sector"><i class="fa fa-circle-o"></i> Sector</a></li>
+                                <li><a href="/Sys/CPRole"><i class="fa fa-circle-o"></i> Customer Person Role</a></li>
+                                <li><a href="/Sys/CustomerGrp"><i class="fa fa-circle-o"></i> Customer Group</a></li>
+                                <li><a href="/Sys/DemoLocation"><i class="fa fa-circle-o"></i> Branch/Dealer Information</a></li>
+                                @*<li><a href="/Sys/DemoReqType"><i class="fa fa-circle-o"></i> Demo Request Type</a></li>*@
+                                <li><a href="/Sys/FxRate"><i class="fa fa-circle-o"></i> Fx Rate</a></li>
+                                <li><a href="/Sys/Mil"><i class="fa fa-circle-o"></i> Mileage</a></li>
+                                @*<li><a href="/Sys/ParkoffType"><i class="fa fa-circle-o"></i> Park off Type</a></li>*@
+                                <li><a href="/Sys/ReliabilityRate"><i class="fa fa-circle-o"></i> Reliability Rate</a></li>
+                                <li><a href="/Sys/TNofEmployes"><i class="fa fa-circle-o"></i> Total Number of Employes</a></li>
+                                <li><a href="/Sys/TNofVehicles"><i class="fa fa-circle-o"></i> Total Number of Vehicles</a></li>
+                                @*<li><a href="/Sys/TradebackTerrain"><i class="fa fa-circle-o"></i> Tradeback Terrain</a></li>*@
+                                @*<li><a href="/Sys/VehicleKitType"><i class="fa fa-circle-o"></i> Vehicle Kit Type</a></li>*@
+                                @* <li><a href="/Sys/VehicleModel"><i class="fa fa-circle-o"></i> Vehicle Model</a></li>*@
+
+                                @*<li><a href="/Sys/WarrantyName"><i class="fa fa-circle-o"></i> Warranty Name</a></li>*@
+                                @*<li><a href="/Sys/WarrantyType"><i class="fa fa-circle-o"></i> Warranty Type</a></li>*@
+                                <li><a href="/Sys/Branch"><i class="fa fa-circle-o"></i> Branch</a></li>
+                                <li><a href="/Sys/Supplier"><i class="fa fa-circle-o"></i> Supplier</a></li>
+                                @*<li><a href="/Sys/AccessoryFeatureName"><i class="fa fa-circle-o"></i> Accessory Feature Name</a></li>*@
+                                <li><a href="/Sys/FixedCost"><i class="fa fa-circle-o"></i> Fixed Cost</a></li>
+                                <li><a href="/Sys/PriceListHos"><i class="fa fa-circle-o"></i> Price List Hos</a></li>
+                                <li><a href="/Sys/YearlyQuota"><i class="fa fa-circle-o"></i> Yearly Quota</a></li>
+                                <li><a href="/Sys/MonthlyQuota"><i class="fa fa-circle-o"></i> Monthly Quota</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Customer</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Customer/Customer"><i class="fa fa-circle-o"></i> Customer</a></li>
+                                <li><a href="/Customer/Activity"><i class="fa fa-circle-o"></i> Activity</a></li>
+                                <li><a href="/Customer/ActivityMngr"><i class="fa fa-circle-o"></i> Activity for Manager</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Accessory/Body</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Accessory/Accessory"><i class="fa fa-circle-o"></i> Accessory</a></li>
+                                <li><a href="/Accessory/Body"><i class="fa fa-circle-o"></i> Body</a></li>
+                                <li><a href="/Accessory/Bodyextra"><i class="fa fa-circle-o"></i> Body (extras)</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Training</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Training/Training"><i class="fa fa-circle-o"></i> Training</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Vehicle</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Vehicle/VehicleKitModel"><i class="fa fa-circle-o"></i> Vehicle Kit-Model</a></li>
+                                <li><a href="/Vehicle/VehicleKitModelModeltype"><i class="fa fa-circle-o"></i> Vehicle Kit-Model-Model type</a></li>
+                                <li><a href="/Vehicle/VehicleKitModelModeltypeTonnage"><i class="fa fa-circle-o"></i> Vehicle Kit-Md-Md.type-Tng</a></li>
+                                <li><a href="/Vehicle/Vehicle"><i class="fa fa-circle-o"></i> Vehicle</a></li>
+                                <li><a href="/Vehicle/SpecialVehicle"><i class="fa fa-circle-o"></i> Special Vehicle Order</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Warranty</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Warranty/WarrantyIdent"><i class="fa fa-circle-o"></i> Warranty</a></li>
+                                <li><a href="/Warranty/FactoryWarrantyIdent"><i class="fa fa-circle-o"></i> Factory Warranty</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Deal</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Deal/Add"><i class="fa fa-circle-o"></i> Deal List</a></li>
+                                <li><a href="/Deal/BodyProp"><i class="fa fa-circle-o"></i> Body Proposal</a></li>
+                                <li><a href="/Deal/InvReq"><i class="fa fa-circle-o"></i> Invoice Request</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Order in take</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/OrderInTake/Add"><i class="fa fa-circle-o"></i> Order in take</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Buyback&Tradeback</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/BuybackTradeback/BuybackTradebackMatrix"><i class="fa fa-circle-o"></i> Buyback&Tradeback Matrix</a></li>
+                                @*<li><a href="/BuybackTradeback/BuybackMonthlyQuota"><i class="fa fa-circle-o"></i> Buyback Monthly Quota</a></li>
+                                    <li><a href="/BuybackTradeback/BuybackYearlyQuota"><i class="fa fa-circle-o"></i> Buyback Yearly Quota</a></li>*@
+                                <li><a href="/BuybackTradeback/BuybackReturn"><i class="fa fa-circle-o"></i> Buyback Vehicle Return</a></li>
+                                <li><a href="/BuybackTradeback/TradebackReturn"><i class="fa fa-circle-o"></i> Tradeback Vehicle Return</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Stock</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Stock/StockHos"><i class="fa fa-circle-o"></i> Stock HOS</a></li>
+                                <li><a href="/Stock/StockBackOffice"><i class="fa fa-circle-o"></i> Stock Back Office</a></li>
+                                <li><a href="/Stock/StockSalesman"><i class="fa fa-circle-o"></i> Stock Salesman</a></li>
+                                <li><a href="/Stock/StockTopUsed"><i class="fa fa-circle-o"></i> Stock TopUsed</a></li>
+                                <li><a href="/Stock/VehicleOrderTracking"><i class="fa fa-circle-o"></i> Vehicle Order Tracking</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Demo/Courtesy</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/DemoCourtesy/DemoCourtesyReturn"><i class="fa fa-circle-o"></i> Demo Courtesy Return</a></li>
+                                <li><a href="/DemoCourtesy/DemoCourtesyAllocation"><i class="fa fa-circle-o"></i> Demo Courtesy Allocation</a></li>
+                                <li><a href="/DemoCourtesy/DemoCourtesyNewReq"><i class="fa fa-circle-o"></i> Demo Courtesy New Request</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Trucks to Go</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Truckstogo/Truckstogo"><i class="fa fa-circle-o"></i> Trucks to Go</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Repair&Maintenance</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/RepairMaintenance/RepairMaintenanceMatrix"><i class="fa fa-circle-o"></i> Repair&Maintenance Matrix</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Park Off</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Parkoff/ParkOff"><i class="fa fa-circle-o"></i> Park Off</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Campaign</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Campaign/Campaign"><i class="fa fa-circle-o"></i> Campaign</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Commission</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Commission/CommissionName"><i class="fa fa-circle-o"></i> Commission name</a></li>
+                                <li><a href="/Commission/Commission"><i class="fa fa-circle-o"></i> Commission</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Target</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Target/Target"><i class="fa fa-circle-o"></i> Target</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>InvoiceProforma</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/InvoiceProforma/InvoiceProformaBo"><i class="fa fa-circle-o"></i> InvoiceProformaBo</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Movement&Delivery</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/MovementDelivery/MovementDeliveryBo"><i class="fa fa-circle-o"></i> MovementDeliveryBo</a></li>
+                                <li><a href="/MovementDelivery/MovementDeliverySm"><i class="fa fa-circle-o"></i> MovementDeliverySm</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+
+                }
+                else if (item == "master users")
+                {
+                    <!--<p style="color:red;">master users</p>-->
+                    <ul class="sidebar-menu">
+                        <li class="header">MAIN NAVIGATION</li>
+                        <!-- <li class="active treeview">  -->
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-dashboard"></i> <span>System Definitions</span> <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li class="active"><a href="/Sys/AnnualRevenue"><i class="fa fa-circle-o"></i> Annual Revenue</a></li>
+                                <li><a href="/Sys/Brand"><i class="fa fa-circle-o"></i> Brand</a></li>
+                                @*<li><a href="/Sys/Terrain"><i class="fa fa-circle-o"></i> Terrain</a></li>*@
+                                <li><a href="/Sys/Country"><i class="fa fa-circle-o"></i> Country</a></li>
+                                <li><a href="/Sys/Province"><i class="fa fa-circle-o"></i> Province</a></li>
+                                <li><a href="/Sys/City"><i class="fa fa-circle-o"></i> City</a></li>
+                                <li><a href="/Sys/Segment"><i class="fa fa-circle-o"></i> Segment</a></li>
+                                <li><a href="/Sys/Sector"><i class="fa fa-circle-o"></i> Sector</a></li>
+                                <li><a href="/Sys/CPRole"><i class="fa fa-circle-o"></i> Customer Person Role</a></li>
+                                <li><a href="/Sys/CustomerGrp"><i class="fa fa-circle-o"></i> Customer Group</a></li>
+                                <li><a href="/Sys/DemoLocation"><i class="fa fa-circle-o"></i> Branch/Dealer Information</a></li>
+                                @*<li><a href="/Sys/DemoReqType"><i class="fa fa-circle-o"></i> Demo Request Type</a></li>*@
+                                <li><a href="/Sys/FxRate"><i class="fa fa-circle-o"></i> Fx Rate</a></li>
+                                <li><a href="/Sys/Mil"><i class="fa fa-circle-o"></i> Mileage</a></li>
+                                @*<li><a href="/Sys/ParkoffType"><i class="fa fa-circle-o"></i> Park off Type</a></li>*@
+                                <li><a href="/Sys/ReliabilityRate"><i class="fa fa-circle-o"></i> Reliability Rate</a></li>
+                                <li><a href="/Sys/TNofEmployes"><i class="fa fa-circle-o"></i> Total Number of Employes</a></li>
+                                <li><a href="/Sys/TNofVehicles"><i class="fa fa-circle-o"></i> Total Number of Vehicles</a></li>
+                                @*<li><a href="/Sys/TradebackTerrain"><i class="fa fa-circle-o"></i> Tradeback Terrain</a></li>*@
+                                @*<li><a href="/Sys/VehicleKitType"><i class="fa fa-circle-o"></i> Vehicle Kit Type</a></li>*@
+                                @* <li><a href="/Sys/VehicleModel"><i class="fa fa-circle-o"></i> Vehicle Model</a></li>*@
+
+                                @*<li><a href="/Sys/WarrantyName"><i class="fa fa-circle-o"></i> Warranty Name</a></li>*@
+                                @*<li><a href="/Sys/WarrantyType"><i class="fa fa-circle-o"></i> Warranty Type</a></li>*@
+                                <li><a href="/Sys/Branch"><i class="fa fa-circle-o"></i> Branch</a></li>
+                                <li><a href="/Sys/Supplier"><i class="fa fa-circle-o"></i> Supplier</a></li>
+                                @*<li><a href="/Sys/AccessoryFeatureName"><i class="fa fa-circle-o"></i> Accessory Feature Name</a></li>*@
+                                <li><a href="/Sys/FixedCost"><i class="fa fa-circle-o"></i> Fixed Cost</a></li>
+                                <li><a href="/Sys/PriceListHos"><i class="fa fa-circle-o"></i> Price List Hos</a></li>
+                                <li><a href="/Sys/YearlyQuota"><i class="fa fa-circle-o"></i> Yearly Quota</a></li>
+                                <li><a href="/Sys/MonthlyQuota"><i class="fa fa-circle-o"></i> Monthly Quota</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Customer</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Customer/Customer"><i class="fa fa-circle-o"></i> Customer</a></li>
+                                <li><a href="/Customer/Activity"><i class="fa fa-circle-o"></i> Activity</a></li>
+                                <li><a href="/Customer/ActivityMngr"><i class="fa fa-circle-o"></i> Activity for Manager</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Accessory/Body</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Accessory/Accessory"><i class="fa fa-circle-o"></i> Accessory</a></li>
+                                <li><a href="/Accessory/Body"><i class="fa fa-circle-o"></i> Body</a></li>
+                                <li><a href="/Accessory/Bodyextra"><i class="fa fa-circle-o"></i> Body (extras)</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Training</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Training/Training"><i class="fa fa-circle-o"></i> Training</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Warranty</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Warranty/WarrantyIdent"><i class="fa fa-circle-o"></i> Warranty</a></li>
+                                <li><a href="/Warranty/FactoryWarrantyIdent"><i class="fa fa-circle-o"></i> Factory Warranty</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Deal</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Deal/Add"><i class="fa fa-circle-o"></i> Deal List</a></li>
+                                <li><a href="/Deal/BodyProp"><i class="fa fa-circle-o"></i> Body Proposal</a></li>
+                                <li><a href="/Deal/InvReq"><i class="fa fa-circle-o"></i> Invoice Request</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Buyback&Tradeback</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/BuybackTradeback/BuybackTradebackMatrix"><i class="fa fa-circle-o"></i> Buyback&Tradeback Matrix</a></li>
+                                @*<li><a href="/BuybackTradeback/BuybackMonthlyQuota"><i class="fa fa-circle-o"></i> Buyback Monthly Quota</a></li>
+                                    <li><a href="/BuybackTradeback/BuybackYearlyQuota"><i class="fa fa-circle-o"></i> Buyback Yearly Quota</a></li>*@
+                                <li><a href="/BuybackTradeback/BuybackReturn"><i class="fa fa-circle-o"></i> Buyback Vehicle Return</a></li>
+                                <li><a href="/BuybackTradeback/TradebackReturn"><i class="fa fa-circle-o"></i> Tradeback Vehicle Return</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Stock</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Stock/StockBackOffice"><i class="fa fa-circle-o"></i> Stock Back Office</a></li>
+                                <li><a href="/Stock/VehicleOrderTracking"><i class="fa fa-circle-o"></i> Vehicle Order Tracking</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Demo/Courtesy</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/DemoCourtesy/DemoCourtesyReturn"><i class="fa fa-circle-o"></i> Demo Courtesy Return</a></li>
+                                <li><a href="/DemoCourtesy/DemoCourtesyAllocation"><i class="fa fa-circle-o"></i> Demo Courtesy Allocation</a></li>
+                                <li><a href="/DemoCourtesy/DemoCourtesyNewReq"><i class="fa fa-circle-o"></i> Demo Courtesy New Request</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Trucks to Go</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Truckstogo/Truckstogo"><i class="fa fa-circle-o"></i> Trucks to Go</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Repair&Maintenance</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/RepairMaintenance/RepairMaintenanceMatrix"><i class="fa fa-circle-o"></i> Repair&Maintenance Matrix</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Park Off</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Parkoff/ParkOff"><i class="fa fa-circle-o"></i> Park Off</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Campaign</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Campaign/Campaign"><i class="fa fa-circle-o"></i> Campaign</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Commission</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Commission/CommissionName"><i class="fa fa-circle-o"></i> Commission name</a></li>
+                                <li><a href="/Commission/Commission"><i class="fa fa-circle-o"></i> Commission</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Target</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Target/Target"><i class="fa fa-circle-o"></i> Target</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>InvoiceProforma</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/InvoiceProforma/InvoiceProformaBo"><i class="fa fa-circle-o"></i> InvoiceProformaBo</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Movement&Delivery</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/MovementDelivery/MovementDeliveryBo"><i class="fa fa-circle-o"></i> MovementDeliveryBo</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+
+                }
+                else if (item == "hos")
+                {
+                    <!--<p style="color:red;">hos</p>-->
+                    <ul class="sidebar-menu">
+                        <li class="header">MAIN NAVIGATION</li>
+                        <!-- <li class="active treeview">  -->
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-dashboard"></i> <span>System Definitions</span> <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Sys/FxRate"><i class="fa fa-circle-o"></i> Fx Rate</a></li>
+                                <li><a href="/Sys/Branch"><i class="fa fa-circle-o"></i> Branch</a></li>
+                                @*<li><a href="/Sys/AccessoryFeatureName"><i class="fa fa-circle-o"></i> Accessory Feature Name</a></li>*@
+                                <li><a href="/Sys/FixedCost"><i class="fa fa-circle-o"></i> Fixed Cost</a></li>
+                                <li><a href="/Sys/PriceListHos"><i class="fa fa-circle-o"></i> Price List Hos</a></li>
+                                <li><a href="/Sys/YearlyQuota"><i class="fa fa-circle-o"></i> Yearly Quota</a></li>
+                                <li><a href="/Sys/MonthlyQuota"><i class="fa fa-circle-o"></i> Monthly Quota</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Customer</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Customer/Customer"><i class="fa fa-circle-o"></i> Customer</a></li>
+                                <li><a href="/Customer/Activity"><i class="fa fa-circle-o"></i> Activity</a></li>
+                                <li><a href="/Customer/ActivityMngr"><i class="fa fa-circle-o"></i> Activity for Manager</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Deal</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Deal/Add"><i class="fa fa-circle-o"></i> Deal List</a></li>
+                                <li><a href="/Deal/BodyProp"><i class="fa fa-circle-o"></i> Body Proposal</a></li>
+                                <li><a href="/Deal/InvReq"><i class="fa fa-circle-o"></i> Invoice Request</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Buyback&Tradeback</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/BuybackTradeback/BuybackTradebackMatrix"><i class="fa fa-circle-o"></i> Buyback&Tradeback Matrix</a></li>
+                                @*<li><a href="/BuybackTradeback/BuybackMonthlyQuota"><i class="fa fa-circle-o"></i> Buyback Monthly Quota</a></li>
+                                    <li><a href="/BuybackTradeback/BuybackYearlyQuota"><i class="fa fa-circle-o"></i> Buyback Yearly Quota</a></li>*@
+                                <li><a href="/BuybackTradeback/BuybackReturn"><i class="fa fa-circle-o"></i> Buyback Vehicle Return</a></li>
+                                <li><a href="/BuybackTradeback/TradebackReturn"><i class="fa fa-circle-o"></i> Tradeback Vehicle Return</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Stock</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Stock/StockHos"><i class="fa fa-circle-o"></i> Stock HOS</a></li>
+                                <li><a href="/Stock/VehicleOrderTracking"><i class="fa fa-circle-o"></i> Vehicle Order Tracking</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Demo/Courtesy</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/DemoCourtesy/DemoCourtesyReturn"><i class="fa fa-circle-o"></i> Demo Courtesy Return</a></li>
+                                <li><a href="/DemoCourtesy/DemoCourtesyAllocation"><i class="fa fa-circle-o"></i> Demo Courtesy Allocation</a></li>
+                                <li><a href="/DemoCourtesy/DemoCourtesyNewReq"><i class="fa fa-circle-o"></i> Demo Courtesy New Request</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Trucks to Go</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Truckstogo/Truckstogo"><i class="fa fa-circle-o"></i> Trucks to Go</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Park Off</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Parkoff/ParkOff"><i class="fa fa-circle-o"></i> Park Off</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Campaign</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Campaign/Campaign"><i class="fa fa-circle-o"></i> Campaign</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Commission</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Commission/CommissionName"><i class="fa fa-circle-o"></i> Commission name</a></li>
+                                <li><a href="/Commission/Commission"><i class="fa fa-circle-o"></i> Commission</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Target</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Target/Target"><i class="fa fa-circle-o"></i> Target</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Movement&Delivery</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/MovementDelivery/MovementDeliveryBo"><i class="fa fa-circle-o"></i> MovementDeliveryBo</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                }
+
+
+
             }
         }
     }
 }
 
-<ul class="sidebar-menu">
-    <li class="header">MAIN NAVIGATION</li>
-    <!-- <li class="active treeview">  -->
-    <li class="treeview">
-        <a href="#">
-            <i class="fa fa-dashboard"></i> <span>System Definitions</span> <i class="fa fa-angle-left pull-right"></i>
-        </a>
-        <ul class="treeview-menu">
-            <li class="active"><a href="/Sys/AnnualRevenue"><i class="fa fa-circle-o"></i> Annual Revenue</a></li>
-            <li><a href="/Sys/Brand"><i class="fa fa-circle-o"></i> Brand</a></li>
-            @*<li><a href="/Sys/Terrain"><i class="fa fa-circle-o"></i> Terrain</a></li>*@
-            <li><a href="/Sys/Country"><i class="fa fa-circle-o"></i> Country</a></li>
-            <li><a href="/Sys/Province"><i class="fa fa-circle-o"></i> Province</a></li>
-            <li><a href="/Sys/City"><i class="fa fa-circle-o"></i> City</a></li>
-            <li><a href="/Sys/Segment"><i class="fa fa-circle-o"></i> Segment</a></li>
-            <li><a href="/Sys/Sector"><i class="fa fa-circle-o"></i> Sector</a></li>
-            <li><a href="/Sys/CPRole"><i class="fa fa-circle-o"></i> Customer Person Role</a></li>
-            <li><a href="/Sys/CustomerGrp"><i class="fa fa-circle-o"></i> Customer Group</a></li>
-            <li><a href="/Sys/DemoLocation"><i class="fa fa-circle-o"></i> Branch/Dealer Information</a></li>
-            @*<li><a href="/Sys/DemoReqType"><i class="fa fa-circle-o"></i> Demo Request Type</a></li>*@
-            <li><a href="/Sys/FxRate"><i class="fa fa-circle-o"></i> Fx Rate</a></li>
-            <li><a href="/Sys/Mil"><i class="fa fa-circle-o"></i> Mileage</a></li>
-            @*<li><a href="/Sys/ParkoffType"><i class="fa fa-circle-o"></i> Park off Type</a></li>*@
-            <li><a href="/Sys/ReliabilityRate"><i class="fa fa-circle-o"></i> Reliability Rate</a></li>
-            <li><a href="/Sys/TNofEmployes"><i class="fa fa-circle-o"></i> Total Number of Employes</a></li>
-            <li><a href="/Sys/TNofVehicles"><i class="fa fa-circle-o"></i> Total Number of Vehicles</a></li>
-            @*<li><a href="/Sys/TradebackTerrain"><i class="fa fa-circle-o"></i> Tradeback Terrain</a></li>*@
-            @*<li><a href="/Sys/VehicleKitType"><i class="fa fa-circle-o"></i> Vehicle Kit Type</a></li>*@
-            @* <li><a href="/Sys/VehicleModel"><i class="fa fa-circle-o"></i> Vehicle Model</a></li>*@
 
-            @*<li><a href="/Sys/WarrantyName"><i class="fa fa-circle-o"></i> Warranty Name</a></li>*@
-            @*<li><a href="/Sys/WarrantyType"><i class="fa fa-circle-o"></i> Warranty Type</a></li>*@
-            <li><a href="/Sys/Branch"><i class="fa fa-circle-o"></i> Branch</a></li>
-            <li><a href="/Sys/Supplier"><i class="fa fa-circle-o"></i> Supplier</a></li>
-            @*<li><a href="/Sys/AccessoryFeatureName"><i class="fa fa-circle-o"></i> Accessory Feature Name</a></li>*@
-            <li><a href="/Sys/FixedCost"><i class="fa fa-circle-o"></i> Fixed Cost</a></li>
-            <li><a href="/Sys/PriceListHos"><i class="fa fa-circle-o"></i> Price List Hos</a></li>
-            <li><a href="/Sys/YearlyQuota"><i class="fa fa-circle-o"></i> Yearly Quota</a></li>
-            <li><a href="/Sys/MonthlyQuota"><i class="fa fa-circle-o"></i> Monthly Quota</a></li>
-        </ul>
-    </li>
-
-    <li class="treeview">
-        <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>Customer</span>
-            <i class="fa fa-angle-left pull-right"></i>
-        </a>
-        <ul class="treeview-menu">
-            <li><a href="/Customer/Customer"><i class="fa fa-circle-o"></i> Customer</a></li>
-            <li><a href="/Customer/Activity"><i class="fa fa-circle-o"></i> Activity</a></li>
-            <li><a href="/Customer/ActivityMngr"><i class="fa fa-circle-o"></i> Activity for Manager</a></li>
-
-        </ul>
-    </li>
-    <li class="treeview">
-        <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>Accessory/Body</span>
-            <i class="fa fa-angle-left pull-right"></i>
-        </a>
-        <ul class="treeview-menu">
-            <li><a href="/Accessory/Accessory"><i class="fa fa-circle-o"></i> Accessory</a></li>
-            <li><a href="/Accessory/Body"><i class="fa fa-circle-o"></i> Body</a></li>
-            <li><a href="/Accessory/Bodyextra"><i class="fa fa-circle-o"></i> Body (extras)</a></li>
-        </ul>
-    </li>
-    <li class="treeview">
-        <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>Training</span>
-            <i class="fa fa-angle-left pull-right"></i>
-        </a>
-        <ul class="treeview-menu">
-            <li><a href="/Training/Training"><i class="fa fa-circle-o"></i> Training</a></li>
-
-        </ul>
-    </li>
-    <li class="treeview">
-        <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>Vehicle</span>
-            <i class="fa fa-angle-left pull-right"></i>
-        </a>
-        <ul class="treeview-menu">
-            <li><a href="/Vehicle/VehicleKitModel"><i class="fa fa-circle-o"></i> Vehicle Kit-Model</a></li>
-            <li><a href="/Vehicle/VehicleKitModelModeltype"><i class="fa fa-circle-o"></i> Vehicle Kit-Model-Model type</a></li>
-            <li><a href="/Vehicle/VehicleKitModelModeltypeTonnage"><i class="fa fa-circle-o"></i> Vehicle Kit-Md-Md.type-Tng</a></li>
-            <li><a href="/Vehicle/Vehicle"><i class="fa fa-circle-o"></i> Vehicle</a></li>
-            <li><a href="/Vehicle/SpecialVehicle"><i class="fa fa-circle-o"></i> Special Vehicle Order</a></li>
-        </ul>
-    </li>
-    <li class="treeview">
-        <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>Warranty</span>
-            <i class="fa fa-angle-left pull-right"></i>
-        </a>
-        <ul class="treeview-menu">
-            <li><a href="/Warranty/WarrantyIdent"><i class="fa fa-circle-o"></i> Warranty</a></li>
-            <li><a href="/Warranty/FactoryWarrantyIdent"><i class="fa fa-circle-o"></i> Factory Warranty</a></li>
-
-        </ul>
-    </li>
-    <li class="treeview">
-        <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>Deal</span>
-            <i class="fa fa-angle-left pull-right"></i>
-        </a>
-        <ul class="treeview-menu">
-            <li><a href="/Deal/Add"><i class="fa fa-circle-o"></i> Deal List</a></li>
-        </ul>
-    </li>
-    <li class="treeview">
-        <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>Order in take</span>
-            <i class="fa fa-angle-left pull-right"></i>
-        </a>
-        <ul class="treeview-menu">
-            <li><a href="/OrderInTake/Add"><i class="fa fa-circle-o"></i> Order in take</a></li>
-        </ul>
-    </li>
-    <li class="treeview">
-        <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>Buyback&Tradeback</span>
-            <i class="fa fa-angle-left pull-right"></i>
-        </a>
-        <ul class="treeview-menu">
-            <li><a href="/BuybackTradeback/BuybackTradebackMatrix"><i class="fa fa-circle-o"></i> Buyback&Tradeback Matrix</a></li>
-            @*<li><a href="/BuybackTradeback/BuybackMonthlyQuota"><i class="fa fa-circle-o"></i> Buyback Monthly Quota</a></li>
-                <li><a href="/BuybackTradeback/BuybackYearlyQuota"><i class="fa fa-circle-o"></i> Buyback Yearly Quota</a></li>*@
-            <li><a href="/BuybackTradeback/BuybackReturn"><i class="fa fa-circle-o"></i> Buyback Vehicle Return</a></li>
-            <li><a href="/BuybackTradeback/TradebackReturn"><i class="fa fa-circle-o"></i> Tradeback Vehicle Return</a></li>
-        </ul>
-    </li>
-    <li class="treeview">
-        <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>Stock</span>
-            <i class="fa fa-angle-left pull-right"></i>
-        </a>
-        <ul class="treeview-menu">
-            <li><a href="/Stock/StockHos"><i class="fa fa-circle-o"></i> Stock HOS</a></li>
-            <li><a href="/Stock/StockBackOffice"><i class="fa fa-circle-o"></i> Stock Back Office</a></li>
-            <li><a href="/Stock/StockSalesman"><i class="fa fa-circle-o"></i> Stock Salesman</a></li>
-            <li><a href="/Stock/StockTopUsed"><i class="fa fa-circle-o"></i> Stock TopUsed</a></li>
-            <li><a href="/Stock/VehicleOrderTracking"><i class="fa fa-circle-o"></i> Vehicle Order Tracking</a></li>
-        </ul>
-    </li>
-    <li class="treeview">
-        <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>Demo/Courtesy</span>
-            <i class="fa fa-angle-left pull-right"></i>
-        </a>
-        <ul class="treeview-menu">
-            <li><a href="/DemoCourtesy/DemoCourtesyReturn"><i class="fa fa-circle-o"></i> Demo Courtesy Return</a></li>
-            <li><a href="/DemoCourtesy/DemoCourtesyAllocation"><i class="fa fa-circle-o"></i> Demo Courtesy Allocation</a></li>
-            <li><a href="/DemoCourtesy/DemoCourtesyNewReq"><i class="fa fa-circle-o"></i> Demo Courtesy New Request</a></li>
-        </ul>
-    </li>
-    <li class="treeview">
-        <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>Trucks to Go</span>
-            <i class="fa fa-angle-left pull-right"></i>
-        </a>
-        <ul class="treeview-menu">
-            <li><a href="/Truckstogo/Truckstogo"><i class="fa fa-circle-o"></i> Trucks to Go</a></li>
-        </ul>
-    </li>
-    <li class="treeview">
-        <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>Repair&Maintenance</span>
-            <i class="fa fa-angle-left pull-right"></i>
-        </a>
-        <ul class="treeview-menu">
-            <li><a href="/RepairMaintenance/RepairMaintenanceMatrix"><i class="fa fa-circle-o"></i> Repair&Maintenance Matrix</a></li>
-
-        </ul>
-    </li>
-    <li class="treeview">
-        <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>Park Off</span>
-            <i class="fa fa-angle-left pull-right"></i>
-        </a>
-        <ul class="treeview-menu">
-            <li><a href="/Parkoff/ParkOff"><i class="fa fa-circle-o"></i> Park Off</a></li>
-
-        </ul>
-    </li>
-    <li class="treeview">
-        <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>Campaign</span>
-            <i class="fa fa-angle-left pull-right"></i>
-        </a>
-        <ul class="treeview-menu">
-            <li><a href="/Campaign/Campaign"><i class="fa fa-circle-o"></i> Campaign</a></li>
-
-        </ul>
-    </li>
-    <li class="treeview">
-        <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>Commission</span>
-            <i class="fa fa-angle-left pull-right"></i>
-        </a>
-        <ul class="treeview-menu">
-            <li><a href="/Commission/CommissionName"><i class="fa fa-circle-o"></i> Commission name</a></li>
-            <li><a href="/Commission/Commission"><i class="fa fa-circle-o"></i> Commission</a></li>
-        </ul>
-    </li>
-    <li class="treeview">
-        <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>Target</span>
-            <i class="fa fa-angle-left pull-right"></i>
-        </a>
-        <ul class="treeview-menu">
-            <li><a href="/Target/Target"><i class="fa fa-circle-o"></i> Target</a></li>
-
-        </ul>
-    </li>
-    <li class="treeview">
-        <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>InvoiceProforma</span>
-            <i class="fa fa-angle-left pull-right"></i>
-        </a>
-        <ul class="treeview-menu">
-            <li><a href="/InvoiceProforma/InvoiceProformaBo"><i class="fa fa-circle-o"></i> InvoiceProformaBo</a></li>
-
-        </ul>
-    </li>
-    <li class="treeview">
-        <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>Movement&Delivery</span>
-            <i class="fa fa-angle-left pull-right"></i>
-        </a>
-        <ul class="treeview-menu">
-            <li><a href="/MovementDelivery/MovementDeliveryBo"><i class="fa fa-circle-o"></i> MovementDeliveryBo</a></li>
-            <li><a href="/MovementDelivery/MovementDeliverySm"><i class="fa fa-circle-o"></i> MovementDeliverySm</a></li>
-
-        </ul>
-    </li>
-</ul>
