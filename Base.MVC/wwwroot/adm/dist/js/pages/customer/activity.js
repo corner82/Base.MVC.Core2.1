@@ -27,6 +27,8 @@ $(document).ready(function () {
     var ddslick_contactperson_name = "";
 
     var filldropdown = false;
+    var open_collapse = true;
+    var firstopen_collapse = true;
 
     /*
     * Activity LoadImager
@@ -51,6 +53,7 @@ $(document).ready(function () {
     var langCode = $("#langCode").val();
     //alert(langCode);
 
+/*
     var tab_active = function () {
         //Update & View Mode
         //enabled tabs
@@ -76,11 +79,14 @@ $(document).ready(function () {
     }
 
     tab_disable();
-
+*/
 //    var tabOrganizer = $("#activity_tab").organizeTabs({ tabID: "activity_tab" });
 //    $("#activity_tab").organizeTabs('disableAllTabs');
 
+
+
     $('#activityForm').validationEngine();
+
 
     $('#activity-datetimepicker').datetimepicker({
         locale: langCode,
@@ -102,6 +108,12 @@ $(document).ready(function () {
         autoclose: true,
         todayBtn: true
     });
+
+    //$('#activityReport_collapse').collapse('hide');
+
+
+    //activityReport_collapse.click();
+
 
     /**
      * ddslick customer dropdown and contact person dropdown
@@ -545,17 +557,47 @@ $(document).ready(function () {
                 width: '100%',
 
                 onSelected: function (selectedData) {
+
                     if (selectedData.selectedData.value > 0) {
                         //alert(selectedData.selectedData.text);
                         if (selectedData.selectedData.text == "Achieved") {
                             //open tab
-                            tab_active();
+                            //tab_active();
                             //$("#activity_tab").organizeTabs('enableAllTabs');
+                            //$('#activityReport_collapse').enabled;
+
+
+                            $('#activityReport_collapse').collapse('show');
+
+                            if (open_collapse) { 
+                                activityReport_collapse.click();
+                            } 
+                            
                         } else {
-                            //close tab
-                            tab_disable();
-                            //$("#activity_tab").organizeTabs('disableAllTabs');
+                            //$('#activityReport_collapse').disabled;
+
+                            $('#activityReport_collapse').collapse('hide');
+
+                            if (!open_collapse) {
+                                activityReport_collapse.click();
+                            }
+
                         }
+                    } else {
+                        if (firstopen_collapse) {
+                            firstopen_collapse = false;
+
+                            if (open_collapse) {
+                                activityReport_collapse.click();
+                            }
+                            $('#activityReport_collapse').collapse('show');
+
+                            if (!open_collapse) {
+                                activityReport_collapse.click();
+                            }
+                            $('#activityReport_collapse').collapse('hide');
+                        }
+                        
                     }
 
                 }
@@ -610,13 +652,15 @@ $(document).ready(function () {
             }
 
             //3- Takip tarihi activite tarihinden küçük olamaz 
-            if (followupdate < activitydate) {
+            if (followupdate && followupdate < activitydate) {
                 dm.dangerMessage('show', window.lang.translate('Follow up date Cannot be smaller than activity date!'), window.lang.translate('Follow up date Cannot be smaller than activity date!'));
                 activityFormcontrol = false;
             }
 
-            if (activityFormcontrol) {
+            //alert(activityFormcontrol);
 
+            if (activityFormcontrol) {
+                //alert("geldim");
                 $("#loading-image-activity").loadImager('removeLoadImage');
                 $("#loading-image-activity").loadImager('appendImage');
 
@@ -703,7 +747,7 @@ $(document).ready(function () {
 
                     ajax.ajaxCallWidget({
                         onSuccess: function (event, data) {
-
+                            //alert("success");
                         },
                         onReset: function (event, data) {
 
@@ -713,6 +757,9 @@ $(document).ready(function () {
                             $("#loading-image-activity").loadImager('removeLoadImage');
                             resetActivityForm();
                             //$('#activityList').click();
+                        },
+                        OnError: function (event, data) {
+                            //alert("hata:" + event.text);
                         }
                     })
                     ajax.ajaxCallWidget('call');
@@ -783,7 +830,20 @@ $(document).ready(function () {
         return false;
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
+
+    $("#activityReport_collapse").on("click", function (e) {
+
+        //if (firstopen_collapse) {
+        //    alert("geldim");
+        //    $('#activityReport_collapse').collapse('hide');
+        //    firstopen_collapse = false;
+        //}
+
+        open_collapse = !open_collapse;
+
+    })
+
     /**
      * insert / update Activity
      * @returns {undefined}
@@ -892,9 +952,14 @@ $(document).ready(function () {
         $('#dropdownFollowuptype').ddslick('select', { index: String(0) });
         $('#dropdownActivityLastStatus').ddslick('select', { index: String(0) });
 
+        $('#activityReport_collapse').collapse('hide');
+        if (!open_collapse) {
+            activityReport_collapse.click();
+        }
+
         //$("#activity_tab").organizeTabs('disableAllTabs');
         $("#loading-image-activity").loadImager('removeLoadImage');
-        tab_disable();
+        //tab_disable();
         return false;
     }
 
@@ -1056,17 +1121,17 @@ $(document).ready(function () {
         }
 
         if (data.realization_date) {
-            tab_active();
+            //tab_active();
             //$("#activity_tab").organizeTabs('enableAllTabs');
             document.getElementById("activity-realization-datetimepicker").value = data.realization_date;
         } else {
-            tab_disable();
+            //tab_disable();
             //$("#activity_tab").organizeTabs('disableAllTabs');
             document.getElementById("activity-realization-datetimepicker").value = "";
         }
 
         if (data.report) {
-            document.getElementById("activity_report").value = datareport;
+            document.getElementById("activity_report").value = data.report;
         } else {
             document.getElementById("activity_report").value = "";
         }
@@ -1384,6 +1449,7 @@ $(document).ready(function () {
         });
     })
 
+
     /**
     * All Customer activity list
     * @returns {undefined}
@@ -1392,13 +1458,14 @@ $(document).ready(function () {
     */
     $('#activityList').click();
 
+    //resetActivityForm(); 
 
- /**
- * Activity active / passive
- * @returns {undefined}
- * @author Gül Özdemir
- * @since 14/10/2018
- */
+    /**
+    * Activity active / passive
+    * @returns {undefined}
+    * @author Gül Özdemir
+    * @since 14/10/2018
+    */
     window.activepassiveActivity = function (activity_id, active) {
 
         var transactionSuccessMessage;
@@ -1442,5 +1509,6 @@ $(document).ready(function () {
         ajax_activepassiveactivitylist.ajaxCallWidget('call');
 
     }
+
 });
 
