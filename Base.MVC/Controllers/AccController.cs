@@ -256,9 +256,9 @@ namespace Base.MVC.Controllers
             } catch(Exception ex) {
                 throw new IdentityManagerException(Convert.ToInt32(HttpStatusCode.BadGateway), ex);
             }
-            
 
-            if(result.Succeeded)
+            List<string> roleList;
+            if (result.Succeeded)
             {
                
                 try
@@ -278,7 +278,7 @@ namespace Base.MVC.Controllers
                         });
                     }
 
-                    List<string> roleList = roles.Result.ToList();
+                    roleList = roles.Result.ToList();
 
                     var sessionUser = new SessionUserModel()
                     {
@@ -311,7 +311,60 @@ namespace Base.MVC.Controllers
 
                 }
                 //return Redirect("http://localhost:51769/Adm/Dsh");
-                return Redirect("~/Adm/Dsh");
+
+                if (roleList[0] == "Admin")
+                {
+                    return Redirect("~/Adm/Dsh");
+                }
+                else if (roleList[0] == "Salesman")
+                {
+                    return Redirect("~/Dashboard/Salesman");
+                }
+                else if (roleList[0] == "head of retail")
+                {
+                    return Redirect("~/Dashboard/Retailchannelhead");
+                }
+                else if (roleList[0] == "head of pcd")
+                {
+                    return Redirect("~/Dashboard/Pcdmanager");
+                }
+                else if (roleList[0] == "head of product management")
+                {
+                    return Redirect("~/Dashboard/Backoffice");
+                }
+                else if (roleList[0] == "body builder specialist")
+                {
+                    return Redirect("~/Dashboard/Backoffice");
+                } else if (roleList[0] == "sales admin manager")
+                {
+                    return Redirect("~/Dashboard/Keyaccountchannelhead");
+                }
+                else if (roleList[0] == "costing manager")
+                {
+                    return Redirect("~/Dashboard/Backoffice");
+                }
+                else if (roleList[0] == "head of order management")
+                {
+                    return Redirect("~/Dashboard/Backoffice");
+                }
+                else if (roleList[0] == "fd")
+                {
+                    return Redirect("~/Dashboard/Headofsales");
+                }
+                else if (roleList[0] == "md")
+                {
+                    return Redirect("~/Dashboard/Headofsales");
+                }
+                else if (roleList[0] == "master users")
+                {
+                    return Redirect("~/Dashboard/Backoffice");
+                }
+                else if (roleList[0] == "hos")
+                {
+                    return Redirect("~/Dashboard/Headofsales"); 
+                }
+
+
                 //return RedirectToAction("Dsh", "Adm");
                 //return RedirectToAction(WebUtility.UrlEncode(returnUrl));
             } else

@@ -795,7 +795,7 @@
         },
         resetOnShown: function () {
             this.onShown = function () {
-                alert('on shown reset');
+                //alert('on shown reset');
             }
         }
 
