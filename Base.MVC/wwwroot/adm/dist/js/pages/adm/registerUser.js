@@ -15,13 +15,15 @@ $(document).ready(function () {
         actionButtonLabel: 'İşleme devam et'
     });
 
+    $('#loadingImage_DdslickRole').loadImager();
+
     /*
     * retyuLoadImager
     * @author Ceydacan Seyrek
     * @since 04/11/2018
     */
     //to user register form
-
+/*
     $("#loadingImage_DdslickBranch").loadImager();
     $("#loadingImage_DdslickRole").loadImager();
 
@@ -30,7 +32,7 @@ $(document).ready(function () {
     $('#loadingImage_DdslickBranch').loadImager('removeLoadImage');
     $("#loadingImage_DdslickBranch").loadImager('appendImage');
     //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkBranchesDealersDeffDdList_sysbranchesdealersdeff&language_code=en&pk=GsZVzEYe50uGgNM
-    var ajaxACLResources_branch = $('#ajax_DdslickBranch').ajaxCallWidget({
+    var ajaxACLResources_branch = $('#ajax_Branch').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loadingImage_DdslickBranch",
         triggerSuccessAuto: true,
@@ -72,13 +74,14 @@ $(document).ready(function () {
     })
     ajaxACLResources_branch.ajaxCallWidget('call');
     //branch End
-
+*/
 
     //role
     $('#loadingImage_DdslickRole').loadImager('removeLoadImage');
     $("#loadingImage_DdslickRole").loadImager('appendImage');
+
     //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkBranchesDealersDeffDdList_sysbranchesdealersdeff&language_code=en&pk=GsZVzEYe50uGgNM
-    var ajaxACLResources_role = $('#Role').ajaxCallWidget({
+    var ajaxACLResources_role = $('#ajax_Role').ajaxCallWidget({
         failureLoadImage: true,
         loadingImageID: "loadingImage_DdslickRole",
         triggerSuccessAuto: true,
@@ -106,11 +109,18 @@ $(document).ready(function () {
                 { text: window.lang.translate('Salesman'), value: 0, selected: false, description: "" }
             );
 
-            $('#Role').ddslick({
+            $('#ddslickRole').ddslick({
                 data: cbdata_role,
                 width: '100%',
                 //search: true,
                 //searchText: window.lang.translate('Search'),
+                onSelected: function (selectedData) {
+
+                    if (selectedData.selectedData.value === 0) {
+                        //$('#txt_Role').value(selectedData.selectedData.text);
+                        document.getElementById("txt_Role").value = selectedData.selectedData.text;
+                    }
+                }
             })
             $('#loadingImage_DdslickRole').loadImager('removeLoadImage');
         },
@@ -122,4 +132,3 @@ $(document).ready(function () {
     //role End
 
 });
-
