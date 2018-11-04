@@ -42,7 +42,17 @@ namespace Base.MVC.Controllers
             return View();
         }
 
-   
+        public async Task<IActionResult> Asm()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Hos()
+        {
+            return View();
+        }
+
+
         /// http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkFillCalendarEventsGridx_infocalendarevents&page=&rows=&sort=&order=&language_code=en&pk=GsZVzEYe50uGgNM
         [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
         [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
