@@ -25,6 +25,7 @@ namespace Base.MVC.Controllers
         private readonly UserManager<CustomIdentityUser> _userManager;
         private readonly SignInManager<CustomIdentityUser> _signinManager;
         private readonly RoleManager<CustomIdentityRole> _roleManager;
+
         private readonly IDistributedCache _distributedCache;
         //private readonly IDeviceResolver _deviceResolver;
 
@@ -32,6 +33,7 @@ namespace Base.MVC.Controllers
         public AccController(UserManager<CustomIdentityUser> userManager,
                                 SignInManager<CustomIdentityUser> signinManager,
                                 RoleManager<CustomIdentityRole> roleManager,
+
                                 IDistributedCache distributedCache
                                 /*IDeviceResolver deviceResolver*/)
         {
@@ -40,6 +42,7 @@ namespace Base.MVC.Controllers
             _distributedCache = distributedCache;
             //_deviceResolver = deviceResolver;
             _roleManager = roleManager;
+
         }
 
         [HttpGet]
@@ -423,7 +426,6 @@ namespace Base.MVC.Controllers
                     }
                     // _userManager.AddToRoleAsync(user, "Manager").Wait();
                     //return RedirectToAction("Login", "Acc");
-
 
                 } else
                 {

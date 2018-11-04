@@ -35,5 +35,6 @@ namespace Base.MVC.ViewModels
         [Required(ErrorMessage = "BoxLengthRequired")]
         [MaxLength(256)]
         public string Role { get; set; }
+
     }
 }
