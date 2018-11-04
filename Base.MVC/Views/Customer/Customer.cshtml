@@ -70,7 +70,6 @@
                                         <div class="row" id="loading-image-cstInfo">
                                             <div class="col-md-6">
 
-
                                                 <div class="form-group">
                                                     <label><span lang="en">Customer name</span></label>
                                                     <div class="input-group">
@@ -226,7 +225,14 @@
                                                         <div class="input-group-addon">
                                                             <i class="fa fa-user"></i>
                                                         </div>
-                                                        <input type="text" class="form-control" placeholder="Registration number" name="txt-cst-regnumber" id="txt-cst-regnumber">
+                                                        <input type="text" class="form-control"
+                                                               validate[custom[dunsNumber]]
+                                                               name="txt-cst-regnumber"
+                                                               id="txt-cst-regnumber"
+                                                               placeholder="NNNN/NNNNNN/NN"
+                                                               maxlength="14">
+                                                        <input type="text" class="form-control" placeholder="Registration number" name="txt-cst-regnumber2" id="txt-cst-regnumber2" disabled>
+                                                        
                                                     </div>
                                                 </div>
 
@@ -846,6 +852,19 @@
     <script>
         $(document).ready(function () {
 
+            $('#txt-cst-regnumber').keypress(function (e) {
+                
+                if (e.which != 8 && e.which != 0 && (e.which < 47 || e.which > 57)) {
+                    return false;
+                }
+
+                var rn = this.value;
+                if (rn.match(/^\d{4}$/) !== null) {
+                    this.value = rn + '/';
+                } else if (rn.match(/^\d{4}\/\d{6}$/) !== null) {
+                    this.value = rn + '/';
+                }
+            })
 
         });
     </script>

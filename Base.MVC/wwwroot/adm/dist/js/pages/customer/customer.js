@@ -94,19 +94,19 @@
     * @since 02/08/2016
     */
     $('#registration-datepicker').datepicker({
-        //autoclose: true,
+        autoclose: true,
         locale: langCode,
         format: 'yyyy/mm/dd'
     });
 
     $('#lastpurchase-datepicker').datepicker({
-        //autoclose: true,
+        autoclose: true,
         locale: langCode,
         format: 'yyyy/mm/dd'
     });
 
     $('#lastcontactdate-datepicker').datepicker({
-        //autoclose: true,
+        autoclose: true,
         locale: langCode,
         format: 'yyyy/mm/dd'
     });
@@ -174,6 +174,23 @@
         }
     });
     */
+
+        /*
+        var curchr = this.value.length;
+        var curval = $(this).val();
+        if (curchr == 3 && curval.indexOf("(") <= -1) {
+            $(this).val("(" + curval + ")" + "-");
+        } else if (curchr == 4 && curval.indexOf("(") > -1) {
+            $(this).val(curval + ")-");
+        } else if (curchr == 5 && curval.indexOf(")") > -1) {
+            $(this).val(curval + "-");
+        } else if (curchr == 9) {
+            $(this).val(curval + "-");
+            $(this).attr('maxlength', '14');
+        }
+        */
+
+
     $('#customerInfoForm').validationEngine();
     $('#customerPurchaseForm').validationEngine();
     $('#customerContactPersonForm').validationEngine();
@@ -228,6 +245,17 @@
                     if (selectedData.selectedData.value > 0) {
 
                         ddslick_countryId = selectedData.selectedData.value;
+                        //alert(ddslick_countryId);
+                        
+                        if (ddslick_countryId == 107) {
+                            $("#txt-cst-regnumber2").val("");
+                            $('#txt-cst-regnumber').prop('disabled', false);
+                            $('#txt-cst-regnumber2').prop('disabled', true);
+                        } else {
+                            $("#txt-cst-regnumber").val("");
+                            $('#txt-cst-regnumber').prop('disabled', true);
+                            $('#txt-cst-regnumber2').prop('disabled', false);
+                        }
 
                         $('#loading-image-province').loadImager('removeLoadImage');
                         $('#loading-image-province').loadImager('appendImage');
@@ -357,7 +385,7 @@
                                 $('#loading-image-province').loadImager('removeLoadImage');
                             },
                             onError: function (event, data) {
-                                alert("geldim hata province");
+                                //alert("geldim hata province");
                             }
                         })
                         ajaxACLResources_getprovince.ajaxCallWidget('call');
@@ -393,7 +421,7 @@
             $('#loading-image-country').loadImager('removeLoadImage');
         },
         onError: function (event, data) {
-            alert("geldim hata");
+            //alert("geldim hata");
         }
     })
     ajaxACLResources_country.ajaxCallWidget('call');
@@ -2629,7 +2657,16 @@
             var phone = $('#txt-cst-phone').val();
             var website = $('#txt-cst-website').val();
             var vatNumber = $('#txt-cst-vatnumber').val();
-            var regNumber = $('#txt-cst-regnumber').val();
+
+
+            var regNumber; 
+
+            if (countryId == 107) {
+                regNumber = $('#txt-cst-regnumber').val();
+            } else {
+                regNumber = $('#txt-cst-regnumber2').val();
+            }
+
             var regDate = $('#registration-datepicker').val();
 
             var ddData_Segment = $('#dropdownSegment').data('ddslick');
@@ -2733,6 +2770,7 @@
             } else {
                 //update
                 //alert("update");
+                //alert(selectedCustomerId);
 
                 wcm.warningComplexMessage({
                     onConfirm: function (event, data) {
@@ -2828,6 +2866,17 @@
                 value: ddslick_country_name
             }
         );
+
+        if (ddslick_countryId == 107) {
+            $("#txt-cst-regnumber2").val("");
+            document.getElementById("#txt-cst-regnumber2").value = "";
+            $('#txt-cst-regnumber').prop('disabled', false);
+            $('#txt-cst-regnumber2').prop('disabled', true);
+        } else {
+            document.getElementById("#txt-cst-regnumber").value = "";
+            $('#txt-cst-regnumber').prop('disabled', true);
+            $('#txt-cst-regnumber2').prop('disabled', false);
+        }
 
         $('#dropdownProvince').ddslick('destroy');
         $('#dropdownCity').ddslick('destroy');
@@ -2934,12 +2983,6 @@
             document.getElementById("txt-cst-vatnumber").value = "";
         }
 
-        if (data.registration_number) {
-            document.getElementById("txt-cst-regnumber").value = data.registration_number;
-        } else {
-            document.getElementById("txt-cst-regnumber").value = "";
-        }
-
         if (data.registration_date) {
             document.getElementById("registration-datepicker").value = data.registration_date;
         } else {
@@ -3001,6 +3044,28 @@
                     value: data.country_name
                 }
             );
+        }
+
+        //alert(data.registration_number);
+        //alert(ddslick_countryId);
+
+        if (data.registration_number) {
+
+            if (ddslick_countryId == 107) {
+
+                $('#txt-cst-regnumber').prop('disabled', false);
+                //$('#txt-cst-regnumber').value(data.registration_number);
+                document.getElementById("txt-cst-regnumber").value = data.registration_number;
+
+                document.getElementById("txt-cst-regnumber2").value = "";
+                $('#txt-cst-regnumber2').prop('disabled', true);
+            } else {
+                $('#txt-cst-regnumber2').prop('disabled', false);
+                document.getElementById("txt-cst-regnumber2").value = data.registration_number;
+
+                document.getElementById("txt-cst-regnumber").value = "";
+                $('#txt-cst-regnumber').prop('disabled', true);
+            }
         }
 
         if (data.segment_type_id) {
@@ -3520,6 +3585,7 @@
         return false;
 
     })
+
     /*
  {"id":"1","apid":1,
  "customer_id":29,
@@ -3896,5 +3962,7 @@
         ajax_activepassivecontactpersonlist.ajaxCallWidget('call');
 
     }
+
+
 });
 
