@@ -17,6 +17,13 @@ using Base.Core.Entities.Identity;
 using Base.Core.Extensions.Session;
 using Base.Filters.Log.RabbitMQ;
 using System.Text.RegularExpressions;
+using Base.Filters.Auth.Hmac;
+using Base.Filters.Session;
+using Base.Core.Utills.Url;
+using Base.Core.Http.HttpRequest.Concrete;
+using Microsoft.AspNetCore.Http.Extensions;
+using Base.MVC.Models.HttpRequest;
+
 
 namespace Base.MVC.Controllers
 {
@@ -28,12 +35,12 @@ namespace Base.MVC.Controllers
 
         private readonly IDistributedCache _distributedCache;
         //private readonly IDeviceResolver _deviceResolver;
-
+        private QueryCreater _queryCreater;
 
         public AccController(UserManager<CustomIdentityUser> userManager,
                                 SignInManager<CustomIdentityUser> signinManager,
                                 RoleManager<CustomIdentityRole> roleManager,
-
+                                QueryCreater queryCreater,
                                 IDistributedCache distributedCache
                                 /*IDeviceResolver deviceResolver*/)
         {
@@ -42,7 +49,7 @@ namespace Base.MVC.Controllers
             _distributedCache = distributedCache;
             //_deviceResolver = deviceResolver;
             _roleManager = roleManager;
-
+            _queryCreater = queryCreater;
         }
 
         [HttpGet]
@@ -465,6 +472,36 @@ namespace Base.MVC.Controllers
                 ModelState.AddModelError("Model state not valid", "Model state not valid");
             }
             return View(deleteUserViewModel);
+        }
+
+        /// <summary>
+        /// add training name
+        /// Ceydacan Seyrek
+        /// </summary>
+        /// 
+        /// <returns></returns>
+        //[AjaxSessionTimeOut]
+        [ServiceFilter(typeof(HmacTokenGeneratorAttribute))]
+        [ServiceFilter(typeof(PageEntryLogRabbitMQAttribute))]
+        [HttpPost]
+        public async Task<string> AddRegisterUser([FromBody] RegisterUser registerUser)
+        {
+            if (ModelState.IsValid)
+            {
+                var headers = new Dictionary<string, string>();
+                var tokenGenerated = HttpContext.Session.GetHmacToken();
+                headers.Add("X-Hmac", tokenGenerated);
+                headers.Add("X-PublicKey", HttpContext.Session.GetUserPublicKey());
+                string queryStr = _queryCreater.GetQueryStringFromObject(registerUser);
+                var response = await HttpClientRequestFactory.Get("http://proxy.mansis.co.za:18443/SlimProxyBoot.php?" + queryStr, headers);
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data.ToString();
+            }
+            else
+            {
+                throw new Exception("Model state is not valid");
+            }
+
         }
     }
 }

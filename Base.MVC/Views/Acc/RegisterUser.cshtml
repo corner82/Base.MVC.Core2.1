@@ -72,16 +72,16 @@
                         <p class="login-box-msg">@Localizer["Register a new membership"]</p>
                         <form asp-action="RegisterUser" asp-controller="Acc" method="post">
                             <div class="form-group has-feedback">
-                                <input type="text" asp-for="UserName" class="form-control" placeholder="Full name" />
+                                <input type="text" asp-for="UserName" class="form-control" id="txt_UserName" placeholder="Full name" />
                                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
                                 <span asp-validation-for="UserName"></span>
                             </div>
                             <div class="form-group has-feedback">
-                                <input type="email" asp-for="Email" class="form-control" placeholder="Email" />
+                                <input type="email" asp-for="Email" class="form-control" id="txt_Email" placeholder="Email" />
                                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                                 <span asp-validation-for="Email"></span>
                             </div>
-                            
+
                             <div class="form-group has-feedback">
                                 <input type="text" asp-for="Role" class="form-control" placeholder="Role" id="txt_Role" style="display:none;" />
                                 <!--<span class="glyphicon glyphicon-envelope form-control-feedback"></span>-->
@@ -99,49 +99,45 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--   <div class="form-group has-feedback">
-                            <label><span lang="en">Branch</span></label>
-                            <div class="" id="ajax_Branch">
-                                <div id="loadingImage_DdslickBranch" class="input-group zeyn-load-imager">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-copyright"></i>
+                            <div class="form-group" id="ajax_insert">
+                                <label><span lang="en">Branch</span></label>
+                                <div class="" id="ajax_Branch">
+                                    <div id="loadingImage_DdslickRole" class="input-group zeyn-load-imager">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-copyright"></i>
+                                        </div>
+                                        <div id="ddslickBranch" class="form-control"></div>
                                     </div>
-                                    <div id="ddslickBranch" class="form-control"></div>
                                 </div>
                             </div>
-                        </div>
-    -->
 
+                            <div class="form-group has-feedback">
+                                <input type="password" asp-for="Password" class="form-control" id="txt_Password" placeholder="Password" />
+                                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                <span asp-validation-for="Password"></span>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <input type="password" asp-for="ConfirmPassword" class="form-control" id="txt_PasswordRetype" placeholder="Retype password" />
+                                <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                                <span asp-validation-for="ConfirmPassword"></span>
+                            </div>
+                            <div asp-validation-summary="All" class="form-group has-feedback">
 
-
-
-                                <div class="form-group has-feedback">
-                                    <input type="password" asp-for="Password" class="form-control" placeholder="Password" />
-                                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                                    <span asp-validation-for="Password"></span>
-                                </div>
-                                <div class="form-group has-feedback">
-                                    <input type="password" asp-for="ConfirmPassword" class="form-control" placeholder="Retype password" />
-                                    <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-                                    <span asp-validation-for="ConfirmPassword"></span>
-                                </div>
-                                <div asp-validation-summary="All" class="form-group has-feedback">
-
-                                    <!--<span  class="glyphicon glyphicon-alert form-control-feedback"></span>-->
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-8">
-                                        @*<div class="checkbox icheck">
+                                <!--<span  class="glyphicon glyphicon-alert form-control-feedback"></span>-->
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-8">
+                                    @*<div class="checkbox icheck">
                     <label>
                         <input type="checkbox"> I agree to the <a href="#">terms</a>
                     </label>
                 </div>*@
-                                    </div><!-- /.col -->
-                                    <div class="col-xs-4">
-                                        <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
-                                    </div><!-- /.col -->
-                                </div>
-</form>
+                                </div><!-- /.col -->
+                                <div class="col-xs-4">
+                                    <button type="submit" class="btn btn-primary btn-block btn-flat" id="btn-registerUser-save" >Register</button>
+                                </div><!-- /.col -->
+                            </div>
+                        </form>
 
                         @*<div class="social-auth-links text-center">
                     <p>- OR -</p>

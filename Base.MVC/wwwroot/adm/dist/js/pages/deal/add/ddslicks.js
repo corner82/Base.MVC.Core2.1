@@ -91,6 +91,8 @@
                 //height: 150,
                 data: data,
                 width: '100%',
+                search: true,
+                searchText: window.lang.translate('Search'),
 
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {

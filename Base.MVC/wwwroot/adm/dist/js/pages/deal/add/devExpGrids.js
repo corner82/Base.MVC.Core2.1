@@ -167,6 +167,8 @@
                     //text: '' + data.reliability_name + ''
                 });
             }
+            //txt_deal_id
+            document.getElementById("txt_deal_id").value = data.id;
 
             $("#deal_hidden").organizeTabs("enableAllTabs");
             $("#deal_hidden").organizeTabs('activateTabByOrder', 9);

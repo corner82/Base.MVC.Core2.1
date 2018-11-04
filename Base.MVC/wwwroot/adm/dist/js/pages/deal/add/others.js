@@ -190,6 +190,7 @@
         var ddDataCustomer = $('#ddslickCustomer').data('ddslick');
         var ddDataPriority = $('#ddslickPriority').data('ddslick');
         var ddDataRealizationRate = $('#ddslickRealizationRate').data('ddslick');
+        var id = $('#txt_deal_id').val();
 
         if ($("#addDealForm").validationEngine("validate")) {
             if (!ddDataCustomer.selectedData.value > 0) {
@@ -210,6 +211,7 @@
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
+                    id:id,
                     deal_name: $("#deal_name").val(),
                     url: "pkUpdateAct_infoproject",
                     pkIdentity: $("#publicKey").val(),

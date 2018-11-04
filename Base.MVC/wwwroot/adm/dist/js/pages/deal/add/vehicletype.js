@@ -1,5 +1,11 @@
 ﻿$(document).ready(function () {
-
+    var sm = $(window).successMessage();
+    var dm = $(window).dangerMessage();
+    var wm = $(window).warningMessage();
+    var wcm = $(window).warningComplexMessage({
+        denyButtonLabel: window.lang.translate('Cancel'),
+        actionButtonLabel: window.lang.translate('Continue')
+    });
     //----------------------------------loadImager begin-------------------------------------------------
 
     /**
@@ -295,15 +301,15 @@
         }
 
         //alert(ddDataVehicleType.selectedData.value);
-        if ($("#tagcabin_DealVehicles").tagCabin('findSpecificTags', ddDataVehicleType.selectedData.value, 'data-attribute') != true) {
-            /*tagBuilderChemicalPropGroup.tagCabin('addTagManuallyDataAttr', selectedItem.value,
-                selectedItem.text,*/
-            wm.warningMessage('resetOnShown');
-            wm.warningMessage('show', "Please select another vehicle type",
-                "Please select another vehicle type");
-            $('#tab_VehicleType').loadImager('removeLoadImage');
-            return false;
-        }
+        //if ($("#tagcabin_DealVehicles").tagCabin('findSpecificTags', ddDataVehicleType.selectedData.value, 'data-attribute') != true) {
+        //    /*tagBuilderChemicalPropGroup.tagCabin('addTagManuallyDataAttr', selectedItem.value,
+        //        selectedItem.text,*/
+        //    wm.warningMessage('resetOnShown');
+        //    wm.warningMessage('show', "Please select another vehicle type",
+        //        "Please select another vehicle type");
+        //    $('#tab_VehicleType').loadImager('removeLoadImage');
+        //    return false;
+        //}
 
         var ajax = $('#add_vehicleType').ajaxCallWidget({
             failureLoadImage: true,
@@ -332,6 +338,7 @@
                 resetVehicleTypeAddDealForm();
             },
             onAfterSuccess: function (event, data) {
+                $("#gridContainer_VehicleTypeDeal").dxDataGrid("instance").refresh();
                 $("#deal_hidden").deal("addVehicleType", { vehicleType: ddDataVehicleType.selectedData.value, count: $("#quantity").val() });
                 $("#tagcabin_DealVehicles").tagCabin('addTagManuallyDataAttr', ddDataVehicleType.selectedData.value,
                     ddDataVehicleType.selectedData.text + " / " + $("#quantity_vehicleType").val(),
@@ -425,6 +432,7 @@
                     //resetVehicleTypeAddDealForm();
                 },
                 onAfterSuccess: function (event, data) {
+                    $("#gridContainer_VehicleTypeDeal").dxDataGrid("instance").refresh();
                 }
             })
             ajax.ajaxCallWidget('call');
