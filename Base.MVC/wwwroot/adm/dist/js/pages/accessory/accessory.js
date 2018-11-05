@@ -828,7 +828,7 @@ $(document).ready(function () {
                         ajax.ajaxCallWidget('call');
                     }
                 });
-                wcm.warningComplexMessage('show', 'Accesory is update! Are you sure?', 'Accessory is update! Are you sure?');
+                wcm.warningComplexMessage('show', 'Accesory data will be updated, do you want to proceed?', 'Accessory data will be updated, do you want to proceed?');
             }
         }
         return false;
@@ -1336,7 +1336,7 @@ $(document).ready(function () {
                         ajax.ajaxCallWidget('call');
                     }
                 });
-                wcm.warningComplexMessage('show', 'Accesory Feature is update! Are you sure?', 'Accessory Feature is update! Are you sure?');
+                wcm.warningComplexMessage('show', 'Accesory Feature data will be updated, do you want to proceed?', 'Accessory Feature data will be updated, do you want to proceed?');
             }
         }
         return false;

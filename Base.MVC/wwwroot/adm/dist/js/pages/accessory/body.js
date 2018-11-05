@@ -629,7 +629,7 @@ $(document).ready(function () {
                         ajax.ajaxCallWidget('call');
                     }
                 });
-                wcm.warningComplexMessage('show', 'Body is update! Are you sure?', 'Body is update! Are you sure?');
+                wcm.warningComplexMessage('show', 'Body data will be updated, do you want to proceed?', 'Body data will be updated, do you want to proceed?');
             }
         }
         return false;
@@ -1109,7 +1109,7 @@ $(document).ready(function () {
                         ajax.ajaxCallWidget('call');
                     }
                 });
-                wcm.warningComplexMessage('show', 'Body Feature is update! Are you sure?', 'Body Feature is update! Are you sure?');
+                wcm.warningComplexMessage('show', 'Body Feature data will be updated, do you want to proceed?', 'Body Feature data will be updated, do you want to proceed?');
             }
         }
         return false;
