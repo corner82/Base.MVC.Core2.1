@@ -129,8 +129,8 @@
                 type: "POST",
                 triggerSuccessAuto: true,
                 transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkInsertAct_infoproject)"),
+                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkInsertAct_infoproject)"),
                 loadingImageID: "tab_DealAttr",
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
@@ -205,8 +205,8 @@
                 type: "POST",
                 triggerSuccessAuto: true,
                 transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkUpdateAct_infoproject)"),
+                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkUpdateAct_infoproject)"),
                 loadingImageID: "tab_DealAttr",
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),

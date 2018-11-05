@@ -52,8 +52,8 @@
                 type: "POST",
                 failureLoadImage: true,
                 loadingImageID: "loadingImage_DdslickVehicleGroupsCampaign",
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                noDataFailureText: window.lang.translate("No data returned from service"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkVehicleGroupsDdList_sysvehiclegroups)"),
+                noDataFailureText: window.lang.translate("No data returned from service(pkVehicleGroupsDdList_sysvehiclegroups)"),
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
@@ -480,8 +480,9 @@
             type: "POST",
             failureLoadImage: true,
             loadingImageID: "loadingImage_DdslickVehicleTypeCampaign",
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            noDataFailureText: window.lang.translate("No data returned from service"),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error(pkProjectVehicleCampaignDdList_infoprojectcampaign)"),
+            noDataFailureText: window.lang.translate("No data returned from service(pkProjectVehicleCampaignDdList_infoprojectcampaign
+            )"),
             data: JSON.stringify({
                 language_code: $("#langCode").val(),
                 pk: "GsZVzEYe50uGgNM",
@@ -608,8 +609,8 @@
                 loadingImageID: "tab_Body",
                 triggerSuccessAuto: true,
                 transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkInsertAct_infoprojectcampaign)"),
+                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkInsertAct_infoprojectcampaign)"),
                 proxy: '/Deal/AddCampaignProxyService',
                 type: "POST",
                 data: JSON.stringify({

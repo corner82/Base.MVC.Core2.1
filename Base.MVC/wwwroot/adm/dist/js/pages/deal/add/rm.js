@@ -340,8 +340,8 @@
 
                 var ajax_DdslickVehicleTypeAksesuar = $('#ajax_DdslickDealVehicleTypeRM').ajaxCallWidget({
                     proxy: '/Deal/DdslickGetDealVehicleTypeProxyService/',
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    noDataFailureText: window.lang.translate("No data returned from service"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error(pkProjectVehicleModelsDdList_infoprojectvehiclemodels)"),
+                    noDataFailureText: window.lang.translate("No data returned from service(pkProjectVehicleModelsDdList_infoprojectvehiclemodels)"),
                     loadingImageID: "loadingImage_DdslickDealVehicleTypeRM",
                     data: JSON.stringify({
                         url: "pkProjectVehicleModelsDdList_infoprojectvehiclemodels",
@@ -397,8 +397,8 @@
                 type: "POST",
                 failureLoadImage: true,
                 loadingImageID: "loadingImage_DdslickVehicleGroupsRM",
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                noDataFailureText: window.lang.translate("No data returned from service"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkVehicleGroupsDdList_sysvehiclegroups)"),
+                noDataFailureText: window.lang.translate("No data returned from service(pkVehicleGroupsDdList_sysvehiclegroups)"),
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
@@ -439,8 +439,8 @@
                 type: "POST",
                 failureLoadImage: true,
                 loadingImageID: "loadingImage_DdslickVehicleTypeRM",
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                noDataFailureText: window.lang.translate("No data returned from service"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkVehicleGroupsDdList_sysvehiclegroups)"),
+                noDataFailureText: window.lang.translate("No data returned from service(pkVehicleGroupsDdList_sysvehiclegroups)"),
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
@@ -502,8 +502,8 @@
                 type: "POST",
                 failureLoadImage: true,
                 loadingImageID: "loadingImage_DdslickRMType",
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                noDataFailureText: window.lang.translate("No data returned from service"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkVehicleGroupsDdList_sysvehiclegroups)"),
+                noDataFailureText: window.lang.translate("No data returned from service(pkVehicleGroupsDdList_sysvehiclegroups)"),
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
@@ -540,8 +540,8 @@
                 type: "POST",
                 failureLoadImage: true,
                 loadingImageID: "loadingImage_DdslickRMKm",
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                noDataFailureText: window.lang.translate("No data returned from service"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkMileagesWarrantyDdList_sysmileages)"),
+                noDataFailureText: window.lang.translate("No data returned from service(pkMileagesWarrantyDdList_sysmileages)"),
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
@@ -579,8 +579,8 @@
                 type: "POST",
                 failureLoadImage: true,
                 loadingImageID: "loadingImage_DdslickRMTime",
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                noDataFailureText: window.lang.translate("No data returned from service"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkRmMonthsDdList_sysmonths)"),
+                noDataFailureText: window.lang.translate("No data returned from service(pkRmMonthsDdList_sysmonths)"),
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
@@ -688,8 +688,8 @@
                 loadingImageID: "tab_Aksesuar",
                 triggerSuccessAuto: true,
                 transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkInsertAct_infoprojectacc)"),
+                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkInsertAct_infoprojectacc)"),
                 proxy: '/Deal/AddAksesuarProxyService',
                 type: "POST",
                 data: JSON.stringify({
@@ -960,8 +960,8 @@
                     type: "POST",
                     failureLoadImage: true,
                     loadingImageID: "loadingImage_DdslickVehicleGroupsRM",
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    noDataFailureText: window.lang.translate("No data returned from service"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error(pkVehicleGroupsDdList_sysvehiclegroups)"),
+                    noDataFailureText: window.lang.translate("No data returned from service(pkVehicleGroupsDdList_sysvehiclegroups)"),
                     data: JSON.stringify({
                         language_code: $("#langCode").val(),
                         pk: "GsZVzEYe50uGgNM",
@@ -1024,8 +1024,8 @@
                         type: "POST",
                         failureLoadImage: true,
                         //loadingImageID: "loadingImage_DdslickRMKm",
-                        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                        noDataFailureText: window.lang.translate("No data returned from service"),
+                        transactionFailureText: window.lang.translate("Service URL not found, please report error(pkMileagesWarrantyDdList_sysmileages)"),
+                        noDataFailureText: window.lang.translate("No data returned from service(pkMileagesWarrantyDdList_sysmileages)"),
                         data: JSON.stringify({
                             language_code: $("#langCode").val(),
                             pk: "GsZVzEYe50uGgNM",
@@ -1064,8 +1064,8 @@
                         type: "POST",
                         failureLoadImage: true,
                         //loadingImageID: "loadingImage_DdslickRMTime",
-                        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                        noDataFailureText: window.lang.translate("No data returned from service"),
+                        transactionFailureText: window.lang.translate("Service URL not found, please report error(pkRmMonthsDdList_sysmonths)"),
+                        noDataFailureText: window.lang.translate("No data returned from service(pkRmMonthsDdList_sysmonths)"),
                         data: JSON.stringify({
                             language_code: $("#langCode").val(),
                             pk: "GsZVzEYe50uGgNM",

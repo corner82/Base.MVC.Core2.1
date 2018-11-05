@@ -20,8 +20,8 @@
                 failureLoadImage: true,
                 triggerSuccessAuto: false,
                 transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkFillDealMainShortGridx_infoproject)"),
+                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkFillDealMainShortGridx_infoproject)"),
                 proxy: '/DefaultPost/DefaultPostModel',
                 type: "POST",
                 data: JSON.stringify({
@@ -63,8 +63,8 @@
                 failureLoadImage: true,
                 triggerSuccessAuto: false,
                 transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkFillDealMainShortGridx_infoproject)"),
+                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkFillDealMainShortGridx_infoproject)"),
                 proxy: '/DefaultPost/DefaultPostModel',
                 type: "POST",
                 data: JSON.stringify({

@@ -104,8 +104,8 @@
                 loadingImageID: "tab_TradeIn",
                 triggerSuccessAuto: true,
                 transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkInsertAct_infoprojecttradein)"),
+                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkInsertAct_infoprojecttradein)"),
                 proxy: '/Deal/AddTradeInProxyService',
                 type: "POST",
                 data: JSON.stringify({
@@ -478,8 +478,8 @@
                 loadingImageID: "tab_TradeInVehicle",
                 triggerSuccessAuto: true,
                 transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkInsertAct_infoprojecttradeinvehicle)"),
+                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkInsertAct_infoprojecttradeinvehicle)"),
                 proxy: '/Deal/AddTradeInVehicleProxyService',
                 type: "POST",
                 data: JSON.stringify({

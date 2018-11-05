@@ -54,8 +54,8 @@
             var ajax_DdslickVehicleType = $('#ajax_DdslickVehicleType').ajaxCallWidget({
                 proxy: '/DefaultPost/DefaultPostModel',
                 type: "POST",
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                noDataFailureText: window.lang.translate("No data returned from service"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups)"),
+                noDataFailureText: window.lang.translate("No data returned from service(pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups)"),
                 loadingImageID: "loadingImage_DdslickVehicleType",
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
@@ -316,8 +316,8 @@
             loadingImageID: "tab_VehicleType",
             triggerSuccessAuto: true,
             transactionSuccessText: window.lang.translate('Transaction successful'),
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error(pkInsertAct_infoprojectvehiclemodels)"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkInsertAct_infoprojectvehiclemodels)"),
             proxy: '/Deal/AddVehicleTypeProxyService',
             type: "POST",
             data: JSON.stringify({
@@ -410,8 +410,8 @@
                 loadingImageID: "loadingImage_UpdateVehicleType",
                 triggerSuccessAuto: true,
                 transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkUpdateAct_infoprojectvehiclemodels)"),
+                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkUpdateAct_infoprojectvehiclemodels)"),
                 proxy: '/Deal/AddVehicleTypeProxyService',
                 type: "POST",
                 data: JSON.stringify({
@@ -536,8 +536,8 @@
                 var ajax_DdslickVehicleType = $('#ajax_DdslickVehicleTypePopup').ajaxCallWidget({
                     proxy: '/DefaultPost/DefaultPostModel',
                     type: "POST",
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    noDataFailureText: window.lang.translate("No data returned from service"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error(pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups)"),
+                    noDataFailureText: window.lang.translate("No data returned from service(pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups)"),
                     loadingImageID: "loadingImage_DdslickVehicleTypePopup",
                     data: JSON.stringify({
                         language_code: $("#langCode").val(),
