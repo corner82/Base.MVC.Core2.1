@@ -7,8 +7,8 @@
         //loadingImageID: "loading-image-wrName",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error(pkFillCalendarEventsGridx_infocalendarevents)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkFillCalendarEventsGridx_infocalendarevents)"),
         proxy: '/Calendar/SysCalendar',
         type: "POST",
         data: JSON.stringify({

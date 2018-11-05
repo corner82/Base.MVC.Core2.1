@@ -84,8 +84,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickReturn",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error(pkReturnTypeDdList_sysreturntypes)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkReturnTypeDdList_sysreturntypes)"),
         proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
         data: JSON.stringify({
@@ -317,8 +317,8 @@ $(document).ready(function () {
                     loadingImageID: "loadingImage_BbReturnInfo",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error(pkUpdateAct_infoprojectbuybackreturn)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkUpdateAct_infoprojectbuybackreturn)"),
 
                     proxy: '/BuybackTradeback/AddBbTbReturn',
                     type: 'POST',
@@ -349,8 +349,8 @@ $(document).ready(function () {
                     loadingImageID: "loadingImage_BbReturnInfo",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error(pkInsertAct_infoprojectbuybackreturn)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkInsertAct_infoprojectbuybackreturn)"),
 
                     proxy: '/BuybackTradeback/AddBbTbReturn',
                     type: 'POST',

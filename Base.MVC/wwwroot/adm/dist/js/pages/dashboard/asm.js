@@ -5,8 +5,8 @@
         //loadingImageID: "loading-image-wrName",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error(pkAsmTargetsDashboard_dashboard)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkAsmTargetsDashboard_dashboard)"),
         proxy: '/Dashboard/AsmData',
         type: "POST",
         data: JSON.stringify({
@@ -49,8 +49,8 @@
         //loadingImageID: "loading-image-wrName",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error(pkAsmActivitiesDashboard_dashboard)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkAsmActivitiesDashboard_dashboard)"),
         proxy: '/Dashboard/AsmData',
         type: "POST",
         data: JSON.stringify({

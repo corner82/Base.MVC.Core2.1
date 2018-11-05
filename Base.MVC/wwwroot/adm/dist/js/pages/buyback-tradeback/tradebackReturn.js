@@ -73,8 +73,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickReturn",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error(pkReturnTypeDdList_sysreturntypes)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkReturnTypeDdList_sysreturntypes)"),
         proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
         data: JSON.stringify({
@@ -302,8 +302,8 @@ $(document).ready(function () {
                     loadingImageID: "loadingImage_tbReturnInfo",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error(pkUpdateAct_infostockparkoff)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkUpdateAct_infostockparkoff)"),
 
                     proxy: '/ParkOff/AddParkoff',
                     type: 'POST',
@@ -333,8 +333,8 @@ $(document).ready(function () {
                     loadingImageID: "loadingImage_TbReturnInfo",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error(pkInsertAct_infostockparkoff)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkInsertAct_infostockparkoff)"),
 
                     proxy: '/ParkOff/AddParkoff',
                     type: 'POST',

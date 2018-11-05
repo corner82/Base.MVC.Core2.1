@@ -28,8 +28,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickBranch",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error(pkBranchesDealersDeffDdList_sysbranchesdealersdeff)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkBranchesDealersDeffDdList_sysbranchesdealersdeff)"),
         proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
         data: JSON.stringify({
@@ -234,8 +234,8 @@ $(document).ready(function () {
             loadingImageID: "loadingImage_DdslickRole",
             triggerSuccessAuto: true,
             transactionSuccessText: window.lang.translate('Transaction successful'),
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error(insertUserSIS_infoUsers)"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(insertUserSIS_infoUsers)"),
 
             proxy: '/Acc/AddRegisterUser',
             type: 'POST',
