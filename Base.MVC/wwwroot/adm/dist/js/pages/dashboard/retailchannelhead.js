@@ -4,8 +4,8 @@
         //loadingImageID: "loading-image-wrName",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error(pkRchTargetsDashboard_dashboard)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkRchTargetsDashboard_dashboard)"),
         proxy: '/Dashboard/AsmData',
         type: "POST",
         data: JSON.stringify({

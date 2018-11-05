@@ -172,8 +172,8 @@
             loadingImageID: "tab_BuyBack",
             triggerSuccessAuto: true,
             transactionSuccessText: window.lang.translate('Transaction successful'),
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error(pkInsertAct_infoprojectbuybacks)"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkInsertAct_infoprojectbuybacks)"),
             proxy: '/Deal/AddBuyBackProxyService',
             type: "POST",
             data: JSON.stringify({
@@ -246,8 +246,8 @@
             var ajax_DdslickCustomerTypeBuyBack = $('#ajax_DdslickCustomerTypeBuyBack').ajaxCallWidget({
                 proxy: '/Customer/SysCustomerType',
                 type: "POST",
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                noDataFailureText: window.lang.translate("No data returned from service"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkCustomerTypesDdList_syscustomertypes)"),
+                noDataFailureText: window.lang.translate("No data returned from service(pkCustomerTypesDdList_syscustomertypes)"),
                 loadingImageID: "loadingImage_DdslickCustomerTypeBuyBack",
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
@@ -333,8 +333,8 @@
                 type: "POST",
                 failureLoadImage: true,
                 loadingImageID: "loadingImage_DdslickTerrainTypeBuyBack",
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                noDataFailureText: window.lang.translate("No data returned from service"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkTerrainsBuybackDdList_systerrains)"),
+                noDataFailureText: window.lang.translate("No data returned from service(pkTerrainsBuybackDdList_systerrains)"),
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
@@ -840,8 +840,8 @@
 
                 var ajax_DdslickVehicleTypeBuyBack = $('#ajax_DdslickDealVehicleTypeBuyBack').ajaxCallWidget({
                     proxy: '/Deal/DdslickGetDealVehicleTypeProxyService/',
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    noDataFailureText: window.lang.translate("No data returned from service"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error(pkProjectVehicleModelsTradeDdList_infoprojectbuybacks)"),
+                    noDataFailureText: window.lang.translate("No data returned from service(pkProjectVehicleModelsTradeDdList_infoprojectbuybacks)"),
                     loadingImageID: "loadingImage_DdslickDealVehicleTypeBuyBack",
                     data: JSON.stringify({
                         //url: "pkProjectVehicleModelsDdList_infoprojectvehiclemodels",
@@ -989,8 +989,8 @@
             loadingImageID: "loadingImage_UpdateBuyBack",
             triggerSuccessAuto: true,
             transactionSuccessText: window.lang.translate('Transaction successful'),
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error(pkUpdateAct_infoprojectbuybacks)"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkUpdateAct_infoprojectbuybacks)"),
             proxy: '/Deal/AddBuyBackProxyService',
             type: "POST",
             data: JSON.stringify({
@@ -1327,8 +1327,8 @@
                 $("#loadingImage_DdslickDealVehicleTypeBuyBackPopup").loadImager('appendImage');
                 var ajax_DdslickVehicleTypeBuyBack = $('#ajax_DdslickDealVehicleTypeBuyBackPopup').ajaxCallWidget({
                     proxy: '/Deal/DdslickGetDealVehicleTypeProxyService/',
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    noDataFailureText: window.lang.translate("No data returned from service"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error(pkProjectVehicleModelsTradeDdList_infoprojectbuybacks)"),
+                    noDataFailureText: window.lang.translate("No data returned from service(pkProjectVehicleModelsTradeDdList_infoprojectbuybacks)"),
                     loadingImageID: "loadingImage_DdslickDealVehicleTypeBuyBackPopup",
                     data: JSON.stringify({
                         //url: "pkProjectVehicleModelsDdList_infoprojectvehiclemodels",
@@ -1381,8 +1381,8 @@
                 var ajax_DdslickCustomerTypeBuyBack = $('#ajax_DdslickCustomerTypeBuyBackPopup').ajaxCallWidget({
                     proxy: '/Customer/SysCustomerType',
                     type: "POST",
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    noDataFailureText: window.lang.translate("No data returned from service"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error(pkCustomerTypesDdList_syscustomertypes)"),
+                    noDataFailureText: window.lang.translate("No data returned from service(pkCustomerTypesDdList_syscustomertypes)"),
                     loadingImageID: "loadingImage_DdslickCustomerTypeBuyBackPopup",
                     data: JSON.stringify({
                         language_code: $("#langCode").val(),
@@ -1436,8 +1436,8 @@
                     type: "POST",
                     failureLoadImage: true,
                     loadingImageID: "loadingImage_DdslickTerrainTypeBuyBackPopup",
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    noDataFailureText: window.lang.translate("No data returned from service"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error(pkTerrainsBuybackDdList_systerrains)"),
+                    noDataFailureText: window.lang.translate("No data returned from service(pkTerrainsBuybackDdList_systerrains)"),
                     data: JSON.stringify({
                         language_code: $("#langCode").val(),
                         pk: "GsZVzEYe50uGgNM",
