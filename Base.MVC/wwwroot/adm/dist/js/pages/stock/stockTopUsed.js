@@ -11,8 +11,8 @@ $(document).ready(function () {
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
     var wcm = $(window).warningComplexMessage({
-        denyButtonLabel: 'Vazgeç',
-        actionButtonLabel: 'İşleme devam et'
+        denyButtonLabel: window.lang.translate('Cancel'),
+        actionButtonLabel: window.lang.translate('Continue')
     });
 
     /*
@@ -68,8 +68,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickStockType",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehicleGroupsDdList_sysvehiclegroups)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkVehicleGroupsDdList_sysvehiclegroups)"),
         proxy: '/Vehicle/SysVehicleGroups',
         type: "POST",
         data: JSON.stringify({
@@ -117,8 +117,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickVehicleStock",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkJustYearsDdList_sysmonths)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkJustYearsDdList_sysmonths)"),
         proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
         data: JSON.stringify({
@@ -164,8 +164,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickIntake",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkJustMonthsDdList_sysmonths)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkJustMonthsDdList_sysmonths)"),
         proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
         data: JSON.stringify({
@@ -211,8 +211,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickVehicleLocation",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkSisQuotasDdList_syssisquotas)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkSisQuotasDdList_syssisquotas)"),
         proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
         data: JSON.stringify({
@@ -258,8 +258,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickSold",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (fillYesNoTypes_sysSpecificDefinitions)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (fillYesNoTypes_sysSpecificDefinitions)"),
         proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
         data: JSON.stringify({
@@ -1424,8 +1424,8 @@ DevExpress.localization.locale(langCode);
                 loadingImageID: "loadingImage_monthlyQuota",
                 triggerSuccessAuto: true,
                 transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error (pkInsertAct_syssismonthlyquotas)"),
+                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkInsertAct_syssismonthlyquotas)"),
 
                 proxy: '/Sys/AddMonthlyQuota',
                 type: 'POST',
@@ -1538,8 +1538,8 @@ DevExpress.localization.locale(langCode);
             loadingImageID: "loadingImage_DdslickQuotaMonthGrid",
             triggerSuccessAuto: true,
             transactionSuccessText: window.lang.translate('Transaction successful'),
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateMakeActiveOrPassive_syssismonthlyquotas)"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateMakeActiveOrPassive_syssismonthlyquotas)"),
             proxy: '/Sys/SysActivePassiveYearlyQuota',
             type: "POST",
             data: JSON.stringify({
@@ -1671,8 +1671,8 @@ DevExpress.localization.locale(langCode);
                     loadingImageID: "loadingImage_DdslickYear",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkJustYearsDdList_sysmonths)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkJustYearsDdList_sysmonths)"),
                     proxy: '/DefaultPost/DefaultPostModel',
                     type: "POST",
                     data: JSON.stringify({
@@ -1717,8 +1717,8 @@ DevExpress.localization.locale(langCode);
                     loadingImageID: "loadingImage_DdslickMonth",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkJustMonthsDdList_sysmonths)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkJustMonthsDdList_sysmonths)"),
                     proxy: '/DefaultPost/DefaultPostModel',
                     type: "POST",
                     data: JSON.stringify({
@@ -1877,8 +1877,8 @@ DevExpress.localization.locale(langCode);
                     loadingImageID: "loadingImage_DdslickYear",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkJustYearsDdList_sysmonths)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkJustYearsDdList_sysmonths)"),
                     proxy: '/DefaultPost/DefaultPostModel',
                     type: "POST",
                     data: JSON.stringify({
@@ -1923,8 +1923,8 @@ DevExpress.localization.locale(langCode);
                     loadingImageID: "loadingImage_DdslickMonth",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkJustMonthsDdList_sysmonths)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkJustMonthsDdList_sysmonths)"),
                     proxy: '/DefaultPost/DefaultPostModel',
                     type: "POST",
                     data: JSON.stringify({
@@ -2082,8 +2082,8 @@ DevExpress.localization.locale(langCode);
                     loadingImageID: "loadingImage_DdslickYear",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkJustYearsDdList_sysmonths)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkJustYearsDdList_sysmonths)"),
                     proxy: '/DefaultPost/DefaultPostModel',
                     type: "POST",
                     data: JSON.stringify({
@@ -2128,8 +2128,8 @@ DevExpress.localization.locale(langCode);
                     loadingImageID: "loadingImage_DdslickMonth",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkJustMonthsDdList_sysmonths)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkJustMonthsDdList_sysmonths)"),
                     proxy: '/DefaultPost/DefaultPostModel',
                     type: "POST",
                     data: JSON.stringify({

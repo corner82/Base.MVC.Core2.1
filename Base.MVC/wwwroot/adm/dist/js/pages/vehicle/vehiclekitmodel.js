@@ -11,8 +11,8 @@ $(document).ready(function () {
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
     var wcm = $(window).warningComplexMessage({
-        denyButtonLabel: 'Cancel',
-        actionButtonLabel: 'Continue'
+        denyButtonLabel: window.lang.translate('Cancel'),
+        actionButtonLabel: window.lang.translate('Continue')
     });
 
     var selectedVehicleKitModelId = 0;
@@ -47,8 +47,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_purposeof",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkPlaceOfUseDdList_sysplaceofuse)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkPlaceOfUseDdList_sysplaceofuse)"),
         proxy: '/Vehicle/SysVehiclePurposeOf/',
         type: "POST",
         data: JSON.stringify({
@@ -99,8 +99,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickVehicleKitType",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehicleCkdCbuDdList_sysvehicleckdcbu)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkVehicleCkdCbuDdList_sysvehicleckdcbu)"),
         proxy: '/Vehicle/SysVehicleCKDCBU/',
         type: "POST",
         data: JSON.stringify({
@@ -188,7 +188,7 @@ $(document).ready(function () {
                         deferred.resolve(result.items, { totalCount: result.totalCount });
                     },
                     error: function () {
-                        deferred.reject("Data Loading Error");
+                        deferred.reject("Data Loading Error (pkFillVehicleGroupsGridx_sysvehiclegroups)");
                     },
                     timeout: 30000
                 });
@@ -213,7 +213,7 @@ $(document).ready(function () {
                         deferred.resolve(result.items, { totalCount: result.totalCount });
                     },
                     error: function () {
-                        deferred.reject("Data remove Error");
+                        deferred.reject("Data remove Error (pkDeletedAct_sysvehiclegroups)");
                     },
                     timeout: 30000
                 });
@@ -420,8 +420,8 @@ $(document).ready(function () {
                     loadingImageID: "loadingImage_vehiclekitmodel",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkInsertAct_sysvehiclegroups)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkInsertAct_sysvehiclegroups)"),
                     proxy: '/Vehicle/InsertVehicleKitModel',
                     type: "POST",
                     data: JSON.stringify({
@@ -455,8 +455,8 @@ $(document).ready(function () {
                             loadingImageID: "loadingImage_vehiclekitmodel",
                             triggerSuccessAuto: true,
                             transactionSuccessText: window.lang.translate('Transaction successful'),
-                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateAct_sysvehiclegroups)"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateAct_sysvehiclegroups)"),
                             proxy: '/Vehicle/UpdateVehicleKitModel',
                             type: "POST",
                             data: JSON.stringify({
@@ -481,7 +481,7 @@ $(document).ready(function () {
                         ajax.ajaxCallWidget('call');
                     }
                 });
-                wcm.warningComplexMessage('show', 'Vehicle Kit-Model is update! Are you sure?', 'Vehicle Kit-Model is update! Are you sure?');
+                wcm.warningComplexMessage('show', 'Vehicle Kit-Model data will be updated, do you want to proceed?', 'Vehicle Kit-Model data will be updated, do you want to proceed?');
             }
         }
         return false;
@@ -575,8 +575,8 @@ $(document).ready(function () {
             loadingImageID: "loading-image-vehiclekitmodelGrid",
             triggerSuccessAuto: true,
             transactionSuccessText: transactionSuccessMessage,
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateMakeActiveOrPassive_sysvehiclegroups)"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateMakeActiveOrPassive_sysvehiclegroups)"),
             proxy: '/Vehicle/ActivePassiveVehicleKitModel',
             type: "POST",
             data: JSON.stringify({

@@ -6,8 +6,8 @@ $(document).ready(function () {
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
     var wcm = $(window).warningComplexMessage({
-        denyButtonLabel: 'Vazgeç',
-        actionButtonLabel: 'Ýþleme devam et'
+        denyButtonLabel: window.lang.translate('Cancel'),
+        actionButtonLabel: window.lang.translate('Continue')
     });
 
     /*
@@ -271,8 +271,8 @@ $(document).ready(function () {
                     loadingImageID: "loading-image-Fxrate",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateAct_syscurrencyfix)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateAct_syscurrencyfix)"),
 
                     proxy: '/Sys/AddFxrate',
                     type: 'POST',
@@ -301,8 +301,8 @@ $(document).ready(function () {
                     loadingImageID: "loading-image-Fxrate",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkInsertAct_syscurrencyfix)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkInsertAct_syscurrencyfix)"),
 
                     proxy: '/Sys/AddFxrate',
                     type: 'POST',
@@ -397,8 +397,8 @@ $(document).ready(function () {
             loadingImageID: "loading-image-Fxrate",
             triggerSuccessAuto: true,
             transactionSuccessText: window.lang.translate('Transaction successful'),
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateMakeActiveOrPassive_syscurrencyfix)"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateMakeActiveOrPassive_syscurrencyfix)"),
             proxy: '/Training/SysActivePasiveTrName',
             type: "POST",
             data: JSON.stringify({

@@ -64,8 +64,8 @@ $(document).ready(function () {
         loadingImageID: "loading-image-country",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCountryDdList_syscountrys)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkCountryDdList_syscountrys)"),
         proxy: '/Sys/SysCountrys',
         type: "POST",
         data: JSON.stringify({
@@ -108,8 +108,8 @@ $(document).ready(function () {
                             loadingImageID: "loading-image-province",
                             triggerSuccessAuto: true,
                             transactionSuccessText: window.lang.translate('Transaction successful'),
-                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCountryRegionsDdList_syscountryregions)"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkCountryRegionsDdList_syscountryregions)"),
                             proxy: '/Sys/SysCountryRegions',
                             type: "POST",
                             data: JSON.stringify({
@@ -155,8 +155,8 @@ $(document).ready(function () {
                                                 loadingImageID: "loading-image-city",
                                                 triggerSuccessAuto: true,
                                                 transactionSuccessText: window.lang.translate('Transaction successful'),
-                                                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                                                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                                                transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCityDdList_syscity)"),
+                                                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkCityDdList_syscity)"),
                                                 proxy: '/Sys/SysCity',
                                                 type: "POST",
                                                 data: JSON.stringify({
@@ -304,7 +304,7 @@ $(document).ready(function () {
                         deferred.resolve(result.items, { totalCount: result.totalCount });
                     },
                     error: function () {
-                        deferred.reject("Data Loading Error");
+                        deferred.reject("Data Loading Error (pkFillSupplierGridx_syssupplier)");
                     },
                     timeout: 30000
                 });
@@ -648,8 +648,8 @@ $(document).ready(function () {
                     loadingImageID: "loading-image-supplier",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkInsertAct_syssupplier)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkInsertAct_syssupplier)"),
                     proxy: '/Sys/InsertSupplier',
                     type: "POST",
                     data: JSON.stringify({
@@ -695,8 +695,8 @@ $(document).ready(function () {
                             loadingImageID: "loading-image-supplier",
                             triggerSuccessAuto: true,
                             transactionSuccessText: window.lang.translate('Transaction successful'),
-                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateAct_syssupplier)"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateAct_syssupplier)"),
                             proxy: '/Sys/UpdateSupplier',
                             type: "POST",
                             data: JSON.stringify({
@@ -813,8 +813,8 @@ $(document).ready(function () {
             loadingImageID: "loading-image-suppliergrid",
             triggerSuccessAuto: true,
             transactionSuccessText: transactionSuccessMessage,
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateMakeActiveOrPassive_syssupplier)"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateMakeActiveOrPassive_syssupplier)"),
             proxy: '/Sys/ActivePassiveSupplier',
             type: "POST",
             data: JSON.stringify({

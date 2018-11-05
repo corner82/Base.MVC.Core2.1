@@ -174,8 +174,8 @@
             loadingImageID: "tab_TradeBack",
             triggerSuccessAuto: true,
             transactionSuccessText: window.lang.translate('Transaction successful'),
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error(pkInsertAct_infoprojecttradeback)"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkInsertAct_infoprojecttradeback)"),
             proxy: '/Deal/AddTradeBackProxyService',
             type: "POST",
             data: JSON.stringify({
@@ -248,8 +248,8 @@
                 type: "POST",
                 failureLoadImage: true,
                 loadingImageID: "loadingImage_DdslickCustomerTypeTradeBack",
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                noDataFailureText: window.lang.translate("No data returned from service"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkCustomerTypesDdList_syscustomertypes)"),
+                noDataFailureText: window.lang.translate("No data returned from service(pkCustomerTypesDdList_syscustomertypes)"),
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
@@ -314,8 +314,8 @@
                 type: "POST",
                 //failureLoadImage: true,
                 loadingImageID: "loadingImage_DdslickTruckTypeTradeBack",
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                noDataFailureText: window.lang.translate("No data returned from service"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkCustomerTypesDdList_syscustomertypes)"),
+                noDataFailureText: window.lang.translate("No data returned from service(pkCustomerTypesDdList_syscustomertypes)"),
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
@@ -363,8 +363,8 @@
                 type: "POST",
                 //failureLoadImage: true,
                 loadingImageID: "loadingImage_DdslickTerrainTypeTradeBack",
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                noDataFailureText: window.lang.translate("No data returned from service"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkTerrainsTradebackDdList_systerrains)"),
+                noDataFailureText: window.lang.translate("No data returned from service(pkTerrainsTradebackDdList_systerrains)"),
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
@@ -821,8 +821,8 @@
 
                 var ajax_DdslickVehicleTypeTradeBack = $('#ajax_DdslickDealVehicleTypeTradeBack').ajaxCallWidget({
                     proxy: '/Deal/DdslickGetDealVehicleTypeProxyService/',
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    noDataFailureText: window.lang.translate("No data returned from service"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error(pkProjectVehicleModelsTradeDdList_infoprojecttradeback)"),
+                    noDataFailureText: window.lang.translate("No data returned from service(pkProjectVehicleModelsTradeDdList_infoprojecttradeback)"),
                     loadingImageID: "loadingImage_DdslickDealVehicleTypeTradeBack",
                     data: JSON.stringify({
                         url: "pkProjectVehicleModelsTradeDdList_infoprojecttradeback",

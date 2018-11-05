@@ -11,8 +11,8 @@ $(document).ready(function () {
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
     var wcm = $(window).warningComplexMessage({
-        denyButtonLabel: 'Vazgeç',
-        actionButtonLabel: 'İşleme devam et'
+        denyButtonLabel: window.lang.translate('Cancel'),
+        actionButtonLabel: window.lang.translate('Continue')
     });
 
     /*
@@ -90,8 +90,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickQuotaType",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkSisQuotasDdList_syssisquotas)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkSisQuotasDdList_syssisquotas)"),
         proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
         data: JSON.stringify({
@@ -169,7 +169,7 @@ $(document).ready(function () {
                         deferred.resolve(result.items, { totalCount: result.totalCount });
                     },
                     error: function () {
-                        deferred.reject("Data Loading Error");
+                        deferred.reject("Data Loading Error (pkFillQuotasMatrixGridx_syssisquotasmatrix)");
                     },
                     timeout: 10000
                 });
@@ -192,7 +192,7 @@ $(document).ready(function () {
                         deferred.resolve(result.items, { totalCount: result.totalCount });
                     },
                     error: function () {
-                        deferred.reject("Data remove Error");
+                        deferred.reject("Data remove Error (pkDeletedAct_syssisquotasmatrix)");
                     },
                     timeout: 10000
                 });
@@ -373,8 +373,8 @@ $(document).ready(function () {
                     loadingImageID: "loadingImage_yearlyQuota",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateAct_syssisquotasmatrix)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateAct_syssisquotasmatrix)"),
 
                     proxy: '/Sys/AddYearlyQuota',
                     type: 'POST',
@@ -403,8 +403,8 @@ $(document).ready(function () {
                     loadingImageID: "loadingImage_yearlyQuota",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkInsertAct_syssisquotasmatrix)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkInsertAct_syssisquotasmatrix)"),
 
                     proxy: '/Sys/AddYearlyQuota',
                     type: 'POST',
@@ -507,8 +507,8 @@ $(document).ready(function () {
             loadingImageID: "loadingImage_DdslickQuotaYearGrid",
             triggerSuccessAuto: true,
             transactionSuccessText: window.lang.translate('Transaction successful'),
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateMakeActiveOrPassive_syssisquotasmatrix)"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateMakeActiveOrPassive_syssisquotasmatrix)"),
             proxy: '/Sys/SysActivePassiveYearlyQuota',
             type: "POST",
             data: JSON.stringify({

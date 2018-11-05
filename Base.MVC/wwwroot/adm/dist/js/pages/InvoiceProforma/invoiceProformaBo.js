@@ -10,8 +10,8 @@ $(document).ready(function () {
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
     var wcm = $(window).warningComplexMessage({
-        denyButtonLabel: 'Vazgeç',
-        actionButtonLabel: 'İşleme devam et'
+        denyButtonLabel: window.lang.translate('Cancel'),
+        actionButtonLabel: window.lang.translate('Continue')
     });
 
     var proformaID;
@@ -52,8 +52,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickCurrency",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCurrencyTypesDdList_syscurrencytypes)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkCurrencyTypesDdList_syscurrencytypes)"),
         proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
         data: JSON.stringify({
@@ -100,8 +100,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickVat",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCurrencyTypesDdList_syscurrencytypes)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkCurrencyTypesDdList_syscurrencytypes)"),
         proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
         data: JSON.stringify({
@@ -499,8 +499,8 @@ $(document).ready(function () {
             loadingImageID: "loadingImage_DdslickChassis",
             triggerSuccessAuto: true,
             transactionSuccessText: window.lang.translate('Transaction successful'),
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVasSaseShortDdList_sysvasxml)"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkVasSaseShortDdList_sysvasxml)"),
             proxy: '/DefaultPost/DefaultPostModel',
             type: "POST",
             data: JSON.stringify({

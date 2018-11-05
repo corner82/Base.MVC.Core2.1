@@ -69,8 +69,8 @@
     var ajax_DdslickCustomer = $('#ajax_DdslickCustomer').ajaxCallWidget({
         proxy: '/Customer/DdslickGetAllCustomers',
         type: "POST",
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        noDataFailureText: window.lang.translate("No data returned from service"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error(pkCustomerDdList_infocustomer)"),
+        noDataFailureText: window.lang.translate("No data returned from service(pkCustomerDdList_infocustomer)"),
         loadingImageID: "loadingImage_DdslickCustomer",
         data: JSON.stringify({
             language_code: $("#langCode").val(),
@@ -91,6 +91,8 @@
                 //height: 150,
                 data: data,
                 width: '100%',
+                search: true,
+                searchText: window.lang.translate('Search'),
 
                 onSelected: function (selectedData) {
                     if (selectedData.selectedData.value > 0) {
@@ -122,8 +124,8 @@
     $("#loadingImage_DdslickPriority").loadImager('appendImage');
     var ajax_DdslickPriority = $('#ajax_DdslickPriority').ajaxCallWidget({
         proxy: '/Sys/PriorityDDSlickServiceProxy',
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        noDataFailureText: window.lang.translate("No data returned from service"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error(pkPriorityTypeDdList_sysprioritytype)"),
+        noDataFailureText: window.lang.translate("No data returned from service(pkPriorityTypeDdList_sysprioritytype)"),
         loadingImageID: "loadingImage_DdslickPriority",
         data: JSON.stringify({
             language_code: $("#langCode").val(),
@@ -187,8 +189,8 @@
     $("#loadingImage_DdslickRealizationRate").loadImager('appendImage');
     var ajax_DdslickRealizationRate = $('#ajax_DdslickRealizationRate').ajaxCallWidget({
         proxy: '/Sys/DDSlickRealizationRateServiceProxy',
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        noDataFailureText: window.lang.translate("No data returned from service"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error(pkProbabilitiesDdList_sysprobabilities)"),
+        noDataFailureText: window.lang.translate("No data returned from service(pkProbabilitiesDdList_sysprobabilities)"),
         loadingImageID: "loadingImage_DdslickRealizationRate",
         data: JSON.stringify({
             language_code: $("#langCode").val(),
@@ -305,8 +307,8 @@
         type: "POST",
         failureLoadImage: true,
         loadingImageID: "loadingImage_DdslickVehicleGroupsBody",
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        noDataFailureText: window.lang.translate("No data returned from service"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error(pkVehicleGroupsDdList_sysvehiclegroups)"),
+        noDataFailureText: window.lang.translate("No data returned from service(pkVehicleGroupsDdList_sysvehiclegroups)"),
         data: JSON.stringify({
             language_code: $("#langCode").val(),
             pk: "GsZVzEYe50uGgNM",
@@ -384,8 +386,8 @@
                 type: "POST",
                 failureLoadImage: true,
                 loadingImageID: "loadingImage_DdslickDealVehicleTypeBody",
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                noDataFailureText: window.lang.translate("No data returned from service"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkVehicleGroupsDdList_sysvehiclegroups)"),
+                noDataFailureText: window.lang.translate("No data returned from service(pkVehicleGroupsDdList_sysvehiclegroups)"),
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",

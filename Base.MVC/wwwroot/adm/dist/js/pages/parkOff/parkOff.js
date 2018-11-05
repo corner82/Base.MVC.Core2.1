@@ -10,8 +10,8 @@ $(document).ready(function () {
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
     var wcm = $(window).warningComplexMessage({
-        denyButtonLabel: 'Vazgeç',
-        actionButtonLabel: 'İşleme devam et'
+        denyButtonLabel: window.lang.translate('Cancel'),
+        actionButtonLabel: window.lang.translate('Continue')
     });
 
 /*
@@ -54,8 +54,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickBranch",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkBranchesDealersDeffDdList_sysbranchesdealersdeff)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkBranchesDealersDeffDdList_sysbranchesdealersdeff)"),
         proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
         data: JSON.stringify({
@@ -99,8 +99,8 @@ $(document).ready(function () {
                             loadingImageID: "loadingImage_DdslickChassis",
                             triggerSuccessAuto: true,
                             transactionSuccessText: window.lang.translate('Transaction successful'),
-                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkStockVehiclesDdList_infostock)"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkStockVehiclesDdList_infostock)"),
                             proxy: '/ParkOff/ParkoffChassis',
                             type: "POST",
                             data: JSON.stringify({
@@ -167,8 +167,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickParkoffType",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkParkoffTypeDdList_sysparkofftypes)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkParkoffTypeDdList_sysparkofftypes)"),
         proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
         data: JSON.stringify({
@@ -215,8 +215,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickCompleted",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (fillYesNoTypes_sysSpecificDefinitions)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (fillYesNoTypes_sysSpecificDefinitions)"),
         proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
         data: JSON.stringify({
@@ -512,8 +512,8 @@ $(document).ready(function () {
                     loadingImageID: "loadingImage_parkoff",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateAct_infostockparkoff)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateAct_infostockparkoff)"),
 
                     proxy: '/ParkOff/AddParkoff',
                     type: 'POST',
@@ -545,8 +545,8 @@ $(document).ready(function () {
                     loadingImageID: "loadingImage_parkoff",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkInsertAct_infostockparkoff)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkInsertAct_infostockparkoff)"),
 
                     proxy: '/ParkOff/AddParkoff',
                     type: 'POST',

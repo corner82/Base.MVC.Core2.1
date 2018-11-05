@@ -19,7 +19,7 @@
      *  @since 08/10/2018
      * */
     $("#deal_hidden").organizeTabs({ tabID: "deals_tab" });
-    //$("#deal_hidden").organizeTabs('disableAllTabsButOne');
+    $("#deal_hidden").organizeTabs('disableAllTabsButOne');
 
     //Make the dashboard widgets sortable Using jquery UI
     $(".connectedSortable").sortable({
@@ -129,8 +129,8 @@
                 type: "POST",
                 triggerSuccessAuto: true,
                 transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkInsertAct_infoproject)"),
+                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkInsertAct_infoproject)"),
                 loadingImageID: "tab_DealAttr",
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
@@ -190,6 +190,7 @@
         var ddDataCustomer = $('#ddslickCustomer').data('ddslick');
         var ddDataPriority = $('#ddslickPriority').data('ddslick');
         var ddDataRealizationRate = $('#ddslickRealizationRate').data('ddslick');
+        var id = $('#txt_deal_id').val();
 
         if ($("#addDealForm").validationEngine("validate")) {
             if (!ddDataCustomer.selectedData.value > 0) {
@@ -204,12 +205,13 @@
                 type: "POST",
                 triggerSuccessAuto: true,
                 transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkUpdateAct_infoproject)"),
+                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkUpdateAct_infoproject)"),
                 loadingImageID: "tab_DealAttr",
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
+                    id:id,
                     deal_name: $("#deal_name").val(),
                     url: "pkUpdateAct_infoproject",
                     pkIdentity: $("#publicKey").val(),

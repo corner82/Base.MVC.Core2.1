@@ -1,7 +1,7 @@
 ﻿/*
 * Brand Form
 * @author Gül Özdemir
-* @since 13/08/2016
+* @since 13/08/2018
 */
 $(document).ready(function () {
 
@@ -11,15 +11,15 @@ $(document).ready(function () {
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
     var wcm = $(window).warningComplexMessage({
-        denyButtonLabel: 'Vazgeç',
-        actionButtonLabel: 'İşleme devam et'
+        denyButtonLabel: window.lang.translate('Cancel'),
+        actionButtonLabel: window.lang.translate('Continue')
     });
 
 
     /*
     * Brand LoadImager
     * @author Gül Özdemir
-    * @since 13/08/2016
+    * @since 13/08/2018
     */
     //to brand form
     $("#loading-image-brand").loadImager();

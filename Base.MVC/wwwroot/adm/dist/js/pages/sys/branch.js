@@ -143,8 +143,8 @@ $(document).ready(function () {
         loadingImageID: "loading-image-country",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCountryDdList_syscountrys)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkCountryDdList_syscountrys)"),
         proxy: '/Sys/SysCountrys',
         type: "POST",
         data: JSON.stringify({
@@ -188,8 +188,8 @@ $(document).ready(function () {
                             loadingImageID: "loading-image-province",
                             triggerSuccessAuto: true,
                             transactionSuccessText: window.lang.translate('Transaction successful'),
-                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCountryRegionsDdList_syscountryregions)"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkCountryRegionsDdList_syscountryregions)"),
                             proxy: '/Sys/SysCountryRegions',
                             type: "POST",
                             data: JSON.stringify({
@@ -235,8 +235,8 @@ $(document).ready(function () {
                                                 loadingImageID: "loading-image-city",
                                                 triggerSuccessAuto: true,
                                                 transactionSuccessText: window.lang.translate('Transaction successful'),
-                                                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                                                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                                                transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCityDdList_syscity)"),
+                                                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkCityDdList_syscity)"),
                                                 proxy: '/Sys/SysCity',
                                                 type: "POST",
                                                 data: JSON.stringify({
@@ -717,8 +717,8 @@ $(document).ready(function () {
                     loadingImageID: "loading-image-branch",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkInsertAct_sysbranchesdealersdeff)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkInsertAct_sysbranchesdealersdeff)"),
                     proxy: '/Sys/SysInsertBranch',
                     type: "POST",
                     data: JSON.stringify({
@@ -759,8 +759,8 @@ $(document).ready(function () {
                             loadingImageID: "loading-image-branch",
                             triggerSuccessAuto: true,
                             transactionSuccessText: window.lang.translate('Transaction successful'),
-                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateAct_sysbranchesdealersdeff)"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateAct_sysbranchesdealersdeff)"),
                             proxy: '/Sys/SysUpdateBranch',
                             type: "POST",
                             data: JSON.stringify({
@@ -792,7 +792,7 @@ $(document).ready(function () {
                         ajax.ajaxCallWidget('call');
                     }
                 });
-                wcm.warningComplexMessage('show', 'Branch is update! Are you ok?','Branch is update! Are you sure?');
+                wcm.warningComplexMessage('show', 'Branch data will be updated, do you want to proceed?','Branch data will be updated, do you want to proceed?');
             }
         }
         return false;
@@ -898,8 +898,8 @@ $(document).ready(function () {
             loadingImageID: "loading-image-branchgrid",
             triggerSuccessAuto: true,
             transactionSuccessText: transactionSuccessMessage,
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateMakeActiveOrPassive_sysbranchesdealersdeff)"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateMakeActiveOrPassive_sysbranchesdealersdeff)"),
             proxy: '/Sys/SysActivePassiveBranch',
             type: "POST",
             data: JSON.stringify({

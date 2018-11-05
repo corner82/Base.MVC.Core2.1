@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
 
     //----------------------------------loadImager begin-------------------------------------------------
-    $('#tab_Body').loadImager();
+    $('#tab_BodyFea').loadImager();
     $('#loadingImage_DdslickVehicleGroupsBodyFea').loadImager();
     /**
     * ddslick vehicle type dropdown(buyback) load imager
@@ -121,8 +121,8 @@
 
                 var ajax_DdslickVehicleTypeBuyBack = $('#ajax_DdslickDealVehicleTypeBodyFea').ajaxCallWidget({
                     proxy: '/Deal/DdslickGetDealVehicleTypeProxyService/',
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    noDataFailureText: window.lang.translate("No data returned from service"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error(pkProjectVehicleModelsTradeDdList_infoprojectbuybacks)"),
+                    noDataFailureText: window.lang.translate("No data returned from service(pkProjectVehicleModelsTradeDdList_infoprojectbuybacks)"),
                     loadingImageID: "loadingImage_DdslickDealVehicleTypeBodyFea",
                     data: JSON.stringify({
                         //url: "pkProjectVehicleModelsDdList_infoprojectvehiclemodels",
@@ -183,14 +183,15 @@
             var ajax_DdslickS = $('#ajax_DdslickBodyTypesFea').ajaxCallWidget({
                 proxy: '/DefaultPost/DefaultPostModel',
                 type: "POST",
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                noDataFailureText: window.lang.translate("No data returned from service"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkBodyFeatureTypesDdList_sysaccbodytypes)"),
+                noDataFailureText: window.lang.translate("No data returned from service(pkBodyFeatureTypesDdList_sysaccbodytypes)"),
                 loadingImageID: "loadingImage_DdslickBodyTypesFea",
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
                     url: "pkBodyFeatureTypesDdList_sysaccbodytypes",
-                    pkIdentity: $("#publicKey").val()
+                    pkIdentity: $("#publicKey").val(),
+                    supplier_id : 1
                 })
 
             });
@@ -213,8 +214,8 @@
                                 var ajax_DdslickS = $('#ajax_DdslickBodyDepositFea').ajaxCallWidget({
                                     proxy: '/DefaultPost/DefaultPostModel',
                                     type: "POST",
-                                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                                    noDataFailureText: window.lang.translate("No data returned from service"),
+                                    transactionFailureText: window.lang.translate("Service URL not found, please report error(pkDepositTypesDdList_sysprojectdeposittypes)"),
+                                    noDataFailureText: window.lang.translate("No data returned from service(pkDepositTypesDdList_sysprojectdeposittypes)"),
                                     loadingImageID: "loadingImage_DdslickBodyDepositFea",
                                     data: JSON.stringify({
                                         language_code: $("#langCode").val(),
@@ -314,19 +315,20 @@
             var ajax_DdslickS = $('#ajax_DdslickBodyFeaturesFea').ajaxCallWidget({
                 proxy: '/DefaultPost/DefaultPostModel',
                 type: "POST",
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                noDataFailureText: window.lang.translate("No data returned from service"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkAccBodyFeatureDdList_sysaccbodymatrix)"),
+                noDataFailureText: window.lang.translate("No data returned from service(pkAccBodyFeatureDdList_sysaccbodymatrix)"),
                 loadingImageID: "loadingImage_DdslickBodyFeaturesFea",
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
-                    url: "pkSupplierLongDdList_syssupplier",
+                    url: "pkAccBodyFeatureDdList_sysaccbodymatrix",
                     pkIdentity: $("#publicKey").val()
                 })
 
             });
             ajax_DdslickS.ajaxCallWidget({
                 onSuccess: function (event, data) {
+                    //alert('data length>0');
                     var data = $.parseJSON(data);
                     data.splice(0, 0,
                         { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
@@ -337,9 +339,25 @@
                         data: data,
                         width: '100%',
                     });
-
                     $("#loadingImage_DdslickBodyFeaturesFea").loadImager('removeLoadImage');
                 },
+                onErrorDataNull: function (event, data) {
+                    //alert('data length==0');
+                    var defaultData = [
+                        {
+                            text: 'Please select',
+                            value: 0,
+                            selected: true
+                        },
+                    ]
+                    $('#ddslickBodyFeaturesFea').ddslick({
+                        //height: 150,
+                        data: defaultData,
+                        width: '100%',
+                    });
+                    $("#loadingImage_DdslickBodyFeaturesFea").loadImager('removeLoadImage');
+                }
+                
             })
             ajax_DdslickS.ajaxCallWidget('call');
 
@@ -349,8 +367,8 @@
             var ajax_DdslickS = $('#ajax_DdslickBodySupplierFea').ajaxCallWidget({
                 proxy: '/DefaultPost/DefaultPostModel',
                 type: "POST",
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                noDataFailureText: window.lang.translate("No data returned from service"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkSupplierLongDdList_syssupplier)"),
+                noDataFailureText: window.lang.translate("No data returned from service(pkSupplierLongDdList_syssupplier)"),
                 loadingImageID: "loadingImage_DdslickBodySupplierFea",
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
@@ -379,20 +397,21 @@
                                 var ajax_DdslickS = $('#ajax_DdslickBodyFeaturesFea').ajaxCallWidget({
                                     proxy: '/DefaultPost/DefaultPostModel',
                                     type: "POST",
-                                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                                    noDataFailureText: window.lang.translate("No data returned from service"),
+                                    transactionFailureText: window.lang.translate("Service URL not found, please report error(pkAccBodyFeatureDdList_sysaccbodymatrix)"),
+                                    noDataFailureText: window.lang.translate("No data returned from service(pkAccBodyFeatureDdList_sysaccbodymatrix)"),
                                     loadingImageID: "loadingImage_DdslickBodyFeaturesFea",
                                     data: JSON.stringify({
                                         language_code: $("#langCode").val(),
                                         pk: "GsZVzEYe50uGgNM",
-                                        url: "pkSupplierLongDdList_syssupplier",
-                                        pkIdentity: $("#publicKey").val()
-                                        //buraya seçilen id değişkeni gelmeli
+                                        url: "pkAccBodyFeatureDdList_sysaccbodymatrix",
+                                        pkIdentity: $("#publicKey").val(),
+                                        supplier_id: selectedData.selectedData.value
                                     })
 
                                 });
                                 ajax_DdslickS.ajaxCallWidget({
                                     onSuccess: function (event, data) {
+                                        //alert('data length>0');
                                         var data = $.parseJSON(data);
                                         data.splice(0, 0,
                                             { text: window.lang.translate('Please select'), value: 0, selected: false, description: "" }
@@ -403,9 +422,25 @@
                                             data: data,
                                             width: '100%',
                                         });
-
                                         $("#loadingImage_DdslickBodyFeaturesFea").loadImager('removeLoadImage');
                                     },
+                                    onErrorDataNull: function (event, data) {
+                                        //alert('data length==0');
+                                        var defaultData = [
+                                            {
+                                                text: 'Please select',
+                                                value: 0,
+                                                selected: true
+                                            },
+                                        ]
+                                        $('#ddslickBodyFeaturesFea').ddslick({
+                                            //height: 150,
+                                            data: defaultData,
+                                            width: '100%',
+                                        });
+                                        $("#loadingImage_DdslickBodyFeaturesFea").loadImager('removeLoadImage');
+                                    }
+
                                 })
                                 ajax_DdslickS.ajaxCallWidget('call');
                             }
@@ -440,8 +475,8 @@
             var ajax_DdslickS = $('#ajax_DdslickBodyDepositFea').ajaxCallWidget({
                 proxy: '/DefaultPost/DefaultPostModel',
                 type: "POST",
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                noDataFailureText: window.lang.translate("No data returned from service"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkDepositTypesDdList_sysprojectdeposittypes)"),
+                noDataFailureText: window.lang.translate("No data returned from service(pkDepositTypesDdList_sysprojectdeposittypes)"),
                 loadingImageID: "loadingImage_DdslickBodyDepositFea",
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
@@ -485,8 +520,8 @@
                         type: "POST",
                         failureLoadImage: true,
                         loadingImageID: "loadingImage_DdslickDealVehicleTypeBody",
-                        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                        noDataFailureText: window.lang.translate("No data returned from service"),
+                        transactionFailureText: window.lang.translate("Service URL not found, please report error(pkVehicleGroupsDdList_sysvehiclegroups)"),
+                        noDataFailureText: window.lang.translate("No data returned from service(pkVehicleGroupsDdList_sysvehiclegroups)"),
                         data: JSON.stringify({
                             language_code: $("#langCode").val(),
                             pk: "GsZVzEYe50uGgNM",
@@ -567,8 +602,8 @@
                             pk: "GsZVzEYe50uGgNM",
                             url: "pkFillProjectVehicleBodyFeatureGridx_infoprojectaccbody",
                             pkIdentity: $("#publicKey").val(),
-                            //project_id: parseInt($("#deal_hidden").deal("getDealID")),
-                            project_id: parseInt(80),
+                            project_id: parseInt($("#deal_hidden").deal("getDealID")),
+                            //project_id: parseInt(80),
                             page: "",
                             rows: "",
                             sort: "",
@@ -653,53 +688,25 @@
                 columns: [
                     {
                         //allowGrouping: false,
-                        caption: "Option",
-                        dataField: "option_name"
+                        caption: "Body type",
+                        dataField: "body_type_name"
+                    },
+                    {
+                        caption: "Deposit",
+                        dataField: "depozit_type_name"
+                    },
+                    {
+                        caption: "Vehicle",
+                        dataField: "vehicle_description"
                     },
                     {
                         caption: "Supplier",
                         dataField: "supplier_name"
                     },
                     {
-                        caption: "tag name",
-                        dataField: "tag_name"
+                        caption: "Model",
+                        dataField: "model_description"
                     },
-                    {
-                        caption: "model name",
-                        dataField: "vehicle_gt_model_name"
-                    },
-                    {
-                        caption: "Other brand name",
-                        dataField: "other_acc_brand"
-                    },
-                    {
-                        caption: window.lang.translate('Update'),
-                        width: 40,
-                        alignment: 'center',
-
-                        cellTemplate: function (container, options) {
-                            var fieldHtml;
-                            var vehicle_id = options.data.id;
-                            var data = options.data;
-                            $('<div />').addClass('dx-link').attr('class', "fa fa-check-square fa-2x").on('click', function () {
-                                openUpdateAksesuarPopUp({
-                                    deal_acc_oldvalue: data.deal_acc_oldvalue,
-                                    deal_acc_newvalue: data.deal_acc_newvalue,
-                                    quantity: data.quantity,
-                                    list_price: data.list_price,
-                                    deal_acc_newvalue: data.deal_acc_newvalue,
-                                    option_name: data.option_name,
-                                    acc_option_id: data.acc_option_id,
-                                    acc_supplier_id: data.acc_supplier_id,
-                                    supplier_name: data.supplier_name,
-                                    vehicle_gt_model_name: data.vehicle_gt_model_name,
-                                    vehicle_gt_model_id: data.vehicle_gt_model_id,
-                                    id: data.id
-                                });
-                            }).appendTo(container);
-                        }
-                    }
-
                 ],
                 customizeColumns: function (columns) {
                     //columns[5].format = { type: "currency", currency: "EUR" };
@@ -725,6 +732,10 @@
         $('#addBodyFeaForm').validationEngine('hide');
         $('#addBodyFeaForm')[0].reset();
         $('#ddslickDealVehicleTypeBodyFea').ddslick("select", { index: '0' });
+        $('#ddslickVehicleGroupsBodyFea').ddslick("select", { index: '0' });
+        $('#ddslickBodyDepositFea').ddslick("select", { index: '0' });
+        $('#ddslickBodySupplierFea').ddslick("select", { index: '0' });
+        $('#ddslickBodyTypesFea').ddslick("select", { index: '0' });
     }
 
     /**
@@ -756,7 +767,7 @@
         }*/
 
         var ddDataVehicleGroups = $('#ddslickVehicleGroupsBodyFea').data('ddslick');
-        if (!ddDataVehicleType.selectedData.value > 0) {
+        if (!ddDataVehicleGroups.selectedData.value > 0) {
             wm.warningMessage('resetOnShown');
             wm.warningMessage('show', window.lang.translate("Please select vehicle group"),
                 window.lang.translate("Please select vehicle group"));
@@ -765,60 +776,56 @@
         }
 
         var ddDataVehicleType = $('#ddslickDealVehicleTypeBodyFea').data('ddslick');
-        if (!ddDataVehicleType.selectedData.value > 0) {
+        /*if (!ddDataVehicleType.selectedData.value > 0) {
             wm.warningMessage('resetOnShown');
             wm.warningMessage('show', window.lang.translate("Please select vehicle type"),
                 window.lang.translate("Please select vehicle type"));
             $('#tab_BodyFea').loadImager('removeLoadImage');
             return false;
-        }
+        }*/
 
         var ddDataBodyTypes = $('#ddslickBodyTypesFea').data('ddslick');
-        //var ddDataBodyOpt = $('#ddslickBodyOptFea').data('ddslick');
-        var ddDataBodyExt = $('#ddslickBodyExtrasFea').data('ddslick');
+        var ddDataBodyOpt = $('#ddslickBodyOptFea').data('ddslick');
+        var ddDataBodyExt = $('#ddslickBodyFeaturesFea').data('ddslick');
         var ddDataBodySupplier = $('#ddslickBodySupplierFea').data('ddslick');
         var ddDataBodyDeposit = $('#ddslickBodyDepositFea').data('ddslick');
-
 
         var ajax = $('#add_body_fea').ajaxCallWidget({
             failureLoadImage: true,
             loadingImageID: "tab_BodyFea",
             triggerSuccessAuto: true,
             transactionSuccessText: window.lang.translate('Transaction successful'),
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
-            proxy: '/Deal/AddBodyProxyService',
+            transactionFailureText: window.lang.translate("Service URL not found, please report error(pkInsertActFeatures_infoprojectaccbody)"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkInsertActFeatures_infoprojectaccbody)"),
+            proxy: '/Deal/AddBodyExtrasProxyService',
             type: "POST",
             data: JSON.stringify({
                 language_code: $("#langCode").val(),
                 pk: "GsZVzEYe50uGgNM",
-                url: "pkInsertActExtras_infoprojectaccbody",
+                url: "pkInsertActFeatures_infoprojectaccbody",
                 pkIdentity: $("#publicKey").val(),
                 project_id: dealID,
                 vehicles_group_id: ddDataVehicleGroups.selectedData.value,
                 vehicles_endgroup_id: ddDataVehicleType.selectedData.value,
                 body_type_id: ddDataBodyTypes.selectedData.value,
-                //vehicle_gt_model_id: ddDataBodyOpt.selectedData.value,
-                vehicle_gt_model_id: ddDataBodyExt.selectedData.value,
                 body_supplier_id: ddDataBodySupplier.selectedData.value,
                 depozit_type_id: ddDataBodyDeposit.selectedData.value,
                 quantity: $("#quantity_bodyFea").val(),
                 list_price: $("#price_listBodyFea").val(),
                 new_price: $("#price_newBodyFea").val(),
-                body_features_matrix_id: 1
-
+                body_features_matrix_id: ddDataBodyExt.selectedData.value,
             })
 
         });
         ajax.ajaxCallWidget({
             onReset: function (event, data) {
-                resetVehicleTypeAddDealForm();
+                resetBodyFeaAddDealForm();
             },
             onAfterSuccess: function (event, data) {
-
+                $("#gridContainer_BodyFea").dxDataGrid('instance').refresh();
             }
         })
-        //ajax.ajaxCallWidget('call');
+        ajax.ajaxCallWidget('call');
         return false;
     })
 

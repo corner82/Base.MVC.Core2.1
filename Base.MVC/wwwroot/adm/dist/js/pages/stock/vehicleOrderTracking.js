@@ -11,8 +11,8 @@ $(document).ready(function () {
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
     var wcm = $(window).warningComplexMessage({
-        denyButtonLabel: 'Vazgeç',
-        actionButtonLabel: 'Ýþleme devam et'
+        denyButtonLabel: window.lang.translate('Cancel'),
+        actionButtonLabel: window.lang.translate('Continue')
     });
 
     /*
@@ -78,7 +78,7 @@ $(document).ready(function () {
                     deferred.resolve(result.items, { totalCount: result.totalCount });
                 },
                 error: function () {
-                    deferred.reject("Data Loading Error");
+                    deferred.reject("Data Loading Error (pkFillSisMonthlyQuotasGridx_syssismonthlyquotas)");
                 },
                 timeout: 10000
             });

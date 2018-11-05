@@ -6,8 +6,8 @@
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
     var wcm = $(window).warningComplexMessage({
-        denyButtonLabel: 'Vazgeç',
-        actionButtonLabel: 'İşleme devam et'
+        denyButtonLabel: window.lang.translate('Cancel'),
+        actionButtonLabel: window.lang.translate('Continue')
     });
 
 
@@ -108,7 +108,7 @@
                     $('#loading-image-milType').loadImager('removeLoadImage');
                 }
             });
-            dm.dangerMessage('show', window.lang.translate('Ülke bulunamamıştır...'), window.lang.translate('Ülke  bulunamamıştır...'));
+            dm.dangerMessage('show', window.lang.translate('Country not found...'), window.lang.translate('Country not found...'));
         },
     })
     ajaxACLResources_milType.ajaxCallWidget('call');

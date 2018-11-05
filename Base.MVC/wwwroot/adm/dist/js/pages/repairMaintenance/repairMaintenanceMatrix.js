@@ -11,8 +11,8 @@ $(document).ready(function () {
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
     var wcm = $(window).warningComplexMessage({
-        denyButtonLabel: 'Vazgeç',
-        actionButtonLabel: 'İşleme devam et'
+        denyButtonLabel: window.lang.translate('Cancel'),
+        actionButtonLabel: window.lang.translate('Continue')
     });
    
     var rmId;
@@ -56,8 +56,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickModel",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehicleGroupsDdList_sysvehiclegroups)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkVehicleGroupsDdList_sysvehiclegroups)"),
         proxy: '/Vehicle/SysVehicleGroups',
         type: "POST",
         data: JSON.stringify({
@@ -102,8 +102,8 @@ $(document).ready(function () {
                             loadingImageID: "loadingImage_DdslickVehicle",
                             triggerSuccessAuto: true,
                             transactionSuccessText: window.lang.translate('Transaction successful'),
-                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehiclesEndgroupsFixCostDdList_sysvehiclesendgroups)"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkVehiclesEndgroupsFixCostDdList_sysvehiclesendgroups)"),
                             proxy: '/Vehicle/SysVehicleEndGroup',
                             type: "POST",
                             data: JSON.stringify({
@@ -161,8 +161,8 @@ $(document).ready(function () {
                                 loadingImageID: "loadingImage_DdslickVehicleType",
                                 triggerSuccessAuto: true,
                                 transactionSuccessText: window.lang.translate('Transaction successful'),
-                                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                                transactionFailureText: window.lang.translate("Service URL not found, please report error (pkRmTypesDdList_sysrmtypes)"),
+                                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkRmTypesDdList_sysrmtypes)"),
                                 proxy: '/DefaultPost/DefaultPostModel',
                                 type: "POST",
                                 data: JSON.stringify({
@@ -230,8 +230,8 @@ $(document).ready(function () {
         loadingImageID: "ajaxACLResources_BbMileage",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkMileagesRmDdList_sysmileages)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkMileagesRmDdList_sysmileages)"),
         proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
         data: JSON.stringify({
@@ -277,8 +277,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickMonths",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkRmMonthsDdList_sysmonths)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkRmMonthsDdList_sysmonths)"),
         proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
         data: JSON.stringify({
@@ -324,8 +324,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickContractType",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkComfortCareTypesDdList_syscustomertypes)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkComfortCareTypesDdList_syscustomertypes)"),
         proxy: '/Customer/SysCustomerType/',
         type: "POST",
         data: JSON.stringify({
@@ -676,8 +676,8 @@ $(document).ready(function () {
                     loadingImageID: "loadingImage_rmInfo",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateAct_sysrmmatrix)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateAct_sysrmmatrix)"),
 
                     proxy: '/RepairMaintenance/AddRepairMaintenanceMatrix',
                     type: 'POST',
@@ -711,8 +711,8 @@ $(document).ready(function () {
                     loadingImageID: "loadingImage_rmInfo",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkInsertAct_sysrmmatrix)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkInsertAct_sysrmmatrix)"),
 
                     proxy: '/RepairMaintenance/AddRepairMaintenanceMatrix',
                     type: 'POST',
@@ -847,8 +847,8 @@ $(document).ready(function () {
             loadingImageID: "loadingImage_DdslickRmMatrixGrid",
             triggerSuccessAuto: true,
             transactionSuccessText: window.lang.translate('Transaction successful'),
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateMakeActiveOrPassive_sysrmmatrix)"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateMakeActiveOrPassive_sysrmmatrix)"),
             proxy: '/Training/SysActivePasiveTrName',
             type: "POST",
             data: JSON.stringify({

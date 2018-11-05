@@ -7,8 +7,8 @@ $(document).ready(function () {
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
     var wcm = $(window).warningComplexMessage({
-        denyButtonLabel: 'Vazgeç',
-        actionButtonLabel: 'Ýþleme devam et'
+        denyButtonLabel: window.lang.translate('Cancel'),
+        actionButtonLabel: window.lang.translate('Continue')
     });
 
 
@@ -70,8 +70,8 @@ $(document).ready(function () {
         loadingImageID: "loading-image-modelName",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehicleGroupsDdList_sysvehiclegroups)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkVehicleGroupsDdList_sysvehiclegroups)"),
         proxy: '/Vehicle/SysVehicleGroups',
         type: "POST",
         data: JSON.stringify({
@@ -121,8 +121,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickModel",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehicleGroupsDdList_sysvehiclegroups)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkVehicleGroupsDdList_sysvehiclegroups)"),
         proxy: '/Vehicle/SysVehicleGroups',
         type: "POST",
         data: JSON.stringify({
@@ -167,8 +167,8 @@ $(document).ready(function () {
                             loadingImageID: "loadingImage_DdslickVehicle",
                             triggerSuccessAuto: true,
                             transactionSuccessText: window.lang.translate('Transaction successful'),
-                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehiclesEndgroupsFixCostDdList_sysvehiclesendgroups)"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkVehiclesEndgroupsFixCostDdList_sysvehiclesendgroups)"),
                             proxy: '/Vehicle/SysVehicleEndGroup',
                             type: "POST",
                             data: JSON.stringify({
@@ -242,8 +242,8 @@ $(document).ready(function () {
         loadingImageID: "loading-image-vhModel",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehicleConfigTypesDdList_sysvehicleconfigtypes)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkVehicleConfigTypesDdList_sysvehicleconfigtypes)"),
         proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
         data: JSON.stringify({
@@ -299,8 +299,8 @@ $(document).ready(function () {
         loadingImageID: "loading-image-wrType",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkWarrantyTypesDdList_syswarrantytypes)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkWarrantyTypesDdList_syswarrantytypes)"),
         proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
         data: JSON.stringify({
@@ -355,8 +355,8 @@ $(document).ready(function () {
         loadingImageID: "loading-image-wrMil",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkMileagesWarrantyDdList_sysmileages)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkMileagesWarrantyDdList_sysmileages)"),
         proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
         data: JSON.stringify({
@@ -411,8 +411,8 @@ $(document).ready(function () {
         loadingImageID: "loading-image-wrMonth",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkWarrantyMonthsDdList_sysmonths)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkWarrantyMonthsDdList_sysmonths)"),
         proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
         data: JSON.stringify({
@@ -467,8 +467,8 @@ $(document).ready(function () {
         loadingImageID: "loading-image-rm",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (fillYesNoTypes_sysSpecificDefinitions)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (fillYesNoTypes_sysSpecificDefinitions)"),
         proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
         data: JSON.stringify({
@@ -523,8 +523,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickApplicationType",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehicleAppTypesDdList_sysvehicleapptypes)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkVehicleAppTypesDdList_sysvehicleapptypes)"),
         proxy: '/Vehicle/SysVehicleAppTypes/',
         type: 'POST',
         data: JSON.stringify({
@@ -611,7 +611,7 @@ $(document).ready(function () {
                     deferred.resolve(result.items, { totalCount: result.totalCount });
                 },
                 error: function () {
-                    deferred.reject("Data Loading Error");
+                    deferred.reject("Data Loading Error (pkFillWarrantyMatrixFGridx_syswarrantymatrix)");
                 },
                 timeout: 10000
             });
@@ -634,7 +634,7 @@ $(document).ready(function () {
                         deferred.resolve(result.items, { totalCount: result.totalCount });
                     },
                     error: function () {
-                        deferred.reject("Data remove Error");
+                        deferred.reject("Data remove Error (pkDeletedAct_syswarrantymatrix)");
                     },
                     timeout: 10000
                 });
@@ -914,8 +914,8 @@ $(document).ready(function () {
                     loadingImageID: "loadingImage_factoryWarrantyform",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateAct_syswarrantymatrix)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateAct_syswarrantymatrix)"),
 
                     proxy: '/Warranty/AddWarrantyInfo',
                     type: 'POST',
@@ -952,8 +952,8 @@ $(document).ready(function () {
                     loadingImageID: "loadingImage_factoryWarrantyform",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkInsertAct_syswarrantymatrix)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkInsertAct_syswarrantymatrix)"),
 
                     proxy: '/Warranty/AddWarrantyInfo',
                     type: 'POST',
@@ -1114,8 +1114,8 @@ $(document).ready(function () {
             loadingImageID: "loading-image-factoryWarrantyGrid",
             triggerSuccessAuto: true,
             transactionSuccessText: transactionSuccessMessage,
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateMakeActiveOrPassive_syswarrantymatrix)"),
+                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateMakeActiveOrPassive_syswarrantymatrix)"),
             proxy: '/Warranty/SysActivePasiveWrName',
             type: "POST",
             data: JSON.stringify({

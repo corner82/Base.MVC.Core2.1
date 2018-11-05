@@ -4,8 +4,8 @@
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
     var wcm = $(window).warningComplexMessage({
-        denyButtonLabel: 'Cancel',
-        actionButtonLabel: 'Continue'
+        denyButtonLabel: window.lang.translate('Cancel'),
+        actionButtonLabel: window.lang.translate('Continue')
     });
 
     //----------------------------------loadImager begin-------------------------------------------------
@@ -205,8 +205,8 @@
         type: "POST",
         failureLoadImage: true,
         loadingImageID: "loadingImage_DdslickVehicleGroupsBodyProposal",
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        noDataFailureText: window.lang.translate("No data returned from service"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehicleGroupsDdList_sysvehiclegroups)"),
+        noDataFailureText: window.lang.translate("No data returned from service (pkVehicleGroupsDdList_sysvehiclegroups)"),
         data: JSON.stringify({
             language_code: $("#langCode").val(),
             pk: "GsZVzEYe50uGgNM",
@@ -291,8 +291,8 @@
                 type: "POST",
                 failureLoadImage: true,
                 loadingImageID: "loadingImage_DdslickVehicleGroupProducts",
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                noDataFailureText: window.lang.translate("No data returned from service"),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehiclesEndgroupsFixCostDdList_sysvehiclesendgroups)"),
+            noDataFailureText: window.lang.translate("No data returned from service (pkVehiclesEndgroupsFixCostDdList_sysvehiclesendgroups)"),
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
@@ -403,8 +403,8 @@
                 loadingImageID: "loadingImage_BodyProposal",
                 triggerSuccessAuto: true,
                 transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error (pkInsertAct_infobodyproposal)"),
+                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkInsertAct_infobodyproposal)"),
                 proxy: '/Deal/AddBodyProposalProxyService',
                 type: "POST",
                 data: JSON.stringify({

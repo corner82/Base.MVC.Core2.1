@@ -69,8 +69,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_purposeof",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkPlaceOfUseDdList_sysplaceofuse)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkPlaceOfUseDdList_sysplaceofuse)"),
         proxy: '/Vehicle/SysVehiclePurposeOf/',
         type: "POST",
         data: JSON.stringify({
@@ -119,8 +119,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickVehicleKitType",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehicleCkdCbuDdList_sysvehicleckdcbu)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkVehicleCkdCbuDdList_sysvehicleckdcbu)"),
         proxy: '/Vehicle/SysVehicleCKDCBU/',
         type: "POST",
         data: JSON.stringify({
@@ -173,8 +173,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickVehicleModel",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehicleGroupsDdList_sysvehiclegroups)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkVehicleGroupsDdList_sysvehiclegroups)"),
         proxy: '/Vehicle/SysVehicleGroups/',
         type: "POST",
         data: JSON.stringify({
@@ -214,8 +214,8 @@ $(document).ready(function () {
                             loadingImageID: "loadingImage_DdslickVehicleModelGr",
                             triggerSuccessAuto: true,
                             transactionSuccessText: window.lang.translate('Transaction successful'),
-                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehicleGroupTypesDdList_sysvehiclegrouptypes)"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkVehicleGroupTypesDdList_sysvehiclegrouptypes)"),
                             proxy: '/Vehicle/SysVehicleGroupTypes/',
                             type: 'POST',
                             data: JSON.stringify({
@@ -249,8 +249,8 @@ $(document).ready(function () {
                                                 loadingImageID: "loadingImage_DdslickVehicleModelGrTonaj",
                                                 triggerSuccessAuto: true,
                                                 transactionSuccessText: window.lang.translate('Transaction successful'),
-                                                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                                                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                                                transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehicleGtModelsDdList_sysvehiclegtmodels)"),
+                                                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkVehicleGtModelsDdList_sysvehiclegtmodels)"),
                                                 proxy: '/Vehicle/SysVehicleGTModels/',
                                                 type: 'POST',
                                                 data: JSON.stringify({
@@ -364,8 +364,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickHorsepower",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkHorsePowerDdList_syshorsepower)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkHorsePowerDdList_syshorsepower)"),
         proxy: '/Vehicle/SysVehicleHorsepower/',
         type: 'POST',
         data: JSON.stringify({
@@ -416,8 +416,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickVehicleVariant",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehicleModelVariantsDdList_sysvehiclemodelvariants)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkVehicleModelVariantsDdList_sysvehiclemodelvariants)"),
         proxy: '/Vehicle/SysVehicleModelVariant/',
         type: 'POST',
         data: JSON.stringify({
@@ -467,8 +467,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickConfig",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehicleConfigTypesDdList_sysvehicleconfigtypes)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkVehicleConfigTypesDdList_sysvehicleconfigtypes)"),
         proxy: '/Vehicle/SysVehicleConfigTypes/',
         type: 'POST',
         data: JSON.stringify({
@@ -518,8 +518,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickCab",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehicleCapTypesDdList_sysvehiclecaptypes)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkVehicleCapTypesDdList_sysvehiclecaptypes)"),
         proxy: '/Vehicle/SysVehicleCabTypes/',
         type: 'POST',
         data: JSON.stringify({
@@ -567,8 +567,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickKP",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkKpnumbersDdList_syskpnumbers)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkKpnumbersDdList_syskpnumbers)"),
         proxy: '/Vehicle/SysVehicleKPNumbers/',
         type: 'POST',
         data: JSON.stringify({
@@ -617,8 +617,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickBTOBTS",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehicleBtoBtsTypesDdList_sysvehiclebtobts)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkVehicleBtoBtsTypesDdList_sysvehiclebtobts)"),
         proxy: '/Vehicle/SysVehicleBTOBTS/',
         type: 'POST',
         data: JSON.stringify({
@@ -666,8 +666,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickApplicationType",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehicleAppTypesDdList_sysvehicleapptypes)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkVehicleAppTypesDdList_sysvehicleapptypes)"),
         proxy: '/Vehicle/SysVehicleAppTypes/',
         type: 'POST',
         data: JSON.stringify({
@@ -754,7 +754,7 @@ $(document).ready(function () {
                         deferred.resolve(result.items, { totalCount: result.totalCount });
                     },
                     error: function () {
-                        deferred.reject("Data Loading Error");
+                        deferred.reject("Data Loading Error (pkFillVehiclesGridx_sysvehicles)");
                     },
                     timeout: 30000
                 });
@@ -779,7 +779,7 @@ $(document).ready(function () {
                         deferred.resolve(result.items, { totalCount: result.totalCount });
                     },
                     error: function () {
-                        deferred.reject("Data remove Error");
+                        deferred.reject("Data remove Error (pkDeletedAct_sysvehicles)");
                     },
                     timeout: 30000
                 });
@@ -1064,7 +1064,7 @@ $(document).ready(function () {
                         deferred.resolve(result.items, { totalCount: result.totalCount });
                     },
                     error: function () {
-                        deferred.reject("Data Loading Error");
+                        deferred.reject("Data Loading Error (pkFillVehiclesTradeNamesGridx_sysvehiclestrade)");
                     },
                     timeout: 30000
                 });
@@ -1090,7 +1090,7 @@ $(document).ready(function () {
                         deferred.resolve(result.items, { totalCount: result.totalCount });
                     },
                     error: function () {
-                        deferred.reject("Data remove Error");
+                        deferred.reject("Data remove Error (pkDeletedAct_sysvehiclestrade)");
                     },
                     timeout: 30000
                 });
@@ -1115,7 +1115,7 @@ $(document).ready(function () {
                         alert("success");
                     },
                     error: function () {
-                        deferred.reject("Data insert Error");
+                        deferred.reject("Data insert Error (pkInsertAct_sysvehiclestrade)");
                     },
                     timeout: 30000
                 });
@@ -1144,7 +1144,7 @@ $(document).ready(function () {
                         alert("success");
                     },
                     error: function () {
-                        deferred.reject("Data update Error");
+                        deferred.reject("Data update Error (UpdateVehicleBTDesc)");
                     },
                     timeout: 30000
                 });
@@ -1390,8 +1390,8 @@ $(document).ready(function () {
                     loadingImageID: "loadingImage_FormVehicle",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkInsertAct_sysvehicles)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkInsertAct_sysvehicles)"),
                     proxy: '/Vehicle/InsertVehicle',
                     type: "POST",
                     data: JSON.stringify({
@@ -1435,8 +1435,8 @@ $(document).ready(function () {
                             loadingImageID: "loadingImage_FormVehicle",
                             triggerSuccessAuto: true,
                             transactionSuccessText: window.lang.translate('Transaction successful'),
-                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateAct_sysvehicles)"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateAct_sysvehicles)"),
                             proxy: '/Vehicle/UpdateVehicle',
                             type: "POST",
                             data: JSON.stringify({
@@ -1471,7 +1471,7 @@ $(document).ready(function () {
                         ajax.ajaxCallWidget('call');
                     }
                 });
-                wcm.warningComplexMessage('show', 'Vehicle is update! Are you sure?', 'Vehicle is update! Are you sure?');
+                wcm.warningComplexMessage('show', 'Vehicle data will be updated, do you want to proceed?', 'Vehicle data will be updated, do you want to proceed?');
             }
         }
         return false;
@@ -1723,8 +1723,8 @@ $(document).ready(function () {
             loadingImageID: "loading-image-vehiclegrid",
             triggerSuccessAuto: true,
             transactionSuccessText: transactionSuccessMessage,
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateMakeActiveOrPassive_sysvehicles)"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateMakeActiveOrPassive_sysvehicles)"),
             proxy: '/Vehicle/ActivePassiveVehicle',
             type: "POST",
             data: JSON.stringify({
@@ -1768,8 +1768,8 @@ $(document).ready(function () {
             loadingImageID: "loading-image-vehicleBTDescGrid",
             triggerSuccessAuto: true,
             transactionSuccessText: transactionSuccessMessage,
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateMakeActiveOrPassive_sysvehiclestrade)"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateMakeActiveOrPassive_sysvehiclestrade)"),
             proxy: '/Vehicle/ActivePassiveVehicleBTDesc',
             type: "POST",
             data: JSON.stringify({

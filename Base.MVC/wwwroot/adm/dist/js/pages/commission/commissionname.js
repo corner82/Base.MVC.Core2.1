@@ -11,8 +11,8 @@ $(document).ready(function () {
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
     var wcm = $(window).warningComplexMessage({
-        denyButtonLabel: 'Cancel',
-        actionButtonLabel: 'Continue'
+        denyButtonLabel: window.lang.translate('Cancel'),
+        actionButtonLabel: window.lang.translate('Continue')
     });
 
 
@@ -52,8 +52,8 @@ $(document).ready(function () {
         loadingImageID: "loading-image-role",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCommissionRolesDdList_syscommissionroles)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkCommissionRolesDdList_syscommissionroles)"),
         proxy: '/Commission/RoleDdslick/',
         type: "POST",
         data: JSON.stringify({
@@ -369,8 +369,8 @@ $(document).ready(function () {
                     loadingImageID: "loading-image-commissionname",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkInsertAct_syscommissiondefinitions)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkInsertAct_syscommissiondefinitions)"),
                     proxy: '/Commission/InsertCommissionName',
                     type: "POST",
                     data: JSON.stringify({
@@ -408,8 +408,8 @@ $(document).ready(function () {
                             loadingImageID: "loading-image-commissionname",
                             triggerSuccessAuto: true,
                             transactionSuccessText: window.lang.translate('Transaction successful'),
-                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateAct_syscommissiondefinitions)"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateAct_syscommissiondefinitions)"),
                             proxy: '/Commission/UpdateCommissionName',
                             type: "POST",
                             data: JSON.stringify({
@@ -434,7 +434,7 @@ $(document).ready(function () {
                         ajax.ajaxCallWidget('call');
                     }
                 });
-                wcm.warningComplexMessage('show', 'Commission name is update! Are you sure?', 'Commission name is update! Are you sure?');
+                wcm.warningComplexMessage('show', 'Commission name data will be updated, do you want to proceed?', 'Commission name data will be updated, do you want to proceed?');
             }
         }
         return false;
@@ -513,8 +513,8 @@ $(document).ready(function () {
             loadingImageID: "loading-image-commissionnameGrid",
             triggerSuccessAuto: true,
             transactionSuccessText: transactionSuccessMessage,
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateMakeActiveOrPassive_syscommissiondefinitions)"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateMakeActiveOrPassive_syscommissiondefinitions)"),
             proxy: '/Commission/ActivePassiveCommissionName',
             type: "POST",
             data: JSON.stringify({

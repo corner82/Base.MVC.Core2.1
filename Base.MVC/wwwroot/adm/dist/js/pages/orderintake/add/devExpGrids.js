@@ -141,22 +141,44 @@
             $("#deal_name").val(data.deal_name);
             $("#discount_rate").val(data.discount_rate);
             $("#deal_name").val(data.deal_name);
-            $('#ddslickRealizationRate').ddslick('selectByValue',
-                {
-                    index: '' + data.probability_id + '',
-                    text: '' + data.probability_name + ''
-                });
-            $('#ddslickPriority').ddslick('selectByValue',
+
+            if (data.reliability_id != '' || data.reliability_name != ''
+                || data.reliability_id != null || data.reliability_name != null) {
+                $('#ddslickRealizationRate').ddslick('selectByValue',
                 {
                     index: '' + data.reliability_id + '',
                     text: '' + data.reliability_name + ''
                 });
-            $('#ddslickCustomer').ddslick('selectByValue',
+            }
+
+            if (data.probability_id != '' || data.probability_id != ''
+                || data.probability_id != null || data.probability_name != null) {
+                $('#ddslickPriority').ddslick('selectByValue',
+                {
+                    index: '' + data.probability_id + '',
+                    text: '' + data.probability_name + ''
+                });
+            }
+
+            if (data.customer_id != null || data.customer_id != '') {
+                $('#ddslickCustomer').ddslick('selectByValue',
                 {
                     index: '' + data.customer_id + '',
                     //text: '' + data.reliability_name + ''
                 });
+            }
+            //txt_deal_id
+            document.getElementById("txt_deal_id").value = data.id;
+
+            $("#deal_hidden").organizeTabs("enableAllTabs");
             $("#deal_hidden").organizeTabs('activateTabByOrder', 9);
+
+            window.openDetails({
+                'id' : data.id
+            });
+            window.openSummary({
+                'id': data.id
+            });
             
         },
         selection: {

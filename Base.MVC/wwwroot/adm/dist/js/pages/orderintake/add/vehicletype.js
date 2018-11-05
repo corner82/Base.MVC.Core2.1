@@ -1,5 +1,11 @@
 ﻿$(document).ready(function () {
-
+    var sm = $(window).successMessage();
+    var dm = $(window).dangerMessage();
+    var wm = $(window).warningMessage();
+    var wcm = $(window).warningComplexMessage({
+        denyButtonLabel: window.lang.translate('Cancel'),
+        actionButtonLabel: window.lang.translate('Continue')
+    });
     //----------------------------------loadImager begin-------------------------------------------------
 
     /**
@@ -48,8 +54,8 @@
             var ajax_DdslickVehicleType = $('#ajax_DdslickVehicleType').ajaxCallWidget({
                 proxy: '/DefaultPost/DefaultPostModel',
                 type: "POST",
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                noDataFailureText: window.lang.translate("No data returned from service"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups)"),
+                noDataFailureText: window.lang.translate("No data returned from service(pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups)"),
                 loadingImageID: "loadingImage_DdslickVehicleType",
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
@@ -295,23 +301,23 @@
         }
 
         //alert(ddDataVehicleType.selectedData.value);
-        if ($("#tagcabin_DealVehicles").tagCabin('findSpecificTags', ddDataVehicleType.selectedData.value, 'data-attribute') != true) {
-            /*tagBuilderChemicalPropGroup.tagCabin('addTagManuallyDataAttr', selectedItem.value,
-                selectedItem.text,*/
-            wm.warningMessage('resetOnShown');
-            wm.warningMessage('show', "Please select another vehicle type",
-                "Please select another vehicle type");
-            $('#tab_VehicleType').loadImager('removeLoadImage');
-            return false;
-        }
+        //if ($("#tagcabin_DealVehicles").tagCabin('findSpecificTags', ddDataVehicleType.selectedData.value, 'data-attribute') != true) {
+        //    /*tagBuilderChemicalPropGroup.tagCabin('addTagManuallyDataAttr', selectedItem.value,
+        //        selectedItem.text,*/
+        //    wm.warningMessage('resetOnShown');
+        //    wm.warningMessage('show', "Please select another vehicle type",
+        //        "Please select another vehicle type");
+        //    $('#tab_VehicleType').loadImager('removeLoadImage');
+        //    return false;
+        //}
 
         var ajax = $('#add_vehicleType').ajaxCallWidget({
             failureLoadImage: true,
             loadingImageID: "tab_VehicleType",
             triggerSuccessAuto: true,
             transactionSuccessText: window.lang.translate('Transaction successful'),
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error(pkInsertAct_infoprojectvehiclemodels)"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkInsertAct_infoprojectvehiclemodels)"),
             proxy: '/Deal/AddVehicleTypeProxyService',
             type: "POST",
             data: JSON.stringify({
@@ -332,6 +338,7 @@
                 resetVehicleTypeAddDealForm();
             },
             onAfterSuccess: function (event, data) {
+                $("#gridContainer_VehicleTypeDeal").dxDataGrid("instance").refresh();
                 $("#deal_hidden").deal("addVehicleType", { vehicleType: ddDataVehicleType.selectedData.value, count: $("#quantity").val() });
                 $("#tagcabin_DealVehicles").tagCabin('addTagManuallyDataAttr', ddDataVehicleType.selectedData.value,
                     ddDataVehicleType.selectedData.text + " / " + $("#quantity_vehicleType").val(),
@@ -403,8 +410,8 @@
                 loadingImageID: "loadingImage_UpdateVehicleType",
                 triggerSuccessAuto: true,
                 transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error(pkUpdateAct_infoprojectvehiclemodels)"),
+                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data(pkUpdateAct_infoprojectvehiclemodels)"),
                 proxy: '/Deal/AddVehicleTypeProxyService',
                 type: "POST",
                 data: JSON.stringify({
@@ -425,6 +432,7 @@
                     //resetVehicleTypeAddDealForm();
                 },
                 onAfterSuccess: function (event, data) {
+                    $("#gridContainer_VehicleTypeDeal").dxDataGrid("instance").refresh();
                 }
             })
             ajax.ajaxCallWidget('call');
@@ -528,8 +536,8 @@
                 var ajax_DdslickVehicleType = $('#ajax_DdslickVehicleTypePopup').ajaxCallWidget({
                     proxy: '/DefaultPost/DefaultPostModel',
                     type: "POST",
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    noDataFailureText: window.lang.translate("No data returned from service"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error(pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups)"),
+                    noDataFailureText: window.lang.translate("No data returned from service(pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups)"),
                     loadingImageID: "loadingImage_DdslickVehicleTypePopup",
                     data: JSON.stringify({
                         language_code: $("#langCode").val(),

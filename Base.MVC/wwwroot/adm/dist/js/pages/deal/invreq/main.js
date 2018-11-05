@@ -211,8 +211,8 @@
         loadingImageID: "loading-image-country",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCountryDdList_syscountrys)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkCountryDdList_syscountrys)"),
         proxy: '/Sys/SysCountrys',
         type: "POST",
         data: JSON.stringify({
@@ -255,8 +255,8 @@
                             loadingImageID: "loading-image-province",
                             triggerSuccessAuto: true,
                             transactionSuccessText: window.lang.translate('Transaction successful'),
-                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCountryRegionsDdList_syscountryregions)"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkCountryRegionsDdList_syscountryregions)"),
                             proxy: '/Sys/SysCountryRegions',
                             type: "POST",
                             data: JSON.stringify({
@@ -302,8 +302,8 @@
                                                 loadingImageID: "loading-image-city",
                                                 triggerSuccessAuto: true,
                                                 transactionSuccessText: window.lang.translate('Transaction successful'),
-                                                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                                                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                                                transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCityDdList_syscity)"),
+                                                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkCityDdList_syscity)"),
                                                 proxy: '/Sys/SysCity',
                                                 type: "POST",
                                                 data: JSON.stringify({
@@ -454,8 +454,8 @@
         type: "POST",
         failureLoadImage: true,
         loadingImageID: "loadingImage_DdslickVehicleGroupsBodyProposal",
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        noDataFailureText: window.lang.translate("No data returned from service"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehicleGroupsDdList_sysvehiclegroups)"),
+        noDataFailureText: window.lang.translate("No data returned from service (pkVehicleGroupsDdList_sysvehiclegroups)"),
         data: JSON.stringify({
             language_code: $("#langCode").val(),
             pk: "GsZVzEYe50uGgNM",
@@ -502,8 +502,8 @@
         type: "POST",
         failureLoadImage: true,
         loadingImageID: "loadingImage_DdslickVehicleGroupsBodyProposal",
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        noDataFailureText: window.lang.translate("No data returned from service"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehicleGroupsDdList_sysvehiclegroups)"),
+        noDataFailureText: window.lang.translate("No data returned from service (pkVehicleGroupsDdList_sysvehiclegroups)"),
         data: JSON.stringify({
             language_code: $("#langCode").val(),
             pk: "GsZVzEYe50uGgNM",
@@ -546,8 +546,8 @@
         type: "POST",
         failureLoadImage: true,
         loadingImageID: "loadingImage_Ddslick3",
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        noDataFailureText: window.lang.translate("No data returned from service"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehicleGroupsDdList_sysvehiclegroups)"),
+        noDataFailureText: window.lang.translate("No data returned from service (pkVehicleGroupsDdList_sysvehiclegroups)"),
         data: JSON.stringify({
             language_code: $("#langCode").val(),
             pk: "GsZVzEYe50uGgNM",
@@ -589,8 +589,8 @@
         type: "POST",
         failureLoadImage: true,
         loadingImageID: "loadingImage_Ddslick3",
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        noDataFailureText: window.lang.translate("No data returned from service"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehicleGroupsDdList_sysvehiclegroups)"),
+        noDataFailureText: window.lang.translate("No data returned from service (pkVehicleGroupsDdList_sysvehiclegroups)"),
         data: JSON.stringify({
             language_code: $("#langCode").val(),
             pk: "GsZVzEYe50uGgNM",
@@ -631,8 +631,8 @@
     var ajax_Ddslick5 = $('#ajax_Ddslick5').ajaxCallWidget({
         proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        noDataFailureText: window.lang.translate("No data returned from service"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups)"),
+        noDataFailureText: window.lang.translate("No data returned from service (pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups)"),
         loadingImageID: "loadingImage_Ddslick5",
         data: JSON.stringify({
             language_code: $("#langCode").val(),
@@ -674,8 +674,8 @@
     var ajax_Ddslick6 = $('#ajax_Ddslick6').ajaxCallWidget({
         proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        noDataFailureText: window.lang.translate("No data returned from service"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups)"),
+        noDataFailureText: window.lang.translate("No data returned from service (pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups)"),
         loadingImageID: "loadingImage_Ddslick6",
         data: JSON.stringify({
             language_code: $("#langCode").val(),
@@ -714,8 +714,8 @@
     var ajax_Ddslick7 = $('#ajax_Ddslick7').ajaxCallWidget({
         proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        noDataFailureText: window.lang.translate("No data returned from service"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups)"),
+        noDataFailureText: window.lang.translate("No data returned from service (pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups)"),
         loadingImageID: "loadingImage_Ddslick7",
         data: JSON.stringify({
             language_code: $("#langCode").val(),
@@ -754,8 +754,8 @@
     var ajax_Ddslick8 = $('#ajax_Ddslick8').ajaxCallWidget({
         proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        noDataFailureText: window.lang.translate("No data returned from service"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups)"),
+        noDataFailureText: window.lang.translate("No data returned from service (pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups)"),
         loadingImageID: "loadingImage_Ddslick7",
         data: JSON.stringify({
             language_code: $("#langCode").val(),
@@ -801,8 +801,8 @@
                 type: "POST",
                 failureLoadImage: true,
                 loadingImageID: "loadingImage_DdslickDealVehicleTypeBody",
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                noDataFailureText: window.lang.translate("No data returned from service"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehicleGroupsDdList_sysvehiclegroups)"),
+                noDataFailureText: window.lang.translate("No data returned from service (pkVehicleGroupsDdList_sysvehiclegroups)"),
                 data: JSON.stringify({
                     language_code: $("#langCode").val(),
                     pk: "GsZVzEYe50uGgNM",
@@ -906,8 +906,8 @@
                 loadingImageID: "loadingImage_BodyProposal",
                 triggerSuccessAuto: true,
                 transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error (pkInsertAct_infoprojectvehiclemodels)"),
+                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkInsertAct_infoprojectvehiclemodels)"),
                 proxy: '/Deal/AddBodyProxyService',
                 type: "POST",
                 data: JSON.stringify({

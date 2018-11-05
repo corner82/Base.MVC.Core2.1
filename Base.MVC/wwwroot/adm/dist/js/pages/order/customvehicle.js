@@ -41,8 +41,8 @@
                     loadingImageID: "loadingImage_customVehicle",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateAct_infocustomvehicleorder)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateAct_infocustomvehicleorder)"),
 
                     proxy: '/Order/AddCustomVehicle',
                     type: 'POST',
@@ -70,8 +70,8 @@
                     loadingImageID: "loadingImage_stockBo",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkInsertAct_infocustomvehicleorder)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkInsertAct_infocustomvehicleorder)"),
 
                     proxy: '/Order/AddCustomVehicle',
                     type: 'POST',
@@ -354,8 +354,8 @@
             loadingImageID: "loading-image-vehiclegrid",
             triggerSuccessAuto: true,
             transactionSuccessText: transactionSuccessMessage,
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateMakeActiveOrPassive_infocustomvehicleorder)"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateMakeActiveOrPassive_infocustomvehicleorder)"),
             proxy: '/Order/ActivePassiveCustomVehicle',
             type: "POST",
             data: JSON.stringify({

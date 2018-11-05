@@ -27,7 +27,7 @@ $(document).ready(function () {
         $(this).tab('show')
     })
 
-    var dropdownLicenseDocumentTypeData = [{ text: "Lütfen Seçiniz", value: 0, selected: false, description: "" },
+    var dropdownLicenseDocumentTypeData = [{ text: "Please select", value: 0, selected: false, description: "" },
     { text: "Organik", value: 1, selected: false, description: "" },
     { text: "Kimyevi", value: 2, selected: false, description: "" }
     ];

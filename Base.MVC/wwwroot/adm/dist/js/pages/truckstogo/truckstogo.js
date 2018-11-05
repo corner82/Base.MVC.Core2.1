@@ -10,8 +10,8 @@ $(document).ready(function () {
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
     var wcm = $(window).warningComplexMessage({
-        denyButtonLabel: 'Vazgeç',
-        actionButtonLabel: 'İşleme devam et'
+        denyButtonLabel: window.lang.translate('Cancel'),
+        actionButtonLabel: window.lang.translate('Continue')
     });
 
     var truckstogoID;
@@ -52,8 +52,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickChassis",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkStockVehiclesDdList_infostock)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkStockVehiclesDdList_infostock)"),
         proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
         data: JSON.stringify({
@@ -101,8 +101,8 @@ $(document).ready(function () {
         loadingImageID: "loadingImage_DdslickStatu",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehicleTtogoTypeDdList_sysvehiclettogotype)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkVehicleTtogoTypeDdList_sysvehiclettogotype)"),
         proxy: '/DefaultPost/DefaultPostModel',
         type: "POST",
         data: JSON.stringify({
@@ -183,7 +183,7 @@ $(document).ready(function () {
                     deferred.resolve(result.items, { totalCount: result.totalCount });
                 },
                 error: function () {
-                    deferred.reject("Data Loading Error");
+                    deferred.reject("Data Loading Error (pkFillTtGoGridx_systruckstogovehicles)");
                 },
                 timeout: 10000
             });
@@ -206,7 +206,7 @@ $(document).ready(function () {
                     deferred.resolve(result.items, { totalCount: result.totalCount });
                 },
                 error: function () {
-                    deferred.reject("Data remove Error");
+                    deferred.reject("Data remove Error (pkDeletedAct_systruckstogovehicles)");
                 },
                 timeout: 10000
             });
@@ -374,8 +374,8 @@ $(document).ready(function () {
                     loadingImageID: "loadingImage_truckstogo",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateAct_systruckstogovehicles)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateAct_systruckstogovehicles)"),
 
                     proxy: '/Truckstogo/AddTruckstogo',
                     type: 'POST',
@@ -405,8 +405,8 @@ $(document).ready(function () {
                     loadingImageID: "loadingImage_truckstogo",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkInsertAct_systruckstogovehicles)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkInsertAct_systruckstogovehicles)"),
 
                     proxy: '/Truckstogo/AddTruckstogo',
                     type: 'POST',
