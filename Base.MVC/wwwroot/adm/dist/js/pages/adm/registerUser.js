@@ -150,67 +150,116 @@ $(document).ready(function () {
 
 
 
-    //save user onclick
-    $("#btn-registerUser-save").on("click", function (e) {
-        e.preventDefault();
-        //alert("geldim click");
-        //if ($("#trainingIdentForm").validationEngine('validate')) {
+//    //save user onclick
+//    $("#btn-registerUser-save").on("click", function (e) {
+//        e.preventDefault();
+//        //alert("geldim click");
+//        //if ($("#trainingIdentForm").validationEngine('validate')) {
 
-            //window.insertTrainingName = function () {
+//            //window.insertTrainingName = function () {
 
+//        $("#loadingImage_DdslickRole").loadImager('removeLoadImage');
+//        $("#loadingImage_DdslickRole").loadImager('appendImage');
+
+//        var user_name = $('#txt_UserName').val();
+//        var user_email = $('#txt_Email').val();
+//        var role = $('#txt_Role').val();
+//        var password = $('#txt_Password').val();
+//        //var password_retype = $('#txt_PasswordRetype').val();
+//        var ddDataBranch = $('#ddslickBranch').data('ddslick');
+//        if (!ddDataBranch.selectedData.value > 0) {
+//            var branch = 0 ;
+//        }
+//        else {
+//            var branch = ddDataBranch.selectedData.value;
+//        }
+
+////insertUserSIS_infoUsers
+
+//                var ajax_InsertRegisterUser = $('#ajax_insert').ajaxCallWidget({
+//                    failureLoadImage: true,
+//                    loadingImageID: "loadingImage_DdslickRole",
+//                    triggerSuccessAuto: true,
+//                    transactionSuccessText: window.lang.translate('Transaction successful'),
+//                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+//                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+
+//                    proxy: '/Acc/AddRegisterUser',
+//                    type: 'POST',
+//                    data: JSON.stringify({
+//                        url: "insertUserSIS_infoUsers",
+//                        username: user_name,
+//                        email: user_email,
+//                        role: role,
+//                        branch_id: branch,
+//                        password: password,                        
+//                        pk: "GsZVzEYe50uGgNM",
+//                    })
+//                });
+//                ajax_InsertRegisterUser.ajaxCallWidget({
+//                    onReset: function (event, data) {
+//                        //resetTrainingIdentForm();
+//                    },
+//                    onAfterSuccess: function (event, data) {
+//                        //$("#gridContainer_trainingName").dxDataGrid("instance").refresh();
+//                    }
+//                })
+//                ajax_InsertRegisterUser.ajaxCallWidget('call');
+
+//            return false;
+//        //}
+//    })
+
+    window.saveUser = function () {
         $("#loadingImage_DdslickRole").loadImager('removeLoadImage');
         $("#loadingImage_DdslickRole").loadImager('appendImage');
 
         var user_name = $('#txt_UserName').val();
-        var user_email = $('#txt_UserName').val();
+        var user_email = $('#txt_Email').val();
         var role = $('#txt_Role').val();
         var password = $('#txt_Password').val();
-        var password_retype = $('#txt_PasswordRetype').val();
+        //var password_retype = $('#txt_PasswordRetype').val();
         var ddDataBranch = $('#ddslickBranch').data('ddslick');
         if (!ddDataBranch.selectedData.value > 0) {
-            var branch = 0 ;
+            var branch = 0;
         }
         else {
             var branch = ddDataBranch.selectedData.value;
         }
 
-            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php? url= pkInsertAct_syseducationdefinitions &name=aracdescriptioni &pk=GsZVzEYe50uGgNM
-            //http://proxy.mansis.co.za:18443/SlimProxyBoot.php?url=pkUpdateAct_syseducationdefinitions&name=appleee&pk=GsZVzEYe50uGgNM&id=3
+        //insertUserSIS_infoUsers
 
-                var ajax_InsertRegisterUser = $('#ajax_insert').ajaxCallWidget({
-                    failureLoadImage: true,
-                    loadingImageID: "loadingImage_DdslickRole",
-                    triggerSuccessAuto: true,
-                    transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        var ajax_InsertRegisterUser = $('#ajax_insert').ajaxCallWidget({
+            failureLoadImage: true,
+            loadingImageID: "loadingImage_DdslickRole",
+            triggerSuccessAuto: true,
+            transactionSuccessText: window.lang.translate('Transaction successful'),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
 
-                    proxy: '/Acc/AddRegisterUser',
-                    type: 'POST',
-                    data: JSON.stringify({
-                        url: "pkInsertAct_syseducationdefinitions",
-                        user_name: user_name,
-                        user_email: user_email,
-                        role: role,
-                        branch: branch,
-                        password: password,
-                        password_retype: password_retype,
-                        pk: "GsZVzEYe50uGgNM",
-                    })
-                });
-                ajax_InsertRegisterUser.ajaxCallWidget({
-                    onReset: function (event, data) {
-                        //resetTrainingIdentForm();
-                    },
-                    onAfterSuccess: function (event, data) {
-                        //$("#gridContainer_trainingName").dxDataGrid("instance").refresh();
-                    }
-                })
-                ajax_InsertRegisterUser.ajaxCallWidget('call');
+            proxy: '/Acc/AddRegisterUser',
+            type: 'POST',
+            data: JSON.stringify({
+                url: "insertUserSIS_infoUsers",
+                username: user_name,
+                email: user_email,
+                role: role,
+                branch_id: branch,
+                password: password,
+                pk: "GsZVzEYe50uGgNM",
+            })
+        });
+        ajax_InsertRegisterUser.ajaxCallWidget({
+            onReset: function (event, data) {
+                //resetTrainingIdentForm();
+            },
+            onAfterSuccess: function (event, data) {
+                //$("#gridContainer_trainingName").dxDataGrid("instance").refresh();
+            }
+        })
+        ajax_InsertRegisterUser.ajaxCallWidget('call');
 
-            return false;
-        //}
-    })
-
+        return false;
+    }
 
 });
