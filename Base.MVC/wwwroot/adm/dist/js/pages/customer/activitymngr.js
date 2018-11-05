@@ -11,8 +11,8 @@ $(document).ready(function () {
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
     var wcm = $(window).warningComplexMessage({
-        denyButtonLabel: 'Vazgeç',
-        actionButtonLabel: 'İşleme devam et'
+        denyButtonLabel: 'Cancel',
+        actionButtonLabel: 'Continue'
     });
 
     var selectedCustomerId = 0;

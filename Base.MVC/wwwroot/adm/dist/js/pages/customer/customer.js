@@ -6,8 +6,8 @@
     var dm = $(window).dangerMessage();
     var wm = $(window).warningMessage();
     var wcm = $(window).warningComplexMessage({
-        denyButtonLabel: 'Vazgeç',
-        actionButtonLabel: 'İşleme devam et'
+        denyButtonLabel: 'Cancel',
+        actionButtonLabel: 'Continue'
     });
 
 
@@ -210,8 +210,8 @@
         loadingImageID: "loading-image-country",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCountryDdList_syscountrys)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkCountryDdList_syscountrys)"),
         proxy: '/Sys/SysCountrys',
         type: "POST",
         data: JSON.stringify({
@@ -265,8 +265,8 @@
                             loadingImageID: "loading-image-province",
                             triggerSuccessAuto: true,
                             transactionSuccessText: window.lang.translate('Transaction successful'),
-                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCountryRegionsDdList_syscountryregions)"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkCountryRegionsDdList_syscountryregions)"),
                             proxy: '/Sys/SysCountryRegions',
                             type: "POST",
                             data: JSON.stringify({
@@ -312,8 +312,8 @@
                                                 loadingImageID: "loading-image-city",
                                                 triggerSuccessAuto: true,
                                                 transactionSuccessText: window.lang.translate('Transaction successful'),
-                                                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                                                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                                                transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCityDdList_syscity)"),
+                                                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkCityDdList_syscity)"),
                                                 proxy: '/Sys/SysCity',
                                                 type: "POST",
                                                 data: JSON.stringify({
@@ -437,8 +437,8 @@
         loadingImageID: "loading-image-segment",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCustomerSegmentTypesDdList_syscustomersegmenttypes)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkCustomerSegmentTypesDdList_syscustomersegmenttypes)"),
         proxy: '/Customer/SysCustomerSegmentTypes',
         type: 'POST',
         data: JSON.stringify({
@@ -490,8 +490,8 @@
         loadingImageID: "loading-image-sector",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCustomerSectorTypesDdList_syscustomersectortypes)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkCustomerSectorTypesDdList_syscustomersectortypes)"),
         proxy: '/Customer/SysCustomerSectorTypes',
         type: 'POST',
         data: JSON.stringify({
@@ -543,8 +543,8 @@
         loadingImageID: "loading-image-credibility",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCustomerReliabilityDdList_syscustomerreliability)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkCustomerReliabilityDdList_syscustomerreliability)"),
         proxy: '/Customer/SysCustomerCredibility',
         type: 'POST',
         data: JSON.stringify({
@@ -665,8 +665,8 @@
         loadingImageID: "loading-image-customercategory",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCustomerCategoriesDdList_syscustomercategories)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkCustomerCategoriesDdList_syscustomercategories)"),
         proxy: '/Customer/SysCustomerCategories',
         type: 'POST',
         data: JSON.stringify({
@@ -716,8 +716,8 @@
         loadingImageID: "loading-image-applicationtype",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCustomerApplicationMainTypesDdList_syscustomerapplicationtypes)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkCustomerApplicationMainTypesDdList_syscustomerapplicationtypes)"),
         proxy: '/Customer/SysCustomerApplicationType',
         type: 'POST',
         data: JSON.stringify({
@@ -769,8 +769,8 @@
         loadingImageID: "loading-image-totalvehicles",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkNumericalRangesVeichlesDdList_sysnumericalranges)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkNumericalRangesVeichlesDdList_sysnumericalranges)"),
         proxy: '/Customer/SysCustomerTotalVehicles',
         type: 'POST',
         data: JSON.stringify({
@@ -822,8 +822,8 @@
         loadingImageID: "loading-image-totalemployes",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkNumericalRangesEmployeesDdList_sysnumericalranges)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkNumericalRangesEmployeesDdList_sysnumericalranges)"),
         proxy: '/Customer/SysCustomerTotalEmployes',
         type: 'POST',
         data: JSON.stringify({
@@ -874,8 +874,8 @@
         loadingImageID: "loading-image-annuelrevenue",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCustomerTurnoverRatesDdList_syscustomerturnoverrates)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkCustomerTurnoverRatesDdList_syscustomerturnoverrates)"),
         proxy: '/Customer/SysCustomerAnnualRevenue',
         type: 'POST',
         data: JSON.stringify({
@@ -930,8 +930,8 @@
         loadingImageID: "loading-image-lastpurchasedbrand",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehicleBrandDdList_sysvehiclebrand)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkVehicleBrandDdList_sysvehiclebrand)"),
         proxy: '/Vehicle/SysVehicleBrand/',
         type: 'POST',
         data: JSON.stringify({
@@ -981,8 +981,8 @@
         loadingImageID: "loading-image-dateofpurchaseplan",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkNumericalRangesQuartersDdList_sysnumericalranges)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkNumericalRangesQuartersDdList_sysnumericalranges)"),
         proxy: '/Sys/SysRangesQuarters/',
         type: 'POST',
         data: JSON.stringify({
@@ -1032,8 +1032,8 @@
         loadingImageID: "loading-image-purchasedecision",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (fillMaybeYesNoTypes_sysSpecificDefinitions)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (fillMaybeYesNoTypes_sysSpecificDefinitions)"),
         proxy: '/Sys/SysMaybeYesNo/',
         type: 'POST',
         data: JSON.stringify({
@@ -1084,8 +1084,8 @@
         loadingImageID: "loading-image-totalvehicles",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkNumericalRangesVeichlesDdList_sysnumericalranges)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkNumericalRangesVeichlesDdList_sysnumericalranges)"),
         proxy: '/Customer/SysCustomerTotalVehicles',
         type: 'POST',
         data: JSON.stringify({
@@ -1155,8 +1155,8 @@
         loadingImageID: "loading-image-sourceoflead",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkSourceOfLeadDdList_syssourceoflead)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkSourceOfLeadDdList_syssourceoflead)"),
         proxy: '/Customer/SysSourceofLead/',
         type: 'POST',
         data: JSON.stringify({
@@ -1255,8 +1255,8 @@
         loadingImageID: "loading-image-role",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkTitlesCustomerDdList_systitles)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkTitlesCustomerDdList_systitles)"),
         proxy: '/Customer/SysContactPersonRole/',
         type: 'POST',
         data: JSON.stringify({
@@ -1310,8 +1310,8 @@
         loadingImageID: "loading-image-lastbrand",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehicleBrandDdList_sysvehiclebrand)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkVehicleBrandDdList_sysvehiclebrand)"),
         proxy: '/Vehicle/SysVehicleBrand/',
         type: 'POST',
         data: JSON.stringify({
@@ -1366,8 +1366,8 @@
         loadingImageID: "loading-image-productinterest",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups)"),
         proxy: '/Vehicle/SysVehiclesEndgroupsCost/',
         type: 'POST',
         data: JSON.stringify({
@@ -2746,8 +2746,8 @@
                     loadingImageID: "loading-image-cstInfo",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkInsertAct_infocustomer)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkInsertAct_infocustomer)"),
                     proxy: '/Customer/InsertCustomer',
                     type: "POST",
                     data: mydata
@@ -2779,8 +2779,8 @@
                             loadingImageID: "loading-image-cstinfo",
                             triggerSuccessAuto: true,
                             transactionSuccessText: window.lang.translate('Transaction successful'),
-                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateAct_infocustomer)"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateAct_infocustomer)"),
                             proxy: '/Customer/UpdateCustomer',
                             type: "POST",
                             data: JSON.stringify({
@@ -3197,8 +3197,8 @@
                     loadingImageID: "loading-image-cstPurchase",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkDeletedAct_infocustomerpurchaseplan)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkDeletedAct_infocustomerpurchaseplan)"),
                     proxy: '/Customer/DeletePurchasePlan',
                     type: "POST",
                     data: JSON.stringify({
@@ -3270,8 +3270,8 @@
                         loadingImageID: "loading-image-cstPurchase",
                         triggerSuccessAuto: true,
                         transactionSuccessText: window.lang.translate('Transaction successful'),
-                        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkInsertAct_infocustomerpurchaseplan)"),
+                        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkInsertAct_infocustomerpurchaseplan)"),
                         proxy: '/Customer/InsertPurchasePlan',
                         type: "POST",
                         data: mydata
@@ -3342,8 +3342,8 @@
             loadingImageID: "loading-image-cstPurchase",
             triggerSuccessAuto: true,
             transactionSuccessText: window.lang.translate('Transaction successful'),
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkFillCustomerPurchaseGridx_infocustomerpurchaseplan)"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkFillCustomerPurchaseGridx_infocustomerpurchaseplan)"),
             proxy: '/Customer/CustomerPurchasePlan/',
             type: 'POST',
             data: JSON.stringify({
@@ -3509,8 +3509,8 @@
                     loadingImageID: "loading-image-cstcp",
                     triggerSuccessAuto: true,
                     transactionSuccessText: window.lang.translate('Transaction successful'),
-                    transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                    transactionFailureText: window.lang.translate("Service URL not found, please report error (pkInsertAct_infocustomercontactpersons)"),
+                    dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkInsertAct_infocustomercontactpersons)"),
                     proxy: '/Customer/InsertContactPerson',
                     type: "POST",
                     data: mydata
@@ -3540,8 +3540,8 @@
                             loadingImageID: "loading-image-cstcp",
                             triggerSuccessAuto: true,
                             transactionSuccessText: window.lang.translate('Transaction successful'),
-                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateAct_infocustomercontactpersons)"),
+                            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateAct_infocustomercontactpersons)"),
                             proxy: '/Customer/UpdateContactPerson',
                             type: "POST",
                             data: JSON.stringify({
@@ -3818,8 +3818,8 @@
             loadingImageID: "loading-image-cstInfoGrid",
             triggerSuccessAuto: true,
             transactionSuccessText: transactionSuccessMessage,
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateMakeActiveOrPassive_infocustomer)"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateMakeActiveOrPassive_infocustomer)"),
             proxy: '/Customer/ActivePassiveCustomer',
             type: "POST",
             data: JSON.stringify({
@@ -3865,8 +3865,8 @@
                 loadingImageID: "loading-image-cstcppi",
                 triggerSuccessAuto: true,
                 transactionSuccessText: window.lang.translate('Transaction successful'),
-                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                transactionFailureText: window.lang.translate("Service URL not found, please report error (InsertContactPersonProductInterest)"),
+                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (InsertContactPersonProductInterest)"),
                 proxy: '/Customer/InsertContactPersonProductInterest',
                 type: "POST",
                 data: JSON.stringify({
@@ -3939,8 +3939,8 @@
             loadingImageID: "loading-image-contactpersonGrid",
             triggerSuccessAuto: true,
             transactionSuccessText: transactionSuccessMessage,
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateMakeActiveOrPassive_infocustomercontactpersons)"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateMakeActiveOrPassive_infocustomercontactpersons)"),
             proxy: '/Customer/ActivePassiveContactPerson',
             type: "POST",
             data: JSON.stringify({
