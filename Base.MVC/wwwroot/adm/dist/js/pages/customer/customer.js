@@ -2830,7 +2830,7 @@
                         ajax.ajaxCallWidget('call');
                     }
                 });
-                wcm.warningComplexMessage('show', 'Customer will be updated! Are you ok?', 'customer will be updated! Are you sure?');
+                wcm.warningComplexMessage('show', 'Customer data will be updated, do you want to proceed?', 'Customer data will be updated, do you want to proceed?');
             }
         }
         return false;
@@ -3219,7 +3219,7 @@
                 ajax.ajaxCallWidget('call');
             }
         });
-        wcm.warningComplexMessage('show', 'Customer purchase plan will be deleted! Are you ok?', 'Customer purchase plan will be deleted! Are you sure?');
+      wcm.warningComplexMessage('show', 'Customer purchase plan data will be updated, do you want to proceed?', 'Customer purchase plan data will be updated, do you want to proceed?');
 })
 
 /**
@@ -3294,7 +3294,7 @@
                 }
             });
 
-            wcm.warningComplexMessage('show', 'Customer purchase plan will be updated! Are you ok?', 'Customer purchase plan will be updated! Are you sure?');
+            wcm.warningComplexMessage('show', 'Customer purchase plan data will be updated, do you want to proceed?', 'Customer purchase plandata will be updated, do you want to proceed?');
 
         }
            
@@ -3579,7 +3579,7 @@
                         ajax.ajaxCallWidget('call');
                     }
                 });
-                wcm.warningComplexMessage('show', 'Contact Person will be updated! Are you sure?', 'Contact Person will be updated! Are you sure?');
+                wcm.warningComplexMessage('show', 'Contact Person data will be updated, do you want to proceed?', 'Contact Person data will be updated, do you want to proceed?');
             }
         }
         return false;

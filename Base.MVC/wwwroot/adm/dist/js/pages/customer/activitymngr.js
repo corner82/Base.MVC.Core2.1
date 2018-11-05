@@ -114,8 +114,8 @@ $(document).ready(function () {
     var ajax_customername = $('#ajaxACL-act-customername').ajaxCallWidget({
         proxy: '/Customer/DdslickGetAllCustomers',
         type: "POST",
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        noDataFailureText: window.lang.translate("No data returned from service"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCustomerDdList_infocustomer)"),
+        noDataFailureText: window.lang.translate("No data returned from service (pkCustomerDdList_infocustomer)"),
         loadingImageID: "loading-image-customername",
         data: JSON.stringify({
             language_code: $("#langCode").val(),
@@ -135,7 +135,8 @@ $(document).ready(function () {
             $('#dropdownCustomerName').ddslick({
                 data: data,
                 width: '100%',
-
+                search: true,
+                searchText: window.lang.translate('Search'),
                 onSelected: function (selectedData) {
 
                     $('#dropdownContactPerson').ddslick('destroy');
@@ -150,8 +151,8 @@ $(document).ready(function () {
                         var ajax_contactperson = $('#ajaxACL-act-contactperson').ajaxCallWidget({
                             proxy: '/Customer/DdslickGetCustomerContactList',
                             type: "POST",
-                            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                            noDataFailureText: window.lang.translate("No data returned from service"),
+                            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCustomerContactPersonDdList_infocustomercontactpersons)"),
+                            noDataFailureText: window.lang.translate("No data returned from service (pkCustomerContactPersonDdList_infocustomercontactpersons)"),
                             loadingImageID: "loading-image-contactperson",
                             data: JSON.stringify({
                                 language_code: $("#langCode").val(),
@@ -172,7 +173,8 @@ $(document).ready(function () {
                                 $('#dropdownContactPerson').ddslick({
                                     data: data_contactperson,
                                     width: '100%',
-
+                                    search: true,
+                                    searchText: window.lang.translate('Search'),
                                     onSelected: function (selectedData) {
                                         if (selectedData.selectedData.value > 0) {
 
@@ -221,8 +223,8 @@ $(document).ready(function () {
         loadingImageID: "loading-image-activitytype",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCsActivationTypesDdList_syscsactivationtypes)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkCsActivationTypesDdList_syscsactivationtypes)"),
         proxy: '/Customer/SysActivityTypes',
         type: 'POST',
         data: JSON.stringify({
@@ -291,8 +293,8 @@ $(document).ready(function () {
         loadingImageID: "loading-image-activitystatus",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCsStatuTypesDdList_syscsstatutypes)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkCsStatuTypesDdList_syscsstatutypes)"),
         proxy: '/Customer/SysActivePassiveList',
         type: 'POST',
         data: JSON.stringify({
@@ -349,8 +351,8 @@ $(document).ready(function () {
         loadingImageID: "loading-image-activityplanned",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCsActStatutypesPUDdList_syscsactstatutypess)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkCsActStatutypesPUDdList_syscsactstatutypess)"),
         proxy: '/Customer/SysPlannedUnPlanned',
         type: 'POST',
         data: JSON.stringify({
@@ -403,8 +405,8 @@ $(document).ready(function () {
         loadingImageID: "loading-image-segment",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCustomerSegmentTypesDdList_syscustomersegmenttypes)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkCustomerSegmentTypesDdList_syscustomersegmenttypes)"),
         proxy: '/Customer/SysCustomerSegmentTypes',
         type: 'POST',
         data: JSON.stringify({
@@ -459,8 +461,8 @@ $(document).ready(function () {
         loadingImageID: "loading-image-productinterest",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkVehiclesEndgroupsCostDdList_sysvehiclesendgroups)"),
         proxy: '/Vehicle/SysVehiclesEndgroupsCost/',
         type: 'POST',
         data: JSON.stringify({
@@ -520,8 +522,8 @@ $(document).ready(function () {
         loadingImageID: "loading-image-activitylaststatus",
         triggerSuccessAuto: true,
         transactionSuccessText: window.lang.translate('Transaction successful'),
-        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkCsActStatutypesDdList_syscsactstatutypess)"),
+        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkCsActStatutypesDdList_syscsactstatutypess)"),
         proxy: '/Customer/SysActivityLastStatus',
         type: 'POST',
         data: JSON.stringify({
@@ -691,8 +693,8 @@ $(document).ready(function () {
                         loadingImageID: "loading-image-activity",
                         triggerSuccessAuto: true,
                         transactionSuccessText: window.lang.translate('Transaction successful'),
-                        transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                        transactionFailureText: window.lang.translate("Service URL not found, please report error (pkInsertAct_infocustomeractivations)"),
+                        dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkInsertAct_infocustomeractivations)"),
                         proxy: '/Customer/InsertCustomerActivity',
                         type: "POST",
                         data: mydata
@@ -751,8 +753,8 @@ $(document).ready(function () {
                                 loadingImageID: "loading-image-activity",
                                 triggerSuccessAuto: true,
                                 transactionSuccessText: window.lang.translate('Transaction successful'),
-                                transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-                                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+                                transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateAct_infocustomeractivations)"),
+                                dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateAct_infocustomeractivations)"),
                                 proxy: '/Customer/UpdateCustomerActivity',
                                 type: "POST",
                                 data: mydata
@@ -774,7 +776,7 @@ $(document).ready(function () {
                             $("#loading-image-activity").loadImager('removeLoadImage');
                         }
                     });
-                    wcm.warningComplexMessage('show', 'Activity will be updated! Are you sure?', 'Activity will be updated! Are you sure?');
+                    wcm.warningComplexMessage('show', 'Activity data will be updated, do you want to proceed?', 'Activity data will be updated, do you want to proceed?');
 
                 }
             }
@@ -1417,8 +1419,8 @@ $(document).ready(function () {
             loadingImageID: "loading-image-activityGrid",
             triggerSuccessAuto: true,
             transactionSuccessText: transactionSuccessMessage,
-            transactionFailureText: window.lang.translate("Service URL not found, please report error"),
-            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data"),
+            transactionFailureText: window.lang.translate("Service URL not found, please report error (pkUpdateMakeActiveOrPassive_infocustomeractivations)"),
+            dataAlreadyExistsText: window.lang.translate("Data already created, edit your data (pkUpdateMakeActiveOrPassive_infocustomeractivations)"),
             proxy: '/Customer/ActivePassiveCustomerActivity',
             type: "POST",
             data: JSON.stringify({

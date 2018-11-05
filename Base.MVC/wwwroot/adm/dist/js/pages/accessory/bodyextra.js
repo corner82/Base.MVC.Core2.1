@@ -504,7 +504,7 @@ $(document).ready(function () {
                         ajax.ajaxCallWidget('call');
                     }
                 });
-                wcm.warningComplexMessage('show', 'Body extra is update! Are you sure?', 'Body extra is update! Are you sure?');
+                wcm.warningComplexMessage('show', 'Body extra data will be updated, do you want to proceed?', 'Body extra data will be updated, do you want to proceed?');
             }
         }
         return false;
@@ -953,7 +953,7 @@ $(document).ready(function () {
                         ajax.ajaxCallWidget('call');
                     }
                 });
-                wcm.warningComplexMessage('show', 'Body extra feature is update! Are you sure?', 'Body extra feature is update! Are you sure?');
+                wcm.warningComplexMessage('show', 'Body extra feature data will be updated, do you want to proceed?', 'Body extra feature data will be updated, do you want to proceed?');
             }
         }
         return false;
